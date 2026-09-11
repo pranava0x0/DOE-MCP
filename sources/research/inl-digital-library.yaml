@@ -1,0 +1,63 @@
+id: inl-digital-library
+name: INL Digital Library
+domain: research
+
+publisher:
+  steward: inl
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [inl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: unknown
+  tier: crawl_or_defer
+  terms_url: https://inldigitallibrary.inl.gov/
+  terms_notes: >
+    The host drops plain HTTP clients. That is blocked_probe, not gated:
+    nothing user-facing may describe this as access-controlled until a
+    browser has looked.
+
+freshness:
+  expected_cadence: unknown
+  cadence_source: >
+    Unknown.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    INL's own document repository.
+  temporal: unknown
+  dataset_version: "current"
+  known_limitations:
+    - >
+      One of five DOE hosts confirmed dropping scripted clients while
+      serving browsers. The pattern is the finding.
+
+authority_notes: >
+  INL reports are also in OSTI, which is the working route today.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Blocked probe. Needs one browser-grade check before anything can be
+    said about it.

@@ -1,0 +1,66 @@
+id: ames-gamess
+name: GAMESS quantum chemistry package
+domain: research
+
+publisher:
+  steward: ames
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [ames]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: manual_review_required
+  tier: crawl_or_defer
+  terms_url: https://www.msg.chem.iastate.edu/gamess/
+  terms_notes: >
+    Software distributed under its own licence with a request form, not
+    a dataset. Registered so the crosswalk can answer honestly for Ames.
+
+freshness:
+  expected_cadence: on release
+  cadence_source: >
+    Stated; versioned releases.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    A quantum chemistry program developed at Ames.
+  temporal: current release
+  dataset_version: "current"
+  known_limitations:
+    - >
+      Software, not data. There is no dataset to serve; a caller asking
+      what Ames publishes should be told that, and told where the code
+      is.
+
+authority_notes: >
+  Ames has no public data portal. Its public output reaches agents
+  through OSTI — which is precisely the case the domain-server topology
+  exists for, and precisely why a per-lab server topology would have
+  produced a nearly empty Ames server.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Software distribution, not a data API. Nothing to build; registered
+    for crosswalk truthfulness.

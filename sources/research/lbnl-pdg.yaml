@@ -1,0 +1,68 @@
+id: lbnl-pdg
+name: Particle Data Group
+domain: research
+
+publisher:
+  steward: lbnl
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [lbnl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: unknown
+  tier: catalog_pointer
+  terms_url: https://pdg.lbl.gov/
+  terms_notes: >
+    The canonical particle-physics reference, freely readable. Machine-
+    interface availability was not established in the survey.
+
+freshness:
+  expected_cadence: annual
+  cadence_source: >
+    Stated; the Review of Particle Physics has annual editions.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Reviewed particle properties: masses, lifetimes, decay modes,
+    branching ratios.
+  temporal: current edition
+  dataset_version: "annual edition"
+  known_limitations:
+    - >
+      Edition identity is load-bearing in a field where measured values
+      shift between reviews.
+    - >
+      A find of the second research pass rather than the first, and a
+      strong candidate precisely because it is small, canonical, and
+      heavily cited.
+
+authority_notes: >
+  One of DOE's seven PuRe data resources. Primary for reviewed particle
+  properties.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Machine interface not established. One probe would settle whether
+    this is thin-proxy or pointer-only.

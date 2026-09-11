@@ -1,0 +1,69 @@
+id: fnal-experiment-releases
+name: Fermilab experiment data releases
+domain: research
+
+publisher:
+  steward: fnal
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [fnal]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: public_download
+  tier: catalog_pointer
+  terms_url: https://www.fnal.gov/
+  terms_notes: >
+    Per-experiment public data releases (MINERvA, MicroBooNE, NOvA among
+    them), published as ROOT and HDF5 on Zenodo with their own DOIs and
+    terms.
+
+freshness:
+  expected_cadence: per release
+  cadence_source: >
+    Observed; releases follow experiment publication schedules.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Public data releases from Fermilab neutrino and collider
+    experiments.
+  temporal: per experiment
+  dataset_version: "current"
+  known_limitations:
+    - >
+      ROOT and HDF5 files of substantial size. Pointer-only by
+      construction (decision 0010); there is no subsetting service to
+      offer instead.
+    - >
+      Each experiment releases on its own terms and schedule. There is
+      no Fermilab-wide data API, and pretending otherwise would
+      misdescribe how particle-physics collaborations publish.
+
+authority_notes: >
+  Primary for the collaborations' own releases. Pointer manifests; no
+  server work planned.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Pointer-only by design. Nothing to build beyond registry entries.

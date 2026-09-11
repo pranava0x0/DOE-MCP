@@ -1,0 +1,64 @@
+id: jlab-ildg
+name: ILDG lattice QCD catalogs
+domain: research
+
+publisher:
+  steward: jlab
+  authority_level: official_secondary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [jlab]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: unknown
+  tier: catalog_pointer
+  terms_url: https://www.jlab.org/
+  terms_notes: >
+    A Swagger-described REST interface into the International Lattice
+    Data Grid was found, with TLS and authentication behaviour
+    unverified.
+
+freshness:
+  expected_cadence: unknown
+  cadence_source: >
+    Unknown.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Lattice QCD gauge configuration catalogs within an international
+    federation.
+  temporal: current
+  dataset_version: "current"
+  known_limitations:
+    - >
+      TLS and auth behaviour unverified — one of the named pre-build
+      checks in architecture Part 1 section 4.7.
+
+authority_notes: >
+  Research-adjacent. Phase 4 at the earliest.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    TLS and authentication behaviour unverified; one probe would settle
+    it.

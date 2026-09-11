@@ -1,0 +1,68 @@
+id: slac-software-releases
+name: SLAC software and public releases
+domain: research
+
+publisher:
+  steward: slac
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [slac]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: public_download
+  tier: catalog_pointer
+  terms_url: https://www6.slac.stanford.edu/
+  terms_notes: >
+    Public software releases; facility data is proposal-gated.
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    SLAC's public software output.
+  temporal: current
+  dataset_version: "current"
+  known_limitations:
+    - >
+      LCLS, SSRL, and FACET-II data is proposal-gated by design. A
+      caller asking for LCLS shot data gets the derived_layer
+      explanation, not an empty result — that is one of the four
+      coverage traps this project tests against.
+    - >
+      Cryo-EM output goes to EMDB and EMPIAR, which are outside DOE's
+      scope entirely. Naming that boundary is more useful than
+      pretending to cover it.
+
+authority_notes: >
+  SLAC is facility-gated in the way the whole user-facility layer is.
+  Its public output reaches OSTI.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Facility-gated by design; software is already covered through DOE
+    CODE.

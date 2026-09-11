@@ -1,0 +1,64 @@
+id: srnl-srs-environmental-reports
+name: Savannah River Site annual environmental reports
+domain: research
+
+publisher:
+  steward: srnl
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [srnl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: public_download
+  tier: crawl_or_defer
+  terms_url: https://www.srs.gov/
+  terms_notes: >
+    Public PDF reports, published annually since 1959.
+
+freshness:
+  expected_cadence: annual
+  cadence_source: >
+    Stated; an annual series.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Environmental monitoring at the Savannah River Site.
+  temporal: 1959 onward
+  dataset_version: "current"
+  known_limitations:
+    - >
+      PDF only, over more than six decades, with a format that has
+      changed many times across them. A parse job with a long tail and
+      little payoff against the energy domains.
+
+authority_notes: >
+  SRNL has the thinnest public structured-data posture of the seventeen
+  laboratories, and this is the honest record of that rather than an
+  empty row.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    PDF-only corpus; deferred indefinitely. Registered so the crosswalk
+    can answer truthfully for SRNL.

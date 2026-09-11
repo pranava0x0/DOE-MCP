@@ -1,0 +1,117 @@
+# DOE Data Explorer: the discovery front door (decision 0009-B).
+#
+# What makes DDE first-class rather than one catalog among several is that it
+# is federated by construction. It already indexes the Geothermal Data
+# Repository, GESDB, Constellation, EMSL releases, and dozens of lab
+# repositories, which means a single query here reaches sources that have no
+# API of their own. The measured case: 1,035 of the Geothermal Data
+# Repository's 1,451 submissions — 71% — are queryable through
+# `site_ownership_code=DOE-GDR`, and GDR itself has no conventional API at
+# all (probe-confirmed: CKAN and DKAN endpoints both 404).
+#
+# What it is NOT: a data source. Every record points at data held elsewhere.
+# Answers from here are metadata, DOIs, and access recipes.
+id: osti-data-explorer
+name: DOE Data Explorer
+domain: research
+
+publisher:
+  steward: osti
+  authority_level: official_secondary
+
+aliases:
+  former_names: [DOE Data Explorer, DDE]
+  former_domains: []
+
+labs: [ames, anl, bnl, fnal, inl, lbnl, llnl, lanl, netl, nlr, ornl, pnnl,
+       pppl, snl, srnl, slac, jlab]
+
+capabilities:
+  - id: dataset.search
+    tool_hint: research.search_datasets
+  - id: dataset.get_record
+    tool_hint: research.get_record
+  - id: discovery.search_catalogs
+    tool_hint: discovery.search_all_catalogs
+
+adapter:
+  type: osti_family
+  base_url: https://www.osti.gov/dataexplorer/api/v1
+  flavor: records
+  record_path: /records
+  biblio_url_template: https://www.osti.gov/dataexplorer/biblio/{id}
+  supported_filters: []
+
+access:
+  mode: anonymous
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://www.osti.gov/dataexplorer/about
+  terms_notes: >
+    Anonymous read access, no key, no published rate limit; reviewed with the
+    rest of the OSTI family. Verified live 2026-09-02. DOI minting (the
+    submission side) requires OSTI credentials and is not touched here — this
+    project makes no write calls of any kind.
+  terms_reviewed_at: "2026-09-02"
+  terms_gap: >
+    No published rate limit, same as the rest of the OSTI family.
+  citation_required: false
+  rate_limit_note: >
+    Same posture as the rest of the OSTI family: no
+    published limit, and /dataexplorer/api/v1 outside every robots.txt
+    Disallow while /dataexplorer/search is inside one.
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed. 1,016,366 records on the morning of 2026-09-01, 1,030,767 by
+    2026-09-02.
+  ttl_hint_seconds: 3600
+
+coverage:
+  scope: >
+    Metadata and DOIs for DOE-funded research datasets held at national
+    laboratories, user facilities, universities, and other repositories.
+    Discovery layer only: DDE hosts no data.
+  temporal: current
+  dataset_version: current
+  record_count: 1030767
+  record_count_checked: "2026-09-02"
+  known_limitations:
+    - >
+      Points at data, never holds it. A DDE record answers "where is this
+      dataset and what is its DOI"; reaching the bytes is a second step, and
+      one that may need an account the record does not mention.
+    - >
+      Coverage depends on submission. A repository that never registered its
+      datasets with OSTI is invisible here however public it is, so an empty
+      result is a statement about registration, not about existence.
+    - >
+      `site_ownership_code` is the field that makes single-repository views
+      possible (DOE-GDR returns 1,035 records, checked live 2026-09-02) but
+      its vocabulary is OSTI's own and is not published as an enumerable
+      list. Codes are discovered from returned records, not from a
+      dictionary.
+    - >
+      A record's `site_url` points wherever the submitting repository said,
+      and that host is outside this source's egress allowlist. The URL is
+      returned as data and never fetched.
+
+authority_notes: >
+  Official_secondary rather than primary: OSTI aggregates dataset metadata
+  submitted by the repositories that actually hold the data, so for any one
+  dataset the authority is the holding repository. DDE is authoritative for
+  the DOI it minted and for the fact of registration. This is also the
+  discovery front door under decision 0009-B, queried first-class with the
+  other catalogs fanned out behind it.
+
+health:
+  probe: osti_total_count
+  expect:
+    min_records: 900000
+
+lifecycle:
+  declared_state: active
+  added: "2026-09-02"
+  last_verified: "2026-09-02"
+  verified_by: pranava0x0

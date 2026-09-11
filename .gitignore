@@ -7,10 +7,10 @@
 # pages, half-verified findings, and agent scratch that would read as claims.
 # design/architecture.md cites them; that is a pointer into the working set,
 # not a promise the reader has it.
-research/
+/research/
 
 # Local design & architecture notes. Kept local and not published.
-design/
+/design/
 
 # Agent & internal docs kept local
 .claude/

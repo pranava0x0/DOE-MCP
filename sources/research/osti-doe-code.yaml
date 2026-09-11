@@ -1,0 +1,109 @@
+# DOE CODE: the software registry, and the one member of the OSTI family that
+# is NOT the /records shape. It is Solr-backed:
+# `{"num_found": N, "start": 0, "docs": [...]}` for search, and
+# `{"metadata": {...}}` for a single record. One adapter still covers it,
+# with a different response reader — which is the honest version of the
+# "one adapter covers four APIs" claim.
+id: osti-doe-code
+name: DOE CODE
+domain: research
+
+publisher:
+  steward: osti
+  authority_level: primary
+
+aliases:
+  former_names: [DOE Code]
+  former_domains: []
+
+labs: [ames, anl, bnl, fnal, inl, lbnl, llnl, lanl, netl, nlr, ornl, pnnl,
+       pppl, snl, srnl, slac, jlab]
+
+capabilities:
+  - id: software.search
+    tool_hint: research.search_software
+  - id: software.get_record
+    tool_hint: research.get_record
+
+adapter:
+  type: osti_family
+  base_url: https://www.osti.gov/doecodeapi/services
+  flavor: doecode
+  record_path: /search
+  biblio_url_template: https://www.osti.gov/doecode/biblio/{id}
+  supported_filters: []
+
+access:
+  mode: anonymous
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://www.osti.gov/doecode/FAQs
+  terms_notes: >
+    Search and single-record reads are open with no key; verified live
+    2026-09-02. Submission endpoints require a registered DOE CODE account
+    and are write-side, so they are outside this project entirely. Individual
+    software records carry their OWN licences, which are returned per record
+    — DOE CODE indexes both open-source and closed-source projects, and the
+    `open_source` flag is the field that distinguishes them.
+  terms_reviewed_at: "2026-09-02"
+  citation_required: false
+  rate_limit_note: >
+    Same posture as the rest of the OSTI family: no
+    published limit. /doecodeapi/services is outside every robots.txt
+    Disallow rule; the '/search/' rule is anchored at the site root and does
+    not match it.
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed. 7,666 records on the morning of 2026-09-01, 7,675 by the
+    evening, unchanged at 7,675 on 2026-09-02.
+  ttl_hint_seconds: 21600
+
+coverage:
+  scope: >
+    DOE-funded scientific and business software: open-source projects with
+    repository links, and closed-source project metadata. Licences,
+    developers with ORCIDs, sponsoring organizations, and DOIs.
+  temporal: current
+  dataset_version: current
+  record_count: 7675
+  record_count_checked: "2026-09-02"
+  known_limitations:
+    - >
+      Registration is the mechanism, so coverage tracks what labs chose to
+      register rather than what they wrote. A DOE-funded tool absent here may
+      simply never have been submitted.
+    - >
+      `project_type` OS versus CS is the open/closed split, and a closed
+      record has no repository link. Asking for the code behind a CS record
+      is a question for the sponsoring organization, not a gap in this API.
+    - >
+      A different response shape from the other three OSTI APIs
+      (`num_found`/`docs` rather than a bare array with X-Total-Count), and a
+      different filter vocabulary (`all_fields` rather than `q`). Sending an
+      OSTI.GOV-style filter here returns an unfiltered result, so the adapter
+      refuses unknown filters rather than passing them through.
+    - >
+      `repository_link` points at GitHub or another forge outside this
+      source's egress allowlist. Returned as data, never fetched.
+
+authority_notes: >
+  Primary for "what DOE-funded software has been registered, under what
+  licence, by whom". Not authoritative for the code itself, which lives in
+  whatever repository the record links to and may have moved since
+  registration. A useful and slightly self-referential property found during
+  the survey: DOE CODE indexes DOE's own MCP servers, so "search DOE CODE for
+  MCP" is a live way to discover the federation landscape this project
+  tracks.
+
+health:
+  probe: doecode_num_found
+  expect:
+    min_records: 6500
+
+lifecycle:
+  declared_state: active
+  added: "2026-09-02"
+  last_verified: "2026-09-02"
+  verified_by: pranava0x0

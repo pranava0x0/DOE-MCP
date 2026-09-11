@@ -1,0 +1,65 @@
+id: inl-moose
+name: MOOSE multiphysics framework
+domain: research
+
+publisher:
+  steward: inl
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [inl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: public_download
+  tier: catalog_pointer
+  terms_url: https://mooseframework.inl.gov/
+  terms_notes: >
+    Open-source simulation framework, LGPL, developed and maintained by
+    INL.
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed; active open-source development.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    A finite-element multiphysics framework used across nuclear and
+    energy modelling.
+  temporal: current
+  dataset_version: "current"
+  known_limitations:
+    - >
+      Software rather than data. Registered in DOE CODE and reachable
+      through the software tools already built.
+
+authority_notes: >
+  INL is a software laboratory more than a data one in public terms:
+  MOOSE is its most-used public output, and it is already answerable
+  through DOE CODE.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Software; already discoverable through DOE CODE. No separate
+    integration needed.

@@ -1,0 +1,107 @@
+# DOE PAGES: the public-access literature gateway. Technically the same API
+# as OSTI.GOV with a different base path, which is the whole argument for the
+# `osti_family` adapter — but semantically distinct enough to be its own
+# source, because "peer-reviewed and publicly readable" is a different claim
+# from "in DOE's index".
+#
+# The DOI quirk lives here: PAGES emits DOIs as full https://doi.org/ URLs
+# where OSTI.GOV emits them bare. Normalized in the adapter, both forms kept.
+id: osti-doe-pages
+name: DOE PAGES (Public Access Gateway for Energy and Science)
+domain: research
+
+publisher:
+  steward: osti
+  authority_level: primary
+
+aliases:
+  former_names: [DOE Public Access Gateway for Energy and Science]
+  former_domains: []
+
+labs: [ames, anl, bnl, fnal, inl, lbnl, llnl, lanl, netl, nlr, ornl, pnnl,
+       pppl, snl, srnl, slac, jlab]
+
+capabilities:
+  - id: literature.search
+    tool_hint: research.search_literature
+  - id: literature.get_record
+    tool_hint: research.get_record
+  - id: literature.fulltext_link
+    tool_hint: research.get_record
+
+adapter:
+  type: osti_family
+  base_url: https://www.osti.gov/pages/api/v1
+  flavor: records
+  record_path: /records
+  biblio_url_template: https://www.osti.gov/pages/biblio/{id}
+  supported_filters: [dataset_content_type]
+
+access:
+  mode: anonymous
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://www.osti.gov/pages/faqs
+  terms_notes: >
+    Same posture as the OSTI.GOV API and reviewed with it: anonymous, no
+    key, no published rate limit, no stated restriction on programmatic
+    reads. Verified live 2026-09-02.
+  terms_reviewed_at: "2026-09-02"
+  terms_gap: >
+    No published rate limit, same as the rest of the OSTI family.
+  citation_required: false
+  rate_limit_note: >
+    Same posture as the rest of the OSTI family: no
+    published limit, no Crawl-delay for the default agent, and /pages/api/v1
+    outside every robots.txt Disallow while /pages/search is inside one.
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed. 260,168 records on the morning of 2026-09-01 and 260,246 that
+    evening.
+  ttl_hint_seconds: 3600
+
+coverage:
+  scope: >
+    Peer-reviewed scholarly publications resulting from DOE funding, with
+    full text — accepted manuscript or published version — under DOE's
+    Public Access Policy.
+  temporal: >
+    2013 onward in practice: the policy implements the 2013 OSTP public-
+    access memo, so earlier DOE-funded literature is in OSTI.GOV but not
+    here.
+  dataset_version: current
+  record_count: 260246
+  record_count_checked: "2026-09-02"
+  known_limitations:
+    - >
+      A 12-month administrative embargo interval applies before an accepted
+      manuscript appears. Recent DOE-funded work is therefore systematically
+      absent, and an empty result for a 2026 paper means "not yet released",
+      not "does not exist".
+    - >
+      Sixteen times smaller than OSTI.GOV (260K against 4.38M) by design,
+      not by omission. A literature search that finds nothing here should
+      try OSTI.GOV before concluding anything.
+    - >
+      DOIs arrive as full https://doi.org/ URLs rather than bare DOIs, which
+      breaks naive deduplication against OSTI.GOV records of the same work.
+      The adapter normalizes both to a bare DOI and keeps the URL form as
+      the locator.
+
+authority_notes: >
+  Primary for the question "which DOE-funded peer-reviewed work is publicly
+  readable and where". The journal remains the publisher of record for the
+  article itself; PAGES is the access route DOE guarantees.
+
+health:
+  probe: osti_total_count
+  expect:
+    min_records: 200000
+
+lifecycle:
+  declared_state: active
+  added: "2026-09-02"
+  last_verified: "2026-09-02"
+  verified_by: pranava0x0

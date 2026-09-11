@@ -224,9 +224,9 @@ def test_the_research_directory_is_not_committable():
     government pages, half-verified findings, and material that would read as
     claims out of context. It stays local."""
     ignore = (ROOT / ".gitignore").read_text()
-    assert re.search(r"^research/\s*$", ignore, re.M), (
+    assert re.search(r"^/?research/\s*$", ignore, re.M), (
         "research/ must be gitignored; working research notes remain local")
-    assert re.search(r"^design/\s*$", ignore, re.M), (
+    assert re.search(r"^/?design/\s*$", ignore, re.M), (
         "design/ must be gitignored; architecture docs remain local")
 
 

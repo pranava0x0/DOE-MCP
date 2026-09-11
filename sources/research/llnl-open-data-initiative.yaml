@@ -1,0 +1,65 @@
+id: llnl-open-data-initiative
+name: LLNL Open Data Initiative
+domain: research
+
+publisher:
+  steward: llnl
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [llnl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: public_download
+  tier: catalog_pointer
+  terms_url: https://data.llnl.gov/
+  terms_notes: >
+    Public dataset pointers from a laboratory whose posture is otherwise
+    restricted.
+
+freshness:
+  expected_cadence: periodic
+  cadence_source: >
+    Observed; occasional releases.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Selected LLNL datasets released publicly.
+  temporal: current
+  dataset_version: "current"
+  known_limitations:
+    - >
+      LLNL's public data posture is thin by mission. Most of what it
+      produces is not public and never will be, which is a fact about
+      the laboratory rather than a gap in this registry.
+
+authority_notes: >
+  LLNL's more significant contribution to this map is infrastructure it
+  operated rather than data: ESGF's search index, now moved to ORNL. It
+  also ships three MCP servers, which are federation candidates rather
+  than sources.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Pointer-shaped; low volume. Phase 4 at the earliest.

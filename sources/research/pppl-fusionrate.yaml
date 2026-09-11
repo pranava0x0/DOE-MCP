@@ -1,0 +1,62 @@
+id: pppl-fusionrate
+name: fusionrate
+domain: research
+
+publisher:
+  steward: pppl
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [pppl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: public_download
+  tier: catalog_pointer
+  terms_url: https://www.pppl.gov/
+  terms_notes: >
+    A small open-source package for fusion reactivity calculations.
+
+freshness:
+  expected_cadence: on release
+  cadence_source: >
+    Observed; versioned releases.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Fusion reaction rate coefficients and cross sections.
+  temporal: current
+  dataset_version: "current"
+  known_limitations:
+    - >
+      Small. PPPL's public structured-data footprint is thin; NSTX-U
+      data is proposal-gated by design like every other user facility.
+
+authority_notes: >
+  Registered so the crosswalk answers for PPPL. Its DataSpace holdings
+  also reach DOE Data Explorer, which is the working discovery route.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Small library rather than a data service; discoverable through DOE
+    CODE.

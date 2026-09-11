@@ -1,0 +1,140 @@
+# OSTI.GOV: the largest single asset in this inventory and the reason the
+# first vertical is literature rather than something more visibly "energy".
+# 4.38 million records, no key, no documented rate limit, one REST shape, and
+# no MCP server anywhere in the world wrapping it.
+#
+# The quirk that costs people the most time: a client that does not send
+# `Accept: application/json` gets XML, with a 200 status. The adapter always
+# sends it.
+#
+# The second quirk: the total-match count is in the `X-Total-Count` HEADER,
+# not the body. The body is a bare JSON array of one page. A caller reading
+# len(body) sees 20 and believes a query matched 20 things.
+id: osti-gov-records
+name: OSTI.GOV Search API
+domain: research
+
+publisher:
+  steward: osti
+  authority_level: primary
+
+aliases:
+  former_names: [OSTI Search API, "OSTI.GOV API v1"]
+  former_domains: []
+
+# OSTI indexes the whole complex, so every laboratory's output is here. The
+# crosswalk lists all seventeen rather than pretending to a subset.
+labs: [ames, anl, bnl, fnal, inl, lbnl, llnl, lanl, netl, nlr, ornl, pnnl,
+       pppl, snl, srnl, slac, jlab]
+
+capabilities:
+  - id: literature.search
+    tool_hint: research.search_literature
+  - id: literature.get_record
+    tool_hint: research.get_record
+  - id: literature.fulltext_link
+    tool_hint: research.get_record
+
+adapter:
+  type: osti_family
+  base_url: https://www.osti.gov/api/v1
+  flavor: records
+  record_path: /records
+  biblio_url_template: https://www.osti.gov/biblio/{id}
+  supported_filters: []
+
+access:
+  mode: anonymous
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://www.osti.gov/disclaim
+  terms_notes: >
+    No authentication, no registration, and no published rate limit. OSTI's
+    disclaimer page covers accuracy and endorsement rather than automated
+    access, and states no restriction on programmatic use. Read live without
+    a key on 2026-09-02. The absence of a stated ceiling is an absence, not
+    permission: the adapter holds a two-request concurrency cap per host and
+    an honest User-Agent, because this is shared public infrastructure.
+  terms_reviewed_at: "2026-09-02"
+  terms_gap: >
+    No published rate limit means none of us knows what the real one is.
+    If OSTI ever publishes one, or answers an email about it, this field
+    becomes a number and the politeness budget follows it.
+  citation_required: false
+  rate_limit_note: >
+    No rate limit is published in the API documentation
+    (checked 2026-09-08), and www.osti.gov's robots.txt sets no Crawl-delay
+    for the default agent. Absence of a stated ceiling is not permission;
+    the per-host concurrency and retry budget in the fetch path is what
+    keeps this polite. That robots.txt does disallow the human search UIs
+    (/search/, /pages/search, /dataexplorer/search) for every agent — this
+    source reads the API paths, which are outside every rule, and a test
+    holds that difference.
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed. Records carry their own `entry_date`; the unfiltered total
+    moved from 4,366,590 to 4,381,671 over one day of checks on 2026-09-01
+    and 2026-09-02, which is roughly 15,000 records a day arriving.
+  ttl_hint_seconds: 3600
+
+coverage:
+  scope: >
+    DOE's master collection of research results: technical reports, journal
+    articles and accepted manuscripts, conference papers, patents, books and
+    theses, plus metadata for datasets and software held elsewhere.
+  temporal: >
+    Historical through current, with a long tail reaching back to the
+    Manhattan Project era.
+  dataset_version: current
+  record_count: 4381671
+  record_count_checked: "2026-09-02"
+  known_limitations:
+    - >
+      An index of DOE-funded results, not of all energy research. Absence
+      here says nothing about whether work exists; it says DOE did not fund
+      or receive it.
+    - >
+      `product_type` filters on OSTI's own vocabulary — "Technical Report",
+      "Journal Article" — and the value "Dataset" returns zero here even
+      though datasets exist, because dataset records live in DOE Data
+      Explorer. Checked live 2026-09-02. A caller filtering for datasets on
+      this API gets an empty result that means "wrong API", not "none".
+    - >
+      Some records carry future `publication_date` values, which is correct
+      rather than a data error: OSTI accepts scheduled-publication metadata.
+      Sorting by date puts unpublished work first unless a range is set.
+    - >
+      A fulltext link is present when `has_fulltext` is true and absent
+      otherwise; the servlet URL pattern resolves for those records only.
+      Constructing one for a record without full text produces a dead link,
+      so the adapter emits only what the API supplies or the manifest
+      templates for records the API marked as having full text.
+    - >
+      ScienceCinema was retired as a standalone product on 2025-09-05 and
+      its ~3,600 multimedia items folded into this collection. Whether they
+      can be isolated by any filter here is unverified.
+
+authority_notes: >
+  OSTI is DOE's designated repository for scientific and technical
+  information and mints the DOE Data ID Service DOIs that much of this
+  ecosystem's persistent identity rests on, so this is primary for the
+  question "what DOE-funded research output exists". It is NOT primary for
+  the content of any individual paper — the publisher of record is — and the
+  envelope's fulltext link is where that distinction gets handed back to the
+  caller.
+
+health:
+  probe: osti_total_count
+  expect:
+    # Floor set well under the observed 4.38M: the collection grows, and a
+    # single day's indexing should not flip this unhealthy, but an emptied
+    # index must.
+    min_records: 4000000
+
+lifecycle:
+  declared_state: active
+  added: "2026-09-02"
+  last_verified: "2026-09-02"
+  verified_by: pranava0x0
