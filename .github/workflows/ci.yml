@@ -31,8 +31,10 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5
       - run: uv python install 3.12
+      - run: uv venv
+      - run: echo "$GITHUB_WORKSPACE/.venv/bin" >> $GITHUB_PATH && echo "VIRTUAL_ENV=$GITHUB_WORKSPACE/.venv" >> $GITHUB_ENV
       - name: Install
-        run: uv pip install --system -e ".[all]" pytest==9.1.1 pytest-asyncio==1.4.0 ruff==0.13.0
+        run: uv pip install -e ".[all]" pytest==9.1.1 pytest-asyncio==1.4.0 ruff==0.13.0
 
       - name: Lint
         # The rule set is in pyproject.toml: bug-finding rules only. Style
@@ -75,6 +77,8 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5
       - run: uv python install 3.12
-      - run: uv pip install --system -e ".[all]"
+      - run: uv venv
+      - run: echo "$GITHUB_WORKSPACE/.venv/bin" >> $GITHUB_PATH && echo "VIRTUAL_ENV=$GITHUB_WORKSPACE/.venv" >> $GITHUB_ENV
+      - run: uv pip install -e ".[all]"
       - name: Probe the keyless active sources
         run: doe-mcp sources probe
