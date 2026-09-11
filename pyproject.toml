@@ -21,7 +21,7 @@ dependencies = [
     # Exact-pin per decision 0004: this is an application tree, not a
     # published library. The choice is the official SDK, not FastMCP; bump
     # deliberately, with the stateless-spec conformance check re-run.
-    "mcp==2.1.1",
+    "mcp==2.2.0",
     "httpx==0.28.1",
     "pydantic==2.13.4",
     "pyyaml==6.0.3",
