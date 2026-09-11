@@ -1,0 +1,628 @@
+{
+  "note": "Recorded live from OSTI.GOV Search API (https://www.osti.gov/disclaim) by tools/record_fixtures.py. Publisher content redistributed under the terms recorded in THIRD_PARTY_DATA.yml.",
+  "redaction": "Email addresses replaced with redacted@example.invalid and credential values with 'redacted' at record time. Field shapes and lengths are otherwise the publisher's.",
+  "interactions": [
+    {
+      "url": "https://www.osti.gov/api/v1/records",
+      "params": {
+        "rows": "1",
+        "page": "1"
+      },
+      "headers": {
+        "x-total-count": "4451332",
+        "link": "<https://www.osti.gov/api/v1/records?page=2&rows=1>; rel=\"next\", <https://www.osti.gov/api/v1/records?page=4451332&rows=1>; rel=\"last\"",
+        "content-type": "application/json"
+      },
+      "body": [
+        {
+          "language": "English",
+          "entry_date": "2026-08-15T04:00:30Z",
+          "report_number": "SAND2026-24872R",
+          "identifier": "NA0003525",
+          "country_publication": "United States",
+          "doi": "10.2172/3413920",
+          "title": "Modeling and Predicting Lignin Dissolution in Ionic Liquids \nand \nSeparation of Lignin Molecular Weight Fractions using Size Exclusion Chromatography",
+          "other_number": "1828852",
+          "contract_number": "NA0003525; ",
+          "publication_date": "2027-09-01T00:00:00Z",
+          "osti_id": "3413920",
+          "product_type": "Technical Report",
+          "authors": [
+            "Steuck, Diana Ellen [Sandia National Laboratories (SNL-CA), Livermore, CA (United States)]",
+            "Choudhary, Hemant [Sandia National Laboratories (SNL-CA), Livermore, CA (United States)] (ORCID:0000000328473080)"
+          ],
+          "format": "22",
+          "doe_contract_number": "NA0003525; ",
+          "subjects": [],
+          "sponsor_orgs": [
+            "Biological and Environmental Research"
+          ],
+          "research_orgs": [
+            "Sandia National Laboratories (SNL-CA), Livermore, CA (United States)"
+          ],
+          "other_identifiers": [
+            "1828852"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/biblio/3413920"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/servlets/purl/3413920"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.osti.gov/api/v1/records",
+      "params": {
+        "q": "perovskite solar",
+        "rows": "3",
+        "page": "1"
+      },
+      "headers": {
+        "x-total-count": "8255",
+        "link": "<https://www.osti.gov/api/v1/records?q=perovskite+solar&page=2&rows=3>; rel=\"next\", <https://www.osti.gov/api/v1/records?q=perovskite+solar&page=2752&rows=3>; rel=\"last\"",
+        "content-type": "application/json"
+      },
+      "body": [
+        {
+          "language": "English",
+          "entry_date": "2026-08-27T11:00:26Z",
+          "report_number": "EE0009833",
+          "identifier": "EE0009833",
+          "country_publication": "United States",
+          "doi": "10.2172/3484888",
+          "description": "This Final Technical Report summarizes work completed under Award Number DEEE0009833, titled \"Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells.\" The project addressed the central technical problem that carbon-electrode perovskite solar cells (C-PSCs) can reduce electrode costs and improve environmental durability, but they have historically lagged noble-metalcontact devices due to poor carbon/perovskite contact, high carbon-electrode resistance, imperfect hole extraction, and insufficient operational stability. The Statement of Project Objectives (SOPO), therefore, required systematic engineering of thermally pressed carbon-based planar perovskite solar cells by improving the carbon/perovskite interface quality, improving carbon-electrode conductivity, and further increasing device stability. The work advanced understanding of carbon-based perovskite photovoltaics by connecting device performance to three coupled mechanisms: interfacial recombination at the perovskite/hole-transport-layer/carbon stack; lateral and vertical transport losses in carbon contacts; and instability driven by moisture, heat, illumination, ion migration, and slow/variable manufacturing steps.",
+          "title": "Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells",
+          "contract_number": "EE0009833; ",
+          "publication_date": "2026-08-26T00:00:00Z",
+          "osti_id": "3484888",
+          "product_type": "Technical Report",
+          "authors": [
+            "Yan, Feng [Materials Science and Engineering Program, School for Engineering of Matter, Transport and Energy, Arizona State University, Tempe, AZ, 85287]"
+          ],
+          "subjects": [
+            "14 SOLAR ENERGY",
+            "Perovskite Solar Cell, Carbon electrode, Efficiency, Stability"
+          ],
+          "doe_contract_number": "EE0009833; ",
+          "sponsor_orgs": [
+            "USDOE Office of Energy Efficiency and Renewable Energy (EERE), Renewable Power Office. Solar Energy Technologies Office",
+            "USDOE Office of Critical Minerals and Energy Innovation (CMEI)"
+          ],
+          "research_orgs": [
+            "Univ. of Alabama, Tuscaloosa, AL (United States)",
+            "Arizona State Univ., Tempe, AZ (United States)",
+            "National Renewable Energy Laboratory (NREL), Golden, CO (United States)"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/biblio/3484888"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/servlets/purl/3484888"
+            }
+          ]
+        },
+        {
+          "language": "English",
+          "entry_date": "2026-09-02T10:56:05Z",
+          "report_number": "NLR/TP-5F00-99345",
+          "identifier": "AC36-08GO28308",
+          "country_publication": "United States",
+          "doi": "10.66816/tp5080615",
+          "description": "This project seeks to develop device design, materials composition, and processing tools and parameters to fabricate semi-transparent perovskite solar cells and modules for application in stand-alone products or added to other solar cells in a mechanically stacked tandem configuration. This technology presents significant advanced manufacturing challenges and opportunities in getting to scale, including development of perovskite inks, scalable perovskite and heterojunction deposition and annealing processes, heterojunction composition, transparent electrode composition and deposition process, anti-reflection layer composition and deposition process, and cell to module integration processes. Modification 5: The proposed project seeks to develop device design, materials composition, and processing tools and parameters to fabricate semi-transparent perovskite solar cells and modules for application in stand-alone products or added to other solar cells in a mechanically-stacked tandem configuration. This technology presents significant advanced manufacturing challenges and opportunities in getting to scale, including development of perovskite inks, scalable perovskite and heterojunction deposition and annealing processes, heterojunction composition, transparent electrode composition and deposition process, passivation layers including in module scribes, anti-reflection layer composition and deposition process, and cell to module integration processes. Advanced metrology and characterization will be performed on perovskite films, cells and module. Furthermore, we will examine module or materials recycling for circular economy considerations. Modifcation 6: Gigahertz frequency microwave pump-probe spectroscopies are highly sensitive to thin film semiconductor photoconductivity of individual and stacks of layers that comprise perovskite solar cells. As such, these techniques will be used to qualify reproducibility and quality correlations during the manufacturing process. Modification 7: Mechanical adhesion of top contacts within perovskite modules significantly impacts the durability of the module when exposed to accelerated degradation testing. The adhesion between the perovskite/transport layer interface and the transport layer/top contact interface are both very sensitive small changes in processing. ALD processing conditions of the transport layer will be tuned to optimize the mechanical adhesion within the perovskite module stack.",
+          "title": "Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative Research and Development Final Report, CRADA Number CRD-19-00810",
+          "contract_number": "AC36-08GO28308; ",
+          "publication_date": "2026-08-26T00:00:00Z",
+          "osti_id": "3625672",
+          "product_type": "Technical Report",
+          "authors": [
+            "Luther, Joey [National Laboratory of the Rockies, Golden, CO (United States)]",
+            "Larson, Bryon [National Laboratory of the Rockies, Golden, CO (United States)]",
+            "Reiter, Kyle [National Laboratory of the Rockies, Golden, CO (United States)]"
+          ],
+          "subjects": [
+            "14 SOLAR ENERGY",
+            "CRADA",
+            "optimization",
+            "perovskite"
+          ],
+          "doe_contract_number": "AC36-08GO28308; ",
+          "sponsor_orgs": [
+            "USDOE Office of Energy Efficiency and Renewable Energy (EERE), Renewable Power Office. Solar Energy Technologies Office"
+          ],
+          "research_orgs": [
+            "National Laboratory of the Rockies (NLR), Golden, CO (United States)"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/biblio/3625672"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/servlets/purl/3625672"
+            }
+          ]
+        },
+        {
+          "language": "English",
+          "entry_date": "2026-08-28T10:59:35Z",
+          "report_number": "NLR/TP-5900-95272",
+          "identifier": "AC36-08GO28308",
+          "country_publication": "United States",
+          "doi": "10.66816/tp6712117",
+          "description": "The Tandem Photovoltaics Core Program was a multi-year initiative aimed at advancing hybrid tandem solar cell technologies to enhance solar module efficiency beyond the limits of single junction devices. This project focused on the development, testing, and scaling of prototype photovoltaic devices, with the goal of achieving commercial relevance and driving industry adoption. The work was divided into three tasks: 1) Comparative Analysis of Tandem Technologies: This task focused on quantifying energy yield under real-world conditions and assessing economic viability of tandems relative to silicon-based modules. The project's modeling framework incorporated performance data, cost of materials, and manufacturing process impacts to optimize tandem designs 2) Tandem Integration and Prototyping: In this task, we developed innovative tandem designs by combining metal halide perovskite (MHP) top cells and silicon (Si) bottom cells. The project focuses on both mechanical integration and direct deposition techniques to enable compatibility with commercially relevant Si technologies, such as passivated contact or PERC cells. 3) Scale-up and Reliability: This task addressed the challenges of large-area fabrication by developing scalable deposition methods and robust interconnection schemes for tandems. The project looked at different accelerated testing such as thermal cycling, damp heat exposure, and potential induced degradation, to ensure long-term stability of devices in field conditions. Tandem solar cells can greatly increase module efficiency beyond conventional single junction (SJ) devices, which are approaching their theoretical limit. There are many ways to fabricate a tandem cell or module in terms of materials used, configuration, and terminal connection. This SETO core project focused critical factors in enabling tandems to enter the market, including hardware integration, technoeconomic analysis (TEA), and energy yield analysis. We focused on MHP/Si hybrid tandem solar cells and modules as a model system for their versatility in module design comparisons, providing valuable insights for other tandem options. While champion cells with areas <1cm2 are regularly demonstrated by groups around the world, it is significantly more challenging to translate these advances into modules, and fewer institutions and companies are working at the module level. This project addressed questions about module fabrication, testing, and reliability that are hard to answer without actually fabricating prototypes. We also performed analysis and road-mapping activities to understand the potential for a wider variety of tandems, including all-perovskite tandems fabricated in collaboration with the Perovskite PV core program. Detailed technical results from this project are described for each task in Section 7.",
+          "title": "Tandem Photovoltaics Core Program Final Technical Report",
+          "contract_number": "AC36-08GO28308; ",
+          "publication_date": "2026-08-21T00:00:00Z",
+          "osti_id": "3505044",
+          "product_type": "Technical Report",
+          "authors": [
+            "Warren, Emily [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000185687881)",
+            "Zhu, Kai [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000309083909)",
+            "Owen-Bellini, Michael [National Laboratory of the Rockies, Golden, CO (United States)]",
+            "McMahon, Bill [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000150362032)",
+            "Alberi, Kirstin [National Laboratory of the Rockies, Golden, CO (United States)]",
+            "Geisz, John [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:000000034818653X)",
+            "Palmstrom, Axel [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:000000016633209X)",
+            "Mansfield, Lorelle [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000272064105)",
+            "Ndione, Paul [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000344442938)",
+            "Bramante, Rosemary [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000218211936)",
+            "Theingi, San [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0009000444016191)",
+            "Witteck, Robert [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000187162616)",
+            "Cordell, Jacob [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000195924633)",
+            "Yang, Fengjiu [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000252052465)",
+            "VanSant, Kaitlyn [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000170384335)",
+            "Brown, James [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0009000362860671)",
+            "Wai, Rebecca [National Laboratory of the Rockies, Golden, CO (United States)]",
+            "Valez, Chris [National Laboratory of the Rockies]"
+          ],
+          "subjects": [
+            "14 SOLAR ENERGY",
+            "29 ENERGY PLANNING, POLICY, AND ECONOMY",
+            "36 MATERIALS SCIENCE",
+            "42 ENGINEERING",
+            "97 MATHEMATICS AND COMPUTING",
+            "energy",
+            "photovoltaics",
+            "solar cell",
+            "TandemCore",
+            "tandems"
+          ],
+          "doe_contract_number": "AC36-08GO28308; ",
+          "sponsor_orgs": [
+            "USDOE Office of Critical Minerals and Energy Innovation (CMEI), Office of Energy Technology (E-Tech). Integrated Energy Systems Office"
+          ],
+          "research_orgs": [
+            "National Laboratory of the Rockies (NLR), Golden, CO (United States)"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/biblio/3505044"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/servlets/purl/3505044"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.osti.gov/api/v1/records",
+      "params": {
+        "q": "perovskite solar",
+        "rows": "5",
+        "page": "1"
+      },
+      "headers": {
+        "x-total-count": "8255",
+        "link": "<https://www.osti.gov/api/v1/records?q=perovskite+solar&page=2&rows=5>; rel=\"next\", <https://www.osti.gov/api/v1/records?q=perovskite+solar&page=1651&rows=5>; rel=\"last\"",
+        "content-type": "application/json"
+      },
+      "body": [
+        {
+          "language": "English",
+          "entry_date": "2026-08-27T11:00:26Z",
+          "report_number": "EE0009833",
+          "identifier": "EE0009833",
+          "country_publication": "United States",
+          "doi": "10.2172/3484888",
+          "description": "This Final Technical Report summarizes work completed under Award Number DEEE0009833, titled \"Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells.\" The project addressed the central technical problem that carbon-electrode perovskite solar cells (C-PSCs) can reduce electrode costs and improve environmental durability, but they have historically lagged noble-metalcontact devices due to poor carbon/perovskite contact, high carbon-electrode resistance, imperfect hole extraction, and insufficient operational stability. The Statement of Project Objectives (SOPO), therefore, required systematic engineering of thermally pressed carbon-based planar perovskite solar cells by improving the carbon/perovskite interface quality, improving carbon-electrode conductivity, and further increasing device stability. The work advanced understanding of carbon-based perovskite photovoltaics by connecting device performance to three coupled mechanisms: interfacial recombination at the perovskite/hole-transport-layer/carbon stack; lateral and vertical transport losses in carbon contacts; and instability driven by moisture, heat, illumination, ion migration, and slow/variable manufacturing steps.",
+          "title": "Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells",
+          "contract_number": "EE0009833; ",
+          "publication_date": "2026-08-26T00:00:00Z",
+          "osti_id": "3484888",
+          "product_type": "Technical Report",
+          "authors": [
+            "Yan, Feng [Materials Science and Engineering Program, School for Engineering of Matter, Transport and Energy, Arizona State University, Tempe, AZ, 85287]"
+          ],
+          "subjects": [
+            "14 SOLAR ENERGY",
+            "Perovskite Solar Cell, Carbon electrode, Efficiency, Stability"
+          ],
+          "doe_contract_number": "EE0009833; ",
+          "sponsor_orgs": [
+            "USDOE Office of Energy Efficiency and Renewable Energy (EERE), Renewable Power Office. Solar Energy Technologies Office",
+            "USDOE Office of Critical Minerals and Energy Innovation (CMEI)"
+          ],
+          "research_orgs": [
+            "Univ. of Alabama, Tuscaloosa, AL (United States)",
+            "Arizona State Univ., Tempe, AZ (United States)",
+            "National Renewable Energy Laboratory (NREL), Golden, CO (United States)"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/biblio/3484888"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/servlets/purl/3484888"
+            }
+          ]
+        },
+        {
+          "language": "English",
+          "entry_date": "2026-09-02T10:56:05Z",
+          "report_number": "NLR/TP-5F00-99345",
+          "identifier": "AC36-08GO28308",
+          "country_publication": "United States",
+          "doi": "10.66816/tp5080615",
+          "description": "This project seeks to develop device design, materials composition, and processing tools and parameters to fabricate semi-transparent perovskite solar cells and modules for application in stand-alone products or added to other solar cells in a mechanically stacked tandem configuration. This technology presents significant advanced manufacturing challenges and opportunities in getting to scale, including development of perovskite inks, scalable perovskite and heterojunction deposition and annealing processes, heterojunction composition, transparent electrode composition and deposition process, anti-reflection layer composition and deposition process, and cell to module integration processes. Modification 5: The proposed project seeks to develop device design, materials composition, and processing tools and parameters to fabricate semi-transparent perovskite solar cells and modules for application in stand-alone products or added to other solar cells in a mechanically-stacked tandem configuration. This technology presents significant advanced manufacturing challenges and opportunities in getting to scale, including development of perovskite inks, scalable perovskite and heterojunction deposition and annealing processes, heterojunction composition, transparent electrode composition and deposition process, passivation layers including in module scribes, anti-reflection layer composition and deposition process, and cell to module integration processes. Advanced metrology and characterization will be performed on perovskite films, cells and module. Furthermore, we will examine module or materials recycling for circular economy considerations. Modifcation 6: Gigahertz frequency microwave pump-probe spectroscopies are highly sensitive to thin film semiconductor photoconductivity of individual and stacks of layers that comprise perovskite solar cells. As such, these techniques will be used to qualify reproducibility and quality correlations during the manufacturing process. Modification 7: Mechanical adhesion of top contacts within perovskite modules significantly impacts the durability of the module when exposed to accelerated degradation testing. The adhesion between the perovskite/transport layer interface and the transport layer/top contact interface are both very sensitive small changes in processing. ALD processing conditions of the transport layer will be tuned to optimize the mechanical adhesion within the perovskite module stack.",
+          "title": "Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative Research and Development Final Report, CRADA Number CRD-19-00810",
+          "contract_number": "AC36-08GO28308; ",
+          "publication_date": "2026-08-26T00:00:00Z",
+          "osti_id": "3625672",
+          "product_type": "Technical Report",
+          "authors": [
+            "Luther, Joey [National Laboratory of the Rockies, Golden, CO (United States)]",
+            "Larson, Bryon [National Laboratory of the Rockies, Golden, CO (United States)]",
+            "Reiter, Kyle [National Laboratory of the Rockies, Golden, CO (United States)]"
+          ],
+          "subjects": [
+            "14 SOLAR ENERGY",
+            "CRADA",
+            "optimization",
+            "perovskite"
+          ],
+          "doe_contract_number": "AC36-08GO28308; ",
+          "sponsor_orgs": [
+            "USDOE Office of Energy Efficiency and Renewable Energy (EERE), Renewable Power Office. Solar Energy Technologies Office"
+          ],
+          "research_orgs": [
+            "National Laboratory of the Rockies (NLR), Golden, CO (United States)"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/biblio/3625672"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/servlets/purl/3625672"
+            }
+          ]
+        },
+        {
+          "language": "English",
+          "entry_date": "2026-08-28T10:59:35Z",
+          "report_number": "NLR/TP-5900-95272",
+          "identifier": "AC36-08GO28308",
+          "country_publication": "United States",
+          "doi": "10.66816/tp6712117",
+          "description": "The Tandem Photovoltaics Core Program was a multi-year initiative aimed at advancing hybrid tandem solar cell technologies to enhance solar module efficiency beyond the limits of single junction devices. This project focused on the development, testing, and scaling of prototype photovoltaic devices, with the goal of achieving commercial relevance and driving industry adoption. The work was divided into three tasks: 1) Comparative Analysis of Tandem Technologies: This task focused on quantifying energy yield under real-world conditions and assessing economic viability of tandems relative to silicon-based modules. The project's modeling framework incorporated performance data, cost of materials, and manufacturing process impacts to optimize tandem designs 2) Tandem Integration and Prototyping: In this task, we developed innovative tandem designs by combining metal halide perovskite (MHP) top cells and silicon (Si) bottom cells. The project focuses on both mechanical integration and direct deposition techniques to enable compatibility with commercially relevant Si technologies, such as passivated contact or PERC cells. 3) Scale-up and Reliability: This task addressed the challenges of large-area fabrication by developing scalable deposition methods and robust interconnection schemes for tandems. The project looked at different accelerated testing such as thermal cycling, damp heat exposure, and potential induced degradation, to ensure long-term stability of devices in field conditions. Tandem solar cells can greatly increase module efficiency beyond conventional single junction (SJ) devices, which are approaching their theoretical limit. There are many ways to fabricate a tandem cell or module in terms of materials used, configuration, and terminal connection. This SETO core project focused critical factors in enabling tandems to enter the market, including hardware integration, technoeconomic analysis (TEA), and energy yield analysis. We focused on MHP/Si hybrid tandem solar cells and modules as a model system for their versatility in module design comparisons, providing valuable insights for other tandem options. While champion cells with areas <1cm2 are regularly demonstrated by groups around the world, it is significantly more challenging to translate these advances into modules, and fewer institutions and companies are working at the module level. This project addressed questions about module fabrication, testing, and reliability that are hard to answer without actually fabricating prototypes. We also performed analysis and road-mapping activities to understand the potential for a wider variety of tandems, including all-perovskite tandems fabricated in collaboration with the Perovskite PV core program. Detailed technical results from this project are described for each task in Section 7.",
+          "title": "Tandem Photovoltaics Core Program Final Technical Report",
+          "contract_number": "AC36-08GO28308; ",
+          "publication_date": "2026-08-21T00:00:00Z",
+          "osti_id": "3505044",
+          "product_type": "Technical Report",
+          "authors": [
+            "Warren, Emily [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000185687881)",
+            "Zhu, Kai [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000309083909)",
+            "Owen-Bellini, Michael [National Laboratory of the Rockies, Golden, CO (United States)]",
+            "McMahon, Bill [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000150362032)",
+            "Alberi, Kirstin [National Laboratory of the Rockies, Golden, CO (United States)]",
+            "Geisz, John [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:000000034818653X)",
+            "Palmstrom, Axel [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:000000016633209X)",
+            "Mansfield, Lorelle [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000272064105)",
+            "Ndione, Paul [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000344442938)",
+            "Bramante, Rosemary [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000218211936)",
+            "Theingi, San [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0009000444016191)",
+            "Witteck, Robert [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000187162616)",
+            "Cordell, Jacob [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000195924633)",
+            "Yang, Fengjiu [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000252052465)",
+            "VanSant, Kaitlyn [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000170384335)",
+            "Brown, James [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0009000362860671)",
+            "Wai, Rebecca [National Laboratory of the Rockies, Golden, CO (United States)]",
+            "Valez, Chris [National Laboratory of the Rockies]"
+          ],
+          "subjects": [
+            "14 SOLAR ENERGY",
+            "29 ENERGY PLANNING, POLICY, AND ECONOMY",
+            "36 MATERIALS SCIENCE",
+            "42 ENGINEERING",
+            "97 MATHEMATICS AND COMPUTING",
+            "energy",
+            "photovoltaics",
+            "solar cell",
+            "TandemCore",
+            "tandems"
+          ],
+          "doe_contract_number": "AC36-08GO28308; ",
+          "sponsor_orgs": [
+            "USDOE Office of Critical Minerals and Energy Innovation (CMEI), Office of Energy Technology (E-Tech). Integrated Energy Systems Office"
+          ],
+          "research_orgs": [
+            "National Laboratory of the Rockies (NLR), Golden, CO (United States)"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/biblio/3505044"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/servlets/purl/3505044"
+            }
+          ]
+        },
+        {
+          "language": "English",
+          "entry_date": "2026-08-11T11:32:50Z",
+          "relation": "Journal Name: ACS Applied Materials and Interfaces Journal Issue: 30 Journal Volume: 18",
+          "identifier": "EE0008970; EE0011421",
+          "journal_issue": "30",
+          "nondoe_contract_number": "FA9453-19-C-1002; FA9453-21-C-0056; FA9453-24-C-X004",
+          "country_publication": "United States",
+          "publisher": "American Chemical Society (ACS)",
+          "journal_type": "AM",
+          "doi": "10.1021/acsami.6c09922",
+          "description": "The commercialization of perovskite solar cells (PSCs) faces significant challenges due to their sensitivity to environmental humidity, which compromises film crystallization and device stability. Here, we introduce diphenylvinylphosphine (DPVP) as a Lewis base additive that enhances the performance and reproducibility of PSCs fabricated under ambient-air conditions. DPVP suppresses moisture-induced defect formation and stabilizes crystallization within realistic process-humidity ranges (20\u201340% relative humidity) commonly encountered in laboratory and pilot-scale manufacturing environments. It improves film uniformity, reduces trap densities, and yields highly reproducible device performance, enabling champion PCEs of 24.2% in small-area devices and 20.5% in blade-coated 12 cm<sup>2</sup> mini-modules. Furthermore, DPVP-assisted modules exhibit enhanced stability, retaining over 85% of their initial efficiency after 900 h of maximum power point tracking (MPPT) at 65 \u00b0C. This study demonstrates a humidity-resilient and scalable additive strategy for ambient-air perovskite photovoltaic manufacturing.",
+          "title": "Molecular Additive Engineering for Process-Humidity Robustness and Reproducible Fabrication of Perovskite Solar Cells and Modules",
+          "other_number": "Journal ID: ISSN 1944-8244; Journal ID: ISSN 1944-8252",
+          "contract_number": "EE0008970; EE0011421",
+          "publication_date": "2026-07-23T00:00:00Z",
+          "journal_volume": "18",
+          "osti_id": "3407885",
+          "journal_name": "ACS Applied Materials and Interfaces",
+          "product_type": "Journal Article",
+          "authors": [
+            "Saeed, Muhammad Mohsin [University of Toledo, OH (United States)]",
+            "Kwon, Hyoung Woo [University of Toledo, OH (United States)]",
+            "Li, You [University of Toledo, OH (United States)]",
+            "Fu, Sheng [University of Toledo, OH (United States)] (ORCID:0009000859121145)",
+            "Lee, Seungmin [University of Toledo, OH (United States)]",
+            "Rabiu, Abdulai [University of Toledo, OH (United States)]",
+            "Wenner, Scott L. [University of Toledo, OH (United States)] (ORCID:0000000323543617)",
+            "Abudulimu, Abasi [University of Toledo, OH (United States)] (ORCID:0000000217940993)",
+            "Mariam, Tamanna [University of Toledo, OH (United States)]",
+            "Neupane, Sabin [University of Toledo, OH (United States)] (ORCID:0000000291516285)",
+            "Zhu, Tingting [University of Toledo, OH (United States)] (ORCID:000900095689262X)",
+            "Chen, Haoran [University of Toledo, OH (United States)]",
+            "Nazeer, Sahar [University of Toledo, OH (United States)]",
+            "Borra, Vamsi [Youngstown State University, OH (United States)]",
+            "Phillips, Adam B. [University of Toledo, OH (United States)] (ORCID:0000000226755052)",
+            "Ellingson, Randy J. [University of Toledo, OH (United States)] (ORCID:0000000195206586)",
+            "Heben, Michael J. [University of Toledo, OH (United States)] (ORCID:0000000237883471)",
+            "Chung, Jaehoon [University of Toledo, OH (United States)]",
+            "Song, Zhaoning [University of Toledo, OH (United States)] (ORCID:0000000266770994)",
+            "Yan, Yanfa [University of Toledo, OH (United States)] (ORCID:0000000339775789)"
+          ],
+          "subjects": [
+            "defect passivation",
+            "diphenylvinylphosphine (DPVP)",
+            "humidity robustness",
+            "molecular additive engineering",
+            "perovskite mini-modules",
+            "perovskite solar cells",
+            "precursor stabilization"
+          ],
+          "article_type": "Accepted Manuscript",
+          "format": "p. 41063-41074",
+          "doe_contract_number": "EE0008970; EE0011421",
+          "sponsor_orgs": [
+            "U.S. Air Force Research Laboratory",
+            "USDOE Office of Energy Efficiency and Renewable Energy (EERE), Renewable Power Office. Solar Energy Technologies Office"
+          ],
+          "research_orgs": [
+            "University of Toledo, OH (United States)"
+          ],
+          "journal_issn": "ISSN 1944-8252",
+          "other_identifiers": [
+            "Journal ID: ISSN 1944-8244; Journal ID: ISSN 1944-8252"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/biblio/3407885"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/servlets/purl/3407885"
+            },
+            {
+              "rel": "citation_doe_pages",
+              "href": "https://www.osti.gov/pages/biblio/3407885"
+            }
+          ]
+        },
+        {
+          "language": "English",
+          "entry_date": "2026-08-20T09:00:20Z",
+          "relation": "Journal Name: ACS Energy Letters Journal Issue: 8 Journal Volume: 11",
+          "identifier": "AC36-08GO28308",
+          "journal_issue": "8",
+          "country_publication": "United States",
+          "publisher": "American Chemical Society (ACS)",
+          "journal_type": "AM",
+          "doi": "10.1021/acsenergylett.6c01114",
+          "description": "The interplay between carrier density regimes and the various scattering processes is fundamental for understanding charge transport efficiency in high-performance semiconductors. Combining ultrafast time-resolved terahertz spectroscopy (TRTS) and transient microwave photoconductivity (TRMC), we measure carrier mobilities over 7 orders of magnitude (10<sup>13</sup>\u201310<sup>20</sup> carriers cm<sup>\u20133</sup>), reaching a regime where carrier\u2013carrier scattering dominates and mobility begins to roll off. We find the Caughey\u2013Thomas model can be effectively employed for transport modeling in 3D metal halide perovskites (MHPs), and the mobility roll-off near \u223c10<sup>19</sup> cm<sup>\u20133</sup> can be tuned by MHP composition. Carrier lifetime in MHPs starts decreasing at much lower carrier densities due to interband multi-carrier recombination, while intraband carrier mobility remains unchanged as carrier\u2013carrier scattering is screened by the presence of polarons. The validated Caughey\u2013Thomas model provides a practical input for device simulations, prevents overestimation of diffusion length under high injection, and suggests that MHPs are excellent candidates for unipolar device applications under high carrier densities.",
+          "title": "Large Polaron Screening Delays Mobility Roll-Off in Halide Perovskites under High Injection",
+          "other_number": "Journal ID: ISSN 2380-8195",
+          "contract_number": "AC36-08GO28308",
+          "publication_date": "2026-08-05T00:00:00Z",
+          "journal_volume": "11",
+          "osti_id": "3424874",
+          "journal_name": "ACS Energy Letters",
+          "product_type": "Journal Article",
+          "authors": [
+            "Taddei, Margherita [National Laboratory of the Rockies (NLR), Golden, CO (United States)] (ORCID:0000000341228418)",
+            "Dong, Yifan [National Laboratory of the Rockies (NLR), Golden, CO (United States); University of California, Riverside, CA (United States)] (ORCID:0000000329123322)",
+            "Shelton, Jacob [National Laboratory of the Rockies (NLR), Golden, CO (United States)]",
+            "Reid, Obadiah [National Laboratory of the Rockies (NLR), Golden, CO (United States); RASEI: The Joint CU-Boulder/NLR Energy Institute, Boulder, CO (United States)]",
+            "Marder, Seth R. [National Laboratory of the Rockies (NLR), Golden, CO (United States); RASEI: The Joint CU-Boulder/NLR Energy Institute, Boulder, CO (United States)]",
+            "Haque, Md Azimul [National Laboratory of the Rockies (NLR), Golden, CO (United States); RASEI: The Joint CU-Boulder/NLR Energy Institute, Boulder, CO (United States)] (ORCID:0000000335280674)",
+            "Beard, Matthew C. [National Laboratory of the Rockies (NLR), Golden, CO (United States); RASEI: The Joint CU-Boulder/NLR Energy Institute, Boulder, CO (United States)] (ORCID:0000000227111355)"
+          ],
+          "article_type": "Accepted Manuscript",
+          "format": "p. 5444-5453",
+          "doe_contract_number": "AC36-08GO28308",
+          "subjects": [],
+          "sponsor_orgs": [
+            "USDOE Office of Science (SC), Basic Energy Sciences (BES)"
+          ],
+          "research_orgs": [
+            "Alliance for Energy Innovation, LLC, Golden, CO (United States)"
+          ],
+          "journal_issn": "ISSN 2380-8195",
+          "other_identifiers": [
+            "Journal ID: ISSN 2380-8195"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/biblio/3424874"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/servlets/purl/3424874"
+            },
+            {
+              "rel": "citation_doe_pages",
+              "href": "https://www.osti.gov/pages/biblio/3424874"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.osti.gov/api/v1/records",
+      "params": {
+        "q": "zzzznotarealtopiczzzz",
+        "rows": "3",
+        "page": "1"
+      },
+      "headers": {
+        "x-total-count": "0",
+        "content-type": "application/json"
+      },
+      "body": []
+    },
+    {
+      "url": "https://www.osti.gov/api/v1/records/3413920",
+      "params": {},
+      "headers": {
+        "x-total-count": "1",
+        "link": "",
+        "content-type": "application/json"
+      },
+      "body": [
+        {
+          "language": "English",
+          "entry_date": "2026-08-15T04:00:30Z",
+          "report_number": "SAND2026-24872R",
+          "identifier": "NA0003525",
+          "country_publication": "United States",
+          "doi": "10.2172/3413920",
+          "title": "Modeling and Predicting Lignin Dissolution in Ionic Liquids \nand \nSeparation of Lignin Molecular Weight Fractions using Size Exclusion Chromatography",
+          "other_number": "1828852",
+          "contract_number": "NA0003525; ",
+          "publication_date": "2027-09-01T00:00:00Z",
+          "osti_id": "3413920",
+          "product_type": "Technical Report",
+          "authors": [
+            "Steuck, Diana Ellen [Sandia National Laboratories (SNL-CA), Livermore, CA (United States)]",
+            "Choudhary, Hemant [Sandia National Laboratories (SNL-CA), Livermore, CA (United States)] (ORCID:0000000328473080)"
+          ],
+          "format": "22",
+          "doe_contract_number": "NA0003525; ",
+          "subjects": [],
+          "sponsor_orgs": [
+            "Biological and Environmental Research"
+          ],
+          "research_orgs": [
+            "Sandia National Laboratories (SNL-CA), Livermore, CA (United States)"
+          ],
+          "other_identifiers": [
+            "1828852"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/biblio/3413920"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/servlets/purl/3413920"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.osti.gov/api/v1/records/3389573",
+      "params": {},
+      "headers": {
+        "x-total-count": "1",
+        "link": "",
+        "content-type": "application/json"
+      },
+      "body": [
+        {
+          "language": "English",
+          "entry_date": "2026-07-29T07:53:52Z",
+          "report_number": "ProQuest Dissertations &amp; Theses Global 32700010",
+          "identifier": "CR0000037",
+          "nondoe_contract_number": "Lamar University Center for Advances in Port Management (CAPM) project 220892",
+          "country_publication": "United States",
+          "description": "This thesis investigates short-term performance prediction for maritime LEO operational planning and application performance cannot anticipate available bandwidth or communication delay, which complicates variation alter signal conditions over short time scales. As a result, maritime users often fluctuations in link quality. In addition, Frequent satellite handoffs and Doppler-induced rapid satellite movement and changing atmospheric conditions cause substantial unavailable. Despite their availability, reliable operation at sea remains difficult because broadband connectivity in maritime regions where terrestrial infrastructure in",
+          "title": "Predictive Modeling and Operational Monitoring of Starlink Leo Satellite Network Performance in Maritime Environments",
+          "contract_number": "CR0000037; ",
+          "publication_date": "2026-05-15T00:00:00Z",
+          "osti_id": "3389573",
+          "product_type": "Thesis/Dissertation",
+          "authors": [
+            "Hossain, Md Muntasir [Lamar University]"
+          ],
+          "subjects": [
+            "97 MATHEMATICS AND COMPUTING",
+            "Starlink, LEO satellite networks, Maritime communication, Throughput Prediction, RandomForest regression, Experimental Data"
+          ],
+          "doe_contract_number": "CR0000037; ",
+          "sponsor_orgs": [
+            "US DOE Office of Cyber Security, Energy Security and Emergency Response (CESER)"
+          ],
+          "research_orgs": [
+            "National Energy Technology Lab. (NETL), Morgantown, WV (United States)"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/biblio/3389573"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

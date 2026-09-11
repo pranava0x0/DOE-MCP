@@ -1,0 +1,71 @@
+id: lanl-sequence-databases
+name: LANL HIV, HCV, and HFV sequence databases
+domain: bio
+
+publisher:
+  steward: lanl
+  funder: nih
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [lanl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: outreach_pending
+  tier: crawl_or_defer
+  terms_url: https://www.hiv.lanl.gov/
+  terms_notes: >
+    An explicit anti-automation posture on databases that are otherwise
+    publicly usable through their web interfaces. NIH funds them; LANL
+    operates them.
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed; curated continuously.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Curated HIV, HCV, and hemorrhagic-fever virus sequence and
+    immunology databases.
+  temporal: current
+  dataset_version: "current"
+  known_limitations:
+    - >
+      NIH-funded biomedical databases at a DOE laboratory — an operator-
+      rule inclusion whose funder must be named, or the entry implies
+      DOE sponsors HIV sequence curation.
+    - >
+      The publisher's posture is honoured. No scraping, and no clever
+      reading of what the posture 'really' means.
+
+authority_notes: >
+  Primary and internationally relied upon. Intended capabilities: none
+  until sanctioned access exists. Gate G.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Outreach pending. The right first question is whether a sanctioned
+    programmatic route exists for research use; the answer belongs in
+    the repository either way.

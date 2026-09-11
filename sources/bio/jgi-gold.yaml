@@ -1,0 +1,94 @@
+id: jgi-gold
+name: JGI GOLD (Genomes OnLine Database)
+domain: bio
+
+publisher:
+  steward: lbnl
+  funder: sc
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: ['lbnl']
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+planned_capabilities: ['bio.search_genome_projects']
+adapter:
+  type: none
+
+access:
+  mode: account_token
+  automation_status: public_download
+  tier: catalog_pointer
+  terms_url: https://gold.jgi.doe.gov/
+  terms_notes: >
+    GOLD's Excel bulk downloads are open (the downloads page returned
+    200 on 2026-09-08). The published usage policy, read the same day,
+    is permissive and explicit: "GOLD metadata are freely available for
+    research purposes, including data analysis, research presentations,
+    conference posters, journal publications" — with a citation
+    requested. The REST API exists and is authenticated: /rest/nps/
+    apidocs answers 401, which is a real gate rather than the 403 WAF
+    challenge that decision 0007 calls blocked_probe. How a token is
+    obtained is still unknown, because the documentation is behind that
+    401; JGI's Keycloak single sign-on is the mechanism named in the
+    2024 Nucleic Acids Research paper.
+  citation_required: true
+  citation_text: >
+    Mukherjee, S., Stamatis, D., Li, C.T., Ovchinnikova, G.,
+    Kandimalla, M., Handke, V., Reddy, A., Ivanova, N., Woyke, T.,
+    Eloe-Fardosh, E.A., Chen, I.-M.A., Kyrpides, N.C., and Reddy,
+    T.B.K., 2024, Genomes OnLine Database (GOLD) v.10: new features and
+    updates: Nucleic Acids Research, https://doi.org/10.1093/nar/gkae1000.
+  terms_gap: >
+    Not a US Government work. The site is copyright The Regents of the
+    University of California, so section 105 does not apply and the
+    usage policy is the whole permission: research use, with citation.
+    Anything beyond that needs asking.
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Stated; the database is curated continuously with versioned
+    exports.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Metadata for genome and metagenome sequencing projects worldwide:
+    organism, ecosystem classification, sequencing status, and links
+    to the data at JGI and elsewhere.
+  temporal: 1997 onward
+  dataset_version: "GOLD v.9 line"
+  known_limitations:
+    - >
+      Metadata, not sequences. The sequence data lives at the JGI Genome
+      Portal and IMG, which are session-token gated.
+    - >
+      The API's authentication was read from a paper, not verified; the
+      bulk export is the confirmed route.
+
+authority_notes: >
+  Primary. JGI is an LBNL-managed Office of Science user facility
+  and GOLD is one of its public metadata hubs; the PuRe list names
+  JGI. Found in the 2026-09-08 gap sweep.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-08"
+  last_verified: "2026-09-08"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Phase 4 with the bio server, and one verification first: whether
+    the API's Keycloak token is obtainable with a free account, or
+    whether the Excel export is the only route.

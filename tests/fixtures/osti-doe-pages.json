@@ -1,0 +1,474 @@
+{
+  "note": "Recorded live from DOE PAGES (Public Access Gateway for Energy and Science) (https://www.osti.gov/pages/faqs) by tools/record_fixtures.py. Publisher content redistributed under the terms recorded in THIRD_PARTY_DATA.yml.",
+  "redaction": "Email addresses replaced with redacted@example.invalid and credential values with 'redacted' at record time. Field shapes and lengths are otherwise the publisher's.",
+  "interactions": [
+    {
+      "url": "https://www.osti.gov/pages/api/v1/records",
+      "params": {
+        "q": "perovskite solar",
+        "rows": "3",
+        "page": "1"
+      },
+      "headers": {
+        "x-total-count": "5611",
+        "link": "<https://www.osti.gov/pages/api/v1/records?q=perovskite+solar&page=2&rows=3>; rel=\"next\", <https://www.osti.gov/pages/api/v1/records?q=perovskite+solar&page=1871&rows=3>; rel=\"last\"",
+        "content-type": "application/json"
+      },
+      "body": [
+        {
+          "language": "English",
+          "entry_date": "2026-08-11T07:32:50Z",
+          "journal_issue": "30",
+          "country_publication": "United States",
+          "publisher": "American Chemical Society (ACS)",
+          "doi": "https://doi.org/10.1021/acsami.6c09922",
+          "description": "The commercialization of perovskite solar cells (PSCs) faces significant challenges due to their sensitivity to environmental humidity, which compromises film crystallization and device stability. Here, we introduce diphenylvinylphosphine (DPVP) as a Lewis base additive that enhances the performance and reproducibility of PSCs fabricated under ambient-air conditions. DPVP suppresses moisture-induced defect formation and stabilizes crystallization within realistic process-humidity ranges (20\u201340% relative humidity) commonly encountered in laboratory and pilot-scale manufacturing environments. It improves film uniformity, reduces trap densities, and yields highly reproducible device performance, enabling champion PCEs of 24.2% in small-area devices and 20.5% in blade-coated 12 cm<sup>2</sup> mini-modules. Furthermore, DPVP-assisted modules exhibit enhanced stability, retaining over 85% of their initial efficiency after 900 h of maximum power point tracking (MPPT) at 65 \u00b0C. This study demonstrates a humidity-resilient and scalable additive strategy for ambient-air perovskite photovoltaic manufacturing.",
+          "title": "Molecular Additive Engineering for Process-Humidity Robustness and Reproducible Fabrication of Perovskite Solar Cells and Modules",
+          "publication_date": "2026-07-22T20:00:00Z",
+          "journal_volume": "18",
+          "osti_id": "3407885",
+          "journal_name": "ACS Applied Materials and Interfaces",
+          "product_type": "Journal Article",
+          "authors": [
+            "Saeed, Muhammad Mohsin [University of Toledo, OH (United States)]",
+            "Kwon, Hyoung Woo [University of Toledo, OH (United States)]",
+            "Li, You [University of Toledo, OH (United States)]",
+            "Fu, Sheng [University of Toledo, OH (United States)] (ORCID:0009000859121145)",
+            "Lee, Seungmin [University of Toledo, OH (United States)]",
+            "Rabiu, Abdulai [University of Toledo, OH (United States)]",
+            "Wenner, Scott L. [University of Toledo, OH (United States)] (ORCID:0000000323543617)",
+            "Abudulimu, Abasi [University of Toledo, OH (United States)] (ORCID:0000000217940993)",
+            "Mariam, Tamanna [University of Toledo, OH (United States)]",
+            "Neupane, Sabin [University of Toledo, OH (United States)] (ORCID:0000000291516285)",
+            "Zhu, Tingting [University of Toledo, OH (United States)] (ORCID:000900095689262X)",
+            "Chen, Haoran [University of Toledo, OH (United States)]",
+            "Nazeer, Sahar [University of Toledo, OH (United States)]",
+            "Borra, Vamsi [Youngstown State University, OH (United States)]",
+            "Phillips, Adam B. [University of Toledo, OH (United States)] (ORCID:0000000226755052)",
+            "Ellingson, Randy J. [University of Toledo, OH (United States)] (ORCID:0000000195206586)",
+            "Heben, Michael J. [University of Toledo, OH (United States)] (ORCID:0000000237883471)",
+            "Chung, Jaehoon [University of Toledo, OH (United States)]",
+            "Song, Zhaoning [University of Toledo, OH (United States)] (ORCID:0000000266770994)",
+            "Yan, Yanfa [University of Toledo, OH (United States)] (ORCID:0000000339775789)"
+          ],
+          "subjects": [
+            "defect passivation",
+            "diphenylvinylphosphine (DPVP)",
+            "humidity robustness",
+            "molecular additive engineering",
+            "perovskite mini-modules",
+            "perovskite solar cells",
+            "precursor stabilization"
+          ],
+          "article_type": "Accepted Manuscript",
+          "doe_contract_number": "EE0008970; EE0011421",
+          "sponsor_orgs": [
+            "U.S. Air Force Research Laboratory",
+            "USDOE Office of Energy Efficiency and Renewable Energy (EERE), Renewable Power Office. Solar Energy Technologies Office"
+          ],
+          "research_orgs": [
+            "University of Toledo, OH (United States)"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/biblio/3407885"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/servlets/purl/3407885"
+            }
+          ]
+        },
+        {
+          "language": "English",
+          "entry_date": "2026-08-20T05:00:20Z",
+          "journal_issue": "8",
+          "country_publication": "United States",
+          "publisher": "American Chemical Society (ACS)",
+          "doi": "https://doi.org/10.1021/acsenergylett.6c01114",
+          "description": "The interplay between carrier density regimes and the various scattering processes is fundamental for understanding charge transport efficiency in high-performance semiconductors. Combining ultrafast time-resolved terahertz spectroscopy (TRTS) and transient microwave photoconductivity (TRMC), we measure carrier mobilities over 7 orders of magnitude (10<sup>13</sup>\u201310<sup>20</sup> carriers cm<sup>\u20133</sup>), reaching a regime where carrier\u2013carrier scattering dominates and mobility begins to roll off. We find the Caughey\u2013Thomas model can be effectively employed for transport modeling in 3D metal halide perovskites (MHPs), and the mobility roll-off near \u223c10<sup>19</sup> cm<sup>\u20133</sup> can be tuned by MHP composition. Carrier lifetime in MHPs starts decreasing at much lower carrier densities due to interband multi-carrier recombination, while intraband carrier mobility remains unchanged as carrier\u2013carrier scattering is screened by the presence of polarons. The validated Caughey\u2013Thomas model provides a practical input for device simulations, prevents overestimation of diffusion length under high injection, and suggests that MHPs are excellent candidates for unipolar device applications under high carrier densities.",
+          "title": "Large Polaron Screening Delays Mobility Roll-Off in Halide Perovskites under High Injection",
+          "publication_date": "2026-08-04T20:00:00Z",
+          "journal_volume": "11",
+          "osti_id": "3424874",
+          "journal_name": "ACS Energy Letters",
+          "product_type": "Journal Article",
+          "authors": [
+            "Taddei, Margherita [National Laboratory of the Rockies (NLR), Golden, CO (United States)] (ORCID:0000000341228418)",
+            "Dong, Yifan [National Laboratory of the Rockies (NLR), Golden, CO (United States); University of California, Riverside, CA (United States)] (ORCID:0000000329123322)",
+            "Shelton, Jacob [National Laboratory of the Rockies (NLR), Golden, CO (United States)]",
+            "Reid, Obadiah [National Laboratory of the Rockies (NLR), Golden, CO (United States); RASEI: The Joint CU-Boulder/NLR Energy Institute, Boulder, CO (United States)]",
+            "Marder, Seth R. [National Laboratory of the Rockies (NLR), Golden, CO (United States); RASEI: The Joint CU-Boulder/NLR Energy Institute, Boulder, CO (United States)]",
+            "Haque, Md Azimul [National Laboratory of the Rockies (NLR), Golden, CO (United States); RASEI: The Joint CU-Boulder/NLR Energy Institute, Boulder, CO (United States)] (ORCID:0000000335280674)",
+            "Beard, Matthew C. [National Laboratory of the Rockies (NLR), Golden, CO (United States); RASEI: The Joint CU-Boulder/NLR Energy Institute, Boulder, CO (United States)] (ORCID:0000000227111355)"
+          ],
+          "article_type": "Accepted Manuscript",
+          "doe_contract_number": "AC36-08GO28308",
+          "subjects": [],
+          "sponsor_orgs": [
+            "USDOE Office of Science (SC), Basic Energy Sciences (BES)"
+          ],
+          "research_orgs": [
+            "Alliance for Energy Innovation, LLC, Golden, CO (United States)"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/biblio/3424874"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/servlets/purl/3424874"
+            }
+          ]
+        },
+        {
+          "language": "English",
+          "entry_date": "2026-08-27T07:29:27Z",
+          "report_number": "NLR/JA-5900-101224",
+          "journal_issue": "7",
+          "country_publication": "United States",
+          "publisher": "Elsevier - Cell Press",
+          "doi": "https://doi.org/10.1016/j.joule.2026.102494",
+          "description": "Consolidated tables showing an extensive listing of the highest independently confirmed efficiencies for photovoltaic solar cells and modules are presented. Guidelines for inclusion of results into these tables are outlined, and new entries since January 2026 are reviewed.",
+          "title": "Solar cell efficiency tables: Version 68",
+          "publication_date": "2026-07-14T20:00:00Z",
+          "journal_volume": "10",
+          "osti_id": "3377207",
+          "journal_name": "Joule",
+          "product_type": "Journal Article",
+          "authors": [
+            "Green, Martin A. [Univ. of New South Wales, Sydney, NSW (Australia)]",
+            "Dunlop, Ewan D. [European Commission, Ispra (Italy). Joint Research Centre]",
+            "Yoshita, Masahiro [National Institute of Advanced Industrial Science and Technology (AIST) (Japan)]",
+            "Kopidakis, Nikos [National Laboratory of the Rockies (NLR), Golden, CO (United States)]",
+            "Bothe, Karsten [Inst. for Solar Energy Research GmbH GmbH (Germany)]",
+            "Siefer, Gerald [Fraunhofer Inst. for Solar Energy Systems, Freiburg (Germany)]",
+            "Jiang, Jessica Yajie [Univ. of New South Wales, Sydney, NSW (Australia)]"
+          ],
+          "subjects": [
+            "14 SOLAR ENERGY",
+            "energy conversion efficiency",
+            "photovoltaic efficiency",
+            "solar cell efficiency"
+          ],
+          "article_type": "Accepted Manuscript",
+          "doe_contract_number": "AC36-08GO28308",
+          "sponsor_orgs": [
+            "USDOE Office of Energy Efficiency and Renewable Energy (EERE), Renewable Power Office. Solar Energy Technologies Office"
+          ],
+          "research_orgs": [
+            "National Laboratory of the Rockies (NLR), Golden, CO (United States)"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/biblio/3377207"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/servlets/purl/3377207"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.osti.gov/pages/api/v1/records",
+      "params": {
+        "q": "perovskite solar",
+        "rows": "5",
+        "page": "1"
+      },
+      "headers": {
+        "x-total-count": "5611",
+        "link": "<https://www.osti.gov/pages/api/v1/records?q=perovskite+solar&page=2&rows=5>; rel=\"next\", <https://www.osti.gov/pages/api/v1/records?q=perovskite+solar&page=1123&rows=5>; rel=\"last\"",
+        "content-type": "application/json"
+      },
+      "body": [
+        {
+          "language": "English",
+          "entry_date": "2026-08-11T07:32:50Z",
+          "journal_issue": "30",
+          "country_publication": "United States",
+          "publisher": "American Chemical Society (ACS)",
+          "doi": "https://doi.org/10.1021/acsami.6c09922",
+          "description": "The commercialization of perovskite solar cells (PSCs) faces significant challenges due to their sensitivity to environmental humidity, which compromises film crystallization and device stability. Here, we introduce diphenylvinylphosphine (DPVP) as a Lewis base additive that enhances the performance and reproducibility of PSCs fabricated under ambient-air conditions. DPVP suppresses moisture-induced defect formation and stabilizes crystallization within realistic process-humidity ranges (20\u201340% relative humidity) commonly encountered in laboratory and pilot-scale manufacturing environments. It improves film uniformity, reduces trap densities, and yields highly reproducible device performance, enabling champion PCEs of 24.2% in small-area devices and 20.5% in blade-coated 12 cm<sup>2</sup> mini-modules. Furthermore, DPVP-assisted modules exhibit enhanced stability, retaining over 85% of their initial efficiency after 900 h of maximum power point tracking (MPPT) at 65 \u00b0C. This study demonstrates a humidity-resilient and scalable additive strategy for ambient-air perovskite photovoltaic manufacturing.",
+          "title": "Molecular Additive Engineering for Process-Humidity Robustness and Reproducible Fabrication of Perovskite Solar Cells and Modules",
+          "publication_date": "2026-07-22T20:00:00Z",
+          "journal_volume": "18",
+          "osti_id": "3407885",
+          "journal_name": "ACS Applied Materials and Interfaces",
+          "product_type": "Journal Article",
+          "authors": [
+            "Saeed, Muhammad Mohsin [University of Toledo, OH (United States)]",
+            "Kwon, Hyoung Woo [University of Toledo, OH (United States)]",
+            "Li, You [University of Toledo, OH (United States)]",
+            "Fu, Sheng [University of Toledo, OH (United States)] (ORCID:0009000859121145)",
+            "Lee, Seungmin [University of Toledo, OH (United States)]",
+            "Rabiu, Abdulai [University of Toledo, OH (United States)]",
+            "Wenner, Scott L. [University of Toledo, OH (United States)] (ORCID:0000000323543617)",
+            "Abudulimu, Abasi [University of Toledo, OH (United States)] (ORCID:0000000217940993)",
+            "Mariam, Tamanna [University of Toledo, OH (United States)]",
+            "Neupane, Sabin [University of Toledo, OH (United States)] (ORCID:0000000291516285)",
+            "Zhu, Tingting [University of Toledo, OH (United States)] (ORCID:000900095689262X)",
+            "Chen, Haoran [University of Toledo, OH (United States)]",
+            "Nazeer, Sahar [University of Toledo, OH (United States)]",
+            "Borra, Vamsi [Youngstown State University, OH (United States)]",
+            "Phillips, Adam B. [University of Toledo, OH (United States)] (ORCID:0000000226755052)",
+            "Ellingson, Randy J. [University of Toledo, OH (United States)] (ORCID:0000000195206586)",
+            "Heben, Michael J. [University of Toledo, OH (United States)] (ORCID:0000000237883471)",
+            "Chung, Jaehoon [University of Toledo, OH (United States)]",
+            "Song, Zhaoning [University of Toledo, OH (United States)] (ORCID:0000000266770994)",
+            "Yan, Yanfa [University of Toledo, OH (United States)] (ORCID:0000000339775789)"
+          ],
+          "subjects": [
+            "defect passivation",
+            "diphenylvinylphosphine (DPVP)",
+            "humidity robustness",
+            "molecular additive engineering",
+            "perovskite mini-modules",
+            "perovskite solar cells",
+            "precursor stabilization"
+          ],
+          "article_type": "Accepted Manuscript",
+          "doe_contract_number": "EE0008970; EE0011421",
+          "sponsor_orgs": [
+            "U.S. Air Force Research Laboratory",
+            "USDOE Office of Energy Efficiency and Renewable Energy (EERE), Renewable Power Office. Solar Energy Technologies Office"
+          ],
+          "research_orgs": [
+            "University of Toledo, OH (United States)"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/biblio/3407885"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/servlets/purl/3407885"
+            }
+          ]
+        },
+        {
+          "language": "English",
+          "entry_date": "2026-08-20T05:00:20Z",
+          "journal_issue": "8",
+          "country_publication": "United States",
+          "publisher": "American Chemical Society (ACS)",
+          "doi": "https://doi.org/10.1021/acsenergylett.6c01114",
+          "description": "The interplay between carrier density regimes and the various scattering processes is fundamental for understanding charge transport efficiency in high-performance semiconductors. Combining ultrafast time-resolved terahertz spectroscopy (TRTS) and transient microwave photoconductivity (TRMC), we measure carrier mobilities over 7 orders of magnitude (10<sup>13</sup>\u201310<sup>20</sup> carriers cm<sup>\u20133</sup>), reaching a regime where carrier\u2013carrier scattering dominates and mobility begins to roll off. We find the Caughey\u2013Thomas model can be effectively employed for transport modeling in 3D metal halide perovskites (MHPs), and the mobility roll-off near \u223c10<sup>19</sup> cm<sup>\u20133</sup> can be tuned by MHP composition. Carrier lifetime in MHPs starts decreasing at much lower carrier densities due to interband multi-carrier recombination, while intraband carrier mobility remains unchanged as carrier\u2013carrier scattering is screened by the presence of polarons. The validated Caughey\u2013Thomas model provides a practical input for device simulations, prevents overestimation of diffusion length under high injection, and suggests that MHPs are excellent candidates for unipolar device applications under high carrier densities.",
+          "title": "Large Polaron Screening Delays Mobility Roll-Off in Halide Perovskites under High Injection",
+          "publication_date": "2026-08-04T20:00:00Z",
+          "journal_volume": "11",
+          "osti_id": "3424874",
+          "journal_name": "ACS Energy Letters",
+          "product_type": "Journal Article",
+          "authors": [
+            "Taddei, Margherita [National Laboratory of the Rockies (NLR), Golden, CO (United States)] (ORCID:0000000341228418)",
+            "Dong, Yifan [National Laboratory of the Rockies (NLR), Golden, CO (United States); University of California, Riverside, CA (United States)] (ORCID:0000000329123322)",
+            "Shelton, Jacob [National Laboratory of the Rockies (NLR), Golden, CO (United States)]",
+            "Reid, Obadiah [National Laboratory of the Rockies (NLR), Golden, CO (United States); RASEI: The Joint CU-Boulder/NLR Energy Institute, Boulder, CO (United States)]",
+            "Marder, Seth R. [National Laboratory of the Rockies (NLR), Golden, CO (United States); RASEI: The Joint CU-Boulder/NLR Energy Institute, Boulder, CO (United States)]",
+            "Haque, Md Azimul [National Laboratory of the Rockies (NLR), Golden, CO (United States); RASEI: The Joint CU-Boulder/NLR Energy Institute, Boulder, CO (United States)] (ORCID:0000000335280674)",
+            "Beard, Matthew C. [National Laboratory of the Rockies (NLR), Golden, CO (United States); RASEI: The Joint CU-Boulder/NLR Energy Institute, Boulder, CO (United States)] (ORCID:0000000227111355)"
+          ],
+          "article_type": "Accepted Manuscript",
+          "doe_contract_number": "AC36-08GO28308",
+          "subjects": [],
+          "sponsor_orgs": [
+            "USDOE Office of Science (SC), Basic Energy Sciences (BES)"
+          ],
+          "research_orgs": [
+            "Alliance for Energy Innovation, LLC, Golden, CO (United States)"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/biblio/3424874"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/servlets/purl/3424874"
+            }
+          ]
+        },
+        {
+          "language": "English",
+          "entry_date": "2026-08-27T07:29:27Z",
+          "report_number": "NLR/JA-5900-101224",
+          "journal_issue": "7",
+          "country_publication": "United States",
+          "publisher": "Elsevier - Cell Press",
+          "doi": "https://doi.org/10.1016/j.joule.2026.102494",
+          "description": "Consolidated tables showing an extensive listing of the highest independently confirmed efficiencies for photovoltaic solar cells and modules are presented. Guidelines for inclusion of results into these tables are outlined, and new entries since January 2026 are reviewed.",
+          "title": "Solar cell efficiency tables: Version 68",
+          "publication_date": "2026-07-14T20:00:00Z",
+          "journal_volume": "10",
+          "osti_id": "3377207",
+          "journal_name": "Joule",
+          "product_type": "Journal Article",
+          "authors": [
+            "Green, Martin A. [Univ. of New South Wales, Sydney, NSW (Australia)]",
+            "Dunlop, Ewan D. [European Commission, Ispra (Italy). Joint Research Centre]",
+            "Yoshita, Masahiro [National Institute of Advanced Industrial Science and Technology (AIST) (Japan)]",
+            "Kopidakis, Nikos [National Laboratory of the Rockies (NLR), Golden, CO (United States)]",
+            "Bothe, Karsten [Inst. for Solar Energy Research GmbH GmbH (Germany)]",
+            "Siefer, Gerald [Fraunhofer Inst. for Solar Energy Systems, Freiburg (Germany)]",
+            "Jiang, Jessica Yajie [Univ. of New South Wales, Sydney, NSW (Australia)]"
+          ],
+          "subjects": [
+            "14 SOLAR ENERGY",
+            "energy conversion efficiency",
+            "photovoltaic efficiency",
+            "solar cell efficiency"
+          ],
+          "article_type": "Accepted Manuscript",
+          "doe_contract_number": "AC36-08GO28308",
+          "sponsor_orgs": [
+            "USDOE Office of Energy Efficiency and Renewable Energy (EERE), Renewable Power Office. Solar Energy Technologies Office"
+          ],
+          "research_orgs": [
+            "National Laboratory of the Rockies (NLR), Golden, CO (United States)"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/biblio/3377207"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/servlets/purl/3377207"
+            }
+          ]
+        },
+        {
+          "language": "English",
+          "entry_date": "2026-08-15T01:00:10Z",
+          "report_number": "NLR/JA-5900-101333",
+          "country_publication": "United States",
+          "doi": "https://doi.org/10.1016/j.nanoen.2026.112209",
+          "description": "Perovskite solar cells (PSCs) have emerged as a transformative photovoltaic technology. However, the device performance of inverted PSCs is dramatically limited by surface defects and the underlying film morphology of metal halide perovskite (MHP) thin film. Herein, we report a novel buried interface layer consisting of SiO2 nanoparticles (NPs) chemically bonded to graphene oxide (GO), deposited atop a hydrophobic hole extraction layer (HEL) to address this limitation. The SiO2 NPs serve as insoluble scaffolds that immobilize GO sheets on the hydrophobic HEL surface, enabling the formation of homogeneous MHP thin films. Meanwhile, the GO functional groups interact with surface-uncoordinated Pb2+, suppressing interfacial defects and guiding crystal grain growth of the resultant MHP thin films. This synergistic effect suppresses non-radiative charge recombination and enhances charge extraction efficiency. As a result, a 26.07% efficiency with significantly suppressed photocurrent hysteresis is observed from PSCs incorporating the SiO2-GO buried interface layer. Moreover, the above PSCs maintain 92% of their initial PCE after 1800 h of continuous operation at the maximum power point under AM 1.5 G (100 mW/cm2) illumination at 25 degrees C in air with 50-60% relative humidity. These results demonstrate that we have developed a facile and effective way to realize high-performance inverted PSCs.",
+          "title": "Reducing Non-Radiative Recombination in Perovskite Solar Cells with a SiO2-Graphene Oxide Buried Interface Layer",
+          "publication_date": "2026-07-10T20:00:00Z",
+          "journal_volume": "156",
+          "osti_id": "3409109",
+          "journal_name": "Nano Energy",
+          "product_type": "Journal Article",
+          "authors": [
+            "Cao, Zikun [The University of Texas at Arlington; University of Miami]",
+            "You, Shuai [National Laboratory of the Rockies, Golden, CO (United States)]",
+            "Zhang, Xiyao [The University of Texas at Arlington; University of Akron]",
+            "Liu, Lei [University of Akron]",
+            "Zhang, Haixing [University of Miami]",
+            "Wang, Kun [University of Miami]",
+            "Wang, He [University of Miami]",
+            "Zhu, Kai [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000309083909)",
+            "Gong, Xiong [The University of Texas at Arlington; University of Akron]"
+          ],
+          "subjects": [
+            "14 SOLAR ENERGY",
+            "SiO2 nanoparticles",
+            "buried interface layer",
+            "efficiency",
+            "graphene oxides",
+            "perovskite solar cells",
+            "stability"
+          ],
+          "article_type": "Accepted Manuscript",
+          "doe_contract_number": "AC36-08GO28308",
+          "sponsor_orgs": [
+            "USDOE Office of Energy Efficiency and Renewable Energy (EERE), Renewable Power Office. Solar Energy Technologies Office"
+          ],
+          "research_orgs": [
+            "National Laboratory of the Rockies (NLR), Golden, CO (United States)"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/biblio/3409109"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/servlets/purl/3409109"
+            }
+          ]
+        },
+        {
+          "language": "English",
+          "entry_date": "2026-08-02T01:00:10Z",
+          "report_number": "NLR/JA-5900-99709",
+          "country_publication": "United States",
+          "doi": "https://doi.org/10.1038/s41565-026-02207-z",
+          "description": "Perovskite solar modules require hole-selective layers that combine efficient charge extraction, interfacial uniformity and scalable processing. Poly(triarylamine) (PTAA) is widely used in high-performance inverted perovskite photovoltaics, but its nanoscale crystallization and aggregation on indium tin oxide can disrupt film continuity, increase interfacial recombination and limit module stability. Here we show that 4-fluorobenzylphosphonic acid (4FBPA) modifies the surface of indium tin oxide to induce nanoscale amorphization of PTAA, forming a uniform sub-10-nm hole-selective layer. The molecule binds to indium tin oxide through a dehydration reaction, tunes the work function and surface free energy of the photoanode, and improves energy-level alignment with PTAA. The resulting amorphous PTAA film shows enhanced conductivity and hole extraction, suppresses non-radiative recombination at the buried interface and promotes more uniform perovskite growth. Inverted perovskite solar cells reach a power conversion efficiency of 26.63%, while blade-coated modules achieve a certified quasi-steady-state efficiency of 23.01%. The modules retain 95.9% of their initial efficiency after 2,600 hours of maximum-power-point operation under 1-sun illumination at 65 +- 5 degrees C in nitrogen. These results identify nanoscale amorphization of polymeric hole-selective layers as a route to efficient and stable inverted perovskite photovoltaics.",
+          "title": "Nanoscale Amorphization of Poly(Triarylamine) for Efficient and Stable Inverted Perovskite Photovoltaics",
+          "publication_date": "2026-06-30T20:00:00Z",
+          "osti_id": "3388189",
+          "journal_name": "Nature Nanotechnology",
+          "product_type": "Journal Article",
+          "authors": [
+            "Zhu, Hongwei [King Abdullah University of Science & Technology]",
+            "Shao, Bingyao [King Abdullah University of Science & Technology]",
+            "Shen, Zhongjin [Newcastle University]",
+            "Yin, Jun [King Abdullah University of Science & Technology]",
+            "Zhang, Shanshan [King Abdullah University of Science & Technology]",
+            "Zhou, Renqian [King Abdullah University of Science & Technology]",
+            "Hedhili, Mohamed Nejib [King Abdullah University of Science & Technology]",
+            "Yuan, Youyou [King Abdullah University of Science & Technology]",
+            "Wang, Qingxiao [King Abdullah University of Science & Technology]",
+            "Gutierrez-Arzaluz, Luis [King Abdullah University of Science & Technology]",
+            "Abulikemu, Mutalifu [King Abdullah University of Science & Technology]",
+            "Jamal, Aqil [Saudi Aramco]",
+            "Gereige, Issam [Saudi Aramco]",
+            "Freitag, Marina [Newcastle University]",
+            "Mohammed, Omar [King Abdullah University of Science & Technology]",
+            "You, Shuai [National Laboratory of the Rockies, Golden, CO (United States)]",
+            "Zhu, Kai [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000309083909)",
+            "Bakr, Osman [King Abdullah University of Science & Technology]"
+          ],
+          "subjects": [
+            "14 SOLAR ENERGY",
+            "PTAA",
+            "amorphous",
+            "hole transport layer",
+            "perovskite solar cells",
+            "stability"
+          ],
+          "article_type": "Accepted Manuscript",
+          "doe_contract_number": "AC36-08GO28308",
+          "sponsor_orgs": [
+            "USDOE Office of Energy Efficiency and Renewable Energy (EERE), Renewable Power Office. Solar Energy Technologies Office"
+          ],
+          "research_orgs": [
+            "National Laboratory of the Rockies (NLR), Golden, CO (United States)"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/biblio/3388189"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/servlets/purl/3388189"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.osti.gov/pages/api/v1/records",
+      "params": {
+        "q": "zzzznotarealtopiczzzz",
+        "rows": "3",
+        "page": "1"
+      },
+      "headers": {
+        "x-total-count": "0",
+        "content-type": "application/json"
+      },
+      "body": []
+    }
+  ]
+}

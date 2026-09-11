@@ -1,0 +1,72 @@
+id: nlr-lab-partnering-service
+name: Lab Partnering Service API
+domain: projects
+
+publisher:
+  steward: nlr
+  host: gsa
+  authority_level: official_secondary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [ames, anl, bnl, fnal, inl, lbnl, llnl, lanl, netl, nlr, ornl, pnnl, pppl, snl, srnl, slac, jlab]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+adapter:
+  type: none
+
+access:
+  mode: api_key
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://developer.nlr.gov/
+  terms_notes: >
+    Confirmed present at developer.nlr.gov/api/lps, on the same
+    api.data.gov key as the rest of the NLR network. Resolves an open
+    question from the cross-cutting platform survey.
+  terms_reviewed_at: "2026-09-01"
+  credential_ref: API_DATA_GOV_KEY
+
+freshness:
+  expected_cadence: unknown
+  cadence_source: >
+    Unknown; expert and technology listings change slowly.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    DOE's Lab Partnering Service: laboratory experts, available
+    technologies, and facilities across the complex, for partnership
+    discovery.
+  temporal: current
+  dataset_version: "current"
+  known_limitations:
+    - >
+      Shares the api.data.gov hourly budget with every other NLR API.
+    - >
+      Expert listings are personal data in a public directory. Returned
+      as the publisher publishes it, and not aggregated across sources.
+
+authority_notes: >
+  One of the few sources that is genuinely about all seventeen
+  laboratories at once, which makes it a natural companion to the
+  crosswalk. Intended capabilities: registry.lab_crosswalk adjacent.
+  Phase 5.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Phase 5, with the rest of the NLR network key work.

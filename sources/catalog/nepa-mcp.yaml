@@ -1,0 +1,44 @@
+# PNNL's NEPA-MCP. The clearest case for a catalog entry rather than
+# absorption: 23 servers and 56 tools at 0.1.6 (2026-09-06), up from 22 and
+# 53 a week earlier, releasing every three to six days.
+# Absorbing that surface would breach decision 0014's ceiling of 20 tools on
+# its own, several times over.
+#
+# It is also the project whose packaging shape DOE-MCP borrows — one pip
+# package, many focused stdio servers, a doctor/configure CLI — which is
+# acknowledged in NOTICE. Influence, not affiliation.
+id: nepa-mcp
+name: NEPA-MCP
+maintainer: Pacific Northwest National Laboratory
+maintainer_org: pnnl
+repository: https://github.com/pnnl/nepa-mcp
+status: listed
+compliance: opaque
+capabilities: [docs.search_nepa]
+tool_count: 56
+server_count: 23
+install:
+  method: pipx
+  command: pipx install nepa-mcp
+  verified_at: "2026-09-08"
+  notes: >
+    PyPI 0.1.6 as of 2026-09-06, checked 2026-09-08. GSA re-hosted these
+    servers from its own fork in its hub catalog until it wound that hub
+    down on 2026-09-03; the catalog entries remain as a snapshot, and no
+    hosted route is known to be running.
+health_probe: pypi_version
+terms_url: https://github.com/pnnl/nepa-mcp
+terms_reviewed_at: "2026-09-01"
+why_not_absorbed: >
+  Server-only and far too large. 56 tools across 23 servers is more than
+  twice the hard ceiling a single DOE-MCP profile may carry, and its release
+  cadence — every three to six days — would make any wrapper permanently
+  behind. DOE-MCP registers the underlying NEPA document database as a
+  `proposed` manifest that says exactly this, so the registry answers "not a
+  gap, a decision".
+notes: >
+  The federation hand-off runs the other way too: an energy-project site
+  screening skill would reach solar resource, tariffs, stations, and
+  interconnection queues here, then hand the environmental screen to
+  NEPA-MCP rather than attempting it.
+last_checked: "2026-09-08"

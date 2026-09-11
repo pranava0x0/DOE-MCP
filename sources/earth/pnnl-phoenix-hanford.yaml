@@ -1,0 +1,77 @@
+id: pnnl-phoenix-hanford
+name: PHOENIX (Hanford environmental and tank data)
+domain: earth
+
+publisher:
+  steward: pnnl
+  funder: em
+  authority_level: official_secondary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: ['pnnl']
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+planned_capabilities: ['environment.site_monitoring']
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: public_api
+  tier: catalog_pointer
+  terms_url: https://phoenix.pnnl.gov/
+  terms_notes: >
+    PNNL publishes PHOENIX for DOE's Richland Operations Office and
+    Office of River Protection. A Geoservice endpoint answered a
+    layer-metadata query as JSON with no key on 2026-09-08; the layer
+    store is named hanford. No terms page was found; the data are
+    federal environmental-monitoring records.
+
+freshness:
+  expected_cadence: periodic
+  cadence_source: >
+    Unknown; the applications describe groundwater, tank, and
+    surveillance data updated on their own schedules.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Hanford Site environmental data: groundwater monitoring, waste-
+    site inventory, tank-farm monitoring, and site geography, served
+    through map layers and query applications.
+  temporal: legacy data from the 1940s onward, per application
+  dataset_version: "current"
+  known_limitations:
+    - >
+      A layer store answered; the tabular query applications behind
+      PHOENIX have not been probed and may use different endpoints.
+    - >
+      One site. Hanford is the largest EM site; the other cleanup sites
+      report through EM's central systems, which remain Tier C.
+
+authority_notes: >
+  Official secondary: PNNL integrates data that Hanford contractors
+  and DOE offices produce. Resolves part of research/01's EM gap,
+  which had filed all cleanup data as report generators. Found in
+  the 2026-09-08 gap sweep.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-08"
+  last_verified: "2026-09-08"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Phase 4. The Geoservice answers, but the query applications behind
+    PHOENIX need a browser look at their own network calls before a
+    tool contract can be written.

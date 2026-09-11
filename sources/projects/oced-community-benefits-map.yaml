@@ -1,0 +1,63 @@
+id: oced-community-benefits-map
+name: OCED Community Benefits Map
+domain: projects
+
+publisher:
+  steward: oced
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: []
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+planned_capabilities: [projects.search_awards]
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: unknown
+  tier: catalog_pointer
+  terms_url: https://www.energy.gov/oced/
+  terms_notes: >
+    A 2024 public map of demonstration-project community benefits.
+    Backend unverified.
+
+freshness:
+  expected_cadence: periodic
+  cadence_source: >
+    Unknown.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Community benefit commitments attached to OCED demonstration
+    projects.
+  temporal: 2024 onward
+  dataset_version: "current"
+  known_limitations:
+    - >
+      Map backend unverified, same class as the LPO/EDF portfolio map.
+
+authority_notes: >
+  Intended capabilities: projects.search_awards. Phase 5.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Map backend unverified; same JavaScript-bundle probe as the EDF
+    portfolio.

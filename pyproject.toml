@@ -1,0 +1,86 @@
+[project]
+name = "doe-mcp"
+version = "0.1.0.dev0"
+description = "MCP servers over public US Department of Energy and national-laboratory data, with provenance on every answer."
+readme = "README.md"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+authors = [{ name = "The DOE-MCP contributors" }]
+keywords = ["mcp", "model-context-protocol", "energy", "open-data", "provenance"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+]
+# Code only. The registry under sources/ is CC0 and docs prose is CC-BY-4.0;
+# see NOTICE for the split and THIRD_PARTY_DATA.yml for the government content
+# this repo redistributes.
+dependencies = [
+    # Exact-pin per decision 0004: this is an application tree, not a
+    # published library. The choice is the official SDK, not FastMCP; bump
+    # deliberately, with the stateless-spec conformance check re-run.
+    "mcp==2.1.1",
+    "httpx==0.28.1",
+    "pydantic==2.13.4",
+    "pyyaml==6.0.3",
+]
+
+[project.optional-dependencies]
+# Per-domain extras (decision 0003-B). Phases 1 and 2 need nothing beyond
+# the base; the extras exist so the dependency union of the later science
+# domains never lands on a literature-only install.
+research = []
+energy = []
+all = ["doe-mcp[research,energy]"]
+
+[project.urls]
+Homepage = "https://github.com/pranava0x0/DOE-MCP"
+Documentation = "https://github.com/pranava0x0/DOE-MCP#readme"
+Source = "https://github.com/pranava0x0/DOE-MCP"
+
+[dependency-groups]
+dev = [
+    "pytest==9.1.1",
+    "pytest-asyncio==1.4.0",
+    "ruff==0.13.0",
+]
+
+[tool.ruff]
+line-length = 88
+# Vendored from the maintainer's coding-best-practices repository; a
+# finding in them is fixed there first and copied (AGENTS.md).
+extend-exclude = ["tools/slopcheck.py", "tools/test_slopcheck.py"]
+
+[tool.ruff.lint]
+# Bug-finding rules, not style: pyflakes, bugbear, the E4/E7/E9 subset and
+# whitespace. A finding here is an unused name, a raise that hides its
+# cause, a zip that can drop rows without saying so. Adopted 2026-09-11
+# after a review found thirty of them and nothing in CI to catch the next.
+select = ["E4", "E7", "E9", "F", "B", "W"]
+
+[project.scripts]
+# One package, per-domain stdio entry points (decision 0003-B: NEPA-MCP's
+# mechanism with domain-server boundaries).
+doe-mcp = "doe_mcp.cli.__main__:main"
+doe-research = "doe_mcp.servers.research:main"
+doe-energy-data = "doe_mcp.servers.energy_data:main"
+doe-earth = "doe_mcp.servers.earth:main"
+doe-materials = "doe_mcp.servers.materials:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/doe_mcp"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"sources" = "doe_mcp/_sources"
+"schemas" = "doe_mcp/_schemas"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "-q"

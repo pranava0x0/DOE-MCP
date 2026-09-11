@@ -1,0 +1,70 @@
+id: ornl-faf
+name: Freight Analysis Framework
+domain: projects
+
+publisher:
+  steward: ornl
+  funder: dot
+  authority_level: official_secondary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [ornl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: public_download
+  tier: catalog_pointer
+  terms_url: https://faf.ornl.gov/
+  terms_notes: >
+    Public. Served through a form-driven query tool rather than an API;
+    bulk files are downloadable. DOT funds it and ORNL builds it.
+
+freshness:
+  expected_cadence: periodic
+  cadence_source: >
+    Stated; released as numbered versions (FAF5 and predecessors) rather
+    than continuously.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    US freight movement estimates by commodity, mode, origin, and
+    destination.
+  temporal: historical and forecast
+  dataset_version: "FAF5"
+  known_limitations:
+    - >
+      A form tool, not an API. The route in is bulk ingest.
+    - >
+      DOT-funded. Another case where naming only DOE would be an
+      overclaim.
+    - >
+      Modelled estimates, not observed shipments.
+
+authority_notes: >
+  Intended capabilities: projects-adjacent freight data. Phase 5 at the
+  earliest.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    No API. Bulk ingest plus Gate E review; low priority against the
+    energy domains.

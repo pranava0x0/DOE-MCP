@@ -1,0 +1,495 @@
+{
+  "note": "Recorded live from DOE Software Inventory (code.json) (https://www.energy.gov/cio/open-source-software) by tools/record_fixtures.py. Publisher content redistributed under the terms recorded in THIRD_PARTY_DATA.yml. TRIMMED: the 'releases' array held 5879 entries and is cut to the first 15, so record counts read from this fixture are the fixture's, not the publisher's.",
+  "redaction": "Email addresses replaced with redacted@example.invalid and credential values with 'redacted' at record time. Field shapes and lengths are otherwise the publisher's.",
+  "interactions": [
+    {
+      "url": "https://www.energy.gov/code.json",
+      "params": {},
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "agency": "DOE",
+        "measurementType": {
+          "ifOther": "",
+          "method": "other"
+        },
+        "releases": [
+          {
+            "contact": {
+              "email": "redacted@example.invalid"
+            },
+            "date": {
+              "created": "2017-10-25",
+              "metadataLastUpdated": "2023-03-16"
+            },
+            "description": "Teuchos is designed to provide portable, object-oriented tools for Trillnos developers and users. This includes templated wrappers to BLAS/LAPACK, a serial dense matrix class, a parameter list, XML parsing utilities, reference counted pointer (smart pointer) utilities, and more. These tools are designed to run on both serial and parallel computers.",
+            "laborHours": 8344830.4,
+            "languages": [],
+            "name": "Teuchos Utility Package",
+            "organization": "Sandia National Laboratories (SNL)",
+            "permissions": {
+              "exemptionText": null,
+              "licenses": [
+                {
+                  "URL": "https://api.github.com/licenses/bsd-3-clause",
+                  "name": "BSD-3-Clause"
+                }
+              ],
+              "usageType": "openSource"
+            },
+            "repositoryURL": "https://github.com/trilinos/Trilinos",
+            "status": "Production",
+            "tags": [
+              "DOE CODE",
+              "Sandia National Laboratories (SNL)"
+            ],
+            "vcs": "git"
+          },
+          {
+            "contact": {
+              "email": "redacted@example.invalid"
+            },
+            "date": {
+              "created": "2017-10-25",
+              "metadataLastUpdated": "2024-08-06"
+            },
+            "description": "Amesos is the Direct Sparse Solver Package in Trilinos. The goal of Amesos is to make AX=S as easy as it sounds, at least for direct methods. Amesos provides interfaces to a number of third party sparse direct solvers, including SuperLU, SuperLU MPI, DSCPACK, UMFPACK and KLU. Amesos provides a common object oriented interface to the best sparse direct solvers in the world. A sparse direct solver solves for x in Ax = b. where A is a matrix and x and b are vectors (or multi-vectors). A sparse direct solver flrst factors A into trinagular matrices L and U such that A = LU via gaussian elimination and then solves LU x = b. Switching amongst solvers in Amesos roquires a change to a single parameter. Yet, no solver needs to be linked it, unless it is used. All conversions between the matrices provided by the user and the format required by the underlying solver is performed by Amesos. As new sparse direct solvers are created, they will be incorporated into Amesos, allowing the user to simpty link with the new solver, change a single parameter in the calling sequence, and use the new solver. Amesos allows users to specify whether the matrix has changed. Amesos can be used anywhere that any sparse direct solver is needed.",
+            "laborHours": 8344830.4,
+            "languages": [],
+            "name": "Amesos Solver Package",
+            "organization": "Sandia National Laboratories (SNL)",
+            "permissions": {
+              "exemptionText": null,
+              "licenses": [
+                {
+                  "URL": "https://api.github.com/licenses/bsd-3-clause",
+                  "name": "BSD-3-Clause"
+                }
+              ],
+              "usageType": "openSource"
+            },
+            "repositoryURL": "https://github.com/trilinos/Trilinos",
+            "status": "Production",
+            "tags": [
+              "DOE CODE",
+              "Sandia National Laboratories (SNL)"
+            ],
+            "vcs": "git"
+          },
+          {
+            "contact": {
+              "email": "redacted@example.invalid"
+            },
+            "date": {
+              "created": "2017-10-25",
+              "metadataLastUpdated": "2017-10-25"
+            },
+            "description": "The MRSH project is a collection of the following programs: MRSH, MRCP, MRLOGIN, MRSHD, MRLOGIND. These programs are modifications of the programs RSH, RCP, RLOGIN, RSHD, and RLOGIND. They have been modified to provide authentication via munge, an intra-cluster authentication service. Henceforth, \"MRSH\" implies the collective set of programs MRSH, MRCP, MRLOGIN, MRSHD, and MRLOGIND. Similarly RSH will refer to its collective set of programs.",
+            "laborHours": 24213.6,
+            "name": "MRSH Version V2.0",
+            "organization": "Lawrence Livermore National Laboratory (LLNL)",
+            "permissions": {
+              "exemptionText": null,
+              "licenses": [
+                {
+                  "URL": "https://api.github.com/licenses/gpl-2.0",
+                  "name": "GPL-2.0"
+                }
+              ],
+              "usageType": "openSource"
+            },
+            "repositoryURL": "https://github.com/chaos/mrsh",
+            "status": "Production",
+            "tags": [
+              "DOE CODE",
+              "Lawrence Livermore National Laboratory (LLNL)"
+            ],
+            "vcs": "git"
+          },
+          {
+            "contact": {
+              "email": "redacted@example.invalid"
+            },
+            "date": {
+              "created": "2017-10-25",
+              "metadataLastUpdated": "2017-10-25"
+            },
+            "description": "The Lustre Administrative Tools (LAT) is a set of programs and utilities designed to facilitate management of the Lustre File System by System Administrators.",
+            "laborHours": 5639.2,
+            "name": "Lustre Administrative Tool",
+            "organization": "Lawrence Livermore National Laboratory (LLNL)",
+            "permissions": {
+              "exemptionText": null,
+              "licenses": [
+                {
+                  "URL": "https://api.github.com/licenses/gpl-2.0",
+                  "name": "GPL-2.0"
+                }
+              ],
+              "usageType": "openSource"
+            },
+            "repositoryURL": "https://github.com/cea-hpc/shine",
+            "status": "Production",
+            "tags": [
+              "DOE CODE",
+              "Lawrence Livermore National Laboratory (LLNL)"
+            ],
+            "vcs": "git"
+          },
+          {
+            "contact": {
+              "email": "redacted@example.invalid"
+            },
+            "date": {
+              "created": "2017-10-25",
+              "metadataLastUpdated": "2017-10-25"
+            },
+            "description": "WHATSUP determines which nodes in a cluster are up and which nodes are down.",
+            "laborHours": 58793.6,
+            "name": "WHATSUP Version1.3",
+            "organization": "Lawrence Livermore National Laboratory (LLNL)",
+            "permissions": {
+              "exemptionText": null,
+              "licenses": [
+                {
+                  "URL": "https://api.github.com/licenses/gpl-2.0",
+                  "name": "GPL-2.0"
+                }
+              ],
+              "usageType": "openSource"
+            },
+            "repositoryURL": "https://github.com/chaos/whatsup",
+            "status": "Production",
+            "tags": [
+              "DOE CODE",
+              "Lawrence Livermore National Laboratory (LLNL)"
+            ],
+            "vcs": "git"
+          },
+          {
+            "contact": {
+              "email": "redacted@example.invalid"
+            },
+            "date": {
+              "created": "2017-10-25",
+              "metadataLastUpdated": "2017-10-25"
+            },
+            "description": "Nux is an open-source Java XML toolset geared towards embed:,ed use in high-throughput XML messaging middleware such as large- scale Peer-to-Peer infrastructures, message queues, publish- subscribe and matchmaking systems for Blogs/newsfeeds, text chat, data acquisition and distribution systems, application level routers firewalls, classifiers, etc. It is not an XML database, and does not attempt to be one. Features include: archive deleteone.sql elink_2017_10_20.json file.json fix_on_records.sh just-doi-it.sh onrecords postfile.sh postit.sh solr-delete testrepos.sh wipe.postgresql Seamless W3C XQuery and XPath support for XOM. archive deleteone.sql elink_2017_10_20.json file.json fix_on_records.sh just-doi-it.sh onrecords postfile.sh postit.sh solr-delete testrepos.sh wipe.postgresql Full-text search (fuzzy similarity queries) for on-the-fly matchmaking in realtime streaming applications combining structured and unstructured queries. archive deleteone.sql elink_2017_10_20.json file.json fix_on_records.sh just-doi-it.sh onrecords postfile.sh postit.sh solr-delete testrepos.sh wipe.postgresql Efficient and flexible pools and factories for documents, XQueries, XSL Transforms, as well as document Builders that validate against various schema languages, including W3C XML Schemas, DTDs, RELAX NG, Schematron, etc. archive deleteone.sql elink_2017_10_20.json file.json fix_on_records.sh just-doi-it.sh onrecords postfile.sh postit.sh solr-delete testrepos.sh wipe.postgresql Optional serialization and deserialization of XOM XML documents to and from an efficient and compact custom binary XML data format (bnux format), without loss or change of any information.",
+            "laborHours": 997621.6,
+            "name": "Nux, V.1.0",
+            "organization": "Lawrence Berkeley National Laboratory (LBNL)",
+            "permissions": {
+              "exemptionText": null,
+              "licenses": [
+                {
+                  "URL": "https://github.com/er1c/nux/blob/master/doc/license.html",
+                  "name": "Other"
+                }
+              ],
+              "usageType": "openSource"
+            },
+            "repositoryURL": "https://github.com/er1c/nux",
+            "status": "Production",
+            "tags": [
+              "DOE CODE",
+              "Lawrence Berkeley National Laboratory (LBNL)"
+            ],
+            "vcs": "git"
+          },
+          {
+            "contact": {
+              "email": "redacted@example.invalid"
+            },
+            "date": {
+              "created": "2017-10-25",
+              "metadataLastUpdated": "2017-10-25"
+            },
+            "description": "An MPI-based test for benchmarking parallel I/O beowulf-style clusters.",
+            "laborHours": 2416.8,
+            "name": "MIB, the MPI I/O Benchmark",
+            "organization": "Lawrence Livermore National Laboratory (LLNL)",
+            "permissions": {
+              "exemptionText": null,
+              "licenses": [
+                {
+                  "URL": "https://api.github.com/licenses/gpl-2.0",
+                  "name": "GPL-2.0"
+                }
+              ],
+              "usageType": "openSource"
+            },
+            "repositoryURL": "https://github.com/LLNL/mib",
+            "status": "Production",
+            "tags": [
+              "DOE CODE",
+              "Lawrence Livermore National Laboratory (LLNL)"
+            ],
+            "vcs": "git"
+          },
+          {
+            "contact": {
+              "email": "redacted@example.invalid"
+            },
+            "date": {
+              "created": "2017-10-25",
+              "metadataLastUpdated": "2024-09-12"
+            },
+            "description": "The Galeri package defines a collection of serial and distributed linear algebra objects to be used for software verification and validation. Galeri is used in several of the examples of the Amesos, IFPACK and ML packages, and in the Trilinos tutorial, Didasko. Galeri can be used for the generation of linear system with known propeties and data distribution for convergence analysis of interative solvers of Krylov type and domain decomposition and multigrid preconditioners.",
+            "laborHours": 8344830.4,
+            "languages": [],
+            "name": "Galeri Matrix Generation Package",
+            "organization": "Sandia National Laboratories (SNL)",
+            "permissions": {
+              "exemptionText": null,
+              "licenses": [
+                {
+                  "URL": "https://ip.sandia.gov",
+                  "name": "Other"
+                }
+              ],
+              "usageType": "openSource"
+            },
+            "repositoryURL": "https://github.com/trilinos/Trilinos",
+            "status": "Production",
+            "tags": [
+              "DOE CODE",
+              "Sandia National Laboratories (SNL)"
+            ],
+            "vcs": "git"
+          },
+          {
+            "contact": {
+              "email": "redacted@example.invalid"
+            },
+            "date": {
+              "created": "2017-10-25",
+              "metadataLastUpdated": "2024-07-22"
+            },
+            "description": "Moertel supplies capabilities for nonconforming mesh tying and contact formulations in 2 and 3 dimensions using Mortar methods. Motar methods are a type of Lagrange Multiplier constraints that can be used in contact formulations and in non-conforming or conforming mesh typing as well as in domain decomposition techniques. Suitable conditions at interfaces are formulated as weak continuity conditions in dual variables introducing Lagrange multiplers on the interface. By an appropriate choice of the function space of the Lagrange multipliers on an interface it is possible to locally condense Lagrange multipliers such that a sparse and definite system of equations can be formed which is equalivalent to the saddle point system resulting from the Lagrange multiplier formulation.",
+            "laborHours": 16020.8,
+            "languages": [
+              "C++"
+            ],
+            "name": "Moertel Fe Package",
+            "organization": "Sandia National Laboratories (SNL)",
+            "permissions": {
+              "exemptionText": null,
+              "licenses": [
+                {
+                  "URL": "https://api.github.com/licenses/bsd-3-clause",
+                  "name": "BSD-3-Clause"
+                }
+              ],
+              "usageType": "openSource"
+            },
+            "repositoryURL": "https://github.com/trilinos/Moertel",
+            "status": "Production",
+            "tags": [
+              "DOE CODE",
+              "Sandia National Laboratories (SNL)"
+            ],
+            "vcs": "git"
+          },
+          {
+            "contact": {
+              "email": "redacted@example.invalid"
+            },
+            "date": {
+              "created": "2017-10-25",
+              "metadataLastUpdated": "2024-07-24"
+            },
+            "description": "WebTrilinos is a scientific portal, a web-based environment to use several Trilinos packages through the web. If you are a teaching sparse linear algebra, you can use WebTrilinos to present code snippets and simple scripts, and let the students execute them from their browsers. If you want to test linear algebra solvers, you can use the MatrixPortal module, and you just have to select problems and options, then plot the results in nice graphs.",
+            "laborHours": 2705.6,
+            "languages": [],
+            "name": "Trilinos Web Interface Package",
+            "organization": "Sandia National Laboratories (SNL)",
+            "permissions": {
+              "exemptionText": null,
+              "licenses": [
+                {
+                  "URL": "https://api.github.com/licenses/lgpl-2.1",
+                  "name": "LGPL-2.1"
+                }
+              ],
+              "usageType": "openSource"
+            },
+            "repositoryURL": "https://github.com/trilinos/WebTrilinos",
+            "status": "Production",
+            "tags": [
+              "DOE CODE",
+              "Sandia National Laboratories (SNL)"
+            ],
+            "vcs": "git"
+          },
+          {
+            "contact": {
+              "email": "redacted@example.invalid"
+            },
+            "date": {
+              "created": "2017-10-25",
+              "metadataLastUpdated": "2017-10-25"
+            },
+            "description": "Stratimikos is a small package of C++ wrappers for linear solver and preconditioning functionality exposed through Thyra interfaces. This package makes is possible to aggregate all of the general linear solver capability from the packages Amesos, AztecOO, Belos, lfpack, ML and others into a simple to use, parameter-list driven, interface to linear solvers. This initial version of Stratimikos contains just one utility class for building linear solvrs and preconditioners out of Epetra-based linear operators.",
+            "laborHours": 8344830.4,
+            "name": "Stratimikos Wrapper Package",
+            "organization": "Sandia National Laboratories (SNL)",
+            "permissions": {
+              "exemptionText": null,
+              "licenses": [
+                {
+                  "URL": "https://api.github.com/licenses/bsd-3-clause",
+                  "name": "BSD-3-Clause"
+                }
+              ],
+              "usageType": "openSource"
+            },
+            "repositoryURL": "https://github.com/trilinos/Trilinos",
+            "status": "Production",
+            "tags": [
+              "DOE CODE",
+              "Sandia National Laboratories (SNL)"
+            ],
+            "vcs": "git"
+          },
+          {
+            "contact": {
+              "email": "redacted@example.invalid"
+            },
+            "date": {
+              "created": "2017-10-25",
+              "metadataLastUpdated": "2024-07-22"
+            },
+            "description": "Aprepro is an algebraic preprocessor that reads a file containing both general text and algebraic, string, or conditional expressions. It interprets the expressions and outputs them to the output file along with the general text. Aprepro contains several mathematical functions, string functions, and flow control constructs. In addition, functions are included that, with some additional files, implement a units conversion system and a material database lookup system.",
+            "laborHours": 692284.0,
+            "languages": [
+              "C++",
+              "HTML",
+              "C",
+              "CMake",
+              "Fortran",
+              "Python"
+            ],
+            "name": "Aprepro - Algebraic Preprocessor",
+            "organization": "Sandia National Laboratories (SNL)",
+            "permissions": {
+              "exemptionText": null,
+              "licenses": [
+                {
+                  "URL": "https://api.github.com/licenses/bsd-3-clause",
+                  "name": "BSD-3-Clause"
+                }
+              ],
+              "usageType": "openSource"
+            },
+            "repositoryURL": "https://github.com/sandialabs/seacas",
+            "status": "Production",
+            "tags": [
+              "DOE CODE",
+              "Sandia National Laboratories (SNL)"
+            ],
+            "vcs": "git",
+            "version": "2.0"
+          },
+          {
+            "contact": {
+              "email": "redacted@example.invalid"
+            },
+            "date": {
+              "created": "2017-10-25",
+              "metadataLastUpdated": "2017-10-25"
+            },
+            "description": "MRNet is a software tree-based overlay network developed at the University of Wisconsin, Madison that provides a scalable communication mechanism for parallel tools. MRNet, uses a tree topology of networked processes between a user tool and distributed tool daemons. This tree topology allows scalable multicast communication from the tool to the daemons. The internal nodes of the tree can be used to distribute computation and alalysis on data sent from the tool daemons to the tool. This release covers minor implementation to port this software to the BlueGene/L architecuture and for use with a new implementation of the Dynamic Probe Class Library.",
+            "laborHours": 68460.8,
+            "name": "Multicast Reduction Network Source Code",
+            "organization": "Lawrence Livermore National Laboratory (LLNL)",
+            "permissions": {
+              "exemptionText": null,
+              "licenses": [
+                {
+                  "URL": "https://api.github.com/licenses/lgpl-2.1",
+                  "name": "LGPL-2.1"
+                }
+              ],
+              "usageType": "openSource"
+            },
+            "repositoryURL": "https://github.com/dyninst/mrnet",
+            "status": "Production",
+            "tags": [
+              "DOE CODE",
+              "Lawrence Livermore National Laboratory (LLNL)"
+            ],
+            "vcs": "git"
+          },
+          {
+            "contact": {
+              "email": "redacted@example.invalid"
+            },
+            "date": {
+              "created": "2017-10-25",
+              "metadataLastUpdated": "2024-07-25"
+            },
+            "description": "Tramonto is a code for performing molecular theory calculations using a matrix-based Newton's method approach for 1D, 2D, and 3D geometries. More specifically the code solves the integral equations of a particular class of liquid state theory namely density functional theories (DFT) of inhomogeneous fluids in order to predict the structure and thermodynamic properties of fluids near surfaces, in porous media, or near macromolecules. It can also be used to study self-assembling systems such as lamellae forming diblock copolymers or lipid bilayers. The types of fluids currently treated by the code include atomistic fluids (hard spheres, Lennard-Jones, ions, etc), freely-jointed polymers, and small molecules with bond constraints. The system of equations solved by this code are integral equations of finite range. They lead to sparse matrices for large physical systems, but rather dense matrices when the physical systems are small. The systems of equations are solved using a real space matrix based Newton's method. Standard freely available parallel iterative solvers many be used to solve the problem (see Aztecoo from Sandia's Trilinos project). Alternatively, specialized Schur complement based solvers developed for more efficient solution of these semi-dense matrices may be used.",
+            "laborHours": 46876.8,
+            "languages": [
+              "C++",
+              "C",
+              "CMake",
+              "Python"
+            ],
+            "name": "Tramonto",
+            "organization": "Sandia National Laboratories (SNL)",
+            "permissions": {
+              "exemptionText": null,
+              "licenses": [
+                {
+                  "URL": "https://api.github.com/licenses/lgpl-2.1",
+                  "name": "LGPL-2.1"
+                }
+              ],
+              "usageType": "openSource"
+            },
+            "repositoryURL": "https://github.com/sandialabs/tramonto",
+            "status": "Production",
+            "tags": [
+              "DOE CODE",
+              "Sandia National Laboratories (SNL)"
+            ],
+            "vcs": "git"
+          },
+          {
+            "contact": {
+              "email": "redacted@example.invalid"
+            },
+            "date": {
+              "created": "2017-10-25",
+              "metadataLastUpdated": "2017-10-25"
+            },
+            "description": "Aristos is a Trilinos package for nonlinear continuous optimization, based on full-space sequential quadratic programming (SQP) methods. Aristos is specifically designed for the solution of large-scale constrained optimization problems in which the linearized constraint equations require iterative (i.e. inexact) linear solver techniques. Aristos' unique feature is an efficient handling of inexactness in linear system solves. Aristos currently supports the solution of equality-constrained convex and nonconvex optimization problems. It has been used successfully in the area of PDE-constrained optimization, for the solution of nonlinear optimal control, optimal design, and inverse problems.",
+            "laborHours": 8344830.4,
+            "name": "Aristos Optimization Package",
+            "organization": "Sandia National Laboratories (SNL)",
+            "permissions": {
+              "exemptionText": null,
+              "licenses": [
+                {
+                  "URL": "https://api.github.com/licenses/bsd-3-clause",
+                  "name": "BSD-3-Clause"
+                }
+              ],
+              "usageType": "openSource"
+            },
+            "repositoryURL": "https://github.com/trilinos/Trilinos",
+            "status": "Production",
+            "tags": [
+              "DOE CODE",
+              "Sandia National Laboratories (SNL)"
+            ],
+            "vcs": "git"
+          }
+        ],
+        "version": "2.0.0"
+      }
+    }
+  ]
+}

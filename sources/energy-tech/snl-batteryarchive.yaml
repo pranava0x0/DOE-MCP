@@ -1,0 +1,69 @@
+id: snl-batteryarchive
+name: BatteryArchive.org
+domain: energy-tech
+
+publisher:
+  steward: snl
+  authority_level: official_secondary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [snl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: unknown
+  tier: catalog_pointer
+  terms_url: https://batteryarchive.org/
+  terms_notes: >
+    A public site publishing battery cycling data as CSVs through a
+    browsing interface. Whether a machine endpoint exists behind it is
+    unverified; the survey found the UI and the CSVs, not an API.
+
+freshness:
+  expected_cadence: unknown
+  cadence_source: >
+    Unknown. Contribution-driven across multiple institutions.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Battery cycling and ageing datasets from several institutions,
+    presented uniformly.
+  temporal: current
+  dataset_version: "current"
+  known_limitations:
+    - >
+      No API confirmed. Until one is found or the publisher confirms
+      there is none, this is inventory.
+    - >
+      Multi-institution contributions mean per-dataset terms, not one
+      site-wide licence.
+
+authority_notes: >
+  Intended capabilities: grid-adjacent battery data. Phase 3 at the
+  earliest. Sandia leads the effort.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Endpoint unverified. Next step is a browser-grade check for a
+    machine interface behind the browsing UI; if there is none, this
+    becomes a pointer-only source.

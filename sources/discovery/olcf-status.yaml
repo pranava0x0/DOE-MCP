@@ -1,0 +1,69 @@
+id: olcf-status
+name: OLCF center status
+domain: discovery
+
+publisher:
+  steward: ornl
+  funder: sc
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: ['ornl']
+
+capabilities: []
+
+planned_capabilities: ['compute.facility_status']
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: unknown
+  tier: crawl_or_defer
+  terms_url: https://www.olcf.ornl.gov/for-users/center-status/
+  terms_notes: >
+    A public status page with no login and, as far as 2026-09-08 could
+    establish, no machine interface at all. Recorded as unknown rather
+    than as absent: not finding an API is weaker evidence than being
+    refused by one.
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Assumed from the page's purpose; not observed.
+  ttl_hint_seconds: 300
+
+coverage:
+  scope: >
+    Current status of OLCF systems, including Frontier, and their
+    scheduled maintenance.
+  temporal: current
+  dataset_version: "current"
+  known_limitations:
+    - >
+      No machine-readable response has been seen. Everything here
+      describes what the page is for.
+
+authority_notes: >
+  Primary: OLCF publishes its own status. Recorded on 2026-09-08
+  alongside ALCF while closing the architecture Part 1 section 4.7
+  question about compute.facility_status.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-08"
+  last_verified: "2026-09-08"
+  verified_by: pranava0x0
+  blocked_reason: >
+    No machine interface found. status.olcf.ornl.gov does not resolve
+    in DNS; the center-status page is a 1.5 KB stub; and the lab site's
+    WordPress API exposes only WordPress's own routes, where
+    /wp/v2/statuses is post statuses rather than system status. The
+    next step is asking OLCF whether one exists rather than guessing at
+    more paths.

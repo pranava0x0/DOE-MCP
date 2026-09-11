@@ -1,0 +1,308 @@
+{
+  "note": "Recorded live from DOE Data Explorer (https://www.osti.gov/dataexplorer/about) by tools/record_fixtures.py. Publisher content redistributed under the terms recorded in THIRD_PARTY_DATA.yml.",
+  "redaction": "Email addresses replaced with redacted@example.invalid and credential values with 'redacted' at record time. Field shapes and lengths are otherwise the publisher's.",
+  "interactions": [
+    {
+      "url": "https://www.osti.gov/dataexplorer/api/v1/records",
+      "params": {
+        "site_ownership_code": "DOE-GDR",
+        "rows": "2",
+        "page": "1"
+      },
+      "headers": {
+        "x-total-count": "1035",
+        "link": "<https://www.osti.gov/dataexplorer/api/v1/records?site_ownership_code=DOE-GDR&page=2&rows=2>; rel=\"next\", <https://www.osti.gov/dataexplorer/api/v1/records?site_ownership_code=DOE-GDR&page=518&rows=2>; rel=\"last\"",
+        "content-type": "application/json"
+      },
+      "body": [
+        {
+          "language": "English",
+          "entry_date": "2025-03-31T19:08:19Z",
+          "contributing_organizations": "EMR Solutions and Technology",
+          "country_publication": "United States",
+          "doi": "https://doi.org/10.15121/2541598",
+          "description": "This dataset includes a final report and a 3D velocity model derived from seismic DAS and geophone borehole data collected during the April 2024 stimulation of the reservoir at Utah FORGE. The report details the processing of over 50,000 P- and S-wave travel times used in a tomographic inversion to estimate the Vp/Vs ratio, revealing anomalies adjacent to wells 16A and 16B that may be associated with injected fracturing fluids. Additionally, Wadati analysis of more than 27,000 pairs of differential P- and S-wave travel times supports this interpretation with a high Vp/Vs estimate of 1.86, averaged over the dimensions of the earthquake cluster. The accompanying data file provides a 3D model of P- and S-wave velocities and Vp/Vs ratios, structured with spatial coordinates and velocity values.",
+          "availability": "redacted@example.invalid",
+          "title": "Utah FORGE: Seismic DAS and Geophone Borehole Data Processing and 3D Imaging of Vp/Vs Ratio in the 2024 Stimulated Reservoir",
+          "publication_date": "2025-03-16T20:00:00Z",
+          "site_ownership_code": "DOE-GDR",
+          "osti_id": "2541598",
+          "product_type": "Dataset",
+          "authors": [
+            "Gritto, Roland [EMR Solutions and Technology] (ORCID:0000000320927201)",
+            "Jarpe, Steve P. (ORCID:0009000493428416)"
+          ],
+          "subjects": [
+            "15 GEOTHERMAL ENERGY",
+            "16A",
+            "16B",
+            "3D tomography",
+            "DAS",
+            "distributed acoustic sensing",
+            "earthquake cluster",
+            "EGS",
+            "energy",
+            "fracturing fluids",
+            "geophone",
+            "geophysics",
+            "geothermal",
+            "induced seismicity",
+            "inversion",
+            "P-wave velocity",
+            "reservoir stimulation",
+            "S-wave velocity",
+            "seismic borehole data",
+            "subsurface imaging",
+            "tomography",
+            "travel-time inversion",
+            "Utah FORGE",
+            "Vp/Vs",
+            "Vp/Vs ratio",
+            "Wadati analysis"
+          ],
+          "contributing_org": "EMR Solutions and Technology",
+          "product_number": "1723",
+          "site_url": "https://gdr.openei.org/submissions/1723",
+          "doe_contract_number": "EE0007080; ",
+          "sponsor_orgs": [
+            "USDOE Office of Energy Efficiency and Renewable Energy (EERE), Renewable Power Office. Geothermal Technologies Program (EE-4G)"
+          ],
+          "research_orgs": [
+            "DOE Geothermal Data Repository",
+            "EMR Solutions and Technology"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/dataexplorer/biblio/2541598"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/dataexplorer/servlets/purl/2541598"
+            }
+          ]
+        },
+        {
+          "language": "English",
+          "entry_date": "2025-03-18T18:40:22Z",
+          "contributing_organizations": "Neubrex Energy Services (US), LLC",
+          "country_publication": "United States",
+          "doi": "https://doi.org/10.15121/2531108",
+          "description": "This dataset contains processed fiber optic measurements collected during the extended cross-well circulation test at the Utah FORGE site in August 2024. The data was acquired from the 16B(78)-32 well using distributed fiber optic sensing (DFOS) technology, including distributed temperature sensing (DTS) on multimode fiber and distributed strain sensing (DSS) measurements on single-mode fiber. The dataset includes Brillouin absolute strain, Rayleigh frequency shift (RFS) DSS strain change, RFS DSS strain change rate, and temperature (DTS) data, all stored in HDF5 format. Time coordinates are provided in UTC, and depth measurements are given in measured depth relative to the rotary kelly bushing (MD RKB) in feet. The spatial sampling on the RFS DSS strain data and the Brillouin Absolute Total Strain data is 20 cm and the spatial sampling on the DTS data is 1m. The dataset is accompanied by a report from Neubrex, which provides further documentation.",
+          "availability": "redacted@example.invalid",
+          "title": "Utah FORGE: Well 16B(78)-32 DTS, RFS DSS Strain, and Absolute Strain Circulation Test Fiber Optic Data - August 2024",
+          "publication_date": "2024-08-29T20:00:00Z",
+          "site_ownership_code": "DOE-GDR",
+          "osti_id": "2531108",
+          "product_type": "Dataset",
+          "authors": [
+            "Jurick, Dana [Neubrex Energy Services (US), LLC]",
+            "Khatara, Sajan",
+            "Guzik, Artur"
+          ],
+          "subjects": [
+            "15 GEOTHERMAL ENERGY",
+            "16A78-32",
+            "16B78-32",
+            "Absolute Strain",
+            "August 2024",
+            "Brillouin",
+            "Brillouin strain",
+            "Circulation Test",
+            "cross-well circulation test",
+            "Crosswell Circulation",
+            "Crosswell Flow",
+            "depth calibration",
+            "DFOS",
+            "DSS",
+            "DTS",
+            "EGS",
+            "energy",
+            "fiber optic",
+            "fiber optic sensing",
+            "Flowback",
+            "geothermal",
+            "hdf5",
+            "Multi mode fiber",
+            "Neubrex",
+            "Neubrex Energy Services",
+            "Raman",
+            "RFS DSS",
+            "Single Mode Fiber",
+            "Strain",
+            "strain change",
+            "strain change rate",
+            "strain rate",
+            "Temperature",
+            "Utah FORGE"
+          ],
+          "contributing_org": "Neubrex Energy Services (US), LLC",
+          "product_number": "1721",
+          "site_url": "https://gdr.openei.org/submissions/1721",
+          "doe_contract_number": "EE0007080; ",
+          "sponsor_orgs": [
+            "USDOE Office of Energy Efficiency and Renewable Energy (EERE), Renewable Power Office. Geothermal Technologies Program (EE-4G)"
+          ],
+          "research_orgs": [
+            "DOE Geothermal Data Repository",
+            "Neubrex Energy Services (US), LLC"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/dataexplorer/biblio/2531108"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/dataexplorer/servlets/purl/2531108"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.osti.gov/dataexplorer/api/v1/records",
+      "params": {
+        "q": "geothermal",
+        "rows": "2",
+        "page": "1"
+      },
+      "headers": {
+        "x-total-count": "1062",
+        "link": "<https://www.osti.gov/dataexplorer/api/v1/records?q=geothermal&page=2&rows=2>; rel=\"next\", <https://www.osti.gov/dataexplorer/api/v1/records?q=geothermal&page=531&rows=2>; rel=\"last\"",
+        "content-type": "application/json"
+      },
+      "body": [
+        {
+          "language": "English",
+          "entry_date": "2017-11-28T17:08:48Z",
+          "contributing_organizations": "Flint Geothermal, LLC",
+          "country_publication": "United States",
+          "doi": "https://doi.org/10.15121/1148737",
+          "description": "Structural orientations (fractures, joints, faults, lineaments, bedding orientations, etc.) were collected with a standard Brunton compass during routine field examinations of geothermal phenomena in Colorado. Often multiple orientations were taken from one outcrop. Care was taken to ensure outcrops were \"in place\". Point data was collected with a hand-held GPS unit. The structural data is presented both as standard quadrant measurements and in format suitable for ESRI symbology",
+          "availability": "redacted@example.invalid",
+          "title": "Structural Orientations Adjacent to Some Colorado Geothermal Systems",
+          "publication_date": "2012-01-31T19:00:00Z",
+          "site_ownership_code": "DOE-GDR",
+          "osti_id": "1148737",
+          "product_type": "Dataset",
+          "authors": [
+            "Richard [Flint Geothermal, LLC]"
+          ],
+          "subjects": [
+            "15 GEOTHERMAL ENERGY",
+            "ArcGIS",
+            "Colorado",
+            "Faults",
+            "geospatial",
+            "geothermal",
+            "GIS",
+            "shape file",
+            "shapefile",
+            "Structure"
+          ],
+          "contributing_org": "Flint Geothermal, LLC",
+          "product_number": "317",
+          "site_url": "https://gdr.openei.org/submissions/317",
+          "doe_contract_number": "EE0002828; ",
+          "sponsor_orgs": [
+            "USDOE Office of Energy Efficiency and Renewable Energy (EERE), Geothermal Technologies Program (EE-2C)"
+          ],
+          "research_orgs": [
+            "DOE Geothermal Data Repository",
+            "Flint Geothermal, LLC"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/dataexplorer/biblio/1148737"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/dataexplorer/servlets/purl/1148737"
+            }
+          ]
+        },
+        {
+          "language": "English",
+          "entry_date": "2020-03-12T18:55:39Z",
+          "contributing_organizations": "Geothermal Resource Group",
+          "country_publication": "United States",
+          "doi": "https://doi.org/10.15121/1542650",
+          "description": "Pressure, temperature, and flow data from open-hole, upper perforation, and lower perforation well stimulations gathered from various tools collected at well 58-32 during phase 2C.",
+          "availability": "redacted@example.invalid",
+          "title": "Utah FORGE: Well 58-32 Stimulation Data",
+          "publication_date": "2019-04-19T20:00:00Z",
+          "site_ownership_code": "DOE-GDR",
+          "osti_id": "1542650",
+          "product_type": "Dataset",
+          "authors": [
+            "Best, Sharon [Geothermal Resource Group]"
+          ],
+          "subjects": [
+            "15 GEOTHERMAL ENERGY",
+            "Badger",
+            "Bridge Plug",
+            "DiDrill",
+            "DiDrill Survey Services",
+            "EGS",
+            "energy",
+            "flow",
+            "flowback",
+            "FORGE",
+            "fracture flow",
+            "geothermal",
+            "geothermal resource group",
+            "GRG",
+            "hydraulic",
+            "hydraulic fracturing",
+            "isolate pumping",
+            "lower perforation",
+            "Memory tool",
+            "milford",
+            "open-hole",
+            "openhole stimulation",
+            "Pason",
+            "phase 2C",
+            "pressure",
+            "rate",
+            "raw data",
+            "reservoir stimulation",
+            "Roosevelt Hot springs",
+            "Spartek Memory PT gauge",
+            "stimulation",
+            "surface instruments",
+            "temperature",
+            "upper perforation",
+            "Utah",
+            "Utah FORGE",
+            "Utah geothermal",
+            "weatherford HD",
+            "Well 58-32"
+          ],
+          "contributing_org": "Geothermal Resource Group",
+          "product_number": "1149",
+          "site_url": "https://gdr.openei.org/submissions/1149",
+          "doe_contract_number": "EE0007080; ",
+          "sponsor_orgs": [
+            "USDOE Office of Energy Efficiency and Renewable Energy (EERE), Geothermal Technologies Program (EE-2C)"
+          ],
+          "research_orgs": [
+            "DOE Geothermal Data Repository",
+            "Geothermal Resource Group"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/dataexplorer/biblio/1542650"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/dataexplorer/servlets/purl/1542650"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

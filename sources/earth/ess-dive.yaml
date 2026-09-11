@@ -1,0 +1,111 @@
+id: ess-dive
+name: ESS-DIVE (Environmental System Science Data Infrastructure)
+domain: earth
+
+publisher:
+  steward: lbnl
+  funder: ber
+  authority_level: official_secondary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [lbnl]
+
+capabilities:
+  - id: earth.search_datasets
+    tool_hint: earth.search_datasets
+  - id: earth.get_dataset
+    tool_hint: earth.get_dataset
+
+planned_capabilities: []
+
+adapter:
+  type: essdive
+  base_url: https://api.ess-dive.lbl.gov
+  packages_path: /packages
+  # The filters this source has been verified against, checked before a
+  # request goes out. The service ignores a parameter it does not know
+  # and answers with the whole catalog at HTTP 200, so an unchecked
+  # filter would come back as 1,571 unfiltered records under the
+  # caller's own search terms.
+  filters:
+    text: Free text across the whole record
+    keywords: The dataset's own keyword list, matched as a keyword rather than as text
+    creator: An author's name
+    providerName: The project or field laboratory that produced the data
+  sorts:
+    - dateUploaded:desc
+    - dateUploaded:asc
+
+access:
+  mode: anonymous
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://ess-dive.lbl.gov/
+  terms_reviewed_at: "2026-09-09"
+  terms_notes: >
+    Open read access with an OpenAPI description and JSON-LD metadata;
+    it answered a scripted client anonymously on 2026-09-09 and reports
+    the caller as "anonymous" in the response. Datasets carry their own
+    licences and citations, which are returned per record rather than
+    assumed uniform, and each record's citation string is what an
+    answer carries. Creator records include email addresses; those are
+    dropped at the adapter rather than passed on.
+  citation_required: false
+  rate_limit_note: >
+    None published for anonymous read. Absence of a stated ceiling is
+    not permission.
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed; a repository that accepts deposits continuously. The
+    newest package at the 2026-09-09 read was three days old.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Data from DOE's environmental system science programme: terrestrial
+    ecosystem, watershed, and subsurface biogeochemistry studies,
+    including the NGEE Arctic and Tropics campaigns, SPRUCE, and the
+    integrated field laboratories.
+  temporal: current
+  dataset_version: "current"
+  record_count: 1571
+  record_count_checked: "2026-09-09"
+  known_limitations:
+    - >
+      A repository, so coverage is what investigators deposited. Absence
+      reflects deposit practice, not the absence of research.
+    - >
+      Package-level metadata is well structured; the files inside a
+      package are heterogeneous scientific formats reached by pointer.
+    - >
+      The search is over metadata, not over the data files. A variable
+      measured but not named in the record's keywords or description is
+      not findable here.
+    - >
+      Paging counts rows from one, not from zero. The service refuses
+      rowStart=0 outright, which makes it the one paging mistake on
+      this source that cannot pass silently.
+
+authority_notes: >
+  Official_secondary: LBNL operates the repository for BER's
+  environmental system science programme and distributes data other
+  investigators produced. Its JSON-LD makes this the best-described
+  repository in the inventory: creators, funders, licence, methods, and
+  spatial and temporal extent all arrive typed. Verified live and
+  activated on 2026-09-09 (research/notes/verification-round12.md).
+
+health:
+  probe: essdive_package_count
+  expect:
+    min_records: 1000
+
+lifecycle:
+  declared_state: active
+  added: "2026-09-02"
+  last_verified: "2026-09-09"
+  verified_by: pranava0x0

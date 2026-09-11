@@ -1,0 +1,131 @@
+# EIA API v2. Self-describing route tree, which is why four tools cover it
+# instead of twenty (decision 0014's canonical shape for an API family).
+#
+# Registered `active` with `mode: api_key`: the source is wired and ready, and
+# a call without a key raises CredentialMissing naming the registration page,
+# not a confusing 403. EIA runs its OWN key system — supplying an
+# api.data.gov key here produces `{"error": {"code": "API_KEY_MISSING"}}` with
+# HTTP 403, which reads like an outage until you look at the body.
+#
+# Verified live 2026-09-08 with a real key: the route tree, one route's
+# metadata, and EIA-930 rows were recorded through the redacting recorder
+# (four interactions; the key appears in none of them). The shapes below were
+# written from EIA's published v2 documentation on 2026-09-02 and are now
+# observed. That first live call is also where decision 0022 came from: the
+# hourly grid route multiplexes four measurements onto one `value` column.
+id: eia-api-v2
+name: EIA API v2
+domain: energy
+
+publisher:
+  steward: eia
+  authority_level: primary
+
+aliases:
+  former_names: [EIA Open Data API, EIA API v1]
+  former_domains: []
+
+labs: []
+
+capabilities:
+  - id: energy.discover_routes
+    tool_hint: energy.discover_routes
+  - id: energy.get_data
+    tool_hint: energy.get_data
+  - id: energy.grid_status
+    tool_hint: energy.grid_status
+
+adapter:
+  type: eia_v2
+  base_url: https://api.eia.gov/v2
+  credential_ref: EIA_API_KEY
+  browse_url: https://www.eia.gov/opendata/browser/
+
+access:
+  mode: api_key
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://www.eia.gov/opendata/
+  terms_notes: >
+    Free key by self-service registration; EIA's own system, not
+    api.data.gov. EIA publishes the API for programmatic use and states no
+    restriction beyond registration. The keyless probe on 2026-09-02 returned
+    HTTP 403 with a JSON body naming API_KEY_MISSING and the registration
+    URL, which is a well-behaved refusal rather than a block.
+  terms_reviewed_at: "2026-09-02"
+  terms_gap: >
+    Exact request-rate limits are not published in the v2 documentation this
+    project has read. Treated as unknown, so the standard politeness budget
+    applies.
+  credential_ref: EIA_API_KEY
+  citation_required: false
+  rate_limit_note: >
+    5,000 rows per response is EIA's own hard ceiling and is surfaced through
+    the pagination coverage dimension rather than worked around.
+
+freshness:
+  expected_cadence: varies by dataset
+  cadence_source: >
+    Stated per route: hourly for the EIA-930 grid series, monthly and annual
+    for most statistical series. Each route reports its own start and end
+    period, which is what the discover tool returns.
+  ttl_hint_seconds: 3600
+
+coverage:
+  scope: >
+    US energy statistics as a self-describing tree: electricity (including
+    EIA-930 hourly demand, generation and interchange by balancing
+    authority), natural gas, petroleum, coal, nuclear outages, renewables,
+    international, and more.
+  temporal: >
+    Varies by series; several reach back decades. Every route reports its own
+    start and end period.
+  dataset_version: v2
+  known_limitations:
+    - >
+      EIA-930's hourly route multiplexes four measurements — demand,
+      day-ahead demand forecast, net generation, total interchange —
+      onto one `value` column, separated only by a `type` facet. The
+      forecast is published for hours that have not happened yet, so
+      on a newest-first sort it always sorts above actual demand. A
+      query that does not filter on `type` returns a real number
+      answering a different question, and nothing but a `type-name`
+      field says so (decision 0022).
+    - >
+      5,000 rows per response, EIA's ceiling. A decade of hourly grid data is
+      many pages, and a caller who reads one page as the whole answer will be
+      wrong by orders of magnitude. Pagination coverage says `truncated` when
+      it is.
+    - >
+      The bracket encoding for data columns and facets (`data[0]=value`,
+      `facets[respondent][0]=CISO`) is not optional. A request sending
+      `data=value` returns rows with no value column and NO error, which
+      reads as a dataset with no data in it.
+    - >
+      EIA's key is not an api.data.gov key. The two are interchangeable
+      nowhere, and supplying the wrong one produces a 403 whose meaning is
+      only visible in the response body.
+    - >
+      Statistical series are revised. A number retrieved today for a past
+      month may differ from the same number retrieved last year, which is
+      normal statistical practice and not a fault. Series carry their own
+      revision semantics; this project does not model them.
+
+authority_notes: >
+  EIA is the primary federal source for US energy statistics and is
+  statistically independent within DOE. Primary for the series it publishes.
+  Where EIA and a laboratory dataset disagree on the same quantity, they are
+  usually measuring different things — a survey estimate against a modelled
+  value — and the envelope's two provenance entries are how a caller sees
+  that rather than picking a winner.
+
+health:
+  probe: eia_route_tree
+  expect:
+    min_top_level_routes: 5
+
+lifecycle:
+  declared_state: active
+  added: "2026-09-02"
+  last_verified: "2026-09-08"
+  verified_by: pranava0x0

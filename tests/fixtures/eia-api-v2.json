@@ -1,0 +1,339 @@
+{
+  "note": "Recorded live from EIA API v2 (https://www.eia.gov/opendata/) by tools/record_fixtures.py. Publisher content redistributed under the terms recorded in THIRD_PARTY_DATA.yml.",
+  "redaction": "Email addresses replaced with redacted@example.invalid and credential values with 'redacted' at record time. Field shapes and lengths are otherwise the publisher's.",
+  "interactions": [
+    {
+      "url": "https://api.eia.gov/v2",
+      "params": {
+        "api_key": "redacted"
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "response": {
+          "id": "",
+          "name": "",
+          "description": "",
+          "routes": [
+            {
+              "id": "coal",
+              "name": "Coal",
+              "description": "EIA coal energy data"
+            },
+            {
+              "id": "crude-oil-imports",
+              "name": "Crude Oil Imports",
+              "description": "Crude oil imports by country to destination, \r\n        includes type, grade, quantity.  Source: EIA-814  Interactive data \r\n        product:  www.eia.gov/petroleum/imports/companylevel/"
+            },
+            {
+              "id": "electricity",
+              "name": "Electricity",
+              "description": "EIA electricity survey data"
+            },
+            {
+              "id": "international",
+              "name": "International",
+              "description": "Country level production, consumption, imports, exports by energy source (petroleum, natural gas, electricity, renewable, etc.)  \r\n        Interactive product:  https://www.eia.gov/international/data/world"
+            },
+            {
+              "id": "natural-gas",
+              "name": "Natural Gas",
+              "description": "EIA natural gas survey data"
+            },
+            {
+              "id": "nuclear-outages",
+              "name": "Nuclear Outages",
+              "description": "EIA nuclear outages survey data"
+            },
+            {
+              "id": "petroleum",
+              "name": "Petroleum",
+              "description": "EIA petroleum gas survey data"
+            },
+            {
+              "id": "seds",
+              "name": "State Energy Data System (SEDS)",
+              "description": "Estimated production, consumption, price, and expenditure data for all energy sources by state and sector.  \r\n        Source:  https://www.eia.gov/state/seds/seds-technical-notes-complete.php  \r\n        Product:  SEDS (https://www.eia.gov/state/seds/)"
+            },
+            {
+              "id": "steo",
+              "name": "Short Term Energy Outlook",
+              "description": "Monthly short term (18 month) projections using STEO model.  \r\n        Report and interactive projection data browser:  STEO (www.eia.gov/steo/)"
+            },
+            {
+              "id": "densified-biomass",
+              "name": "Densified Biomass",
+              "description": "EIA densified biomass data"
+            },
+            {
+              "id": "total-energy",
+              "name": "Total Energy",
+              "description": "These data represent the most recent comprehensive energy statistics integrated across all energy sources.  The data includes total energy production, consumption, stocks, and trade; energy prices; overviews of petroleum, natural gas, coal, electricity, nuclear energy, renewable energy, and carbon dioxide emissions; and data unit conversions values.  Source: https://www.eia.gov/totalenergy/data/monthly/pdf/mer_a_doc.pdf  Report:  MER (https://www.eia.gov/totalenergy/data/monthly/)"
+            },
+            {
+              "id": "aeo",
+              "name": "Annual Energy Outlook",
+              "description": "Annual U.S. projections using National Energy Modelling System (NEMS) for release year.  Report, documentation, and interactive projection data browser:  AEO (www.eia.gov/aeo/)"
+            },
+            {
+              "id": "ieo",
+              "name": "International Energy Outlook",
+              "description": "Annual international projections using the World Energy Projection System (WEPS) model for release year.  Report and interactive projection data browser:  IEO (www.eia.gov/ieo/)"
+            },
+            {
+              "id": "co2-emissions",
+              "name": "State CO2 Emissions- deprecated: see SEDS",
+              "description": "EIA CO2 Emissions data. \"This route is deprecated and no longer receiving fresh data. \n    For state-level CO2 emissions data, please use the /v2/seds/ API route."
+            }
+          ]
+        },
+        "request": {
+          "command": "/v2/",
+          "params": {
+            "api_key": "redacted"
+          }
+        },
+        "apiVersion": "2.1.13",
+        "ExcelAddInVersion": "2.1.0"
+      }
+    },
+    {
+      "url": "https://api.eia.gov/v2/electricity/rto/region-data",
+      "params": {
+        "api_key": "redacted"
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "response": {
+          "id": "region-data",
+          "name": "Hourly Demand, Demand Forecast, Generation, and Interchange",
+          "description": "Hourly demand, day-ahead demand forecast, net generation, and interchange by balancing authority.  \n    Source: Form EIA-930\n    Product: Hourly Electric Grid Monitor",
+          "frequency": [
+            {
+              "id": "hourly",
+              "alias": "hourly (UTC)",
+              "description": "One data point for each hour in UTC time.",
+              "query": "H",
+              "format": "YYYY-MM-DD\"T\"HH24"
+            },
+            {
+              "id": "local-hourly",
+              "alias": "hourly (Local Time Zone)",
+              "description": "One data point for each hour in local time.",
+              "query": "LH",
+              "format": "YYYY-MM-DD\"T\"HH24TZH"
+            }
+          ],
+          "facets": [
+            {
+              "id": "respondent",
+              "description": "Balancing Authority / Region"
+            },
+            {
+              "id": "type",
+              "description": "Metric"
+            }
+          ],
+          "data": {
+            "value": {
+              "aggregation-method": "SUM",
+              "alias": "Demand, Demand Forecast, Net Generation, or Interchange",
+              "units": "megawatthours"
+            }
+          },
+          "startPeriod": "2019-01-01T00",
+          "endPeriod": "2026-09-10T07",
+          "defaultDateFormat": "YYYY-MM-DD\"T\"HH24",
+          "defaultFrequency": "hourly"
+        },
+        "request": {
+          "command": "/v2/electricity/rto/region-data/",
+          "params": {
+            "api_key": "fZqWfzLVJzmfje6BuyovCvqcGo551Hjt0dTXgNZm"
+          }
+        },
+        "apiVersion": "2.1.13",
+        "ExcelAddInVersion": "2.1.0"
+      }
+    },
+    {
+      "url": "https://api.eia.gov/v2/electricity/rto/region-data/data",
+      "params": {
+        "length": "3",
+        "offset": "0",
+        "frequency": "hourly",
+        "data[0]": "value",
+        "facets[respondent][0]": "CISO",
+        "facets[type][0]": "D",
+        "sort[0][column]": "period",
+        "sort[0][direction]": "desc",
+        "api_key": "redacted"
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "warnings": [
+          {
+            "warning": "incomplete return",
+            "description": "The API can only return 5000 rows in JSON format.  Please consider constraining your request with facet, start, or end, or using offset to paginate results."
+          }
+        ],
+        "response": {
+          "total": "67404",
+          "dateFormat": "YYYY-MM-DD\"T\"HH24",
+          "frequency": "hourly",
+          "data": [
+            {
+              "period": "2026-09-09T13",
+              "respondent": "CISO",
+              "respondent-name": "California Independent System Operator",
+              "type": "D",
+              "type-name": "Demand",
+              "value": "30013",
+              "value-units": "megawatthours"
+            },
+            {
+              "period": "2026-09-09T12",
+              "respondent": "CISO",
+              "respondent-name": "California Independent System Operator",
+              "type": "D",
+              "type-name": "Demand",
+              "value": "30450",
+              "value-units": "megawatthours"
+            },
+            {
+              "period": "2026-09-09T11",
+              "respondent": "CISO",
+              "respondent-name": "California Independent System Operator",
+              "type": "D",
+              "type-name": "Demand",
+              "value": "30569",
+              "value-units": "megawatthours"
+            }
+          ],
+          "description": "Hourly demand, day-ahead demand forecast, net generation, and interchange by balancing authority.  \n    Source: Form EIA-930\n    Product: Hourly Electric Grid Monitor"
+        },
+        "request": {
+          "command": "/v2/electricity/rto/region-data/data/",
+          "params": {
+            "length": "3",
+            "offset": "0",
+            "frequency": "hourly",
+            "data": [
+              "value"
+            ],
+            "facets": {
+              "respondent": [
+                "CISO"
+              ],
+              "type": [
+                "D"
+              ]
+            },
+            "sort": [
+              {
+                "column": "period",
+                "direction": "desc"
+              }
+            ],
+            "api_key": "redacted"
+          }
+        },
+        "apiVersion": "2.1.13",
+        "ExcelAddInVersion": "2.1.0"
+      }
+    },
+    {
+      "url": "https://api.eia.gov/v2/electricity/rto/region-data/data",
+      "params": {
+        "length": "3",
+        "offset": "0",
+        "frequency": "hourly",
+        "data[0]": "value",
+        "facets[respondent][0]": "CISO",
+        "facets[type][0]": "DF",
+        "sort[0][column]": "period",
+        "sort[0][direction]": "desc",
+        "api_key": "redacted"
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "warnings": [
+          {
+            "warning": "incomplete return",
+            "description": "The API can only return 5000 rows in JSON format.  Please consider constraining your request with facet, start, or end, or using offset to paginate results."
+          }
+        ],
+        "response": {
+          "total": "67304",
+          "dateFormat": "YYYY-MM-DD\"T\"HH24",
+          "frequency": "hourly",
+          "data": [
+            {
+              "period": "2026-09-10T07",
+              "respondent": "CISO",
+              "respondent-name": "California Independent System Operator",
+              "type": "DF",
+              "type-name": "Day-ahead demand forecast",
+              "value": "35956",
+              "value-units": "megawatthours"
+            },
+            {
+              "period": "2026-09-10T06",
+              "respondent": "CISO",
+              "respondent-name": "California Independent System Operator",
+              "type": "DF",
+              "type-name": "Day-ahead demand forecast",
+              "value": "39236",
+              "value-units": "megawatthours"
+            },
+            {
+              "period": "2026-09-10T05",
+              "respondent": "CISO",
+              "respondent-name": "California Independent System Operator",
+              "type": "DF",
+              "type-name": "Day-ahead demand forecast",
+              "value": "42388",
+              "value-units": "megawatthours"
+            }
+          ],
+          "description": "Hourly demand, day-ahead demand forecast, net generation, and interchange by balancing authority.  \n    Source: Form EIA-930\n    Product: Hourly Electric Grid Monitor"
+        },
+        "request": {
+          "command": "/v2/electricity/rto/region-data/data/",
+          "params": {
+            "length": "3",
+            "offset": "0",
+            "frequency": "hourly",
+            "data": [
+              "value"
+            ],
+            "facets": {
+              "respondent": [
+                "CISO"
+              ],
+              "type": [
+                "DF"
+              ]
+            },
+            "sort": [
+              {
+                "column": "period",
+                "direction": "desc"
+              }
+            ],
+            "api_key": "redacted"
+          }
+        },
+        "apiVersion": "2.1.13",
+        "ExcelAddInVersion": "2.1.0"
+      }
+    }
+  ]
+}

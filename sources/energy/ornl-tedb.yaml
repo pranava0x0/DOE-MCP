@@ -1,0 +1,76 @@
+id: ornl-tedb
+name: Transportation Energy Data Book (ORNL)
+domain: energy
+
+publisher:
+  steward: ornl
+  funder: cmei
+  authority_level: official_derived
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: ['ornl']
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+planned_capabilities: ['transport.statistics']
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: public_download
+  tier: catalog_pointer
+  terms_url: https://tedb.ornl.gov/
+  terms_notes: >
+    A DOE-funded ORNL compendium published as PDF and spreadsheets
+    since Edition 36; tedb.ornl.gov returned 200 on 2026-09-08.
+    Edition 40 is current and the site says Edition 41 is delayed. No
+    terms page; federal work product.
+
+freshness:
+  expected_cadence: annual
+  cadence_source: >
+    Stated; one edition a year until the delay noted on the site.
+  ttl_hint_seconds: 604800
+
+coverage:
+  scope: >
+    Transportation statistics with an energy emphasis: vehicle stock,
+    fuel use, travel, emissions, and cost tables compiled from federal
+    sources.
+  temporal: Edition 40 (data through about 2020)
+  dataset_version: "Edition 40"
+  known_limitations:
+    - >
+      Derived. Every table cites its primary source (EIA, FHWA, BTS);
+      this is the compendium, and a caller who needs the current number
+      goes to the primary.
+    - >
+      Spreadsheet-shaped. There is no API; serving it means a parsed
+      copy per edition and Gate E review.
+
+authority_notes: >
+  Official derived: ORNL compiles it for DOE's vehicle office. A
+  spreadsheet-parse job in decision 0013's sense, not a crawler.
+  Found in the 2026-09-08 gap sweep; the ORNL research file had
+  missed it.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-08"
+  last_verified: "2026-09-08"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Spreadsheet parsing per edition plus Gate E review; low priority
+    against the energy domains until the vehicle tools want context
+    tables.

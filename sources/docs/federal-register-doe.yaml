@@ -1,0 +1,108 @@
+id: federal-register-doe
+name: Federal Register API (Department of Energy documents)
+domain: docs
+
+publisher:
+  steward: nara-ofr
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: []
+
+capabilities:
+  - id: docs.search_rulemakings
+    tool_hint: docs.search_rulemakings
+  - id: docs.get_rulemaking
+    tool_hint: docs.get_rulemaking
+
+planned_capabilities: []
+
+adapter:
+  type: federal_register
+  base_url: https://www.federalregister.gov/api/v1
+  agency_slug: energy-department
+  # A scope decision recorded as data rather than as prose. FERC is a DOE
+  # child agency in this API's tree and is out of scope under decision
+  # 0001; the tool drops its documents, reports how many it dropped, and
+  # cannot drop anything this list does not name.
+  excluded_child_slugs: ['federal-energy-regulatory-commission']
+  exclusion_note: >
+    The Federal Register files FERC's documents under the Department of
+    Energy's agency tree, and FERC's daily combined filing notices are
+    most of what that tree publishes: of the documents tagged Department
+    of Energy since 2024, FERC is 20% of rules and 26% of proposed rules
+    but 87% of notices, 4,268 of 4,915. DOE-MCP's scope stops at DOE
+    (decision 0001), so those documents are dropped and counted rather
+    than served. FERC's own record is in its eLibrary system.
+
+access:
+  mode: anonymous
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://www.federalregister.gov/developers/documentation/api/v1
+  terms_reviewed_at: "2026-09-08"
+  terms_notes: >
+    The Office of the Federal Register's public API, keyless, over the
+    official daily publication. US Government work in the public domain.
+    Filtering on agency energy-department returned 200 on 2026-09-08 and
+    again on the build, with a count capped at 10,000 documents and
+    1,690 of type RULE; the agency record lists fourteen DOE child
+    agencies, including the four power marketing administrations, NNSA,
+    and FERC.
+  rate_limit_note: >
+    None published for the v1 API. Absence of a stated ceiling is not
+    permission; the politeness budget in the fetch path applies.
+
+freshness:
+  expected_cadence: daily
+  cadence_source: >
+    Stated; the Federal Register publishes every federal business day.
+  ttl_hint_seconds: 3600
+
+coverage:
+  scope: >
+    Rules, proposed rules, notices, and presidential documents
+    published by DOE and its component agencies, with docket ids, CFR
+    references, regulatory identifiers, and links to the full text.
+    FERC's documents are excluded by scope, not by the publisher.
+  temporal: 1994 onward
+  dataset_version: "current"
+  record_count: 10000
+  record_count_checked: "2026-09-08"
+  known_limitations:
+    - >
+      The API caps count at 10,000; the real total is larger. A tool
+      must report the cap as a truncation, never as the total.
+    - >
+      Paging stops at 50 pages of any result set whatever the page
+      size, so a broad search cannot be read to its end. Narrowing by
+      date or document type is the way through, not a further page.
+    - >
+      FERC appears as a DOE child agency in this API's organisation
+      tree. Decision 0001 keeps FERC out of scope, so a tool over this
+      source filters FERC out and says so.
+    - >
+      What is here is the published document, not the docket. Comments
+      and supporting material live in regulations.gov, which is keyed
+      and not yet built.
+
+authority_notes: >
+  Primary. The Federal Register is the official publication of DOE's
+  rulemakings; the API is the sanctioned machine interface, which
+  places it under decision 0001-C's clause for non-DOE hosts of DOE-
+  network data, like IAEA's Live Chart. Found in the 2026-09-08 gap
+  sweep and built the same day.
+
+health:
+  probe: federal_register_count
+  expect:
+    min_records: 1000
+
+lifecycle:
+  declared_state: active
+  added: "2026-09-08"
+  last_verified: "2026-09-08"
+  verified_by: pranava0x0

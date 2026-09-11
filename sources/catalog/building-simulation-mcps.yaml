@@ -1,0 +1,38 @@
+# EnergyPlus-MCP (LBNL) and OpenStudio-MCP (NLR). Two building-simulation
+# servers from two laboratories, catalogued together because the reasoning
+# is identical for both.
+id: building-simulation-mcps
+name: EnergyPlus-MCP and OpenStudio-MCP
+maintainer: LBNL Energy Technologies Area; National Laboratory of the Rockies
+maintainer_org: lbnl
+repository: https://github.com/LBNL-ETA/EnergyPlus-MCP
+status: listed
+compliance: opaque
+capabilities: []
+tool_count: 185
+install:
+  method: source
+  command: git clone https://github.com/LBNL-ETA/EnergyPlus-MCP
+  notes: >
+    Both are simulation wrappers with heavy native dependencies — EnergyPlus
+    and OpenStudio themselves — so the install is the simulator's, not a
+    package manager's one-liner. OpenStudio-MCP's README claimed 124 tools
+    on 2026-09-01 and "150+ tools, 30+ skill modules" on 2026-09-08;
+    EnergyPlus-MCP 35. OpenStudio-MCP's repository moved with its
+    organization: github.com/NREL/openstudio-mcp is a 404 with no redirect,
+    and the code lives at github.com/NatLabRockies/openstudio-mcp (pushed
+    2026-09-07).
+terms_url: https://github.com/LBNL-ETA/EnergyPlus-MCP
+terms_reviewed_at: "2026-09-01"
+why_not_absorbed: >
+  A different product class. These wrap SIMULATORS — you give them a model
+  and they run it — where DOE-MCP serves published data. Wrapping a simulator
+  means owning its installation, its version compatibility, and its runtime,
+  none of which the provenance envelope has anything useful to say about. The
+  185 or more combined tools would also breach the sizing ceiling
+  ninefold.
+notes: >
+  A pleasing detail found in the survey: EnergyPlus-MCP is itself catalogued
+  inside DOE PAGES and DOE CODE, so "search DOE CODE for MCP" is a live way
+  to discover this federation landscape through tools DOE-MCP already has.
+last_checked: "2026-09-08"

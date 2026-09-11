@@ -1,0 +1,76 @@
+id: nlr-atb
+name: Annual Technology Baseline (ATB)
+domain: energy-tech
+
+publisher:
+  steward: nlr
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: ["atb.nrel.gov"]
+
+labs: [nlr]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: public_download
+  tier: catalog_pointer
+  terms_url: https://atb.nlr.gov/
+  terms_notes: >
+    Annual cost and performance projections for electricity generation
+    technologies, published openly. API endpoints were not established
+    after the rename and are a named pre-build check.
+
+freshness:
+  expected_cadence: annual
+  cadence_source: >
+    Stated; a named annual edition, ATB 2026 being current.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Cost and performance baselines and projections by generation
+    technology.
+  temporal: annual editions
+  dataset_version: "ATB 2026"
+  known_limitations:
+    - >
+      Edition IS identity. ATB 2024 and ATB 2026 give different numbers
+      for the same technology, and mixing them is the canonical mixed-
+      vintage error — one of the four coverage traps this project tests
+      against.
+    - >
+      Projections, not observations. An ATB number for 2035 is a
+      scenario output.
+    - >
+      The rename killed atb.nrel.gov. Post-rename endpoints are
+      unverified.
+
+authority_notes: >
+  Primary for its own projections. Intended capabilities: a technology-
+  cost skill's backbone. Phase 3.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-08"
+  verified_by: pranava0x0
+  blocked_reason: >
+    There is no API. atb.nlr.gov answers and its data pages resolve,
+    but /api returns 404 and the machine-readable release is bulk CSV
+    and parquet under the ATB/ prefix of the OEDI data lake on S3.
+    That is the `s3_bulk` genre, which is not built, and a bulk release
+    is not a thin proxy. Verified 2026-09-08.

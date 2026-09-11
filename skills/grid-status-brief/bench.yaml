@@ -1,0 +1,31 @@
+# The machine-checkable part of the bench tasks in SKILL.md.
+#
+# A task under `checked` has steps the suite runs against recorded
+# publisher responses; a task under `reader` is graded by a person because
+# no recording covers it. Every task number in SKILL.md's table appears in
+# exactly one of the two lists, and a test holds that.
+checked:
+  - task: 1
+    steps:
+      - tool: energy.grid_status
+        keyed: true
+        args: {balancing_authority: CISO, hours: 3}
+        expect:
+          coverage.result: hit
+          coverage.registry: covered
+          data.metric_code: D
+          warnings: [stale_source]
+  - task: 2
+    steps:
+      - tool: grid.get_bpa_operations
+        args: {intervals: 5}
+        expect:
+          coverage.result: hit
+          data.intervals: {nonempty: true}
+  - task: 4
+    steps:
+      - tool: registry.search_sources
+        args: {capability: grid.outage_history}
+        expect:
+          data.sources: {any: {id: ceser-eagle-i-outages, declared_state: proposed}}
+reader: [3]

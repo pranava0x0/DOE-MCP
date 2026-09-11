@@ -1,0 +1,21 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+https://creativecommons.org/licenses/by/4.0/
+
+The documentation prose in this repository — README.md, PLAN.md,
+DECISIONS.md, WORKLOG.md, the research/ directory, the governance files, and
+the generated site under docs/ — is licensed CC BY 4.0. Use it, quote it,
+adapt it; credit DOE-MCP.
+
+Two neighbours in this repository carry different terms and the difference is
+deliberate:
+
+  ../LICENSE          Apache-2.0, for code (src/, tools/, tests/)
+  ../sources/LICENSE  CC0-1.0, for the source registry
+
+The registry is CC0 rather than CC BY because attribution should not stand
+between anyone and an inventory of what public data exists. The prose is CC BY
+because it is argument and analysis, and argument travels better with its
+source attached.
+
+Content retrieved FROM the systems described here carries its own publisher's
+terms; see ../THIRD_PARTY_DATA.yml.

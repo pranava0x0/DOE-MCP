@@ -1,0 +1,232 @@
+{
+  "note": "Recorded live from DOE CODE (https://www.osti.gov/doecode/FAQs) by tools/record_fixtures.py. Publisher content redistributed under the terms recorded in THIRD_PARTY_DATA.yml.",
+  "redaction": "Email addresses replaced with redacted@example.invalid and credential values with 'redacted' at record time. Field shapes and lengths are otherwise the publisher's.",
+  "interactions": [
+    {
+      "url": "https://www.osti.gov/doecodeapi/services/search",
+      "params": {
+        "all_fields": "machine learning",
+        "rows": "3",
+        "page": "1"
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "num_found": 362,
+        "start": 0,
+        "docs": [
+          {
+            "code_id": 187349,
+            "site_ownership_code": "INL",
+            "open_source": true,
+            "repository_link": "https://github.com/IdahoLabUnsupported/PAR-FIT",
+            "project_type": "OS",
+            "software_type": "S",
+            "official_use_only": {},
+            "developers": [
+              {
+                "email": "redacted@example.invalid",
+                "orcid": "0000-0001-8008-8097",
+                "first_name": "Edward",
+                "last_name": "Chen",
+                "middle_name": "",
+                "affiliations": [
+                  "Idaho National Laboratory (INL), Idaho Falls, ID (United States)"
+                ]
+              }
+            ],
+            "contributors": [],
+            "sponsoring_organizations": [
+              {
+                "organization_name": "USDOE Office of Nuclear Energy (NE)",
+                "funding_identifiers": [
+                  {
+                    "identifier_type": "AwardNumber",
+                    "identifier_value": "Nuclear Science & Technology"
+                  }
+                ],
+                "primary_award": "AC07-05ID14517",
+                "DOE": true
+              }
+            ],
+            "contributing_organizations": [],
+            "developing_organizations": [],
+            "research_organizations": [
+              {
+                "organization_name": "Idaho National Laboratory (INL), Idaho Falls, ID (United States)",
+                "DOE": true
+              }
+            ],
+            "related_identifiers": [],
+            "award_dois": [],
+            "release_date": "2026-07-13",
+            "software_title": "Particle Filter Based Inference Testing",
+            "acronym": "PAR-FIT",
+            "doi": "10.11578/dc.20260806.1",
+            "description": "The primary intent of PAR-FIT (Particle Filter based Inference Testing) is to provide hard inductive evidence that a machine learning model is capable and proven for an individual test input. By examining training data used to form the underlying model functional correlation, an estimate of the reliability that a model will make the correct prediction can be made. The Sequential Probability Ratio Test is used to derive a qualitative evaluation for reliability based on hypothesis testing.\n\nThe PAR-FIT framework achieves this by implementing a particle filter and the sequential probability ratio test algorithms on the machine learning model training data to determine relevancy of new individual test samples to the training dataset. The kernel function evaluates the local proximity and density of training data used to derive a prediction outcome. Particles are used to probabilistically determine which training data to evaluate for proximity. For test samples that are within a close proximity to and surrounded by multiple training data points, the evaluated reliability of the prediction is high. For test samples that are anomalies not represented by the training dataset, in low density data clusters, or are far from existing data points, the evaluated reliability is low as insufficient training evidence exists to suggest the model is capable of making the correct prediction. Sequential Probability Ratio Test is further used to determine when a hypothesis on whether a signal can be rejected or accepted for use. The ratio test collects sequence information from the particle filter to test whether the signal is anomalous or normal via hypothesis testing of the underlying distributions.",
+            "programming_languages": [
+              "Python"
+            ],
+            "country_of_origin": "United States",
+            "keywords": "Reliability evaluation; Machine learning; out-of-distribution detection; risk analysis",
+            "project_keywords": [],
+            "licenses": [
+              "MIT License"
+            ],
+            "recipient_org": "INL",
+            "date_record_added": "2026-08-06",
+            "date_record_updated": "2026-08-06",
+            "is_file_certified": false,
+            "last_editor": "redacted@example.invalid",
+            "is_limited": false,
+            "links": [
+              {
+                "rel": "citation",
+                "href": "https://www.osti.gov/doecode/biblio/187349"
+              }
+            ]
+          },
+          {
+            "code_id": 191470,
+            "site_ownership_code": "LANL",
+            "open_source": true,
+            "repository_link": "https://github.com/lanl/bacterial-classification",
+            "project_type": "OS",
+            "software_type": "S",
+            "official_use_only": {},
+            "developers": [
+              {
+                "email": "redacted@example.invalid",
+                "orcid": "",
+                "first_name": "Marina",
+                "last_name": "Mancuso",
+                "middle_name": "",
+                "affiliations": [
+                  "Los Alamos National Laboratory"
+                ]
+              },
+              {
+                "email": "",
+                "orcid": "",
+                "first_name": "Marina",
+                "last_name": "Mancuso",
+                "middle_name": "",
+                "affiliations": []
+              }
+            ],
+            "contributors": [],
+            "sponsoring_organizations": [
+              {
+                "organization_name": "DTRA-DoD",
+                "funding_identifiers": [],
+                "primary_award": "AC52-06NA25396",
+                "DOE": true
+              }
+            ],
+            "contributing_organizations": [],
+            "developing_organizations": [],
+            "research_organizations": [
+              {
+                "organization_name": "Los Alamos National Laboratory (LANL), Los Alamos, NM (United States)",
+                "DOE": true
+              }
+            ],
+            "related_identifiers": [],
+            "award_dois": [],
+            "release_date": "2026-08-25",
+            "software_title": "lanl/bacterial-classification",
+            "acronym": "bacterial-classification",
+            "doi": "10.11578/dc.20260901.5",
+            "description": "bacterial-classification is a sub repository of the Intelligent Immunity project specific to training and testing machine learning models for bacterial classification (Gram-positive, Gram-negative, and non-bacterial samples).  Specifically, this repository aims to compare ML classification performance across different dataset curation strategies.",
+            "programming_languages": [],
+            "country_of_origin": "United States",
+            "project_keywords": [],
+            "licenses": [
+              "BSD 3-clause \"New\" or \"Revised\" License"
+            ],
+            "recipient_org": "A-1",
+            "site_accession_number": "O5155",
+            "date_record_added": "2026-09-01",
+            "date_record_updated": "2026-09-01",
+            "is_file_certified": false,
+            "last_editor": "redacted@example.invalid",
+            "is_limited": false,
+            "links": [
+              {
+                "rel": "citation",
+                "href": "https://www.osti.gov/doecode/biblio/191470"
+              }
+            ]
+          },
+          {
+            "code_id": 189030,
+            "site_ownership_code": "FNAL",
+            "open_source": true,
+            "repository_link": "https://github.com/quarkquartet/LeWRON",
+            "project_type": "OS",
+            "software_type": "S",
+            "official_use_only": {},
+            "developers": [
+              {
+                "email": "redacted@example.invalid",
+                "orcid": "0000-0003-0789-218X",
+                "first_name": "Isaac",
+                "last_name": "Wang",
+                "middle_name": "",
+                "affiliations": [
+                  "Fermi National Accelerator Laboratory (FNAL), Batavia, IL (United States)"
+                ]
+              }
+            ],
+            "contributors": [],
+            "sponsoring_organizations": [
+              {
+                "organization_name": "USDOE Office of Science (SC), High Energy Physics (HEP)",
+                "funding_identifiers": [],
+                "primary_award": "89243024CSC000002",
+                "DOE": true
+              }
+            ],
+            "contributing_organizations": [],
+            "developing_organizations": [],
+            "research_organizations": [
+              {
+                "organization_name": "Fermi National Accelerator Laboratory (FNAL), Batavia, IL (United States)",
+                "DOE": true
+              }
+            ],
+            "related_identifiers": [],
+            "award_dois": [],
+            "release_date": "2026-08-21",
+            "software_title": "LeWRON: Learning ElectroWeak phase tRansitiON with agentic architecture",
+            "acronym": "LeWRON",
+            "doi": "10.11578/dc.20260821.5",
+            "description": "An agent to analyze electroweak phase transition. LeWRON turns a BSM model description or a reproduction target into a structured run: symbolic setup, effective-potential artifacts, finite-temperature machinery, generated model code, a scientific report, and an interactive exploration session. It keeps both machine-readable artifacts and human-readable notes, so a run can be resumed, audited, revised, and shared.",
+            "programming_languages": [
+              "Python"
+            ],
+            "country_of_origin": "United States",
+            "project_keywords": [],
+            "licenses": [
+              "MIT License"
+            ],
+            "recipient_org": "FNAL",
+            "site_accession_number": "FERMILAB-CODE-2026-20-T",
+            "date_record_added": "2026-08-21",
+            "date_record_updated": "2026-08-21",
+            "is_file_certified": false,
+            "last_editor": "redacted@example.invalid",
+            "is_limited": false,
+            "links": [
+              {
+                "rel": "citation",
+                "href": "https://www.osti.gov/doecode/biblio/189030"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

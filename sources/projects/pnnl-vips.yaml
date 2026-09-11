@@ -1,0 +1,108 @@
+id: pnnl-vips
+name: VIPS (DOE patent and software database)
+domain: projects
+
+publisher:
+  steward: pnnl
+  authority_level: official_secondary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+# Every site whose intellectual property this index carries, not just the
+# lab that runs it. VIPS is the one active source that answers "what has
+# lab X patented or released" for all seventeen at once, which is what the
+# crosswalk field is for.
+labs: ['ames', 'anl', 'bnl', 'fnal', 'inl', 'lbnl', 'llnl', 'lanl', 'netl',
+       'nlr', 'ornl', 'pnnl', 'pppl', 'snl', 'srnl', 'slac', 'jlab']
+
+capabilities:
+  - id: tech.licensable_ip
+    tool_hint: tech.find_licensable_ip
+
+planned_capabilities: []
+
+adapter:
+  type: vips
+  base_url: https://vips.pnnl.gov/api
+
+access:
+  mode: anonymous
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://vips.pnnl.gov/
+  terms_reviewed_at: "2026-09-08"
+  terms_notes: >
+    A weekly-updated public database of DOE patents and released
+    software with no login, run by PNNL's technology-transfer office.
+    The service publishes its own OpenAPI document at /api/openapi.json
+    and answered a scripted client on 2026-09-08. It states no terms of
+    use of its own; the records describe US Government-funded work and
+    the patents themselves are public documents. Write routes exist
+    behind an admin portal and are never called.
+  terms_gap: >
+    No terms-of-use or redistribution statement is published for the
+    API. The read routes are open and undocumented as to reuse, so
+    what is recorded here is that nobody has stated a rule, not that
+    reuse is unrestricted.
+  rate_limit_note: >
+    None published. Absence of a stated ceiling is not permission; the
+    politeness budget in the fetch path applies.
+
+freshness:
+  expected_cadence: weekly
+  cadence_source: >
+    Stated; weekly updates. Each record also carries its own
+    inserted_date, which is the honest per-record vintage.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Patents held and software released by the seventeen national
+    laboratories and four NNSA production sites, for technology-transfer
+    lookup: title, abstract, inventors, assignees, first claim, patent
+    status and dates, software type, licences and repository, plus a
+    subject taxonomy and a list of similar records. 15,179 patents and
+    7,484 software records at the 2026-09-08 count.
+  temporal: current
+  dataset_version: "current"
+  record_count: 22663
+  record_count_checked: "2026-09-08"
+  known_limitations:
+    - >
+      Overlaps DOE CODE for software while adding patents, which DOE
+      CODE does not carry. A software record found in both may differ:
+      this is the technology-transfer office's view, not the
+      repository's.
+    - >
+      An unknown laboratory acronym returns zero results with HTTP 200
+      rather than an error, so a stale acronym reads as a laboratory
+      holding nothing. NREL returns zero and NLR returns 1,536.
+    - >
+      A pagination cursor makes the service ignore every filter sent
+      with it. The cursor carries the original search's filters.
+    - >
+      Being listed here is not an offer to license. It is a published
+      record of what exists; the laboratory's own technology-transfer
+      office is the party to a licence.
+
+authority_notes: >
+  Official secondary. PNNL's technology-transfer office compiles it from
+  the laboratories' own records and from patent filings, so it is the
+  laboratories' statement at one remove rather than the patent office's.
+  For the authoritative text of a granted patent, the patent number in
+  each record is the key into USPTO. Built 2026-09-08; the OpenAPI
+  document at /api/openapi.json is what turned this from a browser-only
+  portal into a source.
+
+health:
+  probe: vips_ip_count
+  expect:
+    min_records: 15000
+
+lifecycle:
+  declared_state: active
+  added: "2026-09-02"
+  last_verified: "2026-09-08"
+  verified_by: pranava0x0

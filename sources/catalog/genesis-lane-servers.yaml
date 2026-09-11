@@ -1,0 +1,41 @@
+# The gated lane, on the watch list rather than the listed set.
+#
+# This entry exists to make the project's positioning publicly checkable
+# (decision 0016). DOE's Genesis Mission MCP work is real, DOE-sanctioned,
+# and behind OneID, RFA, or SSO. DOE-MCP is not a rival to it and does not
+# claim alignment with it: it serves the public-data lane Genesis does not
+# serve — non-RFA researchers, students, journalists, civic developers, and
+# companies building on public data.
+#
+# If any of these grows a public tier, decision 0018 is the absorption
+# mechanism: it becomes a listed entry rather than an argument.
+id: genesis-lane-servers
+name: DOE Genesis Mission MCP deployments (gated)
+maintainer: Various DOE national laboratories
+status: watch
+compliance: opaque
+capabilities: []
+install:
+  method: source
+  command: "unavailable — access is gated (OneID / RFA / SSO)"
+  notes: >
+    There is nothing to install. The install recipe field is populated with
+    the truth rather than left blank, because a blank reads as an oversight.
+terms_url: https://www.energy.gov/
+terms_reviewed_at: "2026-09-01"
+why_not_absorbed: >
+  Access-gated by design and pointed at internal instruments, facilities, and
+  compute. Wrapping a gated server would produce a tool that fails for every
+  public user, which is worse than not having it. The named watch items are
+  BNL's PanDA MCP, Argonne's Globus-service MCPs, LBNL's CBorg, and the
+  gated Genesis Skills repository on OSTI's GitLab.
+notes: >
+  Positioning, stated plainly because getting it wrong would be both rude and
+  inaccurate: DOE has not "failed to discover MCP". Anthropic's December 2025
+  MOU commits to MCP servers and Claude Skills across all 17 laboratories,
+  and deployments exist. The empty lane is the PUBLIC one — no official DOE
+  entry in the MCP registry, and third-party wrappers only for EIA and
+  NREL/NLR. That gap is what this project fills, and it stops being a gap the
+  moment DOE fills it, at which point the right response is a catalog entry
+  and not a rivalry.
+last_checked: "2026-09-01"

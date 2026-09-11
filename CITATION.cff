@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+title: DOE-MCP
+message: >-
+  If you use this software or its source registry in research, please cite
+  it. If you use DATA reached through it, cite the publisher of that data —
+  the citation string is in every answer's provenance block, and for some
+  sources citation is a condition of use rather than a courtesy.
+type: software
+authors:
+  - name: The DOE-MCP contributors
+repository-code: https://github.com/pranava0x0/DOE-MCP
+abstract: >-
+  MCP servers over public US Department of Energy and national-laboratory
+  data, with a provenance envelope on every answer. Covers the ecosystem by
+  data domain over a declarative source registry, with an explicit crosswalk
+  from all seventeen national laboratories to the platforms that carry their
+  data. An independent project, not affiliated with the US Department of
+  Energy.
+keywords:
+  - model-context-protocol
+  - open-data
+  - energy
+  - provenance
+  - national-laboratories
+license: Apache-2.0
+version: 0.1.0.dev0
+date-released: "2026-09-02"

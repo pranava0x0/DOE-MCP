@@ -1,0 +1,69 @@
+id: doe-ai-use-case-inventory
+name: DOE AI Use Case Inventory
+domain: discovery
+
+publisher:
+  steward: ocio
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: []
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: public_download
+  tier: crawl_or_defer
+  terms_url: https://www.energy.gov/cio/artificial-intelligence
+  terms_notes: >
+    Published as a spreadsheet: the 2025 edition as Excel, the 2024
+    edition as a CSV holding 92 use cases. A federally required
+    inventory, published openly.
+
+freshness:
+  expected_cadence: annual
+  cadence_source: >
+    Stated; an annual federal reporting requirement.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    DOE's declared artificial-intelligence use cases across the
+    department.
+  temporal: 2024 and 2025 editions
+  dataset_version: "2025"
+  known_limitations:
+    - >
+      Spreadsheet, not API. A parse job, and one whose column layout
+      changed between the two editions.
+    - >
+      A self-report against a reporting requirement, so it describes
+      what DOE declared rather than everything DOE does.
+
+authority_notes: >
+  Registered partly because it is the honest place to look for DOE's own
+  account of its AI work — which is the ground this project positions
+  against (decision 0016) and should therefore be able to quote rather
+  than characterise.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Spreadsheet-parse job; early-phase-eligible but low priority.

@@ -1,0 +1,79 @@
+id: arm-data-center
+name: ARM Data Center (Live data services)
+domain: earth
+
+publisher:
+  steward: ornl
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [ornl, pnnl, bnl, lanl, snl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+planned_capabilities: [earth.search_streams]
+adapter:
+  type: none
+
+access:
+  mode: account_token
+  automation_status: public_api
+  tier: catalog_pointer
+  terms_url: https://www.arm.gov/policies/datapolicies
+  terms_notes: >
+    A free ARM account yields a token for the Live data services API.
+    ARM's data policy REQUIRES citation as a condition of use, which is
+    the case that put a citation block in the envelope: an answer from
+    ARM that does not carry the citation string has handed the caller an
+    obligation without the means to meet it.
+  terms_reviewed_at: "2026-09-01"
+  credential_ref: ARM_LIVE_TOKEN
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Stated; instruments report continuously and data is processed on a
+    rolling basis.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Atmospheric measurements from ARM's fixed and mobile observatories:
+    radiometers, radars, lidars, sondes, and derived value- added
+    products. One of DOE's seven designated PuRe data resources.
+  temporal: 1992 onward
+  dataset_version: "current"
+  known_limitations:
+    - >
+      Citation is required, not requested. Any tool answering from ARM
+      raises the citation_required warning with the string to use.
+    - >
+      Data files are NetCDF reached by retrieval request, so answers are
+      stream metadata plus an access recipe, never inlined arrays.
+    - >
+      Datastream naming is ARM's own convention and is not self-
+      explanatory; a search tool has to expose it rather than hide it.
+
+authority_notes: >
+  Primary for ARM's own measurements. Intended capabilities:
+  earth.search_streams. Phase 4. A PuRe resource, which is both a
+  quality signal and a build-priority one.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Phase 4. Needs the earth server, the account-token credential path,
+    and the citation block wired end to end.

@@ -1,0 +1,85 @@
+id: nlr-duramat-datahub
+name: DuraMAT DataHub
+domain: energy-tech
+
+publisher:
+  steward: nlr
+  funder: cmei
+  authority_level: primary
+
+aliases:
+  former_names: []
+  # datahub.duramat.org now redirects to datahub-duramat.nlr.gov: the
+  # consortium's own domain has moved onto the laboratory's, which is the
+  # tenth-and-eleventh host move this project has recorded and the reason
+  # decision 0008 makes this stanza mandatory.
+  former_domains: ['datahub.duramat.org']
+
+labs: ['nlr', 'snl', 'lbnl']
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+planned_capabilities: ['dataset.search']
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: manual_review_required
+  tier: catalog_pointer
+  terms_url: https://datahub-duramat.nlr.gov/
+  terms_notes: >
+    A CKAN-based data hub for the Durable Module Materials consortium,
+    run by NLR. Every CKAN action path tried on 2026-09-08 answered
+    HTTP 200 with the same 1,042-byte HTML shell rather than with JSON
+    or a 404 — the site is a React micro-frontend that serves its index
+    document for any path, so a 200 from it carries no information at
+    all. Datasets carry their own licences, which vary.
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed; datasets are added per project.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Photovoltaic module durability datasets: field degradation,
+    accelerated testing, materials characterisation, and the
+    consortium's own analysis tools.
+  temporal: 2016 onward
+  dataset_version: "current"
+  known_limitations:
+    - >
+      The CKAN API did not answer at its documented path; the portal
+      front-end may proxy it elsewhere.
+    - >
+      Per-dataset licences. A dataset's terms ride on its record and
+      must reach the envelope's citation block.
+
+authority_notes: >
+  Primary: the consortium's own hub, NLR-operated, funded by DOE's
+  solar office. Found in the 2026-09-08 gap sweep; the NLR file had
+  two mentions and no manifest.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-08"
+  last_verified: "2026-09-08"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Machine interface unconfirmed, and narrowed on 2026-09-08 rather
+    than found. The application is a React micro-frontend whose two
+    entry bundles are 12 KB loaders carrying no host or API path; the
+    real chunks are fetched at runtime, so the interface is not
+    reachable by reading the served files. A browser look at the
+    portal's own network calls is now the only remaining step, and it
+    is the same browser sweep the blocked-probe backlog needs. Then it
+    is a ckan genre source alongside NETL EDX.

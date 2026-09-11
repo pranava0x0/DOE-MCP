@@ -1,0 +1,39 @@
+# Materials Project. NOT a catalog entry in the ordinary sense — recorded
+# here as the depend-and-wrap case so the catalog documents which tier each
+# candidate landed in and why (decision 0018's first amendment).
+#
+# The distinction is real: compliance levels describe servers DOE-MCP would
+# CALL. Depend-and-wrap is a different relationship. The upstream is a
+# library, the tools are ours, and the envelope applies natively.
+id: materials-project-mcp
+name: Materials Project MCP (inside mp-api)
+maintainer: Materials Project, Lawrence Berkeley National Laboratory
+maintainer_org: lbnl
+repository: https://github.com/materialsproject/api
+status: watch
+compliance: full
+capabilities: [materials.search]
+install:
+  method: pip
+  command: pip install "doe-mcp[materials]"
+  notes: >
+    Not an install of the upstream server. `mp-api` becomes a dependency of
+    DOE-MCP's materials extra, and DOE-MCP's own tools call the library —
+    one install, one tool surface, one envelope.
+terms_url: https://next-gen.materialsproject.org/api
+terms_reviewed_at: "2026-09-01"
+why_not_absorbed: >
+  It IS absorbed, which is why this entry exists to say so. Materials
+  Project ships its first-party MCP server inside the `mp-api` Python
+  library (search and fetch shipped as of 0.46.0; fetch_all, fetch_many,
+  phase-diagram lookup and an mpmcp CLI in development). Because the upstream
+  ships a LIBRARY rather than only a server, decision 0011 routes it to
+  depend-and-wrap: declare the dependency, write thin tools over it, and
+  avoid asking a user to install and configure a second MCP server for one
+  domain. The library's surface is reshaped into DOE-MCP's tool contract
+  rather than re-exported, because 0014's sizing bands bind a wrapper like
+  anything else.
+notes: >
+  Requires a free Materials Project API key (MP_API_KEY), configured through
+  `doe-mcp configure credentials` like every other key.
+last_checked: "2026-09-01"

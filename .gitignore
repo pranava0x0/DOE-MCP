@@ -1,0 +1,27 @@
+# OS noise
+.DS_Store
+
+# The evidence base. Working research notes: per-lab and per-platform files,
+# probe logs, URL ledgers, verification rounds. Kept locally and not
+# published — they carry third-party contact details lifted from government
+# pages, half-verified findings, and agent scratch that would read as claims.
+# design/architecture.md cites them; that is a pointer into the working set,
+# not a promise the reader has it.
+research/
+
+# Local design & architecture notes. Kept local and not published.
+design/
+
+# Agent & internal docs kept local
+.claude/
+AGENTS.md
+SECURITY.md
+WORKLOG.md
+WORKLOG-ARCHIVE.md
+
+# Build and test artifacts
+.venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/

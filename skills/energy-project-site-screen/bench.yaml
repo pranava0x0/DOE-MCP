@@ -1,0 +1,33 @@
+# The machine-checkable part of the bench tasks in SKILL.md; see
+# grid-status-brief/bench.yaml for the two lists and the rule that holds
+# them to the table.
+checked:
+  - task: 1
+    steps:
+      - tool: facility.find_wind_turbines
+        args: {state: RI, rows: 5}
+        expect:
+          coverage.result: hit
+          coverage.pagination: truncated
+          data.total_matches: {min: 6}
+      - tool: facility.find_solar_facilities
+        args: {state: RI, rows: 5}
+        expect:
+          coverage.result: hit
+  - task: 3
+    steps:
+      - tool: registry.search_sources
+        args: {capability: solar.get_resource}
+        expect:
+          data.sources: {any: {id: nlr-developer-network, declared_state: proposed}}
+      - tool: registry.search_sources
+        args: {capability: grid.interconnection_queue}
+        expect:
+          data.sources: {any: {id: lbnl-emp-datasets, declared_state: proposed}}
+  - task: 4
+    steps:
+      - tool: registry.list_neighbors
+        args: {}
+        expect:
+          data.neighbors: {any: {id: nepa-mcp}}
+reader: [2]

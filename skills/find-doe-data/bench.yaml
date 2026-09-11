@@ -1,0 +1,38 @@
+# The machine-checkable part of the bench tasks in SKILL.md; see
+# grid-status-brief/bench.yaml for the two lists and the rule that holds
+# them to the table.
+checked:
+  - task: 1
+    steps:
+      - tool: registry.resolve_org
+        args: {query: NREL}
+        expect:
+          data.resolved.id: nlr
+          warnings: [alias_match]
+      - tool: registry.search_sources
+        args: {capability: facility.locations}
+        expect:
+          data.sources: {any: {id: usgs-uswtdb, declared_state: active}}
+  - task: 2
+    steps:
+      - tool: research.search_datasets
+        args: {site_code: DOE-GDR, rows: 2}
+        expect:
+          coverage.result: hit
+          coverage.pagination: truncated
+          evidence: {locators: some}
+  - task: 3
+    steps:
+      - tool: registry.search_sources
+        args: {text: municipal recycling rates}
+        expect:
+          coverage.result: empty
+          data.record_count: 0
+  - task: 4
+    steps:
+      - tool: research.search_literature
+        args: {query: perovskite solar, rows: 3}
+        expect:
+          coverage.pagination: truncated
+          next_actions: nonempty
+reader: [5]

@@ -1,0 +1,813 @@
+{
+  "note": "Recorded live from DOE Open Data Catalog (data.json) (https://www.energy.gov/data) by tools/record_fixtures.py. Publisher content redistributed under the terms recorded in THIRD_PARTY_DATA.yml. TRIMMED: the 'dataset' array held 483 entries and is cut to the first 15, so record counts read from this fixture are the fixture's, not the publisher's.",
+  "redaction": "Email addresses replaced with redacted@example.invalid and credential values with 'redacted' at record time. Field shapes and lengths are otherwise the publisher's.",
+  "interactions": [
+    {
+      "url": "https://www.energy.gov/data.json",
+      "params": {},
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "conformsTo": "https://project-open-data.cio.gov/v1.1/schema",
+        "describedBy": "https://project-open-data.cio.gov/v1.1/schema/catalog.json",
+        "@context": "https://project-open-data.cio.gov/v1.1/schema/catalog.jsonld",
+        "@type": "dcat:Catalog",
+        "dataset": [
+          {
+            "@type": "dcat:Dataset",
+            "title": "DOE Hearings and Appeals Case Decisions",
+            "description": "The Office of Hearings and Appeals (HG) is the quasi-judicial arm of the Department of Energy that conducts hearings and issues initial Departmental decisions with respect to a wide range of legal issues and programs delegated to the Office by the Secretary of Energy, including: 1) personnel security clearance eligibility determinations, 2) DOE contractor employee \"whistleblower\" cases, 3) Freedom of Information and Privacy Act appeals, as well as other appeals involving administrative determinations reached by Department officials, 4) Applications for Exception from the requirements of a DOE rule, regulation or order, and 5) Petitions for Special Redress seeking \"extraordinary relief\" -- apart from or in addition to -- any other remedy provided in the Department's enabling statutes.",
+            "modified": "2014-04-25",
+            "accessLevel": "public",
+            "identifier": "DOE-019-4381227569",
+            "dataQuality": true,
+            "landingPage": "http://energy.gov/oha/",
+            "license": "https://creativecommons.org/licenses/by/4.0",
+            "spatial": "United States",
+            "temporal": "1994/2014",
+            "publisher": {
+              "@type": "org:Organization",
+              "name": "DOE/Office of Hearings and Appeals"
+            },
+            "accrualPeriodicity": "R/P1D",
+            "contactPoint": {
+              "@type": "vcard:Contact",
+              "fn": "Fred Brown",
+              "hasEmail": "mailto:redacted@example.invalid"
+            },
+            "distribution": [
+              {
+                "@type": "dcat:Distribution",
+                "mediaType": "text/csv",
+                "title": "Case Decisions",
+                "downloadURL": "https://energy.gov/oha/"
+              }
+            ],
+            "keyword": [
+              "Appeals",
+              "Crude",
+              "EIA",
+              "Energy Efficiency",
+              "Exceptions",
+              "FOIA",
+              "Miscellaneous",
+              "Oil",
+              "Personnel Security",
+              "Product Efficiency",
+              "Refunds",
+              "Security",
+              "Utilities",
+              "Whistleblower",
+              "Worker Appeal",
+              "Worker Health"
+            ],
+            "bureauCode": [
+              "019:60"
+            ],
+            "programCode": [
+              "019:053"
+            ],
+            "language": [
+              "en-US"
+            ],
+            "theme": [
+              "corporate management"
+            ]
+          },
+          {
+            "@type": "dcat:Dataset",
+            "title": "Energy.gov",
+            "description": "Energy.gov is hosted in the Drupal environment at a BlackMesh provided data center.  Public access information is continuously updated by various DOE elements in an unstructured format.",
+            "modified": "2015-01-22",
+            "accessLevel": "public",
+            "identifier": "DOE-019-3665989539",
+            "dataQuality": true,
+            "license": "https://creativecommons.org/licenses/by/4.0",
+            "rights": "Content Management functions are Private.  Content itself is public.",
+            "spatial": "DOE",
+            "temporal": "2014-01-01/2014-12-31",
+            "publisher": {
+              "@type": "org:Organization",
+              "name": "DOE Office of Chief Information Officer"
+            },
+            "accrualPeriodicity": "R/P1D",
+            "contactPoint": {
+              "@type": "vcard:Contact",
+              "fn": "Tom Oneill",
+              "hasEmail": "mailto:redacted@example.invalid"
+            },
+            "distribution": [
+              {
+                "@type": "dcat:Distribution",
+                "mediaType": "text/html",
+                "format": "text/csv",
+                "title": "Energy.gov",
+                "downloadURL": "https://energy.gov/"
+              }
+            ],
+            "keyword": [
+              "energy saver",
+              "offices",
+              "public service",
+              "service and innovation"
+            ],
+            "bureauCode": [
+              "019:60"
+            ],
+            "programCode": [
+              "019:053"
+            ],
+            "language": [
+              "en-US"
+            ],
+            "theme": [
+              "energy"
+            ]
+          },
+          {
+            "@type": "dcat:Dataset",
+            "title": "ARPA-E Projects",
+            "description": "ARPA-E\u2019s initial $400 million budget was a part of the 2009 American Recovery and Reinvestment Act. ARPA-E received $180 million in Fiscal Year 2011 and $275 million in Fiscal Year 2012. Below you will find information on ARPA-E\u2019s fiscal year budget requests.",
+            "modified": "2022-09-14T16:33:43.937Z",
+            "accessLevel": "public",
+            "identifier": "DOE-019-3478552234",
+            "dataQuality": true,
+            "landingPage": "http://www.energy.gov",
+            "license": "https://creativecommons.org/licenses/by/4.0",
+            "rights": "true",
+            "spatial": "DOE",
+            "temporal": "2005/2014",
+            "publisher": {
+              "@type": "org:Organization",
+              "name": "DOE ARPA-E"
+            },
+            "accrualPeriodicity": "R/PT1S",
+            "contactPoint": {
+              "@type": "vcard:Contact",
+              "fn": "Dane Boysen",
+              "hasEmail": "mailto:redacted@example.invalid"
+            },
+            "distribution": [
+              {
+                "@type": "dcat:Distribution",
+                "accessURL": "https://arpa-e.energy.gov/?q=arpa-e-site-page/arpa-e-budget",
+                "title": "ARPA-e Projects Budget"
+              },
+              {
+                "@type": "dcat:Distribution",
+                "accessURL": "https://arpa-e.energy.gov/",
+                "title": "ARPA Web Page",
+                "description": "This is the starting point for ARPA-E information."
+              },
+              {
+                "@type": "dcat:Distribution",
+                "accessURL": "https://arpa-e.energy.gov/technologies/projects",
+                "title": "ARPA-e Projects",
+                "description": "This web page contains the ARPA-e technologies."
+              }
+            ],
+            "keyword": [
+              "appropriation language",
+              "arpa-e program direction",
+              "arpa-e projects",
+              "funding by appropriation by site",
+              "overview",
+              "small business innovation research"
+            ],
+            "bureauCode": [
+              "000:00"
+            ],
+            "programCode": [
+              "000:000"
+            ],
+            "language": [
+              "en-US"
+            ],
+            "theme": [
+              "energy"
+            ]
+          },
+          {
+            "@type": "dcat:Dataset",
+            "title": "Congressional and Intergovernmental Affairs Testimony",
+            "description": "This site contains five years of testimonies.",
+            "modified": "2014-11-30",
+            "accessLevel": "public",
+            "identifier": "DOE-019-2257845237",
+            "dataQuality": true,
+            "landingPage": "http://energy.gov/congressional/listings/congressional-testimony",
+            "license": "https://creativecommons.org/licenses/by/4.0",
+            "spatial": "DOE",
+            "temporal": "2009/2014",
+            "publisher": {
+              "@type": "org:Organization",
+              "name": "DOE Congressional and Intergovernmental Affairs"
+            },
+            "accrualPeriodicity": "R/P1D",
+            "contactPoint": {
+              "@type": "vcard:Contact",
+              "fn": "Shari Davenport",
+              "hasEmail": "mailto:redacted@example.invalid"
+            },
+            "distribution": [
+              {
+                "@type": "dcat:Distribution",
+                "mediaType": "text/html",
+                "title": "CI Testimony",
+                "downloadURL": "https://energy.gov/congressional/listings/congressional-testimony"
+              }
+            ],
+            "keyword": [
+              "testimony"
+            ],
+            "bureauCode": [
+              "019:00"
+            ],
+            "programCode": [
+              "019:000"
+            ],
+            "language": [
+              "en-US"
+            ],
+            "theme": [
+              "corporate management"
+            ]
+          },
+          {
+            "@type": "dcat:Dataset",
+            "title": "Administrative Record Publishing Website",
+            "description": "Website that communicates certain Hanford information to the public. Tri-party agreement.",
+            "modified": "2014-10-01",
+            "accessLevel": "public",
+            "identifier": "DOE-019-7545783421-1",
+            "dataQuality": true,
+            "landingPage": "http://pdw.hanford.gov/arpir/",
+            "license": "https://creativecommons.org/licenses/by/4.0",
+            "spatial": "DOE",
+            "temporal": "1940/2014",
+            "publisher": {
+              "@type": "org:Organization",
+              "name": "DOE/Richland Operations and the Office of River Protection"
+            },
+            "accrualPeriodicity": "R/P1D",
+            "contactPoint": {
+              "@type": "vcard:Contact",
+              "fn": "Miljana Mijic",
+              "hasEmail": "mailto:redacted@example.invalid"
+            },
+            "distribution": [
+              {
+                "@type": "dcat:Distribution",
+                "accessURL": "https://pdw.hanford.gov",
+                "title": "ARPIR Data Warehouse"
+              }
+            ],
+            "keyword": [
+              "Hanford",
+              "cleanup",
+              "environment",
+              "mission"
+            ],
+            "bureauCode": [
+              "019:10"
+            ],
+            "programCode": [
+              "019:051"
+            ],
+            "language": [
+              "en-US"
+            ],
+            "theme": [
+              "environment"
+            ]
+          },
+          {
+            "@type": "dcat:Dataset",
+            "title": "Congressional and Intergovernmental Affairs webpage",
+            "description": "The Office of Congressional and Intergovernmental Affairs is dedicated to its mission of providing guidance on legislative and policy issues, informing constituencies on energy matters, and serving as a liaison between the Department, Congress, State, local, and Tribal governments, as well as other Federal agencies and stakeholder groups.",
+            "modified": "2015-02-20",
+            "accessLevel": "public",
+            "identifier": "DOE-019-4578239451",
+            "dataQuality": true,
+            "landingPage": "http://energy.gov/congressional/office-congressional-and-intergovernmental-affairs",
+            "license": "https://creativecommons.org/licenses/by/4.0",
+            "spatial": "DOE",
+            "temporal": "2009/2014",
+            "publisher": {
+              "@type": "org:Organization",
+              "name": "DOE Congressional and Intergovernmental Affairs"
+            },
+            "accrualPeriodicity": "R/P1D",
+            "contactPoint": {
+              "@type": "vcard:Contact",
+              "fn": "Shari Davenport",
+              "hasEmail": "mailto:redacted@example.invalid"
+            },
+            "distribution": [
+              {
+                "@type": "dcat:Distribution",
+                "accessURL": "https://energy.gov/congressional/office-congressional-and-intergovernmental-affairs",
+                "title": "CI Web"
+              }
+            ],
+            "keyword": [
+              "about us",
+              "mission"
+            ],
+            "bureauCode": [
+              "019:00"
+            ],
+            "programCode": [
+              "019:000"
+            ],
+            "language": [
+              "en-US"
+            ],
+            "theme": [
+              "corporate management"
+            ]
+          },
+          {
+            "@type": "dcat:Dataset",
+            "title": "Economic Impact and Diversity webpage",
+            "description": "The Office of Economic Impact and Diversity develops and executes Department-wide policies to implement applicable legislation and Executive Orders that strengthen diversity goals affecting equal employment opportunities, small and disadvantaged businesses, minority educational institutions, and historically underrepresented communities.\r\n\r\nOur mission is to identify and implement ways of ensuring that minorities are afforded an opportunity to participate fully in the energy programs of the Department. We encourage partnership opportunities with Minority Serving Institutions (Historically Black Colleges and Universities, Hispanic Serving Institutions, Asian American, Native American, and Pacific Islander Institutions, and Tribal Colleges and Universities) and other minority-owned and serving entities on our mission-critical work.\r\n\r\nWe serve as a strong advocate for equal employment opportunities, civil rights concerns, and non-discriminatory practices at the Department. In addition, the Office of Economic Impact and Diversity is charged with creating and sustaining a high performing, inclusive workforce by leveraging diversity and empowering all employees to achieve superior results in the service of our Nation.\r\n\r\nOur office measures success in its effectiveness in aiding the disadvantaged in finding opportunities at the Department of Energy and in other Federal programs. Through extensive research and close partnerships, we have been able to specifically target barriers to minorities and execute strategies to overcome them. The Office of Economic Impact and Diversity is a model of how diversity positively impacts the Energy Department and provides a unique, cutting-edge quality to the Department.",
+            "modified": "2014-11-28",
+            "accessLevel": "public",
+            "identifier": "DOE-019-2367548921",
+            "dataQuality": true,
+            "landingPage": "http://energy.gov/diversity/office-economic-impact-and-diversity",
+            "license": "https://creativecommons.org/licenses/by/4.0",
+            "spatial": "DOE",
+            "temporal": "2012/2015",
+            "publisher": {
+              "@type": "org:Organization",
+              "name": "Office of Civil Rights",
+              "subOrganizationOf": {
+                "@type": "org:Organization",
+                "name": "DOE Economic Impact and Diversity"
+              }
+            },
+            "accrualPeriodicity": "R/P1D",
+            "contactPoint": {
+              "@type": "vcard:Contact",
+              "fn": "Andre Sayles",
+              "hasEmail": "mailto:redacted@example.invalid"
+            },
+            "distribution": [
+              {
+                "@type": "dcat:Distribution",
+                "mediaType": "text/html",
+                "title": "ED Web",
+                "description": "ED Web",
+                "downloadURL": "https://energy.gov/diversity/office-economic-impact-and-diversity"
+              }
+            ],
+            "keyword": [
+              "STEM",
+              "civil rights",
+              "council on women and girls",
+              "diversity",
+              "environmental justice",
+              "minorities",
+              "minority banks",
+              "minority business and economic development",
+              "minority education and community development",
+              "tribal communities",
+              "under-represented communities"
+            ],
+            "bureauCode": [
+              "019:00"
+            ],
+            "programCode": [
+              "019:000"
+            ],
+            "language": [
+              "en-US"
+            ],
+            "theme": [
+              "civil rights"
+            ]
+          },
+          {
+            "@type": "dcat:Dataset",
+            "title": "Energy Policy and Systems Analysis webpage",
+            "description": "The Director of the Office of Energy Policy and Systems Analysis is the primary energy policy advisor to the Secretary and Deputy Secretary on domestic energy policy development and implementation as well as DOE policy analysis and activities.\r\n\r\nThe role of the Office of Energy Policy and Systems Analysis is to deliver unbiased energy analysis to the Department of Energy's leadership on existing and prospective energy-related policies, focusing in part on integrative analysis of energy systems.\r\n\r\nThe Office of Energy Policy and Systems Analysis includes the Secretariat of the Quadrennial Energy Review with primary responsibility for supporting the White House interagency process and providing to it data collection, analysis, stakeholder engagement, and data synthesis.",
+            "modified": "2014-11-15",
+            "accessLevel": "public",
+            "identifier": "DOE-019-0334675232",
+            "dataQuality": true,
+            "license": "https://creativecommons.org/licenses/by/4.0",
+            "spatial": "DOE",
+            "temporal": "2012/2014",
+            "publisher": {
+              "@type": "org:Organization",
+              "name": "DOE Energy Policy and Systems Analysis"
+            },
+            "accrualPeriodicity": "R/P1D",
+            "contactPoint": {
+              "@type": "vcard:Contact",
+              "fn": "Melanie Kenderdine",
+              "hasEmail": "mailto:redacted@example.invalid"
+            },
+            "distribution": [
+              {
+                "@type": "dcat:Distribution",
+                "accessURL": "https://energy.gov/epsa/office-energy-policy-and-systems-analysis",
+                "title": "EPSA Web"
+              }
+            ],
+            "keyword": [
+              "QER",
+              "climate",
+              "critical materials strategy",
+              "eGallon",
+              "initiatives",
+              "quadrennial energy review",
+              "revolution now",
+              "vulnerability report"
+            ],
+            "bureauCode": [
+              "019:00"
+            ],
+            "programCode": [
+              "019:000"
+            ],
+            "language": [
+              "en-US"
+            ],
+            "theme": [
+              "energy"
+            ]
+          },
+          {
+            "@type": "dcat:Dataset",
+            "title": "The Quadrennial Energy Review (QER)",
+            "description": "Affordable, clean, and secure energy and energy services are essential for improving U.S. economic productivity, enhancing our quality of life, protecting our environment, and ensuring our Nation's security. To help the federal government meet these energy goals, President Obama issued a Presidential Memorandum on January 9 directing the administration to conduct a Quadrennial Energy Review (QER). As described in the President\u2019s Climate Action Plan, this first-ever review will focus on energy infrastructure and will identify the threats, risks, and opportunities for U.S. energy and climate security, enabling the federal government to translate policy goals into a set of integrated actions. The Presidential Memorandum created an interagency task force co-chaired by the Director of the Office of Science and Technology Policy and the Special Assistant to the President for Energy and Climate Change. The Department of Energy will help coordinate interagency activities and provide policy analysis and modeling, and stakeholder engagement.",
+            "modified": "2022-09-26T17:11:58.556Z",
+            "accessLevel": "public",
+            "identifier": "DOE-019-0334675231",
+            "dataQuality": true,
+            "license": "https://creativecommons.org/licenses/by/4.0",
+            "rights": "true",
+            "spatial": "DOE",
+            "temporal": "2012/2014",
+            "publisher": {
+              "@type": "org:Organization",
+              "name": "DOE Energy Policy and Systems Analysis"
+            },
+            "accrualPeriodicity": "R/P1D",
+            "contactPoint": {
+              "@type": "vcard:Contact",
+              "fn": "DOE-QTR2015 Mailbox",
+              "hasEmail": "mailto:redacted@example.invalid"
+            },
+            "distribution": [
+              {
+                "@type": "dcat:Distribution",
+                "accessURL": "https://energy.gov/epsa/initiatives/quadrennial-energy-review-qer",
+                "title": "QER"
+              }
+            ],
+            "keyword": [
+              "QER report",
+              "stakeholder"
+            ],
+            "bureauCode": [
+              "000:00"
+            ],
+            "programCode": [
+              "000:000"
+            ],
+            "language": [
+              "en-US"
+            ],
+            "theme": [
+              "energy"
+            ]
+          },
+          {
+            "@type": "dcat:Dataset",
+            "title": "Indian Energy Policy and Programs webpage",
+            "description": "The U.S. Department of Energy (DOE) Office of Indian Energy Policy and Programs, or the Office of Indian Energy, is charged by Congress to direct, foster, coordinate, and implement energy planning, education, management, and programs that assist tribes with energy development, capacity building, energy infrastructure, energy costs, and electrification of Indian lands and homes.\r\n\r\nThe Office of Indian Energy works within DOE, across government agencies, and with Indian Tribes and organizations to promote Indian energy policies and initiatives. The Office of Indian Energy performs these functions within the scope of DOE's mission and consistently with the federal government's trust responsibility, tribal self-determination policy, and government-to-government relationship with Indian Tribes.",
+            "modified": "2014-11-15",
+            "accessLevel": "public",
+            "identifier": "DOE-019-3478123451",
+            "dataQuality": true,
+            "license": "http://opendatacommons.org/licenses/pddl/",
+            "spatial": "DOE",
+            "temporal": "2012/2014",
+            "publisher": {
+              "@type": "org:Organization",
+              "name": "DOE Indian Energy Policy and Programs"
+            },
+            "accrualPeriodicity": "R/P1D",
+            "contactPoint": {
+              "@type": "vcard:Contact",
+              "fn": "Tracey A. Lebeau",
+              "hasEmail": "mailto:redacted@example.invalid"
+            },
+            "distribution": [
+              {
+                "@type": "dcat:Distribution",
+                "accessURL": "https://energy.gov/indianenergy/office-indian-energy-policy-and-programs",
+                "title": "Indian Energy web"
+              }
+            ],
+            "keyword": [
+              "Alaska native villages",
+              "strategic technical assistance response team",
+              "tribal energy education programs",
+              "tribal energy program",
+              "tribal leader and best practices forums",
+              "tribal summit"
+            ],
+            "bureauCode": [
+              "019:00"
+            ],
+            "programCode": [
+              "019:000"
+            ],
+            "language": [
+              "en-US"
+            ],
+            "theme": [
+              "energy"
+            ]
+          },
+          {
+            "@type": "dcat:Dataset",
+            "title": "Loan Programs Office website",
+            "description": "The Department of Energy's Loan Programs-administered by LPO-enable DOE to work with private companies and lenders to mitigate the financing risks associated with clean energy projects, and thereby encourage their development on a broader and much-needed scale.\r\n\r\nThe Loan Programs consist of three separate programs managed by two offices, the Loan Guarantee Program Office (LGP) and the Advanced Technology Vehicles Manufacturing Loan Program Office. LPO originates, guarantees, and monitors loans to support clean energy projects through these programs. The programs are:\r\n\r\nSection 1703: Under Section 1703 of Title XVII, DOE LGP is authorized to guarantee loans for projects that employ new or significantly improved energy technologies and avoid, reduce or sequester air pollutants or greenhouse gases. \r\nSection 1705: Under Section 1705 of Title XVII, added by the American Reinvestment and Recovery Act (ARRA), DOE LGP is authorized to guarantee loans for certain clean energy projects that commenced construction on or before September 30, 2011. The Section 1705 program expired, pursuant to statute, on September 30, 2011 and will actively monitor projects that previously received loan guarantees under the 1705 program. LPO will no longer issue new loan guarantees under the 1705 program. \r\nAdvanced Technology Vehicles Manufacturing (ATVM): Under Section 136 of the Energy Independence and Security Act of 2007, DOE is authorized to provide direct loans to finance advanced vehicle technologies.",
+            "modified": "2014-11-15",
+            "accessLevel": "public",
+            "identifier": "DOE-019-4444578911",
+            "dataQuality": true,
+            "landingPage": "http://energy.gov/lpo/loan-programs-office",
+            "license": "http://opendatacommons.org/licenses/pddl/",
+            "spatial": "United States",
+            "temporal": "2005/2014",
+            "publisher": {
+              "@type": "org:Organization",
+              "name": "DOE Loan Programs Office"
+            },
+            "accrualPeriodicity": "R/P1D",
+            "contactPoint": {
+              "@type": "vcard:Contact",
+              "fn": "Peter Davidson",
+              "hasEmail": "mailto:redacted@example.invalid"
+            },
+            "distribution": [
+              {
+                "@type": "dcat:Distribution",
+                "accessURL": "https://energy.gov/lpo/loan-programs-office",
+                "title": "Loan Program"
+              }
+            ],
+            "keyword": [
+              "ATVM loan program",
+              "application process",
+              "applications",
+              "projects",
+              "section 1703 loan program",
+              "section 1705 loan program"
+            ],
+            "bureauCode": [
+              "019:00"
+            ],
+            "programCode": [
+              "019:000"
+            ],
+            "language": [
+              "en-US"
+            ],
+            "theme": [
+              "energy"
+            ]
+          },
+          {
+            "@type": "dcat:Dataset",
+            "title": "Office of the Chief Information Officer web",
+            "description": "The mission of the Office of the Chief Information Officer (OCIO) is to enable the Department of Energy\u2019s urgent missions in energy, science and nuclear security through the power of information and technology in a manner that balances risk with required outcomes in programs that span from open science to national security.",
+            "modified": "2014-11-15",
+            "accessLevel": "public",
+            "identifier": "DOE-019-3478654789",
+            "dataQuality": true,
+            "license": "https://creativecommons.org/licenses/by/4.0",
+            "spatial": "DOE",
+            "temporal": "2013-01-01/2014-12-31",
+            "publisher": {
+              "@type": "org:Organization",
+              "name": "DOE Office of Chief Information Officer"
+            },
+            "accrualPeriodicity": "R/P1D",
+            "contactPoint": {
+              "@type": "vcard:Contact",
+              "fn": "CIO Webmaster",
+              "hasEmail": "mailto:redacted@example.invalid"
+            },
+            "distribution": [
+              {
+                "@type": "dcat:Distribution",
+                "mediaType": "text/html",
+                "title": "CIO web",
+                "description": "The beginning point for information regarding the OCIO.",
+                "downloadURL": "https://www.energy.gov/cio/office-chief-information-officer"
+              }
+            ],
+            "keyword": [
+              "FY 2014-2018 DOE IRM Strategic Plan",
+              "IT services",
+              "PKI",
+              "assistive technology",
+              "cloud computing",
+              "digital government strategy",
+              "digital government strategy at DOE",
+              "forms",
+              "green IT",
+              "incident management",
+              "innovation at the labs",
+              "mobility",
+              "remote access"
+            ],
+            "bureauCode": [
+              "019:00"
+            ],
+            "programCode": [
+              "019:000"
+            ],
+            "language": [
+              "en-US"
+            ],
+            "theme": [
+              "corporate management"
+            ]
+          },
+          {
+            "@type": "dcat:Dataset",
+            "title": "International Affairs webpage",
+            "description": "IA has the primary responsibility for coordinating the efforts of diverse elements in the Department to ensure a unified voice in our international energy policy. IA works closely with Departmental elements, other Federal agencies, national and international organizations and institutions, and the private sector to coordinate and align our international energy activities with our national energy policies. IA coordinates DOE international initiatives on clean energy, climate change, and technology exports.\r\n\r\nIA works closely with DOE program Assistant Secretaries and other DOE Secretarial officers to identify top international priorities among the activities of the Department, and to engage with other Federal departments and agencies (including the National Security Council, Office of Management and Budget, and other White House offices), members of Congress and Congressional Committees, and energy producers and consumers.\r\n\r\nThe Assistant Secretary coordinates and manages DOE cooperation with counterparts from other nations and international organizations. IA also negotiates and manages a variety of bilateral and multilateral agreements with other countries and international agencies for cooperation in research and development for energy, environmental, and technology cooperation.",
+            "modified": "2014-11-15",
+            "accessLevel": "public",
+            "identifier": "DOE-019-3489568912",
+            "dataQuality": true,
+            "license": "http://opendatacommons.org/licenses/pddl/",
+            "spatial": "Global",
+            "temporal": "2012/2014",
+            "publisher": {
+              "@type": "org:Organization",
+              "name": "DOE International Affairs"
+            },
+            "accrualPeriodicity": "R/P1D",
+            "contactPoint": {
+              "@type": "vcard:Contact",
+              "fn": "Miyoshi W. Stith",
+              "hasEmail": "mailto:redacted@example.invalid"
+            },
+            "distribution": [
+              {
+                "@type": "dcat:Distribution",
+                "accessURL": "https://energy.gov/ia/office-international-affairs",
+                "title": "IA Web"
+              }
+            ],
+            "keyword": [
+              "U.S.-Africa energy ministerial",
+              "U.S.-Canada clean energy dialogue",
+              "U.S.-China clean energy research center",
+              "U.S.-India energy cooperative",
+              "U.S.-Israel energy meetings",
+              "clean energy ministerial",
+              "climate action plan",
+              "energy and climate partnership of America",
+              "international commitments",
+              "international energy agency",
+              "turkey near-zero zone"
+            ],
+            "bureauCode": [
+              "019:00"
+            ],
+            "programCode": [
+              "019:000"
+            ],
+            "language": [
+              "en-US"
+            ],
+            "theme": [
+              "energy"
+            ]
+          },
+          {
+            "@type": "dcat:Dataset",
+            "title": "Inspector General webpage",
+            "description": "Office of Inspector General mission is to help the Department and the American taxpayer by:\r\n\r\n--Identifying opportunities for cost savings and operational efficiencies in Department programs; and \r\n--Returning hard dollars to the Department and the U.S. Treasury as a result of Office of Inspector General civil and criminal investigations. \r\n\r\nIn our service we have:\r\n\r\n--Assisted the Department, including the National Nuclear Security Administration, in identifying key management challenges such as the aging of the nuclear weapons complex infrastructure and the emerging human capital crisis; \r\n--Facilitated efforts to reform Department security, by identifying both systemic and situational vulnerabilities; \r\n--Annually audited the agency's financial statements, helping to ensure that the Department does that which every American business must do: balance its books; \r\n--Highlighted opportunities for reductions in overhead costs in environmental management and defense programs; \r\n--Investigated and helped bring to justice those who have committed crimes against the Department, with recent special emphasis on cyber crimes at an agency which owns and operates some of the most sophisticated supercomputers in the world; and \r\n--Issued a host of reports identifying concrete opportunities to reform Department: contract management; waste management; environment, safety and health stewardship; research and development; major facilities and project construction and operation; and human capital.",
+            "modified": "2014-11-15",
+            "accessLevel": "public",
+            "identifier": "DOE-019-3423678761",
+            "dataQuality": true,
+            "license": "http://opendatacommons.org/licenses/pddl/",
+            "spatial": "DOE",
+            "temporal": "2012/2014",
+            "publisher": {
+              "@type": "org:Organization",
+              "name": "DOE Inspector General"
+            },
+            "accrualPeriodicity": "R/P1D",
+            "contactPoint": {
+              "@type": "vcard:Contact",
+              "fn": "Tara Porter",
+              "hasEmail": "mailto:redacted@example.invalid"
+            },
+            "distribution": [
+              {
+                "@type": "dcat:Distribution",
+                "accessURL": "https://energy.gov/ig/office-inspector-general",
+                "format": "html",
+                "title": "IG web"
+              }
+            ],
+            "keyword": [
+              "FOIA",
+              "audits and inspections",
+              "investigations",
+              "whistleblower"
+            ],
+            "bureauCode": [
+              "019:00"
+            ],
+            "programCode": [
+              "019:000"
+            ],
+            "language": [
+              "en-US"
+            ],
+            "theme": [
+              "corporate managemetn"
+            ]
+          },
+          {
+            "@type": "dcat:Dataset",
+            "title": "Survey Tool",
+            "description": "Survey tool that allows the administrator to email a survey to a specific individual or to multiple people.  It is used for feds and contractors.",
+            "modified": "2022-08-30T12:48:33.230Z",
+            "accessLevel": "non-public",
+            "identifier": "DOE-019-2239024589",
+            "dataQuality": true,
+            "conformsTo": "https://www.id.energy.gov/",
+            "describedBy": "https://www.id.energy.gov/Surveys/",
+            "describedByType": "text/html",
+            "issued": "2016-01-01",
+            "landingPage": "https://www.id.energy.gov/Surveys/",
+            "license": "https://project-open-data.cio.gov/unknown-license/",
+            "rights": "Access is only available to DOE-ID Feds and Contractors",
+            "systemOfRecords": "none",
+            "spatial": "DOE",
+            "publisher": {
+              "@type": "org:Organization",
+              "name": "Idaho Operations Office",
+              "subOrganizationOf": {
+                "@type": "org:Organization",
+                "name": "Idaho Operations Office"
+              }
+            },
+            "accrualPeriodicity": "irregular",
+            "contactPoint": {
+              "@type": "vcard:Contact",
+              "fn": "Tammy Peterson",
+              "hasEmail": "mailto:redacted@example.invalid"
+            },
+            "distribution": [
+              {
+                "@type": "dcat:Distribution",
+                "accessURL": "https://www.id.energy.gov/surveys",
+                "format": "aspx",
+                "title": "Survey",
+                "description": "This is a tool used to allow DOE Idaho Operations to conduct surveys of employees for valuable feedback"
+              },
+              {
+                "@type": "dcat:Distribution",
+                "accessURL": "https://www.id.energy.gov/surveys",
+                "title": "Survey Tool",
+                "description": "This is a site the is utilized by DOE-ID people and subcontractors to get helpful information for the organizations and where the issues are. this allows orgs to address concerns with in the DOE-ID departments. this is not available to the public."
+              }
+            ],
+            "keyword": [
+              "DOE-ID",
+              "Peterson",
+              "survey"
+            ],
+            "bureauCode": [
+              "000:00"
+            ],
+            "programCode": [
+              "000:000"
+            ],
+            "language": [
+              "en-US"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

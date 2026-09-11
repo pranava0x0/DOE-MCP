@@ -1,0 +1,76 @@
+# One of two sources in the registry whose publisher has built deliberately
+# against automation. It is described, never queried.
+
+id: snl-gesdb
+name: DOE Global Energy Storage Database (GESDB)
+domain: energy
+
+publisher:
+  steward: snl
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [snl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: outreach_pending
+  tier: crawl_or_defer
+  terms_url: https://sandia.gov/ess/
+  terms_notes: >
+    An explicit anti-automation architecture. gesdb.sandia.gov drops
+    plain HTTP clients at the connection level — no status code returned
+    at all — while serving browsers. Read as a deliberate posture rather
+    than a misconfiguration, and honoured.
+
+freshness:
+  expected_cadence: unknown
+  cadence_source: >
+    Unknown.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Global energy storage projects: technology, capacity, status,
+    ownership.
+  temporal: current
+  dataset_version: "current"
+  known_limitations:
+    - >
+      Records also reach DOE Data Explorer, which is a sanctioned route
+      to some of the same content and needs no permission from anyone.
+    - >
+      The publisher's posture is the finding. Circumventing it would be
+      the one thing this project's principles rule out absolutely.
+
+authority_notes: >
+  Primary. Intended capabilities: grid-adjacent storage data. The
+  correct next step is an email, not a workaround, which is what
+  `outreach_pending` exists to record (decision 0007-B) and what Gate G
+  governs.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Outreach pending. Send the Gate-G note to Sandia's energy storage
+    group asking whether sanctioned programmatic access exists, and
+    record the answer in-repo whatever it is. Until then this is
+    inventory, and the DDE route is what a caller is pointed at.

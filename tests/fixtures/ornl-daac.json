@@ -1,0 +1,34 @@
+{
+  "note": "Recorded live from ORNL DAAC (Daymet, MODIS/VIIRS subsets) (https://daac.ornl.gov/citation_policy.html) by tools/record_fixtures.py. Publisher content redistributed under the terms recorded in THIRD_PARTY_DATA.yml.",
+  "redaction": "Email addresses replaced with redacted@example.invalid and credential values with 'redacted' at record time. Field shapes and lengths are otherwise the publisher's.",
+  "interactions": [
+    {
+      "url": "https://daymet.ornl.gov/single-pixel/api/data",
+      "params": {
+        "lat": "35.9313",
+        "lon": "-84.3104",
+        "vars": "prcp,tmax,tmin",
+        "start": "2023-06-01",
+        "end": "2023-06-05"
+      },
+      "headers": {
+        "content-type": "text/csv; charset=utf-8"
+      },
+      "body": "Latitude: 35.9313  Longitude: -84.3104\nX & Y on Lambert Conformal Conic: 1352953.24 -569846.6\nTile: 11208\nElevation: 261 meters\nAll years; all variables; Daymet Software Version 4.0\nHow to cite: Thornton; M.M.; R. Shrestha; Y. Wei; P.E. Thornton; S-C. Kao; and B.E. Wilson. 2022. Daymet: Daily Surface Weather Data on a 1-km Grid for North America; Version 4 R1. ORNL DAAC; Oak Ridge; Tennessee; USA. https://doi.org/10.3334/ORNLDAAC/2129\nyear,yday,prcp (mm/day),tmax (deg c),tmin (deg c)\n2023,152,0.00,28.62,16.90\n2023,153,0.00,31.43,16.08\n2023,154,0.00,32.28,14.76\n2023,155,0.00,31.05,16.80\n2023,156,2.12,29.20,16.24\n"
+    },
+    {
+      "url": "https://daymet.ornl.gov/single-pixel/api/data",
+      "params": {
+        "lat": "35.9313",
+        "lon": "-84.3104",
+        "vars": "tmax",
+        "start": "2024-12-26",
+        "end": "2024-12-31"
+      },
+      "headers": {
+        "content-type": "text/csv; charset=utf-8"
+      },
+      "body": "Latitude: 35.9313  Longitude: -84.3104\nX & Y on Lambert Conformal Conic: 1352953.24 -569846.6\nTile: 11208\nElevation: 261 meters\nAll years; all variables; Daymet Software Version 4.0\nHow to cite: Thornton; M.M.; R. Shrestha; Y. Wei; P.E. Thornton; S-C. Kao; and B.E. Wilson. 2022. Daymet: Daily Surface Weather Data on a 1-km Grid for North America; Version 4 R1. ORNL DAAC; Oak Ridge; Tennessee; USA. https://doi.org/10.3334/ORNLDAAC/2129\nyear,yday,tmax (deg c)\n2024,361,14.51\n2024,362,12.72\n2024,363,14.22\n2024,364,15.90\n2024,365,16.43\n"
+    }
+  ]
+}

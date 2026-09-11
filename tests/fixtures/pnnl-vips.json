@@ -1,0 +1,870 @@
+{
+  "note": "Recorded live from VIPS (DOE patent and software database) (https://vips.pnnl.gov/) by tools/record_fixtures.py. Publisher content redistributed under the terms recorded in THIRD_PARTY_DATA.yml.",
+  "redaction": "Email addresses replaced with redacted@example.invalid and credential values with 'redacted' at record time. Field shapes and lengths are otherwise the publisher's.",
+  "interactions": [
+    {
+      "url": "https://vips.pnnl.gov/api/VIPS/LabDetails",
+      "params": {},
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": [
+        {
+          "acronym": "AMES",
+          "name": "Ames Laboratory",
+          "contact": "redacted@example.invalid",
+          "url": "https://www.ameslab.gov/work-us/licensing-opportunities"
+        },
+        {
+          "acronym": "ANL",
+          "name": "Argonne National Laboratory",
+          "contact": "redacted@example.invalid",
+          "url": "https://www.anl.gov/partners"
+        },
+        {
+          "acronym": "BNL",
+          "name": "Brookhaven National Laboratory",
+          "contact": "redacted@example.invalid",
+          "url": "https://www.bnl.gov/techtransfer"
+        },
+        {
+          "acronym": "FNAL",
+          "name": "Fermi National Accelerator Laboratory",
+          "contact": "redacted@example.invalid",
+          "url": "https://partnerships.fnal.gov/licensing/how-license/"
+        },
+        {
+          "acronym": "INL",
+          "name": "Idaho National Laboratory",
+          "contact": "redacted@example.invalid",
+          "url": "https://inl.gov/technology-deployment"
+        },
+        {
+          "acronym": "KCNSC",
+          "name": "Kansas City National Security Campus",
+          "contact": "redacted@example.invalid",
+          "url": "https://kcnsc.doe.gov/technologies/licensing-technologies"
+        },
+        {
+          "acronym": "LBNL",
+          "name": "Lawrence Berkeley National Laboratory",
+          "contact": "redacted@example.invalid",
+          "url": "https://ipo.lbl.gov/"
+        },
+        {
+          "acronym": "LLNL",
+          "name": "Lawrence Livermore National Laboratory",
+          "contact": "redacted@example.invalid",
+          "url": "https://ipo.llnl.gov/technologies/software"
+        },
+        {
+          "acronym": "LANL",
+          "name": "Los Alamos National Laboratory",
+          "contact": "redacted@example.invalid",
+          "url": "https://www.lanl.gov/projects/feynman-center/deploying-innovation/intellectual-property/software-tools/index.php"
+        },
+        {
+          "acronym": "NETL",
+          "name": "National Energy Technology Laboratory",
+          "contact": "redacted@example.invalid",
+          "url": "https://www.netl.doe.gov/business/tech-transfer"
+        },
+        {
+          "acronym": "NLR",
+          "name": "National Laboratory of the Rockies",
+          "contact": "redacted@example.invalid",
+          "url": "https://www.nlr.gov/workingwithus/licensing.html"
+        },
+        {
+          "acronym": "NNSS",
+          "name": "Nevada National Security Site",
+          "contact": "redacted@example.invalid",
+          "url": "https://nnss.gov/partnerships/technology-licensing-agreement"
+        },
+        {
+          "acronym": "ORNL",
+          "name": "Oak Ridge National Laboratory",
+          "contact": "redacted@example.invalid",
+          "url": "https://www.ornl.gov/technology-transfer"
+        },
+        {
+          "acronym": "PNNL",
+          "name": "Pacific Northwest National Laboratory",
+          "contact": "redacted@example.invalid",
+          "url": "https://www.pnnl.gov/available-technologies"
+        },
+        {
+          "acronym": "PPPL",
+          "name": "Princeton Plasma Physics Laboratory",
+          "contact": "redacted@example.invalid",
+          "url": "https://www.pppl.gov/engage-us/partner-pppl"
+        },
+        {
+          "acronym": "SLAC",
+          "name": "SLAC National Accelerator Laboratory",
+          "contact": "redacted@example.invalid",
+          "url": "https://otl.stanford.edu/industry/explore-technologies"
+        },
+        {
+          "acronym": "SNL",
+          "name": "Sandia National Laboratories",
+          "contact": "redacted@example.invalid",
+          "url": "https://ip.sandia.gov"
+        },
+        {
+          "acronym": "SRNL",
+          "name": "Savannah River National Laboratory",
+          "contact": "redacted@example.invalid",
+          "url": "https://www.srnl.gov/partner-with-us/industry-partners/technologies-licensing"
+        },
+        {
+          "acronym": "SRS",
+          "name": "Savannah River Site",
+          "contact": "redacted@example.invalid",
+          "url": "https://savannahrivernuclearsolutions.com/opportunities/techtransfer.htm"
+        },
+        {
+          "acronym": "TJNAF",
+          "name": "Thomas Jefferson National Accelerator Facility",
+          "contact": "redacted@example.invalid",
+          "url": "https://www.jlab.org/techtransfer"
+        },
+        {
+          "acronym": "Y12",
+          "name": "Y-12 National Security Complex",
+          "contact": "redacted@example.invalid",
+          "url": "https://www.y12.doe.gov/technologies"
+        }
+      ]
+    },
+    {
+      "url": "https://vips.pnnl.gov/api/v1/ip/search",
+      "params": {
+        "page_size": "5",
+        "labs": "PNNL"
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "total": 2069,
+        "page_size": 5,
+        "next_cursor": "eyJjaWQiOjEzLCJvZmZzZXQiOjV9",
+        "hits": [
+          {
+            "id": "1012",
+            "type": "Software",
+            "sub_type": "Open Source",
+            "title": "GridLab-D",
+            "abstract": "A power system simulation that runs on all major platforms, provides open access to all functionality, and supports extended modeling of non-traditional components of the electric power system, such as buildings, distributed resources, and markets.",
+            "description": "# Building GridLAB-D\n\n## Prerequisites\n\nCMake  \nCCMake or CMake-gui (optional)   \ng++ or Clang\n\n## Installation\n\n### Git\n\nClone the git repository for GridLAB-D and update submodules:\n\n```shell script\ngit clone https://github.com/gridlab-d/gridlab-d.git\ncd gridlab-d\ngit submodule update --init\n```\n\n### Prepare out-of-source build directory\n\nCreate build directory and move into it:\n\n```shell script \nmkdir cmake-build\ncd cmake-build\n```\n\n### Generate the build system\n\nCMake flags can be added using the `-D` prefix, and different build systems can be selected using `-G`.\n\nBelow is a general format guide, and an actual viable build command for most platforms.\n\n```shell script\n# Format:\ncmake <flags> ..\n\n# Full Example: \ncmake -DCMAKE_INSTALL_PREFIX=~/software/GridLAB-D -DCMAKE_BUILD_TYPE=Release -G \"CodeBlocks - Unix Makefiles\" ..\n```\n\n### Build and install the application\n\nCMake can directly invoke the build and install process by running the below command. Multiprocess build is enabled\nthrough the `-j#` flag (`-j8` in the included example).\n\n```shell script\n# Run the build system and install the application\ncmake --build . -j8 --target install\n```\n\n## CMake Variables\n\nThe following variables affect the build process and can be changed using the `-D` flag at build generation or by\nupdating the cache using ccmake or cmake-gui (default values are shown).\n\n| Variable             | Valid Values                                       | Description                                     | Linux/Mac Default | Windows Default |\n|----------------------|----------------------------------------------------|-------------------------------------------------|-------------------|-----------------|\n| CMAKE_BUILD_TYPE     | 'Debug', 'RelWithDebInfo', 'MinSizeRel', 'Release' | Compiler optimizer configuration                | Debug             | Debug           |\n| CMAKE_INSTALL_PREFIX | Any path                                           | Install location                                | /usr/local        | %ProgramFiles%  |\n| GLD_USE_HELICS       | ON/OFF                                             | Enables detection and use of HELICS             | OFF               | OFF             |\n| GLD_HELICS_DIR       | Any path                                           | Hint indicating HELICS install directory        |                   |                 |\n| GLD_USE_MYSQL        | ON/OFF                                             | Enables detection and use of MySQL              | OFF               | OFF             |\n| GLD_MYSQL_DIR        | Any path                                           | Hint indicating MySQL install directory         |                   |                 |\n| GLD_DO_CLEANUP       | ON/OFF                                             | Remove files from old GridLAB-D build processes | OFF               | OFF             |\n\n### Enable building with HELICS\n\nTo enable HELICS set the `GLD_USE_HELICS` flag to `ON`\nif HELICS is in a custom path set `GLD_HELICS_DIR` to the install location in CMake or as an environmental variable\n\n### Enable building with MySQL\n\nTo enable MySQL support set the `GLD_USE_MYSQL` flag to `ON`\nif MySQL is in a custom path set `GLD_MYSQL_DIR` to the install location in CMake or as an environmental variable\n\n### Enable build debugging\n\nTo output all build commands during build, set following flag to `ON`\n\n```\nCMAKE_VERBOSE_MAKEFILE=OFF \n```\n",
+            "date_available": "2008-02-15T00:00:00Z",
+            "published_date": "2008-02-15T00:00:00Z",
+            "inserted_date": "2026-07-13T19:30:05.027000Z",
+            "inventors": [
+              "J. D. McCall",
+              "L. M. Connell",
+              "N. D. Tenney",
+              "B. J. Carpenter",
+              "Z. T. Taylor",
+              "K. Gowri",
+              "L. L. Kiesling",
+              "R. G. Pratt",
+              "T. A. Carlon",
+              "D. P. Chassin",
+              "S. Katipamula",
+              "N. Lu",
+              "K. P. Schneider",
+              "S. Lu",
+              "C. E. Gerkensmeyer",
+              "B. Yang",
+              "M. L. Hauer",
+              "S. L. Walton",
+              "Y. Chen"
+            ],
+            "software_type": "Open Source",
+            "software_source": "DOE CODE",
+            "software_acronym": "GridLAB-D",
+            "software_doi": "10.11578/dc.20171025.1135",
+            "software_licenses": [
+              "Other"
+            ],
+            "software_repo_url": "https://github.com/gridlab-d/gridlab-d",
+            "software_access_limited": false,
+            "lab": "Pacific Northwest National Laboratory",
+            "taxonomy_tags": [
+              "Engineering.Electrical.Power Systems",
+              "Computer Science.Distributed Systems.Grid Computing",
+              "Engineering.Electrical.Control Systems"
+            ],
+            "taxonomy_categories": [
+              "Engineering",
+              "Computer Science"
+            ],
+            "similar_ip": [
+              "1252720",
+              "76430",
+              "1231167",
+              "1184",
+              "3861",
+              "1238681"
+            ]
+          },
+          {
+            "id": "102608",
+            "type": "Software",
+            "sub_type": "Open Source",
+            "title": "pnnl/PHANTOM",
+            "abstract": "A topology-based anomaly detection tool for temporal varying data. The input is json or CSV formatted data with a timestamp field identified. The algorithm computes vectorizations (using a vectorization config file) of time windows of data and computes a topological measure of anomalousness. The output is a sequence of anomaly scores for each time window",
+            "description": "# PHANTOM\n\n## Disclaimer\nThis material was prepared as an account of work sponsored by an agency of the United States Government.  Neither the United States Government nor the United States Department of Energy, nor Battelle, nor any of their employees, nor any jurisdiction or organization that has cooperated in the development of these materials, makes any warranty, express or implied, or assumes any legal liability or responsibility for the accuracy, completeness, or usefulness or any information, apparatus, product, software, or process disclosed, or represents that its use would not infringe privately owned rights.  \nReference herein to any specific commercial product, process, or service by trade name, trademark, manufacturer, or otherwise does not necessarily constitute or imply its endorsement, recommendation, or favoring by the United States Government or any agency thereof, or Battelle Memorial Institute. The views and opinions of authors expressed herein do not necessarily state or reflect those of the United States Government or any agency thereof.  \n  \nPACIFIC NORTHWEST NATIONAL LABORATORY  \noperated by  \nBATTELLE  \nfor the  \nUNITED STATES DEPARTMENT OF ENERGY  \nunder Contract DE-AC05-76RL01830  \n  \n## BSD\nCopyright 2022 Battelle Memorial Institute  \n  \nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:  \n1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.  \n2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.  \nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  \n\n## What Is PHANTOM? And what does it do?\nPHANTOM stands for \"Persistent Homology Anomalous Tracking Observation Monitor.\" The PHANTOM application uses topological structure of vector data derived from temporal log data to discover how similar new data is to an evolving baseline set\n\n## High Level Steps\n1. Gather data from some source (or generate random sample set) - CSV or JSON with required \"time\" field for each row/entry\n2. Partition data into time intervals\n3. Create vectors for each partitioned set of data\n4. Build a baseline from multiple initial vectors\n5. Calculate how much adding a single vector of new data (corresponding to a new time window) would change the topology of the collection of baseline vectors\n\t* If the change is not found significant (the new data is not anomalous compared to the baseline) update the baseline to include the current vector\n\t* If the change is found significant, do not update the baseline to include the anomalous data\n7. Record anomaly score for the new window. Return to step 5.\n\n# Running PHANTOM\n## Prerequisites\n1. Python3  \n\t* version 3.7  \n2. Python3 packages:  \n\t* numpy  \n\t* scipy  \n\t* ripser  \n\t* persim  \n\t* matplotlib  \n\n## Installation\n1. Install Python 3.7  \n2. Enter root directory  \n3. Run install.sh (this will install the appropriate prerequisite packages, no need to run this if you have already installed the packages listed above)\n```sh util/setup/install.sh```\n\n## Execution\nBefore running the following steps you will need to have data in the right format and created appropriate `config.json` and vectorization config files. See **Data** and **Configuration** sections below. Once those are set, complete the following steps to execute PHANTOM on your data.\n\n1. Enter root directory  \n2. Run PHANTOM  \n```python main.py```  \nresults and debug logs will display to console  \n```python -W ignore main.py```  \nhides warning messages (recommended for now)  \n\n## Viewing Results\nView `results.txt` and `Anomaly_Plot.png` files for results. \n\n# Data\n\n## Providing your own raw data\nIf you do not have raw data to test on, see the **Generating data** subsection below to generate simple test data for PHANTOM.  \n\nRaw data needs to be provided in a file in PHANTOM's root directory in either JSON or CSV format.  \n\nIf providing JSON-formatted data, the exact format must be a list of dictionaries, each dictionary being a single entry of data with at least a timestamp field. The timestamp field name and timestamp format must be set in the configuration file, see the **Configuration** section below. These examples use the epoch format.\n\nJSON Example:  \n```\n[  \n{\"timestamp\": 1640390400, \"field_01\": \"value_01\", \"field_02\": \"value_02\"},  \n{\"timestamp\": 1640390410, \"field_01\": \"value_03\", \"field_02\": \"value_04\"},  \n{\"timestamp\": 1640390420, \"field_01\": \"value_05\", \"field_02\": \"value_06\"},  \n... \n]\n```  \n\nCSV Example:  \n```\ntimestamp,field_01,field_02  \n1640390400,value_01,value_02  \n1640390410,value_03,value_04  \n1640390420,value_05,value_06  \n...\n```  \n\n## Generating data\nThe main purpose of the data generation feature is to help validate that the PHANTOM application can run in an environment. This should not be considered as realistic data. To start, first update `data_template.json`. Edit this file to configure how many fields of data are generated, the values each field can be, and the odds of each value. The data generation algorithm also uses two fields in `config.json`: **BASELINE_LENGTH_SECONDS** (to make sure that length of data does not contain any anomalies), and **TOTAL_RECORDS** (to know how many records to generate). Make sure these two fields are filled in before running `generateRaw.py`.\n\nFor each `field:value` pair of data being generated, a random number is generated from 0.0 to 1.0. If the random number is less than or equal to the decimal in the \"odds\" array, the corresponding \"value\" will be used to populate the field, otherwise it will check against the next decimal in \"odds\", and so on.  \n\nExample:  \n```\n...  \n{  \n    \"field\": \"username\",  \n    \"odds\": [0.33333, 0.66666, 0.99999, 1.0],  \n    \"values\": [\"alice\", \"bob\", \"cathy\", \"hacker\"]  \n},  \n...\n```  \nFor the field \"username\", there is a ~33.333% chance of the generated value being \"alice\", \"bob\" and \"cathy\", but a 0.001% chance of the generated value being \"hacker\". Theoretically, the PHANTOM app would deem vectors including data with the \"hacker\" username to be anomalous, given the low chances of that username appearing throughout the entire dataset (and baseline).  \n\nOnce you have set up `data_template.json` run the following steps to create your data\n\n1. Enter root directory  \n2. Generate raw data  \n```python generateRaw.py```  \n\nThis will create raw.csv and raw.json in the root directory.\n\n# Vectorization\nThe `Vectorization.py` file is where raw data is broken down into separate windows (based on the timing configuration settings) and converted into vectorized data. How each window of raw data is converted into a vectorized form is determined by the contents of the vector config file (set by **VECTOR_CONFIG_FILE_NAME** in `config.json`, see details in **Configuration** below).  \n\nThe raw data being sent to the `Vectorize()` function is expected to be in the format of a chronological list object, where each element in the list is a dictionary object containing key/value pairs for the data from a single timestamp, including a key/value pair for the timestamp itself. The `Vectorize()` method will build windows based on the timestamp field in each dictionary object, which can be configured in the `config.json` file.  \n\nThe `BuildVector()` function will refer to the vector config file to determine how to build each individual column in the vector. There are a variety of vectorization strategies that can be used to build each column. See details in the **Vector Config File** section below.  \n\n## Adding options to the vectorization strategies\nAdditional vectorization strategies can be implemented within the `Vectorization.py` file by doing the following:  \n1. In the `Vectorization.py` file, find the `BuildVector()` function. This is where each window of data is converted into a vector format. The main loop in this function iterates over each vector column defined in the vector config file and creates each column one at a time.  \n2. To add a new strategy, add an \"if\" statement to the block to handle the name of your new strategy. Within that if statement, you will have access to the entire window of data to build the specific column however is necessary.  \n3. Update the contents of the vector config file to include your new strategy in a column definition.  \n\n# Configuration\nThere are two configuration files that need to be created in order to execute PHANTOM's main.py. The first is the overall configuration (`config.json`) including identifying the correct data file, setting window and baseline time lengths, anomaly score threshold, and more. The second is the vectorization configuration. This can be any filename, and that filename must be specified in `config.json`.\n\n## config.json\nThe following fields must be set:\n\n* **WINDOW_LENGTH_SECONDS**  \nLength of time in seconds (integer).  \nThis controls how much data to include in each window/vector when building the vectorized data.  \n  \n* **OVERLAP_SECONDS**  \nLength of time in seconds (integer).  \nThis controls length of time between the start of one window to the start of the next.  \n  \n* **BASELINE_LENGTH_SECONDS**  \nLength of time in seconds (integer).  \nMust be greater than WINDOW_LENGTH_SECONDS.  \nThis controls how much of the input data will be used to generate the initial baseline.  \n  \n* **BASELINE_PROBABILITY**  \nDecimal from 0.0 to 1.0.  \nThis determines the probability for each vectorized window of data, starting from the first up until the baseline length in seconds is reached, to be included in the initial baseline.  \n  \n* **ANOMALY_THRESHOLD**  \nDecimal value.  \nThe rolling baseline will be updated with vectors that have anomaly scores lower than ANOMALY_THRESHOLD.\n  \n* **VECTOR_CONFIG_FILE_NAME**  \nName of the config file that defines the vectorization strategy that will be used in `Vectorize.py`.  \n  \n* **RAW_DATA_FILE_NAME**  \nFile name for the raw data to be read in. Raw data file must be in root directory.  \n  \n* **RAW_DATA_FORMAT**  \nThe format of the raw data. \"json\" or \"csv\" are currently implemented options.  \n  \n* **TIME_FIELD_NAME**  \nField name in the raw data that contains the timestamp.  \n  \n* **TIME_FORMAT**  \nThe format of timestamps found in the raw data. \"epoch\" or \"iso\" are currently implemented options. If your timestamp format is different than epoch or iso, you may provide the formatting in a \"%d %B %Y\" style or similar fashion. Refer to [Python strftime cheatsheet](https://strftime.org/). The Python code will attempt to parse the timestamp field best it can.  \n  \n* **TOTAL_RECORDS**  \nTotal number of records to include in generated data (integer).  \n  \n## Vector Config File\nThe Vector Config File (set in the **VECTOR_CONFIG_FILE_NAME** field in `config.json`) is used to define how vectors will be created from each window of data. The config file must be in json format that contains a \"VECTOR\" block. The \"VECTOR\" block will define each vector column individually, the key being the column name and the value being the dictionary definition. The dictionary definition must include a \"strategy\" key, which will need to match the \"if\" block in the `BuildVector()` function in `Vectorization.py` (see the **Adding options to the vectorization strategies** section above). The \"strategy\" will determine the other keys necessary within the dictionary definition. Most also include a \"field\" key. Refer to the **Currently Implemented Strategies** section below and the `BuildVector()` function to see how each column is handled for examples.  \n  \n### Currently Implemented Vectorization Strategies\n* **count_unique**  \nCount the number of unique values of a field within a window.  \n```\n...  \n{  \n    \"strategy\": \"count_unique\",  \n    \"field\": \"<field name found in raw data>\"  \n}  \n...\n```  \n* **count_values**  \nCount the occurrences of each specified value of a field within a window. Can be configured to include counts of all other values not specified. This strategy will produce as many columns in the vectorization as values being counted (plus one if `include_other=true`).  \n```\n...  \n{  \n    \"strategy\": \"count_values\",  \n    \"field\": \"<field name found in raw data>\",  \n    \"values\": [<exact value to count>, <exact value to count>, ...],  \n    \"include_other\": <true/false>  \n}  \n...\n```  \n* **min_value**  \nThe minimum value of a field found within a window.  \n```\n...  \n{  \n    \"strategy\": \"min_value\",  \n    \"field\": \"<field name found in raw data>\"  \n}  \n...\n```  \n* **max_value**  \nThe maximum value of a field found within a window.  \n```\n...  \n{  \n    \"strategy\": \"max_value\",  \n    \"field\": \"<field name found in raw data>\"  \n}  \n...\n```  \n* **mean_values**  \nThe mean of values of a field within a window.  \n```\n...  \n{  \n    \"strategy\": \"mean_values\",  \n    \"field\": \"<field name found in raw data>\"  \n}  \n...\n```  \n* **median_values**  \nThe median of values of a field within a window.  \n```\n...  \n{  \n    \"strategy\": \"median_values\",  \n    \"field\": \"<field name found in raw data>\"  \n}  \n...\n```  \n* **mode_values**  \nThe mode of values of a field within a window.  \n```\n...  \n{  \n    \"strategy\": \"mode_values\",  \n    \"field\": \"<field name found in raw data>\"  \n}  \n...\n```  \n* **sum_values**  \nThe sum of values of a field within a window.  \n```\n...  \n{  \n    \"strategy\": \"sum_values\",  \n    \"field\": \"<field name found in raw data>\"  \n}  \n...\n```  \n* **count_grouping**  \nCount the occurrences of specified values of fields being found in the same record together within a window. Each field specified is treated as an \"AND\", values within each field are treated as an \"OR\".  \n```\n...  \n{  \n    \"strategy\": \"count_grouping\",  \n    \"fields\": {  \n        \"<field name>\": [\"<exact value to match>\", \"<exact value to match>, ...\"],  \n        \"<field name>\": [\"<exact value to match>, ...\"],  \n        ...  \n    }  \n}  \n...\n```  \n  \n# **Notice**  \nThis computer software was prepared by Battelle Memorial Institute, hereinafter the Contractor, under Contract No. DE-AC05-76RL01830 with the Department of Energy (DOE).\u00a0 All rights in the computer software are reserved by DOE on behalf of the United States Government and the Contractor as provided in the Contract.\u00a0 You are authorized to use this computer software for Governmental purposes but it is not to be released or distributed to the public.\u00a0 NEITHER THE GOVERNMENT NOR THE CONTRACTOR MAKES ANY WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY LIABILITY FOR THE USE OF THIS SOFTWARE.\u00a0 This notice including this sentence must appear on any copies of this computer software.",
+            "date_available": "2023-03-14T00:00:00Z",
+            "published_date": "2023-03-14T00:00:00Z",
+            "inserted_date": "2026-07-13T19:30:17.542000Z",
+            "inventors": [
+              "Garret Seppala",
+              "PNNL Developer Central",
+              "Emilie Purvine",
+              "Kathleen Nowak"
+            ],
+            "software_type": "Open Source",
+            "software_source": "DOE CODE",
+            "software_acronym": "PHANTOM",
+            "software_doi": "10.11578/dc.20230314.5",
+            "software_licenses": [
+              "BSD 2-clause \"Simplified\" License"
+            ],
+            "software_repo_url": "https://github.com/pnnl/PHANTOM",
+            "software_access_limited": false,
+            "lab": "Pacific Northwest National Laboratory",
+            "taxonomy_tags": [
+              "Sensors.Data Processing and Integration.Data Analytics",
+              "Math.Geometry.Topology"
+            ],
+            "taxonomy_categories": [
+              "Sensors",
+              "Math"
+            ],
+            "similar_ip": [
+              "US7739082",
+              "US9361463",
+              "US20190182281",
+              "US9560065",
+              "US9825979",
+              "US10243984"
+            ]
+          },
+          {
+            "id": "102619",
+            "type": "Software",
+            "sub_type": "Open Source",
+            "title": "pnnl/i2x",
+            "abstract": "Interconnection Innovation e-Xchange (i2x) Test Systems allows for scripted customizations of social behavior, recovery operations, investment decisions, and metrics in a simplified Python module. Public test systems allow for replication of results by other stakeholders",
+            "description": "# Interconnection Innovation e-Xchange (i2x) Open Test Systems \n\nThis repository contains open grid network models and modeling scripts to \ntest and compare different factors/measures (e.g., technoeconomic, social, \nequity, and engineering) that examine practices and policies for \ninterconnection queue management and cost allocation.  This repository is \nused for engineering training bootcamps, interconnection study guides, and \nan interconnection roadmap for the [i2x project](https://energy.gov/i2x). \n \n[Documentation for Users and Developers](https://i2x.readthedocs.io/en/latest/). \n\n[Python Package](https://pypi.org/project/i2x/).\n\n## Directories in this Repository\n\n- **docs**; source files for building the documentation on ReadTheDocs for users and developers\n- **hca**; source files for DER hosting capacity analysis\n- **hubdata**; data files for interconnection metrics in the i2x data portal\n- **soco**; source and data files for socio-grid co-simulation example\n- **src/i2x**; source and data files for the *i2x* Python package for DER analysis, including the GUI\n- **test**; supporting Python scripts that build and test circuit models\n\n## License\n\nSee [License](license.txt)\n\n## Notice\n\nThis material was prepared as an account of work sponsored by an agency of the United States Government.  Neither the United States Government nor the United States Department of Energy, nor Battelle, nor any of their employees, nor any jurisdiction or organization that has cooperated in the development of these materials, makes any warranty, express or implied, or assumes any legal liability or responsibility for the accuracy, completeness, or usefulness or any information, apparatus, product, software, or process disclosed, or represents that its use would not infringe privately owned rights.\nReference herein to any specific commercial product, process, or service by trade name, trademark, manufacturer, or otherwise does not necessarily constitute or imply its endorsement, recommendation, or favoring by the United States Government or any agency thereof, or Battelle Memorial Institute. The views and opinions of authors expressed herein do not necessarily state or reflect those of the United States Government or any agency thereof.\n\n    PACIFIC NORTHWEST NATIONAL LABORATORY\n                operated by\n                 BATTELLE\n                 for the\n     UNITED STATES DEPARTMENT OF ENERGY\n      under Contract DE-AC05-76RL01830\n\nCopyright 2022-2023, Battelle Memorial Institute\n\n",
+            "date_available": "2023-03-14T00:00:00Z",
+            "published_date": "2023-03-14T00:00:00Z",
+            "inserted_date": "2026-07-13T19:30:17.543000Z",
+            "inventors": [
+              "Tom McDermott",
+              "Alok Kumar Bharati"
+            ],
+            "software_type": "Open Source",
+            "software_source": "DOE CODE",
+            "software_acronym": "i2x",
+            "software_doi": "10.11578/dc.20230314.6",
+            "software_licenses": [
+              "BSD 2-clause \"Simplified\" License"
+            ],
+            "software_repo_url": "https://github.com/pnnl/i2x",
+            "software_access_limited": false,
+            "lab": "Pacific Northwest National Laboratory",
+            "taxonomy_tags": [
+              "Engineering.Industrial.Systems Engineering and Integration",
+              "Manufacturing.Automation and Robotics.Collaborative Robots"
+            ],
+            "taxonomy_categories": [
+              "Engineering",
+              "Manufacturing"
+            ],
+            "similar_ip": [
+              "72356",
+              "US9628339",
+              "US9600386"
+            ]
+          },
+          {
+            "id": "103196",
+            "type": "Software",
+            "sub_type": "Open Source",
+            "title": "LCA",
+            "abstract": "The Locally Competitive Algorithm (LCA) is a dynamical sparse solver that uses only local computations, allowing for massively parallel implementations on compatible neuromorphic architectures such as Intel's Loihi research chip. In this invention, we show how unsupervised dictionary learning with spiking LCA can be implemented on GPUs and Intel's Loihi research chip.",
+            "description": "# CPU Implementation of 1-Layer and 2-Layer LCA for Lava\n\nImplementation of Locally Competative Algorithm (LCA) based on https://doi.org/10.1162/neco.2008.03-07-486\n\nRelies on Lava Framework:\nhttps://github.com/lava-nc/lava\n\n[[Paper](https://dl.acm.org/doi/10.1145/3589737.3605973)]\n[[Arxiv](https://arxiv.org/abs/2307.13762)]",
+            "date_available": "2023-03-16T00:00:00Z",
+            "published_date": "2023-03-16T00:00:00Z",
+            "inserted_date": "2026-07-13T19:30:17.544000Z",
+            "inventors": [
+              "Gavin Parpart",
+              "Yijing Watkins,"
+            ],
+            "software_type": "Open Source",
+            "software_source": "DOE CODE",
+            "software_doi": "10.11578/dc.20230316.2",
+            "software_licenses": [
+              "BSD 2-clause \"Simplified\" License"
+            ],
+            "software_repo_url": "https://github.com/pnnl/LCA",
+            "software_access_limited": false,
+            "lab": "Pacific Northwest National Laboratory",
+            "taxonomy_tags": [
+              "Computer Science.Hardware and Architectures.Quantum Computing",
+              "Life Science.Neuroscience.Neuroinformatics"
+            ],
+            "taxonomy_categories": [
+              "Computer Science",
+              "Life Science"
+            ],
+            "similar_ip": [
+              "153175",
+              "74250",
+              "110613",
+              "103290"
+            ]
+          },
+          {
+            "id": "103235",
+            "type": "Software",
+            "sub_type": "Open Source",
+            "title": "COMPASS-DOE/PoolDilutionR",
+            "abstract": "Home of PoolDilutionR, a package for easily calculating gross rates from isotope pool dilution data.",
+            "description": "# PoolDilutionR\n\n<!-- badges: start -->\n[![R-CMD-check](https://github.com/COMPASS-DOE/PoolDilutionR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/COMPASS-DOE/PoolDilutionR/actions/workflows/R-CMD-check.yaml)\n<!-- badges: end -->\n\nAn R package for easy calculation of rates from isotope pool dilution experiments.\n\nTo load the package, type `library(PoolDilutionR)`.\n\n## Overview\n\nThis code calculates gross production and consumption from pool dilution time series data.\nTarget pool (e.g., methane, nitrate) and isotopic composition (e.g., 13C, 15N) are measured from a closed system over time, the model optimizes production rate (P) and the first order rate constant (k), by minimizing error in the model-predicted total pool size (unit volume or mass), as well as the isotopic signature.\nThe optimization weighs the signal:noise ratio of pool and signatures using measurement precision as well as the magnitude of change over time.\nThe calculations used here are based on von Fischer and Hedin 2002, 10.1029/2001GB001448, with some modifications (manuscript link pending).\n\nOriginal code was written for data collected on a Picarro CRDS equipped with a SSIM2 unit.\n\n## Inputs\n\nTime series data of pool and isotopic composition.\n\n![image](https://user-images.githubusercontent.com/89651444/205718596-db983482-6d38-45d7-9b8c-2ee6fd6948f5.png)\n\n## Functions\n\nPrediction of P, gross production rate, and k, first order rate constant for consumption.\n\n    `pred <- pdr_predict(time = dat$time_days,\n                          m0 = dat$cal12CH4ml[1] + dat$cal13CH4ml[1],\n                          n0 = dat$cal13CH4ml[1],\n                          P = P,\n                          k = result$par[\"k\"],\n                          pool = \"CH4\")`\n    \n\nOptimization of predictions using data quality and deviation in pool size (Nm) and isotopic composition (Nd) over time.\n\n    `result <- pdr_optimize(time = dat$time_days,\n                          m = dat$cal12CH4ml + dat$cal13CH4ml,\n                          n = dat$cal13CH4ml,\n                          Nm = dat$Nm,\n                          Nd = dat$Nd,\n                          pool = \"CH4\",\n                          params = params)`\n                     \n## Output\n\nOptimized rates based on total pool size and atom percent composition.\n\n![image](https://user-images.githubusercontent.com/89651444/205720528-ae4554f0-0b37-4b19-8bcc-8d74d7c956c4.png)\n![image](https://user-images.githubusercontent.com/89651444/205720560-182a6316-c063-4fcb-b333-768c0f590a38.png)\n\n\n",
+            "date_available": "2023-03-20T00:00:00Z",
+            "published_date": "2023-03-20T00:00:00Z",
+            "inserted_date": "2026-07-13T19:30:17.545000Z",
+            "inventors": [
+              "Kendalynn Morris",
+              "Ben Bond-Lamberty"
+            ],
+            "software_type": "Open Source",
+            "software_source": "DOE CODE",
+            "software_acronym": "PoolDilutionR",
+            "software_doi": "10.11578/dc.20230320.1",
+            "software_licenses": [
+              "MIT License"
+            ],
+            "software_languages": [
+              "R"
+            ],
+            "software_repo_url": "https://github.com/COMPASS-DOE/PoolDilutionR",
+            "software_access_limited": false,
+            "lab": "Pacific Northwest National Laboratory",
+            "taxonomy_tags": [
+              "Earth Science.Hydrology and Water Resources.Water Quality",
+              "Environmental Science.Monitoring and Assessment.Water Quality Monitoring",
+              "Chemistry.Analytical Chemistry.Separation Science"
+            ],
+            "taxonomy_categories": [
+              "Earth Science",
+              "Environmental Science",
+              "Chemistry"
+            ],
+            "similar_ip": []
+          }
+        ]
+      }
+    },
+    {
+      "url": "https://vips.pnnl.gov/api/v1/ip/search",
+      "params": {
+        "page_size": "5",
+        "labs": "INL"
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "total": 1219,
+        "page_size": 5,
+        "next_cursor": "eyJjaWQiOjE0LCJvZmZzZXQiOjV9",
+        "hits": [
+          {
+            "id": "100174",
+            "type": "Software",
+            "sub_type": "Open Source",
+            "title": "Enhanced_STIX_Elevator",
+            "abstract": "To more effectively and completely convert STIX1 data to STIX2.",
+            "date_available": "2023-01-31T00:00:00Z",
+            "published_date": "2023-01-31T00:00:00Z",
+            "inserted_date": "2026-07-13T19:31:27.160000Z",
+            "inventors": [
+              "Meng Yue",
+              "Bryan /r Beckman"
+            ],
+            "software_type": "Open Source",
+            "software_source": "DOE CODE",
+            "software_acronym": "Enhanced_STIX_Elevator",
+            "software_doi": "10.11578/dc.20230209.1",
+            "software_licenses": [
+              "Other"
+            ],
+            "software_repo_url": "https://github.com/idaholab/Enhanced_STIX_Elevator",
+            "software_access_limited": false,
+            "lab": "Idaho National Laboratory",
+            "taxonomy_tags": [],
+            "taxonomy_categories": [],
+            "similar_ip": []
+          },
+          {
+            "id": "100185",
+            "type": "Software",
+            "sub_type": "Open Source",
+            "title": "Resilience Of Microgrids With Adaptive Capacity And Inertia",
+            "abstract": "Resilience of Microgrids with Adaptive capacity and Inertia calculates the maximum size of a disturbance a microgrid could withstand before frequency limits are violated. The results are based on power generation assets in the microgrid and its inertia.",
+            "description": "# ReMAIn\nResilience of Microgrids with Adaptive capacity and Inertia calculates the maximum size of a disturbance a microgrid could withstand before frequency limits are violated. \n",
+            "date_available": "2022-12-13T00:00:00Z",
+            "published_date": "2022-12-13T00:00:00Z",
+            "inserted_date": "2026-07-13T19:31:27.150000Z",
+            "inventors": [
+              "Tyler B Phillips",
+              "Timothy R McJunkin",
+              "SM Shafiul Alam",
+              "Bikash Poudel",
+              "Rojan Bhattarai",
+              "Thomas M Mosier"
+            ],
+            "software_type": "Open Source",
+            "software_source": "DOE CODE",
+            "software_acronym": "ReMAIn",
+            "software_doi": "10.11578/dc.20230209.2",
+            "software_licenses": [
+              "MIT License"
+            ],
+            "software_languages": [
+              "Python"
+            ],
+            "software_repo_url": "https://github.com/IdahoLabResearch/ReMAIn",
+            "software_access_limited": false,
+            "lab": "Idaho National Laboratory",
+            "taxonomy_tags": [
+              "Math.Dynamical Systems.Stability Theory",
+              "Engineering.Electrical.Power Systems"
+            ],
+            "taxonomy_categories": [
+              "Math",
+              "Engineering"
+            ],
+            "similar_ip": [
+              "54139",
+              "99268",
+              "94103",
+              "62591"
+            ]
+          },
+          {
+            "id": "100617",
+            "type": "Software",
+            "sub_type": "Open Source",
+            "title": "Jester",
+            "abstract": "Jester is a Rust CLI designed to package and send time series or tabular data to the data warehouse DeepLynx. It primarily reads .csv files and then sends those via HTTP or Websocket requests to an external instance of DeepLynx. It is meant to run on a host computer which has access to the data.",
+            "date_available": "2023-01-18T00:00:00Z",
+            "published_date": "2023-01-18T00:00:00Z",
+            "inserted_date": "2026-07-13T19:31:27.157000Z",
+            "inventors": [
+              "John Darrington",
+              "Thomas A Conley"
+            ],
+            "software_type": "Open Source",
+            "software_source": "DOE CODE",
+            "software_acronym": "Jester",
+            "software_doi": "10.11578/dc.20230222.1",
+            "software_licenses": [
+              "MIT License"
+            ],
+            "software_repo_url": "https://github.com/idaholab/Jester",
+            "software_access_limited": false,
+            "lab": "Idaho National Laboratory",
+            "taxonomy_tags": [],
+            "taxonomy_categories": [],
+            "similar_ip": [
+              "110163"
+            ]
+          },
+          {
+            "id": "101376",
+            "type": "Software",
+            "sub_type": "Proprietary",
+            "title": "Safety Instrumented System (sis) For Extreme Fast Charging (xfc) Infrastructure - Analysis Software",
+            "abstract": "The Safety Instrumented System (SIS) for Extreme Fast Charging (XFC) Infrastructure (BA-1359) is responsible for gathering data from multiple sources to monitor the safety and security properties (cyber and physical) of multiple XFC. The data is processed and analyzed by software running on the SIS Core and SIS Aggregator systems.",
+            "date_available": "2023-02-10T00:00:00Z",
+            "published_date": "2023-02-10T00:00:00Z",
+            "inserted_date": "2026-07-13T19:31:27.161000Z",
+            "inventors": [
+              "Kenneth W Rohde",
+              "Sean C Salinas",
+              "Matthew J Crepeau",
+              "Richard Barney Carlson"
+            ],
+            "software_type": "Proprietary",
+            "software_source": "DOE CODE",
+            "software_acronym": "Cerberus",
+            "software_doi": "10.11578/dc.20230314.12",
+            "software_languages": [
+              "Python"
+            ],
+            "software_access_limited": false,
+            "lab": "Idaho National Laboratory",
+            "taxonomy_tags": [
+              "Engineering.Electrical.Control Systems",
+              "Engineering.Electrical.Power Systems",
+              "Engineering.Electrical.Instruments and Sensors"
+            ],
+            "taxonomy_categories": [
+              "Engineering"
+            ],
+            "similar_ip": [
+              "56331",
+              "158466",
+              "US20250301014",
+              "181349",
+              "166335"
+            ]
+          },
+          {
+            "id": "102504",
+            "type": "Software",
+            "sub_type": "Open Source",
+            "title": "idaholab/malamute",
+            "abstract": "MALAMUTE combines MOOSE module functionality with realistic materials and geometries for arbitrary-Eulerian-Lagrangian (ALE) and level-set based laser melting and welding applications and electric-field assisted sintering (EFAS) applications.",
+            "description": "# MALAMUTE\n\nMALAMUTE (MOOSE Application Library for Advanced Manufacturing UTilitiEs)\nperforms calculations for an array of physics applicable to the domain of\nadvanced manufacturing. The MALAMUTE website for documentation can be found\nat https://mooseframework.inl.gov/malamute.\n\nMALAMUTE is based on the MOOSE framework, with more information on MOOSE\nto be found at https://mooseframework.inl.gov.\n\nCopyright 2021 - 2025, Battelle Energy Alliance, LLC\n",
+            "date_available": "2021-07-08T00:00:00Z",
+            "published_date": "2021-07-08T00:00:00Z",
+            "inserted_date": "2026-07-13T19:31:26.763000Z",
+            "inventors": [
+              "Casey Icenhour",
+              "Alex Lindsay",
+              "Stephanie Pitts",
+              "Larry Aagesen",
+              "Wen Jiang"
+            ],
+            "software_type": "Open Source",
+            "software_source": "DOE CODE",
+            "software_acronym": "malamute",
+            "software_doi": "10.11578/dc.20230313.3",
+            "software_licenses": [
+              "GNU Lesser General Public License v2.1"
+            ],
+            "software_languages": [
+              "C++"
+            ],
+            "software_repo_url": "https://github.com/idaholab/malamute",
+            "software_access_limited": false,
+            "lab": "Idaho National Laboratory",
+            "taxonomy_tags": [
+              "Materials Science.Manufacturing and Processing.Welding and Joining",
+              "Materials Science.Manufacturing and Processing.Additive Manufacturing",
+              "Materials Science.Manufacturing and Processing.Casting and Forging",
+              "Manufacturing.Smart Materials and Nanotechnology.Advanced Materials"
+            ],
+            "taxonomy_categories": [
+              "Materials Science",
+              "Manufacturing"
+            ],
+            "similar_ip": [
+              "120652"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "url": "https://vips.pnnl.gov/api/v1/ip/search",
+      "params": {
+        "page_size": "5",
+        "labs": "NLR"
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "total": 1536,
+        "page_size": 5,
+        "next_cursor": "eyJjaWQiOjE1LCJvZmZzZXQiOjV9",
+        "hits": [
+          {
+            "id": "100015",
+            "type": "Software",
+            "sub_type": "Proprietary",
+            "title": "WhatsCracking [SWR-23-03]",
+            "abstract": "WhatsCracking can accurately predict cell fracture in crystalline silicon PV modules. The probability of PV module cell fracture is determined by a complicated interrelationship of module architecture, materials, and loading. WhatsCracking is a Finite Element Method tool which enables users to assess how module design impacts the propensity for cell fracture.",
+            "date_available": "2023-01-03T00:00:00Z",
+            "published_date": "2023-01-03T00:00:00Z",
+            "inserted_date": "2026-07-13T19:30:34.816000Z",
+            "inventors": [
+              "Michael Deceglie",
+              "Nicholas Bosco",
+              "Timothy Silverman",
+              "Martin Springer"
+            ],
+            "software_type": "Proprietary",
+            "software_source": "DOE CODE",
+            "software_doi": "10.11578/dc.20230207.4",
+            "software_documentation_url": "https://www.osti.gov/pages/biblio/1773000",
+            "software_access_limited": false,
+            "lab": "National Laboratory of the Rockies",
+            "taxonomy_tags": [
+              "Materials Science.Non-Metallic Elements.Silicon-Based Materials",
+              "Materials Science.Monitoring and Sensing.Structural Health Monitoring"
+            ],
+            "taxonomy_categories": [
+              "Materials Science"
+            ],
+            "similar_ip": [
+              "128155"
+            ]
+          },
+          {
+            "id": "101810",
+            "type": "Software",
+            "sub_type": "Open Source",
+            "title": "pytank (Python Thermal Tank Model) [SWR-22-76]",
+            "abstract": "Thermal tank model that accounts for phase change of the tank medium.",
+            "description": "# ThermalTank\n\nA repository for developing a thermal tank model which accounts for phase change of the tank medium.\n\n## Testing\n\n![Testing](https://github.com/NREL/ThermalTank/workflows/Python%20Testing/badge.svg)\n",
+            "date_available": "2023-03-03T00:00:00Z",
+            "published_date": "2023-03-03T00:00:00Z",
+            "inserted_date": "2026-07-13T19:30:34.823000Z",
+            "inventors": [
+              "Matt Mitchell",
+              "Eric Bonnema"
+            ],
+            "software_type": "Open Source",
+            "software_source": "DOE CODE",
+            "software_acronym": "pytank",
+            "software_doi": "10.11578/dc.20230918.1",
+            "software_licenses": [
+              "BSD 3-clause \"New\" or \"Revised\" License"
+            ],
+            "software_languages": [
+              "Jupyter Notebook",
+              "Python"
+            ],
+            "software_repo_url": "https://github.com/NREL/ThermalTank",
+            "software_access_limited": false,
+            "lab": "National Laboratory of the Rockies",
+            "taxonomy_tags": [
+              "Physics.Thermodynamics.Phase Transitions Thermodynamics",
+              "Engineering.Mechanical.Thermodynamics and Heat Transfer",
+              "Physics.Thermodynamics.Chemical Thermodynamics",
+              "Physics.Thermodynamics.Statistical Thermodynamics"
+            ],
+            "taxonomy_categories": [
+              "Physics",
+              "Engineering"
+            ],
+            "similar_ip": [
+              "159802"
+            ]
+          },
+          {
+            "id": "102247",
+            "type": "Software",
+            "sub_type": "Open Source",
+            "title": "dsgrid (Demand-Side Grid Toolkit) [SWR-21-52]",
+            "abstract": "The demand-side grid model harnesses decades of sector-specific energy modeling expertise to understand current and future U.S. electricity load for power systems analyses. The API provides tools for submitting datasets to dsgrid projects, validating individual datasets and project data as a whole, querying, analysis, and visualization.",
+            "description": "# dsgrid\n[![Documentation](https://img.shields.io/badge/docs-ready-blue.svg)](https://dsgrid.github.io/dsgrid)\n[![codecov](https://codecov.io/gh/dsgrid/dsgrid/branch/main/graph/badge.svg?token=W0441C9XAL)](https://codecov.io/gh/dsgrid/dsgrid)\n\nPython API for contributing to and accessing demand-side grid model (dsgrid) projects and datasets.\n\n\u26a0\ufe0f **dsgrid is under active development and does not yet have a formal package release.** Details listed here are subject to change. Please reach out to the dsgrid coordination team with any questions or other feedback. \u26a0\ufe0f\n\n[Install](#install) | [Usage](#usage) | [Uninstall](#uninstall)\n\n## Install\n\n[Virtual environment](#virtual-environment) | [Dependencies](#dependencies) | [from PIPY/pip](#from-pipypip) | [from pip+git](#from-pipgit) | [from cloned repository](#from-cloned-repository)\n\n### Virtual environment\n\nCreate a virtual environment in which to install dsgrid. Anaconda or miniconda is recommended.\n\n```\nconda create -n dsgrid python=3.11\nconda activate dsgrid\n```\n\n### Dependencies\n\ndsgrid uses [Apache Spark](#https://spark.apache.org/) to manage big data. There are no separate installation steps for Apache Spark beyond installing the dsgrid package and installing:\n\n```\npip install \"dsgrid-toolkit[spark]\"\n```\n\nOtherwise installing the pyspark Python dependency handles it.\n\nHowever, you should be aware that Apache Spark's Microsoft Windows support is poor and essentially limited to local mode. That is, if you use dsgrid on a Windows machine you should not attempt to install a full version of Spark nor expect to run on a Spark cluster. As such, we recommend limiting dsgrid use on Windows to browsing the registry, registering and submitting small- to medium-sized datasets, or development work with small test projects. Full dsgrid functionality with large projects requires additional computational resources, e.g., high performance or cloud computing, typically on a Linux operating system.\n\n#### Additional Notes\n- If pyspark complains about not finding Python, you may need to locate your python executable file (python.exe on Windows), copy it, and rename the copy to python3 (python3.exe on Windows)\n\nSpark requires Java 8 or later with the `JAVA_HOME` environment variable set to the Java installation directory.\n\nOn Linux you can install OpenJDK with conda:\n```\nconda install openjdk\n```\n\nWindows install instructions are below.\n\n#### Windows\n\nTo install Apache Spark on Windows, follow [these instructions](https://towardsdatascience.com/installing-apache-pyspark-on-windows-10-f5f0c506bea1).\n\n### From PIPY/pip\n\npip install dsgrid-toolkit\n\nor\n\npip install \"dsgrid-toolkit[spark]\"\n\n### From pip+git\n\n**With ssh keys:**\n```\npip install git+ssh://redacted@example.invalid/dsgrid/dsgrid.git@main\n\n# or\n\npip install git+ssh://redacted@example.invalid/dsgrid/dsgrid.git@develop\n```\n\n**From http:**\n```\npip install git+https://github.com/dsgrid/dsgrid.git@main\n\n# or\n\npip install git+https://github.com/dsgrid/dsgrid.git@develop\n```\n\n### From Cloned Repository\n\nFirst, clone the repository and change into the `dsgrid` directory. For example:\n\n```\ncd ~                                       # or other directory where you put repositories\ngit clone redacted@example.invalid:dsgrid/dsgrid.git # or the http address\ncd dsgrid\n```\n\nThen install the pacakge using the pip `-e` flag to directly use the files in the\ncloned repository.\n\n**Users:**\n```\npip install -e .\n```\n\n**Developers:**\n```\npip install -e '.[dev,spark]'\n```\n\n## Usage\n\ndsgrid is primarily a command-line interface (CLI) tool. To see the available commands:\n```\ndsgrid --help\n```\n\n## Uninstall\n\n```\npip uninstall dsgrid\n```\n\nIf you are using a conda environment\n```\nconda deactivate\n```\n\n## Software Record\n\ndsgrid is developed under NREL Software Record SWR-21-52, \"demand-side grid model\".\n",
+            "date_available": "2021-03-10T00:00:00Z",
+            "published_date": "2021-03-10T00:00:00Z",
+            "inserted_date": "2026-07-13T19:30:34.213000Z",
+            "inventors": [
+              "Elaine Hale",
+              "Daniel Thom",
+              "Meghan Mooney",
+              "Lixi Liu"
+            ],
+            "software_type": "Open Source",
+            "software_source": "DOE CODE",
+            "software_acronym": "dsgrid",
+            "software_doi": "10.11578/dc.20230310.1",
+            "software_licenses": [
+              "BSD 3-clause \"New\" or \"Revised\" License"
+            ],
+            "software_languages": [
+              "Jupyter Notebook",
+              "Python",
+              "Shell"
+            ],
+            "software_repo_url": "https://github.com/dsgrid/dsgrid",
+            "software_access_limited": false,
+            "lab": "National Laboratory of the Rockies",
+            "taxonomy_tags": [
+              "Engineering.Electrical.Power Systems",
+              "Computer Science.Distributed Systems.Grid Computing",
+              "Energy.Renewable Energy.Wind Energy"
+            ],
+            "taxonomy_categories": [
+              "Engineering",
+              "Computer Science",
+              "Energy"
+            ],
+            "similar_ip": [
+              "146454",
+              "75400",
+              "120989",
+              "62525"
+            ]
+          },
+          {
+            "id": "103518",
+            "type": "Software",
+            "sub_type": "Open Source",
+            "title": "DSS-SimPy-RL (Open-DSS and SimPy based Cyber-Physical RL environment) [SWR-23-29]",
+            "abstract": "Recently, numerous data-driven approaches to control an electric grid using machine learning techniques have been investigated. With the advancement of reinforcement learning (RL) based techniques, gradually the conventional optimization based solvers are being replaced with RL approach where there is uncertainty in the environment such as renewable generation or cyber system emulation. However, to train an agent efficiently, it requires numerous interactions with an environment to learn the best policies. There are numerous RL environments for the power systems based on some well-known simulators, similarly there are environment for communication domains. While majority of the cyber emulators are based in an UNIX environment, the power simulators are based in the Windows-based operating system, the generation of cyber-physical mixed domain RL environment has been challenging. Existing co-simulation methods are efficient but resource and time intensive to generate large scale data set for training RL agents. Hence, this software focuses on development and validation of a mixed domain RL environment using Open DSS for the physical side and leverages a discrete event simulator python package, SimPy, for cyber-side emulation which is Operating Systems agnostic. Further utilizing this software co-simulation and training RL agents for re-routing based resilient control for network reconfiguration and volt-var control in power distribution feeder are performed.",
+            "description": "# DSS-SimPy-RL\nOpen-DSS and SimPy based Cyber-Physical RL environment\n\nUse the `environment.yaml` file to create the conda environment for installing the python packages required in this repository.\nCommad: `conda env create --file environment.yaml`\n\n**Description of the files within `agents` folder**\n- `dqn.py` : Given the Reward model, training the RL agent using Deep Q Learning.\n- `per_dqn.py` : Implementation of the Prioritized Experience Replay based-Deep Q Learning\n\n**Description of the files within `cases` folder**\n- `123Bus_DER` : This folder consists of the Open DSS files for the 123-bus feeder with DER integrated.\n- `123Bus_Simple` : The folder consists of the Open DSS 123-bus files for the 123-bus feeder base model.\n- `123Bus_SimpleMod` : Some minor modification from the Simple model.\n\n**Description of the files within `powergym` folder**\n- It contains the OpenDSS based RL environment for volt var control. Adopted from [PowerGym](https://github.com/siemens/powergym)\n\n**Description of the files within `docs` folder**\n- `Figures` : Contains all the figures used in user documentation.\n- `html` : Contains all the html file for the user documentation.\n- All the .rst files are the files generated using the sphinx python package.\n\n**Description of the files within `envs` folder**\n- `simpy_env` : All the SimPy-based communication RL environments.\n- `simpy_dss` : All the fused Cyber-Physical RL environments for network reconfiguration and also volt var control.\n- `openDSSenv.py`: This environment is created for episodic interaction of the OpenDSS simulator for training RL agent, similar to an Open AI Gym environment. Implements the N-1 and N-2 contingencies.\n- `openDSSenvSB_DiscreteSpace.py`: Have a discrete space model for the OpenDSS environment.\n- `generate_scenario.py`: This generates unique scenarios for the distribution feeder contingencies.\n- `resilience_graphtheory.py`: Contains the topological resilience functions.\n\n**Description of the files within `Figures` folder**\n- Contains all the figure used in the environment and ARM-IRL paper.\n\n**Description of the files `gurobi` folder**\n- MATLAB implementation of network reconfiguration\n- Examples of OPF using gurobi solver in python (with QC relaxation).\n\n**Description of the files `mininet` folder**\n- `generate_mininet_ieee123_network.py`: Linux router based implementation of the communication network of IEEE-123 bus feeder using static routes.\n- `mininet_backend_HC_new_network.py`: An open vswitch based router implementation of the communication network of IEEE-123 bus feeder case.\n- `generate_network.py`: Creates the adjacency matrix of the communication network\n\n\n**Description of the files `pyomo_test` folder**\n- folder consist some simple examples for running ACOPF using Pyomo\n\n**Description of the files `rewards` folder**\n- It containing some trained discriminator network.\n\n**Description of the files `tests` folder**\n- This includes test of forward RL agents (from stable-baselines and some developed from scratch: refer to `agents` folder) for the proposed MDP models incorporated in the RL environment.\n\n**Description of the files `utils` folder**\n- Contains codes for plotting the graphs for the purpose of research papers.\n\n**Description of the files `validation` folder**\n- Contains codes for the RL environment validation work.\n\n- **visuals**: This folder is a visualization app for visualizing the simulation and observing the resilience metric in real-time as the episodes and their steps are executed. The `OpenDssEnvVisual.py` is the application implementation for the Open DSS physical RL environment.\n\n![Sample Visualization for the open-DSS RL environment](https://github.com/NREL/DSS-SimPy-RL/blob/main/visualization.PNG?raw=true)\n\n`CyberEnvVisual.py` is the application implementation for the Simpy based Cyber RL environment. The IEEE 123 bus case is divided into 7 zones. Within each zones there is a `data concentrator` shown in red node, the green node is the `DSO`, while all the blue nodes are the `Routers` represent the hybrid topology. \n\n![Sample Visualization for the Simpy-based RL environment](https://github.com/NREL/DSS-SimPy-RL/blob/main/cyber_visualization_new.PNG?raw=true)\n\n`CyberPhysicalEnvVisual.py` is the application implementation for the Simpy based and OpenDSS based CyberPhysical combined RL environment.\n\n[User Documentation](https://nrel.github.io/DSS-SimPy-RL/html/index.html) for the Dss-SimPy-RL alongwith the utilization of this RL environment for Adaptive resilience Metric learning using Inverse Reinforcement Learning (ARM_IRL).\n\n\n\n\n\n\n\n\n\n\n\n\n",
+            "date_available": "2023-03-29T00:00:00Z",
+            "published_date": "2023-03-29T00:00:00Z",
+            "inserted_date": "2026-07-13T19:30:34.830000Z",
+            "inventors": [
+              "Abhijeet Sahu",
+              "Venkatesh Venkataramanan",
+              "Richard Macwan"
+            ],
+            "software_type": "Open Source",
+            "software_source": "DOE CODE",
+            "software_acronym": "DSS-Simpy-RL",
+            "software_doi": "10.11578/dc.20230508.4",
+            "software_licenses": [
+              "MIT License"
+            ],
+            "software_languages": [
+              "Python"
+            ],
+            "software_repo_url": "https://github.com/NREL/DSS-SimPy-RL",
+            "software_access_limited": false,
+            "lab": "National Laboratory of the Rockies",
+            "taxonomy_tags": [
+              "Computer Science.Artificial Intelligence and Machine Learning.Reinforcement Learning",
+              "Computer Science.Distributed Systems.Grid Computing"
+            ],
+            "taxonomy_categories": [
+              "Computer Science"
+            ],
+            "similar_ip": [
+              "72324",
+              "154004",
+              "66827",
+              "141821",
+              "72315"
+            ]
+          },
+          {
+            "id": "103525",
+            "type": "Software",
+            "sub_type": "Open Source",
+            "title": "Wattile: Probabilistic Deep Learning-based Forecasting of Building Energy Consumption [SWR-20-94]",
+            "abstract": "Accurate energy forecasting is becoming critical due to many reasons: i ) optimal distributed energy resources operations and dispatch, ii) fault detection and diagnostics, and iii) meeting operational energy efficiency targets. Wattile uses deep learning (DL) for the building's short-term load forecasting application. Two specific types of neural networks called, Long Short Term Memory (LSTM) and Sequence-to-Sequence (S2S) models are used to make predictions. Forecasting models are trained using online historical weather and occupancy indicator data streams from the Intelligent Campus Program's data acquisition systems at the National Renewable Energy Laboratory (NREL) for main meters and sub-meters of multiple building types. These models use probabilistic methods to provide quantile-based forecasts in addition to nominal conditional median predictions of electricity consumption.",
+            "description": "Wattile\n=\n\nProbabilistic Deep Learning-based Forecasting of Building Energy ConsumptionProbabilistic Deep Learning-based Forecasting of Building Energy Consumption.\n\n# Set Up\n\nRequirements:\n- [Python](https://www.python.org/downloads/) >= 3.7.0\n- [Poetry](https://python-poetry.org/docs/#installation)\n- [Microsoft Visual C++ 14.0](https://visualstudio.microsoft.com/visual-cpp-build-tools/), if you're on Windows\n\nIf using conda for python management, use `environment.yml` to make an environment and configure poetry to not create a vitural enviroment (else, skip these commands).\n```\nconda env create -f environment.yml\npoetry config virtualenvs.create false\npoetry config virtualenvs.in-project true\n```\nThen install dependencies.\n```\npoetry install\n```\n\nFinally, install pre-commit.\n```\npoetry run pre-commit install\n```\n\nQuick Start\n----\nPlease see [our example notebooks](./notebooks/examples) to see how to run Wattile out of the box.\n\nIn short, one must prep their data, create the model, and send the data through.\n```py\ntrain_df, val_df = prep_for_rnn(configs, data)\nmodel = ModelFactory.create_model(configs)\nmodel.train(train_df, val_df)\n```\n\nAfter running, you may use tensordboard on the results.\n\n```\ntensorboard --logdir=<study directory>\n```\nWattile is highly configurable.\n\nDocs for the configs [here](./docs/Configs.md).\n\nDocs for the format of the raw data is [here](./docs/Data_configs.md).\n\nDocs for the format of the output is [here](./docs/Output.md).\n\nAvailable Models\n----\n### [Alfa](./wattile/models/alfa_model.py)\n\n* Probabilistic forecasting \n* In one training session, predict:\n    * Number of future times: 1\n    * Number of quantiles per time: *Q*\n* Vanilla and LSTM variants available\n\n### [Bravo](./wattile/models/bravo_model.py)\n\n* Probabilistic forecasting \n* In one training session, predict:\n    * Number of future times: *T*\n    * Number of quantiles per time: *Q*\n* Vanilla and LSTM variants available\n* Supports future time predictions with constant spacing or variable spacing \n\n\n### [Alfa Ensemble](./wattile/models/alfa_ensemble_model.py)\n\n* Probabilistic forecasting \n* In one training session, predict:\n    * Number of future times: *T*\n    * Number of quantiles per time: *Q*\n* Vanilla and LSTM variants available\n* Supports future time predictions with constant spacing or variable spacing \n\nDevelopment\n----\n\n### Testing\n```\n$ poetry run pytest tests\n```\nTo see test coverage, add args `--cov-report html --cov=$PROJECT_DIR` and open `./htmlcov/index.html`\n\n### Styleing\n```sh\n$ make format\n```\n",
+            "date_available": "2020-08-26T00:00:00Z",
+            "published_date": "2020-08-26T00:00:00Z",
+            "inserted_date": "2026-07-13T19:30:34.141000Z",
+            "inventors": [
+              "Stephen Frank",
+              "Anya Petersen",
+              "Sakshi Mishra",
+              "Janghyun Kim",
+              "Liang Zhang",
+              "Hannah Eslinger",
+              "Robert Buechler"
+            ],
+            "software_type": "Open Source",
+            "software_source": "DOE CODE",
+            "software_acronym": "Wattile",
+            "software_doi": "10.11578/dc.20230406.3",
+            "software_licenses": [
+              "BSD 3-clause \"New\" or \"Revised\" License"
+            ],
+            "software_languages": [
+              "Jupyter Notebook"
+            ],
+            "software_repo_url": "https://github.com/NREL/Wattile",
+            "software_documentation_url": "https://github.com/NREL/Wattile/blob/develop/docs/Configs.md",
+            "software_access_limited": false,
+            "lab": "National Laboratory of the Rockies",
+            "taxonomy_tags": [
+              "Energy.Energy Efficiency.Smart and Sustainable Cities",
+              "Energy.Energy Efficiency.Building Energy Efficiency",
+              "Computer Science.Artificial Intelligence and Machine Learning.Deep Learning"
+            ],
+            "taxonomy_categories": [
+              "Energy",
+              "Computer Science"
+            ],
+            "similar_ip": [
+              "107854",
+              "128854",
+              "75400",
+              "73290",
+              "114862"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "url": "https://vips.pnnl.gov/api/Document/US10016751",
+      "params": {},
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "id": "US10016751",
+        "type": "Patent",
+        "sub_type": "Granted",
+        "title": "Supported, bimetallic nanoparticles for selective catalysis",
+        "abstract": "Supported, bimetallic catalyst systems are provided. The supported, bimetallic catalyst system can include a support defining a surface; a core metal positioned on the surface of the support; and a shell metal positioned on the core metal to form a core-shell particle on the surface of the support. The core metal has a surface free energy that is higher than a surface free energy of the shell metal. Methods are also provided for the formation of such supported, bimetallic catalyst systems, as well as the use of such supported, bimetallic catalyst systems in chemical processes.",
+        "description": "PRIORITY INFORMATION\nThe present application claims priority to U.S. Provisional Patent Application Ser. No. 62/050,428 titled \u201cSupported, Bimetallic Nanoparticles for Selective\u201d of Monneir, et al. filed on Sep. 15, 2014, the disclosure of which is incorporated by reference herein.\nBACKGROUND\nPolyvinyl chloride (PVC) is the third highest volume plastic after polyethylene and polypropylene; global demand is expected to reach 80 billion pounds by 2016. Polyvinyl chloride is produced by polymerization of the vinyl chloride monomer (VCM) which is manufactured either by the oxidative chlorination of ethylene to produce 1,2-dichloroethane which is thermally cracked to produce VCM or by the direct hydrochlorination of acetylene to produce VCM in very high selectivity in a single step. The oxychlorination method generates the majority of VCM, although this route is multi-step, non-selective, and energy intensive. Production of VCM from direct hydrochlorination of acetylene is simple and very selective (>99%), although HgCl2/C, the catalyst currently used, undergoes reduction to Hg metal after a short period of time and is volatilized into the environment. In areas such as China where coal is plentiful, the formation of acetylene from coke (CaC2+H2O reaction) is well-developed technology. Thus, it is necessary to develop more environmentally-friendly catalysts for acetylene hydrochlorination.\nCarbon-supported Au catalysts have been found to be active and selective catalysts for this reaction. Recent results from our laboratory have shown that, regardless of hydrogen chloride (HCl) pretreatment conditions, all Au/C catalysts exhibit the same activities after 2-3 h of reaction time, indicating that all Au particle sizes and surface compositions are similar. Sintering of Au particles from an initial value of 2 nanometers to a final value of 20 nanometers lowers the exposed surface area of Au by 90%, leading to a concomitant loss of catalytic activity. More recent work has also shown that sintering of Au is directly linked to exposure to HCl, which is, of course one of the essential reactants. If Au can be maintained in the active AuClx state during reaction and sintering can be prevented, direct hydrochlorination becomes commercially feasible.\nSupported Au catalysts show high activity and selectivity for hydrochlorination of acetylene to vinyl chloride formation. Unfortunately, in the presence of HCl (one of the two reactants), Au particles undergo rapid agglomeration from approximately 2 nm in diameter to form Au particles>20 nm in diameter. FIGS. 1A and 1B depict this agglomeration. As shown in FIG. 1A, the support 10 includes a plurality of Au nanoparticles 14 (e.g., with a diameter of about 2 nm) on its surface 12. Upon exposure to HCl, the Au particles agglomerate into a larger particle 16 (e.g., with a diameter greater than 20 nm) that defines a surface 18 of AuClx, as shown in FIG. 1B. This loss of Au surface sites greatly limits catalytic activity, making this catalyst and process much less attractive.\nSUMMARY\nObjects and advantages of the invention will be set forth in part in the following description, or may be obvious from the description, or may be learned through practice of the invention.\nSupported, bimetallic catalyst systems are generally provided. In one embodiment, the supported, bimetallic catalyst system includes a support defining a surface; a core metal positioned on the surface of the support; and a shell metal positioned on the core metal to form a core-shell particle on the surface of the support. The core metal has a surface free energy (i.e., a first surface free energy) that is higher than a surface free energy of the shell metal (i.e., a second first surface free energy). Methods are also provided for the formation of such supported, bimetallic catalyst systems.\nMethods are also generally provided for the hydrochlorination of acetylene. In one embodiment, the method of hydrochlorination of acetylene includes exposing acetylene to HCl and to a supported, bimetallic catalyst system, such as described above.\nMethods are also generally provided for the reduction of sulfur trioxide. In one embodiment, the method of reduction of sulfur trioxide includes exposing sulfur trioxide to a supported, bimetallic catalyst system, such as described above.\nMethods are also generally provided form reforming a biogas (e.g., containing methane and carbon dioxide). In one embodiment, the method of reforming a biogas includes exposing the biogas to a supported, bimetallic catalyst system, such as described above, such that a catalytic conversion is achieved to produce hydrogen gas and carbon monoxide.\nOther features and aspects of the present invention are discussed in greater detail below.\nTable 1 shows the surface free energy of several materials discussed herein.\nRepeat use of reference characters in the present specification and drawings is intended to represent the same or analogous features or elements of the present invention.\nDefinitions\nChemical elements are discussed in the present disclosure using their common chemical abbreviation, such as commonly found on a periodic table of elements. For example, hydrogen is represented by its common chemical abbreviation H; helium is represented by its common chemical abbreviation He; and so forth.\nAs used herein, the prefix \u201cnano\u201d refers to the nanometer scale up to about 100 nm. For example, particles having an average diameter on the nanometer scale (e.g., from about 0.1 nm to about 100 nm) are referred to as \u201cnanoparticles.\u201d\nAs used herein, the term \u201csurface free energy\u201d sometimes referred to as \u201csurface energy\u201d or \u201cinterface energy\u201d or \u201csurface tension\u201d quantifies the disruption of intermolecular bonds that occur when a surface is created. In the physics of solids, surfaces must be intrinsically less energetically favorable than the bulk of a material (the molecules on the surface have more energy compared with the molecules in the bulk of the material), otherwise there would be a driving force for surfaces to be created to displace the bulk of the material; as a corollary, it is thermodynamically favorable to achieve the lowest possible surface free energy for a surface. Thus, surface free energy may be defined as the excess energy at the surface of a material compared to the bulk. Table 1 above shows the surface free energy of several materials discussed below. Unless otherwise specified, the surface free energy given is in ergs/cm2 at 25\u00b0 C.\nTABLE 1\n\n\n\n\n\n\n\n\nSurface free energy\n\n\n\nComponent\n(ergs/cm2 surface)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCarbon\n506\n\n\n\nAu\n1626\n\n\n\nCu\n1934\n\n\n\nPd\n2043\n\n\n\nNi\n2364\n\n\n\nPt\n2691\n\n\n\nCo\n2709\n\n\n\nRh\n2828\n\n\n\nMo\n2877\n\n\n\nFe\n2939\n\n\n\nNb\n2983\n\n\n\nRe\n3109\n\n\n\nIr\n3231\n\n\n\nRu\n3409\n\n\n\nW\n3468\nDETAILED DESCRIPTION\nReference now will be made to the embodiments of the invention, one or more examples of which are set forth below. Each example is provided by way of an explanation of the invention, not as a limitation of the invention. In fact, it will be apparent to those skilled in the art that various modifications and variations can be made in the invention without departing from the scope or spirit of the invention. For instance, features illustrated or described as one embodiment can be used on another embodiment to yield still a further embodiment. Thus, it is intended that the present invention cover such modifications and variations as come within the scope of the appended claims and their equivalents. It is to be understood by one of ordinary skill in the art that the present discussion is a description of exemplary embodiments only, and is not intended as limiting the broader aspects of the present invention, which broader aspects are embodied exemplary constructions.\nA bimetallic catalyst system is generally provided, along with methods of its formation and use. In one embodiment, the bimetallic catalyst system includes a support defining a surface, a core metal positioned on the surface of the support, and a shell metal positioned on the core metal to form a core-shell particle on the surface of the support. Importantly, the core metal has a surface free energy that is higher than the surface free energy of the shell metal. As such, the shell metal remains resistant to agglomeration on the surface of the support, and instead remains positioned on the core metal. Thus, the catalyst system maintains its high catalytic activity and makes this process much more economically attractive.\nMetal-metal interactions of bimetallic core-shell particles can provide a superior method to maintain catalytic surfaces from sintering. Metal-metal interactions can give greater resistance to particle sintering at conditions typically used for catalytic reactions by using metals with higher surface free energies (SFE) as core materials upon which the shell metal is selectively placed. Surface thermodynamics state that at equilibrium a system composed of solid components will rearrange to the lowest surface free energy; thus, the shell metal with lower SFE will remain on the surface of the core metal having higher SFE. In this manner, the SFE of the bimetallic particle will be thermodynamically most stable.\nReferring to FIG. 2, a bimetallic catalyst system 21 is shown including a support 10 defining a surface 12. The bimetallic catalyst is shown on the surface 12 in the form of a core metal 20 and a shell metal 22. As shown, the shell metal 22 completely surrounds the core metal 20, but can be intermittently or partially covering the core in certain embodiments.",
+        "date_available": "2015-09-15T00:00:00Z",
+        "published_date": "2016-05-19T00:00:00Z",
+        "inserted_date": "2024-07-08T22:29:39Z",
+        "lab": "Idaho National Laboratory",
+        "lab_short": "INL",
+        "labs": [
+          "Idaho National Laboratory"
+        ],
+        "inventors": [
+          "John Monnier",
+          "John Regalbuto",
+          "Kerry O'Connell"
+        ],
+        "taxonomy_categories": [
+          "Chemistry",
+          "Materials Science"
+        ],
+        "taxonomy_tags": [
+          "Chemistry.Materials Chemistry.Catalytic Materials",
+          "Chemistry.Industrial Chemistry.Catalysis",
+          "Chemistry.Materials Chemistry.Nanomaterials",
+          "Materials Science.Nanotechnology.Nanomaterials Synthesis"
+        ],
+        "similar_ip": [
+          "US8377840",
+          "US9878307",
+          "US9929453",
+          "US8178463",
+          "US6964936",
+          "US11167281",
+          "US10391477"
+        ],
+        "patent_number": "US10,016,751",
+        "patent_status": "Granted",
+        "application_date": "2015-09-15T00:00:00Z",
+        "application_number": "US14/854,191",
+        "patent_published_number": "US2016/0136632",
+        "patent_granted_date": "2018-07-10T00:00:00Z",
+        "patent_expiration_date": "2035-09-15T00:00:00Z",
+        "patent_duration": 33.80698151950719,
+        "patent_first_claim": "1. A supported, bimetallic catalyst system, comprising:\na support defining a surface;\na core metal positioned on the surface of the support, wherein the core metal is platinum; and\na shell metal positioned on the core metal to form a core-shell particle on the surface of the support, wherein the shell metal is gold, and the core metal has a first surface free energy that is higher than a second surface free energy of the shell metal,\nwherein the core-shell particles cover at least 80% of the surface of the support.",
+        "patent_assignees": [
+          "University of South Carolina",
+          "BATTELLE ENERGY ALLIANCE, LLC"
+        ]
+      }
+    }
+  ]
+}

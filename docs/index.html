@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DOE-MCP — public DOE data over the Model Context Protocol</title>
+<meta name="description" content="MCP servers over public US Department of
+ Energy and national-laboratory data. Every answer names the systems it came
+ from and what it did not cover. An independent project, not affiliated with
+ the US Department of Energy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Crimson+Pro:wght@400;600&family=Roboto+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  /* DOE grey ramp */
+  --paper:#f9faff; --ink:#232429; --muted:#55565b; --faint:#828388;
+  --line:#dedfe4; --card:#fff; --panel:#f3f4f9;
+  /* Absolute Zero, the department's link and primary blue */
+  --accent:#003ecc; --accent-soft:#e5edff; --accent-rgb:0,62,204;
+  --navy:#001f66;
+  /* Lightning Green, its focus and success colour */
+  --ok:#1c7a4d; --ok-bg:#e6f4ed; --lightning:#26a769;
+  /* Sunglow */
+  --warn:#7a5300; --warn-bg:#fff6da; --sunglow:#ffd23f;
+  --dim-bg:#f3f4f9;
+  --measure:64rem; --pad:1.5rem;
+  --sans:"Inter",BlinkMacSystemFont,-apple-system,"Segoe UI",Roboto,
+         "Helvetica Neue",Arial,sans-serif;
+  --display:"Crimson Pro","Crimson Text",Georgia,Cambria,
+            "Times New Roman",serif;
+  --mono:"Roboto Mono","Roboto Mono Web",ui-monospace,SFMono-Regular,
+         Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.62 var(--sans);
+     -webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--measure);margin:0 auto;padding:0 var(--pad)}
+
+@keyframes fadeInUp{from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}}
+.funnel .step{animation:fadeInUp .5s cubic-bezier(.16,1,.3,1) both}
+.funnel .step:nth-child(3){animation-delay:.06s}
+.funnel .step:nth-child(5){animation-delay:.12s}
+.funnel .step:nth-child(7){animation-delay:.18s}
+/* A section's body fades in the moment it opens, so paging through the
+   report reads as responsive rather than an instant snap — CSS only, tied
+   to the <details> the page already uses for disclosure, no scroll
+   listener or IntersectionObserver needed. */
+.sect[open]>.sect-body{animation:fadeInUp .45s cubic-bezier(.16,1,.3,1) both}
+
+/* sticky utility bar: the disclaimer is not a footnote */
+.util{background:var(--navy);color:#fff;font-size:.82rem}
+.util-inner{max-width:var(--measure);margin:0 auto;padding:.45rem var(--pad);
+  display:flex;gap:1rem;align-items:center;justify-content:space-between}
+.util a{color:#ccdbff;text-decoration:none;white-space:nowrap}
+.util a:hover{text-decoration:underline}
+.util .short{display:none}
+nav.toc{position:sticky;top:0;z-index:10;background:var(--card);
+  border-bottom:1px solid var(--line)}
+.toc-inner{max-width:var(--measure);margin:0 auto;padding:.55rem var(--pad);
+  display:flex;align-items:center;gap:.9rem;justify-content:space-between}
+.toc-brand{font-weight:700;font-size:.95rem;color:var(--ink);text-decoration:none;
+  letter-spacing:-.01em;flex-shrink:0}
+.toc-links{display:flex;gap:.2rem;overflow-x:auto;scrollbar-width:none}
+.toc-links::-webkit-scrollbar{display:none}
+.toc-item{position:relative}
+.toc-item>a{display:block;color:var(--muted);text-decoration:none;
+  font-size:.83rem;white-space:nowrap;padding:.35rem .5rem;border-radius:4px}
+.toc-item>a:hover,.toc-item:focus-within>a{color:var(--accent);
+  background:var(--accent-soft)}
+/* Sub-tabs: the headings inside a section, so the menu reaches a part of a
+   collapsed section rather than only its top. Shown on hover AND on
+   focus-within, so the keyboard reaches them too. */
+.toc-sub{display:none;position:absolute;top:100%;left:0;z-index:20;
+  background:var(--card);border:1px solid var(--line);border-radius:6px;
+  padding:.3rem;min-width:11rem;box-shadow:0 6px 18px rgba(0,31,102,.08)}
+.toc-item:hover .toc-sub,.toc-item:focus-within .toc-sub{display:block}
+.toc-sub a{display:block;padding:.3rem .5rem;font-size:.8rem;
+  color:var(--muted);text-decoration:none;border-radius:4px;
+  white-space:nowrap}
+.toc-sub a:hover,.toc-sub a:focus{color:var(--accent);
+  background:var(--accent-soft)}
+
+header{padding:3rem 0 2.25rem;border-bottom:1px solid var(--line);
+  background:linear-gradient(135deg,var(--paper) 0%,#fff 55%,
+    var(--accent-soft) 130%)}
+h1{font-family:var(--display);font-weight:600;font-size:2.3rem;
+   margin:0 0 .6rem;letter-spacing:-.01em;line-height:1.2}
+.tagline{font-size:1.08rem;color:var(--muted);margin:0 0 1.6rem;max-width:44rem}
+.funnel{display:flex;flex-wrap:wrap;gap:.4rem;align-items:stretch;
+  margin:0 0 .6rem}
+.funnel .step{background:var(--card);border:1px solid var(--line);
+  border-radius:5px;padding:.5rem .8rem;min-width:7rem;
+  transition:transform .3s cubic-bezier(.16,1,.3,1),
+    box-shadow .3s cubic-bezier(.16,1,.3,1),border-color .3s}
+.funnel .step:hover{transform:translateY(-3px);
+  box-shadow:0 10px 28px rgba(var(--accent-rgb),.14);
+  border-color:rgba(var(--accent-rgb),.3)}
+.funnel .step b{display:block;font-size:1.45rem;line-height:1.15;
+  font-variant-numeric:tabular-nums;letter-spacing:-.02em;color:var(--accent)}
+.funnel .step span{color:var(--faint);font-size:.76rem;display:block;
+  margin-top:.1rem}
+.funnel .arrow{align-self:center;color:var(--lightning);font-size:1.05rem}
+.inventory{font-size:.85rem;color:var(--muted);margin:0 0 1.1rem}
+
+/* Collapsible groups. The page is a reference and most readers want one
+   part of it, so the long card grids and the 83-row registry table are
+   closed until asked for. <details> rather than script: it works with
+   JavaScript off, it is keyboard-operable and screen-reader-announced
+   without any ARIA, and the browser's own find-in-page opens it. */
+details:not(.sect){border:1px solid var(--line);border-radius:6px;
+  background:var(--card);margin:.55rem 0}
+details:not(.sect)[open]{background:transparent}
+summary{cursor:pointer;padding:.6rem .8rem;font-weight:600;font-size:.92rem;
+  list-style:none;display:flex;gap:.6rem;align-items:baseline;
+  border-radius:6px}
+summary::-webkit-details-marker{display:none}
+details:not(.sect)>summary::before{content:"▸";color:var(--faint);
+  font-size:.8em;transition:transform .15s}
+details[open]:not(.sect)>summary::before{transform:rotate(90deg);
+  display:inline-block}
+summary:hover{color:var(--accent)}
+summary:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+summary .count{color:var(--faint);font-weight:400;font-size:.8rem;
+  font-variant-numeric:tabular-nums}
+details:not(.sect)>.grid,details:not(.sect)>table,
+details:not(.sect)>div{margin:.2rem .8rem .8rem}
+.works{font-family:var(--mono);font-size:.72rem;letter-spacing:.07em;
+  color:var(--faint);text-transform:uppercase}
+.works b{color:var(--muted);font-weight:600}
+
+section{border-bottom:1px solid var(--line);scroll-margin-top:4.2rem}
+/* Every section collapses. Closed by default but for the first, because
+   this page is a reference and a reader wants one part of it. <details>
+   rather than script: keyboard-operable and announced without any ARIA,
+   and the browser's own find-in-page opens it. */
+.sect>summary{list-style:none;cursor:pointer;display:flex;
+  align-items:baseline;gap:.6rem;padding:1rem 0}
+.sect>summary::-webkit-details-marker{display:none}
+.sect>summary::after{content:"▾";margin-left:auto;color:var(--faint);
+  font-size:.95rem;transition:transform .15s}
+.sect[open]>summary::after{transform:rotate(180deg)}
+.sect>summary:hover h2{color:var(--accent)}
+.sect>summary:focus-visible{outline:2px solid var(--accent);
+  outline-offset:2px}
+.sect>summary h2{display:inline;margin:0}
+.sect-body{padding:0 0 1.9rem}
+h3[id]{scroll-margin-top:4.5rem}
+h2{font-family:var(--display);font-weight:700;font-size:1.28rem;
+   margin:0 0 .5rem;letter-spacing:-.01em}
+h2 .num{color:var(--faint);font-weight:400;margin-right:.5rem;
+  font-variant-numeric:tabular-nums;font-size:.9em}
+h3{font-size:.98rem;margin:1.6rem 0 .5rem}
+.lede{color:var(--muted);margin:0 0 1.1rem;max-width:45rem}
+
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid var(--line);
+  vertical-align:top}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;
+  color:var(--faint);font-weight:600}
+code,.mono{font-family:var(--mono);font-size:.86em}
+.tool{color:var(--accent);white-space:nowrap}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:6px;
+  padding:.8rem .9rem;overflow-x:auto;font-family:var(--mono);font-size:.78rem;
+  line-height:1.55;margin:.5rem 0}
+pre.out{background:var(--card);color:var(--muted)}
+
+.pill{display:inline-block;font-size:.67rem;text-transform:uppercase;
+  letter-spacing:.05em;padding:.1rem .42rem;border-radius:3px;font-weight:700;
+  white-space:nowrap}
+.pill.active,.pill.shipping{background:var(--ok-bg);color:var(--ok)}
+.pill.proposed,.pill.planned{background:var(--dim-bg);color:var(--faint)}
+.pill.outreach{background:var(--warn-bg);color:var(--warn)}
+
+/* Cards show their contents. They used to be flip-cards: a front face for
+   scanning and a back face that appeared on hover. That hid the part a
+   reader came for behind a gesture no touch device has, kept it out of the
+   browser's find-in-page, and made the card a fixed height whatever it
+   held. The grouping <details> above them is where scroll length is
+   managed now, which is a control the reader operates deliberately. */
+.grid{display:grid;gap:.7rem;
+  grid-template-columns:repeat(auto-fill,minmax(17rem,1fr))}
+.card{border:1px solid var(--line);border-radius:6px;background:var(--card);
+  padding:.75rem .85rem;display:flex;flex-direction:column;gap:.35rem;
+  transition:transform .3s cubic-bezier(.16,1,.3,1),
+    box-shadow .3s cubic-bezier(.16,1,.3,1),border-color .3s}
+.card:hover{transform:translateY(-4px);
+  box-shadow:0 12px 32px rgba(0,31,102,.10);
+  border-color:rgba(var(--accent-rgb),.28)}
+.card h4{margin:0;font-size:.9rem;letter-spacing:-.01em}
+.card .sub{font-size:.74rem;color:var(--faint);margin:0}
+.card .foot{font-size:.72rem;color:var(--faint);
+  font-variant-numeric:tabular-nums}
+.card ul{margin:.15rem 0 0;padding-left:1rem;font-size:.78rem;
+  color:var(--muted)}
+.card li{margin:.18rem 0}
+.card .more{font-size:.74rem;color:var(--faint)}
+.hint{font-size:.78rem;color:var(--faint);margin:0 0 .8rem}
+
+details:not(.sect){border:1px solid var(--line);border-radius:6px;
+  margin:.35rem 0;background:var(--card)}
+details>summary{cursor:pointer;padding:.55rem .8rem;font-size:.9rem;list-style:none;
+  display:flex;gap:.55rem;align-items:baseline}
+details>summary::-webkit-details-marker{display:none}
+details:not(.sect)>summary::before{content:"▸";color:var(--faint)}
+details[open]:not(.sect)>summary::before{content:"▾"}
+details .body{padding:0 .8rem .75rem 1.85rem;font-size:.86rem;color:var(--muted)}
+.count{margin-left:auto;color:var(--faint);font-size:.78rem;
+  font-variant-numeric:tabular-nums}
+
+.annot{display:grid;grid-template-columns:9.5rem 1fr;gap:.3rem .9rem;
+  font-size:.85rem;margin:1rem 0 0}
+.annot dt{font-family:var(--mono);color:var(--accent);font-size:.79rem}
+.annot dd{margin:0;color:var(--muted)}
+.note{background:var(--panel);border-left:3px solid var(--line);
+  padding:.65rem .85rem;font-size:.86rem;color:var(--muted);margin:1rem 0}
+.note.warn{background:var(--warn-bg);border-left-color:var(--warn);color:var(--warn)}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0}
+.steps>li{counter-increment:s;position:relative;padding-left:2rem;margin:0 0 1.2rem}
+.steps>li::before{content:counter(s);position:absolute;left:0;top:.1rem;
+  width:1.4rem;height:1.4rem;border-radius:50%;background:var(--accent-soft);
+  color:var(--accent);font-size:.78rem;font-weight:700;display:grid;place-items:center}
+.steps h3{margin:0 0 .3rem}
+.arch-flow{margin:1.4rem 0 2rem;display:flex;flex-direction:column;gap:1.2rem}
+.arch-tier{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:1.1rem 1.2rem}
+.arch-tier-title{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin:0 0 .8rem;font-weight:600}
+.arch-boxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:.8rem}
+.arch-box{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:.8rem .9rem;box-shadow:0 1px 3px rgba(0,0,0,.03)}
+.arch-box-title{font-size:.88rem;font-weight:600;margin:0 0 .3rem}
+.arch-box-desc{font-size:.76rem;color:var(--muted);margin:0;line-height:1.4}
+.arch-arrow{display:flex;justify-content:center;color:var(--faint);font-size:1.2rem;margin:-.3rem 0}
+#q{width:100%;padding:.5rem .7rem;border:1px solid var(--line);border-radius:5px;
+  font:inherit;font-size:.88rem;margin:0 0 .8rem;background:var(--card)}
+tr[hidden]{display:none}
+footer{padding:2.5rem 0 4rem;font-size:.84rem;color:var(--faint)}
+footer p{margin:.4rem 0}
+a{color:var(--accent)}
+@media(max-width:44rem){
+  .annot{grid-template-columns:1fr}
+  .annot dt{margin-top:.5rem}
+  .util .long{display:none}
+  .util .short{display:inline}
+  h1{font-size:1.8rem}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .funnel .step,.sect[open]>.sect-body{animation:none}
+  .funnel .step,.card{transition:none}
+}
+</style>
+</head>
+<body>
+
+<div class="util" id="top"><div class="util-inner">
+  <p style="margin:0">
+    <span class="long"><b>Not affiliated with the US Department of
+    Energy.</b> An independent project. No answer it returns is an official
+    government statement.</span>
+    <span class="short">⚠ Not affiliated with the US DOE</span></p>
+  <a href="https://github.com/pranava0x0/DOE-MCP">View source ↗</a>
+</div></div>
+
+<nav class="toc"><div class="toc-inner">
+  <a class="toc-brand" href="#top">DOE-MCP</a>
+  <div class="toc-links"><div class="toc-item"><a href="#overview">Overview</a><div class="toc-sub"><a href="#overview-about">About DOE-MCP</a><a href="#overview-queries">Sample queries</a></div></div><div class="toc-item"><a href="#start">Quick start</a><div class="toc-sub"><a href="#start-install">Install</a><a href="#start-check">Check it</a><a href="#start-connect">Connect a client</a><a href="#start-ask">Ask something</a></div></div><div class="toc-item"><a href="#servers">Servers</a><div class="toc-sub"><a href="#servers-arch">Architecture</a><a href="#servers-list">Server list</a></div></div><div class="toc-item"><a href="#answer">Response format</a><div class="toc-sub"><a href="#answer-fields">Field by field</a><a href="#answer-more">More calls</a></div></div><div class="toc-item"><a href="#registry">Data registry</a><div class="toc-sub"><a href="#registry-orgs">By organization</a><a href="#registry-sources">By source</a></div></div><div class="toc-item"><a href="#neighbours">Other servers</a></div><div class="toc-item"><a href="#governance">Governance</a></div></div>
+</div></nav>
+
+<header><div class="wrap">
+  <h1>MCP servers over public DOE data</h1>
+  <p class="tagline">Public Department of Energy and national-laboratory
+  data, reachable by an agent. Every answer names the systems it came from,
+  when they were read, and what it did not cover.</p>
+  <div class="funnel"><div class="step"><b>22</b><span>live systems</span></div><span class="arrow">→</span><div class="step"><b>4</b><span>domain servers</span></div><span class="arrow">→</span><div class="step"><b>30</b><span>read-only tools</span></div><span class="arrow">→</span><div class="step"><b>4</b><span>skills</span></div></div><p class="inventory">Published by 17 national laboratories, 19 program offices and 4 power marketing administrations.</p>
+  <p class="works">Works with: <b>CLAUDE CODE</b> · <b>CLAUDE DESKTOP</b> · <b>VS CODE</b> · <b>CURSOR</b></p>
+</div></header>
+
+<div class="wrap">
+
+<section id="overview">
+<details class="sect" open>
+  <summary><h2><span class="num">01</span>Overview</h2></summary>
+  <div class="sect-body">
+  <h3 id="overview-about">What is MCP and why use DOE-MCP?</h3>
+  <p class="lede">The <b>Model Context Protocol (MCP)</b> is an open standard that allows AI assistants—such as Claude Code, Claude Desktop, Cursor, and VS Code—to securely connect to external tools and live data systems without custom one-off integrations.</p>
+  <p class="lede">The US Department of Energy and its 17 national laboratories publish large collections of scientific literature, power grid metrics, climate simulations, and materials data. However, these datasets are distributed across separate portals, REST APIs, and catalog formats. <b>DOE-MCP</b> provides curated, read-only MCP servers that connect AI assistants directly to these public resources, returning structured results with citations, data vintages, and coverage indicators.</p>
+  <h3 id="overview-queries">Sample queries</h3>
+  <p class="lede">Common questions an AI assistant can resolve using the active tools:</p>
+  <table><thead><tr><th>Question</th><th>Tool</th><th>Server</th></tr></thead><tbody><tr><td>What DOE-funded work exists on perovskite tandem cells?</td><td><code class='tool'>research.search_literature</code></td><td class='mono'>doe-research</td></tr><tr><td>Where is the dataset behind this paper, and what is its DOI?</td><td><code class='tool'>research.search_datasets</code></td><td class='mono'>doe-research</td></tr><tr><td>Has a national laboratory released Python code for lattice QCD?</td><td><code class='tool'>research.search_software</code></td><td class='mono'>doe-research</td></tr><tr><td>Can I actually read the full text of this report?</td><td><code class='tool'>research.get_record</code></td><td class='mono'>doe-research</td></tr><tr><td>What does Oak Ridge publish?</td><td><code class='tool'>registry.lab_crosswalk</code></td><td class='mono'>doe-research</td></tr><tr><td>I have an old NREL URL that 404s. What happened?</td><td><code class='tool'>registry.resolve_org</code></td><td class='mono'>doe-research</td></tr><tr><td>Which DOE catalog holds the EAGLE-I outage data?</td><td><code class='tool'>discovery.search_all_catalogs</code></td><td class='mono'>doe-research</td></tr><tr><td>What data does DOE itself call durable?</td><td><code class='tool'>discovery.list_pure_resources</code></td><td class='mono'>doe-research</td></tr><tr><td>Does DOE-MCP cover geothermal, and if not, why not?</td><td><code class='tool'>registry.search_sources</code></td><td class='mono'>doe-research</td></tr><tr><td>How much electricity did CAISO demand last night?</td><td><code class='tool'>energy.grid_status</code></td><td class='mono'>doe-energy-data</td></tr><tr><td>What does this car actually get?</td><td><code class='tool'>fuel.find_vehicle</code></td><td class='mono'>doe-energy-data</td></tr><tr><td>Which wind turbines and solar farms are in this county?</td><td><code class='tool'>facility.find_wind_turbines</code></td><td class='mono'>doe-energy-data</td></tr><tr><td>What was the weather at these coordinates every day last summer?</td><td><code class='tool'>earth.get_daymet_point</code></td><td class='mono'>doe-earth</td></tr><tr><td>What data came out of the NGEE Arctic campaign?</td><td><code class='tool'>earth.search_datasets</code></td><td class='mono'>doe-earth</td></tr><tr><td>Which climate models ran this experiment for surface temperature?</td><td><code class='tool'>climate.search_cmip</code></td><td class='mono'>doe-earth</td></tr><tr><td>Where are the air-quality sensors near this city?</td><td><code class='tool'>sensors.find_nodes</code></td><td class='mono'>doe-earth</td></tr><tr><td>Which computed structures contain gallium and nitrogen?</td><td><code class='tool'>materials.search_structures</code></td><td class='mono'>doe-materials</td></tr><tr><td>Which basis sets cover uranium, and what do they look like in NWChem?</td><td><code class='tool'>chemistry.search_basis_sets</code></td><td class='mono'>doe-materials</td></tr><tr><td>What is BPA&#x27;s wind output right now?</td><td><code class='tool'>grid.get_bpa_operations</code></td><td class='mono'>doe-energy-data</td></tr><tr><td>What has DOE proposed on appliance standards this year?</td><td><code class='tool'>docs.search_rulemakings</code></td><td class='mono'>doe-research</td></tr><tr><td>What can I license from Oak Ridge?</td><td><code class='tool'>tech.find_licensable_ip</code></td><td class='mono'>doe-research</td></tr></tbody></table>
+  </div>
+</details>
+</section>
+
+<section id="start">
+<details class="sect">
+  <summary><h2><span class="num">02</span>Quick start</h2></summary>
+  <div class="sect-body">
+  <p class="lede">Install, verify, and connect to an MCP client in four steps. No API keys are required for default operations.</p>
+  
+<ol class="steps">
+<li id="start-install"><h3>Install</h3>
+<pre>pipx install .        # from a checkout of the repository; not on PyPI yet</pre></li>
+
+<li id="start-check"><h3>Check it</h3>
+<pre>doe-mcp doctor --online</pre>
+<pre class="out">[  ok  ] anl-sage-waggle: 295 records
+[  ok  ] basis-set-exchange: 776 records
+[  ok  ] doe-code-json: 5,879 records
+[  ok  ] doe-open-data-catalog: 483 records
+[  ok  ] doe-pure-resources: 7 records
+[  ok  ] esgf-search: 14,217,502 records
+[  ok  ] ess-dive: 1,571 records
+[  ok  ] federal-register-doe: 10,000 records
+[  ok  ] lbnl-mp-optimade: 154,387 records
+[  ok  ] ornl-openenergyhub: 185 records
+[  ok  ] osti-data-explorer: 1,030,767 records
+[  ok  ] osti-doe-code: 7,675 records
+[  ok  ] osti-doe-pages: 260,246 records
+[  ok  ] osti-gov-records: 4,381,671 records
+[  ok  ] pnnl-vips: 22,663 records
+[  ok  ] usgs-uspvdb: 6,611 records
+[  ok  ] usgs-uswtdb: 75,727 records</pre></li>
+
+<li id="start-connect"><h3>Connect a client</h3>
+<pre>doe-mcp configure claude-code        # or claude-desktop, vscode, cursor
+doe-mcp configure claude-code --all  # every server at once</pre>
+<p class="lede" style="margin:.4rem 0 0">When a source requires an API key (such as EIA), run <code>doe-mcp configure credentials</code> to store it locally in <code>~/.config/doe-mcp/credentials.env</code> with restricted file permissions. Keys stay on your machine and are never written into client configuration files or shared repositories.</p></li>
+
+<li id="start-ask"><h3>Ask something</h3>
+<pre>doe-mcp tools call research.search_literature \
+  --args '{"query":"perovskite tandem solar cell","year_from":2024}'</pre>
+<pre class="out">{
+  &quot;title&quot;: &quot;Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells&quot;,
+  &quot;doi&quot;: &quot;10.2172/3484888&quot;,
+  &quot;publication_date&quot;: &quot;2026-08-26&quot;
+}</pre>
+<p class="lede" style="margin:.4rem 0 0">The full answer carries provenance,
+evidence, five coverage dimensions, and typed warnings — see
+<a href="#answer">Response format</a>.</p></li>
+</ol>
+<p class="note">No credential is needed for any of this.
+20,176,445 literature, dataset, and software records are
+reachable keyless.</p>
+
+  </div>
+</details>
+</section>
+
+<section id="servers">
+<details class="sect">
+  <summary><h2><span class="num">03</span>Servers</h2></summary>
+  <div class="sect-body">
+  <p class="lede">Four domain servers provide focused tools for research literature, power grid operations, earth systems, and materials science. 4 servers are active today, with 5 additional servers planned.</p>
+  <h3 id="servers-arch">Architecture</h3>
+  
+<div class="arch-flow" id="servers-arch">
+  <div class="arch-tier">
+    <div class="arch-tier-title">Layer 1: Agent Workflows &amp; Skills</div>
+    <div class="arch-boxes">
+      <div class="arch-box">
+        <div class="arch-box-title">find-doe-data</div>
+        <div class="arch-box-desc">Identifies whether DOE publishes data on a topic, resolves lab naming changes, and locates active endpoints.</div>
+      </div>
+      <div class="arch-box">
+        <div class="arch-box-title">grid-status-brief</div>
+        <div class="arch-box-desc">Synthesizes balancing authority demand and 5-minute grid operations with preliminary-data caveats.</div>
+      </div>
+      <div class="arch-box">
+        <div class="arch-box-title">energy-project-site-screen</div>
+        <div class="arch-box-desc">First-pass screen of existing wind/solar assets and grid demand surrounding a prospective site.</div>
+      </div>
+      <div class="arch-box">
+        <div class="arch-box-title">materials-structure-and-code</div>
+        <div class="arch-box-desc">Explores computed inorganic crystal structures and exports quantum-chemistry basis sets.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="arch-arrow">&#8595;</div>
+
+  <div class="arch-tier">
+    <div class="arch-tier-title">Layer 2: Shipping MCP Servers (Profiles: 8&ndash;12 tools default, &le;20 ceiling)</div>
+    <div class="arch-boxes">
+      <div class="arch-box">
+        <div class="arch-box-title"><code class="tool">doe-research</code></div>
+        <div class="arch-box-desc">11 tools: literature, datasets, software, rulemakings, patents, lab crosswalk, and catalog fan-out.</div>
+      </div>
+      <div class="arch-box">
+        <div class="arch-box-title"><code class="tool">doe-energy-data</code></div>
+        <div class="arch-box-desc">10 tools: EIA-930 grid demand, BPA operations, wind/solar facility screening, and vehicle fuel economy.</div>
+      </div>
+      <div class="arch-box">
+        <div class="arch-box-title"><code class="tool">doe-earth</code></div>
+        <div class="arch-box-desc">8 tools: Daymet single-pixel daily weather, ESS-DIVE field datasets, ESGF CMIP6 climate models, and Sage sensor nodes.</div>
+      </div>
+      <div class="arch-box">
+        <div class="arch-box-title"><code class="tool">doe-materials</code></div>
+        <div class="arch-box-desc">7 tools: Materials Project OPTIMADE crystal structures and Basis Set Exchange quantum-chemistry sets.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="arch-arrow">&#8595;</div>
+
+  <div class="arch-tier">
+    <div class="arch-tier-title">Layer 3: Core Registry, Adapters &amp; Structured Responses</div>
+    <div class="arch-boxes">
+      <div class="arch-box">
+        <div class="arch-box-title">Source Registry (CC0)</div>
+        <div class="arch-box-desc">83 source manifests, 22 active, 54 organizations. Validated activation gates and blocked reasons.</div>
+      </div>
+      <div class="arch-box">
+        <div class="arch-box-title">17 Publisher Adapters</div>
+        <div class="arch-box-desc">Read-only GET-only clients translating publisher dialects and enforcing concurrency and pagination invariants.</div>
+      </div>
+      <div class="arch-box">
+        <div class="arch-box-title">Structured Provenance Response</div>
+        <div class="arch-box-desc">Consistent response with 5-part contract: data payload, source provenance, record citations, 5-dimensional coverage, and typed warnings.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <h3 id="servers-list">Server list</h3>
+  <div class="grid">
+<div class="card">
+  <h4><code>doe-research</code></h4>
+  <p class="sub">Literature, datasets, software, and discovery over OSTI&#x27;s four public APIs, DOE&#x27;s rulemakings from the Federal Register, the laboratories&#x27; patents and released software, plus the source registry and a cross-catalog fan-out.</p>
+  <div class="foot"><span class="pill shipping">shipping</span>
+    &nbsp;11 tools</div>
+  <ul><li><code>research.search_literature</code></li><li><code>research.search_datasets</code></li><li><code>research.search_software</code></li><li><code>research.get_record</code></li><li><code>registry.resolve_org</code></li><li><code>registry.lab_crosswalk</code></li><li><code>discovery.search_all_catalogs</code></li><li><code>discovery.list_pure_resources</code></li><li><code>docs.search_rulemakings</code></li><li><code>docs.get_rulemaking</code></li><li><code>tech.find_licensable_ip</code></li></ul>
+</div>
+<div class="card">
+  <h4><code>doe-energy-data</code></h4>
+  <p class="sub">EIA&#x27;s self-describing statistics tree, BPA&#x27;s five-minute grid feed, the USGS/LBNL wind and solar facility inventories, and the DOE/EPA vehicle fuel-economy service.</p>
+  <div class="foot"><span class="pill shipping">shipping</span>
+    &nbsp;10 tools</div>
+  <ul><li><code>energy.discover_routes</code></li><li><code>energy.get_data</code></li><li><code>energy.grid_status</code></li><li><code>grid.get_bpa_operations</code></li><li><code>fuel.find_vehicle</code></li><li><code>fuel.get_prices</code></li><li><code>facility.find_wind_turbines</code></li><li><code>facility.find_solar_facilities</code></li><li><code>registry.resolve_org</code></li><li><code>registry.lab_crosswalk</code></li></ul>
+</div>
+<div class="card">
+  <h4><code>doe-energy-tech</code></h4>
+  <p class="sub">What is modelled, tested or published for an energy technology: the NLR developer network (PVWatts, solar resource, tariffs, alternative-fuel stations), the ATB and Cambium releases, module and battery test data, and the geothermal, marine, hydropower, bioenergy and carbon-storage repositories. Holds the api.data.gov and EDX keys; nothing in it is built yet.</p>
+  <div class="foot"><span class="pill planned">planned</span>
+    &nbsp;0 tools</div>
+  <p class='more'>Not built. The sources it would serve are in the registry, each with what is blocking it.</p>
+</div>
+<div class="card">
+  <h4><code>doe-earth</code></h4>
+  <p class="sub">Daymet single-pixel weather from ORNL DAAC, ESS-DIVE&#x27;s environmental datasets, the ESGF climate-model index, and the Sage/Waggle sensor-node inventory.</p>
+  <div class="foot"><span class="pill shipping">shipping</span>
+    &nbsp;8 tools</div>
+  <ul><li><code>earth.get_daymet_point</code></li><li><code>earth.search_datasets</code></li><li><code>earth.get_dataset</code></li><li><code>climate.discover_facets</code></li><li><code>climate.search_cmip</code></li><li><code>sensors.find_nodes</code></li><li><code>registry.resolve_org</code></li><li><code>registry.lab_crosswalk</code></li></ul>
+</div>
+<div class="card">
+  <h4><code>doe-materials</code></h4>
+  <p class="sub">The Materials Project&#x27;s keyless OPTIMADE endpoint for computed inorganic structures, and the Basis Set Exchange for quantum-chemistry basis sets.</p>
+  <div class="foot"><span class="pill shipping">shipping</span>
+    &nbsp;7 tools</div>
+  <ul><li><code>materials.describe_structure_fields</code></li><li><code>materials.search_structures</code></li><li><code>materials.get_structure</code></li><li><code>chemistry.search_basis_sets</code></li><li><code>chemistry.get_basis_set</code></li><li><code>registry.resolve_org</code></li><li><code>registry.lab_crosswalk</code></li></ul>
+</div>
+<div class="card">
+  <h4><code>doe-nuclear</code></h4>
+  <p class="sub">Nuclide structure and decay data. The ingest-versus-wrap question is deliberately still open.</p>
+  <div class="foot"><span class="pill planned">planned</span>
+    &nbsp;0 tools</div>
+  <p class='more'>Not built. The sources it would serve are in the registry, each with what is blocking it.</p>
+</div>
+<div class="card">
+  <h4><code>doe-bio</code></h4>
+  <p class="sub">Microbiome studies and biosamples; JGI and EMSL as pointer tools.</p>
+  <div class="foot"><span class="pill planned">planned</span>
+    &nbsp;0 tools</div>
+  <p class='more'>Not built. The sources it would serve are in the registry, each with what is blocking it.</p>
+</div>
+<div class="card">
+  <h4><code>doe-projects</code></h4>
+  <p class="sub">ARPA-E awards, the loan portfolio, the Lab Partnering Service. VIPS did not wait for it: the laboratories&#x27; patents and software ship in doe-research as tech.find_licensable_ip.</p>
+  <div class="foot"><span class="pill planned">planned</span>
+    &nbsp;0 tools</div>
+  <p class='more'>Not built. The sources it would serve are in the registry, each with what is blocking it.</p>
+</div>
+<div class="card">
+  <h4><code>doe-docs</code></h4>
+  <p class="sub">NEPA documents and DOE directives — or a catalog entry pointing at PNNL&#x27;s NEPA-MCP, which already serves them. The Federal Register slice did not wait for it: it needs no crawler and ships in doe-research as docs.search_rulemakings and docs.get_rulemaking.</p>
+  <div class="foot"><span class="pill planned">planned</span>
+    &nbsp;0 tools</div>
+  <p class='more'>Not built. The sources it would serve are in the registry, each with what is blocking it.</p>
+</div></div>
+  </div>
+</details>
+</section>
+
+<section id="answer">
+<details class="sect">
+  <summary><h2><span class="num">04</span>Response format</h2></summary>
+  <div class="sect-body">
+  <p class="lede">Every tool returns a consistent JSON response containing query results, data citations, vintage timestamps, and coverage indicators. Below is an annotated real response:</p>
+  <p class='note'><b><code>research.search_literature</code></b> — Find DOE-funded work on perovskite solar cells, across both collections at once. A real response, captured at build time by replaying recorded publisher bytes; the replay's timestamps are pinned to the registry revision date and the request id is fixed, so the page rebuilds identically.</p><pre>{
+  &quot;data&quot;: {
+    &quot;records&quot;: [
+      {
+        &quot;id&quot;: &quot;3484888&quot;,
+        &quot;title&quot;: &quot;Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells&quot;,
+        &quot;authors&quot;: [
+          &quot;Yan, Feng [Materials Science and Engineering Program, School for Engineering of Matter, Transport and Energy, Arizona State University, Tempe, AZ, 85287]&quot;
+        ],
+        &quot;publication_date&quot;: &quot;2026-08-26&quot;,
+        &quot;product_type&quot;: &quot;Technical Report&quot;,
+        &quot;doi&quot;: &quot;10.2172/3484888&quot;,
+        &quot;report_number&quot;: &quot;EE0009833&quot;,
+        &quot;research_orgs&quot;: [
+          &quot;Univ. of Alabama, Tuscaloosa, AL (United States)&quot;,
+          &quot;Arizona State Univ., Tempe, AZ (United States)&quot;,
+          &quot;National Renewable Energy Laboratory (NREL), Golden, CO (United States)&quot;
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;3625672&quot;,
+        &quot;title&quot;: &quot;Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative Research and Development Final Report, CRADA Number CRD-19-00810&quot;,
+        &quot;authors&quot;: [
+          &quot;Luther, Joey [National Laboratory of the Rockies, Golden, CO (United States)]&quot;,
+          &quot;Larson, Bryon [National Laboratory of the Rockies, Golden, CO (United States)]&quot;,
+          &quot;Reiter, Kyle [National Laboratory of the Rockies, Golden, CO (United States)]&quot;
+        ],
+        &quot;publication_date&quot;: &quot;2026-08-26&quot;,
+        &quot;product_type&quot;: &quot;Technical Report&quot;,
+        &quot;doi&quot;: &quot;10.66816/tp5080615&quot;,
+        &quot;report_number&quot;: &quot;NLR/TP-5F00-99345&quot;,
+        &quot;research_orgs&quot;: [
+          &quot;National Laboratory of the Rockies (NLR), Golden, CO (United States)&quot;
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;3505044&quot;,
+        &quot;title&quot;: &quot;Tandem Photovoltaics Core Program Final Technical Report&quot;,
+        &quot;authors&quot;: [
+          &quot;Warren, Emily [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000185687881)&quot;,
+          &quot;Zhu, Kai [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000309083909)&quot;,
+          &quot;Owen-Bellini, Michael [National Laboratory of the Rockies, Golden, CO (United States)]&quot;,
+          &quot;McMahon, Bill [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000150362032)&quot;,
+          &quot;Alberi, Kirstin [National Laboratory of the Rockies, Golden, CO (United States)]&quot;
+        ],
+        &quot;publication_date&quot;: &quot;2026-08-21&quot;,
+        &quot;product_type&quot;: &quot;Technical Report&quot;,
+        &quot;authors_truncated&quot;: 13,
+        &quot;doi&quot;: &quot;10.66816/tp6712117&quot;,
+        &quot;report_number&quot;: &quot;NLR/TP-5900-95272&quot;,
+        &quot;research_orgs&quot;: [
+          &quot;National Laboratory of the Rockies (NLR), Golden, CO (United States)&quot;
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;3407885&quot;,
+        &quot;title&quot;: &quot;Molecular Additive Engineering for Process-Humidity Robustness and Reproducible Fabrication of Perovskite Solar Cells and Modules&quot;,
+        &quot;authors&quot;: [
+          &quot;Saeed, Muhammad Mohsin [University of Toledo, OH (United States)]&quot;,
+          &quot;Kwon, Hyoung Woo [University of Toledo, OH (United States)]&quot;,
+          &quot;Li, You [University of Toledo, OH (United States)]&quot;,
+          &quot;Fu, Sheng [University of Toledo, OH (United States)] (ORCID:0009000859121145)&quot;,
+          &quot;Lee, Seungmin [University of Toledo, OH (United States)]&quot;
+        ],
+        &quot;publication_date&quot;: &quot;2026-07-22&quot;,
+        &quot;product_type&quot;: &quot;Journal Article&quot;,
+        &quot;authors_truncated&quot;: 15,
+        &quot;doi&quot;: &quot;10.1021/acsami.6c09922&quot;,
+        &quot;journal&quot;: &quot;ACS Applied Materials and Interfaces&quot;,
+        &quot;research_orgs&quot;: [
+          &quot;University of Toledo, OH (United States)&quot;
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;3424874&quot;,
+        &quot;title&quot;: &quot;Large Polaron Screening Delays Mobility Roll-Off in Halide Perovskites under High Injection&quot;,
+        &quot;authors&quot;: [
+          &quot;Taddei, Margherita [National Laboratory of the Rockies (NLR), Golden, CO (United States)] (ORCID:0000000341228418)&quot;,
+          &quot;Dong, Yifan [National Laboratory of the Rockies (NLR), Golden, CO (United States); University of California, Riverside, CA (United States)] (ORCID:0000000329123322)&quot;,
+          &quot;Sh
+  … trimmed for the page …
+}</pre><dl class='annot' id='answer-fields'><dt>data</dt><dd>The answer. Held to a soft budget of about 2,000 tokens, so ten records arrive as ten readable answers rather than one truncated blob.</dd><dt>provenance</dt><dd>One entry per system that contributed, with the publisher triple — steward, funder, host — because at least five flagship “lab assets” are funded by another agency entirely.</dd><dt>dataset_version</dt><dd>Required, never blank. ATB 2024 and ATB 2026 are different data with the same name, and two versions in one answer raise <code>mixed_vintages</code>.</dd><dt>evidence</dt><dd>One entry per record, pointing back at a provenance entry and carrying the locator the publisher actually supplied. A guessed link is worse than none, so none is emitted.</dd><dt>coverage.registry</dt><dd>The dimension that matters most. <code>none</code> means DOE-MCP has no source and the data may well exist; <code>covered</code> with an empty result means the searched systems hold no record. Different answers, never reported the same way.</dd><dt>coverage.pagination</dt><dd><code>truncated</code> whenever more matched than you received. OSTI returns its match count in a header and one page in the body; reading the page as the answer turns 4.4 million matches into “20 results”.</dd><dt>warnings</dt><dd>Typed, not prose. <code>alias_match</code>, <code>domain_migrated</code>, <code>catalog_vintage</code>, <code>derived_layer</code>, <code>citation_required</code> — each named for a confusion this ecosystem measurably produces.</dd><dt>access_recipes</dt><dd>Typed pointers for data too big to inline: a DOI, an S3 prefix, an OPeNDAP URL, a Globus endpoint. A 4.8-petabyte lake gets a recipe, not an attempt.</dd><dt>_execution</dt><dd>Which server, which tool contract, which adapter versions, which registry revision. Enough to reproduce the call.</dd></dl><h3 id='answer-more'>More calls, one from each shipping server</h3><details><summary><code class='tool'>registry.resolve_org</code><span class='count'>doe-research</span></summary><div class='body'><p>A user says “NREL”. The laboratory was renamed on 2025-12-01 and every old domain went dark with no redirect.</p><pre>{
+  &quot;data&quot;: {
+    &quot;resolved&quot;: {
+      &quot;id&quot;: &quot;nlr&quot;,
+      &quot;name&quot;: &quot;National Laboratory of the Rockies&quot;,
+      &quot;kind&quot;: &quot;national_lab&quot;,
+      &quot;parent&quot;: &quot;doe&quot;,
+      &quot;domains&quot;: [
+        &quot;nlr.gov&quot;,
+        &quot;developer.nlr.gov&quot;,
+        &quot;data.nlr.gov&quot;
+      ],
+      &quot;abbreviations&quot;: [
+        &quot;NLR&quot;
+      ],
+      &quot;former_names&quot;: [
+        &quot;National Renewable Energy Laboratory&quot;,
+        &quot;NREL&quot;
+      ],
+      &quot;former_domains&quot;: [
+        &quot;nrel.gov&quot;,
+        &quot;developer.nrel.gov&quot;,
+        &quot;data.nrel.gov&quot;,
+        &quot;maps.nrel.gov&quot;,
+        &quot;atb.nrel.gov&quot;,
+        &quot;datahub.h2awsm.org&quot;
+      ],
+      &quot;github_orgs&quot;: [
+        &quot;NatLabRockies&quot;,
+        &quot;NREL&quot;
+      ],
+      &quot;renamed_on&quot;: &quot;2025-12-01&quot;,
+      &quot;note&quot;: &quot;Renamed 2025-12-01. Every *.nrel.gov domain is dead with NO redirects, which makes this the ecosystem&#x27;s sharpest alias case: a caller with an old URL gets nothing at all, not a redirect, so a tool that cannot resolve the old name gives them no way to find out why. The developer network survived intact at developer.nlr.gov on GSA&#x27;s api.data.gov infrastructure. The H2 DataHub followed later: datahub.h2awsm.org now redirects to datahub-h2awsm.nlr.gov.&quot;
+    },
+    &quot;basis&quot;: &quot;former_name&quot;,
+    &quot;candidates&quot;: [],
+    &quot;source_count&quot;: 13,
+    &quot;historical_name&quot;: {
+      &quot;queried&quot;: &quot;NREL&quot;,
+      &quot;resolved_to&quot;: &quot;nlr&quot;,
+      &quot;renamed_on&quot;: &quot;2025-12-01&quot;,
+      &quot;note&quot;: &quot;&#x27;NREL&#x27; is a former name or domain. The current organization is National Laboratory of the Rockies, as of 2025-12-01. Tell the user the name they used is historical.&quot;
+    }
+  },
+  &quot;provenance&quot;: [
+    {
+      &quot;id&quot;: &quot;source_01&quot;,
+      &quot;source_id&quot;: &quot;doe-mcp-registry&quot;,
+      &quot;steward&quot;: &quot;The DOE-MCP project&quot;,
+      &quot;system&quot;: &quot;DOE-MCP source registry and organization table&quot;,
+      &quot;dataset&quot;: &quot;DOE-MCP source registry and organization table&quot;,
+      &quot;dataset_version&quot;: &quot;2026-09-09&quot;,
+      &quot;authority_level&quot;: &quot;unverified&quot;,
+      &quot;access_path&quot;: &quot;live&quot;,
+      &quot;source_updated_at&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-09-09T00:00:00Z&quot;,
+      &quot;cache_age_seconds&quot;: 0
+    }
+  ],
+  &quot;evidence&quot;: [
+    {
+      &quot;id&quot;: &quot;evidence_01&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;nlr&quot;,
+      &quot;locator&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-09-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    }
+  ],
+  &quot;coverage&quot;: {
+    &quot;registry&quot;: &quot;covered&quot;,
+    &quot;execution&quot;: &quot;complete&quot;,
+    &quot;pagination&quot;: &quot;complete&quot;,
+    &quot;source_claim&quot;: &quot;complete&quot;,
+    &quot;result&quot;: &quot;hit&quot;
+  },
+  &quot;warnings&quot;: [
+    {
+      &quot;code&quot;: &quot;alias_match&quot;,
+      &quot;message&quot;: &quot;Resolved &#x27;NREL&#x27; to nlr by former name, not by a current one. A record or document using the old name predates the change; check its date before treating it as current.&quot;,
+      &quot;source_id&quot;: null
+    }
+  ],
+  &quot;_execution&quot;: {
+    &quot;ser…</pre></div></details><details><summary><code class='tool'>discovery.search_all_catalogs</code><span class='count'>doe-research</span></summary><div class='body'><p>Four DOE catalogs at once, each labelled with its own vintage.</p><pre>{
+  &quot;data&quot;: {
+    &quot;results&quot;: [
+      {
+        &quot;id&quot;: &quot;1148737&quot;,
+        &quot;title&quot;: &quot;Structural Orientations Adjacent to Some Colorado Geothermal Systems&quot;,
+        &quot;doi&quot;: &quot;10.15121/1148737&quot;,
+        &quot;landing_page&quot;: &quot;https://gdr.openei.org/submissions/317&quot;,
+        &quot;date&quot;: &quot;2012-01-31&quot;,
+        &quot;orgs&quot;: [
+          &quot;DOE Geothermal Data Repository&quot;,
+          &quot;Flint Geothermal, LLC&quot;
+        ],
+        &quot;catalog&quot;: &quot;osti-data-explorer&quot;,
+        &quot;catalog_vintage&quot;: &quot;live&quot;
+      },
+      {
+        &quot;id&quot;: &quot;1542650&quot;,
+        &quot;title&quot;: &quot;Utah FORGE: Well 58-32 Stimulation Data&quot;,
+        &quot;doi&quot;: &quot;10.15121/1542650&quot;,
+        &quot;landing_page&quot;: &quot;https://gdr.openei.org/submissions/1149&quot;,
+        &quot;date&quot;: &quot;2019-04-19&quot;,
+        &quot;orgs&quot;: [
+          &quot;DOE Geothermal Data Repository&quot;,
+          &quot;Geothermal Resource Group&quot;
+        ],
+        &quot;catalog&quot;: &quot;osti-data-explorer&quot;,
+        &quot;catalog_vintage&quot;: &quot;live&quot;
+      },
+      {
+        &quot;id&quot;: &quot;glass-buttes-exploration-and-drilling-2010-geothermal-technologies-program-peer-&quot;,
+        &quot;title&quot;: &quot;Glass Buttes Exploration and Drilling: 2010 Geothermal Technologies Program Peer Review Presentation&quot;,
+        &quot;landing_page&quot;: &quot;https://openenergyhub.ornl.gov/explore/dataset/glass-buttes-exploration-and-drilling-2010-geothermal-technologies-program-peer-/&quot;,
+        &quot;date&quot;: &quot;2020-08-14&quot;,
+        &quot;themes&quot;: [
+          &quot;Energy&quot;,
+          &quot;Mining&quot;
+        ],
+        &quot;catalog&quot;: &quot;ornl-openenergyhub&quot;,
+        &quot;catalog_vintage&quot;: &quot;live&quot;
+      },
+      {
+        &quot;id&quot;: &quot;investigation-of-stimulation-response-relationships-for-complex-fracture-systems&quot;,
+        &quot;title&quot;: &quot;Investigation of Stimulation-Response Relationships for Complex Fracture Systems in Enhanced Geothermal Reservoirs&quot;,
+        &quot;landing_page&quot;: &quot;https://openenergyhub.ornl.gov/explore/dataset/investigation-of-stimulation-response-relationships-for-complex-fracture-systems/&quot;,
+        &quot;date&quot;: &quot;2017-05-23&quot;,
+        &quot;themes&quot;: [
+          &quot;Geothermal Energy&quot;
+        ],
+        &quot;catalog&quot;: &quot;ornl-openenergyhub&quot;,
+        &quot;catalog_vintage&quot;: &quot;live&quot;
+      }
+    ],
+    &quot;record_count&quot;: 4,
+    &quot;per_catalog&quot;: [
+      {
+        &quot;catalog&quot;: &quot;osti-data-explorer&quot;,
+        &quot;system&quot;: &quot;DOE Data Explorer&quot;,
+        &quot;vintage&quot;: &quot;live&quot;,
+        &quot;total_matches&quot;: 1062,
+        &quot;returned&quot;: 2
+      },
+      {
+        &quot;catalog&quot;: &quot;ornl-openenergyhub&quot;,
+        &quot;system&quot;: &quot;Open Energy Data Hub (ORNL)&quot;,
+        &quot;vintage&quot;: &quot;live&quot;,
+        &quot;total_matches&quot;: 17,
+        &quot;returned&quot;: 2
+      },
+      {
+        &quot;catalog&quot;: &quot;doe-open-data-catalog&quot;,
+        &quot;system&quot;: &quot;DOE Open Data Catalog (data.json)&quot;,
+        &quot;vintage&quot;: &quot;2022-09-26&quot;,
+        &quot;total_matches&quot;: 0,
+        &quot;returned&quot;: 0
+      },
+      {
+        &quot;catalog&quot;: &quot;doe-code-json&quot;,
+        &quot;system&quot;: &quot;DOE Software Inventory (code.json)&quot;,
+        &quot;vintage&quot;: &quot;2024-09-12&quot;,
+        &quot;total_matches…</pre></div></details><details><summary><code class='tool'>facility.find_wind_turbines</code><span class='count'>doe-energy-data</span></summary><div class='body'><p>Every wind turbine the USGS/LBNL inventory places in Rhode Island, five to a page, with the publisher&#x27;s own count and the confidence codes on each row.</p><pre>{
+  &quot;data&quot;: {
+    &quot;records&quot;: [
+      {
+        &quot;case_id&quot;: 3001502,
+        &quot;faa_ors&quot;: null,
+        &quot;faa_asn&quot;: null,
+        &quot;usgs_pr_id&quot;: 38309,
+        &quot;t_state&quot;: &quot;RI&quot;,
+        &quot;t_county&quot;: &quot;Kent County&quot;,
+        &quot;t_fips&quot;: &quot;44003&quot;,
+        &quot;p_name&quot;: &quot;New England Tech&quot;,
+        &quot;p_year&quot;: 2009,
+        &quot;p_tnum&quot;: 1,
+        &quot;p_cap&quot;: 0.1,
+        &quot;t_manu&quot;: &quot;Northern Power Systems&quot;,
+        &quot;t_model&quot;: &quot;NW100&quot;,
+        &quot;t_cap&quot;: 100,
+        &quot;t_hh&quot;: 37.0,
+        &quot;t_rd&quot;: 21.0,
+        &quot;t_rsa&quot;: 346.36,
+        &quot;t_ttlh&quot;: 47.5,
+        &quot;t_conf_atr&quot;: 2,
+        &quot;t_conf_loc&quot;: 3,
+        &quot;t_img_date&quot;: &quot;9/13/2017&quot;,
+        &quot;t_img_src&quot;: &quot;Maxar&quot;,
+        &quot;xlong&quot;: -71.4515,
+        &quot;ylat&quot;: 41.73279,
+        &quot;eia_id&quot;: null,
+        &quot;t_retrofit&quot;: 0,
+        &quot;t_retro_yr&quot;: null,
+        &quot;t_offshore&quot;: 0
+      },
+      {
+        &quot;case_id&quot;: 3015899,
+        &quot;faa_ors&quot;: &quot;44-020002&quot;,
+        &quot;faa_asn&quot;: &quot;2005-ANE-1002-OE&quot;,
+        &quot;usgs_pr_id&quot;: 38302,
+        &quot;t_state&quot;: &quot;RI&quot;,
+        &quot;t_county&quot;: &quot;Newport County&quot;,
+        &quot;t_fips&quot;: &quot;44005&quot;,
+        &quot;p_name&quot;: &quot;Portsmouth Abbey School&quot;,
+        &quot;p_year&quot;: 2006,
+        &quot;p_tnum&quot;: 1,
+        &quot;p_cap&quot;: 0.66,
+        &quot;t_manu&quot;: &quot;Vestas&quot;,
+        &quot;t_model&quot;: &quot;V47-0.66&quot;,
+        &quot;t_cap&quot;: 660,
+        &quot;t_hh&quot;: 50.0,
+        &quot;t_rd&quot;: 47.0,
+        &quot;t_rsa&quot;: 1734.94,
+        &quot;t_ttlh&quot;: 73.5,
+        &quot;t_conf_atr&quot;: 3,
+        &quot;t_conf_loc&quot;: 3,
+        &quot;t_img_date&quot;: null,
+        &quot;t_img_src&quot;: &quot;Bing Maps Aerial&quot;,
+        &quot;xlong&quot;: -71.2687,
+        &quot;ylat&quot;: 41.59909,
+        &quot;eia_id&quot;: null,
+        &quot;t_retrofit&quot;: 0,
+        &quot;t_retro_yr&quot;: null,
+        &quot;t_offshore&quot;: 0
+      },
+      {
+        &quot;case_id&quot;: 3034241,
+        &quot;faa_ors&quot;: &quot;44-020102&quot;,
+        &quot;faa_asn&quot;: &quot;2010-WTE-12453-OE&quot;,
+        &quot;usgs_pr_id&quot;: 38304,
+        &quot;t_state&quot;: &quot;RI&quot;,
+        &quot;t_county&quot;: &quot;Newport County&quot;,
+        &quot;t_fips&quot;: &quot;44005&quot;,
+        &quot;p_name&quot;: &quot;Sandywoods&quot;,
+        &quot;p_year&quot;: 2012,
+        &quot;p_tnum&quot;: 1,
+        &quot;p_cap&quot;: 0.28,
+        &quot;t_manu&quot;: &quot;Vergnet&quot;,
+        &quot;t_model&quot;: &quot;GEV MP&quot;,
+        &quot;t_cap&quot;: 275,
+        &quot;t_hh&quot;: 55.0,
+        &quot;t_rd&quot;: 32.0,
+        &quot;t_rsa&quot;: 804.25,
+        &quot;t_ttlh&quot;: 71.0,
+        &quot;t_conf_atr&quot;: 3,
+        &quot;t_conf_loc&quot;: 3,
+        &quot;t_img_date&quot;: &quot;11/18/2020&quot;,
+        &quot;t_img_src&quot;: &quot;Maxar&quot;,
+        &quot;xlong&quot;: -71.1539,
+        &quot;ylat&quot;: 41.62049,
+        &quot;eia_id&quot;: null,
+        &quot;t_retrofit&quot;: 0,
+        &quot;t_retro_yr&quot;: null,
+        &quot;t_offshore&quot;: 0
+      },
+      {
+        &quot;case_id&quot;: 3039300,
+        &quot;faa_ors&quot;: &quot;44-020088&quot;,
+        &quot;faa_asn&quot;: &quot;2011-WTE-8243-OE&quot;,
+        &quot;usgs_pr_id&quot;: 38306,
+        &quot;t_state&quot;: &quot;RI&quot;,
+        &quot;t_county&quot;: &quot;Providence County&quot;,
+        &quot;t_fips&quot;: &quot;44007&quot;,
+        &quot;p_name&quot;: &quot;Field&#x27;s Point Wastewater Treatment Facility&quot;,
+        &quot;p_year&quot;: 2012,
+        &quot;p_tnum&quot;: 3,
+        &quot;p_cap&quot;: 4.5,
+        &quot;t_manu&quot;: &quot;Goldwind&quot;,
+        &quot;t_model&quot;: &quot;GW82&quot;,
+    …</pre></div></details><details><summary><code class='tool'>earth.get_daymet_point</code><span class='count'>doe-earth</span></summary><div class='body'><p>Five days of modelled surface weather at Oak Ridge, from the single-pixel service, with the returned range reported beside the requested one.</p><pre>{
+  &quot;data&quot;: {
+    &quot;latitude&quot;: 35.9313,
+    &quot;longitude&quot;: -84.3104,
+    &quot;elevation_meters&quot;: 261.0,
+    &quot;tile&quot;: &quot;11208&quot;,
+    &quot;projected_coordinates&quot;: &quot;1352953.24 -569846.6&quot;,
+    &quot;software_version&quot;: &quot;All years; all variables; Daymet Software Version 4.0&quot;,
+    &quot;publisher_citation&quot;: &quot;Thornton; M.M.; R. Shrestha; Y. Wei; P.E. Thornton; S-C. Kao; and B.E. Wilson. 2022. Daymet: Daily Surface Weather Data on a 1-km Grid for North America; Version 4 R1. ORNL DAAC; Oak Ridge; Tennessee; USA. https://doi.org/10.3334/ORNLDAAC/2129&quot;,
+    &quot;columns&quot;: [
+      {
+        &quot;name&quot;: &quot;prcp&quot;,
+        &quot;units&quot;: &quot;mm/day&quot;,
+        &quot;description&quot;: &quot;Daily total precipitation, millimetres per day&quot;
+      },
+      {
+        &quot;name&quot;: &quot;tmax&quot;,
+        &quot;units&quot;: &quot;deg c&quot;,
+        &quot;description&quot;: &quot;Daily maximum 2-metre air temperature, degrees Celsius&quot;
+      },
+      {
+        &quot;name&quot;: &quot;tmin&quot;,
+        &quot;units&quot;: &quot;deg c&quot;,
+        &quot;description&quot;: &quot;Daily minimum 2-metre air temperature, degrees Celsius&quot;
+      }
+    ],
+    &quot;days&quot;: [
+      {
+        &quot;date&quot;: &quot;2023-06-01&quot;,
+        &quot;yday&quot;: 152,
+        &quot;values&quot;: {
+          &quot;prcp&quot;: 0.0,
+          &quot;tmax&quot;: 28.62,
+          &quot;tmin&quot;: 16.9
+        }
+      },
+      {
+        &quot;date&quot;: &quot;2023-06-02&quot;,
+        &quot;yday&quot;: 153,
+        &quot;values&quot;: {
+          &quot;prcp&quot;: 0.0,
+          &quot;tmax&quot;: 31.43,
+          &quot;tmin&quot;: 16.08
+        }
+      },
+      {
+        &quot;date&quot;: &quot;2023-06-03&quot;,
+        &quot;yday&quot;: 154,
+        &quot;values&quot;: {
+          &quot;prcp&quot;: 0.0,
+          &quot;tmax&quot;: 32.28,
+          &quot;tmin&quot;: 14.76
+        }
+      },
+      {
+        &quot;date&quot;: &quot;2023-06-04&quot;,
+        &quot;yday&quot;: 155,
+        &quot;values&quot;: {
+          &quot;prcp&quot;: 0.0,
+          &quot;tmax&quot;: 31.05,
+          &quot;tmin&quot;: 16.8
+        }
+      },
+      {
+        &quot;date&quot;: &quot;2023-06-05&quot;,
+        &quot;yday&quot;: 156,
+        &quot;values&quot;: {
+          &quot;prcp&quot;: 2.12,
+          &quot;tmax&quot;: 29.2,
+          &quot;tmin&quot;: 16.24
+        }
+      }
+    ],
+    &quot;record_count&quot;: 5,
+    &quot;requested_range&quot;: {
+      &quot;from&quot;: &quot;2023-06-01&quot;,
+      &quot;to&quot;: &quot;2023-06-05&quot;
+    },
+    &quot;returned_range&quot;: {
+      &quot;from&quot;: &quot;2023-06-01&quot;,
+      &quot;to&quot;: &quot;2023-06-05&quot;
+    },
+    &quot;calendar&quot;: &quot;Daymet&#x27;s year is always 365 days. 29 February is present and 31 December is dropped in leap years, so an annual total from a leap year is a 365-day total and the missing date is named on any answer whose range covers it.&quot;,
+    &quot;note&quot;: &quot;Daily modelled surface weather for the 1 km cell holding this point. Precipitation is a daily total; tmax and tmin are daily extremes, so a daily mean has to be computed and is not published. For observations at a station rather than a modelled grid cell, this is the wrong source.&quot;
+  },
+  &quot;provenance&quot;: [
+    {
+      &quot;id&quot;: &quot;source_01&quot;,
+      &quot;source_id&quot;: &quot;ornl-daac&quot;,
+      &quot;steward&quot;: &quot;Oak Ridge National Laboratory&quot;,
+      &quot;funder&quot;: &quot;National Aeronautics and Space Administration&quot;,
+      &quot;system&quot;: &quot;ORNL…</pre></div></details><details><summary><code class='tool'>materials.search_structures</code><span class='count'>doe-materials</span></summary><div class='body'><p>Computed structures containing gallium and nitrogen from the Materials Project&#x27;s OPTIMADE endpoint, marked as computed rather than measured.</p><pre>{
+  &quot;data&quot;: {
+    &quot;structures&quot;: [
+      {
+        &quot;id&quot;: &quot;mp-1244984&quot;,
+        &quot;formula&quot;: &quot;GaN&quot;,
+        &quot;formula_descriptive&quot;: &quot;GaN&quot;,
+        &quot;formula_hill&quot;: &quot;Ga50N50&quot;,
+        &quot;elements&quot;: [
+          &quot;Ga&quot;,
+          &quot;N&quot;
+        ],
+        &quot;element_ratios&quot;: [
+          0.5,
+          0.5
+        ],
+        &quot;element_count&quot;: 2,
+        &quot;sites&quot;: 100,
+        &quot;space_group_number&quot;: null,
+        &quot;space_group_symbol&quot;: null,
+        &quot;periodic_dimensions&quot;: 3,
+        &quot;last_modified&quot;: &quot;2019-07-02T00:29:18.792000&quot;,
+        &quot;provider_fields&quot;: {
+          &quot;_mp_chemical_system&quot;: &quot;Ga-N&quot;,
+          &quot;_mp_stability&quot;: {
+            &quot;gga_gga+u_r2scan&quot;: {
+              &quot;thermo_id&quot;: &quot;mp-1244984_GGA_GGA+U_R2SCAN&quot;,
+              &quot;energy_above_hull&quot;: 0.7416738018000011,
+              &quot;formation_energy_per_atom&quot;: 0.07162439492499971,
+              &quot;last_updated_thermo&quot;: &quot;2023-04-27T01:24:08.875000&quot;
+            },
+            &quot;gga_gga+u&quot;: {
+              &quot;thermo_id&quot;: &quot;mp-1244984_GGA_GGA+U&quot;,
+              &quot;energy_above_hull&quot;: 0.7416738018000002,
+              &quot;formation_energy_per_atom&quot;: 0.0848569330500004,
+              &quot;last_updated_thermo&quot;: &quot;2023-04-27T01:24:20.078000&quot;
+            }
+          }
+        }
+      },
+      {
+        &quot;id&quot;: &quot;mp-1223660&quot;,
+        &quot;formula&quot;: &quot;GaInN2&quot;,
+        &quot;formula_descriptive&quot;: &quot;GaInN2&quot;,
+        &quot;formula_hill&quot;: &quot;GaInN2&quot;,
+        &quot;elements&quot;: [
+          &quot;Ga&quot;,
+          &quot;In&quot;,
+          &quot;N&quot;
+        ],
+        &quot;element_ratios&quot;: [
+          0.25,
+          0.25,
+          0.5
+        ],
+        &quot;element_count&quot;: 3,
+        &quot;sites&quot;: 4,
+        &quot;space_group_number&quot;: null,
+        &quot;space_group_symbol&quot;: null,
+        &quot;periodic_dimensions&quot;: 3,
+        &quot;last_modified&quot;: &quot;2022-06-10T06:23:20.905000&quot;,
+        &quot;provider_fields&quot;: {
+          &quot;_mp_chemical_system&quot;: &quot;Ga-In-N&quot;,
+          &quot;_mp_stability&quot;: {
+            &quot;gga_gga+u_r2scan&quot;: {
+              &quot;thermo_id&quot;: &quot;mp-1223660_GGA_GGA+U_R2SCAN&quot;,
+              &quot;energy_above_hull&quot;: 0.07719281500000008,
+              &quot;formation_energy_per_atom&quot;: -0.3166822218750003,
+              &quot;last_updated_thermo&quot;: &quot;2023-04-27T01:30:31.450000&quot;
+            },
+            &quot;gga_gga+u&quot;: {
+              &quot;thermo_id&quot;: &quot;mp-1223660_GGA_GGA+U&quot;,
+              &quot;energy_above_hull&quot;: 0.07719281500000008,
+              &quot;formation_energy_per_atom&quot;: -0.2906402068750005,
+              &quot;last_updated_thermo&quot;: &quot;2023-04-27T01:30:39.045000&quot;
+            }
+          }
+        }
+      },
+      {
+        &quot;id&quot;: &quot;mp-1199250&quot;,
+        &quot;formula&quot;: &quot;F6GaN3&quot;,
+        &quot;formula_descriptive&quot;: &quot;F24Ga4N12&quot;,
+        &quot;formula_hill&quot;: &quot;F24Ga4N12&quot;,
+        &quot;elements&quot;: [
+          &quot;F&quot;,
+          &quot;Ga&quot;,
+          &quot;N&quot;
+        ],
+        &quot;element_ratios&quot;: [
+          0.1,
+          0.3,
+          0.6
+        ],
+        &quot;element_count&quot;: 3,
+        &quot;sites&quot;: 40,
+        &quot;space_gro…</pre></div></details>
+  </div>
+</details>
+</section>
+
+<section id="registry">
+<details class="sect">
+  <summary><h2><span class="num">05</span>Data registry</h2></summary>
+  <div class="sect-body">
+  <p class="lede">The CC0 registry indexes 83 data systems across 54 national laboratories and offices. You can browse by publishing organization to see which facilities steward each system, or search the complete catalog of 22 active sources and planned integrations with notes on automation status and access protocols.</p>
+  <h3 id="registry-orgs">By organization</h3>
+  <details open><summary>National laboratories <span class="count">17, 17 carrying data</span></summary><div class="grid">
+<div class="card">
+  <h4>Ames National Laboratory</h4>
+  <p class='sub'>formerly Ames Laboratory</p>
+  <div class="foot">7 sources · 5 active</div>
+  <ul><li><code>ames-gamess</code> <span class='pill proposed'>inventory</span></li><li><code>nlr-lab-partnering-service</code> <span class='pill proposed'>inventory</span></li><li><code>osti-data-explorer</code> <span class='pill active'>active</span></li><li><code>osti-doe-code</code> <span class='pill active'>active</span></li><li><code>osti-doe-pages</code> <span class='pill active'>active</span></li><li><code>osti-gov-records</code> <span class='pill active'>active</span></li><li><code>pnnl-vips</code> <span class='pill active'>active</span></li></ul>
+</div>
+<div class="card">
+  <h4>Argonne National Laboratory</h4>
+  
+  <div class="foot">13 sources · 7 active</div>
+  <ul><li><code>alcf-status</code> <span class='pill proposed'>inventory</span></li><li><code>anl-atct</code> <span class='pill proposed'>inventory</span></li><li><code>anl-gem</code> <span class='pill proposed'>inventory</span></li><li><code>anl-mdf</code> <span class='pill proposed'>inventory</span></li><li><code>anl-sage-waggle</code> <span class='pill active'>active</span></li><li><code>doe-pure-resources</code> <span class='pill active'>active</span></li><li><code>nlr-lab-partnering-service</code> <span class='pill proposed'>inventory</span></li><li>+6 more</li></ul>
+</div>
+<div class="card">
+  <h4>Brookhaven National Laboratory</h4>
+  
+  <div class="foot">10 sources · 6 active</div>
+  <ul><li><code>arm-data-center</code> <span class='pill proposed'>inventory</span></li><li><code>bnl-nndc-bulk</code> <span class='pill proposed'>inventory</span></li><li><code>doe-pure-resources</code> <span class='pill active'>active</span></li><li><code>iaea-live-chart</code> <span class='pill proposed'>inventory</span></li><li><code>nlr-lab-partnering-service</code> <span class='pill proposed'>inventory</span></li><li><code>osti-data-explorer</code> <span class='pill active'>active</span></li><li><code>osti-doe-code</code> <span class='pill active'>active</span></li><li>+3 more</li></ul>
+</div>
+<div class="card">
+  <h4>Fermi National Accelerator Laboratory</h4>
+  
+  <div class="foot">7 sources · 5 active</div>
+  <ul><li><code>fnal-experiment-releases</code> <span class='pill proposed'>inventory</span></li><li><code>nlr-lab-partnering-service</code> <span class='pill proposed'>inventory</span></li><li><code>osti-data-explorer</code> <span class='pill active'>active</span></li><li><code>osti-doe-code</code> <span class='pill active'>active</span></li><li><code>osti-doe-pages</code> <span class='pill active'>active</span></li><li><code>osti-gov-records</code> <span class='pill active'>active</span></li><li><code>pnnl-vips</code> <span class='pill active'>active</span></li></ul>
+</div>
+<div class="card">
+  <h4>Idaho National Laboratory</h4>
+  
+  <div class="foot">9 sources · 5 active</div>
+  <ul><li><code>inl-digital-library</code> <span class='pill proposed'>inventory</span></li><li><code>inl-moose</code> <span class='pill proposed'>inventory</span></li><li><code>nlr-geothermal-data-repository</code> <span class='pill proposed'>inventory</span></li><li><code>nlr-lab-partnering-service</code> <span class='pill proposed'>inventory</span></li><li><code>osti-data-explorer</code> <span class='pill active'>active</span></li><li><code>osti-doe-code</code> <span class='pill active'>active</span></li><li><code>osti-doe-pages</code> <span class='pill active'>active</span></li><li>+2 more</li></ul>
+</div>
+<div class="card">
+  <h4>Thomas Jefferson National Accelerator Facility</h4>
+  
+  <div class="foot">7 sources · 5 active</div>
+  <ul><li><code>jlab-ildg</code> <span class='pill proposed'>inventory</span></li><li><code>nlr-lab-partnering-service</code> <span class='pill proposed'>inventory</span></li><li><code>osti-data-explorer</code> <span class='pill active'>active</span></li><li><code>osti-doe-code</code> <span class='pill active'>active</span></li><li><code>osti-doe-pages</code> <span class='pill active'>active</span></li><li><code>osti-gov-records</code> <span class='pill active'>active</span></li><li><code>pnnl-vips</code> <span class='pill active'>active</span></li></ul>
+</div>
+<div class="card">
+  <h4>Los Alamos National Laboratory</h4>
+  
+  <div class="foot">8 sources · 5 active</div>
+  <ul><li><code>arm-data-center</code> <span class='pill proposed'>inventory</span></li><li><code>lanl-sequence-databases</code> <span class='pill proposed'>inventory</span></li><li><code>nlr-lab-partnering-service</code> <span class='pill proposed'>inventory</span></li><li><code>osti-data-explorer</code> <span class='pill active'>active</span></li><li><code>osti-doe-code</code> <span class='pill active'>active</span></li><li><code>osti-doe-pages</code> <span class='pill active'>active</span></li><li><code>osti-gov-records</code> <span class='pill active'>active</span></li><li>+1 more</li></ul>
+</div>
+<div class="card">
+  <h4>Lawrence Berkeley National Laboratory</h4>
+  <p class='sub'>formerly Lawrence Berkeley Laboratory</p>
+  <div class="foot">20 sources · 10 active</div>
+  <ul><li><code>doe-pure-resources</code> <span class='pill active'>active</span></li><li><code>ess-dive</code> <span class='pill active'>active</span></li><li><code>jgi-gold</code> <span class='pill proposed'>inventory</span></li><li><code>lbnl-ameriflux</code> <span class='pill proposed'>inventory</span></li><li><code>lbnl-emp-datasets</code> <span class='pill proposed'>inventory</span></li><li><code>lbnl-materials-project</code> <span class='pill proposed'>inventory</span></li><li><code>lbnl-mp-optimade</code> <span class='pill active'>active</span></li><li>+13 more</li></ul>
+</div>
+<div class="card">
+  <h4>Lawrence Livermore National Laboratory</h4>
+  
+  <div class="foot">8 sources · 6 active</div>
+  <ul><li><code>esgf-search</code> <span class='pill active'>active</span></li><li><code>llnl-open-data-initiative</code> <span class='pill proposed'>inventory</span></li><li><code>nlr-lab-partnering-service</code> <span class='pill proposed'>inventory</span></li><li><code>osti-data-explorer</code> <span class='pill active'>active</span></li><li><code>osti-doe-code</code> <span class='pill active'>active</span></li><li><code>osti-doe-pages</code> <span class='pill active'>active</span></li><li><code>osti-gov-records</code> <span class='pill active'>active</span></li><li>+1 more</li></ul>
+</div>
+<div class="card">
+  <h4>National Energy Technology Laboratory</h4>
+  
+  <div class="foot">7 sources · 5 active</div>
+  <ul><li><code>netl-edx</code> <span class='pill proposed'>inventory</span></li><li><code>nlr-lab-partnering-service</code> <span class='pill proposed'>inventory</span></li><li><code>osti-data-explorer</code> <span class='pill active'>active</span></li><li><code>osti-doe-code</code> <span class='pill active'>active</span></li><li><code>osti-doe-pages</code> <span class='pill active'>active</span></li><li><code>osti-gov-records</code> <span class='pill active'>active</span></li><li><code>pnnl-vips</code> <span class='pill active'>active</span></li></ul>
+</div>
+<div class="card">
+  <h4>National Laboratory of the Rockies</h4>
+  <p class='sub'>formerly National Renewable Energy Laboratory, NREL · renamed 2025-12-01</p>
+  <div class="foot">13 sources · 5 active</div>
+  <ul><li><code>nlr-atb</code> <span class='pill proposed'>inventory</span></li><li><code>nlr-cambium</code> <span class='pill proposed'>inventory</span></li><li><code>nlr-developer-network</code> <span class='pill proposed'>inventory</span></li><li><code>nlr-duramat-datahub</code> <span class='pill proposed'>inventory</span></li><li><code>nlr-geothermal-data-repository</code> <span class='pill proposed'>inventory</span></li><li><code>nlr-lab-partnering-service</code> <span class='pill proposed'>inventory</span></li><li><code>oedi-data-lake</code> <span class='pill proposed'>inventory</span></li><li>+6 more</li></ul>
+</div>
+<div class="card">
+  <h4>Oak Ridge National Laboratory</h4>
+  
+  <div class="foot">23 sources · 10 active</div>
+  <ul><li><code>arm-data-center</code> <span class='pill proposed'>inventory</span></li><li><code>ceser-eagle-i-outages</code> <span class='pill proposed'>inventory</span></li><li><code>doe-pure-resources</code> <span class='pill active'>active</span></li><li><code>esgf-search</code> <span class='pill active'>active</span></li><li><code>fueleconomy-ws</code> <span class='pill active'>active</span></li><li><code>nlr-lab-partnering-service</code> <span class='pill proposed'>inventory</span></li><li><code>nmdc-runtime</code> <span class='pill proposed'>inventory</span></li><li>+16 more</li></ul>
+</div>
+<div class="card">
+  <h4>Pacific Northwest National Laboratory</h4>
+  
+  <div class="foot">15 sources · 6 active</div>
+  <ul><li><code>arm-data-center</code> <span class='pill proposed'>inventory</span></li><li><code>basis-set-exchange</code> <span class='pill active'>active</span></li><li><code>nlr-lab-partnering-service</code> <span class='pill proposed'>inventory</span></li><li><code>nmdc-runtime</code> <span class='pill proposed'>inventory</span></li><li><code>oedi-data-lake</code> <span class='pill proposed'>inventory</span></li><li><code>osti-data-explorer</code> <span class='pill active'>active</span></li><li><code>osti-doe-code</code> <span class='pill active'>active</span></li><li>+8 more</li></ul>
+</div>
+<div class="card">
+  <h4>Princeton Plasma Physics Laboratory</h4>
+  
+  <div class="foot">7 sources · 5 active</div>
+  <ul><li><code>nlr-lab-partnering-service</code> <span class='pill proposed'>inventory</span></li><li><code>osti-data-explorer</code> <span class='pill active'>active</span></li><li><code>osti-doe-code</code> <span class='pill active'>active</span></li><li><code>osti-doe-pages</code> <span class='pill active'>active</span></li><li><code>osti-gov-records</code> <span class='pill active'>active</span></li><li><code>pnnl-vips</code> <span class='pill active'>active</span></li><li><code>pppl-fusionrate</code> <span class='pill proposed'>inventory</span></li></ul>
+</div>
+<div class="card">
+  <h4>SLAC National Accelerator Laboratory</h4>
+  <p class='sub'>formerly Stanford Linear Accelerator Center</p>
+  <div class="foot">7 sources · 5 active</div>
+  <ul><li><code>nlr-lab-partnering-service</code> <span class='pill proposed'>inventory</span></li><li><code>osti-data-explorer</code> <span class='pill active'>active</span></li><li><code>osti-doe-code</code> <span class='pill active'>active</span></li><li><code>osti-doe-pages</code> <span class='pill active'>active</span></li><li><code>osti-gov-records</code> <span class='pill active'>active</span></li><li><code>pnnl-vips</code> <span class='pill active'>active</span></li><li><code>slac-software-releases</code> <span class='pill proposed'>inventory</span></li></ul>
+</div>
+<div class="card">
+  <h4>Sandia National Laboratories</h4>
+  
+  <div class="foot">12 sources · 5 active</div>
+  <ul><li><code>arm-data-center</code> <span class='pill proposed'>inventory</span></li><li><code>nlr-duramat-datahub</code> <span class='pill proposed'>inventory</span></li><li><code>nlr-lab-partnering-service</code> <span class='pill proposed'>inventory</span></li><li><code>oedi-data-lake</code> <span class='pill proposed'>inventory</span></li><li><code>osti-data-explorer</code> <span class='pill active'>active</span></li><li><code>osti-doe-code</code> <span class='pill active'>active</span></li><li><code>osti-doe-pages</code> <span class='pill active'>active</span></li><li>+5 more</li></ul>
+</div>
+<div class="card">
+  <h4>Savannah River National Laboratory</h4>
+  
+  <div class="foot">7 sources · 5 active</div>
+  <ul><li><code>nlr-lab-partnering-service</code> <span class='pill proposed'>inventory</span></li><li><code>osti-data-explorer</code> <span class='pill active'>active</span></li><li><code>osti-doe-code</code> <span class='pill active'>active</span></li><li><code>osti-doe-pages</code> <span class='pill active'>active</span></li><li><code>osti-gov-records</code> <span class='pill active'>active</span></li><li><code>pnnl-vips</code> <span class='pill active'>active</span></li><li><code>srnl-srs-environmental-reports</code> <span class='pill proposed'>inventory</span></li></ul>
+</div></div></details><details><summary>Program offices <span class="count">19, 14 carrying data</span></summary><div class="grid">
+<div class="card">
+  <h4>Alternative Fuels and Feedstocks Office</h4>
+  <p class='sub'>formerly Hydrogen and Fuel Cell Technologies Office, HFTO, Bioenergy Technologies Office, BETO · renamed 2025-12-01</p>
+  <div class="foot">1 sources · 0 active</div>
+  <ul><li><code>ornl-bioenergy-kdf</code> <span class='pill proposed'>inventory</span></li></ul>
+</div>
+<div class="card">
+  <h4>Advanced Research Projects Agency-Energy</h4>
+  
+  <div class="foot">1 sources · 0 active</div>
+  <ul><li><code>arpa-e-projects</code> <span class='pill proposed'>inventory</span></li></ul>
+</div>
+<div class="card">
+  <h4>Biological and Environmental Research</h4>
+  
+  <div class="foot">1 sources · 1 active</div>
+  <ul><li><code>ess-dive</code> <span class='pill active'>active</span></li></ul>
+</div>
+<div class="card">
+  <h4>Office of Cybersecurity, Energy Security, and Emergency Response</h4>
+  
+  <div class="foot">1 sources · 0 active</div>
+  <ul><li><code>ceser-eagle-i-outages</code> <span class='pill proposed'>inventory</span></li></ul>
+</div>
+<div class="card">
+  <h4>Office of Critical Materials and Energy Innovation</h4>
+  <p class='sub'>formerly Office of Energy Efficiency and Renewable Energy, EERE · renamed 2025-12-01</p>
+  <div class="foot">6 sources · 2 active</div>
+  <ul><li><code>doe-ccms-certification</code> <span class='pill proposed'>inventory</span></li><li><code>nlr-duramat-datahub</code> <span class='pill proposed'>inventory</span></li><li><code>ornl-tedb</code> <span class='pill proposed'>inventory</span></li><li><code>pnnl-wind-data-hub</code> <span class='pill proposed'>inventory</span></li><li><code>usgs-uspvdb</code> <span class='pill active'>active</span></li><li><code>usgs-uswtdb</code> <span class='pill active'>active</span></li></ul>
+</div>
+<div class="card">
+  <h4>Energy Dominance Financing</h4>
+  <p class='sub'>formerly Loan Programs Office, LPO · renamed 2025-12-01</p>
+  <div class="foot">1 sources · 0 active</div>
+  <ul><li><code>edf-loan-portfolio</code> <span class='pill proposed'>inventory</span></li></ul>
+</div>
+<div class="card">
+  <h4>US Energy Information Administration</h4>
+  
+  <div class="foot">1 sources · 1 active</div>
+  <ul><li><code>eia-api-v2</code> <span class='pill active'>active</span></li></ul>
+</div>
+<div class="card">
+  <h4>Office of Environmental Management</h4>
+  
+  <div class="foot">1 sources · 0 active</div>
+  <ul><li><code>pnnl-phoenix-hanford</code> <span class='pill proposed'>inventory</span></li></ul>
+</div>
+<div class="card">
+  <h4>Grid Deployment Office (dismantled)</h4>
+  
+  <div class="foot">1 sources · 0 active</div>
+  <ul><li><code>anl-gem</code> <span class='pill proposed'>inventory</span></li></ul>
+</div>
+<div class="card">
+  <h4>Office of Hydrocarbon and Geological Energy</h4>
+  <p class='sub'>formerly Office of Fossil Energy and Carbon Management, FECM, Office of Fossil Energy, FE · renamed 2025-11-20</p>
+  <div class="foot">0 sources · 0 active</div>
+  <ul></ul>
+</div>
+<div class="card">
+  <h4>Industrial Technologies Office</h4>
+  <p class='sub'>formerly Industrial Efficiency and Decarbonization Office, IEDO · renamed 2025-12-01</p>
+  <div class="foot">0 sources · 0 active</div>
+  <ul></ul>
+</div>
+<div class="card">
+  <h4>Office of Legacy Management</h4>
+  
+  <div class="foot">1 sources · 0 active</div>
+  <ul><li><code>lm-gems</code> <span class='pill proposed'>inventory</span></li></ul>
+</div>
+<div class="card">
+  <h4>Office of Nuclear Energy</h4>
+  
+  <div class="foot">0 sources · 0 active</div>
+  <ul></ul>
+</div>
+<div class="card">
+  <h4>National Nuclear Security Administration</h4>
+  
+  <div class="foot">0 sources · 0 active</div>
+  <ul></ul>
+</div>
+<div class="card">
+  <h4>Office of Clean Energy Demonstrations</h4>
+  
+  <div class="foot">1 sources · 0 active</div>
+  <ul><li><code>oced-community-benefits-map</code> <span class='pill proposed'>inventory</span></li></ul>
+</div>
+<div class="card">
+  <h4>Office of the Chief Information Officer</h4>
+  
+  <div class="foot">3 sources · 2 active</div>
+  <ul><li><code>doe-ai-use-case-inventory</code> <span class='pill proposed'>inventory</span></li><li><code>doe-code-json</code> <span class='pill active'>active</span></li><li><code>doe-open-data-catalog</code> <span class='pill active'>active</span></li></ul>
+</div>
+<div class="card">
+  <h4>Office of Electricity</h4>
+  
+  <div class="foot">0 sources · 0 active</div>
+  <ul></ul>
+</div>
+<div class="card">
+  <h4>Office of Scientific and Technical Information</h4>
+  
+  <div class="foot">4 sources · 4 active</div>
+  <ul><li><code>osti-data-explorer</code> <span class='pill active'>active</span></li><li><code>osti-doe-code</code> <span class='pill active'>active</span></li><li><code>osti-doe-pages</code> <span class='pill active'>active</span></li><li><code>osti-gov-records</code> <span class='pill active'>active</span></li></ul>
+</div>
+<div class="card">
+  <h4>Office of Science</h4>
+  
+  <div class="foot">8 sources · 3 active</div>
+  <ul><li><code>alcf-status</code> <span class='pill proposed'>inventory</span></li><li><code>doe-pure-resources</code> <span class='pill active'>active</span></li><li><code>esgf-search</code> <span class='pill active'>active</span></li><li><code>jgi-gold</code> <span class='pill proposed'>inventory</span></li><li><code>lbnl-mp-optimade</code> <span class='pill active'>active</span></li><li><code>nersc-status</code> <span class='pill proposed'>inventory</span></li><li><code>olcf-status</code> <span class='pill proposed'>inventory</span></li><li>+1 more</li></ul>
+</div></div></details><details><summary>Power marketing administrations <span class="count">4, 1 carrying data</span></summary><div class="grid">
+<div class="card">
+  <h4>Bonneville Power Administration</h4>
+  
+  <div class="foot">1 sources · 1 active</div>
+  <ul><li><code>bpa-operations</code> <span class='pill active'>active</span></li></ul>
+</div>
+<div class="card">
+  <h4>Southeastern Power Administration</h4>
+  
+  <div class="foot">0 sources · 0 active</div>
+  <ul></ul>
+</div>
+<div class="card">
+  <h4>Southwestern Power Administration</h4>
+  
+  <div class="foot">0 sources · 0 active</div>
+  <ul></ul>
+</div>
+<div class="card">
+  <h4>Western Area Power Administration</h4>
+  
+  <div class="foot">0 sources · 0 active</div>
+  <ul></ul>
+</div></div></details><details><summary>Headquarters <span class="count">1, 1 carrying data</span></summary><div class="grid">
+<div class="card">
+  <h4>US Department of Energy</h4>
+  
+  <div class="foot">4 sources · 1 active</div>
+  <ul><li><code>doe-directives</code> <span class='pill proposed'>inventory</span></li><li><code>doe-nepa-documents</code> <span class='pill proposed'>inventory</span></li><li><code>fueleconomy-ws</code> <span class='pill active'>active</span></li><li><code>sbir-doe-awards</code> <span class='pill proposed'>inventory</span></li></ul>
+</div></div></details>
+  <h3 id="registry-sources">By source</h3>
+  <details><summary>All 83 systems
+    <span class="count">22 queryable</span></summary>
+  <input id="q" type="search" placeholder="Filter 83 sources — try &quot;ornl&quot;, &quot;inventory&quot;, &quot;grid&quot;, &quot;outreach&quot;" aria-label="Filter sources"><table><thead><tr><th>Source</th><th>Publisher</th><th>What it holds / what is blocking it</th><th style='text-align:right'>Records</th></tr></thead><tbody id='reg'><tr data-s="anl-sage-waggle sage / waggle edge sensor network earth argonne national laboratory anl active"><td class='mono'>anl-sage-waggle<br><span class='pill active'>active</span></td><td>Argonne National Laboratory<br><span class='mono' style='color:var(--faint)'>funder: National Science Foundation</span></td><td>Every node in the Sage/Waggle network with its deployment phase, project, coordinates, host address, computers, and instruments — cameras, weather and air-quality packages, microphones, rain gauges, and lidar.</td><td class='mono' style='text-align:right'>295</td></tr><tr data-s="basis-set-exchange basis set exchange materials molecular sciences software institute pnnl active"><td class='mono'>basis-set-exchange<br><span class='pill active'>active</span></td><td>Molecular Sciences Software Institute</td><td>Quantum-chemistry basis sets by name, element, and program format (NWChem, Gaussian, CP2K, and thirty others), with the metadata and literature references for each set.</td><td class='mono' style='text-align:right'>776</td></tr><tr data-s="bpa-operations bpa transmission operations feeds energy bonneville power administration  active"><td class='mono'>bpa-operations<br><span class='pill active'>active</span></td><td>Bonneville Power Administration</td><td>Near-live load and generation inside the Bonneville Power Administration balancing authority at five-minute resolution over a rolling seven-day window: load, VER (variable energy resources — wind and solar), hydro, fossil/biomass, and nuclear, with net interchange on the second feed. Values are megawatts from BPA&#x27;s own SCADA system.</td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="doe-code-json doe software inventory (code.json) discovery office of the chief information officer  active"><td class='mono'>doe-code-json<br><span class='pill active'>active</span></td><td>Office of the Chief Information Officer</td><td>DOE&#x27;s declared inventory of software releases across the department and its laboratories: name, description, repository URL, licence permissions, languages, and organization.</td><td class='mono' style='text-align:right'>5,879</td></tr><tr data-s="doe-mcp-registry doe-mcp source registry and organization table discovery the doe-mcp project  active"><td class='mono'>doe-mcp-registry<br><span class='pill active'>active</span></td><td>The DOE-MCP project</td><td>Which public DOE systems this project knows about, who stewards and funds each one, what its terms say, what it does not cover, and what is blocking the ones that are not wired up. Plus the organization table with the alias sets that resolve former names and dead domains.</td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="doe-open-data-catalog doe open data catalog (data.json) discovery office of the chief information officer  active"><td class='mono'>doe-open-data-catalog<br><span class='pill active'>active</span></td><td>Office of the Chief Information Officer</td><td>DOE&#x27;s declared inventory of public datasets across program offices, in the federal Project Open Data format.</td><td class='mono' style='text-align:right'>483</td></tr><tr data-s="doe-pure-resources doe pure data resources directory discovery office of science anl lbnl ornl bnl active"><td class='mono'>doe-pure-resources<br><span class='pill active'>active</span></td><td>Office of Science</td><td>The seven resources DOE&#x27;s Office of Science designates as Public Reusable Research data resources, each with this project&#x27;s own status against it.</td><td class='mono' style='text-align:right'>7</td></tr><tr data-s="eia-api-v2 eia api v2 energy us energy information administration  active"><td class='mono'>eia-api-v2<br><span class='pill active'>active</span></td><td>US Energy Information Administration</td><td>US energy statistics as a self-describing tree: electricity (including EIA-930 hourly demand, generation and interchange by balancing authority), natural gas, petroleum, coal, nuclear outages, renewables, international, and more.</td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="esgf-search esgf search (cmip6) earth oak ridge national laboratory ornl llnl active"><td class='mono'>esgf-search<br><span class='pill active'>active</span></td><td>Oak Ridge National Laboratory<br><span class='mono' style='color:var(--faint)'>funder: Office of Science</span></td><td>Metadata for climate-model output published through the Earth System Grid Federation, CMIP6 above all: which model ran which experiment for which variable, at what frequency and resolution, over what period, and which data node holds the files.</td><td class='mono' style='text-align:right'>14,217,502</td></tr><tr data-s="ess-dive ess-dive (environmental system science data infrastructure) earth lawrence berkeley national laboratory lbnl active"><td class='mono'>ess-dive<br><span class='pill active'>active</span></td><td>Lawrence Berkeley National Laboratory<br><span class='mono' style='color:var(--faint)'>funder: Biological and Environmental Research</span></td><td>Data from DOE&#x27;s environmental system science programme: terrestrial ecosystem, watershed, and subsurface biogeochemistry studies, including the NGEE Arctic and Tropics campaigns, SPRUCE, and the integrated field laboratories.</td><td class='mono' style='text-align:right'>1,571</td></tr><tr data-s="federal-register-doe federal register api (department of energy documents) docs office of the federal register (national archives)  active"><td class='mono'>federal-register-doe<br><span class='pill active'>active</span></td><td>Office of the Federal Register (National Archives)</td><td>Rules, proposed rules, notices, and presidential documents published by DOE and its component agencies, with docket ids, CFR references, regulatory identifiers, and links to the full text. FERC&#x27;s documents are excluded by scope, not by the publisher.</td><td class='mono' style='text-align:right'>10,000</td></tr><tr data-s="fueleconomy-ws fueleconomy.gov web service energy us department of energy ornl active"><td class='mono'>fueleconomy-ws<br><span class='pill active'>active</span></td><td>US Department of Energy<br><span class='mono' style='color:var(--faint)'>funder: US Environmental Protection Agency</span><br><span class='mono' style='color:var(--faint)'>host: Oak Ridge National Laboratory</span></td><td>Official EPA fuel-economy ratings for US-market vehicles from 1984 onward, roughly 140 fields per vehicle including city/highway/combined ratings, tailpipe CO2, electric range and consumption for EVs and PHEVs, and annual fuel cost. Plus current national average fuel prices by fuel type.</td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="lbnl-mp-optimade materials project optimade endpoint materials lawrence berkeley national laboratory lbnl active"><td class='mono'>lbnl-mp-optimade<br><span class='pill active'>active</span></td><td>Lawrence Berkeley National Laboratory<br><span class='mono' style='color:var(--faint)'>funder: Office of Science</span></td><td>Crystal structures of inorganic materials as the OPTIMADE standard describes them: elements and their ratios, reduced, descriptive and Hill formulas, site count, lattice vectors, space group, and dimensionality, plus the Materials Project&#x27;s own stability fields.</td><td class='mono' style='text-align:right'>154,387</td></tr><tr data-s="ornl-daac ornl daac (daymet, modis/viirs subsets) earth oak ridge national laboratory ornl active"><td class='mono'>ornl-daac<br><span class='pill active'>active</span></td><td>Oak Ridge National Laboratory<br><span class='mono' style='color:var(--faint)'>funder: National Aeronautics and Space Administration</span></td><td>Biogeochemical and ecological data, including Daymet daily surface weather for North America — queryable one pixel at a time, which is the rare bulk-science case with a genuine subsetting service — and MODIS/VIIRS land-product subsets, which are not wired up.</td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="ornl-openenergyhub open energy data hub (ornl) discovery oak ridge national laboratory ornl active"><td class='mono'>ornl-openenergyhub<br><span class='pill active'>active</span></td><td>Oak Ridge National Laboratory</td><td>ORNL-hosted energy datasets across transportation electrification, grid, and buildings, including EV Watts and ARPA-E PERFORM.</td><td class='mono' style='text-align:right'>185</td></tr><tr data-s="osti-data-explorer doe data explorer research office of scientific and technical information ames anl bnl fnal inl lbnl llnl lanl netl nlr ornl pnnl pppl snl srnl slac jlab active"><td class='mono'>osti-data-explorer<br><span class='pill active'>active</span></td><td>Office of Scientific and Technical Information</td><td>Metadata and DOIs for DOE-funded research datasets held at national laboratories, user facilities, universities, and other repositories. Discovery layer only: DDE hosts no data.</td><td class='mono' style='text-align:right'>1,030,767</td></tr><tr data-s="osti-doe-code doe code research office of scientific and technical information ames anl bnl fnal inl lbnl llnl lanl netl nlr ornl pnnl pppl snl srnl slac jlab active"><td class='mono'>osti-doe-code<br><span class='pill active'>active</span></td><td>Office of Scientific and Technical Information</td><td>DOE-funded scientific and business software: open-source projects with repository links, and closed-source project metadata. Licences, developers with ORCIDs, sponsoring organizations, and DOIs.</td><td class='mono' style='text-align:right'>7,675</td></tr><tr data-s="osti-doe-pages doe pages (public access gateway for energy and science) research office of scientific and technical information ames anl bnl fnal inl lbnl llnl lanl netl nlr ornl pnnl pppl snl srnl slac jlab active"><td class='mono'>osti-doe-pages<br><span class='pill active'>active</span></td><td>Office of Scientific and Technical Information</td><td>Peer-reviewed scholarly publications resulting from DOE funding, with full text — accepted manuscript or published version — under DOE&#x27;s Public Access Policy.</td><td class='mono' style='text-align:right'>260,246</td></tr><tr data-s="osti-gov-records osti.gov search api research office of scientific and technical information ames anl bnl fnal inl lbnl llnl lanl netl nlr ornl pnnl pppl snl srnl slac jlab active"><td class='mono'>osti-gov-records<br><span class='pill active'>active</span></td><td>Office of Scientific and Technical Information</td><td>DOE&#x27;s master collection of research results: technical reports, journal articles and accepted manuscripts, conference papers, patents, books and theses, plus metadata for datasets and software held elsewhere.</td><td class='mono' style='text-align:right'>4,381,671</td></tr><tr data-s="pnnl-vips vips (doe patent and software database) projects pacific northwest national laboratory ames anl bnl fnal inl lbnl llnl lanl netl nlr ornl pnnl pppl snl srnl slac jlab active"><td class='mono'>pnnl-vips<br><span class='pill active'>active</span></td><td>Pacific Northwest National Laboratory</td><td>Patents held and software released by the seventeen national laboratories and four NNSA production sites, for technology-transfer lookup: title, abstract, inventors, assignees, first claim, patent status and dates, software type, licences and repository, plus a subject taxonomy and a list of similar records. 15,179 patents and 7,484 software records at the 2026-09-08 count.</td><td class='mono' style='text-align:right'>22,663</td></tr><tr data-s="usgs-uspvdb us large-scale solar photovoltaic database (uspvdb) energy us geological survey lbnl active"><td class='mono'>usgs-uspvdb<br><span class='pill active'>active</span></td><td>US Geological Survey<br><span class='mono' style='color:var(--faint)'>funder: Office of Critical Materials and Energy Innovation</span><br><span class='mono' style='color:var(--faint)'>host: US Geological Survey</span></td><td>Locations, array boundaries, and facility attributes (panel technology, axis type, site type, first year of operation, power region) for ground-mounted PV facilities of one megawatt or more.</td><td class='mono' style='text-align:right'>6,611</td></tr><tr data-s="usgs-uswtdb us wind turbine database (uswtdb) energy us geological survey lbnl active"><td class='mono'>usgs-uswtdb<br><span class='pill active'>active</span></td><td>US Geological Survey<br><span class='mono' style='color:var(--faint)'>funder: Office of Critical Materials and Energy Innovation</span><br><span class='mono' style='color:var(--faint)'>host: US Geological Survey</span></td><td>Location, project, and turbine specifications for every utility- scale wind turbine in the United States, land-based and offshore, with FAA identifiers and the project&#x27;s capacity and year.</td><td class='mono' style='text-align:right'>75,727</td></tr><tr data-s="alcf-status alcf computing status discovery argonne national laboratory anl inventory"><td class='mono'>alcf-status<br><span class='pill proposed'>inventory</span></td><td>Argonne National Laboratory<br><span class='mono' style='color:var(--faint)'>funder: Office of Science</span></td><td>Current status of ALCF systems and their scheduled maintenance, as presented by the facility&#x27;s own status page.<br><span style='color:var(--warn)'>Blocked: Blocked probe. The status page is an Angular application and its data paths return HTTP 403 with a Cloudflare challenge to a scripted client, which under decision 0007 is blocked_probe and NOT gated: a WAF refusing this client shape says nothing about whether the data is public. One real-browser check, watching the application&#x27;s own network calls, would settle both the endpoint and the posture. Joins the blocked-probe backlog.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="ames-gamess gamess quantum chemistry package research ames national laboratory ames inventory"><td class='mono'>ames-gamess<br><span class='pill proposed'>inventory</span></td><td>Ames National Laboratory</td><td>A quantum chemistry program developed at Ames.<br><span style='color:var(--warn)'>Blocked: Software distribution, not a data API. Nothing to build; registered for crosswalk truthfulness.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="anl-atct active thermochemical tables (atct) materials argonne national laboratory anl inventory"><td class='mono'>anl-atct<br><span class='pill proposed'>inventory</span></td><td>Argonne National Laboratory</td><td>Thermochemical values from a self-consistent thermochemical network.<br><span style='color:var(--warn)'>Blocked: No API found. A PuRe resource with no machine interface is worth an email.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="anl-gem geospatial energy mapper (gem) energy argonne national laboratory anl inventory"><td class='mono'>anl-gem<br><span class='pill proposed'>inventory</span></td><td>Argonne National Laboratory<br><span class='mono' style='color:var(--faint)'>funder: Grid Deployment Office (dismantled)</span></td><td>Energy infrastructure siting layers: transmission, generation, environmental constraints.<br><span style='color:var(--warn)'>Blocked: Blocked probe. Needs one browser-grade check before its access posture can be recorded.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="anl-mdf materials data facility materials argonne national laboratory anl inventory"><td class='mono'>anl-mdf<br><span class='pill proposed'>inventory</span></td><td>Argonne National Laboratory</td><td>Published materials-science datasets with searchable metadata.<br><span style='color:var(--warn)'>Blocked: Phase 4. Needs a globus_search adapter and the credential model extended to Globus tokens, which behave unlike API keys.</span></td><td class='mono' style='text-align:right'>880</td></tr><tr data-s="arm-data-center arm data center (live data services) earth oak ridge national laboratory ornl pnnl bnl lanl snl inventory"><td class='mono'>arm-data-center<br><span class='pill proposed'>inventory</span></td><td>Oak Ridge National Laboratory</td><td>Atmospheric measurements from ARM&#x27;s fixed and mobile observatories: radiometers, radars, lidars, sondes, and derived value- added products. One of DOE&#x27;s seven designated PuRe data resources.<br><span style='color:var(--warn)'>Blocked: Phase 4. Needs the earth server, the account-token credential path, and the citation block wired end to end.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="arpa-e-projects arpa-e project database projects advanced research projects agency-energy  inventory"><td class='mono'>arpa-e-projects<br><span class='pill proposed'>inventory</span></td><td>Advanced Research Projects Agency-Energy</td><td>ARPA-E funded projects: programme, performer, award amount, status, technology area.<br><span style='color:var(--warn)'>Blocked: Phase 5 and Gate E. The endpoint works today; the posture decision (harvest, do not proxy) is what makes this a scheduled job rather than an adapter.</span></td><td class='mono' style='text-align:right'>1,721</td></tr><tr data-s="bnl-nndc-bulk nndc evaluated nuclear data files nuclear brookhaven national laboratory bnl inventory"><td class='mono'>bnl-nndc-bulk<br><span class='pill proposed'>inventory</span></td><td>Brookhaven National Laboratory</td><td>Evaluated nuclear structure and reaction data: ENSDF, ENDF libraries, NuDat.<br><span style='color:var(--warn)'>Blocked: Blocked on decision 0011&#x27;s open sub-question: ingest these bulk files or wrap IAEA&#x27;s API. Weighted toward ingest because of the snapshot age, and deliberately left to Phase 4.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="ceser-eagle-i-outages eagle-i historical outage datasets energy office of cybersecurity, energy security, and emergency response ornl inventory"><td class='mono'>ceser-eagle-i-outages<br><span class='pill proposed'>inventory</span></td><td>Office of Cybersecurity, Energy Security, and Emergency Response<br><span class='mono' style='color:var(--faint)'>host: Oak Ridge National Laboratory</span></td><td>County-level electricity outage records covering roughly 92% of US customers at 15-minute intervals, released annually.<br><span style='color:var(--warn)'>Blocked: Phase 3. No adapter work needed — the datasets are reachable through the existing osti_family adapter — but the tool contract over outage history is not written. It lands in doe-energy-data, which already serves the grid readings (decision 0026).</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="doe-ai-use-case-inventory doe ai use case inventory discovery office of the chief information officer  inventory"><td class='mono'>doe-ai-use-case-inventory<br><span class='pill proposed'>inventory</span></td><td>Office of the Chief Information Officer</td><td>DOE&#x27;s declared artificial-intelligence use cases across the department.<br><span style='color:var(--warn)'>Blocked: Spreadsheet-parse job; early-phase-eligible but low priority.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="doe-ccms-certification ccms compliance certification database (appliance and equipment standards) energy office of critical materials and energy innovation  inventory"><td class='mono'>doe-ccms-certification<br><span class='pill proposed'>inventory</span></td><td>Office of Critical Materials and Energy Innovation</td><td>Manufacturer certification records for consumer products and commercial equipment covered by federal energy-conservation standards: model numbers, rated performance, and compliance statements.<br><span style='color:var(--warn)'>Blocked: Blocked probe. One browser-grade check settles it; then the export format decides whether this is a thin proxy or a parsed copy under Gate E.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="doe-directives doe directives docs us department of energy  inventory"><td class='mono'>doe-directives<br><span class='pill proposed'>inventory</span></td><td>US Department of Energy</td><td>DOE&#x27;s own orders, policies, standards, and guides.<br><span style='color:var(--warn)'>Blocked: Crawler-class work behind Gate B; Phase 5.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="doe-nepa-documents doe nepa document database docs us department of energy  inventory"><td class='mono'>doe-nepa-documents<br><span class='pill proposed'>inventory</span></td><td>US Department of Energy</td><td>DOE&#x27;s National Environmental Policy Act documents.<br><span style='color:var(--warn)'>Blocked: Deliberately not built: NEPA-MCP serves it. Registered so the registry can say so and route the caller there, which is the difference between a coverage gap and a coverage decision.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="edf-loan-portfolio edf (formerly lpo) loan portfolio and activity reports projects energy dominance financing  inventory"><td class='mono'>edf-loan-portfolio<br><span class='pill proposed'>inventory</span></td><td>Energy Dominance Financing</td><td>DOE loan and loan-guarantee portfolio: borrowers, technologies, amounts, status.<br><span style='color:var(--warn)'>Blocked: Map backend unverified. Next step is the JavaScript-bundle probe that worked on ARPA-E.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="fnal-experiment-releases fermilab experiment data releases research fermi national accelerator laboratory fnal inventory"><td class='mono'>fnal-experiment-releases<br><span class='pill proposed'>inventory</span></td><td>Fermi National Accelerator Laboratory</td><td>Public data releases from Fermilab neutrino and collider experiments.<br><span style='color:var(--warn)'>Blocked: Pointer-only by design. Nothing to build beyond registry entries.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="iaea-live-chart iaea live chart of nuclides nuclear international atomic energy agency bnl inventory"><td class='mono'>iaea-live-chart<br><span class='pill proposed'>inventory</span></td><td>International Atomic Energy Agency</td><td>Nuclear structure and decay properties, and NuDat-derived quantities.<br><span style='color:var(--warn)'>Blocked: Phase 4, and blocked on a decision rather than on work: whether to ingest NNDC&#x27;s bulk files or wrap this API. The April 2022 snapshot is the argument against wrapping.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="inl-digital-library inl digital library research idaho national laboratory inl inventory"><td class='mono'>inl-digital-library<br><span class='pill proposed'>inventory</span></td><td>Idaho National Laboratory</td><td>INL&#x27;s own document repository.<br><span style='color:var(--warn)'>Blocked: Blocked probe. Needs one browser-grade check before anything can be said about it.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="inl-moose moose multiphysics framework research idaho national laboratory inl inventory"><td class='mono'>inl-moose<br><span class='pill proposed'>inventory</span></td><td>Idaho National Laboratory</td><td>A finite-element multiphysics framework used across nuclear and energy modelling.<br><span style='color:var(--warn)'>Blocked: Software; already discoverable through DOE CODE. No separate integration needed.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="jgi-gold jgi gold (genomes online database) bio lawrence berkeley national laboratory lbnl inventory"><td class='mono'>jgi-gold<br><span class='pill proposed'>inventory</span></td><td>Lawrence Berkeley National Laboratory<br><span class='mono' style='color:var(--faint)'>funder: Office of Science</span></td><td>Metadata for genome and metagenome sequencing projects worldwide: organism, ecosystem classification, sequencing status, and links to the data at JGI and elsewhere.<br><span style='color:var(--warn)'>Blocked: Phase 4 with the bio server, and one verification first: whether the API&#x27;s Keycloak token is obtainable with a free account, or whether the Excel export is the only route.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="jlab-ildg ildg lattice qcd catalogs research thomas jefferson national accelerator facility jlab inventory"><td class='mono'>jlab-ildg<br><span class='pill proposed'>inventory</span></td><td>Thomas Jefferson National Accelerator Facility</td><td>Lattice QCD gauge configuration catalogs within an international federation.<br><span style='color:var(--warn)'>Blocked: TLS and authentication behaviour unverified; one probe would settle it.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="lanl-sequence-databases lanl hiv, hcv, and hfv sequence databases bio los alamos national laboratory lanl outreach pending"><td class='mono'>lanl-sequence-databases<br><span class='pill outreach'>outreach pending</span></td><td>Los Alamos National Laboratory<br><span class='mono' style='color:var(--faint)'>funder: National Institutes of Health</span></td><td>Curated HIV, HCV, and hemorrhagic-fever virus sequence and immunology databases.<br><span style='color:var(--warn)'>Blocked: Outreach pending. The right first question is whether a sanctioned programmatic route exists for research use; the answer belongs in the repository either way.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="lbnl-ameriflux ameriflux earth lawrence berkeley national laboratory lbnl inventory"><td class='mono'>lbnl-ameriflux<br><span class='pill proposed'>inventory</span></td><td>Lawrence Berkeley National Laboratory</td><td>Eddy-covariance carbon, water, and energy flux measurements across the Americas.<br><span style='color:var(--warn)'>Blocked: Tiered policy with per-tier obligations. Metadata is the safe surface; data access needs the policy tiers modelled properly first.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="lbnl-emp-datasets lbnl electricity markets and policy datasets energy lawrence berkeley national laboratory lbnl inventory"><td class='mono'>lbnl-emp-datasets<br><span class='pill proposed'>inventory</span></td><td>Lawrence Berkeley National Laboratory</td><td>Tracking the Sun (roughly 4.5 million distributed solar systems), Queued Up (interconnection queue analysis), and Utility-Scale Solar.<br><span style='color:var(--warn)'>Blocked: Phase 3. Spreadsheet parsing per annual edition; no access obstacle.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="lbnl-materials-project materials project materials lawrence berkeley national laboratory lbnl inventory"><td class='mono'>lbnl-materials-project<br><span class='pill proposed'>inventory</span></td><td>Lawrence Berkeley National Laboratory</td><td>Computed properties of inorganic materials: structures, energetics, electronic structure, phase diagrams.<br><span style='color:var(--warn)'>Blocked: Phase 4. Adding `mp-api` to the materials extra is the whole integration; the work is the tool contract, not the access.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="lbnl-pdg particle data group research lawrence berkeley national laboratory lbnl inventory"><td class='mono'>lbnl-pdg<br><span class='pill proposed'>inventory</span></td><td>Lawrence Berkeley National Laboratory</td><td>Reviewed particle properties: masses, lifetimes, decay modes, branching ratios.<br><span style='color:var(--warn)'>Blocked: Machine interface not established. One probe would settle whether this is thin-proxy or pointer-only.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="llnl-open-data-initiative llnl open data initiative research lawrence livermore national laboratory llnl inventory"><td class='mono'>llnl-open-data-initiative<br><span class='pill proposed'>inventory</span></td><td>Lawrence Livermore National Laboratory</td><td>Selected LLNL datasets released publicly.<br><span style='color:var(--warn)'>Blocked: Pointer-shaped; low volume. Phase 4 at the earliest.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="lm-gems gems (geospatial environmental mapping system) earth office of legacy management  inventory"><td class='mono'>lm-gems<br><span class='pill proposed'>inventory</span></td><td>Office of Legacy Management</td><td>Environmental monitoring data for DOE legacy sites.<br><span style='color:var(--warn)'>Blocked: ArcGIS backend probe pending; a browser-grade check would settle it.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="nersc-status nersc superfacility api (system status) discovery lawrence berkeley national laboratory lbnl inventory"><td class='mono'>nersc-status<br><span class='pill proposed'>inventory</span></td><td>Lawrence Berkeley National Laboratory<br><span class='mono' style='color:var(--faint)'>funder: Office of Science</span></td><td>Current status of every NERSC system (compute, filesystems, services) and the schedule of planned outages, as JSON.<br><span style='color:var(--warn)'>Blocked: No server for a facility-status capability exists and one source does not justify one (architecture Part 1 section 3.4). The question of whether there were more was closed on 2026-09-08: of the three leadership computing facilities, NERSC is the only one with a reachable machine interface, so the capability has one source rather than three and a facilities server stays unjustified. It reopens if ALCF&#x27;s blocked probe clears in a browser.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="netl-edx netl energy data exchange (edx) energy-tech national energy technology laboratory netl inventory"><td class='mono'>netl-edx<br><span class='pill proposed'>inventory</span></td><td>National Energy Technology Laboratory</td><td>NETL&#x27;s data repository: carbon storage and transport, subsurface characterisation, critical minerals, and the 2025-26 HGEO tool wave — NATCARB Viewer 2.0, the CO2 transport planning database (90+ GB across 40+ layers), Smart CO2 Transport, CS PlanIT, CONNECT/Carbon Matchmaker, ClaiMM, and GAIA.<br><span style='color:var(--warn)'>Blocked: Phase 4, and one verification first: the GeoCube service enumeration needs a browser-grade fetch, because the plain-client probe returns nothing at all rather than an error to read.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="nlr-atb annual technology baseline (atb) energy-tech national laboratory of the rockies nlr inventory"><td class='mono'>nlr-atb<br><span class='pill proposed'>inventory</span></td><td>National Laboratory of the Rockies</td><td>Cost and performance baselines and projections by generation technology.<br><span style='color:var(--warn)'>Blocked: There is no API. atb.nlr.gov answers and its data pages resolve, but /api returns 404 and the machine-readable release is bulk CSV and parquet under the ATB/ prefix of the OEDI data lake on S3. That is the `s3_bulk` genre, which is not built, and a bulk release is not a thin proxy. Verified 2026-09-08.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="nlr-cambium cambium scenario data energy-tech national laboratory of the rockies nlr inventory"><td class='mono'>nlr-cambium<br><span class='pill proposed'>inventory</span></td><td>National Laboratory of the Rockies</td><td>Hourly marginal and average emission rates, costs, and capacity by scenario and year.<br><span style='color:var(--warn)'>Blocked: Phase 3, with the energy-tech server. The post-rename URLs are no longer the obstacle: scenarioviewer.nlr.gov answers, and its /api/projects/ route returned the scenario list as JSON to a scripted client on 2026-09-08. What is missing is a home server and a tool contract over an hourly, scenario-indexed dataset.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="nlr-developer-network nlr developer network energy-tech national laboratory of the rockies nlr inventory"><td class='mono'>nlr-developer-network<br><span class='pill proposed'>inventory</span></td><td>National Laboratory of the Rockies<br><span class='mono' style='color:var(--faint)'>host: General Services Administration</span></td><td>Around twenty renewable-energy and transportation APIs: modelled photovoltaic production, solar and wind resource data, electricity tariffs, alternative-fuel stations, techno-economic optimisation, and route energy consumption.<br><span style='color:var(--warn)'>Blocked: Phase 3. Needs the apidatagov_rest adapter and the credential UX proven out on EIA first (Phase 2), since this is the key whose shared budget is the more dangerous of the two.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="nlr-duramat-datahub duramat datahub energy-tech national laboratory of the rockies nlr snl lbnl inventory"><td class='mono'>nlr-duramat-datahub<br><span class='pill proposed'>inventory</span></td><td>National Laboratory of the Rockies<br><span class='mono' style='color:var(--faint)'>funder: Office of Critical Materials and Energy Innovation</span></td><td>Photovoltaic module durability datasets: field degradation, accelerated testing, materials characterisation, and the consortium&#x27;s own analysis tools.<br><span style='color:var(--warn)'>Blocked: Machine interface unconfirmed, and narrowed on 2026-09-08 rather than found. The application is a React micro-frontend whose two entry bundles are 12 KB loaders carrying no host or API path; the real chunks are fetched at runtime, so the interface is not reachable by reading the served files. A browser look at the portal&#x27;s own network calls is now the only remaining step, and it is the same browser sweep the blocked-probe backlog needs. Then it is a ckan genre source alongside NETL EDX.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="nlr-geothermal-data-repository geothermal data repository (gdr) energy-tech national laboratory of the rockies nlr inl inventory"><td class='mono'>nlr-geothermal-data-repository<br><span class='pill proposed'>inventory</span></td><td>National Laboratory of the Rockies</td><td>Geothermal research data from DOE-funded projects, including the FORGE observatory. The site&#x27;s own statistics block reports 1,407 datasets and 764 TB; its sitemap carries 1,451 submission pages.<br><span style='color:var(--warn)'>Blocked: No API exists. 71% is reachable now through DOE Data Explorer; the remaining 29% needs a sitemap harvest and Gate E review for retaining harvested content.</span></td><td class='mono' style='text-align:right'>1,451</td></tr><tr data-s="nlr-lab-partnering-service lab partnering service api projects national laboratory of the rockies ames anl bnl fnal inl lbnl llnl lanl netl nlr ornl pnnl pppl snl srnl slac jlab inventory"><td class='mono'>nlr-lab-partnering-service<br><span class='pill proposed'>inventory</span></td><td>National Laboratory of the Rockies<br><span class='mono' style='color:var(--faint)'>host: General Services Administration</span></td><td>DOE&#x27;s Lab Partnering Service: laboratory experts, available technologies, and facilities across the complex, for partnership discovery.<br><span style='color:var(--warn)'>Blocked: Phase 5, with the rest of the NLR network key work.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="nmdc-runtime national microbiome data collaborative runtime api bio lawrence berkeley national laboratory lbnl anl ornl pnnl inventory"><td class='mono'>nmdc-runtime<br><span class='pill proposed'>inventory</span></td><td>Lawrence Berkeley National Laboratory</td><td>Microbiome studies, biosamples, omics processing records, and workflow outputs across a multi-laboratory collaboration.<br><span style='color:var(--warn)'>Blocked: Phase 4. Needs the bio domain server. No access obstacle; the work is choosing which of 93 operations become tools.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="oced-community-benefits-map oced community benefits map projects office of clean energy demonstrations  inventory"><td class='mono'>oced-community-benefits-map<br><span class='pill proposed'>inventory</span></td><td>Office of Clean Energy Demonstrations</td><td>Community benefit commitments attached to OCED demonstration projects.<br><span style='color:var(--warn)'>Blocked: Map backend unverified; same JavaScript-bundle probe as the EDF portfolio.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="oedi-data-lake open energy data initiative data lake discovery national laboratory of the rockies nlr ornl lbnl pnnl snl inventory"><td class='mono'>oedi-data-lake<br><span class='pill proposed'>inventory</span></td><td>National Laboratory of the Rockies</td><td>4.8 petabytes across roughly 2,825 datasets from around 310 providers: solar and wind resource data, building stock models, transportation, and geothermal.<br><span style='color:var(--warn)'>Blocked: The catalog&#x27;s machine interface is unidentified — the documented API path returns a help stub. Next step is a browser-grade look at what the catalog UI itself calls.</span></td><td class='mono' style='text-align:right'>2,825</td></tr><tr data-s="olcf-status olcf center status discovery oak ridge national laboratory ornl inventory"><td class='mono'>olcf-status<br><span class='pill proposed'>inventory</span></td><td>Oak Ridge National Laboratory<br><span class='mono' style='color:var(--faint)'>funder: Office of Science</span></td><td>Current status of OLCF systems, including Frontier, and their scheduled maintenance.<br><span style='color:var(--warn)'>Blocked: No machine interface found. status.olcf.ornl.gov does not resolve in DNS; the center-status page is a 1.5 KB stub; and the lab site&#x27;s WordPress API exposes only WordPress&#x27;s own routes, where /wp/v2/statuses is post statuses rather than system status. The next step is asking OLCF whether one exists rather than guessing at more paths.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="openei-urdb openei utility rate database energy-tech national laboratory of the rockies nlr inventory"><td class='mono'>openei-urdb<br><span class='pill proposed'>inventory</span></td><td>National Laboratory of the Rockies</td><td>US electricity tariffs: rate structures, energy and demand charges, applicability.<br><span style='color:var(--warn)'>Blocked: Phase 3, with the rest of the NLR network.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="ornl-bioenergy-kdf bioenergy knowledge discovery framework energy-tech oak ridge national laboratory ornl inventory"><td class='mono'>ornl-bioenergy-kdf<br><span class='pill proposed'>inventory</span></td><td>Oak Ridge National Laboratory<br><span class='mono' style='color:var(--faint)'>funder: Alternative Fuels and Feedstocks Office</span></td><td>Biomass feedstock resource assessments, domestic and international.<br><span style='color:var(--warn)'>Blocked: Map backend unconfirmed; same browser-grade check as HydroSource.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="ornl-constellation constellation research oak ridge national laboratory ornl inventory"><td class='mono'>ornl-constellation<br><span class='pill proposed'>inventory</span></td><td>Oak Ridge National Laboratory</td><td>ORNL-produced datasets deposited institutionally.<br><span style='color:var(--warn)'>Blocked: Already reachable through DOE Data Explorer; a direct integration is low value.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="ornl-faf freight analysis framework projects oak ridge national laboratory ornl inventory"><td class='mono'>ornl-faf<br><span class='pill proposed'>inventory</span></td><td>Oak Ridge National Laboratory<br><span class='mono' style='color:var(--faint)'>funder: US Department of Transportation</span></td><td>US freight movement estimates by commodity, mode, origin, and destination.<br><span style='color:var(--warn)'>Blocked: No API. Bulk ingest plus Gate E review; low priority against the energy domains.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="ornl-hydrosource hydrosource energy-tech oak ridge national laboratory ornl inventory"><td class='mono'>ornl-hydrosource<br><span class='pill proposed'>inventory</span></td><td>Oak Ridge National Laboratory</td><td>US hydropower resource, infrastructure, and environmental datasets.<br><span style='color:var(--warn)'>Blocked: Map backend unconfirmed. Next step is a browser-grade look at the portal&#x27;s own network calls.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="ornl-landscan landscan population distribution earth oak ridge national laboratory ornl inventory"><td class='mono'>ornl-landscan<br><span class='pill proposed'>inventory</span></td><td>Oak Ridge National Laboratory<br><span class='mono' style='color:var(--faint)'>funder: National Geospatial-Intelligence Agency</span></td><td>Ambient population distribution at roughly 1 km resolution, global.<br><span style='color:var(--warn)'>Blocked: Access tier unresolved and the docs host blocks scripted probes. Next step is a browser check plus an attempted download; the answer decides whether this is thin-proxy or pointer-only.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="ornl-oncat oncat (oak ridge neutron catalog) research oak ridge national laboratory ornl inventory"><td class='mono'>ornl-oncat<br><span class='pill proposed'>inventory</span></td><td>Oak Ridge National Laboratory</td><td>Metadata for neutron scattering experiments at ORNL&#x27;s user facilities.<br><span style='color:var(--warn)'>Blocked: Public tier unconfirmed. Named in architecture Part 1 section 4.7 as an email to send.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="ornl-tedb transportation energy data book (ornl) energy oak ridge national laboratory ornl inventory"><td class='mono'>ornl-tedb<br><span class='pill proposed'>inventory</span></td><td>Oak Ridge National Laboratory<br><span class='mono' style='color:var(--faint)'>funder: Office of Critical Materials and Energy Innovation</span></td><td>Transportation statistics with an energy emphasis: vehicle stock, fuel use, travel, emissions, and cost tables compiled from federal sources.<br><span style='color:var(--warn)'>Blocked: Spreadsheet parsing per edition plus Gate E review; low priority against the energy domains until the vehicle tools want context tables.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="pnnl-emsl-science-central emsl science central bio pacific northwest national laboratory pnnl inventory"><td class='mono'>pnnl-emsl-science-central<br><span class='pill proposed'>inventory</span></td><td>Pacific Northwest National Laboratory</td><td>Released datasets from EMSL user projects: mass spectrometry, NMR, imaging, and computation.<br><span style='color:var(--warn)'>Blocked: Download is account-gated; discovery already works through DOE Data Explorer.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="pnnl-mhkdr marine and hydrokinetic data repository energy-tech pacific northwest national laboratory pnnl inventory"><td class='mono'>pnnl-mhkdr<br><span class='pill proposed'>inventory</span></td><td>Pacific Northwest National Laboratory</td><td>Marine and hydrokinetic energy research data: wave, tidal, and current energy projects.<br><span style='color:var(--warn)'>Blocked: Harvesting-API documentation not located. Next step is asking PNNL directly.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="pnnl-phoenix-hanford phoenix (hanford environmental and tank data) earth pacific northwest national laboratory pnnl inventory"><td class='mono'>pnnl-phoenix-hanford<br><span class='pill proposed'>inventory</span></td><td>Pacific Northwest National Laboratory<br><span class='mono' style='color:var(--faint)'>funder: Office of Environmental Management</span></td><td>Hanford Site environmental data: groundwater monitoring, waste- site inventory, tank-farm monitoring, and site geography, served through map layers and query applications.<br><span style='color:var(--warn)'>Blocked: Phase 4. The Geoservice answers, but the query applications behind PHOENIX need a browser look at their own network calls before a tool contract can be written.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="pnnl-tethys-primre tethys and primre energy-tech pacific northwest national laboratory pnnl inventory"><td class='mono'>pnnl-tethys-primre<br><span class='pill proposed'>inventory</span></td><td>Pacific Northwest National Laboratory</td><td>Literature and data on environmental effects of marine renewable and wind energy.<br><span style='color:var(--warn)'>Blocked: Phase 4, with the marine-energy family.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="pnnl-wind-data-hub wind data hub (a2e dap) earth pacific northwest national laboratory pnnl inventory"><td class='mono'>pnnl-wind-data-hub<br><span class='pill proposed'>inventory</span></td><td>Pacific Northwest National Laboratory<br><span class='mono' style='color:var(--faint)'>funder: Office of Critical Materials and Energy Innovation</span></td><td>More than 242 TB of lidar, meteorological, and model data from wind- energy research campaigns.<br><span style='color:var(--warn)'>Blocked: Account-gated and bulk-shaped; Phase 4, pointer-first.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="pppl-fusionrate fusionrate research princeton plasma physics laboratory pppl inventory"><td class='mono'>pppl-fusionrate<br><span class='pill proposed'>inventory</span></td><td>Princeton Plasma Physics Laboratory</td><td>Fusion reaction rate coefficients and cross sections.<br><span style='color:var(--warn)'>Blocked: Small library rather than a data service; discoverable through DOE CODE.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="regulations-gov-doe regulations.gov v4 (doe dockets) docs general services administration  inventory"><td class='mono'>regulations-gov-doe<br><span class='pill proposed'>inventory</span></td><td>General Services Administration</td><td>Dockets, documents, and public comments for DOE rulemakings, including the appliance and equipment standards program.<br><span style='color:var(--warn)'>Blocked: Phase 3 or later: needs the apidatagov_rest adapter and the credential UX that EIA is proving out. Ships with the Federal Register source under the docs capability.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="sbir-doe-awards sbir.gov awards api (doe) projects us small business administration  inventory"><td class='mono'>sbir-doe-awards<br><span class='pill proposed'>inventory</span></td><td>US Small Business Administration<br><span class='mono' style='color:var(--faint)'>funder: US Department of Energy</span></td><td>Small Business Innovation Research and STTR awards funded by DOE since 1983: company, topic, phase, amount, and abstract.<br><span style='color:var(--warn)'>Blocked: Blocked probe. One browser-grade check settles whether the API is open to scripted clients; then it is a Phase 5 projects-server source with no adapter work beyond a REST genre.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="sc-pams-awards pams public award search (office of science) projects office of science  inventory"><td class='mono'>sc-pams-awards<br><span class='pill proposed'>inventory</span></td><td>Office of Science</td><td>Office of Science financial-assistance awards since 2014: institution, principal investigator, program office, amount, and abstract.<br><span style='color:var(--warn)'>Blocked: Tier C. A WebForms postback is a scrape; deferred until a projects server exists and Gate E has reviewed an export-and-parse job.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="slac-software-releases slac software and public releases research slac national accelerator laboratory slac inventory"><td class='mono'>slac-software-releases<br><span class='pill proposed'>inventory</span></td><td>SLAC National Accelerator Laboratory</td><td>SLAC&#x27;s public software output.<br><span style='color:var(--warn)'>Blocked: Facility-gated by design; software is already covered through DOE CODE.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="snl-batteryarchive batteryarchive.org energy-tech sandia national laboratories snl inventory"><td class='mono'>snl-batteryarchive<br><span class='pill proposed'>inventory</span></td><td>Sandia National Laboratories</td><td>Battery cycling and ageing datasets from several institutions, presented uniformly.<br><span style='color:var(--warn)'>Blocked: Endpoint unverified. Next step is a browser-grade check for a machine interface behind the browsing UI; if there is none, this becomes a pointer-only source.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="snl-gesdb doe global energy storage database (gesdb) energy sandia national laboratories snl outreach pending"><td class='mono'>snl-gesdb<br><span class='pill outreach'>outreach pending</span></td><td>Sandia National Laboratories</td><td>Global energy storage projects: technology, capacity, status, ownership.<br><span style='color:var(--warn)'>Blocked: Outreach pending. Send the Gate-G note to Sandia&#x27;s energy storage group asking whether sanctioned programmatic access exists, and record the answer in-repo whatever it is. Until then this is inventory, and the DDE route is what a caller is pointed at.</span></td><td class='mono' style='text-align:right'>—</td></tr><tr data-s="snl-pvpmc-modules pvpmc module parameter dataset energy-tech sandia national laboratories snl inventory"><td class='mono'>snl-pvpmc-modules<br><span class='pill proposed'>inventory</span></td><td>Sandia National Laboratories</td><td>Photovoltaic module electrical parameters for modelling.<br><span style='color:var(--warn)'>Blocked: Phase 3. Needs a zenodo_static adapter and Gate E review for retaining a parsed copy.</span></td><td class='mono' style='text-align:right'>16,857</td></tr><tr data-s="srnl-srs-environmental-reports savannah river site annual environmental reports research savannah river national laboratory srnl inventory"><td class='mono'>srnl-srs-environmental-reports<br><span class='pill proposed'>inventory</span></td><td>Savannah River National Laboratory</td><td>Environmental monitoring at the Savannah River Site.<br><span style='color:var(--warn)'>Blocked: PDF-only corpus; deferred indefinitely. Registered so the crosswalk can answer truthfully for SRNL.</span></td><td class='mono' style='text-align:right'>—</td></tr></tbody></table></details>
+  </div>
+</details>
+</section>
+
+<section id="neighbours">
+<details class="sect">
+  <summary><h2><span class="num">06</span>Other MCP servers</h2></summary>
+  <div class="sect-body">
+  <p class="lede">DOE-MCP is not the only MCP server over DOE-adjacent data
+  and does not try to be. MCP offers no mechanism for one server to advertise
+  or install another (checked against the protocol on 2026-09-01), so these
+  carry executable install commands rather than links — and each says plainly
+  why this project does not duplicate it.</p>
+  <table><thead><tr><th>Server</th><th>Status</th><th>Why DOE-MCP does not duplicate it</th><th>Install</th></tr></thead><tbody><tr><td><b>EnergyPlus-MCP and OpenStudio-MCP</b><br><span class='mono' style='color:var(--faint)'>LBNL Energy Technologies Area; National Laboratory of the Rockies</span></td><td><span class='pill active'>listed</span><br><span class='mono' style='color:var(--faint)'>opaque</span></td><td>A different product class. These wrap SIMULATORS — you give them a model and they run it — where DOE-MCP serves published data. Wrapping a simulator means owning its installation, its version compatibility, and its runtime, none of which the provenance envelope has anything useful to say about. The 185 or more combined tools would also breach the sizing ceiling ninefold.
+</td><td><code>git clone https://github.com/LBNL-ETA/EnergyPlus-MCP</code></td></tr><tr><td><b>DOE Genesis Mission MCP deployments (gated)</b><br><span class='mono' style='color:var(--faint)'>Various DOE national laboratories</span></td><td><span class='pill proposed'>watch</span><br><span class='mono' style='color:var(--faint)'>opaque</span></td><td>Access-gated by design and pointed at internal instruments, facilities, and compute. Wrapping a gated server would produce a tool that fails for every public user, which is worse than not having it. The named watch items are BNL&#x27;s PanDA MCP, Argonne&#x27;s Globus-service MCPs, LBNL&#x27;s CBorg, and the gated Genesis Skills repository on OSTI&#x27;s GitLab.
+</td><td><code>unavailable — access is gated (OneID / RFA / SSO)</code></td></tr><tr><td><b>Materials Project MCP (inside mp-api)</b><br><span class='mono' style='color:var(--faint)'>Materials Project, Lawrence Berkeley National Laboratory</span></td><td><span class='pill proposed'>watch</span><br><span class='mono' style='color:var(--faint)'>full</span></td><td>It IS absorbed, which is why this entry exists to say so. Materials Project ships its first-party MCP server inside the `mp-api` Python library (search and fetch shipped as of 0.46.0; fetch_all, fetch_many, phase-diagram lookup and an mpmcp CLI in development). Because the upstream ships a LIBRARY rather than only a server, decision 0011 routes it to depend-and-wrap: declare the dependency, write thin tools over it, and avoid asking a user to install and configure a second MCP server for one domain. The library&#x27;s surface is reshaped into DOE-MCP&#x27;s tool contract rather than re-exported, because 0014&#x27;s sizing bands bind a wrapper like anything else.
+</td><td><code>pip install &quot;doe-mcp[materials]&quot;</code></td></tr><tr><td><b>NASA Earthdata (CMR) MCP</b><br><span class='mono' style='color:var(--faint)'>NASA Earthdata</span></td><td><span class='pill active'>listed</span><br><span class='mono' style='color:var(--faint)'>opaque</span></td><td>Another agency&#x27;s data and another agency&#x27;s server, already hosted and already working. Rebuilding it would duplicate NASA&#x27;s own infrastructure to no one&#x27;s benefit. The overlap with DOE-MCP is narrow and specific — the ORNL DAAC — and there the publisher triple already carries the answer on every provenance entry: ORNL operates it, NASA funds it.
+</td><td><code>remote server — configure the endpoint cmr.earthdata.nasa.gov/mcp/v1</code></td></tr><tr><td><b>NEPA-MCP</b><br><span class='mono' style='color:var(--faint)'>Pacific Northwest National Laboratory</span></td><td><span class='pill active'>listed</span><br><span class='mono' style='color:var(--faint)'>opaque</span></td><td>Server-only and far too large. 56 tools across 23 servers is more than twice the hard ceiling a single DOE-MCP profile may carry, and its release cadence — every three to six days — would make any wrapper permanently behind. DOE-MCP registers the underlying NEPA document database as a `proposed` manifest that says exactly this, so the registry answers &quot;not a gap, a decision&quot;.
+</td><td><code>pipx install nepa-mcp</code></td></tr></tbody></table>
+  </div>
+</details>
+</section>
+
+<section id="governance">
+<details class="sect">
+  <summary><h2><span class="num">07</span>Licensing and governance</h2></summary>
+  <div class="sect-body">
+  <p class="lede">Code Apache-2.0. <b>The source registry is CC0</b> — the
+  inventory of what exists, who stewards it, what its terms say, and what it
+  does not cover is more useful unencumbered than as anything this project
+  owns. Documentation CC-BY-4.0. Recorded publisher responses keep their
+  publishers' terms, itemised in <code>THIRD_PARTY_DATA.yml</code>, with
+  contact details redacted before anything reaches disk.</p>
+  <p class="lede">In the repository: <code>CONTRIBUTING.md</code>,
+  <code>CODE_OF_CONDUCT.md</code>, <code>SECURITY.md</code>,
+  <code>CITATION.cff</code>, <code>NOTICE</code>, <code>AGENTS.md</code>, and
+  <code>design/architecture.md</code> — the system in Part 1 and all eighteen
+  decisions in Part 2, each keeping the options it rejected, because six
+  months from now the useful question is not what was chosen but what was
+  given up and whether the reason still holds.</p>
+  </div>
+</details>
+</section>
+
+</div>
+
+<footer><div class="wrap">
+  <p>DOE-MCP 0.1.0.dev0 · registry revision
+  2026-09-09 · 83 sources ·
+  54 organizations · 17 adapters ·
+  33/51 capabilities served.</p>
+  <p>Generated from the same source registry the servers run on. A CI test
+  fails the build when this page and the registry disagree.</p>
+  <p>Citing this: see <code>CITATION.cff</code>. If you use DATA reached
+  through it, cite that data's publisher — the string is in every answer's
+  provenance block, and for some sources citation is a condition of use
+  rather than a courtesy.</p>
+  <p>Packaging shape borrowed with thanks from PNNL's NEPA-MCP. That project
+  does not endorse this one.</p>
+</div></footer>
+
+<script>
+(function(){
+  var q = document.getElementById('q');
+  if(!q) return;
+  var rows = Array.prototype.slice.call(
+    document.querySelectorAll('#reg tr'));
+  q.addEventListener('input', function(){
+    var terms = q.value.toLowerCase().split(/\s+/).filter(Boolean);
+    rows.forEach(function(r){
+      var hay = r.getAttribute('data-s') || '';
+      r.hidden = !terms.every(function(t){ return hay.indexOf(t) !== -1; });
+    });
+  });
+})();
+</script>
+<script>
+// In-page navigation, done without touching location.hash.
+//
+// Two reasons. A section is closed by default, so a plain anchor lands on a
+// collapsed summary and the reader sees nothing move — the ancestors have
+// to be opened first. And the hash itself is not always available: served
+// from a data: URL, as a local preview pane does, assigning location.hash
+// is refused as a top-frame navigation and every nav link silently does
+// nothing. Handling the click directly works in both places, and the URL is
+// still updated where the browser allows it.
+//
+// Braces are doubled because this sits inside an f-string template.
+(function () {
+  function reveal(id) {
+    var el = document.getElementById(id);
+    if (!el) return false;
+    // Ancestors, for a sub-heading that sits inside a collapsed section.
+    for (var n = el; n; n = n.parentElement) {
+      if (n.tagName === "DETAILS") n.open = true;
+    }
+    // And the section's OWN group, because a top-level nav link targets the
+    // <section> while the <details> is inside it — walking up from there
+    // never reaches it, which left every top-level link doing nothing.
+    var own = el.querySelector ? el.querySelector("details.sect") : null;
+    if (own) own.open = true;
+    el.scrollIntoView({block: "start", behavior: "smooth"});
+    return true;
+  }
+  document.addEventListener("click", function (ev) {
+    var target = ev.target instanceof Element ? ev.target : null;
+    if (!target) return;
+    var link = target.closest('a[href^="#"]');
+    if (!link) return;
+    var id = decodeURIComponent(link.getAttribute("href").slice(1));
+    if (!id || !reveal(id)) return;
+    ev.preventDefault();
+    try { history.replaceState(null, "", "#" + id); } catch (err) { /* data: URL */ }
+  });
+  // A link followed into the page from outside still has to open its
+  // section.
+  addEventListener("hashchange", function () {
+    reveal(decodeURIComponent((location.hash || "").slice(1)));
+  });
+  if (location.hash) reveal(decodeURIComponent(location.hash.slice(1)));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+id: basis-set-exchange
+name: Basis Set Exchange
+domain: materials
+
+publisher:
+  steward: molssi
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: ['pnnl']
+
+capabilities:
+  - id: chemistry.basis_sets
+    tool_hint: chemistry.get_basis_set
+  - id: chemistry.search_basis_sets
+    tool_hint: chemistry.search_basis_sets
+
+planned_capabilities: []
+
+adapter:
+  type: basis_sets
+  base_url: https://www.basissetexchange.org
+  metadata_path: /api/metadata/
+  formats_path: /api/formats/
+  basis_path: /api/basis
+  references_path: /api/references
+  # BibTeX, because every journal these sets are published in takes it,
+  # and because the references are a separate request from the data: a
+  # set returned without them would be handing over exactly the part
+  # that needs attributing and dropping the attribution.
+  reference_format: bib
+
+access:
+  mode: anonymous
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://www.basissetexchange.org/
+  terms_reviewed_at: "2026-09-09"
+  terms_notes: >
+    A MolSSI and PNNL/EMSL collaboration; the original data came from
+    PNNL's Basis Set Exchange. The REST API is keyless and described
+    by its maintainers as beta, with endpoints they do not plan to
+    change but do not guarantee. Basis-set data carries per-set
+    references that a caller should cite, and the service returns them
+    from a separate endpoint; every answer here fetches both. Probed
+    200 on 2026-09-08 and again on 2026-09-09.
+  citation_required: true
+  citation_text: >
+    Pritchard, B.P., Altarawy, D., Didier, B., Gibson, T.D., and
+    Windus, T.L. 2019. New Basis Set Exchange: An Open, Up-to-Date
+    Resource for the Molecular Sciences Community. Journal of Chemical
+    Information and Modeling 59(11):4814-4820.
+    https://doi.org/10.1021/acs.jcim.9b00725 — and, in addition, the
+    references the service returns for the particular set used.
+  rate_limit_note: >
+    None published. Absence of a stated ceiling is not permission. The
+    catalog is one 527 KB document fetched once per cache window, so a
+    search over it costs no request at all.
+
+freshness:
+  expected_cadence: per release
+  cadence_source: >
+    Observed; the API reports its library version in every response
+    header block.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Quantum-chemistry basis sets by name, element, and program format
+    (NWChem, Gaussian, CP2K, and thirty others), with the metadata and
+    literature references for each set.
+  temporal: library version reported per response
+  dataset_version: "current"
+  record_count: 776
+  record_count_checked: "2026-09-09"
+  known_limitations:
+    - >
+      Not a DOE host. The steward is MolSSI, an NSF institute; PNNL/EMSL
+      is the originating laboratory and co-developer, which is why it is
+      in the crosswalk.
+    - >
+      Reference data, not calculations. It returns basis sets, never
+      results of using them.
+    - >
+      Element coverage is per version, not per set. A set's newest
+      version is what this reports, and an older version may cover a
+      different part of the periodic table.
+    - >
+      The maintainers describe the API as beta: endpoints they do not
+      plan to change but do not guarantee.
+
+authority_notes: >
+  Primary for what it is: the canonical basis-set repository,
+  originated at PNNL/EMSL and now run with MolSSI. Enters under
+  decision 0001-C's operator rule with the non-DOE steward shown on
+  every provenance entry. Found in the 2026-09-08 gap sweep.
+
+health:
+  probe: basis_set_count
+  expect:
+    min_records: 500
+
+lifecycle:
+  declared_state: active
+  added: "2026-09-08"
+  last_verified: "2026-09-09"
+  verified_by: pranava0x0

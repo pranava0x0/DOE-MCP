@@ -1,0 +1,62 @@
+id: anl-atct
+name: Active Thermochemical Tables (ATcT)
+domain: materials
+
+publisher:
+  steward: anl
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [anl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: unknown
+  tier: catalog_pointer
+  terms_url: https://atct.anl.gov/
+  terms_notes: >
+    Publicly readable thermochemical values. No public API found in the
+    survey.
+
+freshness:
+  expected_cadence: on release
+  cadence_source: >
+    Stated; versioned network releases.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Thermochemical values from a self-consistent thermochemical network.
+  temporal: current release
+  dataset_version: "per network release"
+  known_limitations:
+    - >
+      Network version is identity: ATcT values shift as the network is
+      re-solved, which is the method's whole point.
+
+authority_notes: >
+  One of DOE's seven PuRe data resources. Primary. Phase 4.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    No API found. A PuRe resource with no machine interface is worth an
+    email.

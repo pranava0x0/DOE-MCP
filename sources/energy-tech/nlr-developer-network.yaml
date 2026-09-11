@@ -1,0 +1,97 @@
+# The most API-forward laboratory in the seventeen, and the sharpest alias
+# case in the registry: every developer.nrel.gov URL is dead with no
+# redirect, so a caller with an old link gets nothing at all.
+
+id: nlr-developer-network
+name: NLR Developer Network
+domain: energy-tech
+
+publisher:
+  steward: nlr
+  host: gsa
+  authority_level: primary
+
+aliases:
+  former_names: ["NREL Developer Network"]
+  former_domains: ["developer.nrel.gov"]
+
+labs: [nlr]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+planned_capabilities: [rates.find_tariffs, solar.estimate_production, solar.get_resource, stations.find_alt_fuel]
+adapter:
+  type: none
+
+access:
+  mode: api_key
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://developer.nlr.gov/
+  terms_notes: >
+    One api.data.gov key covers roughly twenty APIs: PVWatts v8, solar
+    resource, the Utility Rate Database, the Alternative Fuels Data
+    Center, REopt v3, RouteE, the Building Component Library, and the
+    Lab Partnering Service among them. Free self-service registration
+    through GSA. Survived the NREL-to-NLR rename intact on the new
+    domain.
+  terms_reviewed_at: "2026-09-01"
+  credential_ref: API_DATA_GOV_KEY
+
+freshness:
+  expected_cadence: varies by API
+  cadence_source: >
+    Stated per API. Modelling endpoints such as PVWatts are computed on
+    request; underlying resource datasets carry their own release
+    versions.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Around twenty renewable-energy and transportation APIs: modelled
+    photovoltaic production, solar and wind resource data, electricity
+    tariffs, alternative-fuel stations, techno-economic optimisation,
+    and route energy consumption.
+  temporal: current
+  dataset_version: "current"
+  known_limitations:
+    - >
+      The 1,000-requests-per-hour budget belongs to the KEY, not to the
+      API. Every NLR API a key touches spends the same allowance, so a
+      busy PVWatts session starves an AFDC session running beside it.
+      This is the arithmetic that made GSA's own EIA catalog entry
+      single-user, and the reason there is no hosted tier here
+      (decision 0005).
+    - >
+      REopt v3 is asynchronous: a POST starts a job and results are
+      polled. It does not fit the request-response shape the other APIs
+      share and needs its own tool contract.
+    - >
+      Modelled output, not measurement. A PVWatts number is what a model
+      says a system would produce, and presenting it as observed
+      generation would be wrong in a way no caveat downstream can fix.
+
+authority_notes: >
+  Primary for its own modelled outputs and for the datasets NLR
+  maintains. Intended capabilities: solar.estimate_production,
+  solar.get_resource, rates.find_tariffs, stations.find_alt_fuel. Phase
+  3. The `apidatagov_rest` adapter covers this whole network plus the
+  Utility Rate Database, so this is one adapter for about twenty
+  sources.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Phase 3. Needs the apidatagov_rest adapter and the credential UX
+    proven out on EIA first (Phase 2), since this is the key whose
+    shared budget is the more dangerous of the two.

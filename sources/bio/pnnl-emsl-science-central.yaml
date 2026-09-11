@@ -1,0 +1,69 @@
+id: pnnl-emsl-science-central
+name: EMSL Science Central
+domain: bio
+
+publisher:
+  steward: pnnl
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [pnnl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: manual_review_required
+  tier: catalog_pointer
+  terms_url: https://www.emsl.pnnl.gov/
+  terms_notes: >
+    Browsing is open; download requires login and Globus. A user
+    facility's data-release system, so the derived-layer distinction
+    applies: released project data is public, the facility's operations
+    are not.
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed; project releases as they complete.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Released datasets from EMSL user projects: mass spectrometry, NMR,
+    imaging, and computation.
+  temporal: current
+  dataset_version: "current"
+  known_limitations:
+    - >
+      Download needs an account and Globus. Answers are pointers plus an
+      honest account of what reaching them costs.
+    - >
+      EMSL releases also appear in DOE Data Explorer — the sample DDE
+      record read on 2026-09-02 was an EMSL project release — so the
+      discovery route exists today even though the download does not.
+
+authority_notes: >
+  Intended capabilities: bio.search_studies adjacent. Phase 4.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Download is account-gated; discovery already works through DOE Data
+    Explorer.

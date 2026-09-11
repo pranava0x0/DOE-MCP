@@ -1,0 +1,79 @@
+id: ceser-eagle-i-outages
+name: EAGLE-I historical outage datasets
+domain: energy
+
+publisher:
+  steward: ceser
+  host: ornl
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [ornl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+planned_capabilities: [grid.outage_history]
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: public_api
+  tier: catalog_pointer
+  terms_url: https://www.osti.gov/dataexplorer/
+  terms_notes: >
+    The live EAGLE-I platform is gated to authorised users. The ANNUAL
+    HISTORICAL datasets are published openly through OSTI and DOE Data
+    Explorer, where records for 2014-2022, 2023, and 2025 were confirmed
+    on 2026-09-01. This split — gated live system, open historical
+    release — is the shape a lot of DOE operational data takes.
+  terms_reviewed_at: "2026-09-01"
+
+freshness:
+  expected_cadence: annual
+  cadence_source: >
+    Observed; annual dataset releases through OSTI.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    County-level electricity outage records covering roughly 92% of US
+    customers at 15-minute intervals, released annually.
+  temporal: 2014 onward
+  dataset_version: "current"
+  known_limitations:
+    - >
+      The live platform is not this. Anyone wanting current outage
+      status needs the gated system or a utility's own feed; this is
+      history.
+    - >
+      Roughly 92% of customers, not all. The gap is small utilities and
+      cooperatives, and it is not randomly distributed — rural areas are
+      underrepresented in exactly the analyses that most want them.
+
+authority_notes: >
+  Primary: CESER sponsors EAGLE-I and ORNL builds it. Intended
+  capabilities: grid.outage_history. Phase 3. The largest single find of
+  the program-office press sweep, and reachable through an adapter this
+  project already has, since the release route is OSTI.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Phase 3. No adapter work needed — the datasets are reachable through
+    the existing osti_family adapter — but the tool contract over
+    outage history is not written. It lands in doe-energy-data, which
+    already serves the grid readings (decision 0026).

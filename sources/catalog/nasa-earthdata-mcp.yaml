@@ -1,0 +1,27 @@
+# NASA's CMR MCP server. Outside DOE's scope, catalogued because the ORNL
+# DAAC is NASA-funded and a caller who reaches for Daymet may well want
+# NASA's own Earth-science search next.
+id: nasa-earthdata-mcp
+name: NASA Earthdata (CMR) MCP
+maintainer: NASA Earthdata
+maintainer_org: nasa
+status: listed
+compliance: opaque
+capabilities: [earth.search_datasets]
+install:
+  method: source
+  command: "remote server — configure the endpoint cmr.earthdata.nasa.gov/mcp/v1"
+  verified_at: "2026-09-01"
+  notes: >
+    The one agency-hosted remote MCP server found in the federal survey,
+    running FastMCP on AWS ECS. Agency-paid infrastructure, which is the
+    precedent decision 0005 weighed and could not match without funding.
+terms_url: https://www.earthdata.nasa.gov/
+terms_reviewed_at: "2026-09-01"
+why_not_absorbed: >
+  Another agency's data and another agency's server, already hosted and
+  already working. Rebuilding it would duplicate NASA's own infrastructure to
+  no one's benefit. The overlap with DOE-MCP is narrow and specific — the
+  ORNL DAAC — and there the publisher triple already carries the answer on
+  every provenance entry: ORNL operates it, NASA funds it.
+last_checked: "2026-09-01"

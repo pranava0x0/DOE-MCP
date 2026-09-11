@@ -1,0 +1,106 @@
+id: anl-sage-waggle
+name: Sage / Waggle edge sensor network
+domain: earth
+
+publisher:
+  steward: anl
+  funder: nsf
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [anl]
+
+capabilities:
+  - id: sensors.node_inventory
+    tool_hint: sensors.find_nodes
+
+# The measurement stream. Not promised as a capability, because this
+# client cannot reach it: the query API answers only to POST and every
+# fetch path here is a GET (decision 0023).
+planned_capabilities: [earth.search_streams]
+
+adapter:
+  type: sage
+  manifest_url: https://auth.sagecontinuum.org/manifests/
+  measurement_endpoint: https://data.sagecontinuum.org/api/v1/query
+  measurement_note: >
+    The measurements are public and are not served here. The query API
+    takes a POST carrying a JSON body — {"start": "-10m", "filter":
+    {"name": "env.temperature"}} — and answers in newline-delimited
+    JSON. Every fetch path in this project is a GET, which is what
+    makes it read-only by construction rather than by intention, so
+    this endpoint is named and not called.
+
+access:
+  mode: anonymous
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://sagecontinuum.org/
+  terms_reviewed_at: "2026-09-09"
+  terms_notes: >
+    Open, keyless access to the node manifest; it answered a scripted
+    client on 2026-09-09. Sage is an NSF-funded cyberinfrastructure
+    project led from Argonne, so DOE is the steward's employer rather
+    than the funder of record. Node records carry the street address of
+    the host institution, which is a deployment site rather than a
+    person's address.
+  citation_required: false
+  rate_limit_note: >
+    None published. The manifest is a single 2 MB document, so one
+    fetch per cache window answers every query against it.
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed; the manifest changes as nodes are installed, moved
+    between deployment phases, and retired.
+  ttl_hint_seconds: 21600
+
+coverage:
+  scope: >
+    Every node in the Sage/Waggle network with its deployment phase,
+    project, coordinates, host address, computers, and instruments —
+    cameras, weather and air-quality packages, microphones, rain
+    gauges, and lidar.
+  temporal: current
+  dataset_version: "current"
+  record_count: 295
+  record_count_checked: "2026-09-09"
+  known_limitations:
+    - >
+      An inventory of nodes and instruments, not the measurements they
+      produce. What a node has recorded is a different service and a
+      different request shape.
+    - >
+      Seventy-nine of the 295 nodes carry no coordinates, most of them
+      awaiting deployment. A proximity search reports how many it could
+      not place rather than dropping them silently.
+    - >
+      Deployment phase is the publisher's own word for a node's state
+      and includes Deployed, Awaiting Deployment, Maintenance,
+      Standby, Shipment Pending, and Retired. A node in the manifest is
+      not necessarily a node that is running.
+    - >
+      The manifest states no timestamp of its own, so its vintage is
+      the retrieval time and nothing more.
+
+authority_notes: >
+  Primary: the network's own record of itself, published by the team
+  that runs it. Sage is NSF-funded and Argonne-led, which is the
+  mirror image of the usual case in this registry and the reason the
+  funder is named rather than assumed. Verified live and activated on
+  2026-09-09 (research/notes/verification-round12.md).
+
+health:
+  probe: sage_node_count
+  expect:
+    min_records: 100
+
+lifecycle:
+  declared_state: active
+  added: "2026-09-02"
+  last_verified: "2026-09-09"
+  verified_by: pranava0x0

@@ -1,0 +1,1788 @@
+{
+  "note": "Recorded live from Sage / Waggle edge sensor network (https://sagecontinuum.org/) by tools/record_fixtures.py. Publisher content redistributed under the terms recorded in THIRD_PARTY_DATA.yml. TRIMMED: the manifest held 295 nodes and is cut to 12 \u2014 the first 10 with coordinates and instruments plus two with neither \u2014 so node counts read from this fixture are the fixture's, not the publisher's.",
+  "redaction": "Email addresses replaced with redacted@example.invalid and credential values with 'redacted' at record time. Field shapes and lengths are otherwise the publisher's.",
+  "interactions": [
+    {
+      "url": "https://auth.sagecontinuum.org/manifests/",
+      "params": {},
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": [
+        {
+          "vsn": "H00F",
+          "name": "00004CBB4701D16C",
+          "phase": "Standby",
+          "project": "SGT",
+          "address": "Argonne\r\n9700 South Cass Ave, Lemont, IL 60439",
+          "gps_lat": 41.7179852752395,
+          "gps_lon": -87.98271513806043,
+          "modem": null,
+          "tags": [],
+          "computes": [
+            {
+              "name": "agx-thor",
+              "is_active": true,
+              "serial_no": "4CBB4701D16C",
+              "zone": "core",
+              "hardware": {
+                "hardware": "nvidia-thor-agx-devkit",
+                "hw_model": "agx-thor",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "",
+                "datasheet": "",
+                "capabilities": [
+                  "gpu",
+                  "cuda102",
+                  "arm64",
+                  "cuda110"
+                ],
+                "description": "",
+                "cpu": "",
+                "cpu_ram": "",
+                "gpu_ram": "",
+                "shared_ram": false
+              }
+            }
+          ],
+          "sensors": [
+            {
+              "name": "ptz",
+              "is_active": true,
+              "scope": "global",
+              "labels": [],
+              "serial_no": "",
+              "uri": "http://10.31.81.27/stw-cgi/video.cgi?msubmenu=snapshot&action=view",
+              "hardware": {
+                "hardware": "ptz-6400",
+                "hw_model": "XNP-6400RW",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Hanwha Techwin",
+                "datasheet": "https://hanwhavisionamerica.com/wp-content/uploads/attachments/d/a/datasheet_xnp-6400rw_201020_en.pdf",
+                "capabilities": [
+                  "Camera"
+                ],
+                "description": "# 2MP 40x IR Wiper PTZ Camera\r\n\r\n2MP 40x IR PTZ with built-in wiper.\r\n\r\n- Max 2MP resolution\r\n- 4.25 ~ 170mm(40x) zoom (digital 32x, total 1280x zoom)\r\n- Max IR viewable length 200m\r\n- Day & Night(ICR), extreme WDR, DIS(Built-in gyro sensor)\r\n- Intelligent Analytics, Object auto tracking(Person/Vehicle), Target lock tracking, H.264, H.265, MJPEG codec, WiseStreamII\r\n- IP66, IK10, NEMA4X, NEMA-TS 2(2.2.8, 2.2.9)\r\n- PTZ PLUS Design applied(Compact, Lighter, Simple cabling)\r\n- SFP-supported by injector"
+              }
+            }
+          ],
+          "resources": [],
+          "lorawanconnections": []
+        },
+        {
+          "vsn": "H019",
+          "name": "00004CBB4701CE9D",
+          "phase": "Deployed",
+          "project": "SGT",
+          "address": "58009 Co Rd 37, Nunn, CO",
+          "gps_lat": 40.841643291439325,
+          "gps_lon": -104.71608518646835,
+          "modem": null,
+          "tags": [],
+          "computes": [
+            {
+              "name": "agx-thor",
+              "is_active": true,
+              "serial_no": "4CBB4701CE9D",
+              "zone": "core",
+              "hardware": {
+                "hardware": "nvidia-thor-agx-devkit",
+                "hw_model": "agx-thor",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "",
+                "datasheet": "",
+                "capabilities": [
+                  "gpu",
+                  "cuda102",
+                  "arm64",
+                  "cuda110"
+                ],
+                "description": "",
+                "cpu": "",
+                "cpu_ram": "",
+                "gpu_ram": "",
+                "shared_ram": false
+              }
+            }
+          ],
+          "sensors": [
+            {
+              "name": "lorawan",
+              "is_active": true,
+              "scope": "agx-thor",
+              "labels": [],
+              "serial_no": "",
+              "uri": "",
+              "hardware": {
+                "hardware": "RPI lorawan gateway",
+                "hw_model": "RAK2287",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Rakwireless",
+                "datasheet": "https://docs.rakwireless.com/Product-Categories/WisLink/RAK2287/Datasheet/",
+                "capabilities": [
+                  "lorawan"
+                ],
+                "description": "# LPWAN Concentrator Module / LoRaWAN Gateway \r\n\r\nThe *RAK2287* is an LPWAN Concentrator Module with mini-PCIe form factor based on Semtech SX1302, which enables an easy integration into an existing router or other network equipment with LPWAN Gateway capabilities. It can be used in any embedded platform offering a free mini-PCIe slot with SPI connection. Furthermore, *ZOE-M8Q GPS chip* is integrated on board.\r\n\r\nThis module is an exceptional, complete and cost efficient gateway solution offering up to 10 programmable parallel demodulation paths, an 8 x 8 channel LoRa packet detectors, 8 x SF5-SF12 LoRa demodulators and 8 x SF5-SF10 LoRa demodulators. It is capable of detecting uninterrupted combination of packets at 8 different spreading factors and 10 channels with continuous demodulation of up to 16 packets. This product is best for smart metering fixed networks and Internet-of-Things (IoT) applications, that can cover up to 500 nodes per km\u00b2 in an environment of moderate interference."
+              }
+            },
+            {
+              "name": "Lorawan Antenna",
+              "is_active": true,
+              "scope": "agx-thor",
+              "labels": [],
+              "serial_no": "",
+              "uri": "",
+              "hardware": {
+                "hardware": "LoRa Fiber Glass Antenna",
+                "hw_model": "15004",
+                "hw_version": "5.8 dBi, 902-928MHz, iPEX",
+                "sw_version": "",
+                "manufacturer": "Rakwireless",
+                "datasheet": "https://downloads.rakwireless.com/Accessories/Antenna/Fiberglass-Antenna/RAK_860-930MHz_5.8dBi_Fiberglass_Antenna_Specification.pdf",
+                "capabilities": [
+                  "lorawan"
+                ],
+                "description": "The Second Generation of RAK LoRa Antennas is a high-performance omnidirectional monopole. All LoRa bands are supported.\r\n\r\n## Features\r\n- Frequency Range: 860~930MHz\r\n- One antenna to suit both 868MHz and 915 MHz bands\r\n- Max Gain: 5.8dBi\r\n- High efficiency\r\n- Vertically polarized monopole\r\n- Easy to mount with the included Installation kit"
+              }
+            }
+          ],
+          "resources": [],
+          "lorawanconnections": [
+            {
+              "connection_name": "Field_Tester_Pad",
+              "created_at": "2026-07-13T20:35:54.157033Z",
+              "last_seen_at": "2026-08-21T17:53:00Z",
+              "margin": -12.0,
+              "expected_uplink_interval_sec": 30,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "888888888888333f",
+                "name": "Field_Tester_Pad",
+                "is_active": true,
+                "battery_level": -1.0,
+                "hardware": {
+                  "hardware": "Field Tester Pad",
+                  "hw_model": "Field_Tester_Pad",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": ""
+                }
+              }
+            }
+          ]
+        },
+        {
+          "vsn": "H02A",
+          "name": "00004CBB4701CA10",
+          "phase": "Deployed",
+          "project": "SGT",
+          "address": "9786 Ross Station Rd, Sebastopol, CA 95472",
+          "gps_lat": 38.45570810361489,
+          "gps_lon": -122.89868478347685,
+          "modem": null,
+          "tags": [],
+          "computes": [
+            {
+              "name": "agx-thor",
+              "is_active": true,
+              "serial_no": "4CBB4701CA10",
+              "zone": "core",
+              "hardware": {
+                "hardware": "nvidia-thor-agx-devkit",
+                "hw_model": "agx-thor",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "",
+                "datasheet": "",
+                "capabilities": [
+                  "gpu",
+                  "cuda102",
+                  "arm64",
+                  "cuda110"
+                ],
+                "description": "",
+                "cpu": "",
+                "cpu_ram": "",
+                "gpu_ram": "",
+                "shared_ram": false
+              }
+            }
+          ],
+          "sensors": [
+            {
+              "name": "",
+              "is_active": true,
+              "scope": "global",
+              "labels": [],
+              "serial_no": "",
+              "uri": "",
+              "hardware": {
+                "hardware": "Ubiquiti G6",
+                "hw_model": "UVC-G6-PTZ-B",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Ubiquiti",
+                "datasheet": "https://store.ui.com/us/en/products/uvc-g6-ptz",
+                "capabilities": [
+                  "Camera"
+                ],
+                "description": "All-weather, 4K dual-lens camera with 10x hybrid zoom, 1/1.8\" 8MP image sensor, Multi-TOPS AI Engine, and ultra-low latency pan-tilt-zoom control for motion tracking."
+              }
+            },
+            {
+              "name": "mobotix-1",
+              "is_active": true,
+              "scope": "global",
+              "labels": [],
+              "serial_no": "",
+              "uri": "",
+              "hardware": {
+                "hardware": "mobotix-m16",
+                "hw_model": "MX-M16TB-R079IP",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Mobotix",
+                "datasheet": "https://www.mobotix.com/sites/default/files/2020-09/mx_ML_M16_en_20200910.pdf",
+                "capabilities": [
+                  "Camera",
+                  "Thermal Camera"
+                ],
+                "description": "# Thermal and Optical Dual Eye Camera\r\n\r\nThe MOBOTIX TR cameras feature a calibrated thermal image sensor. Thermal radiation measurements made across the entire image area can be used to trigger an event based on the temperature increasing above or decreasing below an individually set trigger level (camera alarm, network message, activation of a signal output etc.).\r\n\r\n- Mx6 system platform with H.264 and ONVIF compatibility\r\n- Thermal radiometry: calibrated thermal image sensor\r\n- Three field of view variants: 45\u00b0, 25\u00b0 or 17\u00b0\r\n- Additional image sensor module options\r\n- Recording on an internal MicroSD card (4GB as standard)\r\n- Integrated microphone and speaker\r\n- MxActivitySensor can also be used in total darkness\r\n- PoE thermal camera with a maximum power consumption of just 8 watts"
+              }
+            },
+            {
+              "name": "mobotix-2",
+              "is_active": true,
+              "scope": "global",
+              "labels": [],
+              "serial_no": "",
+              "uri": "",
+              "hardware": {
+                "hardware": "mobotix-m16",
+                "hw_model": "MX-M16TB-R079IP",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Mobotix",
+                "datasheet": "https://www.mobotix.com/sites/default/files/2020-09/mx_ML_M16_en_20200910.pdf",
+                "capabilities": [
+                  "Camera",
+                  "Thermal Camera"
+                ],
+                "description": "# Thermal and Optical Dual Eye Camera\r\n\r\nThe MOBOTIX TR cameras feature a calibrated thermal image sensor. Thermal radiation measurements made across the entire image area can be used to trigger an event based on the temperature increasing above or decreasing below an individually set trigger level (camera alarm, network message, activation of a signal output etc.).\r\n\r\n- Mx6 system platform with H.264 and ONVIF compatibility\r\n- Thermal radiometry: calibrated thermal image sensor\r\n- Three field of view variants: 45\u00b0, 25\u00b0 or 17\u00b0\r\n- Additional image sensor module options\r\n- Recording on an internal MicroSD card (4GB as standard)\r\n- Integrated microphone and speaker\r\n- MxActivitySensor can also be used in total darkness\r\n- PoE thermal camera with a maximum power consumption of just 8 watts"
+              }
+            },
+            {
+              "name": "mobotix-3",
+              "is_active": true,
+              "scope": "global",
+              "labels": [],
+              "serial_no": "",
+              "uri": "",
+              "hardware": {
+                "hardware": "mobotix-m16",
+                "hw_model": "MX-M16TB-R079IP",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Mobotix",
+                "datasheet": "https://www.mobotix.com/sites/default/files/2020-09/mx_ML_M16_en_20200910.pdf",
+                "capabilities": [
+                  "Camera",
+                  "Thermal Camera"
+                ],
+                "description": "# Thermal and Optical Dual Eye Camera\r\n\r\nThe MOBOTIX TR cameras feature a calibrated thermal image sensor. Thermal radiation measurements made across the entire image area can be used to trigger an event based on the temperature increasing above or decreasing below an individually set trigger level (camera alarm, network message, activation of a signal output etc.).\r\n\r\n- Mx6 system platform with H.264 and ONVIF compatibility\r\n- Thermal radiometry: calibrated thermal image sensor\r\n- Three field of view variants: 45\u00b0, 25\u00b0 or 17\u00b0\r\n- Additional image sensor module options\r\n- Recording on an internal MicroSD card (4GB as standard)\r\n- Integrated microphone and speaker\r\n- MxActivitySensor can also be used in total darkness\r\n- PoE thermal camera with a maximum power consumption of just 8 watts"
+              }
+            },
+            {
+              "name": "mobotix-4",
+              "is_active": true,
+              "scope": "global",
+              "labels": [],
+              "serial_no": "",
+              "uri": "",
+              "hardware": {
+                "hardware": "mobotix-m16",
+                "hw_model": "MX-M16TB-R079IP",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Mobotix",
+                "datasheet": "https://www.mobotix.com/sites/default/files/2020-09/mx_ML_M16_en_20200910.pdf",
+                "capabilities": [
+                  "Camera",
+                  "Thermal Camera"
+                ],
+                "description": "# Thermal and Optical Dual Eye Camera\r\n\r\nThe MOBOTIX TR cameras feature a calibrated thermal image sensor. Thermal radiation measurements made across the entire image area can be used to trigger an event based on the temperature increasing above or decreasing below an individually set trigger level (camera alarm, network message, activation of a signal output etc.).\r\n\r\n- Mx6 system platform with H.264 and ONVIF compatibility\r\n- Thermal radiometry: calibrated thermal image sensor\r\n- Three field of view variants: 45\u00b0, 25\u00b0 or 17\u00b0\r\n- Additional image sensor module options\r\n- Recording on an internal MicroSD card (4GB as standard)\r\n- Integrated microphone and speaker\r\n- MxActivitySensor can also be used in total darkness\r\n- PoE thermal camera with a maximum power consumption of just 8 watts"
+              }
+            },
+            {
+              "name": "",
+              "is_active": true,
+              "scope": "global",
+              "labels": [],
+              "serial_no": "",
+              "uri": "",
+              "hardware": {
+                "hardware": "ptz-q6358-le",
+                "hw_model": "Q6358-LE",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Axis",
+                "datasheet": "https://www.axis.com/dam/public/ef/4d/62/datasheet-axis-q6358-le-ptz-camera-en-US-531379.pdf",
+                "capabilities": [
+                  "Camera"
+                ],
+                "description": "4K UHD AI-powered PTZ camera with 31x optical zoom, Lightfinder, Forensic WDR, OptimizedIR, and built-in cybersecurity."
+              }
+            },
+            {
+              "name": "lorawan",
+              "is_active": true,
+              "scope": "agx-thor",
+              "labels": [],
+              "serial_no": "",
+              "uri": "",
+              "hardware": {
+                "hardware": "RPI lorawan gateway",
+                "hw_model": "RAK2287",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Rakwireless",
+                "datasheet": "https://docs.rakwireless.com/Product-Categories/WisLink/RAK2287/Datasheet/",
+                "capabilities": [
+                  "lorawan"
+                ],
+                "description": "# LPWAN Concentrator Module / LoRaWAN Gateway \r\n\r\nThe *RAK2287* is an LPWAN Concentrator Module with mini-PCIe form factor based on Semtech SX1302, which enables an easy integration into an existing router or other network equipment with LPWAN Gateway capabilities. It can be used in any embedded platform offering a free mini-PCIe slot with SPI connection. Furthermore, *ZOE-M8Q GPS chip* is integrated on board.\r\n\r\nThis module is an exceptional, complete and cost efficient gateway solution offering up to 10 programmable parallel demodulation paths, an 8 x 8 channel LoRa packet detectors, 8 x SF5-SF12 LoRa demodulators and 8 x SF5-SF10 LoRa demodulators. It is capable of detecting uninterrupted combination of packets at 8 different spreading factors and 10 channels with continuous demodulation of up to 16 packets. This product is best for smart metering fixed networks and Internet-of-Things (IoT) applications, that can cover up to 500 nodes per km\u00b2 in an environment of moderate interference."
+              }
+            }
+          ],
+          "resources": [],
+          "lorawanconnections": [
+            {
+              "connection_name": "EM500-PP-4842",
+              "created_at": "2026-09-03T19:10:35.766819Z",
+              "last_seen_at": "2026-09-09T14:25:59.878459Z",
+              "margin": 12.0,
+              "expected_uplink_interval_sec": 600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "24e124126e471477",
+                "name": "EM500-PP-4842",
+                "is_active": true,
+                "battery_level": 96.85,
+                "hardware": {
+                  "hardware": "EM500-PP-4842 - Pipe Pressure Sensor",
+                  "hw_model": "EM500-PP-4842_-_Pipe_Pressure_",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "The EM500 Pipe Pressure Sensor that can easily be installed, constantly monitors pipes of various kinds, varying from liquids to gases in various settings to constantly monitor pipe pressure so that pipe pressure abnormality can be detected in time to ensure workplace safety."
+                }
+              }
+            },
+            {
+              "connection_name": "EM500-CO2-915M-1",
+              "created_at": "2026-09-03T19:10:25.702713Z",
+              "last_seen_at": "2026-09-09T14:23:52.856554Z",
+              "margin": 13.0,
+              "expected_uplink_interval_sec": 3600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "24e124126f015410",
+                "name": "EM500-CO2-915M-1",
+                "is_active": true,
+                "battery_level": 97.63,
+                "hardware": {
+                  "hardware": "EM500-CO2 - CO2, temperature, humidity, and barometric pressure sensors",
+                  "hw_model": "EM500-CO2_-_CO2,_temperature,_",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "The Milesight EM500-CO2 consists of CO2, temperature, humidity, and barometric pressure sensors for measuring gaseous carbon dioxide (CO2) concentration in harsh environments. It is useful in the application where knowing CO2 level is important like greenhouses, wine cellars, building ventilation, fruit and vegetable storage.\n\nSource: https://github.com/TheThingsNetwork/lorawan-devices"
+                }
+              }
+            },
+            {
+              "connection_name": "EM500-CO2-915M-2",
+              "created_at": "2026-09-03T19:10:27.694920Z",
+              "last_seen_at": "2026-09-09T14:28:02.075614Z",
+              "margin": 8.0,
+              "expected_uplink_interval_sec": 3600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "24e124126f015418",
+                "name": "EM500-CO2-915M-2",
+                "is_active": true,
+                "battery_level": 97.63,
+                "hardware": {
+                  "hardware": "EM500-CO2 - CO2, temperature, humidity, and barometric pressure sensors",
+                  "hw_model": "EM500-CO2_-_CO2,_temperature,_",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "The Milesight EM500-CO2 consists of CO2, temperature, humidity, and barometric pressure sensors for measuring gaseous carbon dioxide (CO2) concentration in harsh environments. It is useful in the application where knowing CO2 level is important like greenhouses, wine cellars, building ventilation, fruit and vegetable storage.\n\nSource: https://github.com/TheThingsNetwork/lorawan-devices"
+                }
+              }
+            },
+            {
+              "connection_name": "EM500-CO2-915M-3",
+              "created_at": "2026-09-03T19:10:28.666764Z",
+              "last_seen_at": "2026-09-09T14:28:31.818241Z",
+              "margin": 11.0,
+              "expected_uplink_interval_sec": 3600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "24e124126f211868",
+                "name": "EM500-CO2-915M-3",
+                "is_active": true,
+                "battery_level": 97.63,
+                "hardware": {
+                  "hardware": "EM500-CO2 - CO2, temperature, humidity, and barometric pressure sensors",
+                  "hw_model": "EM500-CO2_-_CO2,_temperature,_",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "The Milesight EM500-CO2 consists of CO2, temperature, humidity, and barometric pressure sensors for measuring gaseous carbon dioxide (CO2) concentration in harsh environments. It is useful in the application where knowing CO2 level is important like greenhouses, wine cellars, building ventilation, fruit and vegetable storage.\n\nSource: https://github.com/TheThingsNetwork/lorawan-devices"
+                }
+              }
+            },
+            {
+              "connection_name": "EM500-CO2-915M-4",
+              "created_at": "2026-09-03T19:10:30.613407Z",
+              "last_seen_at": "2026-09-09T14:31:44.361208Z",
+              "margin": 13.0,
+              "expected_uplink_interval_sec": 3600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "24e124126f218775",
+                "name": "EM500-CO2-915M-4",
+                "is_active": true,
+                "battery_level": 97.63,
+                "hardware": {
+                  "hardware": "EM500-CO2 - CO2, temperature, humidity, and barometric pressure sensors",
+                  "hw_model": "EM500-CO2_-_CO2,_temperature,_",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "The Milesight EM500-CO2 consists of CO2, temperature, humidity, and barometric pressure sensors for measuring gaseous carbon dioxide (CO2) concentration in harsh environments. It is useful in the application where knowing CO2 level is important like greenhouses, wine cellars, building ventilation, fruit and vegetable storage.\n\nSource: https://github.com/TheThingsNetwork/lorawan-devices"
+                }
+              }
+            },
+            {
+              "connection_name": "EM500-CO2-915M-5",
+              "created_at": "2026-09-03T19:10:31.756521Z",
+              "last_seen_at": "2026-09-09T14:19:23.576428Z",
+              "margin": 1.0,
+              "expected_uplink_interval_sec": 3600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "24e124126f426180",
+                "name": "EM500-CO2-915M-5",
+                "is_active": true,
+                "battery_level": 98.81,
+                "hardware": {
+                  "hardware": "EM500-CO2 - DR0-DR2 ADR pilot",
+                  "hw_model": "EM500-CO2_-_DR0-DR2_ADR_pilot",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "EM500-CO2 default ADR clone capped at US915 DR2 for the weak-node RF pilot."
+                }
+              }
+            },
+            {
+              "connection_name": "EM500-CO2-915M-6",
+              "created_at": "2026-09-03T19:10:32.721627Z",
+              "last_seen_at": "2026-09-09T14:26:02.071947Z",
+              "margin": -2.0,
+              "expected_uplink_interval_sec": 3600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "24e124126f427032",
+                "name": "EM500-CO2-915M-6",
+                "is_active": true,
+                "battery_level": 98.81,
+                "hardware": {
+                  "hardware": "EM500-CO2 - DR0-DR2 ADR pilot",
+                  "hw_model": "EM500-CO2_-_DR0-DR2_ADR_pilot",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "EM500-CO2 default ADR clone capped at US915 DR2 for the weak-node RF pilot."
+                }
+              }
+            },
+            {
+              "connection_name": "EM500-CO2-915M-7",
+              "created_at": "2026-09-03T19:10:33.680942Z",
+              "last_seen_at": "2026-09-09T14:19:26.894482Z",
+              "margin": 11.0,
+              "expected_uplink_interval_sec": 3600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "24e124126f427423",
+                "name": "EM500-CO2-915M-7",
+                "is_active": true,
+                "battery_level": 98.81,
+                "hardware": {
+                  "hardware": "EM500-CO2 - CO2, temperature, humidity, and barometric pressure sensors",
+                  "hw_model": "EM500-CO2_-_CO2,_temperature,_",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "The Milesight EM500-CO2 consists of CO2, temperature, humidity, and barometric pressure sensors for measuring gaseous carbon dioxide (CO2) concentration in harsh environments. It is useful in the application where knowing CO2 level is important like greenhouses, wine cellars, building ventilation, fruit and vegetable storage.\n\nSource: https://github.com/TheThingsNetwork/lorawan-devices"
+                }
+              }
+            },
+            {
+              "connection_name": "EM500-CO2-915M-8",
+              "created_at": "2026-09-03T19:10:34.629785Z",
+              "last_seen_at": "2026-09-09T14:30:01.512841Z",
+              "margin": 6.0,
+              "expected_uplink_interval_sec": 3600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "24e124126f427446",
+                "name": "EM500-CO2-915M-8",
+                "is_active": true,
+                "battery_level": 98.81,
+                "hardware": {
+                  "hardware": "EM500-CO2 - DR0-DR2 ADR pilot",
+                  "hw_model": "EM500-CO2_-_DR0-DR2_ADR_pilot",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "EM500-CO2 default ADR clone capped at US915 DR2 for the weak-node RF pilot."
+                }
+              }
+            },
+            {
+              "connection_name": "EM300-DI",
+              "created_at": "2026-09-03T19:10:24.575769Z",
+              "last_seen_at": "2025-12-20T00:44:32.020145Z",
+              "margin": 14.0,
+              "expected_uplink_interval_sec": 600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "24e124136f206762",
+                "name": "EM300-DI",
+                "is_active": true,
+                "battery_level": 92.91,
+                "hardware": {
+                  "hardware": "EM300-DI",
+                  "hw_model": "EM300-DI",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "The Milesight LoRaWAN\u00ae EM300-MCS magnetic contact switch can be mounted to any door or window to detect an opening or closing event. It adds physical security monitoring to your location by alarming for intrusion or unauthorized entry to your monitored conditions.\n\nSource: https://github.com/TheThingsNetwork/lorawan-devices"
+                }
+              }
+            },
+            {
+              "connection_name": "SenseCAP-S2103-CO2-1",
+              "created_at": "2026-09-03T19:10:53.162403Z",
+              "last_seen_at": "2026-09-09T14:29:22.996959Z",
+              "margin": 13.0,
+              "expected_uplink_interval_sec": 3600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "2cf7f1c06220001b",
+                "name": "SenseCAP-S2103-CO2-1",
+                "is_active": true,
+                "battery_level": 100.0,
+                "hardware": {
+                  "hardware": "SenseCAP S2103 - CO2, Temperature, and Humidity Sensor",
+                  "hw_model": "SenseCAP_S2103_-_CO2,_Temperat",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "SenseCAP S2103- LoRaWAN\u00ae CO2, Temperature, and Humidity Sensors satisfy industrial long-distance data acquisition with a wide range of 400 to 10000 ppm, -40\u00b0C to 85\u00b0C and 0 to 100% RH respectively. With Bluetooth 5.0 for easy configuration and firmware upgrade and a built-in replaceable battery for minimal maintenance, it also supports three different LoRaWAN\u00ae network architectures enabling you to easily join it in existing gateways and network servers to build flexible and high-performance sensor network.\n\nSource: https://github.com/TheThingsNetwork/lorawan-devices"
+                }
+              }
+            },
+            {
+              "connection_name": "SenseCAP-S2103-CO2-2",
+              "created_at": "2026-09-03T19:10:54.097550Z",
+              "last_seen_at": "2026-09-09T14:12:28.985817Z",
+              "margin": 13.0,
+              "expected_uplink_interval_sec": 3600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "2cf7f1c06220006f",
+                "name": "SenseCAP-S2103-CO2-2",
+                "is_active": true,
+                "battery_level": 100.0,
+                "hardware": {
+                  "hardware": "SenseCAP S2103 - CO2, Temperature, and Humidity Sensor",
+                  "hw_model": "SenseCAP_S2103_-_CO2,_Temperat",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "SenseCAP S2103- LoRaWAN\u00ae CO2, Temperature, and Humidity Sensors satisfy industrial long-distance data acquisition with a wide range of 400 to 10000 ppm, -40\u00b0C to 85\u00b0C and 0 to 100% RH respectively. With Bluetooth 5.0 for easy configuration and firmware upgrade and a built-in replaceable battery for minimal maintenance, it also supports three different LoRaWAN\u00ae network architectures enabling you to easily join it in existing gateways and network servers to build flexible and high-performance sensor network.\n\nSource: https://github.com/TheThingsNetwork/lorawan-devices"
+                }
+              }
+            },
+            {
+              "connection_name": "SE01-LS-3",
+              "created_at": "2026-09-03T19:10:46.018298Z",
+              "last_seen_at": "2026-09-09T14:27:25.847593Z",
+              "margin": 7.0,
+              "expected_uplink_interval_sec": 3600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "a8404101e35dd92b",
+                "name": "SE01-LS-3",
+                "is_active": true,
+                "battery_level": 100.0,
+                "hardware": {
+                  "hardware": "SE01-LS",
+                  "hw_model": "SE01-LS",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "The Dragino SE01-LB/LS is a LoRaWAN Soil Moisture & EC Sensor for IoT of Agriculture. It is designed to measure the soil moisture of saline-alkali soil and loamy soil. The soil sensor uses FDR method to calculate the soil moisture with the compensation from soil temperature and conductivity. It also has been calibrated in factory for Mineral soil type.\n\nIt detects Soil Moisture, Soil Temperature and Soil Conductivity, and uploads the value via wireless to LoRaWAN IoT Server.\n\nSounce: https://github.com/dragino/dragino-end-node-decoder/blob/main/SE01-LB/se01-lb_ChirpstackV4_Decoder.txt"
+                }
+              }
+            },
+            {
+              "connection_name": "SDI-12-LS-US915-1",
+              "created_at": "2026-09-03T19:10:38.042982Z",
+              "last_seen_at": "2026-09-09T14:29:17.477508Z",
+              "margin": 13.0,
+              "expected_uplink_interval_sec": 3600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "a8404111f05c5ef9",
+                "name": "SDI-12-LS-US915-1",
+                "is_active": true,
+                "battery_level": 85.43,
+                "hardware": {
+                  "hardware": "SDI-12-LS",
+                  "hw_model": "SDI-12-LS",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "The Dragino SDI-12-LB/LS is a SDI-12 to LoRaWAN Converter designed for Smart Agriculture solution.\n\nSDI-12 (Serial Digital Interface at 1200 baud) is an asynchronous serial communications protocol for intelligent sensors that monitor environment data. SDI-12 protocol is widely used in Agriculture sensor and Weather Station sensors.\n\nSource: https://github.com/dragino/dragino-end-node-decoder/blob/main/SDI-12-LB/SDI12_ChirpstackV4_decode.txt"
+                }
+              }
+            },
+            {
+              "connection_name": "SDI-12-LS-US915-6",
+              "created_at": "2026-09-03T19:10:42.999877Z",
+              "last_seen_at": "2026-09-09T14:29:32.956509Z",
+              "margin": 13.0,
+              "expected_uplink_interval_sec": 3600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "a8404117585fd05d",
+                "name": "SDI-12-LS-US915-6",
+                "is_active": true,
+                "battery_level": 85.43,
+                "hardware": {
+                  "hardware": "SDI-12-LS-Apogee",
+                  "hw_model": "SDI-12-LS-Apogee",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": ""
+                }
+              }
+            },
+            {
+              "connection_name": "SDI-12-LS-US915-5",
+              "created_at": "2026-09-03T19:10:41.861417Z",
+              "last_seen_at": "2026-09-09T14:29:14.136107Z",
+              "margin": 11.0,
+              "expected_uplink_interval_sec": 3600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "a840412d525f1056",
+                "name": "SDI-12-LS-US915-5",
+                "is_active": true,
+                "battery_level": 83.85,
+                "hardware": {
+                  "hardware": "SDI-12-LS",
+                  "hw_model": "SDI-12-LS",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "The Dragino SDI-12-LB/LS is a SDI-12 to LoRaWAN Converter designed for Smart Agriculture solution.\n\nSDI-12 (Serial Digital Interface at 1200 baud) is an asynchronous serial communications protocol for intelligent sensors that monitor environment data. SDI-12 protocol is widely used in Agriculture sensor and Weather Station sensors.\n\nSource: https://github.com/dragino/dragino-end-node-decoder/blob/main/SDI-12-LB/SDI12_ChirpstackV4_decode.txt"
+                }
+              }
+            },
+            {
+              "connection_name": "SE01-LS-4",
+              "created_at": "2026-09-03T19:10:47.023436Z",
+              "last_seen_at": "2026-09-09T14:28:45.639459Z",
+              "margin": 13.0,
+              "expected_uplink_interval_sec": 3600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "a840412f365dd933",
+                "name": "SE01-LS-4",
+                "is_active": true,
+                "battery_level": 100.0,
+                "hardware": {
+                  "hardware": "SE01-LS",
+                  "hw_model": "SE01-LS",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "The Dragino SE01-LB/LS is a LoRaWAN Soil Moisture & EC Sensor for IoT of Agriculture. It is designed to measure the soil moisture of saline-alkali soil and loamy soil. The soil sensor uses FDR method to calculate the soil moisture with the compensation from soil temperature and conductivity. It also has been calibrated in factory for Mineral soil type.\n\nIt detects Soil Moisture, Soil Temperature and Soil Conductivity, and uploads the value via wireless to LoRaWAN IoT Server.\n\nSounce: https://github.com/dragino/dragino-end-node-decoder/blob/main/SE01-LB/se01-lb_ChirpstackV4_Decoder.txt"
+                }
+              }
+            },
+            {
+              "connection_name": "SDI-12-LS-US915-4",
+              "created_at": "2026-09-03T19:10:40.913126Z",
+              "last_seen_at": "2026-09-09T14:29:39.662511Z",
+              "margin": 7.0,
+              "expected_uplink_interval_sec": 3600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "a840415a365f1055",
+                "name": "SDI-12-LS-US915-4",
+                "is_active": true,
+                "battery_level": 83.46,
+                "hardware": {
+                  "hardware": "SDI-12-LS",
+                  "hw_model": "SDI-12-LS",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "The Dragino SDI-12-LB/LS is a SDI-12 to LoRaWAN Converter designed for Smart Agriculture solution.\n\nSDI-12 (Serial Digital Interface at 1200 baud) is an asynchronous serial communications protocol for intelligent sensors that monitor environment data. SDI-12 protocol is widely used in Agriculture sensor and Weather Station sensors.\n\nSource: https://github.com/dragino/dragino-end-node-decoder/blob/main/SDI-12-LB/SDI12_ChirpstackV4_decode.txt"
+                }
+              }
+            },
+            {
+              "connection_name": "SDI-12-LS-US915-3",
+              "created_at": "2026-09-03T19:10:39.955341Z",
+              "last_seen_at": "2026-09-09T14:32:04.154213Z",
+              "margin": 12.0,
+              "expected_uplink_interval_sec": 3600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "a8404166ab5c5efb",
+                "name": "SDI-12-LS-US915-3",
+                "is_active": true,
+                "battery_level": 82.28,
+                "hardware": {
+                  "hardware": "SDI-12-LS",
+                  "hw_model": "SDI-12-LS",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "The Dragino SDI-12-LB/LS is a SDI-12 to LoRaWAN Converter designed for Smart Agriculture solution.\n\nSDI-12 (Serial Digital Interface at 1200 baud) is an asynchronous serial communications protocol for intelligent sensors that monitor environment data. SDI-12 protocol is widely used in Agriculture sensor and Weather Station sensors.\n\nSource: https://github.com/dragino/dragino-end-node-decoder/blob/main/SDI-12-LB/SDI12_ChirpstackV4_decode.txt"
+                }
+              }
+            },
+            {
+              "connection_name": "SE01-LS-1",
+              "created_at": "2026-09-03T19:10:44.134894Z",
+              "last_seen_at": "2026-09-09T14:29:49.213931Z",
+              "margin": 10.0,
+              "expected_uplink_interval_sec": 3600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "a8404169155dcab2",
+                "name": "SE01-LS-1",
+                "is_active": true,
+                "battery_level": 100.0,
+                "hardware": {
+                  "hardware": "SE01-LS",
+                  "hw_model": "SE01-LS",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "The Dragino SE01-LB/LS is a LoRaWAN Soil Moisture & EC Sensor for IoT of Agriculture. It is designed to measure the soil moisture of saline-alkali soil and loamy soil. The soil sensor uses FDR method to calculate the soil moisture with the compensation from soil temperature and conductivity. It also has been calibrated in factory for Mineral soil type.\n\nIt detects Soil Moisture, Soil Temperature and Soil Conductivity, and uploads the value via wireless to LoRaWAN IoT Server.\n\nSounce: https://github.com/dragino/dragino-end-node-decoder/blob/main/SE01-LB/se01-lb_ChirpstackV4_Decoder.txt"
+                }
+              }
+            },
+            {
+              "connection_name": "SE0X-LS-3",
+              "created_at": "2026-09-03T19:10:51.085893Z",
+              "last_seen_at": "2026-09-09T14:30:53.778677Z",
+              "margin": 11.0,
+              "expected_uplink_interval_sec": 3600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "a840417c755dd3cf",
+                "name": "SE0X-LS-3",
+                "is_active": true,
+                "battery_level": 100.0,
+                "hardware": {
+                  "hardware": "SE0X-LS",
+                  "hw_model": "SE0X-LS",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "The Dragino SE0X-LB is a LoRaWAN Soil Moisture & EC Sensor for IoT of Agriculture which can equipped with 4 sensor probes. It is designed to measure the soil moisture of saline-alkali soil and loamy soil. The soil sensor uses FDR method to calculate the soil moisture with the compensation from soil temperature and conductivity. It also has been calibrated in factory for Mineral soil type.\n\nIt detects Soil Moisture, Soil Temperature and Soil Conductivity, and uploads the value via wireless to LoRaWAN IoT Server.\n\nSource: https://github.com/dragino/dragino-end-node-decoder/blob/main/SE0X-LB/SE0X-LB%20decoder.txt"
+                }
+              }
+            },
+            {
+              "connection_name": "SDI-12-LS-US915-2",
+              "created_at": "2026-09-03T19:10:38.997035Z",
+              "last_seen_at": "2026-09-09T14:28:50.895828Z",
+              "margin": 12.0,
+              "expected_uplink_interval_sec": 3600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "a8404185fc5c53fe",
+                "name": "SDI-12-LS-US915-2",
+                "is_active": true,
+                "battery_level": 83.85,
+                "hardware": {
+                  "hardware": "SDI-12-LS",
+                  "hw_model": "SDI-12-LS",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "The Dragino SDI-12-LB/LS is a SDI-12 to LoRaWAN Converter designed for Smart Agriculture solution.\n\nSDI-12 (Serial Digital Interface at 1200 baud) is an asynchronous serial communications protocol for intelligent sensors that monitor environment data. SDI-12 protocol is widely used in Agriculture sensor and Weather Station sensors.\n\nSource: https://github.com/dragino/dragino-end-node-decoder/blob/main/SDI-12-LB/SDI12_ChirpstackV4_decode.txt"
+                }
+              }
+            },
+            {
+              "connection_name": "SE0X-LS-2",
+              "created_at": "2026-09-03T19:10:49.132744Z",
+              "last_seen_at": "2026-09-09T14:23:14.148162Z",
+              "margin": 8.0,
+              "expected_uplink_interval_sec": 3600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "a840418ea85dcd91",
+                "name": "SE0X-LS-2",
+                "is_active": true,
+                "battery_level": 100.0,
+                "hardware": {
+                  "hardware": "SE0X-LS",
+                  "hw_model": "SE0X-LS",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "The Dragino SE0X-LB is a LoRaWAN Soil Moisture & EC Sensor for IoT of Agriculture which can equipped with 4 sensor probes. It is designed to measure the soil moisture of saline-alkali soil and loamy soil. The soil sensor uses FDR method to calculate the soil moisture with the compensation from soil temperature and conductivity. It also has been calibrated in factory for Mineral soil type.\n\nIt detects Soil Moisture, Soil Temperature and Soil Conductivity, and uploads the value via wireless to LoRaWAN IoT Server.\n\nSource: https://github.com/dragino/dragino-end-node-decoder/blob/main/SE0X-LB/SE0X-LB%20decoder.txt"
+                }
+              }
+            },
+            {
+              "connection_name": "SE01-LS-2",
+              "created_at": "2026-09-03T19:10:45.075106Z",
+              "last_seen_at": "2026-09-09T14:29:22.059220Z",
+              "margin": 11.0,
+              "expected_uplink_interval_sec": 3600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "a84041d4915dcaab",
+                "name": "SE01-LS-2",
+                "is_active": true,
+                "battery_level": 100.0,
+                "hardware": {
+                  "hardware": "SE01-LS",
+                  "hw_model": "SE01-LS",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "The Dragino SE01-LB/LS is a LoRaWAN Soil Moisture & EC Sensor for IoT of Agriculture. It is designed to measure the soil moisture of saline-alkali soil and loamy soil. The soil sensor uses FDR method to calculate the soil moisture with the compensation from soil temperature and conductivity. It also has been calibrated in factory for Mineral soil type.\n\nIt detects Soil Moisture, Soil Temperature and Soil Conductivity, and uploads the value via wireless to LoRaWAN IoT Server.\n\nSounce: https://github.com/dragino/dragino-end-node-decoder/blob/main/SE01-LB/se01-lb_ChirpstackV4_Decoder.txt"
+                }
+              }
+            },
+            {
+              "connection_name": "SE0X-LS-1",
+              "created_at": "2026-09-03T19:10:48.181431Z",
+              "last_seen_at": "2026-09-09T14:31:41.353865Z",
+              "margin": 6.0,
+              "expected_uplink_interval_sec": 3600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "a84041d7245dcd90",
+                "name": "SE0X-LS-1",
+                "is_active": true,
+                "battery_level": 100.0,
+                "hardware": {
+                  "hardware": "SE0X-LS",
+                  "hw_model": "SE0X-LS",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "The Dragino SE0X-LB is a LoRaWAN Soil Moisture & EC Sensor for IoT of Agriculture which can equipped with 4 sensor probes. It is designed to measure the soil moisture of saline-alkali soil and loamy soil. The soil sensor uses FDR method to calculate the soil moisture with the compensation from soil temperature and conductivity. It also has been calibrated in factory for Mineral soil type.\n\nIt detects Soil Moisture, Soil Temperature and Soil Conductivity, and uploads the value via wireless to LoRaWAN IoT Server.\n\nSource: https://github.com/dragino/dragino-end-node-decoder/blob/main/SE0X-LB/SE0X-LB%20decoder.txt"
+                }
+              }
+            },
+            {
+              "connection_name": "SE0X-LS-4",
+              "created_at": "2026-09-03T19:10:52.031273Z",
+              "last_seen_at": "2026-09-09T14:28:31.607673Z",
+              "margin": 3.0,
+              "expected_uplink_interval_sec": 3600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "a84041d8ec5dcd94",
+                "name": "SE0X-LS-4",
+                "is_active": true,
+                "battery_level": 100.0,
+                "hardware": {
+                  "hardware": "SE0X-LS",
+                  "hw_model": "SE0X-LS",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "The Dragino SE0X-LB is a LoRaWAN Soil Moisture & EC Sensor for IoT of Agriculture which can equipped with 4 sensor probes. It is designed to measure the soil moisture of saline-alkali soil and loamy soil. The soil sensor uses FDR method to calculate the soil moisture with the compensation from soil temperature and conductivity. It also has been calibrated in factory for Mineral soil type.\n\nIt detects Soil Moisture, Soil Temperature and Soil Conductivity, and uploads the value via wireless to LoRaWAN IoT Server.\n\nSource: https://github.com/dragino/dragino-end-node-decoder/blob/main/SE0X-LB/SE0X-LB%20decoder.txt"
+                }
+              }
+            },
+            {
+              "connection_name": "Seismic_Sensor",
+              "created_at": "2026-09-03T19:10:36.903778Z",
+              "last_seen_at": null,
+              "margin": 0.0,
+              "expected_uplink_interval_sec": 3600,
+              "connection_type": "OTAA",
+              "lorawandevice": {
+                "deveui": "ac1f09fffe187239",
+                "name": "Seismic_Sensor",
+                "is_active": true,
+                "battery_level": 0.0,
+                "hardware": {
+                  "hardware": "Wisblock Starter Kit RAK4631",
+                  "hw_model": "Wisblock_Starter_Kit_RAK4631",
+                  "hw_version": "",
+                  "sw_version": "",
+                  "manufacturer": "",
+                  "datasheet": "",
+                  "capabilities": [
+                    "lorawan"
+                  ],
+                  "description": "The RAKwireless RAK4631 is a WisBlock Core module that can be plugged into the WisBlock Base allows adding WisBlock sensor modules such as environmental sensor, GNSS location module, temperature & humidity sensor, 3-axis acceleration sensor, ambient light sensor, barometric pressure sensor, infrared temperature sensor, etc. The RAK4631 is based on the 32 bit ARM\u00ae Cortex\u2122 - M4 CPU that supports LoRaWAN\u00ae and Bluetooth protocols.\n\nSource: https://github.com/TheThingsNetwork/lorawan-devices"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "vsn": "V002",
+          "name": "00004CD98FC67B75",
+          "phase": "Deployed",
+          "project": "SAGE",
+          "address": "Smithsonian Conservation Biology Institute\r\n1500 Remount Rd, Front Royal, VA 22630",
+          "gps_lat": 38.893794,
+          "gps_lon": -78.142847,
+          "modem": null,
+          "tags": [],
+          "computes": [
+            {
+              "name": "sbcore",
+              "is_active": true,
+              "serial_no": "4CD98FC67B75",
+              "zone": "core",
+              "hardware": {
+                "hardware": "dell-xr2",
+                "hw_model": "PowerEdge XR2",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Dell",
+                "datasheet": "https://www.dell.com/en-us/shop/productdetailstxn/poweredge-xr2",
+                "capabilities": [
+                  "gpu",
+                  "cuda110",
+                  "amd64"
+                ],
+                "description": "",
+                "cpu": "16000",
+                "cpu_ram": "32768",
+                "gpu_ram": "16384",
+                "shared_ram": false
+              }
+            }
+          ],
+          "sensors": [
+            {
+              "name": "aquatic/stream-gauge camera",
+              "is_active": true,
+              "scope": "global",
+              "labels": [],
+              "serial_no": "NEON.D02.LEWI.DP1.20002",
+              "uri": "http://10.102.144.40/nph-mjpeg.cgi",
+              "hardware": {
+                "hardware": "stardot-netcam",
+                "hw_model": "NetCam CS CAM-SEC5IR-B",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Stardot",
+                "datasheet": "http://stardot-tech.com/netcamsc/index.html",
+                "capabilities": [
+                  "Camera"
+                ],
+                "description": "# Multi-Megapixel Hybrid IP Camera\r\n\r\nHigh definition resolution camera (up to 5 Megapixel)."
+              }
+            }
+          ],
+          "resources": [],
+          "lorawanconnections": []
+        },
+        {
+          "vsn": "V003",
+          "name": "00004CD98FC68D9C",
+          "phase": "Retired",
+          "project": "SAGE",
+          "address": "114 County Road, Weld County, CO",
+          "gps_lat": 40.815536,
+          "gps_lon": -104.74559,
+          "modem": null,
+          "tags": [],
+          "computes": [
+            {
+              "name": "sbcore",
+              "is_active": true,
+              "serial_no": "4CD98FC68D9C",
+              "zone": "core",
+              "hardware": {
+                "hardware": "dell-xr2",
+                "hw_model": "PowerEdge XR2",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Dell",
+                "datasheet": "https://www.dell.com/en-us/shop/productdetailstxn/poweredge-xr2",
+                "capabilities": [
+                  "gpu",
+                  "cuda110",
+                  "amd64"
+                ],
+                "description": "",
+                "cpu": "16000",
+                "cpu_ram": "32768",
+                "gpu_ram": "16384",
+                "shared_ram": false
+              }
+            }
+          ],
+          "sensors": [
+            {
+              "name": "top",
+              "is_active": true,
+              "scope": "global",
+              "labels": [],
+              "serial_no": "NEON.D10.CPER.DP1.00033",
+              "uri": "http://10.110.48.41/nph-mjpeg.cgi",
+              "hardware": {
+                "hardware": "stardot-netcam",
+                "hw_model": "NetCam CS CAM-SEC5IR-B",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Stardot",
+                "datasheet": "http://stardot-tech.com/netcamsc/index.html",
+                "capabilities": [
+                  "Camera"
+                ],
+                "description": "# Multi-Megapixel Hybrid IP Camera\r\n\r\nHigh definition resolution camera (up to 5 Megapixel)."
+              }
+            },
+            {
+              "name": "mid",
+              "is_active": true,
+              "scope": "global",
+              "labels": [],
+              "serial_no": "NEON.D10.CPER.DP1.00042",
+              "uri": "http://10.110.48.40/nph-mjpeg.cgi",
+              "hardware": {
+                "hardware": "stardot-netcam",
+                "hw_model": "NetCam CS CAM-SEC5IR-B",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Stardot",
+                "datasheet": "http://stardot-tech.com/netcamsc/index.html",
+                "capabilities": [
+                  "Camera"
+                ],
+                "description": "# Multi-Megapixel Hybrid IP Camera\r\n\r\nHigh definition resolution camera (up to 5 Megapixel)."
+              }
+            }
+          ],
+          "resources": [],
+          "lorawanconnections": []
+        },
+        {
+          "vsn": "V004",
+          "name": "00004CD98FC67734",
+          "phase": "Deployed",
+          "project": "SAGE",
+          "address": "Pima County, AZ",
+          "gps_lat": 31.91084,
+          "gps_lon": -110.8354,
+          "modem": null,
+          "tags": [],
+          "computes": [
+            {
+              "name": "sbcore",
+              "is_active": true,
+              "serial_no": "4CD98FC67734",
+              "zone": "core",
+              "hardware": {
+                "hardware": "dell-xr2",
+                "hw_model": "PowerEdge XR2",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Dell",
+                "datasheet": "https://www.dell.com/en-us/shop/productdetailstxn/poweredge-xr2",
+                "capabilities": [
+                  "gpu",
+                  "cuda110",
+                  "amd64"
+                ],
+                "description": "",
+                "cpu": "16000",
+                "cpu_ram": "32768",
+                "gpu_ram": "16384",
+                "shared_ram": false
+              }
+            }
+          ],
+          "sensors": [
+            {
+              "name": "tower top",
+              "is_active": true,
+              "scope": "global",
+              "labels": [],
+              "serial_no": "NEON.D14.SRER.DP1.00033",
+              "uri": "http://10.114.16.41/nph-mjpeg.cgi",
+              "hardware": {
+                "hardware": "stardot-netcam",
+                "hw_model": "NetCam CS CAM-SEC5IR-B",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Stardot",
+                "datasheet": "http://stardot-tech.com/netcamsc/index.html",
+                "capabilities": [
+                  "Camera"
+                ],
+                "description": "# Multi-Megapixel Hybrid IP Camera\r\n\r\nHigh definition resolution camera (up to 5 Megapixel)."
+              }
+            },
+            {
+              "name": "mid-tower",
+              "is_active": true,
+              "scope": "global",
+              "labels": [],
+              "serial_no": "NEON.D14.SRER.DP1.00042",
+              "uri": "http://10.114.16.40/nph-mjpeg.cgi",
+              "hardware": {
+                "hardware": "stardot-netcam",
+                "hw_model": "NetCam CS CAM-SEC5IR-B",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Stardot",
+                "datasheet": "http://stardot-tech.com/netcamsc/index.html",
+                "capabilities": [
+                  "Camera"
+                ],
+                "description": "# Multi-Megapixel Hybrid IP Camera\r\n\r\nHigh definition resolution camera (up to 5 Megapixel)."
+              }
+            }
+          ],
+          "resources": [],
+          "lorawanconnections": []
+        },
+        {
+          "vsn": "V006",
+          "name": "00004CD98FC67E76",
+          "phase": "Maintenance",
+          "project": "SAGE",
+          "address": "Winter Trail, Barrow, AK",
+          "gps_lat": 71.28241,
+          "gps_lon": -156.61936,
+          "modem": null,
+          "tags": [],
+          "computes": [
+            {
+              "name": "sbcore",
+              "is_active": true,
+              "serial_no": "4CD98FC67E76",
+              "zone": "core",
+              "hardware": {
+                "hardware": "dell-xr2",
+                "hw_model": "PowerEdge XR2",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Dell",
+                "datasheet": "https://www.dell.com/en-us/shop/productdetailstxn/poweredge-xr2",
+                "capabilities": [
+                  "gpu",
+                  "cuda110",
+                  "amd64"
+                ],
+                "description": "",
+                "cpu": "16000",
+                "cpu_ram": "32768",
+                "gpu_ram": "16384",
+                "shared_ram": false
+              }
+            }
+          ],
+          "sensors": [
+            {
+              "name": "tower top",
+              "is_active": true,
+              "scope": "global",
+              "labels": [],
+              "serial_no": "NEON.D18.BARR.DP1.00033",
+              "uri": "http://10.118.32.41/nph-mjpeg.cgi",
+              "hardware": {
+                "hardware": "stardot-netcam",
+                "hw_model": "NetCam CS CAM-SEC5IR-B",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Stardot",
+                "datasheet": "http://stardot-tech.com/netcamsc/index.html",
+                "capabilities": [
+                  "Camera"
+                ],
+                "description": "# Multi-Megapixel Hybrid IP Camera\r\n\r\nHigh definition resolution camera (up to 5 Megapixel)."
+              }
+            },
+            {
+              "name": "mid-tower",
+              "is_active": true,
+              "scope": "global",
+              "labels": [],
+              "serial_no": "NEON.D18.BARR.DP1.00042",
+              "uri": "http://10.118.32.40/nph-mjpeg.cgi",
+              "hardware": {
+                "hardware": "stardot-netcam",
+                "hw_model": "NetCam CS CAM-SEC5IR-B",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Stardot",
+                "datasheet": "http://stardot-tech.com/netcamsc/index.html",
+                "capabilities": [
+                  "Camera"
+                ],
+                "description": "# Multi-Megapixel Hybrid IP Camera\r\n\r\nHigh definition resolution camera (up to 5 Megapixel)."
+              }
+            }
+          ],
+          "resources": [],
+          "lorawanconnections": []
+        },
+        {
+          "vsn": "V015",
+          "name": "00002CEA7F421519",
+          "phase": "Deployed",
+          "project": "SAGE",
+          "address": "Prairie Mountain, Alsea, OR 97324",
+          "gps_lat": 44.291274,
+          "gps_lon": -123.54126,
+          "modem": null,
+          "tags": [],
+          "computes": [
+            {
+              "name": "sbcore",
+              "is_active": true,
+              "serial_no": "2CEA7F421519",
+              "zone": "core",
+              "hardware": {
+                "hardware": "dell-xr2",
+                "hw_model": "PowerEdge XR2",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Dell",
+                "datasheet": "https://www.dell.com/en-us/shop/productdetailstxn/poweredge-xr2",
+                "capabilities": [
+                  "gpu",
+                  "cuda110",
+                  "amd64"
+                ],
+                "description": "",
+                "cpu": "16000",
+                "cpu_ram": "32768",
+                "gpu_ram": "16384",
+                "shared_ram": false
+              }
+            },
+            {
+              "name": "rpi",
+              "is_active": true,
+              "serial_no": "E45F012E35F5",
+              "zone": "shield",
+              "hardware": {
+                "hardware": "rpi-8gb",
+                "hw_model": "RPI4B",
+                "hw_version": "rpi4b-8g",
+                "sw_version": "",
+                "manufacturer": "Raspberry Pi",
+                "datasheet": "https://www.raspberrypi.com/products/raspberry-pi-4-model-b/",
+                "capabilities": [
+                  "arm64",
+                  "poe"
+                ],
+                "description": "",
+                "cpu": "4000",
+                "cpu_ram": "8092",
+                "gpu_ram": "",
+                "shared_ram": true
+              }
+            }
+          ],
+          "sensors": [
+            {
+              "name": "bme680",
+              "is_active": true,
+              "scope": "rpi",
+              "labels": [],
+              "serial_no": "",
+              "uri": "",
+              "hardware": {
+                "hardware": "bme680",
+                "hw_model": "BME680",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Bosch",
+                "datasheet": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme680-ds001.pdf",
+                "capabilities": [
+                  "Temperature",
+                  "Pressure",
+                  "Humidity",
+                  "Gas"
+                ],
+                "description": "# Gas, Relative Humidity, Barometric Pressure, and Temperature Sensor\r\n\r\nThe BME680 is the first gas sensor that integrates high-linearity and high-accuracy gas, pressure, humidity and temperature sensors. It is especially developed for mobile applications and wearables where size and low power consumption are critical requirements. The BME680 guarantees - depending on the specific operating mode - optimized consumption, long-term stability and high EMC robustness. In order to measure air quality for personal wellbeing the gas sensor within the BME680 can detect a broad range of gases such as volatile organic compounds (VOC).\r\n\r\nPossible use cases:\r\n\r\n- Personal air quality tracker\r\n- Air quality mapping\r\n- Air quality inside cars & public transport\r\n- Enhanced context awareness\r\n- Accurate step & calorie tracker\r\n- Quick GPS-fix & improved navigation\r\n- Indicator of too high / low humidity\r\n- Air quality & well-being indicator\r\n- Sleep / recovery tracker\r\n- Weather trend\r\n- Stair counter\r\n- Floor level detection"
+              }
+            },
+            {
+              "name": "raingauge",
+              "is_active": true,
+              "scope": "rpi",
+              "labels": [],
+              "serial_no": "",
+              "uri": "",
+              "hardware": {
+                "hardware": "raingauge",
+                "hw_model": "RG-15",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Hydreon",
+                "datasheet": "https://rainsensors.com/wp-content/uploads/sites/3/2020/07/rg-15_instructions_sw_1.000.pdf",
+                "capabilities": [
+                  "Precipitation"
+                ],
+                "description": "# Solid State Rainfall Sensor\r\n\r\nThe Hydreon RG-15 Solid State Tipping Bucket is a rainfall measuring device intended to replace conventional tipping buckets. The RG-15 is rugged, reliable, maintenance-free and features a nominal accuracy of within 10%. The RG-15 is designed to replace tipping bucket rain gauges in many applications where their maintenance requirements make them impractical.\r\n\r\nThe RG-15 uses beams of infrared light within a plastic lens about the size of a tennis ball. The round surface of the lens discourages collection of debris, and the RG-15 has no moving parts to stick, and no water-pathways to clog. The device features an open-collector output that emulates a conventional tipping bucket, as well as serial communications that provide more detailed data and allow for configuration of the device.\r\n\r\nThe RG-15 may be configured through the serial port, or optionally via DIP switches. Power consumption of the RG-15 is very low, and the device is well-suited to solar-power applications.\r\nDip Switches can control the units (inches or millimeters) and resolution (0.01\u2033/0.2mm or 0.001\u2033/0.02mm) of the device. Commands can also be sent via the RS232 serial port to override them."
+              }
+            },
+            {
+              "name": "microphone",
+              "is_active": true,
+              "scope": "rpi",
+              "labels": [],
+              "serial_no": "",
+              "uri": "",
+              "hardware": {
+                "hardware": "microphone",
+                "hw_model": "ML1-WS IP54",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "ETS",
+                "datasheet": "https://www.etsnm.com/ML1-DOCS/ml1-ws.pdf",
+                "capabilities": [
+                  "Microphone"
+                ],
+                "description": "# IP54 Rated, Un-Pre-Amplified, Omni-Directional Electret microphone\r\n\r\nThe ML1-WS is a low cost, IP54 rated, un-pre-amplified, omni-directional electret microphone for use with IP cameras accepting microphone level input signals (PC compatible input). The ML1-WS mounts in a standard 1/2 inches electrical knock out hole. The attached cord is 6 feet long and comes standard with a stereo 3.5mm connector on one end. Add -FL to the P/N for a flying lead output for connections to cameras with terminal blocks."
+              }
+            }
+          ],
+          "resources": [],
+          "lorawanconnections": []
+        },
+        {
+          "vsn": "V022",
+          "name": "00004CD98FB56D33",
+          "phase": "Deployed",
+          "project": "SAGE",
+          "address": "21941 Crestline Rd, Birch Hill on Palomar Mountain, CA 92060",
+          "gps_lat": 33.308056,
+          "gps_lon": -116.854964,
+          "modem": null,
+          "tags": [],
+          "computes": [
+            {
+              "name": "sbcore",
+              "is_active": true,
+              "serial_no": "4CD98FB56D33",
+              "zone": "core",
+              "hardware": {
+                "hardware": "dell-xr2",
+                "hw_model": "PowerEdge XR2",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Dell",
+                "datasheet": "https://www.dell.com/en-us/shop/productdetailstxn/poweredge-xr2",
+                "capabilities": [
+                  "gpu",
+                  "cuda110",
+                  "amd64"
+                ],
+                "description": "",
+                "cpu": "16000",
+                "cpu_ram": "32768",
+                "gpu_ram": "16384",
+                "shared_ram": false
+              }
+            }
+          ],
+          "sensors": [
+            {
+              "name": "bi-n-mobo.hpwren.priv",
+              "is_active": true,
+              "scope": "global",
+              "labels": [],
+              "serial_no": "",
+              "uri": "http://login:redacted@example.invalid/record/current.jpg",
+              "hardware": {
+                "hardware": "mobotix-m16",
+                "hw_model": "MX-M16TB-R079IP",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Mobotix",
+                "datasheet": "https://www.mobotix.com/sites/default/files/2020-09/mx_ML_M16_en_20200910.pdf",
+                "capabilities": [
+                  "Camera",
+                  "Thermal Camera"
+                ],
+                "description": "# Thermal and Optical Dual Eye Camera\r\n\r\nThe MOBOTIX TR cameras feature a calibrated thermal image sensor. Thermal radiation measurements made across the entire image area can be used to trigger an event based on the temperature increasing above or decreasing below an individually set trigger level (camera alarm, network message, activation of a signal output etc.).\r\n\r\n- Mx6 system platform with H.264 and ONVIF compatibility\r\n- Thermal radiometry: calibrated thermal image sensor\r\n- Three field of view variants: 45\u00b0, 25\u00b0 or 17\u00b0\r\n- Additional image sensor module options\r\n- Recording on an internal MicroSD card (4GB as standard)\r\n- Integrated microphone and speaker\r\n- MxActivitySensor can also be used in total darkness\r\n- PoE thermal camera with a maximum power consumption of just 8 watts"
+              }
+            },
+            {
+              "name": "bi-s-mobo.hpwren.priv",
+              "is_active": true,
+              "scope": "global",
+              "labels": [],
+              "serial_no": "",
+              "uri": "http://login:redacted@example.invalid/record/current.jpg",
+              "hardware": {
+                "hardware": "mobotix-m16",
+                "hw_model": "MX-M16TB-R079IP",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Mobotix",
+                "datasheet": "https://www.mobotix.com/sites/default/files/2020-09/mx_ML_M16_en_20200910.pdf",
+                "capabilities": [
+                  "Camera",
+                  "Thermal Camera"
+                ],
+                "description": "# Thermal and Optical Dual Eye Camera\r\n\r\nThe MOBOTIX TR cameras feature a calibrated thermal image sensor. Thermal radiation measurements made across the entire image area can be used to trigger an event based on the temperature increasing above or decreasing below an individually set trigger level (camera alarm, network message, activation of a signal output etc.).\r\n\r\n- Mx6 system platform with H.264 and ONVIF compatibility\r\n- Thermal radiometry: calibrated thermal image sensor\r\n- Three field of view variants: 45\u00b0, 25\u00b0 or 17\u00b0\r\n- Additional image sensor module options\r\n- Recording on an internal MicroSD card (4GB as standard)\r\n- Integrated microphone and speaker\r\n- MxActivitySensor can also be used in total darkness\r\n- PoE thermal camera with a maximum power consumption of just 8 watts"
+              }
+            },
+            {
+              "name": "bi-e-mobo.hpwren.priv",
+              "is_active": true,
+              "scope": "global",
+              "labels": [],
+              "serial_no": "",
+              "uri": "http://login:redacted@example.invalid/record/current.jpg",
+              "hardware": {
+                "hardware": "mobotix-m16",
+                "hw_model": "MX-M16TB-R079IP",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Mobotix",
+                "datasheet": "https://www.mobotix.com/sites/default/files/2020-09/mx_ML_M16_en_20200910.pdf",
+                "capabilities": [
+                  "Camera",
+                  "Thermal Camera"
+                ],
+                "description": "# Thermal and Optical Dual Eye Camera\r\n\r\nThe MOBOTIX TR cameras feature a calibrated thermal image sensor. Thermal radiation measurements made across the entire image area can be used to trigger an event based on the temperature increasing above or decreasing below an individually set trigger level (camera alarm, network message, activation of a signal output etc.).\r\n\r\n- Mx6 system platform with H.264 and ONVIF compatibility\r\n- Thermal radiometry: calibrated thermal image sensor\r\n- Three field of view variants: 45\u00b0, 25\u00b0 or 17\u00b0\r\n- Additional image sensor module options\r\n- Recording on an internal MicroSD card (4GB as standard)\r\n- Integrated microphone and speaker\r\n- MxActivitySensor can also be used in total darkness\r\n- PoE thermal camera with a maximum power consumption of just 8 watts"
+              }
+            },
+            {
+              "name": "bi-w-mobo.hpwren.priv",
+              "is_active": true,
+              "scope": "global",
+              "labels": [],
+              "serial_no": "",
+              "uri": "http://login:redacted@example.invalid/record/current.jpg",
+              "hardware": {
+                "hardware": "mobotix-m16",
+                "hw_model": "MX-M16TB-R079IP",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Mobotix",
+                "datasheet": "https://www.mobotix.com/sites/default/files/2020-09/mx_ML_M16_en_20200910.pdf",
+                "capabilities": [
+                  "Camera",
+                  "Thermal Camera"
+                ],
+                "description": "# Thermal and Optical Dual Eye Camera\r\n\r\nThe MOBOTIX TR cameras feature a calibrated thermal image sensor. Thermal radiation measurements made across the entire image area can be used to trigger an event based on the temperature increasing above or decreasing below an individually set trigger level (camera alarm, network message, activation of a signal output etc.).\r\n\r\n- Mx6 system platform with H.264 and ONVIF compatibility\r\n- Thermal radiometry: calibrated thermal image sensor\r\n- Three field of view variants: 45\u00b0, 25\u00b0 or 17\u00b0\r\n- Additional image sensor module options\r\n- Recording on an internal MicroSD card (4GB as standard)\r\n- Integrated microphone and speaker\r\n- MxActivitySensor can also be used in total darkness\r\n- PoE thermal camera with a maximum power consumption of just 8 watts"
+              }
+            }
+          ],
+          "resources": [],
+          "lorawanconnections": []
+        },
+        {
+          "vsn": "V023",
+          "name": "00004CD98FB542E3",
+          "phase": "Deployed",
+          "project": "SAGE",
+          "address": "Cuyamaca Peak, CA 91916",
+          "gps_lat": 32.946469,
+          "gps_lon": -116.603424,
+          "modem": null,
+          "tags": [],
+          "computes": [
+            {
+              "name": "sbcore",
+              "is_active": true,
+              "serial_no": "4CD98FB542E3",
+              "zone": "core",
+              "hardware": {
+                "hardware": "dell-xr2",
+                "hw_model": "PowerEdge XR2",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Dell",
+                "datasheet": "https://www.dell.com/en-us/shop/productdetailstxn/poweredge-xr2",
+                "capabilities": [
+                  "gpu",
+                  "cuda110",
+                  "amd64"
+                ],
+                "description": "",
+                "cpu": "16000",
+                "cpu_ram": "32768",
+                "gpu_ram": "16384",
+                "shared_ram": false
+              }
+            },
+            {
+              "name": "ws-rpi",
+              "is_active": true,
+              "serial_no": "E45F013F9289",
+              "zone": "shield",
+              "hardware": {
+                "hardware": "rpi-8gb",
+                "hw_model": "RPI4B",
+                "hw_version": "rpi4b-8g",
+                "sw_version": "",
+                "manufacturer": "Raspberry Pi",
+                "datasheet": "https://www.raspberrypi.com/products/raspberry-pi-4-model-b/",
+                "capabilities": [
+                  "arm64",
+                  "poe"
+                ],
+                "description": "",
+                "cpu": "4000",
+                "cpu_ram": "8092",
+                "gpu_ram": "",
+                "shared_ram": true
+              }
+            }
+          ],
+          "sensors": [
+            {
+              "name": "bme680",
+              "is_active": true,
+              "scope": "ws-rpi",
+              "labels": [],
+              "serial_no": "",
+              "uri": "",
+              "hardware": {
+                "hardware": "bme680",
+                "hw_model": "BME680",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Bosch",
+                "datasheet": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme680-ds001.pdf",
+                "capabilities": [
+                  "Temperature",
+                  "Pressure",
+                  "Humidity",
+                  "Gas"
+                ],
+                "description": "# Gas, Relative Humidity, Barometric Pressure, and Temperature Sensor\r\n\r\nThe BME680 is the first gas sensor that integrates high-linearity and high-accuracy gas, pressure, humidity and temperature sensors. It is especially developed for mobile applications and wearables where size and low power consumption are critical requirements. The BME680 guarantees - depending on the specific operating mode - optimized consumption, long-term stability and high EMC robustness. In order to measure air quality for personal wellbeing the gas sensor within the BME680 can detect a broad range of gases such as volatile organic compounds (VOC).\r\n\r\nPossible use cases:\r\n\r\n- Personal air quality tracker\r\n- Air quality mapping\r\n- Air quality inside cars & public transport\r\n- Enhanced context awareness\r\n- Accurate step & calorie tracker\r\n- Quick GPS-fix & improved navigation\r\n- Indicator of too high / low humidity\r\n- Air quality & well-being indicator\r\n- Sleep / recovery tracker\r\n- Weather trend\r\n- Stair counter\r\n- Floor level detection"
+              }
+            },
+            {
+              "name": "microphone",
+              "is_active": true,
+              "scope": "ws-rpi",
+              "labels": [],
+              "serial_no": "",
+              "uri": "",
+              "hardware": {
+                "hardware": "microphone",
+                "hw_model": "ML1-WS IP54",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "ETS",
+                "datasheet": "https://www.etsnm.com/ML1-DOCS/ml1-ws.pdf",
+                "capabilities": [
+                  "Microphone"
+                ],
+                "description": "# IP54 Rated, Un-Pre-Amplified, Omni-Directional Electret microphone\r\n\r\nThe ML1-WS is a low cost, IP54 rated, un-pre-amplified, omni-directional electret microphone for use with IP cameras accepting microphone level input signals (PC compatible input). The ML1-WS mounts in a standard 1/2 inches electrical knock out hole. The attached cord is 6 feet long and comes standard with a stereo 3.5mm connector on one end. Add -FL to the P/N for a flying lead output for connections to cameras with terminal blocks."
+              }
+            },
+            {
+              "name": "raingauge",
+              "is_active": true,
+              "scope": "ws-rpi",
+              "labels": [],
+              "serial_no": "",
+              "uri": "",
+              "hardware": {
+                "hardware": "raingauge",
+                "hw_model": "RG-15",
+                "hw_version": "",
+                "sw_version": "",
+                "manufacturer": "Hydreon",
+                "datasheet": "https://rainsensors.com/wp-content/uploads/sites/3/2020/07/rg-15_instructions_sw_1.000.pdf",
+                "capabilities": [
+                  "Precipitation"
+                ],
+                "description": "# Solid State Rainfall Sensor\r\n\r\nThe Hydreon RG-15 Solid State Tipping Bucket is a rainfall measuring device intended to replace conventional tipping buckets. The RG-15 is rugged, reliable, maintenance-free and features a nominal accuracy of within 10%. The RG-15 is designed to replace tipping bucket rain gauges in many applications where their maintenance requirements make them impractical.\r\n\r\nThe RG-15 uses beams of infrared light within a plastic lens about the size of a tennis ball. The round surface of the lens discourages collection of debris, and the RG-15 has no moving parts to stick, and no water-pathways to clog. The device features an open-collector output that emulates a conventional tipping bucket, as well as serial communications that provide more detailed data and allow for configuration of the device.\r\n\r\nThe RG-15 may be configured through the serial port, or optionally via DIP switches. Power consumption of the RG-15 is very low, and the device is well-suited to solar-power applications.\r\nDip Switches can control the units (inches or millimeters) and resolution (0.01\u2033/0.2mm or 0.001\u2033/0.02mm) of the device. Commands can also be sent via the RS232 serial port to override them."
+              }
+            }
+          ],
+          "resources": [],
+          "lorawanconnections": []
+        },
+        {
+          "vsn": "D001",
+          "name": "000048B02D3D3A78",
+          "phase": "Deployed",
+          "project": "SAGE",
+          "address": "",
+          "gps_lat": null,
+          "gps_lon": null,
+          "modem": null,
+          "tags": [],
+          "computes": [],
+          "sensors": [],
+          "resources": [],
+          "lorawanconnections": []
+        },
+        {
+          "vsn": "H001",
+          "name": "0000B47AF1DF47D7",
+          "phase": null,
+          "project": null,
+          "address": "",
+          "gps_lat": null,
+          "gps_lon": null,
+          "modem": null,
+          "tags": [],
+          "computes": [],
+          "sensors": [],
+          "resources": [],
+          "lorawanconnections": []
+        }
+      ]
+    }
+  ]
+}

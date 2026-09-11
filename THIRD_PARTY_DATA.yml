@@ -1,0 +1,366 @@
+# Every byte of publisher content this repository redistributes.
+#
+# Most US government works are not subject to copyright in the United States
+# (17 U.S.C. § 105), but that is not universal across this ecosystem: DOE
+# hosts content contributed by universities, foreign institutions, and
+# contractors under their own terms. This file records the difference rather
+# than assuming it away.
+#
+# What is redistributed: recorded API responses under tests/fixtures/, used
+# to replay real publisher shapes in tests. Nothing else. The source registry
+# under sources/ is this project's own work and is CC0.
+#
+# Regenerate the fixtures with `python tools/record_fixtures.py`. A test
+# fails if a recorded fixture has no entry here.
+
+redistributed:
+
+  - source_id: osti-gov-records
+    publisher: US DOE Office of Scientific and Technical Information
+    system: OSTI.GOV Search API
+    url: https://www.osti.gov/api/v1/records
+    retrieved: "2026-09-02"
+    content: >
+      Three recorded search responses (an unfiltered head, a topic search,
+      and a no-match query), each a small page of bibliographic metadata.
+    rights: >
+      US Government work; OSTI publishes the API openly with no stated
+      restriction on programmatic use or redistribution. Individual records
+      describe third-party publications; the metadata is OSTI's, the works
+      are the publishers'.
+    attribution_required: false
+
+  - source_id: osti-doe-pages
+    publisher: US DOE Office of Scientific and Technical Information
+    system: DOE PAGES
+    url: https://www.osti.gov/pages/api/v1/records
+    retrieved: "2026-09-02"
+    content: Two recorded search responses of public-access bibliographic metadata.
+    rights: >
+      US Government work, same posture as the OSTI.GOV API. Note that the
+      ARTICLES these records describe are published by commercial publishers
+      under their own terms; only the metadata is recorded here.
+    attribution_required: false
+
+  - source_id: osti-data-explorer
+    publisher: US DOE Office of Scientific and Technical Information
+    system: DOE Data Explorer
+    url: https://www.osti.gov/dataexplorer/api/v1/records
+    retrieved: "2026-09-02"
+    content: Two recorded search responses of dataset metadata and DOIs.
+    rights: >
+      US Government work. The DATASETS these records point at are held by
+      other repositories under their own terms; nothing here is dataset
+      content.
+    attribution_required: false
+
+  - source_id: osti-doe-code
+    publisher: US DOE Office of Scientific and Technical Information
+    system: DOE CODE
+    url: https://www.osti.gov/doecodeapi/services/search
+    retrieved: "2026-09-02"
+    content: One recorded search response of software metadata.
+    rights: >
+      US Government work for the metadata. The SOFTWARE described carries its
+      own licences, which vary per record and are returned in the `licenses`
+      field rather than assumed.
+    attribution_required: false
+
+  - source_id: ornl-openenergyhub
+    publisher: Oak Ridge National Laboratory
+    system: Open Energy Data Hub (OpenDataSoft Explore v2.1)
+    url: https://openenergyhub.ornl.gov/api/explore/v2.1/catalog/datasets
+    retrieved: "2026-09-02"
+    content: Two recorded catalog responses of dataset-level metadata.
+    rights: >
+      Public portal with anonymous API access and no site-wide licence
+      statement. Individual datasets carry their own licence metadata. Only
+      catalog metadata is recorded, not dataset records.
+    attribution_required: false
+    note: >
+      The absence of a site-wide licence is recorded in the manifest's
+      terms_gap rather than read as permission.
+
+  - source_id: fueleconomy-ws
+    publisher: US DOE and US EPA, operated by Oak Ridge National Laboratory
+    system: fueleconomy.gov web service
+    url: https://www.fueleconomy.gov/ws/rest
+    retrieved: "2026-09-02"
+    content: The year menu and the current national fuel-price response.
+    rights: >
+      US Government work, jointly owned by DOE and EPA. Published for
+      third-party use with no stated restriction.
+    attribution_required: false
+
+  - source_id: bpa-operations
+    publisher: Bonneville Power Administration, US Department of Energy
+    system: BPA balancing-authority operations feeds
+    url: https://transmission.bpa.gov/business/operations/Wind/
+    retrieved: "2026-09-02"
+    content: >
+      Both five-minute operations text files, TRIMMED: the preamble and
+      column header whole, then the first 24 intervals carrying values and
+      the last 12 carrying none. The empty trailing rows are kept on
+      purpose — they are the publisher quirk the adapter handles, and a
+      fixture without them could not catch a regression in that handling.
+      The operations mailbox printed in the file's preamble is redacted at
+      record time like any other address.
+    rights: >
+      US Government work. BPA's own notice states the site is owned and
+      operated by the Bonneville Power Administration, United States
+      Department of Energy, and states no restriction on programmatic
+      access or redistribution. Operational SCADA readings, not settled or
+      revision-controlled figures.
+    attribution_required: false
+
+  - source_id: doe-open-data-catalog
+    publisher: US DOE Office of the Chief Information Officer
+    system: energy.gov/data.json (Project Open Data v1.1)
+    url: https://www.energy.gov/data.json
+    retrieved: "2026-09-02"
+    content: >
+      The catalog document, TRIMMED to its first 15 dataset entries of 483.
+      The trim is stated in the fixture's own note, because a fixture that
+      silently held 15 of 483 would make a record-count test lie.
+    rights: US Government work; a federal open-data inventory published openly.
+    attribution_required: false
+
+  - source_id: doe-code-json
+    publisher: US DOE Office of the Chief Information Officer
+    system: energy.gov/code.json (code.gov metadata schema 2.0.0)
+    url: https://www.energy.gov/code.json
+    retrieved: "2026-09-02"
+    content: >
+      The inventory document, TRIMMED to its first 15 release entries of
+      5,879.
+    rights: >
+      US Government work for the inventory. The SOFTWARE listed carries its
+      own licences per entry.
+    attribution_required: false
+    note: >
+      The document served is dated 2025-05-01 by its own filename, sixteen
+      months before retrieval. That staleness is the reason the
+      `catalog_vintage` warning code exists.
+
+  - source_id: pnnl-vips
+    publisher: Pacific Northwest National Laboratory
+    system: VIPS (Visual Intellectual Property Search) API
+    url: https://vips.pnnl.gov/api/v1/ip/search
+    retrieved: "2026-09-08"
+    content: >
+      The service's laboratory list, three recorded searches of five
+      records each (PNNL, INL, and NLR), and one patent record whole.
+      Titles, abstracts, inventors, assignees, claims, and taxonomy as
+      the API returns them.
+    rights: >
+      Records of US Government-funded intellectual property, compiled
+      by a DOE laboratory's technology-transfer office. No terms of use
+      or redistribution statement is published for the API, which is
+      recorded in the manifest as a terms gap and disclosed on every
+      answer rather than assumed away. The laboratory contact addresses
+      the laboratory-list response carries were replaced at record time.
+    attribution_required: false
+
+  - source_id: eia-api-v2
+    publisher: US Energy Information Administration
+    system: EIA API v2
+    url: https://api.eia.gov/v2
+    retrieved: "2026-09-08"
+    content: >
+      The route tree root, one dataset route's metadata, and three
+      hourly rows of EIA-930 demand for one balancing authority.
+      Recorded with a real key; the key appears nowhere in the file.
+    rights: >
+      US Government work. EIA states that its data are in the public
+      domain and may be reproduced without restriction, and its
+      security policy asks only that automated clients identify
+      themselves and not retrieve excessively (decision 0019). The
+      API key is an identifier for rate accounting, not a licence, so
+      recording responses does not redistribute anything the key
+      bought.
+    attribution_required: false
+
+  - source_id: federal-register-doe
+    publisher: Office of the Federal Register (NARA)
+    system: Federal Register API v1
+    url: https://www.federalregister.gov/api/v1/documents.json
+    retrieved: "2026-09-08"
+    content: >
+      The Department of Energy agency record, two recorded search
+      responses of five documents each (one of rules, one of notices),
+      and one document record in full. Titles, abstracts, docket ids,
+      CFR references, and links; no document full text.
+    rights: >
+      US Government work in the public domain. The Federal Register is
+      the official daily publication of the United States and the API
+      is published openly with no stated restriction on programmatic
+      use or redistribution.
+    attribution_required: false
+
+  - source_id: usgs-uswtdb
+    publisher: US Geological Survey, with Lawrence Berkeley National Laboratory
+    system: US Wind Turbine Database API (PostgREST)
+    url: https://energy.usgs.gov/api/uswtdb/v1/turbines
+    retrieved: "2026-09-08"
+    content: >
+      The service's published OpenAPI document, and two recorded row
+      queries of five turbine records each, out of 75,727. Location,
+      project, and specification fields as the API returns them.
+    rights: >
+      US Government work in the public domain. Co-produced with LBNL and
+      the American Clean Power Association under a CRADA and funded in
+      part by DOE's wind office; USGS publishes it with no stated
+      restriction on programmatic use or redistribution. A citation to
+      the database release is suggested rather than required, and the
+      suggested string is in the manifest.
+    attribution_required: false
+
+  - source_id: usgs-uspvdb
+    publisher: US Geological Survey, with Lawrence Berkeley National Laboratory
+    system: US Large-Scale Solar Photovoltaic Database API (PostgREST)
+    url: https://energy.usgs.gov/api/uspvdb/v1/projects
+    retrieved: "2026-09-08"
+    content: >
+      The service's published OpenAPI document, and two recorded row
+      queries of five facility records each, out of 6,611. Centre-point
+      locations and facility attributes as the API returns them; the
+      array outlines are not in these rows.
+    rights: >
+      US Government work in the public domain. Jointly funded by DOE's
+      solar office through LBNL and by USGS's Energy Resources Program,
+      published with no stated restriction on programmatic use or
+      redistribution. A citation is suggested rather than required.
+    attribution_required: false
+  - source_id: ornl-daac
+    publisher: >
+      Oak Ridge National Laboratory Distributed Active Archive Center,
+      funded by NASA
+    system: Daymet single-pixel extraction
+    url: https://daymet.ornl.gov/single-pixel/api/data
+    retrieved: "2026-09-09"
+    content: >
+      Two recorded point time series at 35.9313, -84.3104 — five days of
+      precipitation and temperature in 2023, and the last six days of 2024
+      — each a CSV with the service's own preamble and citation line.
+    rights: >
+      Produced under NASA funding and operated by ORNL; a US Government
+      work distributed with no stated restriction on programmatic use. The
+      archive's citation policy asks that the dataset be cited, and the
+      service returns its own citation string in every response, which is
+      carried through to callers.
+    attribution_required: true
+
+  - source_id: ess-dive
+    publisher: >
+      Lawrence Berkeley National Laboratory, for DOE's Biological and
+      Environmental Research programme
+    system: ESS-DIVE package API
+    url: https://api.ess-dive.lbl.gov/packages
+    retrieved: "2026-09-09"
+    content: >
+      Four recorded search responses of package metadata (a text search, a
+      keyword search, an unfiltered page, and a no-match query recorded as
+      the HTTP 404 this service answers an empty result with) and one
+      package record in full. Schema.org JSON-LD as the API returns it,
+      with creator email addresses replaced at record time.
+    rights: >
+      A DOE-funded repository operated by LBNL. The METADATA recorded here
+      is the repository's; the datasets it describes are the depositing
+      investigators' and carry their own licences, which are named per
+      record rather than assumed uniform. Nothing here is dataset content.
+    attribution_required: false
+
+  - source_id: esgf-search
+    publisher: >
+      Oak Ridge National Laboratory, for the Earth System Grid Federation
+    system: ESGF 1.5 Bridge search API
+    url: https://esgf-node.ornl.gov/esgf-1-5-bridge
+    retrieved: "2026-09-09"
+    content: >
+      The service's published OpenAPI parameter list, two recorded searches
+      of five CMIP6 dataset records each out of 14.7 million (one restricted
+      to the latest versions and one including superseded output), and one
+      facet-count response.
+    rights: >
+      The index is operated by ORNL under DOE funding. The records describe
+      MODEL OUTPUT produced by modelling centres worldwide, most of them
+      neither US nor government, held on federated data nodes under those
+      centres' own terms. Only index metadata is recorded here; no model
+      output is redistributed.
+    attribution_required: false
+
+  - source_id: anl-sage-waggle
+    publisher: Argonne National Laboratory, funded by the National Science Foundation
+    system: Sage/Waggle node manifest
+    url: https://auth.sagecontinuum.org/manifests/
+    retrieved: "2026-09-09"
+    content: >
+      One recorded node manifest, trimmed from 295 nodes to twelve: ten
+      with coordinates and instruments plus two with neither. Deployment
+      phase, project, host address, coordinates, computers, and instrument
+      hardware as the service returns them.
+    rights: >
+      An NSF-funded project led from Argonne, published openly with no
+      stated restriction on programmatic use. Node records carry the street
+      address of the host institution, which is a deployment site rather
+      than a person's address; no personal contact details are present.
+    attribution_required: false
+
+  - source_id: lbnl-mp-optimade
+    publisher: Lawrence Berkeley National Laboratory (the Materials Project)
+    system: Materials Project OPTIMADE endpoint
+    url: https://optimade.materialsproject.org/v1
+    retrieved: "2026-09-09"
+    content: >
+      The provider's published property list for structures, three recorded
+      searches of five entries each out of 154,387 (two elements, an exact
+      formula, and a query matching nothing), and one structure record whole.
+    rights: >
+      DOE-funded and LBNL-run; one of DOE's designated PuRe data resources,
+      published openly over the OPTIMADE standard with no key and no stated
+      restriction on programmatic use. The records are COMPUTED results
+      rather than measurements. A citation to the project's own paper is
+      asked for and is in the manifest.
+    attribution_required: true
+
+  - source_id: basis-set-exchange
+    publisher: >
+      The Molecular Sciences Software Institute, with Pacific Northwest
+      National Laboratory's EMSL
+    system: Basis Set Exchange API
+    url: https://www.basissetexchange.org/api
+    retrieved: "2026-09-09"
+    content: >
+      The catalog document, trimmed from 776 basis sets to fourteen named
+      ones; the list of program output formats; and the 6-31G basis set for
+      hydrogen, carbon and oxygen in NWChem format with its BibTeX
+      references.
+    rights: >
+      NOT a US Government work. MolSSI is an NSF institute and is the
+      steward; PNNL/EMSL originated the collection and co-develops it. The
+      API is open and keyless. Citation is a condition the publisher states
+      for the service AND for each set used, and both strings travel with
+      every answer.
+    attribution_required: true
+
+
+# Sources whose terms REQUIRE citation as a condition of use. None is
+# redistributed here yet; they are listed so the obligation is recorded
+# before the integration lands rather than after.
+citation_required_when_integrated:
+  - source_id: arm-data-center
+    publisher: ARM Data Center (ORNL)
+    terms_url: https://www.arm.gov/policies/datapolicies
+    note: >
+      Citation is a condition of use, not a courtesy. The envelope's citation
+      block and the citation_required warning exist for this case.
+  - source_id: lbnl-ameriflux
+    publisher: AmeriFlux (LBNL)
+    terms_url: https://ameriflux.lbl.gov/data/data-policy/
+    note: >
+      Tiered policy; some tiers additionally require contacting the site
+      principal investigator before use.
+  - source_id: snl-pvpmc-modules
+    publisher: Sandia National Laboratories
+    terms_url: https://zenodo.org/
+    note: CC-BY-4.0, which makes attribution a licence condition.

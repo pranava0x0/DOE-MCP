@@ -1,0 +1,74 @@
+id: bnl-nndc-bulk
+name: NNDC evaluated nuclear data files
+domain: nuclear
+
+publisher:
+  steward: bnl
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [bnl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+planned_capabilities: [nuclear.get_nuclide, nuclear.search_cross_sections]
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: public_download
+  tier: catalog_pointer
+  terms_url: https://www.nndc.bnl.gov/
+  terms_notes: >
+    Bulk ENSDF, ENDF, and NuDat files published openly for download. The
+    authoritative source for evaluated nuclear data in the US, and one
+    of DOE's seven PuRe resources.
+
+freshness:
+  expected_cadence: on evaluation release
+  cadence_source: >
+    Stated; evaluations are revised and republished on their own
+    schedules.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Evaluated nuclear structure and reaction data: ENSDF, ENDF
+    libraries, NuDat.
+  temporal: current evaluations
+  dataset_version: "per library release"
+  known_limitations:
+    - >
+      Bulk files in domain-specific formats, so serving them means
+      building and maintaining a local index — which is the ingest half
+      of the open nuclear question in decision 0011.
+    - >
+      The alternative, IAEA's Live Chart API, is cleaner to consume but
+      serves an ENSDF snapshot from April 2022. Currency against
+      convenience is exactly the trade that decision leaves open.
+
+authority_notes: >
+  Primary: NNDC is where these evaluations come from. Intended
+  capabilities: nuclear.get_nuclide, nuclear.search_cross_sections.
+  Phase 4.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Blocked on decision 0011's open sub-question: ingest these bulk
+    files or wrap IAEA's API. Weighted toward ingest because of the
+    snapshot age, and deliberately left to Phase 4.

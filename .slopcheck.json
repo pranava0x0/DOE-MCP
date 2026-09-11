@@ -1,0 +1,23 @@
+{
+  "exclude": [
+    "tests/fixtures",
+    "docs/data",
+    "docs/index.html",
+    "schemas",
+    "docs/reference.md"
+  ],
+  "allow": [
+    {
+      "phrase": "SYnergistic",
+      "reason": "research/09 expands the ALS initiative acronym SYNAPS-I (SYnergistic Neutron and Photon Science-Intelligence). It is the program's own name, quoted for identification, not our register."
+    },
+    {
+      "phrase": "A robust platform for automating",
+      "reason": "research/09 quotes the Genesis Annual Summit agenda verbatim (orau.gov Agenda.pdf); the word is the source's."
+    },
+    {
+      "phrase": "transformative progress for research itself",
+      "reason": "research/09 quotes Jared Kaplan verbatim from DOE's Genesis announcement coverage; the word is the source's."
+    }
+  ]
+}

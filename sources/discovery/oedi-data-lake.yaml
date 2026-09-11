@@ -1,0 +1,80 @@
+id: oedi-data-lake
+name: Open Energy Data Initiative data lake
+domain: discovery
+
+publisher:
+  steward: nlr
+  authority_level: official_secondary
+
+aliases:
+  former_names: []
+  former_domains: ["openei.org"]
+
+labs: [nlr, ornl, lbnl, pnnl, snl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+planned_capabilities: [discovery.search_catalogs]
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: public_download
+  tier: catalog_pointer
+  terms_url: https://data.openei.org/
+  terms_notes: >
+    An unsigned-S3 data lake with a catalog in front of it, plus HSDS
+    for the NSRDB and Wind Toolkit collections. Per-dataset licences. No
+    key for the S3 reads themselves.
+  terms_reviewed_at: "2026-09-01"
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed; submission-driven across many providers.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    4.8 petabytes across roughly 2,825 datasets from around 310
+    providers: solar and wind resource data, building stock models,
+    transportation, and geothermal.
+  temporal: varies by dataset
+  dataset_version: "current"
+  record_count: 2825
+  record_count_checked: "2026-09-01"
+  known_limitations:
+    - >
+      4.8 PB. Nothing here is inlined, ever. Answers are S3 URIs, HSDS
+      domains, and the recipe for reading them — which is the whole of
+      decision 0010 in one source.
+    - >
+      310 providers means 310 sets of terms. A site-wide assumption
+      would be wrong for some fraction of the catalog.
+    - >
+      `data.openei.org/api` returns 'No help available for this service'
+      rather than an API description (checked 2026-09-02), so the
+      catalog's machine interface still needs identifying.
+
+authority_notes: >
+  Official_secondary: NLR operates the platform, providers own the data.
+  Intended capabilities: discovery.search_catalogs plus access recipes.
+  Phase 4 for querying; already useful as inventory.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    The catalog's machine interface is unidentified — the documented API
+    path returns a help stub. Next step is a browser-grade look at what
+    the catalog UI itself calls.

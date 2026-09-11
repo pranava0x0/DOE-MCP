@@ -1,0 +1,601 @@
+# The organization table (decision 0008-B).
+#
+# Ids are stable forever and are NOT re-derived from current names. `nlr`
+# would have been `nrel` a year ago, which is exactly the mistake this file
+# exists to prevent: on 2025-12-01 the National Renewable Energy Laboratory
+# became the National Laboratory of the Rockies, every *.nrel.gov domain went
+# dark with no redirects, and the GitHub org was renamed. A registry keyed on
+# names would have broken that day and eight more times in the same year.
+#
+# Every organization carries an `aliases` stanza even when it is empty. The
+# empty stanza is the reminder.
+#
+# CC0-1.0. Lift it.
+
+organizations:
+
+  # --- Department and headquarters ---------------------------------------
+
+  - id: doe
+    name: US Department of Energy
+    kind: headquarters
+    domains: [energy.gov]
+    aliases:
+      abbreviations: [DOE, USDOE, "Department of Energy"]
+      github_orgs: [doe-oe, USDOE]
+
+  - id: osti
+    name: Office of Scientific and Technical Information
+    kind: program_office
+    parent: sc
+    domains: [osti.gov]
+    aliases:
+      abbreviations: [OSTI]
+      github_orgs: [doecode]
+    note: >
+      Runs the four public search APIs this project's first vertical is built
+      on: OSTI.GOV, DOE PAGES, DOE Data Explorer, and DOE CODE. Also the DOE
+      Data ID Service, which mints DataCite DOIs for DOE-funded datasets, so
+      OSTI is where most of this ecosystem's persistent identifiers come from.
+
+  - id: eia
+    name: US Energy Information Administration
+    kind: program_office
+    parent: doe
+    domains: [eia.gov, api.eia.gov]
+    aliases:
+      abbreviations: [EIA]
+    note: >
+      Statistically independent within DOE. Runs its own API key system,
+      separate from api.data.gov, which is a routine source of confusion when
+      a caller supplies the wrong key and gets a 403.
+
+  - id: sc
+    name: Office of Science
+    kind: program_office
+    parent: doe
+    domains: [science.osti.gov]
+    aliases:
+      abbreviations: [SC, "DOE Office of Science"]
+
+  - id: ber
+    name: Biological and Environmental Research
+    kind: program_office
+    parent: sc
+    domains: [science.osti.gov/ber]
+    aliases:
+      abbreviations: [BER, "SC-BER"]
+    note: >
+      A programme inside the Office of Science rather than a peer of it.
+      Named separately because it is the funder of record for the
+      environmental and genomic data in this registry — ESS-DIVE, ARM,
+      AmeriFlux, NMDC, JGI — and "Office of Science" over all of them
+      would lose the one attribution those publishers themselves print.
+
+  - id: cmei
+    name: Office of Critical Materials and Energy Innovation
+    kind: program_office
+    parent: doe
+    renamed_on: "2025-12-01"
+    aliases:
+      abbreviations: [CMEI]
+      former_names:
+        - Office of Energy Efficiency and Renewable Energy
+        - EERE
+      former_domains: ["energy.gov/eere"]
+    note: >
+      EERE dissolved into CMEI in the 2025-26 reorganization. energy.gov is
+      mid-migration from /eere/ to /cmei/ paths, with live 404s on both old
+      and new URLs observed 2026-09-01, so neither path shape can be treated
+      as reliable.
+
+  - id: affo
+    name: Alternative Fuels and Feedstocks Office
+    kind: program_office
+    parent: doe
+    renamed_on: "2025-12-01"
+    aliases:
+      abbreviations: [AFFO]
+      former_names:
+        - Hydrogen and Fuel Cell Technologies Office
+        - HFTO
+        - Bioenergy Technologies Office
+        - BETO
+    note: >
+      A merger, not a rename: HFTO and BETO were separate offices and are one
+      now. Two former names resolve here, and a record citing either predates
+      the merger.
+
+  - id: ito
+    name: Industrial Technologies Office
+    kind: program_office
+    parent: doe
+    renamed_on: "2025-12-01"
+    aliases:
+      abbreviations: [ITO]
+      former_names:
+        - Industrial Efficiency and Decarbonization Office
+        - IEDO
+
+  - id: hgeo
+    name: Office of Hydrocarbon and Geological Energy
+    kind: program_office
+    parent: doe
+    renamed_on: "2025-11-20"
+    aliases:
+      abbreviations: [HGEO]
+      former_names:
+        - Office of Fossil Energy and Carbon Management
+        - FECM
+        - Office of Fossil Energy
+        - FE
+
+  - id: edf
+    name: Energy Dominance Financing
+    kind: program_office
+    parent: doe
+    renamed_on: "2025-12-01"
+    aliases:
+      abbreviations: [EDF]
+      former_names:
+        - Loan Programs Office
+        - LPO
+
+  - id: oe
+    name: Office of Electricity
+    kind: program_office
+    parent: doe
+    aliases:
+      abbreviations: [OE]
+    note: >
+      Took part of the dismantled Grid Deployment Office's portfolio; EDF took
+      the rest.
+
+  - id: gdo
+    name: Grid Deployment Office (dismantled)
+    kind: program_office
+    parent: doe
+    renamed_on: "2025-12-01"
+    aliases:
+      abbreviations: [GDO]
+    note: >
+      Dismantled in the 2025-26 reorganization, its portfolio split between
+      OE and EDF. Kept in the table because records and datasets still cite
+      it; resolving the name is how a caller learns it no longer exists.
+
+  - id: ceser
+    name: Office of Cybersecurity, Energy Security, and Emergency Response
+    kind: program_office
+    parent: doe
+    aliases:
+      abbreviations: [CESER]
+    note: Sponsors EAGLE-I, the county-level outage situational-awareness system.
+
+  - id: ne
+    name: Office of Nuclear Energy
+    kind: program_office
+    parent: doe
+    aliases:
+      abbreviations: [NE]
+
+  - id: em
+    name: Office of Environmental Management
+    kind: program_office
+    parent: doe
+    aliases:
+      abbreviations: [EM]
+
+  - id: lm
+    name: Office of Legacy Management
+    kind: program_office
+    parent: doe
+    domains: [lm.doe.gov]
+    aliases:
+      abbreviations: [LM]
+
+  - id: nnsa
+    name: National Nuclear Security Administration
+    kind: program_office
+    parent: doe
+    domains: [nnsa.gov]
+    aliases:
+      abbreviations: [NNSA]
+    note: >
+      Named so provenance can attribute NNSA-sponsored work correctly.
+      NNSA-mission content is a permanent non-goal (architecture Part 1 § 3.1); this entry
+      does not imply any is served.
+
+  - id: arpa-e
+    name: Advanced Research Projects Agency-Energy
+    kind: program_office
+    parent: doe
+    domains: [arpa-e.energy.gov]
+    aliases:
+      abbreviations: [ARPA-E, ARPAE]
+
+  - id: oced
+    name: Office of Clean Energy Demonstrations
+    kind: program_office
+    parent: doe
+    aliases:
+      abbreviations: [OCED]
+
+  - id: ocio
+    name: Office of the Chief Information Officer
+    kind: program_office
+    parent: doe
+    aliases:
+      abbreviations: [OCIO]
+    note: Publishes energy.gov/code.json and the DOE Open Data Catalog.
+
+  # --- Power Marketing Administrations ------------------------------------
+
+  - id: bpa
+    name: Bonneville Power Administration
+    kind: power_marketing_administration
+    parent: doe
+    domains: [bpa.gov, transmission.bpa.gov]
+    aliases:
+      abbreviations: [BPA]
+
+  - id: wapa
+    name: Western Area Power Administration
+    kind: power_marketing_administration
+    parent: doe
+    domains: [wapa.gov]
+    aliases:
+      abbreviations: [WAPA]
+
+  - id: swpa
+    name: Southwestern Power Administration
+    kind: power_marketing_administration
+    parent: doe
+    domains: [swpa.gov]
+    aliases:
+      abbreviations: [SWPA]
+
+  - id: sepa
+    name: Southeastern Power Administration
+    kind: power_marketing_administration
+    parent: doe
+    domains: [sepa.doe.gov]
+    aliases:
+      abbreviations: [SEPA]
+
+  # --- The 17 national laboratories ---------------------------------------
+
+  - id: ames
+    name: Ames National Laboratory
+    kind: national_lab
+    parent: doe
+    domains: [ameslab.gov]
+    aliases:
+      abbreviations: [Ames, AMES, "Ames Lab"]
+      former_names: [Ames Laboratory]
+    rename_date_unverified: true
+    note: >
+      Software and publications; no data portal of its own. Its public output
+      reaches agents through OSTI, which is the case the domain-server
+      topology is built for. The rename from "Ames Laboratory" is long
+      settled and predates this project's research; no date was established
+      for it, which is recorded rather than guessed. Unlike the 2025-26
+      renames, nobody needs to be warned that the old form is historical.
+
+  - id: anl
+    name: Argonne National Laboratory
+    kind: national_lab
+    parent: doe
+    domains: [anl.gov, alcf.anl.gov]
+    aliases:
+      abbreviations: [ANL, Argonne]
+      github_orgs: [argonne-lcf, anl-cesar]
+
+  - id: bnl
+    name: Brookhaven National Laboratory
+    kind: national_lab
+    parent: doe
+    domains: [bnl.gov, nndc.bnl.gov]
+    aliases:
+      abbreviations: [BNL, Brookhaven]
+    note: Runs the National Nuclear Data Center (NNDC).
+
+  - id: fnal
+    name: Fermi National Accelerator Laboratory
+    kind: national_lab
+    parent: doe
+    domains: [fnal.gov]
+    aliases:
+      abbreviations: [FNAL, Fermilab, "Fermi"]
+
+  - id: inl
+    name: Idaho National Laboratory
+    kind: national_lab
+    parent: doe
+    domains: [inl.gov]
+    aliases:
+      abbreviations: [INL, Idaho]
+      github_orgs: [idaholab]
+
+  - id: lbnl
+    name: Lawrence Berkeley National Laboratory
+    kind: national_lab
+    parent: doe
+    domains: [lbl.gov, jgi.doe.gov]
+    aliases:
+      abbreviations: [LBNL, Berkeley Lab, LBL, Berkeley]
+      former_names: [Lawrence Berkeley Laboratory]
+      github_orgs: [LBNL-ETA, materialsproject]
+    rename_date_unverified: true
+    note: >
+      Hosts or co-hosts an unusual share of this ecosystem's flagship public
+      data: Materials Project, ESS-DIVE, AmeriFlux, the Electricity Markets
+      and Policy datasets, JGI, and the Particle Data Group.
+
+  - id: llnl
+    name: Lawrence Livermore National Laboratory
+    kind: national_lab
+    parent: doe
+    domains: [llnl.gov]
+    aliases:
+      abbreviations: [LLNL, Livermore]
+      github_orgs: [LLNL]
+
+  - id: lanl
+    name: Los Alamos National Laboratory
+    kind: national_lab
+    parent: doe
+    domains: [lanl.gov]
+    aliases:
+      abbreviations: [LANL, Los Alamos]
+      github_orgs: [lanl]
+
+  - id: netl
+    name: National Energy Technology Laboratory
+    kind: national_lab
+    parent: doe
+    domains: [netl.doe.gov, edx.netl.doe.gov]
+    aliases:
+      abbreviations: [NETL]
+    note: >
+      The only government-owned, government-operated laboratory in the
+      seventeen. Runs the Energy Data eXchange (EDX).
+
+  - id: nlr
+    name: National Laboratory of the Rockies
+    kind: national_lab
+    parent: doe
+    renamed_on: "2025-12-01"
+    domains: [nlr.gov, developer.nlr.gov, data.nlr.gov]
+    aliases:
+      abbreviations: [NLR]
+      former_names:
+        - National Renewable Energy Laboratory
+        - NREL
+      former_domains:
+        - nrel.gov
+        - developer.nrel.gov
+        - data.nrel.gov
+        - maps.nrel.gov
+        - atb.nrel.gov
+        - datahub.h2awsm.org
+      github_orgs: [NatLabRockies, NREL]
+    note: >
+      Renamed 2025-12-01. Every *.nrel.gov domain is dead with NO redirects,
+      which makes this the ecosystem's sharpest alias case: a caller with an
+      old URL gets nothing at all, not a redirect, so a tool that cannot
+      resolve the old name gives them no way to find out why. The developer
+      network survived intact at developer.nlr.gov on GSA's api.data.gov
+      infrastructure. The H2 DataHub followed later: datahub.h2awsm.org now
+      redirects to datahub-h2awsm.nlr.gov.
+
+  - id: ornl
+    name: Oak Ridge National Laboratory
+    kind: national_lab
+    parent: doe
+    domains: [ornl.gov, daac.ornl.gov, openenergyhub.ornl.gov]
+    aliases:
+      abbreviations: [ORNL, Oak Ridge]
+      github_orgs: [ORNL]
+    note: >
+      The richest public-data posture of the seventeen, and the clearest case
+      for the funder field: it operates the ORNL DAAC for NASA, the Freight
+      Analysis Framework for DOT, and LandScan with NGA co-funding.
+
+  - id: pnnl
+    name: Pacific Northwest National Laboratory
+    kind: national_lab
+    parent: doe
+    domains: [pnnl.gov, emsl.pnnl.gov, vips.pnnl.gov]
+    aliases:
+      abbreviations: [PNNL]
+      github_orgs: [pnnl]
+    note: >
+      Ships NEPA-MCP, whose packaging shape this project borrows. That is a
+      lineage acknowledgement, not an affiliation.
+
+  - id: pppl
+    name: Princeton Plasma Physics Laboratory
+    kind: national_lab
+    parent: doe
+    domains: [pppl.gov]
+    aliases:
+      abbreviations: [PPPL, Princeton Plasma]
+
+  - id: snl
+    name: Sandia National Laboratories
+    kind: national_lab
+    parent: doe
+    domains: [sandia.gov, pvpmc.sandia.gov]
+    aliases:
+      abbreviations: [SNL, Sandia]
+      github_orgs: [sandialabs]
+    note: >
+      Plural in its own name — "Laboratories", two sites (Albuquerque and
+      Livermore).
+
+  - id: srnl
+    name: Savannah River National Laboratory
+    kind: national_lab
+    parent: doe
+    domains: [srnl.doe.gov]
+    aliases:
+      abbreviations: [SRNL, Savannah River]
+
+  - id: slac
+    name: SLAC National Accelerator Laboratory
+    kind: national_lab
+    parent: doe
+    domains: [slac.stanford.edu]
+    aliases:
+      abbreviations: [SLAC]
+      former_names: [Stanford Linear Accelerator Center]
+    rename_date_unverified: true
+    note: >
+      Operated by Stanford University for DOE. "SLAC" is now the formal name
+      rather than an expansion of the former one. The rename predates this
+      project's research and no date was established for it.
+
+  - id: jlab
+    name: Thomas Jefferson National Accelerator Facility
+    kind: national_lab
+    parent: doe
+    domains: [jlab.org]
+    aliases:
+      abbreviations: [JLab, TJNAF, Jefferson Lab]
+
+  # --- Non-DOE organizations named in provenance --------------------------
+  #
+  # Present because the operator scope rule (decision 0001-C) is honest only
+  # if the funder can be named. Their presence here is attribution, not scope.
+
+  - id: nasa
+    name: National Aeronautics and Space Administration
+    kind: external
+    domains: [nasa.gov, earthdata.nasa.gov]
+    aliases:
+      abbreviations: [NASA]
+    note: Funds the ORNL DAAC, which ORNL operates.
+
+  - id: nsf
+    name: National Science Foundation
+    kind: external
+    domains: [nsf.gov]
+    aliases:
+      abbreviations: [NSF]
+    note: >
+      Funds Sage/Waggle, which Argonne leads. The mirror image of the
+      usual case here, where DOE funds work another agency's centre
+      operates, and the reason the funder is a field rather than an
+      assumption.
+
+  - id: epa
+    name: US Environmental Protection Agency
+    kind: external
+    domains: [epa.gov]
+    aliases:
+      abbreviations: [EPA]
+    note: Joint owner of fueleconomy.gov with DOE.
+
+  - id: dot
+    name: US Department of Transportation
+    kind: external
+    domains: [transportation.gov]
+    aliases:
+      abbreviations: [DOT, USDOT]
+    note: Funds the Freight Analysis Framework, which ORNL operates.
+
+  - id: nga
+    name: National Geospatial-Intelligence Agency
+    kind: external
+    domains: [nga.mil]
+    aliases:
+      abbreviations: [NGA]
+    note: Co-funds LandScan.
+
+  - id: nih
+    name: National Institutes of Health
+    kind: external
+    domains: [nih.gov]
+    aliases:
+      abbreviations: [NIH]
+    note: Funds the LANL HIV/HCV/HFV sequence databases.
+
+  - id: iaea
+    name: International Atomic Energy Agency
+    kind: external
+    domains: [iaea.org, nds.iaea.org]
+    aliases:
+      abbreviations: [IAEA]
+    note: >
+      Serves the cleanest machine interface to evaluated nuclear data that
+      the DOE-network laboratories produce. A non-DOE host for DOE-network
+      data, labelled as such rather than quietly presented as DOE's.
+
+  - id: doe-mcp
+    name: The DOE-MCP project
+    kind: external
+    aliases:
+      abbreviations: [DOE-MCP]
+    note: >
+      This project itself, named as an organization so that answers drawn
+      from its own registry can be attributed to it rather than to DOE.
+      Registered under kind `external` because that is the accurate
+      relationship: DOE-MCP is independent of the Department of Energy, and a
+      provenance entry that named DOE as the steward of this project's
+      inventory would assert DOE authorship of one project's opinions about
+      DOE's systems.
+
+  - id: gsa
+    name: General Services Administration
+    kind: external
+    domains: [gsa.gov, api.data.gov]
+    aliases:
+      abbreviations: [GSA]
+    note: >
+      Runs api.data.gov, which hosts the NLR developer network's key layer,
+      and the federal MCP hub catalog this project's servers may eventually
+      be submitted to.
+
+  - id: usgs
+    name: US Geological Survey
+    kind: external
+    domains: [usgs.gov, eersc.usgs.gov, energy.usgs.gov]
+    aliases:
+      abbreviations: [USGS]
+    note: >
+      Hosts the US Wind Turbine Database and the US Large-Scale Solar PV
+      Database, both co-produced with LBNL's Energy Markets and Policy
+      department and funded in part by DOE's wind and solar offices. A
+      non-DOE host for DOE-funded data, labelled as such.
+
+  - id: nara-ofr
+    name: Office of the Federal Register (National Archives)
+    kind: external
+    domains: [federalregister.gov]
+    aliases:
+      abbreviations: [OFR, "Federal Register"]
+    note: >
+      Publishes the Federal Register and its public API, which is the
+      sanctioned machine interface to DOE's own rules, proposed rules, and
+      notices. The author agency on every document is DOE or one of its
+      component agencies; the host is not.
+
+  - id: sba
+    name: US Small Business Administration
+    kind: external
+    domains: [sbir.gov, api.www.sbir.gov]
+    aliases:
+      abbreviations: [SBA, SBIR]
+    note: >
+      Runs SBIR.gov, the cross-agency record of SBIR and STTR awards, into
+      which DOE reports its own.
+
+  - id: molssi
+    name: Molecular Sciences Software Institute
+    kind: external
+    domains: [molssi.org, basissetexchange.org]
+    aliases:
+      abbreviations: [MolSSI]
+    note: >
+      An NSF institute that co-develops the Basis Set Exchange with PNNL's
+      Environmental Molecular Sciences Laboratory, which originated it.

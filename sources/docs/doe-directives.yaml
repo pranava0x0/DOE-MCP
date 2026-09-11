@@ -1,0 +1,65 @@
+id: doe-directives
+name: DOE Directives
+domain: docs
+
+publisher:
+  steward: doe
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: []
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+planned_capabilities: [docs.get_directive]
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: manual_review_required
+  tier: crawl_or_defer
+  terms_url: https://www.directives.doe.gov/
+  terms_notes: >
+    Public HTML listings of DOE orders, notices, standards, and guides.
+    No API found.
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed; directives issued and revised continuously.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    DOE's own orders, policies, standards, and guides.
+  temporal: current and superseded
+  dataset_version: "current"
+  known_limitations:
+    - >
+      Crawler-class: Gate B, Phase 5.
+    - >
+      Superseded directives matter as much as current ones for anyone
+      reading a historical record, so a naive crawl that keeps only
+      current versions would be worse than none.
+
+authority_notes: >
+  Intended capabilities: docs.get_directive. Phase 5.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Crawler-class work behind Gate B; Phase 5.

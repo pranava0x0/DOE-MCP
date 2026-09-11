@@ -1,0 +1,134 @@
+id: esgf-search
+name: ESGF search (CMIP6)
+domain: earth
+
+publisher:
+  steward: ornl
+  funder: sc
+  authority_level: official_secondary
+
+aliases:
+  former_names: ["ESGF esg-search (LLNL node)"]
+  # LLNL ran the US federation node for two decades; ORNL runs it now.
+  # esgf-node.llnl.gov/esg-search/search answers 302 to the ORNL bridge
+  # and still works. The trap is on the NEW host: the same
+  # /esg-search/search path there answers HTTP 200 with the web
+  # portal's React shell, so a status-code sweep would file the working
+  # old host as moved and the broken new path as healthy.
+  former_domains: ["esgf-node.llnl.gov", "esgf.llnl.gov"]
+
+labs: [ornl, llnl]
+
+capabilities:
+  - id: climate.search_cmip
+    tool_hint: climate.search_cmip
+  - id: climate.discover_facets
+    tool_hint: climate.discover_facets
+
+planned_capabilities: []
+
+adapter:
+  type: esgf
+  base_url: https://esgf-node.ornl.gov/esgf-1-5-bridge
+  # Read from the running service on 2026-09-09 before it was written
+  # down. Decision 0020: a locator assembled from a base URL and a
+  # guessed suffix has the shape of provenance and none of the
+  # substance.
+  schema_url: https://esgf-node.ornl.gov/esgf-1-5-bridge/openapi.json
+  # Parameters that steer the request rather than filter the archive.
+  # Everything else in the published list — about a hundred names — is
+  # a facet a caller may search on.
+  control_params: [query, format, bbox, offset, limit, replica, distrib,
+                   facets, min_version, max_version, from, to, id,
+                   dataset_id, type, access, latest, start, end, range]
+  project_facet: project
+  # The bridge's own ceiling, stated in its OpenAPI document: the search
+  # index behind it allows no deeper page.
+  max_offset: 9999
+  retired_endpoint: https://esgf-node.llnl.gov/esg-search/search
+
+access:
+  mode: anonymous
+  automation_status: public_api
+  tier: catalog_pointer
+  terms_url: https://esgf.github.io/
+  terms_reviewed_at: "2026-09-09"
+  terms_notes: >
+    Open search with no key; it answered a scripted client on
+    2026-09-09. The index is metadata about model output held on
+    federated data nodes worldwide, many of them outside the United
+    States and none of them DOE's to license. CMIP6 output carries the
+    modelling centres' own terms, which vary by model and are named in
+    each dataset's citation record rather than assumed uniform here.
+  citation_required: false
+  rate_limit_note: >
+    None published. Absence of a stated ceiling is not permission. The
+    index reports Solr query times in the minutes for broad searches,
+    which is its own argument for narrow ones.
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed; modelling centres publish and retract datasets
+    continuously, and retraction is a normal part of the archive's
+    life rather than an anomaly.
+  ttl_hint_seconds: 3600
+
+coverage:
+  scope: >
+    Metadata for climate-model output published through the Earth
+    System Grid Federation, CMIP6 above all: which model ran which
+    experiment for which variable, at what frequency and resolution,
+    over what period, and which data node holds the files.
+  temporal: CMIP5 onward
+  dataset_version: "CMIP6"
+  # CMIP6 datasets at their latest version, which is what a search here
+  # returns by default. Without the publisher's `latest` flag the same
+  # query counts 14,769,319, because superseded and retracted releases are
+  # in the index too. Two true numbers for two different questions; this is
+  # the one the health probe measures, so the two agree or the drift shows.
+  record_count: 14217502
+  record_count_checked: "2026-09-09"
+  known_limitations:
+    - >
+      A catalog of metadata, not the model output. The files live on
+      federated data nodes and are reached by the access methods each
+      record names; several nodes require a federation account.
+    - >
+      Retracted and superseded datasets are in the index and sort
+      first without the publisher's `latest` flag. A retraction is a
+      modelling centre withdrawing output, often for a science error,
+      so the flag is on by default here and both flags ride on every
+      row.
+    - >
+      Paging stops at offset 9,999 against 14.7 million records. This
+      archive is searched by narrowing facets, not by walking pages.
+    - >
+      Vintage identity is the whole game: CMIP5, CMIP6 and CMIP7 are
+      different archives, and a comparison across them without saying
+      so is the mixed-vintage error the envelope exists to catch.
+    - >
+      The index names one fact two ways. A dataset's last covered
+      timestamp is datetime_stop on some records and datetime_end on
+      others, in the same index on the same day. Both are read; a
+      client reading one would report the end of the covered period as
+      unknown for a large share of the archive.
+
+authority_notes: >
+  Official_secondary: ORNL operates the US federation node and
+  distributes output the world's modelling centres produced. The
+  service is a bridge that speaks the old esg-search Solr dialect in
+  front of Globus Search, and it publishes its own parameter list,
+  which is read rather than copied here. Verified live and activated on
+  2026-09-09 (research/notes/verification-round12.md).
+
+health:
+  probe: esgf_dataset_count
+  expect:
+    min_records: 1000000
+
+lifecycle:
+  declared_state: active
+  added: "2026-09-02"
+  last_verified: "2026-09-09"
+  verified_by: pranava0x0

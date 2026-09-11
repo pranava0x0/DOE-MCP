@@ -1,0 +1,66 @@
+id: ornl-bioenergy-kdf
+name: Bioenergy Knowledge Discovery Framework
+domain: energy-tech
+
+publisher:
+  steward: ornl
+  funder: affo
+  authority_level: official_secondary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [ornl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+planned_capabilities: [dataset.search]
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: unknown
+  tier: catalog_pointer
+  terms_url: https://bioenergykdf.net/
+  terms_notes: >
+    Public portal. Suspected ArcGIS backend, unconfirmed. Hosts the 2024
+    Global Biomass Resource Assessment covering 55 countries.
+
+freshness:
+  expected_cadence: periodic
+  cadence_source: >
+    Observed; major assessments released periodically.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Biomass feedstock resource assessments, domestic and international.
+  temporal: current
+  dataset_version: "2024 assessment"
+  known_limitations:
+    - >
+      Backend unconfirmed, same class as HydroSource.
+    - >
+      Funded by AFFO, which is itself a 2025-26 merger of HFTO and BETO
+      — so material citing BETO as the funder predates the merger.
+
+authority_notes: >
+  Intended capabilities: dataset.search over the repository's own
+  catalog, once its map backend is confirmed (decision 0026). Phase 4.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Map backend unconfirmed; same browser-grade check as HydroSource.

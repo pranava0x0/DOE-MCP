@@ -1,0 +1,113 @@
+# energy.gov/data.json — DOE's Project Open Data catalog, and the source that
+# earned the `catalog_vintage` warning code.
+#
+# The measured problem: 483 datasets, of which some were last modified in
+# 2014 and 2015, sitting beside current ones with no visible distinction. The
+# ARPA-E entry in this catalog dates from 2022 while ARPA-E's own endpoint
+# serves 1,721 live project records. A caller who trusts this catalog as
+# current gets a picture of DOE's open data that is a decade stale in places.
+#
+# So it is registered, queried, and every answer from it carries the vintage
+# of the entry that produced it. That is more useful than either trusting it
+# or dropping it.
+id: doe-open-data-catalog
+name: DOE Open Data Catalog (data.json)
+domain: discovery
+
+publisher:
+  steward: ocio
+  authority_level: official_derived
+
+aliases:
+  former_names: [DOE Open Data, energy.gov/data]
+  former_domains: []
+
+labs: []
+
+capabilities:
+  - id: discovery.search_catalogs
+    tool_hint: discovery.search_all_catalogs
+
+adapter:
+  type: json_document
+  document_url: https://www.energy.gov/data.json
+  collection_key: dataset
+  title_key: title
+  description_key: description
+  modified_key: modified
+  landing_key: landingPage
+  identifier_key: identifier
+  schema_note: Project Open Data v1.1 (conformsTo declared in the document)
+
+access:
+  mode: anonymous
+  automation_status: public_download
+  tier: thin_proxy
+  terms_url: https://www.energy.gov/data
+  terms_notes: >
+    A public federal open-data inventory published under the Project Open
+    Data schema. Read live 2026-09-02: HTTP 200, 874 KB, 483 dataset entries.
+    No key, no stated restriction on retrieval.
+  terms_reviewed_at: "2026-09-02"
+  citation_required: false
+  rate_limit_note: >
+    No rate limit is published. www.energy.gov's
+    robots.txt disallows its admin, user and search paths and not /data.json.
+    The document is fetched whole once per TTL and searched locally, so a
+    session is one request however many queries it answers.
+
+freshness:
+  expected_cadence: unknown
+  cadence_source: >
+    Observed and poor. Entry `modified` dates in the first five records
+    sampled 2026-09-02 span 2014-04-25 to 2022-09-14. The document itself
+    carries no catalog-level date, so the newest entry date is the only
+    honest vintage signal and is what the adapter reports.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    DOE's declared inventory of public datasets across program offices, in
+    the federal Project Open Data format.
+  temporal: >
+    Entries span 2014 to the present, unevenly. The catalog is not a snapshot
+    of one moment.
+  dataset_version: current
+  record_count: 483
+  record_count_checked: "2026-09-02"
+  known_limitations:
+    - >
+      Measured staleness, and it is the point of registering the source with
+      a vintage warning rather than as a plain catalog. Some entries predate
+      the reorganization that renamed half of DOE's program offices, so they
+      name offices that no longer exist.
+    - >
+      `distribution` URLs inside entries are not verified and are frequently
+      dead. They are returned as data and never fetched; a liveness check is
+      a separate probe, and decision 0009-B is explicit that catalog
+      distribution URLs are never trusted without one.
+    - >
+      catalog.data.gov's CKAN API, the obvious federated route to the same
+      content, is dead. This document is the remaining machine-readable
+      route.
+    - >
+      483 entries against roughly 140 distinct assets found by hand in this
+      project's own inventory, and the two sets overlap only partly. Neither
+      is a superset of the other.
+
+authority_notes: >
+  Official_derived: DOE publishes it, and it is a self-report compiled from
+  program-office submissions rather than a system of record for any dataset
+  in it. Useful as one voice in the discovery fan-out, never as the answer
+  on its own.
+
+health:
+  probe: json_document_count
+  expect:
+    min_records: 300
+
+lifecycle:
+  declared_state: active
+  added: "2026-09-02"
+  last_verified: "2026-09-02"
+  verified_by: pranava0x0

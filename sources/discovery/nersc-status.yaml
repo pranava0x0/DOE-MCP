@@ -1,0 +1,83 @@
+id: nersc-status
+name: NERSC Superfacility API (system status)
+domain: discovery
+
+publisher:
+  steward: lbnl
+  funder: sc
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: ['lbnl']
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+planned_capabilities: ['compute.facility_status']
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://docs.nersc.gov/services/sfapi/
+  terms_notes: >
+    The Superfacility API's status routes answer without
+    authentication; everything else on the API (jobs, files, accounts)
+    needs a NERSC account and is out of scope. The documentation
+    states that informational queries such as system status can be
+    made without authenticating. Probed 200 on 2026-09-08.
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed; each system row carries its own updated_at.
+  ttl_hint_seconds: 300
+
+coverage:
+  scope: >
+    Current status of every NERSC system (compute, filesystems,
+    services) and the schedule of planned outages, as JSON.
+  temporal: current, with planned outages ahead
+  dataset_version: "current"
+  known_limitations:
+    - >
+      Status, not availability of the data. Nothing about a user's jobs
+      or allocations is public, and this project asks for none of it.
+    - >
+      One facility, and now known to be the only one. OLCF and ALCF
+      were checked on 2026-09-08: ALCF's status application answers a
+      scripted client with an HTTP 403 challenge and OLCF publishes no
+      machine interface that could be found. Both are registered
+      (alcf-status, olcf-status).
+
+authority_notes: >
+  Primary: NERSC publishes its own status. The first member of a
+  facility-status class the inventory had assumed was gated along
+  with the rest of each facility. No server owns it yet; the
+  promotion rule in architecture Part 1 section 3.4 decides where it
+  lands. Found in the 2026-09-08 gap sweep.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-08"
+  last_verified: "2026-09-08"
+  verified_by: pranava0x0
+  blocked_reason: >
+    No server for a facility-status capability exists and one source
+    does not justify one (architecture Part 1 section 3.4). The
+    question of whether there were more was closed on 2026-09-08: of
+    the three leadership computing facilities, NERSC is the only one
+    with a reachable machine interface, so the capability has one
+    source rather than three and a facilities server stays unjustified.
+    It reopens if ALCF's blocked probe clears in a browser.

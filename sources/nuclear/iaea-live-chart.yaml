@@ -1,0 +1,80 @@
+id: iaea-live-chart
+name: IAEA Live Chart of Nuclides
+domain: nuclear
+
+publisher:
+  steward: iaea
+  authority_level: official_secondary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [bnl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+planned_capabilities: [nuclear.get_nuclide, nuclear.search_cross_sections]
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://www-nds.iaea.org/relnsd/vcharthtml/api_v0_guide.html
+  terms_notes: >
+    An open REST and CSV interface over ENSDF and NuDat, no key. Non-DOE
+    infrastructure serving DOE-network data, which decision 0001-C
+    admits explicitly: the data network is the asset, the API host is
+    provenance metadata, and the envelope names IAEA rather than
+    implying DOE served it.
+  terms_reviewed_at: "2026-09-01"
+
+freshness:
+  expected_cadence: on evaluation release
+  cadence_source: >
+    Stated. The critical finding: the ENSDF data served is an April 2022
+    snapshot, not a live mirror of NNDC's current evaluations.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Nuclear structure and decay properties, and NuDat-derived
+    quantities.
+  temporal: ENSDF snapshot
+  dataset_version: "ENSDF April 2022"
+  known_limitations:
+    - >
+      The ENSDF snapshot is from April 2022. For a field where
+      evaluations are revised, that is a real vintage problem and the
+      reason decision 0011 leans toward NNDC bulk ingest instead of
+      wrapping this.
+    - >
+      IAEA is not DOE. Registered under the operator rule's named
+      exception for sanctioned machine interfaces to DOE-network data,
+      and labelled as such on every answer.
+
+authority_notes: >
+  Official_secondary: IAEA serves data the DOE-network evaluators
+  produce. Intended capabilities: nuclear.get_nuclide,
+  nuclear.search_cross_sections. Phase 4, and the ingest-versus-wrap
+  question (decision 0011) is the one sub-decision deliberately left
+  open for that phase.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Phase 4, and blocked on a decision rather than on work: whether to
+    ingest NNDC's bulk files or wrap this API. The April 2022 snapshot
+    is the argument against wrapping.

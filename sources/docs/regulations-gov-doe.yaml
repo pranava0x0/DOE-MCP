@@ -1,0 +1,75 @@
+id: regulations-gov-doe
+name: Regulations.gov v4 (DOE dockets)
+domain: docs
+
+publisher:
+  steward: gsa
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: []
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+planned_capabilities: ['docs.search_rulemakings']
+adapter:
+  type: none
+
+access:
+  mode: api_key
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://open.gsa.gov/api/regulationsgov/
+  terms_notes: >
+    GSA's eRulemaking API. Needs an api.data.gov key, the same key
+    class as the NLR developer network; DEMO_KEY works at a low rate
+    limit. A filter on agencyId EERE returned 200 on 2026-09-08 (page
+    size must be five or more). DOE dockets are filed under the
+    historical office codes, so the agency-id list needs the
+    organisation table's aliases.
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed; documents carry lastModifiedDate.
+  ttl_hint_seconds: 3600
+
+coverage:
+  scope: >
+    Dockets, documents, and public comments for DOE rulemakings,
+    including the appliance and equipment standards program.
+  temporal: 2000s onward, by docket
+  dataset_version: "current"
+  known_limitations:
+    - >
+      Agency ids are historical. Dockets opened under EERE keep the EERE
+      id after the office's dissolution; a caller asking about CMEI must
+      be routed to the old codes.
+    - >
+      Keyed and rate-limited. The shared 1,000-per-hour api.data.gov
+      budget applies across every API the key touches.
+
+authority_notes: >
+  Primary for the comment record. Complements the Federal Register
+  source, which has the published documents but not the dockets'
+  comments. Found in the 2026-09-08 gap sweep.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-08"
+  last_verified: "2026-09-08"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Phase 3 or later: needs the apidatagov_rest adapter and the
+    credential UX that EIA is proving out. Ships with the Federal
+    Register source under the docs capability.

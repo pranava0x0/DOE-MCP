@@ -1,0 +1,82 @@
+id: arpa-e-projects
+name: ARPA-E project database
+domain: projects
+
+publisher:
+  steward: arpa-e
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: []
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+planned_capabilities: [projects.search_awards]
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: manual_review_required
+  tier: crawl_or_defer
+  terms_url: https://arpa-e.energy.gov/
+  terms_notes: >
+    A public JSON:API serving 1,721 project records with facets,
+    discovered by reading the site's own JavaScript bundle rather than
+    from documentation. Undocumented is not the same as private — the
+    site uses it to render public pages — but it is also not a promise,
+    and decision 0007 makes this the model case for harvest-and-index
+    rather than live proxying.
+
+freshness:
+  expected_cadence: periodic
+  cadence_source: >
+    Observed; project records updated as awards progress.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    ARPA-E funded projects: programme, performer, award amount, status,
+    technology area.
+  temporal: 2009 onward
+  dataset_version: "current"
+  record_count: 1721
+  record_count_checked: "2026-09-01"
+  known_limitations:
+    - >
+      Undocumented endpoints are not infrastructure. Depending on one
+      live means a silent site rebuild breaks the tool with no notice
+      and no recourse; harvesting on a schedule and serving an index
+      means a break is visible and the last good index still answers.
+    - >
+      The data.json catalog's ARPA-E entry dates from 2022 while this
+      endpoint serves 1,721 current records. That gap is the measured
+      evidence behind the catalog_vintage warning.
+    - >
+      A recorded quirk: the endpoint redirects on uppercase paths.
+
+authority_notes: >
+  Primary for ARPA-E awards. Intended capabilities:
+  projects.search_awards. Phase 5, as a harvested index — and Gate E
+  applies, because retaining harvested content beyond a cache TTL is a
+  reviewed decision.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Phase 5 and Gate E. The endpoint works today; the posture decision
+    (harvest, do not proxy) is what makes this a scheduled job rather
+    than an adapter.

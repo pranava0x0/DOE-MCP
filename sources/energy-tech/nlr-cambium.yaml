@@ -1,0 +1,74 @@
+id: nlr-cambium
+name: Cambium scenario data
+domain: energy-tech
+
+publisher:
+  steward: nlr
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: ["cambium.nrel.gov"]
+
+labs: [nlr]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: public_download
+  tier: catalog_pointer
+  terms_url: https://scenarioviewer.nlr.gov/
+  terms_notes: >
+    Modelled hourly emissions and cost metrics for future US electricity
+    scenarios.
+
+freshness:
+  expected_cadence: annual
+  cadence_source: >
+    Stated; annual scenario releases.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Hourly marginal and average emission rates, costs, and capacity by
+    scenario and year.
+  temporal: annual editions
+  dataset_version: "annual"
+  known_limitations:
+    - >
+      Scenario output. A Cambium emission rate is what a model says
+      under an assumption set, and it is routinely quoted as if
+      measured.
+    - >
+      Post-rename Scenario Viewer URLs are a named pre-build check.
+
+authority_notes: >
+  Primary for its own scenarios. Phase 3. The Scenario Viewer carries an
+  undocumented JSON API behind the web application: /api/projects/
+  lists the scenario collections and /api/get-levelized/ answers. The
+  routes were found from the application itself and are not published
+  as an interface, which is why this stays proposed rather than
+  becoming a thin proxy on the strength of one probe.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-08"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Phase 3, with the energy-tech server. The post-rename URLs are no
+    longer the obstacle: scenarioviewer.nlr.gov answers, and its
+    /api/projects/ route returned the scenario list as JSON to a
+    scripted client on 2026-09-08. What is missing is a home server
+    and a tool contract over an hourly, scenario-indexed dataset.

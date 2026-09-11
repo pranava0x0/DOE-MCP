@@ -1,0 +1,105 @@
+# DOE-MCP's own registry, described as a source.
+#
+# Registering the project's own tables looks like navel-gazing and is not.
+# Several tools answer from them rather than from a publisher's system —
+# registry.resolve_org reads the organization table, registry.lab_crosswalk
+# and registry.search_sources read the manifests — and those answers already
+# carry `doe-mcp-registry` in their provenance. Without this manifest that
+# name pointed at nothing, which breaks the rule that every provenance entry
+# resolves to a registered source.
+#
+# The authority level is the other reason. An answer about what Oak Ridge
+# publishes is DOE-MCP's inventory of ORNL, not ORNL's statement about
+# itself, and `official_derived` from a steward that is explicitly not DOE is
+# how a caller sees that rather than having to infer it.
+id: doe-mcp-registry
+name: DOE-MCP source registry and organization table
+domain: discovery
+
+publisher:
+  steward: doe-mcp
+  authority_level: unverified
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: []
+
+capabilities:
+  - id: registry.resolve_org
+    tool_hint: registry.resolve_org
+  - id: registry.search_sources
+    tool_hint: registry.search_sources
+  - id: registry.lab_crosswalk
+    tool_hint: registry.lab_crosswalk
+
+adapter:
+  type: self_registry
+
+access:
+  mode: anonymous
+  automation_status: permitted
+  tier: thin_proxy
+  terms_url: https://github.com/pranava0x0/DOE-MCP
+  terms_notes: >
+    This project's own work, dedicated to the public domain under CC0-1.0
+    (sources/LICENSE). No restriction on use, redistribution, or automated
+    access; no attribution required. The inventory is more useful to the
+    world unencumbered than it is as anything this project owns.
+  terms_reviewed_at: "2026-09-02"
+  citation_required: false
+
+freshness:
+  expected_cadence: per release
+  cadence_source: >
+    Observed. The registry revision is the newest lifecycle.last_verified
+    date across every manifest, which is what tools report as
+    registry_revision.
+  ttl_hint_seconds: 0
+
+coverage:
+  scope: >
+    Which public DOE systems this project knows about, who stewards and funds
+    each one, what its terms say, what it does not cover, and what is
+    blocking the ones that are not wired up. Plus the organization table with
+    the alias sets that resolve former names and dead domains.
+  temporal: current
+  dataset_version: current
+  known_limitations:
+    - >
+      This project's inventory, not DOE's. A source absent from it is a gap
+      here and says nothing about whether the system exists. The count of
+      what is missing is deliberately visible: `doe-mcp sources stats` prints
+      the coverage debt rather than the coverage.
+    - >
+      Terms fields record what a human read on a stated date, and terms
+      change. `terms_reviewed_at` is on every active source so a caller can
+      judge how stale that reading is.
+    - >
+      The `blocked_reason` on a non-active source is this project's
+      assessment of what stands in the way, not a publisher's statement.
+    - >
+      Authority level `unverified` is correct and deliberate. Nothing here is
+      an official record of anything; it is one project's notes about other
+      people's systems, offered because they are useful.
+
+authority_notes: >
+  Authoritative for exactly one thing: what DOE-MCP covers and why. For every
+  underlying system the authority is that system's publisher, named in its
+  own manifest. The steward field points at DOE only because the organization
+  table has no entry for this project and inventing one would put a
+  non-existent organization into provenance; the `unverified` authority level
+  and the non-affiliation line on every server are what carry the real
+  meaning.
+
+health:
+  probe: registry_manifest_count
+  expect:
+    min_records: 60
+
+lifecycle:
+  declared_state: active
+  added: "2026-09-02"
+  last_verified: "2026-09-02"
+  verified_by: pranava0x0

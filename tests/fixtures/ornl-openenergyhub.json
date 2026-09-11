@@ -1,0 +1,1091 @@
+{
+  "note": "Recorded live from Open Energy Data Hub (ORNL) (https://openenergyhub.ornl.gov) by tools/record_fixtures.py. Publisher content redistributed under the terms recorded in THIRD_PARTY_DATA.yml.",
+  "redaction": "Email addresses replaced with redacted@example.invalid and credential values with 'redacted' at record time. Field shapes and lengths are otherwise the publisher's.",
+  "interactions": [
+    {
+      "url": "https://openenergyhub.ornl.gov/api/explore/v2.1/catalog/datasets",
+      "params": {
+        "limit": "3",
+        "offset": "0"
+      },
+      "headers": {
+        "content-type": "application/json; charset=utf-8"
+      },
+      "body": {
+        "total_count": 185,
+        "results": [
+          {
+            "visibility": "domain",
+            "fields": [],
+            "dataset_id": "energy-atlas-2-0",
+            "dataset_uid": "da_xlevpj",
+            "has_records": false,
+            "features": [],
+            "attachments": [],
+            "alternative_exports": [],
+            "data_visible": true,
+            "metas": {
+              "dcat": {
+                "created": null,
+                "issued": null,
+                "creator": null,
+                "contributor": null,
+                "contact_name": null,
+                "contact_email": null,
+                "accrualperiodicity": null,
+                "spatial": null,
+                "temporal": null,
+                "granularity": null,
+                "dataquality": null,
+                "publisher_type": null,
+                "conforms_to": null,
+                "temporal_coverage_start": null,
+                "temporal_coverage_end": null,
+                "accessRights": null,
+                "relation": null
+              },
+              "default": {
+                "title": "Energy Atlas 2.0",
+                "description": "<p>The Energy Atlas is a database of building energy consumption that links utility account information to building characteristics, sociodemographic data, and other significant attributes that can be expressed spatially. The public portion of the Energy Atlas is a front-end website which displays spatially aggregated  energy consumption statistics at an annual temporal resolution for most neighborhoods, cities, and counties in Southern California.</p><p>The Energy Atlas project provides Californians, and those interested in ongoing energy transitions, with the opportunity to interact with one of the largest sets of disaggregated building energy data available in the nation.  This interactive tool is used by a wide variety of stakeholder groups to inform energy planning and research throughout California.</p>",
+                "theme": [
+                  "Spatial planning, Town planning, Buildings, Equipment, Housing",
+                  "Energy"
+                ],
+                "keyword": [
+                  "buildings",
+                  "energy"
+                ],
+                "license": "No license, or terms of use, asserted by data producer for this dataset was found.",
+                "license_url": null,
+                "language": "en",
+                "metadata_languages": [
+                  "en"
+                ],
+                "timezone": null,
+                "modified": "2026-01-22T18:53:56+00:00",
+                "modified_updates_on_metadata_change": false,
+                "modified_updates_on_data_change": false,
+                "data_processed": null,
+                "metadata_processed": "2026-05-13T07:02:36.504000+00:00",
+                "geographic_reference": [
+                  "us_40_06"
+                ],
+                "geographic_reference_auto": false,
+                "territory": [
+                  "California"
+                ],
+                "geometry_types": null,
+                "bbox": null,
+                "publisher": "University of California, Los Angeles",
+                "references": "https://energyatlas.ucla.edu/",
+                "records_count": 0,
+                "attributions": [
+                  "The Energy Atlas is developed by the UCLA California Center for Sustainable Communities (CCSC) at UCLA, in the Institute of the Environment and Sustainability (IOES), and has received funding from the California Energy Commission, the Los Angeles Department of Water & Power (LADWP), the Southern California Regional Energy Network (SoCalREN). It benefits from the support and input of numerous partners, including the Los Angeles Regional Collaborative for Climate Action and Sustainability (LARC), The Energy Coalition (TEC), and the County of Los Angeles."
+                ],
+                "source_domain": null,
+                "source_domain_title": null,
+                "source_domain_address": null,
+                "source_dataset": null,
+                "shared_catalog": null,
+                "federated": false,
+                "parent_domain": null,
+                "update_frequency": null
+              },
+              "dublin-core": {
+                "title": "Energy Atlas 2.0",
+                "alternative": null,
+                "subject": [
+                  "BUILDINGS [GCMD]",
+                  "Electricity"
+                ],
+                "description": "<p>The Energy Atlas is a database of building energy consumption that links utility account information to building characteristics, sociodemographic data, and other significant attributes that can be expressed spatially. The public portion of the Energy Atlas is a front-end website which displays spatially aggregated  energy consumption statistics at an annual temporal resolution for most neighborhoods, cities, and counties in Southern California.</p><p>The Energy Atlas project provides Californians, and those interested in ongoing energy transitions, with the opportunity to interact with one of the largest sets of disaggregated building energy data available in the nation.  This interactive tool is used by a wide variety of stakeholder groups to inform energy planning and research throughout California.</p>",
+                "abstract": "This feature layer, utilizing data from the National Center for Education Statistics (NCES), displays colleges and universities in the United States and its territories. This layer is checked annually for updates.",
+                "tableOfContent": null,
+                "type": "InteractiveResource",
+                "language": "eng",
+                "coverage": null,
+                "spatial": "State of California",
+                "temporal_start": null,
+                "temporal_end": null,
+                "relation": null,
+                "source": null,
+                "replaces": null,
+                "references": "https://energyatlas.ucla.edu/",
+                "requires": null,
+                "conformsTo": null,
+                "hasFormat": null,
+                "hasPart": null,
+                "hasVersion": null,
+                "isFormatOf": null,
+                "isPartOf": null,
+                "isVersionOf": null,
+                "isReferencedBy": null,
+                "isReplacedBy": null,
+                "isRequiredBy": null,
+                "contributor": null,
+                "creator": "University of California, Los Angeles",
+                "publisher": "University of California, Los Angeles",
+                "rights": null,
+                "accessRights": null,
+                "license": "No license, or terms of use, asserted by data producer for this dataset was found.",
+                "date_start": null,
+                "date_end": null,
+                "available_start": null,
+                "available_end": null,
+                "created": null,
+                "dateAccepted": null,
+                "dateCopyrighted": null,
+                "dateSubmitted": null,
+                "issued": null,
+                "modified": "2026-01-22T18:53:56+00:00",
+                "valid_start": null,
+                "valid_end": null,
+                "format": null,
+                "extent": null,
+                "medium": null,
+                "identifier": null,
+                "bibliographicCitation": null,
+                "rightsHolder": null,
+                "accrualMethod": null,
+                "accrualPeriodicity": null,
+                "accrualPolicy": null,
+                "audience": null,
+                "educationLevel": null,
+                "instructionalMethod": null,
+                "mediator": null,
+                "provenance": null
+              },
+              "dcat_ap": {
+                "title": "Energy Atlas 2.0",
+                "description": "<p>The Energy Atlas is a database of building energy consumption that links utility account information to building characteristics, sociodemographic data, and other significant attributes that can be expressed spatially. The public portion of the Energy Atlas is a front-end website which displays spatially aggregated  energy consumption statistics at an annual temporal resolution for most neighborhoods, cities, and counties in Southern California.</p><p>The Energy Atlas project provides Californians, and those interested in ongoing energy transitions, with the opportunity to interact with one of the largest sets of disaggregated building energy data available in the nation.  This interactive tool is used by a wide variety of stakeholder groups to inform energy planning and research throughout California.</p>",
+                "theme": null,
+                "keyword": [
+                  "buildings",
+                  "energy"
+                ],
+                "contact_name": null,
+                "contact_email": null,
+                "publisher_name": "University of California, Los Angeles",
+                "publisher_type": null,
+                "spatial_bbox": null,
+                "spatial_centroid": null,
+                "temporal_startDate": null,
+                "temporal_endDate": null,
+                "accrualPeriodicity": null
+              },
+              "custom-template": {
+                "projects": null,
+                "source-of-data": null
+              },
+              "datacite": {
+                "identifier": null,
+                "title": "Energy Atlas 2.0",
+                "alternative-title": null,
+                "publisher": "University of California, Los Angeles",
+                "creator": [
+                  "University of California, Los Angeles"
+                ],
+                "publication-year": "2025",
+                "subject": [
+                  "BUILDINGS [GCMD]",
+                  "Electricity"
+                ],
+                "contributor": null,
+                "date": null,
+                "language": "English",
+                "resource-type": [
+                  "Other"
+                ],
+                "alternate-identifier": null,
+                "relatedidentifier": [
+                  "References",
+                  "https://energyatlas.ucla.edu/"
+                ],
+                "size": null,
+                "format": null,
+                "version": null,
+                "rights": null,
+                "description": "<p>The Energy Atlas is a database of building energy consumption that links utility account information to building characteristics, sociodemographic data, and other significant attributes that can be expressed spatially. The public portion of the Energy Atlas is a front-end website which displays spatially aggregated energy consumption statistics at an annual temporal resolution for most neighborhoods, cities, and counties in Southern California.\n</p><p>\nThe Energy Atlas project provides Californians, and those interested in ongoing energy transitions, with the opportunity to interact with one of the largest sets of disaggregated building energy data available in the nation. This interactive tool is used by a wide variety of stakeholder groups to inform energy planning and research throughout California.</p>",
+                "geolocation": "State of California"
+              }
+            }
+          },
+          {
+            "visibility": "domain",
+            "fields": [],
+            "dataset_id": "recent-earthquakes",
+            "dataset_uid": "da_3miubr",
+            "has_records": false,
+            "features": [],
+            "attachments": [],
+            "alternative_exports": [],
+            "data_visible": true,
+            "metas": {
+              "dcat": {
+                "created": null,
+                "issued": "2019-12-14",
+                "creator": "esri_livefeeds2",
+                "contributor": null,
+                "contact_name": null,
+                "contact_email": null,
+                "accrualperiodicity": null,
+                "spatial": "-180.0000,-60.9152,180.0000,84.8293",
+                "temporal": null,
+                "granularity": null,
+                "dataquality": null,
+                "publisher_type": null,
+                "conforms_to": null,
+                "temporal_coverage_start": null,
+                "temporal_coverage_end": null,
+                "accessRights": null,
+                "relation": null
+              },
+              "default": {
+                "title": "Recent Earthquakes",
+                "description": "<p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">In addition to displaying earthquakes by magnitude, this service also provide earthquake impact details. Impact is measured by population as well as models for economic and fatality loss. For more details, see: PAGER Alerts.</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Consumption Best Practices:</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">As a service that is subject to very high usage, ensure peak performance and accessibility of your maps and apps by avoiding the use of non-cache-able relative Date/Time field filters. To accommodate filtering events by Date/Time, we suggest using the included \"Age\" fields that maintain the number of days or hours since a record was created or last modified, compared to the last service update. These queries fully support the ability to cache a response, allowing common query results to be efficiently provided to users in a high demand service environment.</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">When ingesting this service in your applications, avoid using POST requests whenever possible. These requests can compromise performance and scalability during periods of high usage because they too are not cache-able.</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Update Frequency: Events are updated as frequently as every 5 minutes and are available up to 30 days with the following exceptions:</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Events with a Magnitude LESS than 4.5 are retained for 7 days</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Events with a Significance value, 'sig' field, of 600 or higher are retained for 90 days</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">In addition to event points, ShakeMaps are also provided. These have been dissolved by Shake Intensity to reduce the Layer Complexity.</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">The specific layers provided in this service have been Time Enabled and include:</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Events by Magnitude: The event\u2019s seismic magnitude value.</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Contains PAGER Alert Level: USGS PAGER (Prompt Assessment of Global Earthquakes for Response) system provides an automated impact level assignment that estimates fatality and economic loss.</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Contains Significance Level: An event\u2019s significance is determined by factors like magnitude, max MMI, \u2018felt\u2019 reports, and estimated impact.</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Shake Intensity: The Instrumental Intensity or Modified Mercalli Intensity (MMI) for available events.</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">For field terms and technical details, see: ComCat Documentation</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Alternate Symbologies</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Visit the Classic USGS Feature Layer item for a Rainbow view of Shakemap features.</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Revisions</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Feb 13, 2024: Updated feed logic to remove Superseded events</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">This map is provided for informational purposes and is not monitored 24/7 for accuracy and currency. Always refer to USGS source for official guidance.</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">If you would like to be alerted to potential issues or simply see when this Service will update next, please visit our Live Feed Status Page.</span></p>",
+                "theme": [
+                  "Natural Hazards"
+                ],
+                "keyword": [
+                  "USGS",
+                  "PAGER",
+                  "earthquakes",
+                  "geoscientific information",
+                  "earthquake impact analysis",
+                  "seismic events"
+                ],
+                "license": "ESRI Custom License",
+                "license_url": "https://content.esri.com/arcgisonline/docs/tou_summary.pdf",
+                "language": "en",
+                "metadata_languages": [
+                  "en"
+                ],
+                "timezone": null,
+                "modified": "2024-04-02T01:34:27+00:00",
+                "modified_updates_on_metadata_change": false,
+                "modified_updates_on_data_change": false,
+                "data_processed": null,
+                "metadata_processed": "2026-05-13T07:01:57.063000+00:00",
+                "geographic_reference": null,
+                "geographic_reference_auto": false,
+                "territory": null,
+                "geometry_types": null,
+                "bbox": null,
+                "publisher": "United States Geological Survey",
+                "references": "https://www.arcgis.com/home/item.html?id=9e2f2b544c954fda9cd13b7f3e6eebce",
+                "records_count": 0,
+                "attributions": [
+                  "United States Geological Survey"
+                ],
+                "source_domain": null,
+                "source_domain_title": null,
+                "source_domain_address": null,
+                "source_dataset": null,
+                "shared_catalog": null,
+                "federated": false,
+                "parent_domain": null,
+                "update_frequency": null
+              },
+              "dublin-core": {
+                "title": "Recent Earthquakes",
+                "alternative": null,
+                "subject": [
+                  "EARTHQUAKES [GCMD]"
+                ],
+                "description": "<p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">In addition to displaying earthquakes by magnitude, this service also provide earthquake impact details. Impact is measured by population as well as models for economic and fatality loss. For more details, see: PAGER Alerts.</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Consumption Best Practices:</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">As a service that is subject to very high usage, ensure peak performance and accessibility of your maps and apps by avoiding the use of non-cache-able relative Date/Time field filters. To accommodate filtering events by Date/Time, we suggest using the included \"Age\" fields that maintain the number of days or hours since a record was created or last modified, compared to the last service update. These queries fully support the ability to cache a response, allowing common query results to be efficiently provided to users in a high demand service environment.</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">When ingesting this service in your applications, avoid using POST requests whenever possible. These requests can compromise performance and scalability during periods of high usage because they too are not cache-able.</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Update Frequency: Events are updated as frequently as every 5 minutes and are available up to 30 days with the following exceptions:</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Events with a Magnitude LESS than 4.5 are retained for 7 days</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Events with a Significance value, 'sig' field, of 600 or higher are retained for 90 days</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">In addition to event points, ShakeMaps are also provided. These have been dissolved by Shake Intensity to reduce the Layer Complexity.</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">The specific layers provided in this service have been Time Enabled and include:</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Events by Magnitude: The event\u2019s seismic magnitude value.</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Contains PAGER Alert Level: USGS PAGER (Prompt Assessment of Global Earthquakes for Response) system provides an automated impact level assignment that estimates fatality and economic loss.</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Contains Significance Level: An event\u2019s significance is determined by factors like magnitude, max MMI, \u2018felt\u2019 reports, and estimated impact.</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Shake Intensity: The Instrumental Intensity or Modified Mercalli Intensity (MMI) for available events.</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">For field terms and technical details, see: ComCat Documentation</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Alternate Symbologies</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Visit the Classic USGS Feature Layer item for a Rainbow view of Shakemap features.</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Revisions</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Feb 13, 2024: Updated feed logic to remove Superseded events</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">This map is provided for informational purposes and is not monitored 24/7 for accuracy and currency. Always refer to USGS source for official guidance.</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">If you would like to be alerted to potential issues or simply see when this Service will update next, please visit our Live Feed Status Page.</span></p>",
+                "abstract": null,
+                "tableOfContent": null,
+                "type": "InteractiveResource",
+                "language": "eng",
+                "coverage": null,
+                "spatial": "World",
+                "temporal_start": null,
+                "temporal_end": null,
+                "relation": null,
+                "source": null,
+                "replaces": null,
+                "references": "https://www.arcgis.com/home/item.html?id=9e2f2b544c954fda9cd13b7f3e6eebce",
+                "requires": null,
+                "conformsTo": null,
+                "hasFormat": null,
+                "hasPart": null,
+                "hasVersion": null,
+                "isFormatOf": null,
+                "isPartOf": null,
+                "isVersionOf": null,
+                "isReferencedBy": null,
+                "isReplacedBy": null,
+                "isRequiredBy": null,
+                "contributor": [
+                  "Environmental Systems Research Institute (United States) (Hosting Institution)"
+                ],
+                "creator": "United States Geological Survey",
+                "publisher": "United States Geological Survey",
+                "rights": null,
+                "accessRights": null,
+                "license": "ESRI Custom License",
+                "date_start": null,
+                "date_end": null,
+                "available_start": null,
+                "available_end": null,
+                "created": null,
+                "dateAccepted": null,
+                "dateCopyrighted": null,
+                "dateSubmitted": null,
+                "issued": null,
+                "modified": "2024-04-02T01:34:27+00:00",
+                "valid_start": null,
+                "valid_end": null,
+                "format": null,
+                "extent": null,
+                "medium": null,
+                "identifier": null,
+                "bibliographicCitation": null,
+                "rightsHolder": null,
+                "accrualMethod": null,
+                "accrualPeriodicity": null,
+                "accrualPolicy": null,
+                "audience": null,
+                "educationLevel": null,
+                "instructionalMethod": null,
+                "mediator": null,
+                "provenance": null
+              },
+              "dcat_ap": {
+                "title": "Recent Earthquakes",
+                "description": "<p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">In addition to displaying earthquakes by magnitude, this service also provide earthquake impact details. Impact is measured by population as well as models for economic and fatality loss. For more details, see: PAGER Alerts.</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Consumption Best Practices:</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">As a service that is subject to very high usage, ensure peak performance and accessibility of your maps and apps by avoiding the use of non-cache-able relative Date/Time field filters. To accommodate filtering events by Date/Time, we suggest using the included \"Age\" fields that maintain the number of days or hours since a record was created or last modified, compared to the last service update. These queries fully support the ability to cache a response, allowing common query results to be efficiently provided to users in a high demand service environment.</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">When ingesting this service in your applications, avoid using POST requests whenever possible. These requests can compromise performance and scalability during periods of high usage because they too are not cache-able.</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Update Frequency: Events are updated as frequently as every 5 minutes and are available up to 30 days with the following exceptions:</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Events with a Magnitude LESS than 4.5 are retained for 7 days</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Events with a Significance value, 'sig' field, of 600 or higher are retained for 90 days</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">In addition to event points, ShakeMaps are also provided. These have been dissolved by Shake Intensity to reduce the Layer Complexity.</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">The specific layers provided in this service have been Time Enabled and include:</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Events by Magnitude: The event\u2019s seismic magnitude value.</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Contains PAGER Alert Level: USGS PAGER (Prompt Assessment of Global Earthquakes for Response) system provides an automated impact level assignment that estimates fatality and economic loss.</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Contains Significance Level: An event\u2019s significance is determined by factors like magnitude, max MMI, \u2018felt\u2019 reports, and estimated impact.</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Shake Intensity: The Instrumental Intensity or Modified Mercalli Intensity (MMI) for available events.</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">For field terms and technical details, see: ComCat Documentation</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Alternate Symbologies</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Visit the Classic USGS Feature Layer item for a Rainbow view of Shakemap features.</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Revisions</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Feb 13, 2024: Updated feed logic to remove Superseded events</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">This map is provided for informational purposes and is not monitored 24/7 for accuracy and currency. Always refer to USGS source for official guidance.</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">If you would like to be alerted to potential issues or simply see when this Service will update next, please visit our Live Feed Status Page.</span></p>",
+                "theme": null,
+                "keyword": [
+                  "USGS",
+                  "PAGER",
+                  "earthquakes",
+                  "geoscientific information",
+                  "earthquake impact analysis",
+                  "seismic events"
+                ],
+                "contact_name": null,
+                "contact_email": null,
+                "publisher_name": "United States Geological Survey",
+                "publisher_type": null,
+                "spatial_bbox": null,
+                "spatial_centroid": null,
+                "temporal_startDate": null,
+                "temporal_endDate": null,
+                "accrualPeriodicity": null
+              },
+              "custom-template": {
+                "projects": null,
+                "source-of-data": "Find Data at Source"
+              },
+              "datacite": {
+                "identifier": null,
+                "title": "Recent Earthquakes",
+                "alternative-title": null,
+                "publisher": "United States Geological Survey",
+                "creator": [
+                  "United States Geological Survey"
+                ],
+                "publication-year": "2024",
+                "subject": [
+                  "EARTHQUAKES [GCMD]"
+                ],
+                "contributor": [
+                  "HostingInstitution",
+                  "Environmental Systems Research Institute (United States)"
+                ],
+                "date": [
+                  "Collected",
+                  "2024"
+                ],
+                "language": "English",
+                "resource-type": [
+                  "Other"
+                ],
+                "alternate-identifier": "recent-earthquakes",
+                "relatedidentifier": [
+                  "References",
+                  "https://www.arcgis.com/home/item.html?id=9e2f2b544c954fda9cd13b7f3e6eebce"
+                ],
+                "size": null,
+                "format": "text/html",
+                "version": null,
+                "rights": null,
+                "description": "<p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">In addition to displaying earthquakes by magnitude, this service also provide earthquake impact details. Impact is measured by population as well as models for economic and fatality loss. For more details, see: PAGER Alerts.</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Consumption Best Practices:</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">As a service that is subject to very high usage, ensure peak performance and accessibility of your maps and apps by avoiding the use of non-cache-able relative Date/Time field filters. To accommodate filtering events by Date/Time, we suggest using the included \"Age\" fields that maintain the number of days or hours since a record was created or last modified, compared to the last service update. These queries fully support the ability to cache a response, allowing common query results to be efficiently provided to users in a high demand service environment.</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">When ingesting this service in your applications, avoid using POST requests whenever possible. These requests can compromise performance and scalability during periods of high usage because they too are not cache-able.</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Update Frequency: Events are updated as frequently as every 5 minutes and are available up to 30 days with the following exceptions:</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Events with a Magnitude LESS than 4.5 are retained for 7 days</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Events with a Significance value, 'sig' field, of 600 or higher are retained for 90 days</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">In addition to event points, ShakeMaps are also provided. These have been dissolved by Shake Intensity to reduce the Layer Complexity.</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">The specific layers provided in this service have been Time Enabled and include:</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Events by Magnitude: The event\u2019s seismic magnitude value.</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Contains PAGER Alert Level: USGS PAGER (Prompt Assessment of Global Earthquakes for Response) system provides an automated impact level assignment that estimates fatality and economic loss.</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Contains Significance Level: An event\u2019s significance is determined by factors like magnitude, max MMI, \u2018felt\u2019 reports, and estimated impact.</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Shake Intensity: The Instrumental Intensity or Modified Mercalli Intensity (MMI) for available events.</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">For field terms and technical details, see: ComCat Documentation</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Alternate Symbologies</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Visit the Classic USGS Feature Layer item for a Rainbow view of Shakemap features.</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Revisions</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">Feb 13, 2024: Updated feed logic to remove Superseded events</span></p><p class=\"p1\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">This map is provided for informational purposes and is not monitored 24/7 for accuracy and currency. Always refer to USGS source for official guidance.</span></p><p class=\"p2\" style=\"margin-bottom: 0px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0); min-height: 17px;\"><span class=\"s1\" style=\"font-kerning: none;\"></span><br></p><p class=\"p1\" style=\"font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-stretch: normal; line-height: normal; font-family: Helvetica; -webkit-text-stroke-color: rgb(0, 0, 0);\"><span class=\"s1\" style=\"font-kerning: none;\">If you would like to be alerted to potential issues or simply see when this Service will update next, please visit our Live Feed Status Page.</span></p>",
+                "geolocation": null
+              }
+            }
+          },
+          {
+            "visibility": "domain",
+            "fields": [],
+            "dataset_id": "results-from-charging-needs-for-electric-semi-trailer-trucks",
+            "dataset_uid": "da_ijsqt2",
+            "has_records": false,
+            "features": [],
+            "attachments": [],
+            "alternative_exports": [],
+            "data_visible": true,
+            "metas": {
+              "dcat": {
+                "created": null,
+                "issued": null,
+                "creator": null,
+                "contributor": null,
+                "contact_name": null,
+                "contact_email": null,
+                "accrualperiodicity": null,
+                "spatial": null,
+                "temporal": null,
+                "granularity": null,
+                "dataquality": null,
+                "publisher_type": null,
+                "conforms_to": null,
+                "temporal_coverage_start": null,
+                "temporal_coverage_end": null,
+                "accessRights": null,
+                "relation": null
+              },
+              "default": {
+                "title": "Charging Needs for Electric Semi-Trailer Trucks",
+                "description": "<p>This data set includes modeling results from \u201cCharging Needs for Electric Semi-Trailer Trucks\u201d including charging demand distributions and charging speed requirements for the multiple scenarios and semi-trailer truck operating segments described in the study. Please cite as: Borlaug, B., Moniot, M., Birky, A., Alexander, M., and Muratori, M., Charging needs for electric semi-trailer trucks, Renew. Sust. Energ. Transit. (2022), 2, https://doi.org/10.1016/j.rset.2022.100038.<br></p>",
+                "theme": [
+                  "Transportation"
+                ],
+                "keyword": [
+                  "freight",
+                  "electric vehicle supply equipment (EVSE)"
+                ],
+                "license": "National Laboratory of the Rockies License",
+                "license_url": "https://data.nrel.gov/node/182/license",
+                "language": "en",
+                "metadata_languages": [
+                  "en"
+                ],
+                "timezone": null,
+                "modified": "2024-07-18T17:21:18+00:00",
+                "modified_updates_on_metadata_change": false,
+                "modified_updates_on_data_change": false,
+                "data_processed": null,
+                "metadata_processed": "2026-05-13T07:02:20.584000+00:00",
+                "geographic_reference": null,
+                "geographic_reference_auto": false,
+                "territory": null,
+                "geometry_types": null,
+                "bbox": null,
+                "publisher": "National Laboratory of the Rockies",
+                "references": "https://www.osti.gov/dataexplorer/biblio/dataset/1893111",
+                "records_count": 0,
+                "attributions": null,
+                "source_domain": null,
+                "source_domain_title": null,
+                "source_domain_address": null,
+                "source_dataset": null,
+                "shared_catalog": null,
+                "federated": false,
+                "parent_domain": null,
+                "update_frequency": null
+              },
+              "dublin-core": {
+                "title": "Charging Needs for Electric Semi-Trailer Trucks",
+                "alternative": null,
+                "subject": [
+                  "Electric Vehicle Charging Station",
+                  "Transportation"
+                ],
+                "description": "<p>This data set includes modeling results from \u201cCharging Needs for Electric Semi-Trailer Trucks\u201d including charging demand distributions and charging speed requirements for the multiple scenarios and semi-trailer truck operating segments described in the study. Please cite as: Borlaug, B., Moniot, M., Birky, A., Alexander, M., and Muratori, M., Charging needs for electric semi-trailer trucks, Renew. Sust. Energ. Transit. (2022), 2, https://doi.org/10.1016/j.rset.2022.100038.<br></p>",
+                "abstract": null,
+                "tableOfContent": null,
+                "type": "Dataset",
+                "language": "eng",
+                "coverage": null,
+                "spatial": null,
+                "temporal_start": null,
+                "temporal_end": null,
+                "relation": null,
+                "source": null,
+                "replaces": null,
+                "references": "https://www.osti.gov/dataexplorer/biblio/dataset/1893111",
+                "requires": null,
+                "conformsTo": null,
+                "hasFormat": null,
+                "hasPart": null,
+                "hasVersion": null,
+                "isFormatOf": null,
+                "isPartOf": null,
+                "isVersionOf": null,
+                "isReferencedBy": null,
+                "isReplacedBy": null,
+                "isRequiredBy": null,
+                "contributor": [
+                  "National Laboratory of the Rockies (Hosting Institution)"
+                ],
+                "creator": "Borlaug, Brennan",
+                "publisher": "National Laboratory of the Rockies",
+                "rights": null,
+                "accessRights": null,
+                "license": "National Laboratory of the Rockies License",
+                "date_start": null,
+                "date_end": null,
+                "available_start": null,
+                "available_end": null,
+                "created": "2022-10-10T04:00:00+00:00",
+                "dateAccepted": null,
+                "dateCopyrighted": null,
+                "dateSubmitted": null,
+                "issued": null,
+                "modified": "2024-07-18T17:21:18+00:00",
+                "valid_start": null,
+                "valid_end": null,
+                "format": [
+                  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                ],
+                "extent": "35.7 KB",
+                "medium": null,
+                "identifier": null,
+                "bibliographicCitation": [
+                  " Borlaug, Brennan. Results from \"Charging Needs for Electric Semi-Trailer Trucks\". United States: N. p., 2022. Web. doi:10.7799/1893111."
+                ],
+                "rightsHolder": null,
+                "accrualMethod": null,
+                "accrualPeriodicity": null,
+                "accrualPolicy": null,
+                "audience": null,
+                "educationLevel": null,
+                "instructionalMethod": null,
+                "mediator": null,
+                "provenance": null
+              },
+              "dcat_ap": {
+                "title": "Charging Needs for Electric Semi-Trailer Trucks",
+                "description": "<p>This data set includes modeling results from \u201cCharging Needs for Electric Semi-Trailer Trucks\u201d including charging demand distributions and charging speed requirements for the multiple scenarios and semi-trailer truck operating segments described in the study. Please cite as: Borlaug, B., Moniot, M., Birky, A., Alexander, M., and Muratori, M., Charging needs for electric semi-trailer trucks, Renew. Sust. Energ. Transit. (2022), 2, https://doi.org/10.1016/j.rset.2022.100038.<br></p>",
+                "theme": null,
+                "keyword": [
+                  "freight",
+                  "electric vehicle supply equipment (EVSE)"
+                ],
+                "contact_name": null,
+                "contact_email": null,
+                "publisher_name": "National Laboratory of the Rockies",
+                "publisher_type": null,
+                "spatial_bbox": null,
+                "spatial_centroid": null,
+                "temporal_startDate": null,
+                "temporal_endDate": null,
+                "accrualPeriodicity": null
+              },
+              "custom-template": {
+                "projects": "Analysis of Electric Heavy-Duty Driving Infrastructure Requirements Within a Regional Area",
+                "source-of-data": "Find Data at Source"
+              },
+              "datacite": {
+                "identifier": "https://doi.org/10.7799/1893111",
+                "title": "Results from \"Charging Needs for Electric Semi-Trailer Trucks\"",
+                "alternative-title": null,
+                "publisher": "National Laboratory of the Rockies",
+                "creator": [
+                  "Borlaug, Brennan"
+                ],
+                "publication-year": "2022",
+                "subject": [
+                  "Electric Vehicle Charging Station",
+                  "Transportation"
+                ],
+                "contributor": [
+                  "HostingInstitution",
+                  "National Laboratory of the Rockies"
+                ],
+                "date": null,
+                "language": "English",
+                "resource-type": [
+                  "Dataset"
+                ],
+                "alternate-identifier": "results-from-charging-needs-for-electric-semi-trailer-trucks",
+                "relatedidentifier": [
+                  "References",
+                  "https://www.osti.gov/dataexplorer/biblio/dataset/1893111"
+                ],
+                "size": "1 File",
+                "format": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "version": null,
+                "rights": null,
+                "description": "<p>This data set includes modeling results from \u201cCharging Needs for Electric Semi-Trailer Trucks\u201d including charging demand distributions and charging speed requirements for the multiple scenarios and semi-trailer truck operating segments described in the study. Please cite as: Borlaug, B., Moniot, M., Birky, A., Alexander, M., and Muratori, M., Charging needs for electric semi-trailer trucks, Renew. Sust. Energ. Transit. (2022), 2, https://doi.org/10.1016/j.rset.2022.100038.<br></p>",
+                "geolocation": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "url": "https://openenergyhub.ornl.gov/api/explore/v2.1/catalog/datasets",
+      "params": {
+        "limit": "2",
+        "offset": "0",
+        "where": "search(*, \"geothermal\")"
+      },
+      "headers": {
+        "content-type": "application/json; charset=utf-8"
+      },
+      "body": {
+        "total_count": 17,
+        "results": [
+          {
+            "visibility": "domain",
+            "fields": [],
+            "dataset_id": "glass-buttes-exploration-and-drilling-2010-geothermal-technologies-program-peer-",
+            "dataset_uid": "da_d2z1xc",
+            "has_records": false,
+            "features": [],
+            "attachments": [],
+            "alternative_exports": [],
+            "data_visible": true,
+            "metas": {
+              "dcat": {
+                "created": null,
+                "issued": null,
+                "creator": null,
+                "contributor": null,
+                "contact_name": null,
+                "contact_email": null,
+                "accrualperiodicity": null,
+                "spatial": null,
+                "temporal": null,
+                "granularity": null,
+                "dataquality": null,
+                "publisher_type": null,
+                "conforms_to": null,
+                "temporal_coverage_start": null,
+                "temporal_coverage_end": null,
+                "accessRights": null,
+                "relation": null
+              },
+              "default": {
+                "title": "Glass Buttes Exploration and Drilling: 2010 Geothermal Technologies Program Peer Review Presentation",
+                "description": "<p>Glass Buttes Exploration and Drilling: 2010 Geothermal Technologies Program Peer Review Presentation, Walsh, et al, Ormat\n</p><p>\nThe primary objective of this project is to combine a suite of\nhigh resolution geophysical and geochemical techniques to\nreduce exploration risk by characterizing hydrothermal\nalteration, fault geometries and relationships.\n</p><p>The intent of the proposed program is to use an innovative\ncombination of geologic observation, modern remote sensing\nand geophysical techniques to analyze and structurally model\nthis area prior to siting and drilling.</p>",
+                "theme": [
+                  "Energy",
+                  "Mining",
+                  "Geothermal Energy"
+                ],
+                "keyword": [
+                  "geothermal",
+                  "glass buttes",
+                  "geophysical",
+                  "geochemical",
+                  "hydrothermal alteration",
+                  "remote sensing",
+                  "temperature logs",
+                  "fault geometry",
+                  "aeromagnetic",
+                  "lidar",
+                  "3d geologic model",
+                  "hyperspectral",
+                  "mineral assemblages"
+                ],
+                "license": "CC BY 4.0",
+                "license_url": "https://creativecommons.org/licenses/by/4.0/",
+                "language": "en",
+                "metadata_languages": [
+                  "en"
+                ],
+                "timezone": null,
+                "modified": "2020-08-14T19:51:29+00:00",
+                "modified_updates_on_metadata_change": false,
+                "modified_updates_on_data_change": false,
+                "data_processed": null,
+                "metadata_processed": "2026-05-13T07:02:04.135000+00:00",
+                "geographic_reference": [
+                  "us_40_41"
+                ],
+                "geographic_reference_auto": false,
+                "territory": [
+                  "Oregon"
+                ],
+                "geometry_types": null,
+                "bbox": null,
+                "publisher": "Ormat Nevada Inc",
+                "references": "https://gdr.openei.org/submissions/97",
+                "records_count": 0,
+                "attributions": [
+                  "Walsh, P. (2010). Glass Buttes Exploration and Drilling: 2010 Geothermal Technologies Program Peer Review Presentation. [Data set]. Geothermal Data Repository. Ormat Nevada Inc. https://doi.org/10.15121/1150328"
+                ],
+                "source_domain": null,
+                "source_domain_title": null,
+                "source_domain_address": null,
+                "source_dataset": null,
+                "shared_catalog": null,
+                "federated": false,
+                "parent_domain": null,
+                "update_frequency": null
+              },
+              "dublin-core": {
+                "title": "Glass Buttes Exploration and Drilling: 2010 Geothermal Technologies Program Peer Review Presentation",
+                "alternative": null,
+                "subject": [
+                  "Geothermal",
+                  "GEOTHERMAL ENERGY PRODUCTION/USE [GCMD]"
+                ],
+                "description": "<p>Glass Buttes Exploration and Drilling: 2010 Geothermal Technologies Program Peer Review Presentation, Walsh, et al, Ormat\n</p><p>\nThe primary objective of this project is to combine a suite of\nhigh resolution geophysical and geochemical techniques to\nreduce exploration risk by characterizing hydrothermal\nalteration, fault geometries and relationships.\n</p><p>The intent of the proposed program is to use an innovative\ncombination of geologic observation, modern remote sensing\nand geophysical techniques to analyze and structurally model\nthis area prior to siting and drilling.</p>",
+                "abstract": null,
+                "tableOfContent": null,
+                "type": "Text",
+                "language": "eng",
+                "coverage": null,
+                "spatial": "State of Oregon",
+                "temporal_start": null,
+                "temporal_end": null,
+                "relation": null,
+                "source": null,
+                "replaces": null,
+                "references": "https://gdr.openei.org/submissions/97",
+                "requires": null,
+                "conformsTo": null,
+                "hasFormat": null,
+                "hasPart": null,
+                "hasVersion": null,
+                "isFormatOf": null,
+                "isPartOf": null,
+                "isVersionOf": null,
+                "isReferencedBy": null,
+                "isReplacedBy": null,
+                "isRequiredBy": null,
+                "contributor": [
+                  "Geothermal Data Repository (Hosting Institution)",
+                  "Zemach, Ezra (Contact person)"
+                ],
+                "creator": "Ormat Nevada Inc; Walsh, Patrick",
+                "publisher": "Ormat Nevada Inc",
+                "rights": null,
+                "accessRights": null,
+                "license": "CC BY 4.0",
+                "date_start": null,
+                "date_end": null,
+                "available_start": null,
+                "available_end": null,
+                "created": "2010-01-02T04:00:00+00:00",
+                "dateAccepted": null,
+                "dateCopyrighted": null,
+                "dateSubmitted": "2012-04-17T04:00:00+00:00",
+                "issued": null,
+                "modified": "2020-08-14T19:51:29+00:00",
+                "valid_start": null,
+                "valid_end": null,
+                "format": null,
+                "extent": "1 File (780.83 KB)",
+                "medium": null,
+                "identifier": "https://doi.org/10.15121/1150328",
+                "bibliographicCitation": [
+                  "Ormat Nevada Inc. (2010). Glass Buttes Exploration and Drilling: 2010 Geothermal Technologies Program Peer Review Presentation [data set]. Retrieved from https://dx.doi.org/10.15121/1150328."
+                ],
+                "rightsHolder": null,
+                "accrualMethod": null,
+                "accrualPeriodicity": null,
+                "accrualPolicy": null,
+                "audience": null,
+                "educationLevel": null,
+                "instructionalMethod": null,
+                "mediator": null,
+                "provenance": null
+              },
+              "dcat_ap": {
+                "title": "Glass Buttes Exploration and Drilling: 2010 Geothermal Technologies Program Peer Review Presentation",
+                "description": "<p>Glass Buttes Exploration and Drilling: 2010 Geothermal Technologies Program Peer Review Presentation, Walsh, et al, Ormat\n</p><p>\nThe primary objective of this project is to combine a suite of\nhigh resolution geophysical and geochemical techniques to\nreduce exploration risk by characterizing hydrothermal\nalteration, fault geometries and relationships.\n</p><p>The intent of the proposed program is to use an innovative\ncombination of geologic observation, modern remote sensing\nand geophysical techniques to analyze and structurally model\nthis area prior to siting and drilling.</p>",
+                "theme": null,
+                "keyword": [
+                  "geothermal",
+                  "glass buttes",
+                  "geophysical",
+                  "geochemical",
+                  "hydrothermal alteration",
+                  "remote sensing",
+                  "temperature logs",
+                  "fault geometry",
+                  "aeromagnetic",
+                  "lidar",
+                  "3d geologic model",
+                  "hyperspectral",
+                  "mineral assemblages"
+                ],
+                "contact_name": null,
+                "contact_email": null,
+                "publisher_name": "Ormat Nevada Inc",
+                "publisher_type": null,
+                "spatial_bbox": null,
+                "spatial_centroid": null,
+                "temporal_startDate": null,
+                "temporal_endDate": null,
+                "accrualPeriodicity": null
+              },
+              "custom-template": {
+                "projects": null,
+                "source-of-data": "Find Data at Source"
+              },
+              "datacite": {
+                "identifier": "https://doi.org/10.15121/1150328",
+                "title": "Glass Buttes Exploration and Drilling: 2010 Geothermal Technologies Program Peer Review Presentation",
+                "alternative-title": null,
+                "publisher": "Oak Ridge National Laboratory",
+                "creator": [
+                  "Ormat Nevada Inc",
+                  "Walsh, Patrick"
+                ],
+                "publication-year": "2012",
+                "subject": [
+                  "Geothermal",
+                  "GEOTHERMAL ENERGY PRODUCTION/USE [GCMD]"
+                ],
+                "contributor": [
+                  "ContactPerson",
+                  "Zemach, Ezra",
+                  "HostingInstitution",
+                  "Geothermal Data Repository"
+                ],
+                "date": [
+                  "Updated",
+                  "2020-08-14",
+                  "Submitted",
+                  "2012-04-17",
+                  "Created",
+                  "2010-01-01"
+                ],
+                "language": "English",
+                "resource-type": [
+                  "Report"
+                ],
+                "alternate-identifier": null,
+                "relatedidentifier": [
+                  "References",
+                  "https://gdr.openei.org/submissions/97"
+                ],
+                "size": "1 File (780.83 KB)",
+                "format": "application/pdf",
+                "version": null,
+                "rights": "https://creativecommons.org/licenses/by/4.0/",
+                "description": "<p>Glass Buttes Exploration and Drilling: 2010 Geothermal Technologies Program Peer Review Presentation, Walsh, et al, Ormat\n</p><p>\nThe primary objective of this project is to combine a suite of high resolution geophysical and geochemical techniques to reduce exploration risk by characterizing hydrothermal alteration, fault geometries and relationships.\n</p><p>\nThe intent of the proposed program is to use an innovative combination of geologic observation, modern remote sensing and geophysical techniques to analyze and structurally model this area prior to siting and drilling.</p><p>Cite as:</p><p>Walsh, P. (2010). Glass Buttes Exploration and Drilling: 2010 Geothermal Technologies Program Peer Review Presentation. [Data set]. Geothermal Data Repository. Ormat Nevada Inc. https://doi.org/10.15121/1150328</p>",
+                "geolocation": "State of Oregon"
+              }
+            }
+          },
+          {
+            "visibility": "domain",
+            "fields": [],
+            "dataset_id": "investigation-of-stimulation-response-relationships-for-complex-fracture-systems",
+            "dataset_uid": "da_1pdd8w",
+            "has_records": false,
+            "features": [],
+            "attachments": [],
+            "alternative_exports": [],
+            "data_visible": true,
+            "metas": {
+              "dcat": {
+                "created": null,
+                "issued": null,
+                "creator": null,
+                "contributor": null,
+                "contact_name": null,
+                "contact_email": null,
+                "accrualperiodicity": null,
+                "spatial": null,
+                "temporal": null,
+                "granularity": null,
+                "dataquality": null,
+                "publisher_type": null,
+                "conforms_to": null,
+                "temporal_coverage_start": null,
+                "temporal_coverage_end": null,
+                "accessRights": null,
+                "relation": null
+              },
+              "default": {
+                "title": "Investigation of Stimulation-Response Relationships for Complex Fracture Systems in Enhanced Geothermal Reservoirs",
+                "description": "Hydraulic fracturing is currently the primary method for stimulating low-permeability geothermal reservoirs and creating Enhanced (or Engineered) Geothermal Systems (EGS) with improved permeability and heat production efficiency.  Complex natural fracture systems usually exist in the formations to be stimulated and it is therefore critical to understand the interactions between existing fractures and newly created fractures before optimal stimulation strategies can be developed.  Our study aims to improve the understanding of EGS stimulation-response relationships by developing and applying computer-based models that can effectively reflect the key mechanisms governing interactions between complex existing fracture networks and newly created hydraulic fractures.  In this paper, we first briefly describe the key modules of our methodology, namely a geomechanics solver, a discrete fracture flow solver, a rock joint response model, an adaptive remeshing module, and most importantly their effective coupling.  After verifying the numerical model against classical closed-form solutions, we investigate responses of reservoirs with different preexisting natural fractures to a variety of stimulation strategies.  The factors investigated include: the in situ stress states (orientation of the principal stresses and the degree of stress anisotropy), pumping pressure, and stimulation sequences of multiple wells.\n",
+                "theme": [
+                  "Geothermal Energy"
+                ],
+                "keyword": [
+                  "geothermal",
+                  "enhanced geothermal system",
+                  "egs",
+                  "discrete fracture flow",
+                  "modeling",
+                  "reservoir stimulation",
+                  "stimulation",
+                  "hydraulic fracturing"
+                ],
+                "license": "CC BY 4.0",
+                "license_url": "https://creativecommons.org/licenses/by/4.0/",
+                "language": "en",
+                "metadata_languages": [
+                  "en"
+                ],
+                "timezone": null,
+                "modified": "2017-05-23T21:36:34+00:00",
+                "modified_updates_on_metadata_change": false,
+                "modified_updates_on_data_change": false,
+                "data_processed": null,
+                "metadata_processed": "2026-05-13T07:02:04.529000+00:00",
+                "geographic_reference": null,
+                "geographic_reference_auto": false,
+                "territory": null,
+                "geometry_types": null,
+                "bbox": null,
+                "publisher": "Lawrence Livermore National Laboratory",
+                "references": "https://gdr.openei.org/submissions/170",
+                "records_count": 0,
+                "attributions": [
+                  "Fu, P., Johnson, S., & Carrigan, C. (2011). Investigation of Stimulation-Response Relationships for Complex Fracture Systems in Enhanced Geothermal Reservoirs. [Data set]. Geothermal Data Repository. Lawrence Livermore National Laboratory. https://doi.org/10.15121/1358113"
+                ],
+                "source_domain": null,
+                "source_domain_title": null,
+                "source_domain_address": null,
+                "source_dataset": null,
+                "shared_catalog": null,
+                "federated": false,
+                "parent_domain": null,
+                "update_frequency": null
+              },
+              "dublin-core": {
+                "title": "Investigation of Stimulation-Response Relationships for Complex Fracture Systems in Enhanced Geothermal Reservoirs",
+                "alternative": null,
+                "subject": [
+                  "Geothermal",
+                  "GEOTHERMAL ENERGY PRODUCTION/USE [GCMD]"
+                ],
+                "description": "Hydraulic fracturing is currently the primary method for stimulating low-permeability geothermal reservoirs and creating Enhanced (or Engineered) Geothermal Systems (EGS) with improved permeability and heat production efficiency.  Complex natural fracture systems usually exist in the formations to be stimulated and it is therefore critical to understand the interactions between existing fractures and newly created fractures before optimal stimulation strategies can be developed.  Our study aims to improve the understanding of EGS stimulation-response relationships by developing and applying computer-based models that can effectively reflect the key mechanisms governing interactions between complex existing fracture networks and newly created hydraulic fractures.  In this paper, we first briefly describe the key modules of our methodology, namely a geomechanics solver, a discrete fracture flow solver, a rock joint response model, an adaptive remeshing module, and most importantly their effective coupling.  After verifying the numerical model against classical closed-form solutions, we investigate responses of reservoirs with different preexisting natural fractures to a variety of stimulation strategies.  The factors investigated include: the in situ stress states (orientation of the principal stresses and the degree of stress anisotropy), pumping pressure, and stimulation sequences of multiple wells.\n",
+                "abstract": null,
+                "tableOfContent": null,
+                "type": "Text",
+                "language": "eng",
+                "coverage": null,
+                "spatial": null,
+                "temporal_start": null,
+                "temporal_end": null,
+                "relation": null,
+                "source": null,
+                "replaces": null,
+                "references": "https://gdr.openei.org/submissions/170",
+                "requires": null,
+                "conformsTo": null,
+                "hasFormat": null,
+                "hasPart": null,
+                "hasVersion": null,
+                "isFormatOf": null,
+                "isPartOf": null,
+                "isVersionOf": null,
+                "isReferencedBy": null,
+                "isReplacedBy": null,
+                "isRequiredBy": null,
+                "contributor": [
+                  "Geothermal Data Repository (Hosting Institution)"
+                ],
+                "creator": "Lawrence Livermore National Laboratory; Fu, Pengcheng; Johnson, Scott M.; Hao, Yue; Carrigan, Charles R. ",
+                "publisher": "Lawrence Livermore National Laboratory",
+                "rights": null,
+                "accessRights": null,
+                "license": "CC BY 4.0",
+                "date_start": null,
+                "date_end": null,
+                "available_start": null,
+                "available_end": null,
+                "created": "2011-02-01T04:00:00+00:00",
+                "dateAccepted": null,
+                "dateCopyrighted": null,
+                "dateSubmitted": "2013-02-07T04:00:00+00:00",
+                "issued": null,
+                "modified": "2017-05-23T21:36:34+00:00",
+                "valid_start": null,
+                "valid_end": null,
+                "format": null,
+                "extent": null,
+                "medium": "application/pdf",
+                "identifier": "https://doi.org/10.15121/1358113",
+                "bibliographicCitation": [
+                  "Lawrence Livermore National Laboratory. (2011). Investigation of Stimulation-Response Relationships for Complex Fracture Systems in Enhanced Geothermal Reservoirs [data set]. Retrieved from https://dx.doi.org/10.15121/1358113."
+                ],
+                "rightsHolder": null,
+                "accrualMethod": null,
+                "accrualPeriodicity": null,
+                "accrualPolicy": null,
+                "audience": null,
+                "educationLevel": null,
+                "instructionalMethod": null,
+                "mediator": null,
+                "provenance": null
+              },
+              "dcat_ap": {
+                "title": "Investigation of Stimulation-Response Relationships for Complex Fracture Systems in Enhanced Geothermal Reservoirs",
+                "description": "Hydraulic fracturing is currently the primary method for stimulating low-permeability geothermal reservoirs and creating Enhanced (or Engineered) Geothermal Systems (EGS) with improved permeability and heat production efficiency.  Complex natural fracture systems usually exist in the formations to be stimulated and it is therefore critical to understand the interactions between existing fractures and newly created fractures before optimal stimulation strategies can be developed.  Our study aims to improve the understanding of EGS stimulation-response relationships by developing and applying computer-based models that can effectively reflect the key mechanisms governing interactions between complex existing fracture networks and newly created hydraulic fractures.  In this paper, we first briefly describe the key modules of our methodology, namely a geomechanics solver, a discrete fracture flow solver, a rock joint response model, an adaptive remeshing module, and most importantly their effective coupling.  After verifying the numerical model against classical closed-form solutions, we investigate responses of reservoirs with different preexisting natural fractures to a variety of stimulation strategies.  The factors investigated include: the in situ stress states (orientation of the principal stresses and the degree of stress anisotropy), pumping pressure, and stimulation sequences of multiple wells.\n",
+                "theme": null,
+                "keyword": [
+                  "geothermal",
+                  "enhanced geothermal system",
+                  "egs",
+                  "discrete fracture flow",
+                  "modeling",
+                  "reservoir stimulation",
+                  "stimulation",
+                  "hydraulic fracturing"
+                ],
+                "contact_name": null,
+                "contact_email": null,
+                "publisher_name": "Lawrence Livermore National Laboratory",
+                "publisher_type": null,
+                "spatial_bbox": null,
+                "spatial_centroid": null,
+                "temporal_startDate": null,
+                "temporal_endDate": null,
+                "accrualPeriodicity": null
+              },
+              "custom-template": {
+                "projects": null,
+                "source-of-data": "Find Data at Source"
+              },
+              "datacite": {
+                "identifier": "https://doi.org/10.15121/1358113",
+                "title": "Investigation of Stimulation-Response Relationships for Complex Fracture Systems in Enhanced Geothermal Reservoirs",
+                "alternative-title": null,
+                "publisher": "Oak Ridge National Laboratory",
+                "creator": [
+                  "Fu, Pengcheng ",
+                  "Johnson, Scott M.",
+                  "Carrigan, Charles R.",
+                  "Lawrence Livermore National Laboratory"
+                ],
+                "publication-year": "2013",
+                "subject": [
+                  "Geothermal",
+                  "GEOTHERMAL ENERGY PRODUCTION/USE [GCMD]"
+                ],
+                "contributor": [
+                  "HostingInstitution",
+                  "Geothermal Data Repository"
+                ],
+                "date": [
+                  "Collected",
+                  "2011-01-01",
+                  "Updated",
+                  "2017-05-23"
+                ],
+                "language": "English",
+                "resource-type": [
+                  "ConferencePaper"
+                ],
+                "alternate-identifier": null,
+                "relatedidentifier": [
+                  "References",
+                  "https://gdr.openei.org/submissions/170"
+                ],
+                "size": "2 Files (7.34 MB)",
+                "format": "application/pdf",
+                "version": null,
+                "rights": "https://creativecommons.org/licenses/by/4.0/",
+                "description": "<p>Hydraulic fracturing is currently the primary method for stimulating low-permeability geothermal reservoirs and creating Enhanced (or Engineered) Geothermal Systems (EGS) with improved permeability and heat production efficiency. Complex natural fracture systems usually exist in the formations to be stimulated and it is therefore critical to understand the interactions between existing fractures and newly created fractures before optimal stimulation strategies can be developed. Our study aims to improve the understanding of EGS stimulation-response relationships by developing and applying computer-based models that can effectively reflect the key mechanisms governing interactions between complex existing fracture networks and newly created hydraulic fractures. In this paper, we first briefly describe the key modules of our methodology, namely a geomechanics solver, a discrete fracture flow solver, a rock joint response model, an adaptive remeshing module, and most importantly their effective coupling. After verifying the numerical model against classical closed-form solutions, we investigate responses of reservoirs with different preexisting natural fractures to a variety of stimulation strategies. The factors investigated include: the in situ stress states (orientation of the principal stresses and the degree of stress anisotropy), pumping pressure, and stimulation sequences of multiple wells.</p><p><br></p><p>Cite as:</p><p>Fu, P., Johnson, S., &amp; Carrigan, C. (2011). Investigation of Stimulation-Response Relationships for Complex Fracture Systems in Enhanced Geothermal Reservoirs. [Data set]. Geothermal Data Repository. Lawrence Livermore National Laboratory. https://doi.org/10.15121/1358113</p>",
+                "geolocation": null
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

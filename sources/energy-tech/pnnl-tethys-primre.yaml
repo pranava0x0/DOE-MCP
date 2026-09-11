@@ -1,0 +1,63 @@
+id: pnnl-tethys-primre
+name: Tethys and PRIMRE
+domain: energy-tech
+
+publisher:
+  steward: pnnl
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [pnnl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+planned_capabilities: [dataset.search]
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: public_download
+  tier: catalog_pointer
+  terms_url: https://tethys.pnnl.gov/
+  terms_notes: >
+    Public knowledge bases on environmental effects of marine and wind
+    energy.
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed; curated continuously.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Literature and data on environmental effects of marine renewable and
+    wind energy.
+  temporal: current
+  dataset_version: "current"
+  known_limitations:
+    - >
+      Knowledge-base shaped: curated documents and summaries more than
+      structured data.
+
+authority_notes: >
+  Sits with MHKDR in PNNL's marine-energy family. Phase 4.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Phase 4, with the marine-energy family.

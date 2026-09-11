@@ -1,0 +1,84 @@
+# DOE's own list of its seven PuRe data resources, transcribed from
+# science.osti.gov. Registered as a source rather than hard-coded so that the
+# answer carries provenance: which page it came from, when it was read, and
+# that the transcription is ours rather than DOE's.
+id: doe-pure-resources
+name: DOE PuRe Data Resources directory
+domain: discovery
+
+publisher:
+  steward: sc
+  authority_level: official_derived
+
+aliases:
+  former_names: [Public Reusable Research Data Resources]
+  former_domains: []
+
+labs: [anl, lbnl, ornl, bnl]
+
+capabilities:
+  - id: discovery.pure_resources
+    tool_hint: discovery.list_pure_resources
+
+adapter:
+  type: curated
+  data_file: data/pure-resources.yaml
+  collection_key: pure_resources
+  transcribed_from: https://science.osti.gov/Initiatives/PuRe-Data
+  transcribed_at: "2026-09-01"
+
+access:
+  mode: anonymous
+  automation_status: permitted
+  tier: thin_proxy
+  terms_url: https://science.osti.gov/Initiatives/PuRe-Data
+  terms_notes: >
+    A public DOE Office of Science page listing seven designated resources.
+    Transcribed by this project into sources/data/pure-resources.yaml, which
+    is CC0. The underlying resources each carry their own terms, recorded in
+    their own manifests where they exist.
+  terms_reviewed_at: "2026-09-01"
+  citation_required: false
+
+freshness:
+  expected_cadence: rarely
+  cadence_source: >
+    Stated designations change seldom; the list stood at seven when read on
+    2026-09-01. Re-read at each phase gate.
+  ttl_hint_seconds: 2592000
+
+coverage:
+  scope: >
+    The seven resources DOE's Office of Science designates as Public Reusable
+    Research data resources, each with this project's own status against it.
+  temporal: as of the transcription date
+  dataset_version: "2026-09-01"
+  record_count: 7
+  record_count_checked: "2026-09-01"
+  known_limitations:
+    - >
+      A transcription, not a feed. If DOE adds an eighth resource, this file
+      is wrong until someone re-reads the page. The transcription date is on
+      every answer so a caller can judge that risk.
+    - >
+      The `doe_mcp_status` field on each entry is this project's own
+      assessment, not DOE's. It says what we have built or plan to, and
+      should never be read as a DOE statement about a resource.
+
+authority_notes: >
+  DOE designates; this project transcribes. Official_derived is the honest
+  level for a transcription of an official list. Doubly useful: a directory
+  callers can ask for, and a build-priority signal — four of the seven are
+  still `proposed` here, which is a public statement of what this project has
+  not done.
+
+health:
+  probe: curated_count
+  expect:
+    min_records: 7
+
+lifecycle:
+  declared_state: active
+  added: "2026-09-02"
+  last_verified: "2026-09-02"
+  verified_by: pranava0x0

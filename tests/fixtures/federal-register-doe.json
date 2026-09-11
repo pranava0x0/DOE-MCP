@@ -1,0 +1,798 @@
+{
+  "note": "Recorded live from Federal Register API (Department of Energy documents) (https://www.federalregister.gov/developers/documentation/api/v1) by tools/record_fixtures.py. Publisher content redistributed under the terms recorded in THIRD_PARTY_DATA.yml.",
+  "redaction": "Email addresses replaced with redacted@example.invalid and credential values with 'redacted' at record time. Field shapes and lengths are otherwise the publisher's.",
+  "interactions": [
+    {
+      "url": "https://www.federalregister.gov/api/v1/agencies/energy-department",
+      "params": {},
+      "headers": {
+        "content-type": "application/json; charset=utf-8"
+      },
+      "body": {
+        "agency_url": "http://www.doe.gov/",
+        "child_ids": [
+          17,
+          40,
+          137,
+          138,
+          140,
+          144,
+          167,
+          224,
+          292,
+          359,
+          382,
+          471,
+          472,
+          525
+        ],
+        "child_slugs": [
+          "alaska-power-administration",
+          "bonneville-power-administration",
+          "energy-efficiency-and-renewable-energy-office",
+          "energy-information-administration",
+          "energy-research-office",
+          "environment-office-energy-department",
+          "federal-energy-regulatory-commission",
+          "hearings-and-appeals-office-energy-department",
+          "minority-economic-impact-office",
+          "national-nuclear-security-administration",
+          "nuclear-energy-office",
+          "southeastern-power-administration",
+          "southwestern-power-administration",
+          "western-area-power-administration"
+        ],
+        "description": "The Department of Energy's mission is to foster a secure and reliable energy system that is environmentally and economically sustainable; to be a responsible steward of the Nation's nuclear weapons; to clean up the Department's facilities; to lead in the physical sciences and advance the biological, environmental, and computational sciences; and to provide premier scientific instruments for the Nation's research enterprise.\r\nThe Department of Energy (DOE) was established by the Department of Energy Organization Act (42 U.S.C. 7131), effective October 1, 1977, pursuant to Executive Order 12009 of September 13, 1977. The act consolidated the major Federal energy functions into one Cabinet-level Department.",
+        "id": 136,
+        "logo": {
+          "thumb_url": "https://agency-logos.federalregister.gov/136/thumb.jpg?1321650119",
+          "small_url": "https://agency-logos.federalregister.gov/136/small.jpg?1321650119",
+          "medium_url": "https://agency-logos.federalregister.gov/136/medium.jpg?1321650119"
+        },
+        "name": "Energy Department",
+        "parent_id": null,
+        "recent_articles_url": "https://www.federalregister.gov/api/v1/documents?conditions%5Bagency_ids%5D%5B%5D=136&order=newest",
+        "short_name": "DOE",
+        "slug": "energy-department",
+        "url": "https://www.federalregister.gov/agencies/energy-department"
+      }
+    },
+    {
+      "url": "https://www.federalregister.gov/api/v1/documents.json",
+      "params": {
+        "conditions[agencies][]": "energy-department",
+        "fields[]": "['document_number', 'title', 'type', 'abstract', 'action', 'publication_date', 'effective_on', 'comments_close_on', 'agencies', 'docket_ids', 'regulation_id_numbers', 'cfr_references', 'html_url', 'pdf_url', 'raw_text_url']",
+        "per_page": "5",
+        "page": "1",
+        "order": "newest",
+        "conditions[type][]": "['RULE']"
+      },
+      "headers": {
+        "content-type": "application/json; charset=utf-8"
+      },
+      "body": {
+        "description": "Documents from Energy Department and of type Rule",
+        "count": 1690,
+        "total_pages": 50,
+        "next_page_url": "https://www.federalregister.gov/api/v1/documents?conditions%5Bagencies%5D%5B%5D=energy-department&conditions%5Btype%5D%5B%5D=RULE&fields%5B%5D=document_number&fields%5B%5D=title&fields%5B%5D=type&fields%5B%5D=abstract&fields%5B%5D=action&fields%5B%5D=publication_date&fields%5B%5D=effective_on&fields%5B%5D=comments_close_on&fields%5B%5D=agencies&fields%5B%5D=docket_ids&fields%5B%5D=regulation_id_numbers&fields%5B%5D=cfr_references&fields%5B%5D=html_url&fields%5B%5D=pdf_url&fields%5B%5D=raw_text_url&format=json&order=newest&page=2&per_page=5&search_after_cursor=WzE3ODQ3NjQ4MDAwMDAsIjIwMjYtMTQ4NzgiXQ",
+        "results": [
+          {
+            "document_number": "2026-17979",
+            "title": "Repeal of Fossil Fuel Restrictions for New Federal Buildings and Major Renovations of Federal Buildings",
+            "type": "Rule",
+            "abstract": "The Department of Energy (DOE) is reviewing its recent guidance related to the implementation of newly adopted provisions regarding Clean Energy for New Federal Buildings and Major Renovations of Federal Buildings (CER). While DOE reviews the CER implementation guidance, DOE is staying the compliance date for the newly adopted provisions in the Code of Federal Regulations (CFR).",
+            "action": "Notification of stay.",
+            "publication_date": "2026-09-02",
+            "effective_on": null,
+            "comments_close_on": null,
+            "agencies": [
+              {
+                "raw_name": "DEPARTMENT OF ENERGY",
+                "name": "Energy Department",
+                "id": 136,
+                "url": "https://www.federalregister.gov/agencies/energy-department",
+                "json_url": "https://www.federalregister.gov/api/v1/agencies/136",
+                "parent_id": null,
+                "slug": "energy-department"
+              }
+            ],
+            "docket_ids": [
+              "EERE-2026-FEMP-0067"
+            ],
+            "regulation_id_numbers": [
+              "1904-AG17"
+            ],
+            "cfr_references": [
+              {
+                "chapter": null,
+                "citation_url": null,
+                "part": "433",
+                "title": 10
+              },
+              {
+                "chapter": null,
+                "citation_url": null,
+                "part": "435",
+                "title": 10
+              }
+            ],
+            "html_url": "https://www.federalregister.gov/documents/2026/09/02/2026-17979/repeal-of-fossil-fuel-restrictions-for-new-federal-buildings-and-major-renovations-of-federal",
+            "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-02/pdf/2026-17979.pdf",
+            "raw_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/02/2026-17979.txt"
+          },
+          {
+            "document_number": "2026-17872",
+            "title": "Rescission of Production Incentives for Cellulosic Biofuels",
+            "type": "Rule",
+            "abstract": "The Office of Critical Minerals and Energy Innovation (formerly Office of Energy Efficiency and Renewable Energy) of the Department of Energy (DOE) is publishing a final rule to rescind the regulatory framework for production incentives for cellulosic biofuels, eliminating an inactive regulatory framework.",
+            "action": "Final rule.",
+            "publication_date": "2026-09-01",
+            "effective_on": "2026-10-01",
+            "comments_close_on": null,
+            "agencies": [
+              {
+                "raw_name": "DEPARTMENT OF ENERGY",
+                "name": "Energy Department",
+                "id": 136,
+                "url": "https://www.federalregister.gov/agencies/energy-department",
+                "json_url": "https://www.federalregister.gov/api/v1/agencies/136",
+                "parent_id": null,
+                "slug": "energy-department"
+              }
+            ],
+            "docket_ids": [
+              "EERE-2025-OT-0031"
+            ],
+            "regulation_id_numbers": [
+              "1904-AG07"
+            ],
+            "cfr_references": [
+              {
+                "chapter": null,
+                "citation_url": null,
+                "part": "452",
+                "title": 10
+              }
+            ],
+            "html_url": "https://www.federalregister.gov/documents/2026/09/01/2026-17872/rescission-of-production-incentives-for-cellulosic-biofuels",
+            "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-01/pdf/2026-17872.pdf",
+            "raw_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/01/2026-17872.txt"
+          },
+          {
+            "document_number": "2026-17381",
+            "title": "Rescinding Regulations for Loans for Minority Business Enterprises Seeking DOE Contracts and Assistance",
+            "type": "Rule",
+            "abstract": "The U.S. Department of Energy (DOE) is further extending the effective date of the direct final rule \"Rescinding Regulations for Loans for Minority Business Enterprises Seeking DOE Contracts and Assistance,\" published on May 16, 2025.",
+            "action": "Direct final rule; further delay of effective date.",
+            "publication_date": "2026-08-26",
+            "effective_on": "2025-05-16",
+            "comments_close_on": null,
+            "agencies": [
+              {
+                "raw_name": "DEPARTMENT OF ENERGY",
+                "name": "Energy Department",
+                "id": 136,
+                "url": "https://www.federalregister.gov/agencies/energy-department",
+                "json_url": "https://www.federalregister.gov/api/v1/agencies/136",
+                "parent_id": null,
+                "slug": "energy-department"
+              }
+            ],
+            "docket_ids": [
+              "DOE-HQ-2025-0014"
+            ],
+            "regulation_id_numbers": [
+              "1903-AA23"
+            ],
+            "cfr_references": [
+              {
+                "chapter": null,
+                "citation_url": null,
+                "part": "800",
+                "title": 10
+              }
+            ],
+            "html_url": "https://www.federalregister.gov/documents/2026/08/26/2026-17381/rescinding-regulations-for-loans-for-minority-business-enterprises-seeking-doe-contracts-and",
+            "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-08-26/pdf/2026-17381.pdf",
+            "raw_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/08/26/2026-17381.txt"
+          },
+          {
+            "document_number": "2026-16425",
+            "title": "Rescission of DOE's Procedures for Traffic Control on the Nevada Test Site",
+            "type": "Rule",
+            "abstract": "This interim final rule rescinds DOE's regulations outlining the establishment of traffic control regulations on the Nevada National Security Site (NNSS), formerly known as the Nevada Test Site. This action is being taken to remove regulations that are obsolete because the NNSS uses Nevada traffic enforcement statutes. The effect of this action will be the removal of obsolete regulations.",
+            "action": "Interim final rule; request for comments.",
+            "publication_date": "2026-08-12",
+            "effective_on": "2026-08-12",
+            "comments_close_on": "2026-09-11",
+            "agencies": [
+              {
+                "raw_name": "DEPARTMENT OF ENERGY",
+                "name": "Energy Department",
+                "id": 136,
+                "url": "https://www.federalregister.gov/agencies/energy-department",
+                "json_url": "https://www.federalregister.gov/api/v1/agencies/136",
+                "parent_id": null,
+                "slug": "energy-department"
+              }
+            ],
+            "docket_ids": [
+              "DOE-HQ-2026-0529"
+            ],
+            "regulation_id_numbers": [
+              "1992-AA65"
+            ],
+            "cfr_references": [
+              {
+                "chapter": null,
+                "citation_url": null,
+                "part": "861",
+                "title": 10
+              }
+            ],
+            "html_url": "https://www.federalregister.gov/documents/2026/08/12/2026-16425/rescission-of-does-procedures-for-traffic-control-on-the-nevada-test-site",
+            "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-08-12/pdf/2026-16425.pdf",
+            "raw_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/08/12/2026-16425.txt"
+          },
+          {
+            "document_number": "2026-14878",
+            "title": "Categorical Exclusion Under the National Environmental Policy Act for Certain Terminations or Revocations of Water Power Licenses or Exemptions",
+            "type": "Rule",
+            "abstract": "The Federal Energy Regulatory Commission amends its regulations implementing the National Environmental Policy Act (NEPA) to expand an existing Categorical Exclusion (CE) to include \"terminations or revocations of water power licenses and exemptions that will result in minor or no ground disturbing activity and minor or no changes in reservoir conditions and downstream flows.\"",
+            "action": "Final rule.",
+            "publication_date": "2026-07-23",
+            "effective_on": "2026-08-24",
+            "comments_close_on": null,
+            "agencies": [
+              {
+                "raw_name": "DEPARTMENT OF ENERGY",
+                "name": "Energy Department",
+                "id": 136,
+                "url": "https://www.federalregister.gov/agencies/energy-department",
+                "json_url": "https://www.federalregister.gov/api/v1/agencies/136",
+                "parent_id": null,
+                "slug": "energy-department"
+              },
+              {
+                "raw_name": "Federal Energy Regulatory Commission",
+                "name": "Federal Energy Regulatory Commission",
+                "id": 167,
+                "url": "https://www.federalregister.gov/agencies/federal-energy-regulatory-commission",
+                "json_url": "https://www.federalregister.gov/api/v1/agencies/167",
+                "parent_id": 136,
+                "slug": "federal-energy-regulatory-commission"
+              }
+            ],
+            "docket_ids": [
+              "Docket No. RM26-7-000"
+            ],
+            "regulation_id_numbers": [
+              "1902-AG50"
+            ],
+            "cfr_references": [
+              {
+                "chapter": null,
+                "citation_url": null,
+                "part": "380",
+                "title": 18
+              }
+            ],
+            "html_url": "https://www.federalregister.gov/documents/2026/07/23/2026-14878/categorical-exclusion-under-the-national-environmental-policy-act-for-certain-terminations-or",
+            "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-07-23/pdf/2026-14878.pdf",
+            "raw_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/07/23/2026-14878.txt"
+          }
+        ]
+      }
+    },
+    {
+      "url": "https://www.federalregister.gov/api/v1/documents.json",
+      "params": {
+        "conditions[agencies][]": "energy-department",
+        "fields[]": "['document_number', 'title', 'type', 'abstract', 'action', 'publication_date', 'effective_on', 'comments_close_on', 'agencies', 'docket_ids', 'regulation_id_numbers', 'cfr_references', 'html_url', 'pdf_url', 'raw_text_url']",
+        "per_page": "5",
+        "page": "1",
+        "order": "newest",
+        "conditions[type][]": "['NOTICE']"
+      },
+      "headers": {
+        "content-type": "application/json; charset=utf-8"
+      },
+      "body": {
+        "description": "Documents from Energy Department and of type Notice",
+        "count": 10000,
+        "total_pages": 50,
+        "next_page_url": "https://www.federalregister.gov/api/v1/documents?conditions%5Bagencies%5D%5B%5D=energy-department&conditions%5Btype%5D%5B%5D=NOTICE&fields%5B%5D=document_number&fields%5B%5D=title&fields%5B%5D=type&fields%5B%5D=abstract&fields%5B%5D=action&fields%5B%5D=publication_date&fields%5B%5D=effective_on&fields%5B%5D=comments_close_on&fields%5B%5D=agencies&fields%5B%5D=docket_ids&fields%5B%5D=regulation_id_numbers&fields%5B%5D=cfr_references&fields%5B%5D=html_url&fields%5B%5D=pdf_url&fields%5B%5D=raw_text_url&format=json&order=newest&page=2&per_page=5&search_after_cursor=WzE3ODg5MTIwMDAwMDAsIjIwMjYtMTgzNTkiXQ",
+        "results": [
+          {
+            "document_number": "2026-18370",
+            "title": "Securing the United States Bulk-Power System",
+            "type": "Notice",
+            "abstract": "Consistent with the Executive order of August 26, 2026, Declaring a National Emergency to Secure the United States Bulk-Power System, the Department of Energy (DOE or the Department) is seeking information from industry and other stakeholders to inform DOE actions to implement the Executive order. Specifically, DOE seeks information regarding the scope of covered equipment and transactions; risks associated with Covered Foreign Entities and foreign-produced bulk- power system electric equipment; supply chain, software, firmware, digital service, maintenance service, and remote-access practices; existing equipment and potential mitigation; licensing and prequalification; domestic manufacturing and secure replacement capacity; Federal procurement; and potential economic, reliability, safety, and small-entity impacts.",
+            "action": "Request for information (RFI).",
+            "publication_date": "2026-09-09",
+            "effective_on": null,
+            "comments_close_on": null,
+            "agencies": [
+              {
+                "raw_name": "DEPARTMENT OF ENERGY",
+                "name": "Energy Department",
+                "id": 136,
+                "url": "https://www.federalregister.gov/agencies/energy-department",
+                "json_url": "https://www.federalregister.gov/api/v1/agencies/136",
+                "parent_id": null,
+                "slug": "energy-department"
+              }
+            ],
+            "docket_ids": [
+              "DOE-2026-HQ-2026-1123"
+            ],
+            "regulation_id_numbers": [
+              "1901-AB79"
+            ],
+            "cfr_references": [],
+            "html_url": "https://www.federalregister.gov/documents/2026/09/09/2026-18370/securing-the-united-states-bulk-power-system",
+            "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-09/pdf/2026-18370.pdf",
+            "raw_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18370.txt"
+          },
+          {
+            "document_number": "2026-18362",
+            "title": "City of Lewiston, Maine; Notice of Authorization for Continued Project Operation",
+            "type": "Notice",
+            "abstract": null,
+            "action": null,
+            "publication_date": "2026-09-09",
+            "effective_on": null,
+            "comments_close_on": null,
+            "agencies": [
+              {
+                "raw_name": "DEPARTMENT OF ENERGY",
+                "name": "Energy Department",
+                "id": 136,
+                "url": "https://www.federalregister.gov/agencies/energy-department",
+                "json_url": "https://www.federalregister.gov/api/v1/agencies/136",
+                "parent_id": null,
+                "slug": "energy-department"
+              },
+              {
+                "raw_name": "Federal Energy Regulatory Commission",
+                "name": "Federal Energy Regulatory Commission",
+                "id": 167,
+                "url": "https://www.federalregister.gov/agencies/federal-energy-regulatory-commission",
+                "json_url": "https://www.federalregister.gov/api/v1/agencies/167",
+                "parent_id": 136,
+                "slug": "federal-energy-regulatory-commission"
+              }
+            ],
+            "docket_ids": [
+              "Project No. 11006-000"
+            ],
+            "regulation_id_numbers": [],
+            "cfr_references": [],
+            "html_url": "https://www.federalregister.gov/documents/2026/09/09/2026-18362/city-of-lewiston-maine-notice-of-authorization-for-continued-project-operation",
+            "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-09/pdf/2026-18362.pdf",
+            "raw_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18362.txt"
+          },
+          {
+            "document_number": "2026-18361",
+            "title": "Sunshine Act Meeting Notice",
+            "type": "Notice",
+            "abstract": null,
+            "action": null,
+            "publication_date": "2026-09-09",
+            "effective_on": null,
+            "comments_close_on": null,
+            "agencies": [
+              {
+                "raw_name": "DEPARTMENT OF ENERGY",
+                "name": "Energy Department",
+                "id": 136,
+                "url": "https://www.federalregister.gov/agencies/energy-department",
+                "json_url": "https://www.federalregister.gov/api/v1/agencies/136",
+                "parent_id": null,
+                "slug": "energy-department"
+              },
+              {
+                "raw_name": "Federal Energy Regulatory Commission",
+                "name": "Federal Energy Regulatory Commission",
+                "id": 167,
+                "url": "https://www.federalregister.gov/agencies/federal-energy-regulatory-commission",
+                "json_url": "https://www.federalregister.gov/api/v1/agencies/167",
+                "parent_id": 136,
+                "slug": "federal-energy-regulatory-commission"
+              }
+            ],
+            "docket_ids": [],
+            "regulation_id_numbers": [],
+            "cfr_references": [],
+            "html_url": "https://www.federalregister.gov/documents/2026/09/09/2026-18361/sunshine-act-meeting-notice",
+            "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-09/pdf/2026-18361.pdf",
+            "raw_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18361.txt"
+          },
+          {
+            "document_number": "2026-18360",
+            "title": "Golden Triangle Storage, LLC; Notice of Application and Establishing Intervention Deadline",
+            "type": "Notice",
+            "abstract": null,
+            "action": null,
+            "publication_date": "2026-09-09",
+            "effective_on": null,
+            "comments_close_on": null,
+            "agencies": [
+              {
+                "raw_name": "DEPARTMENT OF ENERGY",
+                "name": "Energy Department",
+                "id": 136,
+                "url": "https://www.federalregister.gov/agencies/energy-department",
+                "json_url": "https://www.federalregister.gov/api/v1/agencies/136",
+                "parent_id": null,
+                "slug": "energy-department"
+              },
+              {
+                "raw_name": "Federal Energy Regulatory Commission",
+                "name": "Federal Energy Regulatory Commission",
+                "id": 167,
+                "url": "https://www.federalregister.gov/agencies/federal-energy-regulatory-commission",
+                "json_url": "https://www.federalregister.gov/api/v1/agencies/167",
+                "parent_id": 136,
+                "slug": "federal-energy-regulatory-commission"
+              }
+            ],
+            "docket_ids": [
+              "Docket No. CP26-568-000"
+            ],
+            "regulation_id_numbers": [],
+            "cfr_references": [],
+            "html_url": "https://www.federalregister.gov/documents/2026/09/09/2026-18360/golden-triangle-storage-llc-notice-of-application-and-establishing-intervention-deadline",
+            "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-09/pdf/2026-18360.pdf",
+            "raw_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18360.txt"
+          },
+          {
+            "document_number": "2026-18359",
+            "title": "Green River Power Corporation; Notice of Reasonable Period of Time for Water Quality Certification Application",
+            "type": "Notice",
+            "abstract": null,
+            "action": null,
+            "publication_date": "2026-09-09",
+            "effective_on": null,
+            "comments_close_on": null,
+            "agencies": [
+              {
+                "raw_name": "DEPARTMENT OF ENERGY",
+                "name": "Energy Department",
+                "id": 136,
+                "url": "https://www.federalregister.gov/agencies/energy-department",
+                "json_url": "https://www.federalregister.gov/api/v1/agencies/136",
+                "parent_id": null,
+                "slug": "energy-department"
+              },
+              {
+                "raw_name": "Federal Energy Regulatory Commission",
+                "name": "Federal Energy Regulatory Commission",
+                "id": 167,
+                "url": "https://www.federalregister.gov/agencies/federal-energy-regulatory-commission",
+                "json_url": "https://www.federalregister.gov/api/v1/agencies/167",
+                "parent_id": 136,
+                "slug": "federal-energy-regulatory-commission"
+              }
+            ],
+            "docket_ids": [
+              "Project No. 8405-024"
+            ],
+            "regulation_id_numbers": [],
+            "cfr_references": [],
+            "html_url": "https://www.federalregister.gov/documents/2026/09/09/2026-18359/green-river-power-corporation-notice-of-reasonable-period-of-time-for-water-quality-certification",
+            "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-09/pdf/2026-18359.pdf",
+            "raw_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18359.txt"
+          }
+        ]
+      }
+    },
+    {
+      "url": "https://www.federalregister.gov/api/v1/documents.json",
+      "params": {
+        "conditions[agencies][]": "energy-department",
+        "fields[]": "['document_number', 'title', 'type', 'abstract', 'action', 'publication_date', 'effective_on', 'comments_close_on', 'agencies', 'docket_ids', 'regulation_id_numbers', 'cfr_references', 'html_url', 'pdf_url', 'raw_text_url']",
+        "per_page": "5",
+        "page": "2",
+        "order": "newest",
+        "conditions[type][]": "['NOTICE']"
+      },
+      "headers": {
+        "content-type": "application/json; charset=utf-8"
+      },
+      "body": {
+        "description": "Documents from Energy Department and of type Notice",
+        "count": 10000,
+        "total_pages": 50,
+        "next_page_url": "https://www.federalregister.gov/api/v1/documents?conditions%5Bagencies%5D%5B%5D=energy-department&conditions%5Btype%5D%5B%5D=NOTICE&fields%5B%5D=document_number&fields%5B%5D=title&fields%5B%5D=type&fields%5B%5D=abstract&fields%5B%5D=action&fields%5B%5D=publication_date&fields%5B%5D=effective_on&fields%5B%5D=comments_close_on&fields%5B%5D=agencies&fields%5B%5D=docket_ids&fields%5B%5D=regulation_id_numbers&fields%5B%5D=cfr_references&fields%5B%5D=html_url&fields%5B%5D=pdf_url&fields%5B%5D=raw_text_url&format=json&order=newest&page=3&per_page=5&search_after_cursor=WzE3ODg4MjU2MDAwMDAsIjIwMjYtMTgyMzIiXQ",
+        "previous_page_url": "https://www.federalregister.gov/api/v1/documents?conditions%5Bagencies%5D%5B%5D=energy-department&conditions%5Btype%5D%5B%5D=NOTICE&fields%5B%5D=document_number&fields%5B%5D=title&fields%5B%5D=type&fields%5B%5D=abstract&fields%5B%5D=action&fields%5B%5D=publication_date&fields%5B%5D=effective_on&fields%5B%5D=comments_close_on&fields%5B%5D=agencies&fields%5B%5D=docket_ids&fields%5B%5D=regulation_id_numbers&fields%5B%5D=cfr_references&fields%5B%5D=html_url&fields%5B%5D=pdf_url&fields%5B%5D=raw_text_url&format=json&order=newest&page=1&per_page=5",
+        "results": [
+          {
+            "document_number": "2026-18358",
+            "title": "City of Thief River Falls Municipal Utilities; Notice of Application Tendered for Filing With the Commission and Soliciting Additional Study Requests and Establishing Procedural Schedule for Relicensing and Deadline for Submission of Final Amendments",
+            "type": "Notice",
+            "abstract": null,
+            "action": null,
+            "publication_date": "2026-09-09",
+            "effective_on": null,
+            "comments_close_on": null,
+            "agencies": [
+              {
+                "raw_name": "DEPARTMENT OF ENERGY",
+                "name": "Energy Department",
+                "id": 136,
+                "url": "https://www.federalregister.gov/agencies/energy-department",
+                "json_url": "https://www.federalregister.gov/api/v1/agencies/136",
+                "parent_id": null,
+                "slug": "energy-department"
+              },
+              {
+                "raw_name": "Federal Energy Regulatory Commission",
+                "name": "Federal Energy Regulatory Commission",
+                "id": 167,
+                "url": "https://www.federalregister.gov/agencies/federal-energy-regulatory-commission",
+                "json_url": "https://www.federalregister.gov/api/v1/agencies/167",
+                "parent_id": 136,
+                "slug": "federal-energy-regulatory-commission"
+              }
+            ],
+            "docket_ids": [
+              "Project No. 11546-023"
+            ],
+            "regulation_id_numbers": [],
+            "cfr_references": [],
+            "html_url": "https://www.federalregister.gov/documents/2026/09/09/2026-18358/city-of-thief-river-falls-municipal-utilities-notice-of-application-tendered-for-filing-with-the",
+            "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-09/pdf/2026-18358.pdf",
+            "raw_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18358.txt"
+          },
+          {
+            "document_number": "2026-18357",
+            "title": "Combined Notice of Filings #1",
+            "type": "Notice",
+            "abstract": null,
+            "action": null,
+            "publication_date": "2026-09-09",
+            "effective_on": null,
+            "comments_close_on": null,
+            "agencies": [
+              {
+                "raw_name": "DEPARTMENT OF ENERGY",
+                "name": "Energy Department",
+                "id": 136,
+                "url": "https://www.federalregister.gov/agencies/energy-department",
+                "json_url": "https://www.federalregister.gov/api/v1/agencies/136",
+                "parent_id": null,
+                "slug": "energy-department"
+              },
+              {
+                "raw_name": "Federal Energy Regulatory Commission",
+                "name": "Federal Energy Regulatory Commission",
+                "id": 167,
+                "url": "https://www.federalregister.gov/agencies/federal-energy-regulatory-commission",
+                "json_url": "https://www.federalregister.gov/api/v1/agencies/167",
+                "parent_id": 136,
+                "slug": "federal-energy-regulatory-commission"
+              }
+            ],
+            "docket_ids": [],
+            "regulation_id_numbers": [],
+            "cfr_references": [],
+            "html_url": "https://www.federalregister.gov/documents/2026/09/09/2026-18357/combined-notice-of-filings-1",
+            "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-09/pdf/2026-18357.pdf",
+            "raw_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18357.txt"
+          },
+          {
+            "document_number": "2026-18356",
+            "title": "Brookfield White Pine Hydro, LLC; Notice of Authorization for Continued Project Operation",
+            "type": "Notice",
+            "abstract": null,
+            "action": null,
+            "publication_date": "2026-09-09",
+            "effective_on": null,
+            "comments_close_on": null,
+            "agencies": [
+              {
+                "raw_name": "DEPARTMENT OF ENERGY",
+                "name": "Energy Department",
+                "id": 136,
+                "url": "https://www.federalregister.gov/agencies/energy-department",
+                "json_url": "https://www.federalregister.gov/api/v1/agencies/136",
+                "parent_id": null,
+                "slug": "energy-department"
+              },
+              {
+                "raw_name": "Federal Energy Regulatory Commission",
+                "name": "Federal Energy Regulatory Commission",
+                "id": 167,
+                "url": "https://www.federalregister.gov/agencies/federal-energy-regulatory-commission",
+                "json_url": "https://www.federalregister.gov/api/v1/agencies/167",
+                "parent_id": 136,
+                "slug": "federal-energy-regulatory-commission"
+              }
+            ],
+            "docket_ids": [
+              "Project No. 2302-000"
+            ],
+            "regulation_id_numbers": [],
+            "cfr_references": [],
+            "html_url": "https://www.federalregister.gov/documents/2026/09/09/2026-18356/brookfield-white-pine-hydro-llc-notice-of-authorization-for-continued-project-operation",
+            "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-09/pdf/2026-18356.pdf",
+            "raw_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18356.txt"
+          },
+          {
+            "document_number": "2026-18355",
+            "title": "Notice of Effectiveness of Exempt Wholesale Generator and Foreign Utility Company Status",
+            "type": "Notice",
+            "abstract": null,
+            "action": null,
+            "publication_date": "2026-09-09",
+            "effective_on": null,
+            "comments_close_on": null,
+            "agencies": [
+              {
+                "raw_name": "DEPARTMENT OF ENERGY",
+                "name": "Energy Department",
+                "id": 136,
+                "url": "https://www.federalregister.gov/agencies/energy-department",
+                "json_url": "https://www.federalregister.gov/api/v1/agencies/136",
+                "parent_id": null,
+                "slug": "energy-department"
+              },
+              {
+                "raw_name": "Federal Energy Regulatory Commission",
+                "name": "Federal Energy Regulatory Commission",
+                "id": 167,
+                "url": "https://www.federalregister.gov/agencies/federal-energy-regulatory-commission",
+                "json_url": "https://www.federalregister.gov/api/v1/agencies/167",
+                "parent_id": 136,
+                "slug": "federal-energy-regulatory-commission"
+              }
+            ],
+            "docket_ids": [
+              "Docket Nos. EG26-253-000, EG26-254-000, EG26-255-000, EG26-256-000, EG26-257-000, EG26-258-000, EG26-259-000, EG26-260-000, EG26-261-000, EG26-262-000, EG26-263-000, EG26-264-000, EG26-265-000, EG26-266-000, EG26-267-000, EG26-268-000, EG26-269-000, FC26-"
+            ],
+            "regulation_id_numbers": [],
+            "cfr_references": [],
+            "html_url": "https://www.federalregister.gov/documents/2026/09/09/2026-18355/notice-of-effectiveness-of-exempt-wholesale-generator-and-foreign-utility-company-status",
+            "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-09/pdf/2026-18355.pdf",
+            "raw_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18355.txt"
+          },
+          {
+            "document_number": "2026-18232",
+            "title": "Combined Notice of Filings",
+            "type": "Notice",
+            "abstract": null,
+            "action": null,
+            "publication_date": "2026-09-08",
+            "effective_on": null,
+            "comments_close_on": null,
+            "agencies": [
+              {
+                "raw_name": "DEPARTMENT OF ENERGY",
+                "name": "Energy Department",
+                "id": 136,
+                "url": "https://www.federalregister.gov/agencies/energy-department",
+                "json_url": "https://www.federalregister.gov/api/v1/agencies/136",
+                "parent_id": null,
+                "slug": "energy-department"
+              },
+              {
+                "raw_name": "Federal Energy Regulatory Commission",
+                "name": "Federal Energy Regulatory Commission",
+                "id": 167,
+                "url": "https://www.federalregister.gov/agencies/federal-energy-regulatory-commission",
+                "json_url": "https://www.federalregister.gov/api/v1/agencies/167",
+                "parent_id": 136,
+                "slug": "federal-energy-regulatory-commission"
+              }
+            ],
+            "docket_ids": [],
+            "regulation_id_numbers": [],
+            "cfr_references": [],
+            "html_url": "https://www.federalregister.gov/documents/2026/09/08/2026-18232/combined-notice-of-filings",
+            "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-08/pdf/2026-18232.pdf",
+            "raw_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/08/2026-18232.txt"
+          }
+        ]
+      }
+    },
+    {
+      "url": "https://www.federalregister.gov/api/v1/documents/2026-17979.json",
+      "params": {
+        "fields[]": "['document_number', 'title', 'type', 'abstract', 'action', 'publication_date', 'effective_on', 'comments_close_on', 'agencies', 'docket_ids', 'regulation_id_numbers', 'cfr_references', 'html_url', 'pdf_url', 'raw_text_url']"
+      },
+      "headers": {
+        "content-type": "application/json; charset=utf-8"
+      },
+      "body": {
+        "document_number": "2026-17979",
+        "title": "Repeal of Fossil Fuel Restrictions for New Federal Buildings and Major Renovations of Federal Buildings",
+        "type": "Rule",
+        "abstract": "The Department of Energy (DOE) is reviewing its recent guidance related to the implementation of newly adopted provisions regarding Clean Energy for New Federal Buildings and Major Renovations of Federal Buildings (CER). While DOE reviews the CER implementation guidance, DOE is staying the compliance date for the newly adopted provisions in the Code of Federal Regulations (CFR).",
+        "action": "Notification of stay.",
+        "publication_date": "2026-09-02",
+        "effective_on": null,
+        "comments_close_on": null,
+        "agencies": [
+          {
+            "raw_name": "DEPARTMENT OF ENERGY",
+            "name": "Energy Department",
+            "id": 136,
+            "url": "https://www.federalregister.gov/agencies/energy-department",
+            "json_url": "https://www.federalregister.gov/api/v1/agencies/136",
+            "parent_id": null,
+            "slug": "energy-department"
+          }
+        ],
+        "docket_ids": [
+          "EERE-2026-FEMP-0067"
+        ],
+        "regulation_id_numbers": [
+          "1904-AG17"
+        ],
+        "cfr_references": [
+          {
+            "chapter": null,
+            "citation_url": null,
+            "part": "433",
+            "title": 10
+          },
+          {
+            "chapter": null,
+            "citation_url": null,
+            "part": "435",
+            "title": 10
+          }
+        ],
+        "html_url": "https://www.federalregister.gov/documents/2026/09/02/2026-17979/repeal-of-fossil-fuel-restrictions-for-new-federal-buildings-and-major-renovations-of-federal",
+        "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-02/pdf/2026-17979.pdf",
+        "raw_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/02/2026-17979.txt"
+      }
+    },
+    {
+      "url": "https://www.federalregister.gov/api/v1/documents/2026-18232.json",
+      "params": {
+        "fields[]": "['document_number', 'title', 'type', 'abstract', 'action', 'publication_date', 'effective_on', 'comments_close_on', 'agencies', 'docket_ids', 'regulation_id_numbers', 'cfr_references', 'html_url', 'pdf_url', 'raw_text_url']"
+      },
+      "headers": {
+        "content-type": "application/json; charset=utf-8"
+      },
+      "body": {
+        "document_number": "2026-18232",
+        "title": "Combined Notice of Filings",
+        "type": "Notice",
+        "abstract": null,
+        "action": null,
+        "publication_date": "2026-09-08",
+        "effective_on": null,
+        "comments_close_on": null,
+        "agencies": [
+          {
+            "raw_name": "DEPARTMENT OF ENERGY",
+            "name": "Energy Department",
+            "id": 136,
+            "url": "https://www.federalregister.gov/agencies/energy-department",
+            "json_url": "https://www.federalregister.gov/api/v1/agencies/136",
+            "parent_id": null,
+            "slug": "energy-department"
+          },
+          {
+            "raw_name": "Federal Energy Regulatory Commission",
+            "name": "Federal Energy Regulatory Commission",
+            "id": 167,
+            "url": "https://www.federalregister.gov/agencies/federal-energy-regulatory-commission",
+            "json_url": "https://www.federalregister.gov/api/v1/agencies/167",
+            "parent_id": 136,
+            "slug": "federal-energy-regulatory-commission"
+          }
+        ],
+        "docket_ids": [],
+        "regulation_id_numbers": [],
+        "cfr_references": [],
+        "html_url": "https://www.federalregister.gov/documents/2026/09/08/2026-18232/combined-notice-of-filings",
+        "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-08/pdf/2026-18232.pdf",
+        "raw_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/08/2026-18232.txt"
+      }
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+id: ornl-daac
+name: ORNL DAAC (Daymet, MODIS/VIIRS subsets)
+domain: earth
+
+publisher:
+  steward: ornl
+  funder: nasa
+  authority_level: official_secondary
+
+aliases:
+  former_names: []
+  # The archive's own landing page moved under NASA Earthdata
+  # (daac.ornl.gov -> earthdata.nasa.gov/centers/ornl-daac, recorded in
+  # research/notes/url-ledger.md). The single-pixel service did not move
+  # with it and still answers on daymet.ornl.gov, which is the host this
+  # source queries.
+  former_domains: []
+
+labs: [ornl]
+
+capabilities:
+  - id: earth.point_weather
+    tool_hint: earth.get_daymet_point
+
+planned_capabilities: [earth.search_datasets]
+
+adapter:
+  type: daymet
+  base_url: https://daymet.ornl.gov/single-pixel/api/data
+  # The published variable set. Held here because the service treats a
+  # name it does not know as no name at all: `vars=notavar` returns all
+  # eight columns at HTTP 200, so this table is what separates a typo
+  # from data the caller did not ask for.
+  variables:
+    dayl: Day length, seconds per day
+    prcp: Daily total precipitation, millimetres per day
+    srad: Incident shortwave radiation flux density, watts per square metre
+    swe: Snow water equivalent, kilograms per square metre
+    tmax: Daily maximum 2-metre air temperature, degrees Celsius
+    tmin: Daily minimum 2-metre air temperature, degrees Celsius
+    vp: Water vapour pressure, pascals
+  first_year: 1980
+  domain_note: >
+    North America, Hawaii, and Puerto Rico on a 1 km grid. A point
+    outside the grid is refused with the publisher's own message
+    ("Daymet Tile was not found with input lat and lon") rather than
+    answered with a nearest neighbour.
+  calendar_note: >
+    Daymet's year is always 365 days. 29 February is present and 31
+    December is dropped in leap years, so an annual total from a leap
+    year is a 365-day total and the missing date is named on any answer
+    whose range covers it.
+  grid_note: >
+    Values are modelled estimates for the 1 km cell containing the
+    point, interpolated from ground stations. They are not a station
+    observation and the service reports no cell centre, so a value here
+    is the model's account of that kilometre rather than a measurement
+    at the coordinates given.
+
+access:
+  mode: anonymous
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://daac.ornl.gov/citation_policy.html
+  terms_reviewed_at: "2026-09-09"
+  terms_notes: >
+    Open REST API with no key; it answered a scripted client on
+    2026-09-09. NASA funds the archive and ORNL operates it. NASA's
+    Earth-science data policy asks that datasets be cited and the DAAC
+    publishes a citation policy page, so the citation block is
+    populated for anything from here. The service returns its own
+    citation string in every response preamble, which is what the
+    answer carries.
+  citation_required: false
+  citation_text: >
+    Thornton, M.M., R. Shrestha, Y. Wei, P.E. Thornton, S-C. Kao, and
+    B.E. Wilson. 2022. Daymet: Daily Surface Weather Data on a 1-km
+    Grid for North America, Version 4 R1. ORNL DAAC, Oak Ridge,
+    Tennessee, USA. https://doi.org/10.3334/ORNLDAAC/2129
+  rate_limit_note: >
+    None published. Absence of a stated ceiling is not permission; the
+    politeness budget in the fetch path is what keeps this polite, and
+    this client caps a single request at ten years of daily rows.
+
+freshness:
+  expected_cadence: annual
+  cadence_source: >
+    Stated per dataset. Daymet is released annually as a versioned
+    product; MODIS and VIIRS subsets track the upstream collections.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Biogeochemical and ecological data, including Daymet daily surface
+    weather for North America — queryable one pixel at a time, which is
+    the rare bulk-science case with a genuine subsetting service — and
+    MODIS/VIIRS land-product subsets, which are not wired up.
+  temporal: 1980 onward for Daymet
+  dataset_version: "Daymet V4 R1"
+  known_limitations:
+    - >
+      Daymet is gridded MODEL output interpolated from station
+      observations, not measurement at the point queried. The
+      distinction matters at any site far from a station.
+    - >
+      Version identity is load-bearing: Daymet V3 and V4 differ, and a
+      comparison across them without saying so is a mixed-vintage error
+      the envelope exists to catch.
+    - >
+      Funded by NASA. Attributing this to DOE without naming NASA is
+      exactly the overclaim the publisher triple was added to prevent.
+    - >
+      A start date before 1980 is silently moved to 1980 by the
+      service, which returns real numbers under the year that was
+      asked for. The adapter refuses the earlier date instead.
+    - >
+      Only the Daymet single-pixel service is wired up. The MODIS and
+      VIIRS subset service is a second host and is not queried.
+
+authority_notes: >
+  Official_secondary: a NASA-funded archive ORNL operates, distributing
+  data other investigators produced. The single-pixel Daymet query is
+  the proving case for decision 0010's subset-tool rule — a narrow
+  subset tool where a real subsetting service exists, pointers
+  everywhere else. Verified live and activated on 2026-09-09
+  (research/notes/verification-round12.md).
+
+health:
+  probe: daymet_point_series
+  expect:
+    min_records: 3
+
+lifecycle:
+  declared_state: active
+  added: "2026-09-02"
+  last_verified: "2026-09-09"
+  verified_by: pranava0x0

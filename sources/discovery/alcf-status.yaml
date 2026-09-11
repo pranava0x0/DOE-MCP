@@ -1,0 +1,77 @@
+id: alcf-status
+name: ALCF computing status
+domain: discovery
+
+publisher:
+  steward: anl
+  funder: sc
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: ['anl']
+
+capabilities: []
+
+planned_capabilities: ['compute.facility_status']
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: unknown
+  tier: thin_proxy
+  terms_url: https://status.alcf.anl.gov/
+  terms_notes: >
+    A public status page with no login. Whether it has a machine
+    interface is exactly what is unknown: the page is an Angular
+    application that loads its data from somewhere, and every path
+    tried on 2026-09-08 answered HTTP 403 with a Cloudflare
+    interstitial rather than with data or with a 404. No terms review
+    is possible on a source nobody has read the response of.
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Assumed from the page's purpose; not observed, because no
+    machine-readable response has been seen.
+  ttl_hint_seconds: 300
+
+coverage:
+  scope: >
+    Current status of ALCF systems and their scheduled maintenance,
+    as presented by the facility's own status page.
+  temporal: current
+  dataset_version: "current"
+  known_limitations:
+    - >
+      Nothing here has been read by this project. The scope above is
+      what the page says it shows, not what a response was observed to
+      contain.
+
+authority_notes: >
+  Primary: ALCF publishes its own status. Recorded on 2026-09-08 while
+  closing the architecture Part 1 section 4.7 question of whether
+  compute.facility_status has more than one reachable source. The
+  answer was no, and this manifest is why: naming the obstacle is a
+  complete contribution, and an unnamed one becomes a question somebody
+  re-asks.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-08"
+  last_verified: "2026-09-08"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Blocked probe. The status page is an Angular application and its
+    data paths return HTTP 403 with a Cloudflare challenge to a
+    scripted client, which under decision 0007 is blocked_probe and NOT
+    gated: a WAF refusing this client shape says nothing about whether
+    the data is public. One real-browser check, watching the
+    application's own network calls, would settle both the endpoint and
+    the posture. Joins the blocked-probe backlog.

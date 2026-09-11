@@ -1,0 +1,1791 @@
+{
+  "note": "Recorded live from US Wind Turbine Database (USWTDB) (https://energy.usgs.gov/uswtdb/) by tools/record_fixtures.py. Publisher content redistributed under the terms recorded in THIRD_PARTY_DATA.yml.",
+  "redaction": "Email addresses replaced with redacted@example.invalid and credential values with 'redacted' at record time. Field shapes and lengths are otherwise the publisher's.",
+  "interactions": [
+    {
+      "url": "https://energy.usgs.gov/api/uswtdb/v1/",
+      "params": {},
+      "headers": {
+        "content-type": "application/openapi+json; charset=utf-8"
+      },
+      "body": {
+        "swagger": "2.0",
+        "info": {
+          "description": "",
+          "title": "standard public schema",
+          "version": "12.2.3 (519615d)"
+        },
+        "host": "0.0.0.0:3000",
+        "basePath": "/",
+        "schemes": [
+          "http"
+        ],
+        "consumes": [
+          "application/json",
+          "application/vnd.pgrst.object+json;nulls=stripped",
+          "application/vnd.pgrst.object+json",
+          "text/csv"
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.pgrst.object+json;nulls=stripped",
+          "application/vnd.pgrst.object+json",
+          "text/csv"
+        ],
+        "paths": {
+          "/": {
+            "get": {
+              "produces": [
+                "application/openapi+json",
+                "application/json"
+              ],
+              "responses": {
+                "200": {
+                  "description": "OK"
+                }
+              },
+              "summary": "OpenAPI description (this document)",
+              "tags": [
+                "Introspection"
+              ]
+            }
+          },
+          "/turbines": {
+            "get": {
+              "parameters": [
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.case_id"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.faa_ors"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.faa_asn"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.usgs_pr_id"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_state"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_county"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_fips"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.p_name"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.p_year"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.p_tnum"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.p_cap"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_manu"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_model"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_cap"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_hh"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_rd"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_rsa"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_ttlh"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_conf_atr"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_conf_loc"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_img_date"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_img_src"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.xlong"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.ylat"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.eia_id"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_retrofit"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_retro_yr"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_offshore"
+                },
+                {
+                  "$ref": "#/parameters/select"
+                },
+                {
+                  "$ref": "#/parameters/order"
+                },
+                {
+                  "$ref": "#/parameters/range"
+                },
+                {
+                  "$ref": "#/parameters/rangeUnit"
+                },
+                {
+                  "$ref": "#/parameters/offset"
+                },
+                {
+                  "$ref": "#/parameters/limit"
+                },
+                {
+                  "$ref": "#/parameters/preferCount"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "OK",
+                  "schema": {
+                    "items": {
+                      "$ref": "#/definitions/turbines"
+                    },
+                    "type": "array"
+                  }
+                },
+                "206": {
+                  "description": "Partial Content"
+                }
+              },
+              "tags": [
+                "turbines"
+              ]
+            },
+            "post": {
+              "parameters": [
+                {
+                  "$ref": "#/parameters/body.turbines"
+                },
+                {
+                  "$ref": "#/parameters/select"
+                },
+                {
+                  "$ref": "#/parameters/preferPost"
+                }
+              ],
+              "responses": {
+                "201": {
+                  "description": "Created"
+                }
+              },
+              "tags": [
+                "turbines"
+              ]
+            },
+            "delete": {
+              "parameters": [
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.case_id"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.faa_ors"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.faa_asn"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.usgs_pr_id"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_state"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_county"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_fips"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.p_name"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.p_year"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.p_tnum"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.p_cap"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_manu"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_model"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_cap"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_hh"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_rd"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_rsa"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_ttlh"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_conf_atr"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_conf_loc"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_img_date"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_img_src"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.xlong"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.ylat"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.eia_id"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_retrofit"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_retro_yr"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_offshore"
+                },
+                {
+                  "$ref": "#/parameters/preferReturn"
+                }
+              ],
+              "responses": {
+                "204": {
+                  "description": "No Content"
+                }
+              },
+              "tags": [
+                "turbines"
+              ]
+            },
+            "patch": {
+              "parameters": [
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.case_id"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.faa_ors"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.faa_asn"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.usgs_pr_id"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_state"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_county"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_fips"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.p_name"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.p_year"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.p_tnum"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.p_cap"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_manu"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_model"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_cap"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_hh"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_rd"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_rsa"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_ttlh"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_conf_atr"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_conf_loc"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_img_date"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_img_src"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.xlong"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.ylat"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.eia_id"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_retrofit"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_retro_yr"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.turbines.t_offshore"
+                },
+                {
+                  "$ref": "#/parameters/body.turbines"
+                },
+                {
+                  "$ref": "#/parameters/preferReturn"
+                }
+              ],
+              "responses": {
+                "204": {
+                  "description": "No Content"
+                }
+              },
+              "tags": [
+                "turbines"
+              ]
+            }
+          },
+          "/projects": {
+            "get": {
+              "parameters": [
+                {
+                  "$ref": "#/parameters/rowFilter.projects.case_id"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.multi_poly"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.eia_id"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_state"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_county"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.ylat"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.xlong"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_area"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_img_date"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_dig_conf"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_name"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_year"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_pwr_reg"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_tech_pri"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_tech_sec"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_axis"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_azimuth"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_tilt"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_battery"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_cap_ac"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_cap_dc"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_type"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_agrivolt"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_zscore"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_comm"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_sys_type"
+                },
+                {
+                  "$ref": "#/parameters/select"
+                },
+                {
+                  "$ref": "#/parameters/order"
+                },
+                {
+                  "$ref": "#/parameters/range"
+                },
+                {
+                  "$ref": "#/parameters/rangeUnit"
+                },
+                {
+                  "$ref": "#/parameters/offset"
+                },
+                {
+                  "$ref": "#/parameters/limit"
+                },
+                {
+                  "$ref": "#/parameters/preferCount"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "OK",
+                  "schema": {
+                    "items": {
+                      "$ref": "#/definitions/projects"
+                    },
+                    "type": "array"
+                  }
+                },
+                "206": {
+                  "description": "Partial Content"
+                }
+              },
+              "tags": [
+                "projects"
+              ]
+            },
+            "post": {
+              "parameters": [
+                {
+                  "$ref": "#/parameters/body.projects"
+                },
+                {
+                  "$ref": "#/parameters/select"
+                },
+                {
+                  "$ref": "#/parameters/preferPost"
+                }
+              ],
+              "responses": {
+                "201": {
+                  "description": "Created"
+                }
+              },
+              "tags": [
+                "projects"
+              ]
+            },
+            "delete": {
+              "parameters": [
+                {
+                  "$ref": "#/parameters/rowFilter.projects.case_id"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.multi_poly"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.eia_id"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_state"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_county"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.ylat"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.xlong"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_area"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_img_date"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_dig_conf"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_name"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_year"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_pwr_reg"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_tech_pri"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_tech_sec"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_axis"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_azimuth"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_tilt"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_battery"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_cap_ac"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_cap_dc"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_type"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_agrivolt"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_zscore"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_comm"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_sys_type"
+                },
+                {
+                  "$ref": "#/parameters/preferReturn"
+                }
+              ],
+              "responses": {
+                "204": {
+                  "description": "No Content"
+                }
+              },
+              "tags": [
+                "projects"
+              ]
+            },
+            "patch": {
+              "parameters": [
+                {
+                  "$ref": "#/parameters/rowFilter.projects.case_id"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.multi_poly"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.eia_id"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_state"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_county"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.ylat"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.xlong"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_area"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_img_date"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_dig_conf"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_name"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_year"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_pwr_reg"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_tech_pri"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_tech_sec"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_axis"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_azimuth"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_tilt"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_battery"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_cap_ac"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_cap_dc"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_type"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_agrivolt"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_zscore"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_comm"
+                },
+                {
+                  "$ref": "#/parameters/rowFilter.projects.p_sys_type"
+                },
+                {
+                  "$ref": "#/parameters/body.projects"
+                },
+                {
+                  "$ref": "#/parameters/preferReturn"
+                }
+              ],
+              "responses": {
+                "204": {
+                  "description": "No Content"
+                }
+              },
+              "tags": [
+                "projects"
+              ]
+            }
+          }
+        },
+        "definitions": {
+          "turbines": {
+            "properties": {
+              "case_id": {
+                "format": "integer",
+                "type": "integer"
+              },
+              "faa_ors": {
+                "format": "character varying",
+                "maxLength": 9,
+                "type": "string"
+              },
+              "faa_asn": {
+                "format": "character varying",
+                "maxLength": 17,
+                "type": "string"
+              },
+              "usgs_pr_id": {
+                "format": "integer",
+                "type": "integer"
+              },
+              "t_state": {
+                "format": "character varying",
+                "maxLength": 2,
+                "type": "string"
+              },
+              "t_county": {
+                "format": "character varying",
+                "maxLength": 54,
+                "type": "string"
+              },
+              "t_fips": {
+                "format": "character varying",
+                "maxLength": 12,
+                "type": "string"
+              },
+              "p_name": {
+                "format": "character varying",
+                "maxLength": 54,
+                "type": "string"
+              },
+              "p_year": {
+                "format": "integer",
+                "type": "integer"
+              },
+              "p_tnum": {
+                "format": "integer",
+                "type": "integer"
+              },
+              "p_cap": {
+                "format": "numeric",
+                "type": "number"
+              },
+              "t_manu": {
+                "format": "character varying",
+                "maxLength": 100,
+                "type": "string"
+              },
+              "t_model": {
+                "format": "character varying",
+                "maxLength": 18,
+                "type": "string"
+              },
+              "t_cap": {
+                "format": "integer",
+                "type": "integer"
+              },
+              "t_hh": {
+                "format": "numeric",
+                "type": "number"
+              },
+              "t_rd": {
+                "format": "numeric",
+                "type": "number"
+              },
+              "t_rsa": {
+                "format": "numeric",
+                "type": "number"
+              },
+              "t_ttlh": {
+                "format": "numeric",
+                "type": "number"
+              },
+              "t_conf_atr": {
+                "format": "integer",
+                "type": "integer"
+              },
+              "t_conf_loc": {
+                "format": "integer",
+                "type": "integer"
+              },
+              "t_img_date": {
+                "format": "character varying",
+                "maxLength": 16,
+                "type": "string"
+              },
+              "t_img_src": {
+                "format": "character varying",
+                "maxLength": 16,
+                "type": "string"
+              },
+              "xlong": {
+                "format": "numeric",
+                "type": "number"
+              },
+              "ylat": {
+                "format": "numeric",
+                "type": "number"
+              },
+              "eia_id": {
+                "format": "integer",
+                "type": "integer"
+              },
+              "t_retrofit": {
+                "format": "integer",
+                "type": "integer"
+              },
+              "t_retro_yr": {
+                "format": "integer",
+                "type": "integer"
+              },
+              "t_offshore": {
+                "format": "integer",
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "projects": {
+            "properties": {
+              "case_id": {
+                "description": "Note:\nThis is a Primary Key.<pk/>",
+                "format": "integer",
+                "type": "integer"
+              },
+              "multi_poly": {
+                "format": "character varying",
+                "maxLength": 17,
+                "type": "string"
+              },
+              "eia_id": {
+                "format": "integer",
+                "type": "integer"
+              },
+              "p_state": {
+                "format": "character varying",
+                "maxLength": 17,
+                "type": "string"
+              },
+              "p_county": {
+                "format": "character varying",
+                "maxLength": 54,
+                "type": "string"
+              },
+              "ylat": {
+                "format": "numeric",
+                "type": "number"
+              },
+              "xlong": {
+                "format": "numeric",
+                "type": "number"
+              },
+              "p_area": {
+                "format": "numeric",
+                "type": "number"
+              },
+              "p_img_date": {
+                "format": "integer",
+                "type": "integer"
+              },
+              "p_dig_conf": {
+                "format": "integer",
+                "type": "integer"
+              },
+              "p_name": {
+                "format": "character varying",
+                "maxLength": 100,
+                "type": "string"
+              },
+              "p_year": {
+                "format": "integer",
+                "type": "integer"
+              },
+              "p_pwr_reg": {
+                "format": "character varying",
+                "maxLength": 54,
+                "type": "string"
+              },
+              "p_tech_pri": {
+                "format": "character varying",
+                "maxLength": 54,
+                "type": "string"
+              },
+              "p_tech_sec": {
+                "format": "character varying",
+                "maxLength": 54,
+                "type": "string"
+              },
+              "p_axis": {
+                "format": "character varying",
+                "maxLength": 54,
+                "type": "string"
+              },
+              "p_azimuth": {
+                "format": "integer",
+                "type": "integer"
+              },
+              "p_tilt": {
+                "format": "integer",
+                "type": "integer"
+              },
+              "p_battery": {
+                "format": "character varying",
+                "maxLength": 54,
+                "type": "string"
+              },
+              "p_cap_ac": {
+                "format": "numeric",
+                "type": "number"
+              },
+              "p_cap_dc": {
+                "format": "numeric",
+                "type": "number"
+              },
+              "p_type": {
+                "format": "character varying",
+                "maxLength": 54,
+                "type": "string"
+              },
+              "p_agrivolt": {
+                "format": "character varying",
+                "maxLength": 54,
+                "type": "string"
+              },
+              "p_zscore": {
+                "format": "numeric",
+                "type": "number"
+              },
+              "p_comm": {
+                "format": "character varying",
+                "maxLength": 54,
+                "type": "string"
+              },
+              "p_sys_type": {
+                "format": "character varying",
+                "maxLength": 54,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "parameters": {
+          "preferParams": {
+            "name": "Prefer",
+            "description": "Preference",
+            "required": false,
+            "enum": [
+              "params=single-object"
+            ],
+            "in": "header",
+            "type": "string"
+          },
+          "preferReturn": {
+            "name": "Prefer",
+            "description": "Preference",
+            "required": false,
+            "enum": [
+              "return=representation",
+              "return=minimal",
+              "return=none"
+            ],
+            "in": "header",
+            "type": "string"
+          },
+          "preferCount": {
+            "name": "Prefer",
+            "description": "Preference",
+            "required": false,
+            "enum": [
+              "count=none"
+            ],
+            "in": "header",
+            "type": "string"
+          },
+          "preferPost": {
+            "name": "Prefer",
+            "description": "Preference",
+            "required": false,
+            "enum": [
+              "return=representation",
+              "return=minimal",
+              "return=none",
+              "resolution=ignore-duplicates",
+              "resolution=merge-duplicates"
+            ],
+            "in": "header",
+            "type": "string"
+          },
+          "select": {
+            "name": "select",
+            "description": "Filtering Columns",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "on_conflict": {
+            "name": "on_conflict",
+            "description": "On Conflict",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "order": {
+            "name": "order",
+            "description": "Ordering",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "range": {
+            "name": "Range",
+            "description": "Limiting and Pagination",
+            "required": false,
+            "in": "header",
+            "type": "string"
+          },
+          "rangeUnit": {
+            "name": "Range-Unit",
+            "description": "Limiting and Pagination",
+            "required": false,
+            "default": "items",
+            "in": "header",
+            "type": "string"
+          },
+          "offset": {
+            "name": "offset",
+            "description": "Limiting and Pagination",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "limit": {
+            "name": "limit",
+            "description": "Limiting and Pagination",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "body.turbines": {
+            "name": "turbines",
+            "description": "turbines",
+            "required": false,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/turbines"
+            }
+          },
+          "rowFilter.turbines.case_id": {
+            "name": "case_id",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.faa_ors": {
+            "name": "faa_ors",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.faa_asn": {
+            "name": "faa_asn",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.usgs_pr_id": {
+            "name": "usgs_pr_id",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.t_state": {
+            "name": "t_state",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.t_county": {
+            "name": "t_county",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.t_fips": {
+            "name": "t_fips",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.p_name": {
+            "name": "p_name",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.p_year": {
+            "name": "p_year",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.p_tnum": {
+            "name": "p_tnum",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.p_cap": {
+            "name": "p_cap",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.t_manu": {
+            "name": "t_manu",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.t_model": {
+            "name": "t_model",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.t_cap": {
+            "name": "t_cap",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.t_hh": {
+            "name": "t_hh",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.t_rd": {
+            "name": "t_rd",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.t_rsa": {
+            "name": "t_rsa",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.t_ttlh": {
+            "name": "t_ttlh",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.t_conf_atr": {
+            "name": "t_conf_atr",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.t_conf_loc": {
+            "name": "t_conf_loc",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.t_img_date": {
+            "name": "t_img_date",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.t_img_src": {
+            "name": "t_img_src",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.xlong": {
+            "name": "xlong",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.ylat": {
+            "name": "ylat",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.eia_id": {
+            "name": "eia_id",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.t_retrofit": {
+            "name": "t_retrofit",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.t_retro_yr": {
+            "name": "t_retro_yr",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.turbines.t_offshore": {
+            "name": "t_offshore",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "body.projects": {
+            "name": "projects",
+            "description": "projects",
+            "required": false,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/projects"
+            }
+          },
+          "rowFilter.projects.case_id": {
+            "name": "case_id",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.projects.multi_poly": {
+            "name": "multi_poly",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.projects.eia_id": {
+            "name": "eia_id",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.projects.p_state": {
+            "name": "p_state",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.projects.p_county": {
+            "name": "p_county",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.projects.ylat": {
+            "name": "ylat",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.projects.xlong": {
+            "name": "xlong",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.projects.p_area": {
+            "name": "p_area",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.projects.p_img_date": {
+            "name": "p_img_date",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.projects.p_dig_conf": {
+            "name": "p_dig_conf",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.projects.p_name": {
+            "name": "p_name",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.projects.p_year": {
+            "name": "p_year",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.projects.p_pwr_reg": {
+            "name": "p_pwr_reg",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.projects.p_tech_pri": {
+            "name": "p_tech_pri",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.projects.p_tech_sec": {
+            "name": "p_tech_sec",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.projects.p_axis": {
+            "name": "p_axis",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.projects.p_azimuth": {
+            "name": "p_azimuth",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.projects.p_tilt": {
+            "name": "p_tilt",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.projects.p_battery": {
+            "name": "p_battery",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.projects.p_cap_ac": {
+            "name": "p_cap_ac",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.projects.p_cap_dc": {
+            "name": "p_cap_dc",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.projects.p_type": {
+            "name": "p_type",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.projects.p_agrivolt": {
+            "name": "p_agrivolt",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.projects.p_zscore": {
+            "name": "p_zscore",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.projects.p_comm": {
+            "name": "p_comm",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          "rowFilter.projects.p_sys_type": {
+            "name": "p_sys_type",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          }
+        },
+        "externalDocs": {
+          "description": "PostgREST Documentation",
+          "url": "https://postgrest.org/en/v12/references/api.html"
+        }
+      }
+    },
+    {
+      "url": "https://energy.usgs.gov/api/uswtdb/v1/turbines",
+      "params": {
+        "select": "count"
+      },
+      "headers": {
+        "content-type": "application/json; charset=utf-8"
+      },
+      "body": [
+        {
+          "count": 75727
+        }
+      ]
+    },
+    {
+      "url": "https://energy.usgs.gov/api/uswtdb/v1/turbines",
+      "params": {
+        "limit": "5",
+        "offset": "0",
+        "order": "case_id.asc"
+      },
+      "headers": {
+        "content-type": "application/json; charset=utf-8"
+      },
+      "body": [
+        {
+          "case_id": 3000001,
+          "faa_ors": null,
+          "faa_asn": null,
+          "usgs_pr_id": 6569,
+          "t_state": "CA",
+          "t_county": "Kern County",
+          "t_fips": "06029",
+          "p_name": "Difwind 6",
+          "p_year": 1987,
+          "p_tnum": 250,
+          "p_cap": 27.0,
+          "t_manu": null,
+          "t_model": null,
+          "t_cap": null,
+          "t_hh": null,
+          "t_rd": null,
+          "t_rsa": null,
+          "t_ttlh": null,
+          "t_conf_atr": 1,
+          "t_conf_loc": 3,
+          "t_img_date": "11/3/2018",
+          "t_img_src": "Maxar",
+          "xlong": -118.27003,
+          "ylat": 35.06605,
+          "eia_id": 54686,
+          "t_retrofit": 0,
+          "t_retro_yr": null,
+          "t_offshore": 0
+        },
+        {
+          "case_id": 3000003,
+          "faa_ors": null,
+          "faa_asn": null,
+          "usgs_pr_id": 3100,
+          "t_state": "CA",
+          "t_county": "Kern County",
+          "t_fips": "06029",
+          "p_name": "unknown Tehachapi Wind Resource Area 1",
+          "p_year": 1982,
+          "p_tnum": 664,
+          "p_cap": null,
+          "t_manu": null,
+          "t_model": null,
+          "t_cap": null,
+          "t_hh": null,
+          "t_rd": null,
+          "t_rsa": null,
+          "t_ttlh": null,
+          "t_conf_atr": 1,
+          "t_conf_loc": 3,
+          "t_img_date": "11/3/2018",
+          "t_img_src": "Maxar",
+          "xlong": -118.29939,
+          "ylat": 35.0448,
+          "eia_id": null,
+          "t_retrofit": 0,
+          "t_retro_yr": null,
+          "t_offshore": 0
+        },
+        {
+          "case_id": 3000008,
+          "faa_ors": null,
+          "faa_asn": null,
+          "usgs_pr_id": 3463,
+          "t_state": "CA",
+          "t_county": "Kern County",
+          "t_fips": "06029",
+          "p_name": "Ridgetop",
+          "p_year": 1985,
+          "p_tnum": 236,
+          "p_cap": 29.0,
+          "t_manu": null,
+          "t_model": null,
+          "t_cap": null,
+          "t_hh": null,
+          "t_rd": null,
+          "t_rsa": null,
+          "t_ttlh": null,
+          "t_conf_atr": 1,
+          "t_conf_loc": 3,
+          "t_img_date": "5/8/2018",
+          "t_img_src": "Maxar",
+          "xlong": -118.30278,
+          "ylat": 35.07853,
+          "eia_id": 10597,
+          "t_retrofit": 0,
+          "t_retro_yr": null,
+          "t_offshore": 0
+        },
+        {
+          "case_id": 3000020,
+          "faa_ors": null,
+          "faa_asn": null,
+          "usgs_pr_id": 1944,
+          "t_state": "AK",
+          "t_county": "Bethel Census Area",
+          "t_fips": "02050",
+          "p_name": "Tuntutuliak",
+          "p_year": 2012,
+          "p_tnum": 5,
+          "p_cap": 0.48,
+          "t_manu": "Windmatic",
+          "t_model": "WM17S",
+          "t_cap": 95,
+          "t_hh": 31.0,
+          "t_rd": 17.0,
+          "t_rsa": 226.98,
+          "t_ttlh": 39.5,
+          "t_conf_atr": 3,
+          "t_conf_loc": 3,
+          "t_img_date": "5/19/2020",
+          "t_img_src": "Maxar",
+          "xlong": -162.66188,
+          "ylat": 60.3368,
+          "eia_id": null,
+          "t_retrofit": 0,
+          "t_retro_yr": null,
+          "t_offshore": 0
+        },
+        {
+          "case_id": 3000026,
+          "faa_ors": null,
+          "faa_asn": null,
+          "usgs_pr_id": 6696,
+          "t_state": "CA",
+          "t_county": "Kern County",
+          "t_fips": "06029",
+          "p_name": "unknown Tehachapi Wind Resource Area 1",
+          "p_year": 1982,
+          "p_tnum": 664,
+          "p_cap": null,
+          "t_manu": null,
+          "t_model": null,
+          "t_cap": null,
+          "t_hh": null,
+          "t_rd": null,
+          "t_rsa": null,
+          "t_ttlh": null,
+          "t_conf_atr": 1,
+          "t_conf_loc": 3,
+          "t_img_date": "11/3/2018",
+          "t_img_src": "Maxar",
+          "xlong": -118.26709,
+          "ylat": 35.0724,
+          "eia_id": null,
+          "t_retrofit": 0,
+          "t_retro_yr": null,
+          "t_offshore": 0
+        }
+      ]
+    },
+    {
+      "url": "https://energy.usgs.gov/api/uswtdb/v1/turbines",
+      "params": {
+        "t_state": "eq.RI",
+        "select": "count"
+      },
+      "headers": {
+        "content-type": "application/json; charset=utf-8"
+      },
+      "body": [
+        {
+          "count": 35
+        }
+      ]
+    },
+    {
+      "url": "https://energy.usgs.gov/api/uswtdb/v1/turbines",
+      "params": {
+        "t_state": "eq.RI",
+        "limit": "5",
+        "offset": "0",
+        "order": "case_id.asc"
+      },
+      "headers": {
+        "content-type": "application/json; charset=utf-8"
+      },
+      "body": [
+        {
+          "case_id": 3001502,
+          "faa_ors": null,
+          "faa_asn": null,
+          "usgs_pr_id": 38309,
+          "t_state": "RI",
+          "t_county": "Kent County",
+          "t_fips": "44003",
+          "p_name": "New England Tech",
+          "p_year": 2009,
+          "p_tnum": 1,
+          "p_cap": 0.1,
+          "t_manu": "Northern Power Systems",
+          "t_model": "NW100",
+          "t_cap": 100,
+          "t_hh": 37.0,
+          "t_rd": 21.0,
+          "t_rsa": 346.36,
+          "t_ttlh": 47.5,
+          "t_conf_atr": 2,
+          "t_conf_loc": 3,
+          "t_img_date": "9/13/2017",
+          "t_img_src": "Maxar",
+          "xlong": -71.4515,
+          "ylat": 41.73279,
+          "eia_id": null,
+          "t_retrofit": 0,
+          "t_retro_yr": null,
+          "t_offshore": 0
+        },
+        {
+          "case_id": 3015899,
+          "faa_ors": "44-020002",
+          "faa_asn": "2005-ANE-1002-OE",
+          "usgs_pr_id": 38302,
+          "t_state": "RI",
+          "t_county": "Newport County",
+          "t_fips": "44005",
+          "p_name": "Portsmouth Abbey School",
+          "p_year": 2006,
+          "p_tnum": 1,
+          "p_cap": 0.66,
+          "t_manu": "Vestas",
+          "t_model": "V47-0.66",
+          "t_cap": 660,
+          "t_hh": 50.0,
+          "t_rd": 47.0,
+          "t_rsa": 1734.94,
+          "t_ttlh": 73.5,
+          "t_conf_atr": 3,
+          "t_conf_loc": 3,
+          "t_img_date": null,
+          "t_img_src": "Bing Maps Aerial",
+          "xlong": -71.2687,
+          "ylat": 41.59909,
+          "eia_id": null,
+          "t_retrofit": 0,
+          "t_retro_yr": null,
+          "t_offshore": 0
+        },
+        {
+          "case_id": 3034241,
+          "faa_ors": "44-020102",
+          "faa_asn": "2010-WTE-12453-OE",
+          "usgs_pr_id": 38304,
+          "t_state": "RI",
+          "t_county": "Newport County",
+          "t_fips": "44005",
+          "p_name": "Sandywoods",
+          "p_year": 2012,
+          "p_tnum": 1,
+          "p_cap": 0.28,
+          "t_manu": "Vergnet",
+          "t_model": "GEV MP",
+          "t_cap": 275,
+          "t_hh": 55.0,
+          "t_rd": 32.0,
+          "t_rsa": 804.25,
+          "t_ttlh": 71.0,
+          "t_conf_atr": 3,
+          "t_conf_loc": 3,
+          "t_img_date": "11/18/2020",
+          "t_img_src": "Maxar",
+          "xlong": -71.1539,
+          "ylat": 41.62049,
+          "eia_id": null,
+          "t_retrofit": 0,
+          "t_retro_yr": null,
+          "t_offshore": 0
+        },
+        {
+          "case_id": 3039300,
+          "faa_ors": "44-020088",
+          "faa_asn": "2011-WTE-8243-OE",
+          "usgs_pr_id": 38306,
+          "t_state": "RI",
+          "t_county": "Providence County",
+          "t_fips": "44007",
+          "p_name": "Field's Point Wastewater Treatment Facility",
+          "p_year": 2012,
+          "p_tnum": 3,
+          "p_cap": 4.5,
+          "t_manu": "Goldwind",
+          "t_model": "GW82",
+          "t_cap": 1500,
+          "t_hh": 70.0,
+          "t_rd": 82.0,
+          "t_rsa": 5281.02,
+          "t_ttlh": 110.9,
+          "t_conf_atr": 3,
+          "t_conf_loc": 3,
+          "t_img_date": "2/16/2017",
+          "t_img_src": "Maxar",
+          "xlong": -71.3898,
+          "ylat": 41.79279,
+          "eia_id": 59692,
+          "t_retrofit": 0,
+          "t_retro_yr": null,
+          "t_offshore": 0
+        },
+        {
+          "case_id": 3039301,
+          "faa_ors": "44-020089",
+          "faa_asn": "2011-WTE-8244-OE",
+          "usgs_pr_id": 38307,
+          "t_state": "RI",
+          "t_county": "Providence County",
+          "t_fips": "44007",
+          "p_name": "Field's Point Wastewater Treatment Facility",
+          "p_year": 2012,
+          "p_tnum": 3,
+          "p_cap": 4.5,
+          "t_manu": "Goldwind",
+          "t_model": "GW82",
+          "t_cap": 1500,
+          "t_hh": 70.0,
+          "t_rd": 82.0,
+          "t_rsa": 5281.02,
+          "t_ttlh": 110.9,
+          "t_conf_atr": 3,
+          "t_conf_loc": 3,
+          "t_img_date": "2/16/2017",
+          "t_img_src": "Maxar",
+          "xlong": -71.3873,
+          "ylat": 41.79449,
+          "eia_id": 59692,
+          "t_retrofit": 0,
+          "t_retro_yr": null,
+          "t_offshore": 0
+        }
+      ]
+    }
+  ]
+}

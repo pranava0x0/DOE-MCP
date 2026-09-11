@@ -1,0 +1,71 @@
+id: sc-pams-awards
+name: PAMS public award search (Office of Science)
+domain: projects
+
+publisher:
+  steward: sc
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: []
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+planned_capabilities: ['projects.search_awards']
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: manual_review_required
+  tier: crawl_or_defer
+  terms_url: https://www.energy.gov/science/portfolio-analysis-and-management-system-pams
+  terms_notes: >
+    The public award search needs no login and offers Excel export,
+    but it is an ASP.NET WebForms page (426 KB on 2026-09-08) with no
+    API. Scripting a WebForms postback is a scrape, which needs review
+    before anything queries it.
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed; awards appear as they are made.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Office of Science financial-assistance awards since 2014:
+    institution, principal investigator, program office, amount, and
+    abstract.
+  temporal: 2014 onward
+  dataset_version: "current"
+  known_limitations:
+    - >
+      Grants and cooperative agreements only. Laboratory funding through
+      field work proposals is not here.
+    - >
+      No API. The FAF pattern applies: a periodic export into a parsed
+      copy under Gate E, or patience.
+
+authority_notes: >
+  Primary: SC's own system of record for its awards. Found in the
+  2026-09-08 gap sweep.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-08"
+  last_verified: "2026-09-08"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Tier C. A WebForms postback is a scrape; deferred until a projects
+    server exists and Gate E has reviewed an export-and-parse job.

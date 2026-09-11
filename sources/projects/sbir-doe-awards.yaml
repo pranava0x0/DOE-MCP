@@ -1,0 +1,72 @@
+id: sbir-doe-awards
+name: SBIR.gov awards API (DOE)
+domain: projects
+
+publisher:
+  steward: sba
+  funder: doe
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: []
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+planned_capabilities: ['projects.search_awards']
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: unknown
+  tier: thin_proxy
+  terms_url: https://www.sbir.gov/api
+  terms_notes: >
+    SBA documents the awards API as free, public, and keyless, with
+    agency=DOE as a filter. A scripted request returned 403 Forbidden
+    on 2026-09-08, so the automation posture is unknown until a real
+    browser has looked (the blocked_probe rule).
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Unknown; SBA posts awards as agencies report them.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Small Business Innovation Research and STTR awards funded by DOE
+    since 1983: company, topic, phase, amount, and abstract.
+  temporal: 1983 onward
+  dataset_version: "current"
+  known_limitations:
+    - >
+      A 403 to a scripted client is not evidence of a gate. Recorded as
+      blocked_probe.
+    - >
+      DOE's own SBIR office publishes award lists on science.osti.gov as
+      documents; this API is the structured route if it opens.
+
+authority_notes: >
+  Primary for the cross-agency award record; SBA runs it, DOE
+  reports into it. Found in the 2026-09-08 gap sweep.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-08"
+  last_verified: "2026-09-08"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Blocked probe. One browser-grade check settles whether the API is
+    open to scripted clients; then it is a Phase 5 projects-server
+    source with no adapter work beyond a REST genre.

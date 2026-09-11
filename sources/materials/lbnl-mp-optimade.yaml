@@ -1,0 +1,122 @@
+id: lbnl-mp-optimade
+name: Materials Project OPTIMADE endpoint
+domain: materials
+
+publisher:
+  steward: lbnl
+  funder: sc
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [lbnl]
+
+capabilities:
+  - id: materials.search
+    tool_hint: materials.search_structures
+  - id: materials.get_structure
+    tool_hint: materials.get_structure
+  - id: materials.describe_fields
+    tool_hint: materials.describe_structure_fields
+
+planned_capabilities: []
+
+adapter:
+  type: optimade
+  base_url: https://optimade.materialsproject.org/v1
+  entry_type: structures
+  # The underscore prefix the standard reserves for a provider's own
+  # fields. `_mp_stability` carries the formation energies and the
+  # energy above hull, which nothing in the standard defines.
+  provider_prefix: _mp_
+  keyed_route_note: >
+    This keyless route serves structures and formulas. The Materials
+    Project's electronic structure, phase diagrams, elastic tensors and
+    the rest are behind its own keyed API and the mp-api library, which
+    is a separate source in this registry. A caller reading "Materials
+    Project" will assume the whole database; this route is one part of
+    it.
+  sortable: []
+
+access:
+  mode: anonymous
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://next-gen.materialsproject.org/about/terms
+  terms_reviewed_at: "2026-09-09"
+  terms_notes: >
+    Open, keyless read access over the OPTIMADE 1.2.0 specification; it
+    answered a scripted client on 2026-09-09 and asks for no key, in
+    contrast to the same publisher's own REST API. The Materials
+    Project is one of DOE's designated PuRe data resources and asks
+    that its data be cited; the citation is the project's own paper
+    rather than a per-record DOI.
+  citation_required: false
+  citation_text: >
+    A. Jain, S.P. Ong, G. Hautier, W. Chen, W.D. Richards, S. Dacek, S.
+    Cholia, D. Gunter, D. Skinner, G. Ceder, and K.A. Persson. 2013.
+    Commentary: The Materials Project: A materials genome approach to
+    accelerating materials innovation. APL Materials 1(1):011002.
+    https://doi.org/10.1063/1.4812323
+  rate_limit_note: >
+    None published for the OPTIMADE endpoint. Absence of a stated
+    ceiling is not permission; this client caps a page at 100 entries.
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed; a continuously extended computed database. Each entry
+    carries its own last_modified, which is what an answer reports.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Crystal structures of inorganic materials as the OPTIMADE standard
+    describes them: elements and their ratios, reduced, descriptive and
+    Hill formulas, site count, lattice vectors, space group, and
+    dimensionality, plus the Materials Project's own stability fields.
+  temporal: current
+  dataset_version: "OPTIMADE 1.2.0"
+  record_count: 154387
+  record_count_checked: "2026-09-09"
+  known_limitations:
+    - >
+      Computed, not measured. A Materials Project structure is a
+      calculation's output under a stated functional, and treating it
+      as an experimental crystal structure is a category error.
+    - >
+      This route is narrower than the publisher's own API. Structures
+      and formulas are here; energetics beyond the stability block,
+      electronic structure, and phase diagrams are behind the keyed
+      route.
+    - >
+      OPTIMADE is a federation standard with 29 providers, of which
+      this is the DOE member. A structure absent here may well exist at
+      another provider, and that is a different answer from its not
+      existing.
+    - >
+      The provider extension fields are not portable. `_mp_stability`
+      means what the Materials Project says it means and has no
+      counterpart at another provider.
+
+authority_notes: >
+  Primary for its own computed data. A second access route to the same
+  publisher rather than a second publisher: the keyed API and the
+  mp-api library are the source lbnl-materials-project, which decision
+  0011 reserves for depend-and-wrap. This one is keyless, speaks a
+  published standard, and needed no dependency, which is why it went
+  first. Verified live and activated on 2026-09-09
+  (research/notes/verification-round13.md).
+
+health:
+  probe: optimade_entry_count
+  expect:
+    min_records: 100000
+
+lifecycle:
+  declared_state: active
+  added: "2026-09-09"
+  last_verified: "2026-09-09"
+  verified_by: pranava0x0

@@ -1,0 +1,84 @@
+id: netl-edx
+name: NETL Energy Data eXchange (EDX)
+domain: energy-tech
+
+publisher:
+  steward: netl
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [netl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+planned_capabilities: [dataset.search]
+adapter:
+  type: none
+
+access:
+  mode: api_key
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://edx.netl.doe.gov/
+  terms_notes: >
+    CKAN action API plus ArcGIS GeoCube spatial layers. A free account
+    yields a key. Individual datasets carry their own terms; EDX hosts
+    both public and controlled collections and the distinction is per-
+    dataset, so a blanket assumption either way would be wrong.
+  terms_reviewed_at: "2026-09-01"
+  credential_ref: EDX_API_KEY
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed; a submission-driven repository.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    NETL's data repository: carbon storage and transport, subsurface
+    characterisation, critical minerals, and the 2025-26 HGEO tool wave
+    — NATCARB Viewer 2.0, the CO2 transport planning database (90+ GB
+    across 40+ layers), Smart CO2 Transport, CS PlanIT, CONNECT/Carbon
+    Matchmaker, ClaiMM, and GAIA.
+  temporal: current
+  dataset_version: "current"
+  known_limitations:
+    - >
+      gis.netl.doe.gov drops plain HTTP clients entirely — no status
+      code, connection-level — while serving browsers. That is
+      blocked_probe, not gated (decision 0007), and the GeoCube service
+      enumeration needs a real browser before its manifest can say
+      anything about access.
+    - >
+      The CO2 transport dataset's EDX slug has already changed once (now
+      co2-transport-planning-database), which is the churn this
+      registry's alias fields exist for.
+    - >
+      Mixed public and controlled holdings under one API. Per-dataset
+      terms are the only reliable signal.
+
+authority_notes: >
+  Primary for NETL's own datasets. Intended capabilities:
+  dataset.search over the EDX catalog (decision 0026). Phase 4, via the
+  ckan_edx and arcgis adapters.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Phase 4, and one verification first: the GeoCube service enumeration
+    needs a browser-grade fetch, because the plain-client probe returns
+    nothing at all rather than an error to read.

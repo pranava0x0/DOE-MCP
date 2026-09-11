@@ -1,0 +1,80 @@
+id: nlr-geothermal-data-repository
+name: Geothermal Data Repository (GDR)
+domain: energy-tech
+
+publisher:
+  steward: nlr
+  authority_level: official_secondary
+
+aliases:
+  former_names: []
+  former_domains: ["gdr.openei.org"]
+
+labs: [nlr, inl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+planned_capabilities: [dataset.search]
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: public_download
+  tier: catalog_pointer
+  terms_url: https://gdr.openei.org/
+  terms_notes: >
+    Submissions are public; individual datasets carry their own
+    licences. No conventional API: CKAN's package_search and DKAN's
+    node.json both return 404, probe-confirmed.
+  terms_reviewed_at: "2026-09-01"
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed; submission-driven.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Geothermal research data from DOE-funded projects, including the
+    FORGE observatory. The site's own statistics block reports 1,407
+    datasets and 764 TB; its sitemap carries 1,451 submission pages.
+  temporal: current
+  dataset_version: "current"
+  record_count: 1451
+  record_count_checked: "2026-09-01"
+  known_limitations:
+    - >
+      No API. The route in is DOE Data Explorer, where
+      `site_ownership_code=DOE-GDR` returns 1,035 records — 71% of the
+      1,451 submissions, checked live 2026-09-02. The remaining 29% need
+      a sitemap harvest, which is Gate E work.
+    - >
+      Two different counts from the publisher itself (1,407 datasets in
+      the stats block, 1,451 submission pages in the sitemap). Both are
+      recorded rather than averaged; they are probably counting
+      different things.
+
+authority_notes: >
+  Intended capabilities: dataset.search, filtered to this repository
+  (decision 0026). Phase 4, and mostly already
+  served: an OSTI-suite filter answers 71% of it today, which is a good
+  argument for federating a catalog rather than rebuilding a repository.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    No API exists. 71% is reachable now through DOE Data Explorer; the
+    remaining 29% needs a sitemap harvest and Gate E review for
+    retaining harvested content.

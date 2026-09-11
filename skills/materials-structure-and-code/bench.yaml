@@ -1,0 +1,28 @@
+# The machine-checkable part of the bench tasks in SKILL.md.
+checked:
+  - task: 1
+    steps:
+      - tool: materials.search_structures
+        args: {elements: "Ga,N", rows: 5}
+        expect:
+          coverage.result: hit
+          coverage.registry: covered
+          data.structures: {nonempty: true}
+          warnings: [derived_layer]
+  - task: 2
+    steps:
+      - tool: chemistry.get_basis_set
+        args: {name: "6-31g", output_format: "nwchem", elements: "H,C,O"}
+        expect:
+          coverage.result: hit
+          coverage.registry: covered
+          data.data: {nonempty: true}
+  - task: 3
+    steps:
+      - tool: materials.get_structure
+        args: {structure_id: "mp-1244984"}
+        expect:
+          coverage.result: hit
+          coverage.registry: covered
+          data.id: "mp-1244984"
+reader: [4]

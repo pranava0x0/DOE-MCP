@@ -1,0 +1,70 @@
+id: openei-urdb
+name: OpenEI Utility Rate Database
+domain: energy-tech
+
+publisher:
+  steward: nlr
+  authority_level: official_secondary
+
+aliases:
+  former_names: []
+  former_domains: ["openei.org"]
+
+labs: [nlr]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+planned_capabilities: [rates.find_tariffs]
+adapter:
+  type: none
+
+access:
+  mode: api_key
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://openei.org/wiki/Utility_Rate_Database
+  terms_notes: >
+    Served through the api.data.gov key layer alongside the rest of the
+    NLR network. The wiki behind it also exposes a Semantic MediaWiki
+    ask API. Rate data is contributed and openly licensed.
+  terms_reviewed_at: "2026-09-01"
+  credential_ref: API_DATA_GOV_KEY
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed; contribution-driven.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    US electricity tariffs: rate structures, energy and demand charges,
+    applicability.
+  temporal: current and historical rates
+  dataset_version: "current"
+  known_limitations:
+    - >
+      Contributed data. A tariff here may be out of date or may never
+      have been entered; the utility's own filed tariff is the authority
+      and this is a research convenience.
+    - >
+      Shares the api.data.gov hourly budget with every other NLR API.
+
+authority_notes: >
+  Official_secondary: NLR operates the database, the utilities file the
+  tariffs. Intended capabilities: rates.find_tariffs. Phase 3.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Phase 3, with the rest of the NLR network.

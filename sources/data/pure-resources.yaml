@@ -1,0 +1,99 @@
+# DOE's Public Reusable Research (PuRe) Data Resources.
+#
+# Transcribed from science.osti.gov/Initiatives/PuRe-Data (the Resources at a
+# Glance page), checked 2026-09-01. This is DOE's OWN designation of its most
+# durable public data holdings — seven of them — which makes it two useful
+# things at once: a directory a caller can ask for by name, and a build-
+# priority signal for this project.
+#
+# It is transcribed rather than fetched because the page is HTML with no
+# machine-readable form. The transcription is dated and its source named, so
+# a reader can check it; that is the difference between curated data and a
+# hard-coded list.
+
+pure_resources:
+
+  - id: atct
+    name: Active Thermochemical Tables
+    abbreviation: ATcT
+    steward: anl
+    what: >
+      Thermochemical values (enthalpies of formation and related quantities)
+      derived from a self-consistent network of measurements rather than from
+      sequential single studies.
+    url: https://atct.anl.gov
+    doe_mcp_status: proposed
+    doe_mcp_note: >
+      No public API found in the survey. Candidate for the materials domain
+      once an access path is verified.
+
+  - id: materials-project
+    name: Materials Project
+    steward: lbnl
+    what: >
+      Computed properties for well over a hundred thousand inorganic
+      materials, with an API and a Python client.
+    url: https://next-gen.materialsproject.org
+    doe_mcp_status: depend_and_wrap
+    doe_mcp_note: >
+      Ships its own first-party MCP server inside the `mp-api` library. Under
+      decision 0011 this is the depend-and-wrap case: declare the library,
+      write thin tools over it, keep one install and a native envelope.
+
+  - id: arm
+    name: Atmospheric Radiation Measurement Data Center
+    abbreviation: ARM
+    steward: ornl
+    what: >
+      Continuous atmospheric measurements from fixed and mobile observatories,
+      decades deep.
+    url: https://adc.arm.gov
+    doe_mcp_status: proposed
+    doe_mcp_note: >
+      Free account token required, and ARM requires citation as a condition
+      of use — the case that put a citation block in the envelope.
+
+  - id: jgi
+    name: Joint Genome Institute Data Portal
+    abbreviation: JGI
+    steward: lbnl
+    what: Genome sequences and annotations for plants, microbes, and fungi.
+    url: https://data.jgi.doe.gov
+    doe_mcp_status: proposed
+    doe_mcp_note: Session-token friction observed; pointer tool at best in V1.
+
+  - id: kbase
+    name: DOE Systems Biology Knowledgebase
+    abbreviation: KBase
+    steward: lbnl
+    what: A platform for predictive biology with shared data and workflows.
+    url: https://www.kbase.us
+    doe_mcp_status: proposed
+    doe_mcp_note: Platform-shaped rather than dataset-shaped; needs a scoping pass.
+
+  - id: pdg
+    name: Particle Data Group
+    abbreviation: PDG
+    steward: lbnl
+    what: >
+      The canonical reference for particle physics — the Review of Particle
+      Physics and its underlying property tables.
+    url: https://pdg.lbl.gov
+    doe_mcp_status: proposed
+    doe_mcp_note: >
+      Found in the second research pass rather than the first. A strong
+      candidate: small, canonical, heavily cited, and reference-shaped.
+
+  - id: nndc
+    name: National Nuclear Data Center
+    abbreviation: NNDC
+    steward: bnl
+    what: >
+      Evaluated nuclear structure and reaction data: ENSDF, ENDF, NuDat.
+    url: https://www.nndc.bnl.gov
+    doe_mcp_status: proposed
+    doe_mcp_note: >
+      The nuclear domain's ingest-versus-wrap question (decision 0011) is
+      still open and belongs to Phase 4. Weighted toward NNDC bulk ingest,
+      because the cleanest alternative API — IAEA's Live Chart — serves an
+      ENSDF snapshot from April 2022.

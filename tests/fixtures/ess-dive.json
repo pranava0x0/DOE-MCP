@@ -1,0 +1,670 @@
+{
+  "note": "Recorded live from ESS-DIVE (Environmental System Science Data Infrastructure) (https://ess-dive.lbl.gov/) by tools/record_fixtures.py. Publisher content redistributed under the terms recorded in THIRD_PARTY_DATA.yml.",
+  "redaction": "Email addresses replaced with redacted@example.invalid and credential values with 'redacted' at record time. Field shapes and lengths are otherwise the publisher's.",
+  "interactions": [
+    {
+      "url": "https://api.ess-dive.lbl.gov/packages",
+      "params": {
+        "text": "permafrost",
+        "sort": "dateUploaded:desc",
+        "pageSize": "5",
+        "rowStart": "1"
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "total": 329,
+        "pageSize": 5,
+        "rowStart": 1,
+        "user": "anonymous",
+        "query": {
+          "isPublic": true,
+          "creator": null,
+          "providerName": null,
+          "text": "permafrost",
+          "datePublished": null,
+          "beginDate": null,
+          "endDate": null,
+          "keywords": null,
+          "sort": "dateUploaded:desc",
+          "bbox": null,
+          "lat": null,
+          "lon": null,
+          "radius": null
+        },
+        "nextCursor": "eyJ2IjoxLCJ0eXBlIjoicGFja2FnZXMiLCJyb3dTdGFydCI6NiwicGFnZVNpemUiOjUsInF1ZXJ5Ijp7ImlzX3B1YmxpYyI6dHJ1ZSwiY3JlYXRvciI6bnVsbCwicHJvdmlkZXJfbmFtZSI6bnVsbCwidGV4dCI6InBlcm1hZnJvc3QiLCJkYXRlX3B1Ymxpc2hlZCI6bnVsbCwiYmVnaW5fZGF0ZSI6bnVsbCwiZW5kX2RhdGUiOm51bGwsImtleXdvcmRzIjpudWxsLCJzb3J0IjoiZGF0ZVVwbG9hZGVkOmRlc2MiLCJiYm94IjpudWxsLCJsYXQiOm51bGwsImxvbiI6bnVsbCwicmFkaXVzIjpudWxsLCJpc19wdWJsaWNhdGlvbl9yZXF1ZXN0ZWQiOm51bGx9LCJwcmluY2lwYWwiOnsiaWRlbnRpdHkiOiJhbm9ueW1vdXMiLCJpc0Fub255bW91cyI6dHJ1ZX19",
+        "previousCursor": null,
+        "result": [
+          {
+            "id": "ess-dive-3ae4bf47c8a5c01-20260821T191107282",
+            "viewUrl": "https://data.ess-dive.lbl.gov/view/doi:10.5440/1575068",
+            "url": "https://api.ess-dive.lbl.gov/packages/ess-dive-3ae4bf47c8a5c01-20260821T191107282",
+            "next": null,
+            "previous": "https://api.ess-dive.lbl.gov/packages/ess-dive-4351ffbcaeb70a2-20230406T143613018506",
+            "dateUploaded": "2026-08-21T19:11:09.012Z",
+            "dateModified": "2026-08-21T19:11:09.243Z",
+            "isPublic": true,
+            "citation": "Rogers A; Alldred M; Serbin S (2020): Leaf Carbon and Nitrogen Content, Seward Peninsula, Alaska, 2014. Next-Generation Ecosystem Experiments (NGEE) Arctic. Dataset. doi:10.5440/1575068",
+            "dataset": {
+              "@context": "http://schema.org/",
+              "@type": "Dataset",
+              "@id": "doi:10.5440/1575068",
+              "name": "Leaf Carbon and Nitrogen Content, Seward Peninsula, Alaska, 2014",
+              "description": "Carbon and nitrogen content of leaves sampled from locations on the Council, Kougarok and Teller roads, Seward Peninsula, Alaska. Species not fully identified in all cases, but include samples from the genera: Alnus, Arctagrostis, Arctophila, Arctostaphylos, Betula, Carex, Eriophorum, Petasites, Picea, Populus, Rubus, Salix, Saxifraga and Vaccinium. Locations along the Council, Kougarok and Teller roads, Seward Peninsula, Alaska. Samples were collected from various locations as part of reconnaissance field work prior to establishment of formal NGEE Arctic study sites between August 22, 2014 and August 24, 2014. There is a single datafile in .csv format. The Next-Generation Ecosystem Experiments: Arctic (NGEE Arctic), was a research effort to reduce uncertainty in Earth System Models by developing a predictive understanding of carbon-rich Arctic ecosystems and feedbacks to climate. NGEE Arctic was supported by the Department of Energy's Office of Biological and Environmental Research. The NGEE Arctic project had two field research sites: 1) located within the Arctic polygonal tundra coastal region on the Barrow Environmental Observatory (BEO) and the North Slope near Utqiagvik (Barrow), Alaska and 2) multiple areas on the discontinuous permafrost region of the Seward Peninsula north of Nome, Alaska. Through observations, experiments, and synthesis with existing datasets, NGEE Arctic provided an enhanced knowledge base for multi-scale modeling and contributed to improved process representation at global pan-Arctic scales within the Department of Energy's Earth system Model (the Energy Exascale Earth System Model, or E3SM), and specifically within the E3SM Land Model component (ELM).",
+              "datePublished": "2020",
+              "providerName": "Next-Generation Ecosystem Experiments (NGEE) Arctic"
+            }
+          },
+          {
+            "id": "ess-dive-59891b16a14f206-20260821T190846262",
+            "viewUrl": "https://data.ess-dive.lbl.gov/view/doi:10.3334/CDIAC/SPRUCE.042",
+            "url": "https://api.ess-dive.lbl.gov/packages/ess-dive-59891b16a14f206-20260821T190846262",
+            "next": null,
+            "previous": "https://api.ess-dive.lbl.gov/packages/ess-dive-2ae5dfe4f535d88-20230504T211419723410",
+            "dateUploaded": "2026-08-21T19:08:47.405Z",
+            "dateModified": "2026-08-21T19:08:47.514Z",
+            "isPublic": true,
+            "citation": "Wilson R; Tfaily M; Keller J; Bridgham S; Zalman C M; Hanson P; Pfeifer-Meister L; Chanton J; Kostka J (2017): SPRUCE Geochemical Changes in Porewater from Northern Peatlands at Multiple Depths in Field Samples and over Time in Peat Incubations. ORNL Terrestrial Ecosystem Science SFA. Dataset. doi:10.3334/CDIAC/SPRUCE.042",
+            "dataset": {
+              "@context": "http://schema.org/",
+              "@type": "Dataset",
+              "@id": "doi:10.3334/CDIAC/SPRUCE.042",
+              "name": "SPRUCE Geochemical Changes in Porewater from Northern Peatlands at Multiple Depths in Field Samples and over Time in Peat Incubations",
+              "description": "This data set reports the results of the analysis of dissolved organic matter (DOM) in porewater samples collected from multiple depths in northern peatlands and during laboratory peat incubations to characterize the gain or loss of specific chemical moieties (e.g. CH2, H2, CH2O, etc.) that may be attributed to microbial degradation. During incubations, CO2 and CH4 concentrations and stable isotopes were determined by isotope ratio mass spectrometry. Porewater samples were collected from the S1 Bog (April 2015), a Sphagnum-dominated site at northern Minnesota peatland in the Marcell Experimental Forest, using permanently-installed piezometers, which provided profiles from the watertable surface to 200 cm depth. This is the site of the SPRUCE experiment. Porewater and peat samples were collected in July 2015 from an additional Sphagnum-dominated site within Stordalen Mire, Sweden, a palsa mire underlain by thawing permafrost, using perforated stainless steel tubes that were inserted into the peat to the desired depths (13 cm and 32 cm). Porewater samples were analyzed by Fourier transform ion cyclotron resonance mass spectrometry (FTICRMS) followed by Kendrick mass transform analysis. The Kendrick mass (i.e., Kendrick 1963) transform analysis identifies the gain or loss of specific chemical moieties (e.g. CH2, H2, CH2O, etc.) via mass differences, and was used to infer potential microbial degradation pathways by which compounds were consumed in these samples. Increasing depth would suggest more degradation of DOM with the greater length of time for peat accumulation and similarly, with increasing length of peat incubation. During incubations, CO2 and CH4 concentrations and stable isotopes were determined by isotope ratio mass spectrometry. There are four files provided in comma separated value (*.csv) format.",
+              "datePublished": "2017",
+              "providerName": "ORNL Terrestrial Ecosystem Science SFA"
+            }
+          },
+          {
+            "id": "ess-dive-9b961ab3bdda867-20260817T151917925",
+            "viewUrl": "https://data.ess-dive.lbl.gov/view/doi:10.15485/3023308",
+            "url": "https://api.ess-dive.lbl.gov/packages/ess-dive-9b961ab3bdda867-20260817T151917925",
+            "next": null,
+            "previous": "https://api.ess-dive.lbl.gov/packages/ess-dive-9b961ab3bdda867-20260817T151831933",
+            "dateUploaded": "2026-08-17T15:19:19.031Z",
+            "dateModified": "2026-08-17T15:19:19.186Z",
+            "isPublic": true,
+            "citation": "Gao B; Painter S; Abolt C (2026): Permafrost Thaw, Uneven Subsidence and Projected Drying of Ice-wedge Polygon Tundra: Modeling Archive. Next-Generation Ecosystem Experiments (NGEE) Arctic. Dataset. doi:10.15485/3023308",
+            "dataset": {
+              "@context": "http://schema.org/",
+              "@type": "Dataset",
+              "@id": "doi:10.15485/3023308",
+              "name": "Permafrost Thaw, Uneven Subsidence and Projected Drying of Ice-wedge Polygon Tundra: Modeling Archive",
+              "description": "This dataset is a model archive of the paper Permafrost Thaw, Uneven Subsidence and Projected Drying of Ice-wedge Polygon Tundra (in prep) to support a modeling study investigating how projected increases in Arctic temperature and precipitation will jointly influence hydrologic conditions in ice-rich tundra landscapes. With this dataset, this study is to address the research question: Will Arctic tundra landscapes become wetter or drier with increasing precipitation and temperature in the future when thaw-induced ground subsidence and associated microtopographic evolution are represented? The simulations focus on ice-wedge polygon tundra, a widespread form of ice-rich permafrost terrain that is highly sensitive to thaw-driven landscape change. This dataset contains model input and output data for four study watersheds in Alaska: Anaktuvuk, Utqiagvik (formerly Barrow), Brooks Foothills, and Prudhoe Bay. Simulations were performed using the Advanced Terrestrial Simulator (ATS, v1.5), a physics-rich integrated surface\u2013subsurface hydrologic model. For each watershed, ten modeling cases were performed representing two landscape evolution conditions (with subsidence and without subsidence) combined with five climate forcing scenarios derived from Shared Socioeconomic Pathways (SSP5, SSP5 with precipitation trend, SSP2, SSP2 with precipitation trend, and SSP2 with double precipitation trend). Particularly, for each watershed under the forcing SSP2 with precipitation trend, there are two additional simulations considering spatially heterogeneous subsidence distributions: one assumes randomly distributed scaling and the other includes elevation dependent distribution scaling. These simulations span 1980\u20132099 and include spin-up runs (1980\u20132009) followed by transient projections (2010\u20132099). To facilitate reproducibility of simulations, all datasets are organized by watershed. For each study watershed, the dataset contains: (1) Pre-partitioned mesh files for 32-core modeling (.par.32.XX), located in EACH_WATERSHED/mesh/basin; and also a non-partitioned mesh file (.exo) located in EACH_WATERSHED/mesh; (2) Climate forcings corresponding to the five SSP scenarios (.h5), located in EACH_WATERSHED/data; (3) Final states (.h5) from column spin-up modeling used to initialize historical watershed-scale spin-up runs from 1980 to 2009, located in EACH_WATERSHED/PreSpinupHistorical; (4) Final states (.h5) of historical watershed-scale spin-up runs from 1980 to 2009 used to initialize projection runs, located in EACH_WATERSHED/Spinup_daymetERA5; (5) ATS modeling input files (.xml), located in EACH_WATERSHED/EACH_SIMULATION_SCENARIO/inputfiles; (6) ATS modeling output files (.dat), located in in EACH_WATERSHED/EACH_SIMULATION_SCENARIO/combined_obs; (7) For the Brooks Foothills watershed, additional spatial model outputs are provided (.h5) for selected years (2033 and 2093) used to generate spatial figures in this study, located in Brooksfoothills/EACH_SIMULATION_SCENARIO/results-WITH/WITHOUT_SUBSIDENCE-year2033/2093. All data files with suffix .h5 can be accessible through Python h5py, and all data files with suffix of .dat can be imported by Python pandas. Mesh file with .exo can be visualized through Paraview or read by Python netCDF. The Next-Generation Ecosystem Experiments in the Arctic (NGEE Arctic) project is a research effort to reduce uncertainty in the Department of Energy\u2019s Energy Exascale Earth System Model (E3SM) by developing a predictive understanding of Arctic tundra ecosystems underlain by permafrost and to quantify feedbacks from the Arctic tundra to the Earth system. NGEE Arctic is supported by the Department of Energy's Office of Biological and Environmental Research. Over Phases 1\u20133, observations made by the NGEE Arctic team across a gradient of permafrost landscapes in Arctic Alaska improved the representation of tundra processes in the land surface component of E3SM (the E3SM Land Model, ELM). Model improvements emphasized unique aspects of permafrost environments and explored reductions in model complexity while retaining predictive power. The Arctic-informed ELM developed by NGEE Arctic has been used to make novel predictions on processes ranging from permafrost thaw to soil biogeochemical cycling to Earth system feedbacks associated with the unique characteristics of tundra plants. In Phase 4, the NGEE Arctic team is evaluating our new predictive understanding under novel conditions across the Arctic domain. In collaboration with partners at long-term pan-Arctic research sites we are examining whether an Arctic-informed ELM can faithfully simulate interactions among surface and subsurface processes at site, regional, and pan-Arctic scales. In turn, we are using variety of tools to dynamically extend and evaluate ELM inference, with an emphasis on data synthesis and pan-Arctic model evaluation, reintegration of code with an evolving E3SM, scaling across heterogeneous Arctic landscapes, and the appropriate representation of the impacts of increasingly frequent Arctic disturbances.",
+              "datePublished": "2026",
+              "providerName": "Next-Generation Ecosystem Experiments (NGEE) Arctic"
+            }
+          },
+          {
+            "id": "ess-dive-387aca9b8ac0fa9-20260717T202253310452",
+            "viewUrl": "https://data.ess-dive.lbl.gov/view/doi:10.5440/1832016",
+            "url": "https://api.ess-dive.lbl.gov/packages/ess-dive-387aca9b8ac0fa9-20260717T202253310452",
+            "next": null,
+            "previous": "https://api.ess-dive.lbl.gov/packages/ess-dive-f43050a151b2e13-20230906T183932829405",
+            "dateUploaded": "2026-07-17T20:22:54.969Z",
+            "dateModified": "2026-07-17T20:22:55.053Z",
+            "isPublic": true,
+            "citation": "Singhania A; Glennie C; Fernandez-Diaz J; Hauser D (2023): National Center for Airborne Laser Mapping (NCALM) LiDAR, Imagery, and DEM data from five NGEE Arctic Sites, Seward Peninsula, Alaska, August 2021. Next-Generation Ecosystem Experiments (NGEE) Arctic. Dataset. doi:10.5440/1832016",
+            "dataset": {
+              "@context": "http://schema.org/",
+              "@type": "Dataset",
+              "@id": "doi:10.5440/1832016",
+              "name": "National Center for Airborne Laser Mapping (NCALM) LiDAR, Imagery, and DEM data from five NGEE Arctic Sites, Seward Peninsula, Alaska, August 2021",
+              "description": "From August 8 through August 16 of 2021, airborne remote sensing data was collected by the National Center for Airborne Laser Mapping (NCALM) in collaboration with NGEE Arctic scientists. Data was collected around five NGEE Arctic study sites on the Seward Peninsula of Alaska: Teller mm 27, Teller mm 47, Kougarok mm 64, Kougarok mm 86, and Council mm 71. A Robinson R44 II helicopter with a RIEGL VQ-580 II airborne laser scanner was used to collect the LiDAR point cloud data for each study site. A Phase One iXM-RS100F camera was integrated with the Riegl sensor to collect RGB imagery. This data package contains LiDAR point clouds (.las), RGB imagery (tif), 1 m or 50 cm Digital Elevation Models (.tif) generated from the LiDAR data, and shapefiles of the .las tiling system for each site (.shp). Two supplemental documents are also included in the package: 1) a report describing data collection details, GNSS corrections, and processing steps and 2) a document describing the LiDAR Classification used (.pdf). This survey was conducted towards the end of the summer on the Seward Peninsula, and can be paired with data collected in April of 2022 during the snow-on campaign \"National Center for Airborne Laser Mapping (NCALM) LiDAR and DEM data from two NGEE Arctic Sites, Seward Peninsula, Alaska, Winter 2022\" (Singhania et.al, 2023) (NGA314).  The Next-Generation Ecosystem Experiments: Arctic (NGEE Arctic), was a research effort to reduce uncertainty in Earth System Models by developing a predictive understanding of carbon-rich Arctic ecosystems and feedbacks to climate. NGEE Arctic was supported by the Department of Energy's Office of Biological and Environmental Research. The NGEE Arctic project had two field research sites: 1) located within the Arctic polygonal tundra coastal region on the Barrow Environmental Observatory (BEO) and the North Slope near Utqiagvik (Barrow), Alaska and 2) multiple areas on the discontinuous permafrost region of the Seward Peninsula north of Nome, Alaska. Through observations, experiments, and synthesis with existing datasets, NGEE Arctic provided an enhanced knowledge base for multi-scale modeling and contributed to improved process representation at global pan-Arctic scales within the Department of Energy's Earth system Model (the Energy Exascale Earth System Model, or E3SM), and specifically within the E3SM Land Model component (ELM).",
+              "datePublished": "2023",
+              "providerName": "Next-Generation Ecosystem Experiments (NGEE) Arctic"
+            }
+          },
+          {
+            "id": "ess-dive-b92428d4a59674c-20260717T202221097472",
+            "viewUrl": "https://data.ess-dive.lbl.gov/view/doi:10.5440/1778212",
+            "url": "https://api.ess-dive.lbl.gov/packages/ess-dive-b92428d4a59674c-20260717T202221097472",
+            "next": null,
+            "previous": "https://api.ess-dive.lbl.gov/packages/ess-dive-8fce7d96f84db85-20230607T210824521467",
+            "dateUploaded": "2026-07-17T20:22:24.225Z",
+            "dateModified": "2026-07-17T20:22:24.350Z",
+            "isPublic": true,
+            "citation": "Serbin S; Yang D; McMahon A (2021): Landscape-scale Characterization of Arctic Tundra Vegetation Composition, Structure, and Function with a Multi-sensor Unoccupied Aerial System: Supporting Data.. Next-Generation Ecosystem Experiments (NGEE) Arctic. Dataset. doi:10.5440/1778212",
+            "dataset": {
+              "@context": "http://schema.org/",
+              "@type": "Dataset",
+              "@id": "doi:10.5440/1778212",
+              "name": "Landscape-scale Characterization of Arctic Tundra Vegetation Composition, Structure, and Function with a Multi-sensor Unoccupied Aerial System: Supporting Data.",
+              "description": "Airborne remote sensing data collected using the Brookhaven National Laboratory's (BNL) heavy-lift unoccupied aerial system (UAS) octocopter platform, the Osprey, operated by the Terrestrial Ecosystem Science and Technology (TEST) group (https://www.bnl.gov/testgroup). This package includes data from three flights flown over the NGEE-Arctic Council, Kougarok and Teller sites in July, 2018. The Osprey is a multi-sensor UAS platform that simultaneously measures very high spatial resolution optical red/green/blue (RGB) and thermal infrared (TIR) surface 'skin' temperature imagery, as well as surface reflectance at 1 nm intervals in the visible to near-infrared spectral range 350 - 1000 nm measured at regular intervals along each flight path. Derived image products include ortho-mosaiced RGB and TIR images, an RGB-based digital surface model (DSM) using the structure from motion (SfM) technique, digital terrain model (DTM), and a canopy height model (CHM). In addition, a VNIR surface reflectance file is provided for the trigger locations collected during each flight campaign. Ancillary aircraft data, flight mission parameters, and general flight conditions provided by the onboard flight and data collection computers are also included. Unprocessed and processed data products are included in this package (processing levels 0-3). Data and metadata are provided as text (*.txt, *.json, *.kml, *hdr, *.enp), tabular (*.dat, *.csv, *.waypoint, ENVI format (no extension)), point cloud (*.laz) and image (*.jpg, *.tif, *png) formats. This metadata document contains flight campaign, instrument and file metadata, along with a description of data processing levels, data products and file naming scheme.The Next-Generation Ecosystem Experiments: Arctic (NGEE Arctic), a research effort to reduce uncertainty in Earth System Models by developing a predictive understanding of carbon-rich Arctic ecosystems and feedbacks to climate. NGEE Arctic was supported by the Department of Energy?s Office of Biological and Environmental Research.The NGEE Arctic project had two field research sites: 1) located within the Arctic polygonal tundra coastal region on the Barrow Environmental Observatory (BEO) and the North Slope near Utqiagvik (Barrow), Alaska and 2) multiple areas on the discontinuous permafrost region of the Seward Peninsula north of Nome, Alaska.Through observations, experiments, and synthesis with existing datasets, NGEE Arctic provided an enhanced knowledge base for multi-scale modeling and contributed to improved process representation at global pan-Arctic scales within the Department of Energy's Earth system Model (the Energy Exascale Earth System Model, or E3SM), and specifically within the E3SM Land Model component (ELM).",
+              "datePublished": "2021",
+              "providerName": "Next-Generation Ecosystem Experiments (NGEE) Arctic"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "url": "https://api.ess-dive.lbl.gov/packages",
+      "params": {
+        "keywords": "permafrost",
+        "sort": "dateUploaded:desc",
+        "pageSize": "5",
+        "rowStart": "1"
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "total": 8,
+        "pageSize": 5,
+        "rowStart": 1,
+        "user": "anonymous",
+        "query": {
+          "isPublic": true,
+          "creator": null,
+          "providerName": null,
+          "text": null,
+          "datePublished": null,
+          "beginDate": null,
+          "endDate": null,
+          "keywords": [
+            "permafrost"
+          ],
+          "sort": "dateUploaded:desc",
+          "bbox": null,
+          "lat": null,
+          "lon": null,
+          "radius": null
+        },
+        "nextCursor": "eyJ2IjoxLCJ0eXBlIjoicGFja2FnZXMiLCJyb3dTdGFydCI6NiwicGFnZVNpemUiOjUsInF1ZXJ5Ijp7ImlzX3B1YmxpYyI6dHJ1ZSwiY3JlYXRvciI6bnVsbCwicHJvdmlkZXJfbmFtZSI6bnVsbCwidGV4dCI6bnVsbCwiZGF0ZV9wdWJsaXNoZWQiOm51bGwsImJlZ2luX2RhdGUiOm51bGwsImVuZF9kYXRlIjpudWxsLCJrZXl3b3JkcyI6WyJwZXJtYWZyb3N0Il0sInNvcnQiOiJkYXRlVXBsb2FkZWQ6ZGVzYyIsImJib3giOm51bGwsImxhdCI6bnVsbCwibG9uIjpudWxsLCJyYWRpdXMiOm51bGwsImlzX3B1YmxpY2F0aW9uX3JlcXVlc3RlZCI6bnVsbH0sInByaW5jaXBhbCI6eyJpZGVudGl0eSI6ImFub255bW91cyIsImlzQW5vbnltb3VzIjp0cnVlfX0",
+        "previousCursor": null,
+        "result": [
+          {
+            "id": "ess-dive-1b8af2df1b74f4b-20250327T174123116",
+            "viewUrl": "https://data.ess-dive.lbl.gov/view/doi:10.5440/1545603",
+            "url": "https://api.ess-dive.lbl.gov/packages/ess-dive-1b8af2df1b74f4b-20250327T174123116",
+            "next": null,
+            "previous": "https://api.ess-dive.lbl.gov/packages/ess-dive-1b8af2df1b74f4b-20250327T173726515",
+            "dateUploaded": "2025-03-27T17:41:25.550Z",
+            "dateModified": "2026-02-12T00:19:17.328Z",
+            "isPublic": true,
+            "citation": "Jan A; Coon E; Painter S (2019): Evaluating Integrated Surface/Subsurface Permafrost Thermal Hydrology Models in ATS (v0.88) Against Observations from a Polygonal Tundra Site: Modeling Archive. Next-Generation Ecosystem Experiments (NGEE) Arctic. Dataset. doi:10.5440/1545603",
+            "dataset": {
+              "@context": "http://schema.org/",
+              "@type": "Dataset",
+              "@id": "doi:10.5440/1545603",
+              "name": "Evaluating Integrated Surface/Subsurface Permafrost Thermal Hydrology Models in ATS (v0.88) Against Observations from a Polygonal Tundra Site: Modeling Archive",
+              "description": "This Modeling Archive supports the NGEE Arctic publication \"Evaluating integrated surface/subsurface permafrost thermal hydrology models in ATS (v0.88) against observations from a polygonal tundra site\" available in the Geoscientific Model Development journal. We evaluated the integrated surface/subsurface permafrost thermal hydrology models in the Advanced Terrestrial Simulator (ATS) against field observations in polygonal tundra at the Barrow Environmental Observatory. We simulated thermal hydrology of three-dimensional ice-wedge polygons with generic but broadly representative surface microtopography. We drove the simulations with meteorological data and observed water table elevations in ice-wedge polygon troughs. With limited calibration of the soil properties and evaporation model parameters, the simulations were found to be consistent with observed water tables, active layer thickness, snowpack depth, evaporation, and observed soil temperatures at several depths in trough, rim, and center. The study builds confidence in the emerging class of integrated surface/subsurface permafrost simulators and provides an optimized set of model parameters for use in projections of permafrost dynamics in a warming climate. This dataset includes python, html, pdf, EXO, H5, xlsx, and csv files. The Next-Generation Ecosystem Experiments: Arctic (NGEE Arctic), was a research effort to reduce uncertainty in Earth System Models by developing a predictive understanding of carbon-rich Arctic ecosystems and feedbacks to climate. NGEE Arctic was supported by the Department of Energy's Office of Biological and Environmental Research. The NGEE Arctic project had two field research sites: 1) located within the Arctic polygonal tundra coastal region on the Barrow Environmental Observatory (BEO) and the North Slope near Utqiagvik (Barrow), Alaska and 2) multiple areas on the discontinuous permafrost region of the Seward Peninsula north of Nome, Alaska. Through observations, experiments, and synthesis with existing datasets, NGEE Arctic provided an enhanced knowledge base for multi-scale modeling and contributed to improved process representation at global pan-Arctic scales within the Department of Energy's Earth system Model (the Energy Exascale Earth System Model, or E3SM), and specifically within the E3SM Land Model component (ELM).",
+              "datePublished": "2019",
+              "providerName": "Next-Generation Ecosystem Experiments (NGEE) Arctic"
+            }
+          },
+          {
+            "id": "ess-dive-8c986c8cafe8845-20250324T192553829",
+            "viewUrl": "https://data.ess-dive.lbl.gov/view/doi:10.5440/1579361",
+            "url": "https://api.ess-dive.lbl.gov/packages/ess-dive-8c986c8cafe8845-20250324T192553829",
+            "next": null,
+            "previous": "https://api.ess-dive.lbl.gov/packages/ess-dive-8c986c8cafe8845-20250324T192422633",
+            "dateUploaded": "2025-03-24T19:25:55.055Z",
+            "dateModified": "2026-02-12T00:19:19.200Z",
+            "isPublic": true,
+            "citation": "Debolskiy M; Nicolsky D; Hock R; Romanovsky V (2019): Modeling Present and Future Permafrost Distribution at Seward Peninsula, Alaska: Modeling Archive. Next-Generation Ecosystem Experiments (NGEE) Arctic. Dataset. doi:10.5440/1579361",
+            "dataset": {
+              "@context": "http://schema.org/",
+              "@type": "Dataset",
+              "@id": "doi:10.5440/1579361",
+              "name": "Modeling Present and Future Permafrost Distribution at Seward Peninsula, Alaska: Modeling Archive",
+              "description": "This dataset contains results from two GIPL runs for RCP4.5 and RCP8.5 across the Seward Peninsula. The model was run on 500 m by 500 m resolution for the period 1901-2100. Meteo variables include forcing air temperature and precipitation as well as modeled maxim and average snow height. This dataset also includes ground temperature at 10 different depths for every grid cell, active layer depth and talik thickness. Auxillary variables include ecotype map and projected latitude and longitude. Ground temperature borehole data that is used for model calibration and validation of GIPL2 for Seward Peninsula 500 m resolution model runs for 1901-2100 time period. Dataset also includes calibrated model parameters for future use. The main purpose of this dataset is the reproducibility of research. Data were produced for regional permafrost distribution assessment for present and future, in addition, model parameters can be used for future model runs on adjacent territories. This dataset contains *.pdf, *.txt, *.csv, and *.nc. files. The Next-Generation Ecosystem Experiments: Arctic (NGEE Arctic), was a research effort to reduce uncertainty in Earth System Models by developing a predictive understanding of carbon-rich Arctic ecosystems and feedbacks to climate. NGEE Arctic was supported by the Department of Energy's Office of Biological and Environmental Research. The NGEE Arctic project had two field research sites: 1) located within the Arctic polygonal tundra coastal region on the Barrow Environmental Observatory (BEO) and the North Slope near Utqiagvik (Barrow), Alaska and 2) multiple areas on the discontinuous permafrost region of the Seward Peninsula north of Nome, Alaska. Through observations, experiments, and synthesis with existing datasets, NGEE Arctic provided an enhanced knowledge base for multi-scale modeling and contributed to improved process representation at global pan-Arctic scales within the Department of Energy's Earth system Model (the Energy Exascale Earth System Model, or E3SM), and specifically within the E3SM Land Model component (ELM).",
+              "datePublished": "2019",
+              "providerName": "Next-Generation Ecosystem Experiments (NGEE) Arctic"
+            }
+          },
+          {
+            "id": "ess-dive-f402ed83a0918a7-20241223T211259656",
+            "viewUrl": "https://data.ess-dive.lbl.gov/view/doi:10.5440/1875838",
+            "url": "https://api.ess-dive.lbl.gov/packages/ess-dive-f402ed83a0918a7-20241223T211259656",
+            "next": null,
+            "previous": "https://api.ess-dive.lbl.gov/packages/ess-dive-3d87a2f1e586d12-20241223T201930705",
+            "dateUploaded": "2024-12-23T21:13:00.370Z",
+            "dateModified": "2025-01-04T00:00:51.821Z",
+            "isPublic": true,
+            "citation": "Berns-Herrboldt E; Graham D (2024): Arctic Soil Column Saturation & Drainage Experiment for Biogeochemical Redox Dynamics; Council, Alaska 2020-2022. Next-Generation Ecosystem Experiments (NGEE) Arctic. Dataset. doi:10.5440/1875838",
+            "dataset": {
+              "@context": "http://schema.org/",
+              "@type": "Dataset",
+              "@id": "doi:10.5440/1875838",
+              "name": "Arctic Soil Column Saturation & Drainage Experiment for Biogeochemical Redox Dynamics; Council, Alaska 2020-2022",
+              "description": "Land subsidence and changing hydrology due to permafrost thaw causes saturated thermokarst channels to develop across many Arctic landscapes. Formation of thermokarst channels shifts soil biogeochemical redox dynamics and impacts carbon dioxide (CO2) and methane (CH4) fluxes. This experimental study explores how soil saturation and drainage drives biogeochemical redox cycling and carbon decomposition in two soil types collected from the NGEE-Arctic field site in Council, Alaska. Soil cores were collected from a wet, upland soil overlain by low shrubs and tussocks and a saturated, thermokarst soil dominated by sedge. After removing surface vegetation, two cores for each soil type were homogenized across geochemically similar depth increments and packed into a PVC tube instrumented with volumetric water content (VWC) sensors, oxygen (O2) sensors, temperature sensors, and microrhizon porewater samplers. Then each experiment (upland and thermokarst) underwent three experimental phases: drainage 1, saturation, and drainage 2. During the 90 day experiments, VWC and O2 were measured continuously and porewater samplers were used for discrete measurements of pH, ferrous and total iron (Fe), dissolved organic carbon (DOC) and SUVA, and other dissolved species. Headspace samples in the the column were used to determine fluxes of CO2 and CH4. This dataset includes initial soil core geochemical characterization and column experiment continuous sensor measurements, outflow and porewater measurements, and gas flux measurements. Additional datasets include pre and post experiment soil geochemical measurements and microbial community analysis. The Next-Generation Ecosystem Experiments: Arctic (NGEE Arctic), was a research effort to reduce uncertainty in Earth System Models by developing a predictive understanding of carbon-rich Arctic ecosystems and feedbacks to climate. NGEE Arctic was supported by the Department of Energy's Office of Biological and Environmental Research. The NGEE Arctic project had two field research sites: 1) located within the Arctic polygonal tundra coastal region on the Barrow Environmental Observatory (BEO) and the North Slope near Utqiagvik (Barrow), Alaska and 2) multiple areas on the discontinuous permafrost region of the Seward Peninsula north of Nome, Alaska. Through observations, experiments, and synthesis with existing datasets, NGEE Arctic provided an enhanced knowledge base for multi-scale modeling and contributed to improved process representation at global pan-Arctic scales within the Department of Energy's Earth system Model (the Energy Exascale Earth System Model, or E3SM), and specifically within the E3SM Land Model component (ELM).",
+              "datePublished": "2024",
+              "providerName": "Next-Generation Ecosystem Experiments (NGEE) Arctic"
+            }
+          },
+          {
+            "id": "ess-dive-bf107ba8dc2cb64-20240925T141857779",
+            "viewUrl": "https://data.ess-dive.lbl.gov/view/doi:10.5440/1692382",
+            "url": "https://api.ess-dive.lbl.gov/packages/ess-dive-bf107ba8dc2cb64-20240925T141857779",
+            "next": null,
+            "previous": "https://api.ess-dive.lbl.gov/packages/ess-dive-b2084ca50b4b91a-20240924T145440156284",
+            "dateUploaded": "2024-09-25T14:18:59.844Z",
+            "dateModified": "2024-10-06T00:00:18.878Z",
+            "isPublic": true,
+            "citation": "Mekonnen Z (2021): Changes in Precipitation and Air Temperature Contribute Comparably to Permafrost Degradation in a Warmer Climate: Modeling Archive. Next-Generation Ecosystem Experiments (NGEE) Arctic. Dataset. doi:10.5440/1692382",
+            "dataset": {
+              "@context": "http://schema.org/",
+              "@type": "Dataset",
+              "@id": "doi:10.5440/1692382",
+              "name": "Changes in Precipitation and Air Temperature Contribute Comparably to Permafrost Degradation in a Warmer Climate: Modeling Archive",
+              "description": "The dataset contains \"ecosys\" model outputs reported in Mekonnen et al. (2021) to examine the importance of heat transfer from precipitation on permafrost degradation. The study highlighted the importance of mechanistically representing this process in earth system models (ESMs) and demonstrated that precipitation is as important an environmental control on permafrost degradation as surface air temperature. Included are (1) the modeled spatially averaged annual active layer depth (ALD) and daily maximum soil temperature across the North Slope of Alaska from 1980 to 2100, and (2) 25 km resolution modeled ALD for averaged for two time intervals, 2006 - 2010 and 2096 - 2100. The results are provided for two \"ecosys\" simulations: S1 with precipitation heat transfer and S2 without precipitation heat transfer across the North Slope of Alaska. These data are available in a NetCDF and csv data formats. The Next-Generation Ecosystem Experiments: Arctic (NGEE Arctic), was a research effort to reduce uncertainty in Earth System Models by developing a predictive understanding of carbon-rich Arctic ecosystems and feedbacks to climate. NGEE Arctic was supported by the Department of Energy's Office of Biological and Environmental Research. The NGEE Arctic project had two field research sites: 1) located within the Arctic polygonal tundra coastal region on the Barrow Environmental Observatory (BEO) and the North Slope near Utqiagvik (Barrow), Alaska and 2) multiple areas on the discontinuous permafrost region of the Seward Peninsula north of Nome, Alaska. Through observations, experiments, and synthesis with existing datasets, NGEE Arctic provided an enhanced knowledge base for multi-scale modeling and contributed to improved process representation at global pan-Arctic scales within the Department of Energy's Earth system Model (the Energy Exascale Earth System Model, or E3SM), and specifically within the E3SM Land Model component (ELM).",
+              "datePublished": "2021",
+              "providerName": "Next-Generation Ecosystem Experiments (NGEE) Arctic"
+            }
+          },
+          {
+            "id": "ess-dive-e2aa01b0e6560e1-20230705T214231162",
+            "viewUrl": "https://data.ess-dive.lbl.gov/view/doi:10.15485/1988078",
+            "url": "https://api.ess-dive.lbl.gov/packages/ess-dive-e2aa01b0e6560e1-20230705T214231162",
+            "next": null,
+            "previous": "https://api.ess-dive.lbl.gov/packages/ess-dive-a14c836c9664e00-20230705T205300061",
+            "dateUploaded": "2023-07-05T21:42:31.400Z",
+            "dateModified": "2026-04-28T22:59:13.691Z",
+            "isPublic": true,
+            "citation": "Rooney E (2023): Topography and canopy cover influence soil organic carbon composition and distribution across a forested hillslope in the discontinuous permafrost zone. Soil Carbon Biogeochemistry. Dataset. doi:10.15485/1988078",
+            "dataset": {
+              "@context": "http://schema.org/",
+              "@type": "Dataset",
+              "@id": "doi:10.15485/1988078",
+              "name": "Topography and canopy cover influence soil organic carbon composition and distribution across a forested hillslope in the discontinuous permafrost zone",
+              "description": "This dataset contains data used for the paper \"Topography and canopy cover influence soil organic carbon composition and distribution across a forested hillslope in the discontinuous permafrost zone\". The Related References field will be updated with a full citation when available. Topography and canopy cover influence ground temperature in warming permafrost landscapes, yet soil temperature heterogeneity introduced by meso-topographic slope positions, microtopographic differences in vegetation cover, and the subsequent impact of contrasting temperature conditions to soil organic carbon (SOC) dynamics are understudied. Buffering of permafrost-affected soils against warming air temperatures in boreal forests can reflect surface soil characteristics (e.g., thickness of organic material) as well as the degree and type of canopy cover (e.g., open cover vs closed cover). Both landscape and soil properties interact to determine meso- and micro-scale heterogeneity of ground warming. We sampled a hillslope catena transect in a discontinuous permafrost zone near Fairbanks, Alaska to test the small-scale (1 to 3 meter) impacts of slope position and cover type on soil organic matter composition. Mineral active layer samples were collected from backslope, low backslope, and footslope positions at depths spanning 19 to 60 cm. We examined soil mineralogical composition, soil moisture, total carbon and nitrogen content, and organic mat thickness in conjunction with an assessment of SOC composition using Fourier-transform ion Cyclotron Resonance Mass Spectrometry (FT-ICR-MS). Soils in the footslope position had a higher relative contribution of lignin-like compounds while backslope soils had more aliphatic and condensed aromatic compounds as determined by FT-ICR-MS. The effect of open versus closed tree canopy cover varied with slope position. On the backslope, we found higher oxidation of molecules under open cover compared with closed cover, indicating an effect of warmer soil temperature on decomposition. Little to no effect of canopy was observed for soils at the footslope position, which we attributed, in part, to the strong impact of soil moisture content in SOC dynamics in the water-gathering footslope position. The thin organic mat under open cover on the backslope position may have contributed to differences in soil temperature and thus SOC oxidation under open and closed canopy. Here, the thinner organic mat did not appear to buffer the underlying soil against warm season air temperatures and thus increased SOC decomposition as indicated by higher oxidation of SOC molecules and a lower contribution of simple molecules under open cover compared with the closed canopy sites. Our findings suggest that the role of canopy cover in SOC dynamics varies as a function of landscape position and soil properties, namely organic mat thickness and soil moisture. Condition-specific heterogeneity of SOC composition under open and closed canopy cover highlights the protective effect of canopy cover for soils on backslope positions. This dataset contains a compressed (.zip) archive of the data and R scripts used for this manuscript. The dataset includes files in .csv format, which can be accessed and processed using MS Excel or R. This archive can also be accessed on GitHub at https://github.com/Erin-Rooney/Y1_fairbanks (DOI: 10.5281/zenodo.8071247).",
+              "datePublished": "2023",
+              "providerName": "Soil Carbon Biogeochemistry"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "url": "https://api.ess-dive.lbl.gov/packages",
+      "params": {
+        "sort": "dateUploaded:desc",
+        "pageSize": "5",
+        "rowStart": "1"
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "total": 1571,
+        "pageSize": 5,
+        "rowStart": 1,
+        "user": "anonymous",
+        "query": {
+          "isPublic": true,
+          "creator": null,
+          "providerName": null,
+          "text": null,
+          "datePublished": null,
+          "beginDate": null,
+          "endDate": null,
+          "keywords": null,
+          "sort": "dateUploaded:desc",
+          "bbox": null,
+          "lat": null,
+          "lon": null,
+          "radius": null
+        },
+        "nextCursor": "eyJ2IjoxLCJ0eXBlIjoicGFja2FnZXMiLCJyb3dTdGFydCI6NiwicGFnZVNpemUiOjUsInF1ZXJ5Ijp7ImlzX3B1YmxpYyI6dHJ1ZSwiY3JlYXRvciI6bnVsbCwicHJvdmlkZXJfbmFtZSI6bnVsbCwidGV4dCI6bnVsbCwiZGF0ZV9wdWJsaXNoZWQiOm51bGwsImJlZ2luX2RhdGUiOm51bGwsImVuZF9kYXRlIjpudWxsLCJrZXl3b3JkcyI6bnVsbCwic29ydCI6ImRhdGVVcGxvYWRlZDpkZXNjIiwiYmJveCI6bnVsbCwibGF0IjpudWxsLCJsb24iOm51bGwsInJhZGl1cyI6bnVsbCwiaXNfcHVibGljYXRpb25fcmVxdWVzdGVkIjpudWxsfSwicHJpbmNpcGFsIjp7ImlkZW50aXR5IjoiYW5vbnltb3VzIiwiaXNBbm9ueW1vdXMiOnRydWV9fQ",
+        "previousCursor": null,
+        "result": [
+          {
+            "id": "ess-dive-5c6fb3269616635-20260906T172343833",
+            "viewUrl": "https://data.ess-dive.lbl.gov/view/doi:10.15485/2283980",
+            "url": "https://api.ess-dive.lbl.gov/packages/ess-dive-5c6fb3269616635-20260906T172343833",
+            "next": null,
+            "previous": "https://api.ess-dive.lbl.gov/packages/ess-dive-5c6fb3269616635-20260906T172010807",
+            "dateUploaded": "2026-09-06T17:23:45.634Z",
+            "dateModified": "2026-09-06T17:23:45.866Z",
+            "isPublic": true,
+            "citation": "New J; Bass B; Berres A; Clinton N; Adams M; Li F; Stubbings A; Chowdhury S; Li H (2021): Model America: Data and Models for every U.S. Building. Southwest Urban Corridor Integrated Field Laboratory (SW-IFL). Dataset. doi:10.15485/2283980",
+            "dataset": {
+              "@context": "http://schema.org/",
+              "@type": "Dataset",
+              "@id": "doi:10.15485/2283980",
+              "name": "Model America: Data and Models for every U.S. Building",
+              "description": "The 5-year goal of the \u201cModel America\u201d concept was to generate a model of every building in the United States. This data repository delivers on that goal with \"Model America v1\". Oak Ridge National Laboratory (ORNL) has developed the Automatic Building Energy Modeling (AutoBEM) software suite to process multiple types of data, extract building-specific descriptors, generate building energy models, and simulate them on High Performance Computing (HPC) resources. For more information, see AutoBEM-related publications (bit.ly/AutoBEM). There were 125,715,609 buildings detected in the United States. Of this number, 122,146,671 (97.2%) buildings resulted in a successful generation and simulation of a building energy model. This dataset includes the full 125 million buildings. Future updates may include additional buildings, data improvements, or other algorithmic model enhancements in \"Model America v2\". This dataset contains OSM and IDF zip files for every U.S. county. Each zip file contains the generated buildings from that county. The .csv input data contains the following data fields: 1.\tID - the Unique Building Identifier (UBID), generated using the Pacific Northwest National Laboratory (PNNL) BuildingID framework 2.\tCentroid - building center location in latitude/longitude (from Footprint2D) 3.\tFootprint2D - building polygon of 2D footprint (lat1/lon1_lat2/lon2_...) 4.\tState_abbr - state name 5.\tArea - estimate of total conditioned floor area (ft2) 6.\tArea2D - footprint area (ft2) 7.\tHeight - building height (ft) 8.\tNumFloors - number of floors (above-grade) 9.\tWWR_surfaces - percent of each facade (pair of points from Footprint2D) covered by fenestration/windows (average 14.5% for residential, 40% for commercial buildings) 10.\tCZ - ASHRAE Climate Zone designation 11.\tBuildingType - DOE prototype building designation (IECC=residential) as implemented by OpenStudio-standards 12.\tStandard - building vintage This data is made free and openly available in hopes of stimulating any simulation-informed use case. Data is provided as-is with no warranties, express or implied, regarding fitness for a particular purpose. We wish to thank our sponsors which include Oak Ridge National Laboratory (ORNL) Laboratory Directed Research and Development (LDRD), U.S. Dept. of Energy\u2019s (DOE) Building Technologies Office (BTO), Office of Electricity (OE), Biological and Environmental Research (BER), and National Nuclear Security Administration (NNSA). Update (September 23, 2025): We corrected the ID field in all state-level.csv input files to ensure one-to-one consistency with the corresponding .osm and .idf output files. The schema and file structure are unchanged; only the values in the ID column were modified. No files were added or removed, and the .zip bundles (containing .osm / .idf) are unchanged. The corrected .csv inputs were re-extracted in March 2025 from the original data generated ~ 2021 (Theta supercomputer runs), and published here to align input IDs with model outputs. Update (September 6, 2026): The Model America dataset was updated to replace the previous building ID field with the Unique Building Identifier (UBID), using the Pacific Northwest National Laboratory (PNNL) BuildingID framework. UBIDs provide standardized, location-based identifiers for individual building footprints and improve interoperability with other building and geospatial datasets. The data files containing the previous building identifiers were updated to include UBIDs. This update standardizes building identification; the underlying Model America building characteristics and energy simulation results were not recomputed as part of this update.",
+              "datePublished": "2021",
+              "providerName": "Southwest Urban Corridor Integrated Field Laboratory (SW-IFL)"
+            }
+          },
+          {
+            "id": "ess-dive-460e696d8210ed3-20260903T221739840",
+            "viewUrl": "https://data.ess-dive.lbl.gov/view/doi:10.15485/3013006",
+            "url": "https://api.ess-dive.lbl.gov/packages/ess-dive-460e696d8210ed3-20260903T221739840",
+            "next": null,
+            "previous": "https://api.ess-dive.lbl.gov/packages/ess-dive-460e696d8210ed3-20260309T155937802",
+            "dateUploaded": "2026-09-03T22:17:41.046Z",
+            "dateModified": "2026-09-03T22:17:41.195Z",
+            "isPublic": true,
+            "citation": "Falco N; Lamb J; Chen J; Tuvshintugs O; Balde A; Dafflon B; Wainwright H M (2026): Geophysical survey associated with NEON AOP survey, East River, CO 2018. Watershed Function SFA. Dataset. doi:10.15485/3013006",
+            "dataset": {
+              "@context": "http://schema.org/",
+              "@type": "Dataset",
+              "@id": "doi:10.15485/3013006",
+              "name": "Geophysical survey associated with NEON AOP survey, East River, CO 2018",
+              "description": "The package contains data layers developed and used in Falco\u202fet\u202fal.\u202f2024: \u201cEcoImaging: Advanced Sensing to Investigate Plant and Abiotic Hierarchical Spatial Patterns in Mountainous Watersheds\". The package is part of the DOE Watershed Function Science Focus Area (SFA) project and includes geophysical measurements collected at the East River, Colorado, in conjunction with the National Ecological Observatory Network (NEON) Airborne Observation Platform (AOP) survey conducted in June\u202f2018. This dataset provide soil geophysical information and were used to investigate soil-plant relationships. The dataset consists of: - NEON_2018_EMI_survey.zip: the electromagnetic induction (EMI) survey as shape-file; - NEON_plot_TDR.csv: plot\u2011level data from Time\u2011Domain Reflectometry (TDR) measurements, providing: * volumetric water content (VWC) in percent (%); * soil temperature in degrees Celsius (\u00b0C); - file level metadata (flmd.csv) - data dictionary (dd.csv) file This work was supported by the Watershed Function Science Focus Area at Lawrence Berkeley National Laboratory funded by the US Department of Energy, Office of Science, Biological and Environmental Research under Contract No. DE-AC02-05CH11231.",
+              "datePublished": "2026",
+              "providerName": "Watershed Function SFA"
+            }
+          },
+          {
+            "id": "ess-dive-46699da2f774f20-20260903T220007032",
+            "viewUrl": "https://data.ess-dive.lbl.gov/view/doi:10.15485/1602034",
+            "url": "https://api.ess-dive.lbl.gov/packages/ess-dive-46699da2f774f20-20260903T220007032",
+            "next": null,
+            "previous": "https://api.ess-dive.lbl.gov/packages/ess-dive-46699da2f774f20-20260325T224345535",
+            "dateUploaded": "2026-09-03T22:00:08.268Z",
+            "dateModified": "2026-09-03T22:00:08.422Z",
+            "isPublic": true,
+            "citation": "Falco N; Wainwright H M; Chadwick K D; Dafflon B; Enquist B J; Unhlemann S; Breckheimer I; Lamb J; Chen J; Tuvshintugs O; Balde A; Williams K H; Brodie E (2026): Vegetation classification map and covariates associated with NEON AOP survey, East River, CO 2018. Watershed Function SFA. Dataset. doi:10.15485/1602034",
+            "dataset": {
+              "@context": "http://schema.org/",
+              "@type": "Dataset",
+              "@id": "doi:10.15485/1602034",
+              "name": "Vegetation classification map and covariates associated with NEON AOP survey, East River, CO 2018",
+              "description": "This package includes geospatial data layers developed to investigate how environmental gradients\u2014specifically topography and near-surface soil properties\u2014drive the spatial arrangement of dominant plant communities in mountainous watersheds. The geospatial products, which support the analysis of these ecological relationships, are derived from airborne hyperspectral and LiDAR datasets acquired by the National Ecological Observatory Network (NEON) Airborne Observation Platform (AOP), in conjunction with an extensive ground field campaign conducted in summer 2018. This work is part of the DOE Watershed Function Science Focus Area (SFA) and features geospatial datasets developed based on observations and ground data collected at East River, Colorado, in collaboration with the National Ecological Observatory Network (NEON) Airborne Observation Platform (AOP) survey in June 2018. Classification Map: - Classification Map (PNG, GeoTIFF): Derived from hyperspectral and LiDAR airborne data using a machine learning approach. - Class Code Mapper (CSV): Associates pixel values with corresponding vegetation/non-vegetation classes. - Classification Reference Data (CSV): Reference data used in the machine learning procedure. LiDAR-Derived Products: - Topographical Metrics (GeoTIFFs): Elevation, slope, curvature, TWI, TPI, solar insolation, and canopy height model (CHM), smoothed with a 5x5 pixel window. Vegetation Indices: - GeoTIFFs of NDVI, NDNI, NDWI: Vegetation indices derived from hyperspectral data. Urban Masks: - Urban Mask (GeoTIFF): Applied to the mapping to convert bare soil classes to urban classes. Software Compatibility: GeoTIFFs: Can be visualized with GIS software or libraries that support GeoTIFF images. CSV Files: Can be opened with any software that handles comma-separated values. The FLMD file provides details and links to the source datasets used to derive the products. The manuscript (in the Method session) provides details on how each product was derived. This work was supported by the Watershed Function Science Focus Area at Lawrence Berkeley National Laboratory funded by the US Department of Energy, Office of Science, Biological and Environmental Research under Contract No. DE-AC02-05CH11231. Update on 2026-03-25: Since the original dataset publication date of 02/28/2020, this package has a new classification map derived by an improved methodology. This update also includes additional ground data that improved the representation of some of the communities. See the methods for further details on what has changed between versions.",
+              "datePublished": "2026",
+              "providerName": "Watershed Function SFA"
+            }
+          },
+          {
+            "id": "ess-dive-e71ded56436c731-20260903T184449142",
+            "viewUrl": "https://data.ess-dive.lbl.gov/view/doi:10.15485/3376439",
+            "url": "https://api.ess-dive.lbl.gov/packages/ess-dive-e71ded56436c731-20260903T184449142",
+            "next": null,
+            "previous": "https://api.ess-dive.lbl.gov/packages/ess-dive-e71ded56436c731-20260831T071417663",
+            "dateUploaded": "2026-09-03T18:44:51.693Z",
+            "dateModified": "2026-09-04T07:00:06.585Z",
+            "isPublic": true,
+            "citation": "B\u00f6lscher T; Keiluweit M; Cardon Z G; Li H; Winnick M J (2026): Data from a four-day long microcosm experiment addressing the destabilization of artificial mineral-associated organic matter by model root exudates embedded in a soil matrix from the Rocky Mountain Biological Laboratory (Gothic, CO, USA), 2019. Root Influences on Mobilization and Export of Mineral-Bound Soil Organic Matter. Dataset. doi:10.15485/3376439",
+            "dataset": {
+              "@context": "http://schema.org/",
+              "@type": "Dataset",
+              "@id": "doi:10.15485/3376439",
+              "name": "Data from a four-day long microcosm experiment addressing the destabilization of artificial mineral-associated organic matter by model root exudates embedded in a soil matrix from the Rocky Mountain Biological Laboratory (Gothic, CO, USA), 2019",
+              "description": "This dataset provides data collected during a four-day long laboratory soil microcosm experiment testing the efficacy of root exudate-driven mineral-associated organic matter destabilization. This dataset contains four data files in comma-separate values (*.csv). The files provide the metadata and the experimental results on microbial respiration, MAOM-derived respiration, and sequential mineral-extractions. This data was used to produce the figures in B\u00f6lscher et al., 2026. The results of the experiment can be found in the open access article B\u00f6lscher et al., 2026 (https://doi.org/10.1016/j.soilbio.2026.110276). Abstract: Mineral-associated organic matter (MAOM) is often considered stable, but root exudates can destabilize MAOM via various pathways. Theory and model system studies suggest that direct MAOM destabilization by strong ligands, like oxalic acid, or reducing agents, like catechol, is more effective than indirect, microbial-mediated MAOM destabilization, stimulated by less reactive compounds like glucose. Here, we demonstrate that the presence of a soil matrix alters the efficacy of exudate-driven MAOM destabilization pathways. Glucose and catechol destabilized significantly greater amounts of MAOM from ferrihydrite and aluminum hydroxide (Al (OH)3) embedded in a soil matrix than oxalic acid. Our findings indicate that indirect, microbial-mediated MAOM destabilization may play a larger role than direct MAOM destabilization in soil environments.",
+              "datePublished": "2026",
+              "providerName": "Root Influences on Mobilization and Export of Mineral-Bound Soil Organic Matter"
+            }
+          },
+          {
+            "id": "ess-dive-734369bdd34679e-20260903T141118812",
+            "viewUrl": "https://data.ess-dive.lbl.gov/view/doi:10.15485/3362691",
+            "url": "https://api.ess-dive.lbl.gov/packages/ess-dive-734369bdd34679e-20260903T141118812",
+            "next": null,
+            "previous": "https://api.ess-dive.lbl.gov/packages/ess-dive-734369bdd34679e-20260902T154428351",
+            "dateUploaded": "2026-09-03T14:11:21.294Z",
+            "dateModified": "2026-09-03T14:11:21.398Z",
+            "isPublic": true,
+            "citation": "O'Ryan D; Herzog A; Tweedie E; Carroll R; Falco N; Shirley A; Villa A; Williams K; Worsham H M (2026): Water Observations of Flow/No-Flow for the East-Taylor Watershed, Colorado (June-July 2025 and 2026). Watershed Function SFA. Dataset. doi:10.15485/3362691",
+            "dataset": {
+              "@context": "http://schema.org/",
+              "@type": "Dataset",
+              "@id": "doi:10.15485/3362691",
+              "name": "Water Observations of Flow/No-Flow for the East-Taylor Watershed, Colorado (June-July 2025 and 2026)",
+              "description": "This dataset provides multi-year, ground-truth visual observations of surface water flow/no-flow conditions within the East-Taylor Watershed, Colorado, collected during June and July of 2025 and 2026. In June and July 2025, on-the-ground visual observations of flow/no-flow were collected as part of the Watershed Function Scientific Focus Area (SFA) and Rocky Mountain Biological Laboratory (RMBL) Colorado Headwaters Ecological Spectroscopy Study (CHESS) campaign (further details are provided within the CHESS Project Description). We obtained 377 water observations of flow/no-flow within the East-Taylor Watershed, Colorado. These ground-truth observations were collected to validate classification maps from remote sensing data and model results within the East-Taylor Watershed. In 2025, flow/no-flow measurements were collected using a field-based app for the CHESS Campaign (Zerion iForm). Within the field app, a water observation form was created to collect coordinates and metadata about the observation. Information collected for the water observation points included information about visually-assessed streamflow presence/absence (standard question obtained from Colorado State University\u2019s StreamTracker project), flow estimate, stream or ponded area width, canopy cover, manganese films, iron seeps, and beaver activity. For 2025 water observations, this dataset contains: (1) a data file with the water observations and coordinates (2025_Water_Observations.csv); (2) a Keyhole Markup Language Zipped (KMZ) with the water observation locations and metadata (2025_Water_Observations_Locations.kmz); (3) photos (.jpg and .jpeg) of the water observation points, organized by location, contained within 2025_Water_Observations_FieldPhotographs.zip file; and (4) water observation protocols and figures (2025_Water_Observation_Protocols.pdf). In June and July 2026, on-the-ground visual observations of flow/no-flow were collected as part of the Watershed Function SFA project. We obtained 365 water observations of flow/no-flow within the East-Taylor Watershed, Colorado. The 2026 observations focused on collecting repeat measurements at the 2025 flow/no-flow observation locations conducted as part of the CHESS campaign. These ground-truth observations were collected to understand differences in flow/no-flow in 2026, given the unprecedented 2026 drought in Colorado. In 2026, flow/no-flow measurements were collected using ArcGIS (Geographic Information System) Survey123. Within the field app, a water observation form was created to collect coordinates and metadata about the observation. Information collected for the water observation points included repeat information from the 2025 water observation effort, including visually-assessed streamflow presence/absence (standard question obtained from Colorado State University\u2019s StreamTracker project), flow estimate, stream or ponded area width, canopy cover, manganese films, iron seeps, beaver activity, and a new metadata component of estimated stream depth (for select locations). For 2026 water observations, this dataset contains: (1) a data file with the water observations and coordinates (2026_Water_Observations.csv); (2) a Keyhole Markup Language Zipped (KMZ) with the water observation locations and metadata (2026_Water_Observations_Locations.kmz); (3) photos (.jpg) of the water observation points, organized by location, contained within 2026_Water_Observations_FieldPhotographs.zip file; and (4) water observation protocols and figures (2026_Water_Observation_Protocols.pdf). For 2025 and 2026 water observations, this dataset contains: (1) a location metadata file (locations.csv); (6) a file-level metadata (flmd.csv) file that lists each file contained in the dataset with associated metadata; and (7) a data dictionary (dd.csv) file that contains column/row headers used throughout the files along with a definition, units, and data type. CHESS Project Description: The Colorado Headwaters Ecological Spectroscopy Study (CHESS) comprised a multi-week airborne remote sensing and field observation campaign in the Upper Gunnison Basin, Colorado, conducted in June and July of 2025. Airborne remote sensing was conducted by the National Ecological Observatory Network Airborne Observation Platform (NEON AOP), concurrent with a field campaign run by the Rocky Mountain Biological Laboratory (RMBL), the Lawrence Berkeley National Laboratory (LBNL) and SLAC National Accelerator Laboratory Watershed Function Science Focus Area (SFA), and NASA-JPL (Jet Propulsion Laboratory) Earth Surface Mineral Dust Source Investigation (EMIT) program. Between June 10 and July 18, 2025, the NEON AOP flight team collected high-resolution aerial imaging spectroscopy and Light Detection and Ranging (LiDAR) data over three domains: the Upper East River (CRBU), Almont Triangle (ALMO), and the Upper Taylor Basin (UPTA). In coordination with the flights, a field campaign acquired ground-truth observations, including observations of vegetation composition, foliar traits, forest demography, and subsurface properties in 18 core sampling areas within the domains. Additional surface water observations were taken at over 380 point locations. All CHESS campaign datasets can be found within the CHESS ESS-DIVE data portal: https://data.ess-dive.lbl.gov/portals/chess. This work was supported by the Watershed Function Science Focus Area at Lawrence Berkeley National Laboratory funded by the US Department of Energy, Office of Science, Biological and Environmental Research under Contract No. DE-AC02-05CH11231. 2026-09-02: This dataset was updated to include 2026 water observation measurements. The 2025 observation files were also updated to ensure a consistent file naming convention across water observation years.",
+              "datePublished": "2026",
+              "providerName": "Watershed Function SFA"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "url": "https://api.ess-dive.lbl.gov/packages",
+      "params": {
+        "text": "zzzznotarealtopiczzzz",
+        "sort": "dateUploaded:desc",
+        "pageSize": "5",
+        "rowStart": "1"
+      },
+      "headers": {},
+      "error": {
+        "code": "SourceUnavailable",
+        "status": 404,
+        "message": "api.ess-dive.lbl.gov returned HTTP 404: No datasets were found."
+      }
+    },
+    {
+      "url": "https://api.ess-dive.lbl.gov/packages/ess-dive-5c6fb3269616635-20260906T172343833",
+      "params": {},
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "id": "ess-dive-5c6fb3269616635-20260906T172343833",
+        "viewUrl": "https://data.ess-dive.lbl.gov/view/doi:10.15485/2283980",
+        "url": "https://api.ess-dive.lbl.gov/packages/ess-dive-5c6fb3269616635-20260906T172343833",
+        "next": null,
+        "previous": "https://api.ess-dive.lbl.gov/packages/ess-dive-5c6fb3269616635-20260906T172010807",
+        "dateUploaded": "2026-09-06T17:23:45.634Z",
+        "dateModified": "2026-09-06T17:23:45.866Z",
+        "isPublic": true,
+        "citation": "New J; Bass B; Berres A; Clinton N; Adams M; Li F; Stubbings A; Chowdhury S; Li H (2021): Model America: Data and Models for every U.S. Building. Southwest Urban Corridor Integrated Field Laboratory (SW-IFL). Dataset. doi:10.15485/2283980",
+        "dataset": {
+          "@context": "http://schema.org/",
+          "@type": "Dataset",
+          "@id": "doi:10.15485/2283980",
+          "archivedAt": [
+            {
+              "@type": "WebPage",
+              "name": "ESS-DIVE Tier 2 (HTTP)",
+              "url": "https://tier2.ess-dive.lbl.gov/doi-10-15485-2283980/"
+            },
+            {
+              "@type": "WebPage",
+              "name": "ESS-DIVE Tier 2 (Globus)",
+              "url": "https://app.globus.org/file-manager?origin_id=e1b775d6-0125-11ed-a2da-25ff8664e4e5&origin_path=%2Ftier2%2Fdoi-10-15485-2283980%2F"
+            }
+          ],
+          "name": "Model America: Data and Models for every U.S. Building",
+          "description": [
+            "The 5-year goal of the \u201cModel America\u201d concept was to generate a model of every building in the United States. This data repository delivers on that goal with \"Model America v1\".",
+            "Oak Ridge National Laboratory (ORNL) has developed the Automatic Building Energy Modeling (AutoBEM) software suite to process multiple types of data, extract building-specific descriptors, generate building energy models, and simulate them on High Performance Computing (HPC) resources. For more information, see AutoBEM-related publications (bit.ly/AutoBEM).",
+            "There were 125,715,609 buildings detected in the United States. Of this number, 122,146,671 (97.2%) buildings resulted in a successful generation and simulation of a building energy model. This dataset includes the full 125 million buildings. Future updates may include additional buildings, data improvements, or other algorithmic model enhancements in \"Model America v2\".",
+            "This dataset contains OSM and IDF zip files for every U.S. county. Each zip file contains the generated buildings from that county.",
+            "The .csv input data contains the following data fields:",
+            "1. ID - the Unique Building Identifier (UBID), generated using the Pacific Northwest National Laboratory (PNNL) BuildingID framework",
+            "2. Centroid - building center location in latitude/longitude (from Footprint2D)",
+            "3. Footprint2D - building polygon of 2D footprint (lat1/lon1_lat2/lon2_...)",
+            "4. State_abbr - state name",
+            "5. Area - estimate of total conditioned floor area (ft2)",
+            "6. Area2D - footprint area (ft2)",
+            "7. Height - building height (ft)",
+            "8. NumFloors - number of floors (above-grade)",
+            "9. WWR_surfaces - percent of each facade (pair of points from Footprint2D) covered by fenestration/windows (average 14.5% for residential, 40% for commercial buildings)",
+            "10. CZ - ASHRAE Climate Zone designation",
+            "11. BuildingType - DOE prototype building designation (IECC=residential) as implemented by OpenStudio-standards",
+            "12. Standard - building vintage",
+            "This data is made free and openly available in hopes of stimulating any simulation-informed use case. Data is provided as-is with no warranties, express or implied, regarding fitness for a particular purpose. We wish to thank our sponsors which include Oak Ridge National Laboratory (ORNL) Laboratory Directed Research and Development (LDRD), U.S. Dept. of Energy\u2019s (DOE) Building Technologies Office (BTO), Office of Electricity (OE), Biological and Environmental Research (BER), and National Nuclear Security Administration (NNSA).",
+            "Update (September 23, 2025): We corrected the ID field in all state-level.csv input files to ensure one-to-one consistency with the corresponding .osm and .idf output files. The schema and file structure are unchanged; only the values in the ID column were modified. No files were added or removed, and the .zip bundles (containing .osm / .idf) are unchanged. The corrected .csv inputs were re-extracted in March 2025 from the original data generated ~ 2021 (Theta supercomputer runs), and published here to align input IDs with model outputs.",
+            "Update (September 6, 2026): The Model America dataset was updated to replace the previous building ID field with the Unique Building Identifier (UBID), using the Pacific Northwest National Laboratory (PNNL) BuildingID framework. UBIDs provide standardized, location-based identifiers for individual building footprints and improve interoperability with other building and geospatial datasets. The data files containing the previous building identifiers were updated to include UBIDs. This update standardizes building identification; the underlying Model America building characteristics and energy simulation results were not recomputed as part of this update."
+          ],
+          "creator": [
+            {
+              "@type": "Person",
+              "@id": "https://orcid.org/0000-0001-8015-0583",
+              "givenName": "Joshua",
+              "familyName": "New",
+              "affiliation": "Oak Ridge National Laboratory",
+              "email": "redacted@example.invalid"
+            },
+            {
+              "@type": "Person",
+              "@id": "https://orcid.org/0000-0002-4098-8434",
+              "givenName": "Brett",
+              "familyName": "Bass",
+              "affiliation": "B13 Engineering",
+              "email": "redacted@example.invalid"
+            },
+            {
+              "@type": "Person",
+              "@id": "https://orcid.org/0000-0002-6048-4313",
+              "givenName": "Andy",
+              "familyName": "Berres",
+              "affiliation": "National Renewable Energy Laboratory",
+              "email": "redacted@example.invalid"
+            },
+            {
+              "@type": "Person",
+              "givenName": "Nicholas",
+              "familyName": "Clinton",
+              "affiliation": "Google",
+              "email": "redacted@example.invalid"
+            },
+            {
+              "@type": "Person",
+              "givenName": "Mark",
+              "familyName": "Adams",
+              "affiliation": "Oak Ridge National Laboratory",
+              "email": "redacted@example.invalid"
+            },
+            {
+              "@type": "Person",
+              "@id": "https://orcid.org/0000-0002-3887-9968",
+              "givenName": "Fengqi",
+              "familyName": "Li",
+              "affiliation": "Oak Ridge National Laboratory",
+              "email": "redacted@example.invalid"
+            },
+            {
+              "@type": "Person",
+              "@id": "https://orcid.org/0000-0003-0927-5775",
+              "givenName": "Avery",
+              "familyName": "Stubbings",
+              "affiliation": "Illinois Institute of Technology",
+              "email": "redacted@example.invalid"
+            },
+            {
+              "@type": "Person",
+              "@id": "https://orcid.org/0000-0003-3255-836X",
+              "givenName": "Shovan",
+              "familyName": "Chowdhury",
+              "affiliation": "The University of Tennessee",
+              "email": "redacted@example.invalid"
+            },
+            {
+              "@type": "Person",
+              "@id": "https://orcid.org/0000-0003-0600-1920",
+              "givenName": "Hang",
+              "familyName": "Li",
+              "affiliation": "Oak Ridge National Laboratory",
+              "email": "redacted@example.invalid"
+            }
+          ],
+          "datePublished": "2021-04-14",
+          "keywords": [
+            "United States",
+            "Buildings",
+            "OpenStudio Models",
+            "EnergyPlus Models",
+            "Building Energy Modeling"
+          ],
+          "license": "http://creativecommons.org/licenses/by/4.0/",
+          "spatialCoverage": [
+            {
+              "@type": "Place",
+              "description": "CONUS",
+              "geo": [
+                {
+                  "@type": "GeoCoordinates",
+                  "name": "Northwest",
+                  "latitude": 51.5643,
+                  "longitude": -127.555
+                },
+                {
+                  "@type": "GeoCoordinates",
+                  "name": "Southeast",
+                  "latitude": 21.555,
+                  "longitude": -66.3452
+                }
+              ]
+            },
+            {
+              "@type": "Place",
+              "description": "Alaska",
+              "geo": [
+                {
+                  "@type": "GeoCoordinates",
+                  "name": "Northwest",
+                  "latitude": 71.4,
+                  "longitude": -180.0
+                },
+                {
+                  "@type": "GeoCoordinates",
+                  "name": "Southeast",
+                  "latitude": 50.9,
+                  "longitude": -129.3
+                }
+              ]
+            },
+            {
+              "@type": "Place",
+              "description": "Hawaii",
+              "geo": [
+                {
+                  "@type": "GeoCoordinates",
+                  "name": "Northwest",
+                  "latitude": 22.434038,
+                  "longitude": -160.652946
+                },
+                {
+                  "@type": "GeoCoordinates",
+                  "name": "Southeast",
+                  "latitude": 18.569811,
+                  "longitude": -154.6326
+                }
+              ]
+            }
+          ],
+          "funder": [
+            {
+              "@type": "Organization",
+              "@id": "http://dx.doi.org/10.13039/100006206",
+              "name": "U.S. DOE > Office of Science > Biological and Environmental Research (BER)"
+            }
+          ],
+          "temporalCoverage": {
+            "startDate": "1980",
+            "endDate": "2015",
+            "@type": "DateTime"
+          },
+          "editor": {
+            "@type": "Person",
+            "@id": "https://orcid.org/0000-0001-8015-0583",
+            "givenName": "Joshua",
+            "familyName": "New",
+            "affiliation": "Oak Ridge National Laboratory",
+            "email": "redacted@example.invalid"
+          },
+          "provider": {
+            "@type": "Organization",
+            "identifier": {
+              "@type": "PropertyValue",
+              "propertyID": "ess-dive",
+              "value": "76c0a41d-b69a-4d99-996f-d650c21e07aa"
+            },
+            "name": "Southwest Urban Corridor Integrated Field Laboratory (SW-IFL)",
+            "member": {
+              "@type": "Person",
+              "givenName": "David",
+              "familyName": "Sailor",
+              "jobTitle": "principalInvestigator",
+              "affiliation": "Arizona State University",
+              "email": "redacted@example.invalid"
+            }
+          },
+          "measurementTechnique": [
+            "Building footprint and height data from Google was obtained for the entire United States.",
+            "The building type, building standard, and missing heights were assigned statistically resulting in an input data set containing building ID, Centroid, Footprint2D, State_abbr, Area, Area2D, Height, NumFloors, WWR_surfaces, CZ, BuildingType, and Standard.",
+            "This data was inputted into the AutoBEM workflow to generate the OSM and IDF files for every building in the United States."
+          ]
+        }
+      }
+    }
+  ]
+}

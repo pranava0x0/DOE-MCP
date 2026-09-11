@@ -1,0 +1,50 @@
+DOE-MCP
+Copyright 2026 The DOE-MCP contributors
+
+This product includes software developed by the DOE-MCP contributors,
+licensed under the Apache License, Version 2.0 (see LICENSE).
+
+NOT AFFILIATED WITH THE US DEPARTMENT OF ENERGY
+------------------------------------------------------------------------
+DOE-MCP is an independent, community-run project. It is not affiliated
+with, endorsed by, or funded by the US Department of Energy, the National
+Nuclear Security Administration, any DOE program office, any DOE national
+laboratory, or any Power Marketing Administration. "DOE" in this project's
+name describes the data it serves, not its origin. Nothing here is an
+official government interface, and no answer it returns is an official
+government statement. (decision 0016.)
+
+LICENSE SPLIT
+------------------------------------------------------------------------
+Not everything in this repository carries the same license (decision 0015):
+
+  Code (src/, tools/, tests/)         Apache-2.0        LICENSE
+  Source registry (sources/)          CC0-1.0           sources/LICENSE
+  Documentation prose (*.md, docs/)   CC-BY-4.0         docs/LICENSE
+  Recorded responses (tests/fixtures) the publisher's own terms; see
+                                      THIRD_PARTY_DATA.yml
+
+The registry is CC0 so that the inventory it encodes — which sources exist,
+who stewards them, what their terms say — can be lifted wholesale by anyone
+building a different thing, including DOE itself.
+
+REDISTRIBUTED CONTENT
+------------------------------------------------------------------------
+Recorded API responses under tests/fixtures/ are government-published
+content retrieved from the endpoints named in THIRD_PARTY_DATA.yml. Each
+entry there records the publisher, the retrieval date, the rights the
+publisher asserts, and any attribution the publisher requires. Most US
+government works are not subject to copyright in the United States
+(17 U.S.C. § 105), but that is not universal across this ecosystem: some
+DOE-hosted content is contributed by universities, foreign institutions, or
+contractors under their own terms. The file records the difference rather
+than assuming it away.
+
+LINEAGE
+------------------------------------------------------------------------
+DOE-MCP's packaging shape is borrowed, deliberately and with thanks, from
+PNNL's NEPA-MCP: one pip package with many focused stdio servers over a
+shared library, and the doctor/configure CLI. NEPA-MCP is a product of
+Pacific Northwest National Laboratory. This project is not affiliated with
+it, and the attribution is a statement about influence rather than about
+endorsement.

@@ -1,0 +1,127 @@
+id: usgs-uspvdb
+name: US Large-Scale Solar Photovoltaic Database (USPVDB)
+domain: energy
+
+publisher:
+  steward: usgs
+  funder: cmei
+  host: usgs
+  authority_level: primary
+
+aliases:
+  former_names: []
+  # Same host move as the USWTDB: the API answered on eersc.usgs.gov and
+  # now returns 301 to energy.usgs.gov. The documentation still resolves
+  # on eerscmap.usgs.gov as well.
+  former_domains: ['eersc.usgs.gov']
+
+labs: ['lbnl']
+
+capabilities:
+  - id: facility.locations
+    tool_hint: facility.find_solar_facilities
+
+planned_capabilities: []
+
+adapter:
+  type: postgrest
+  base_url: https://energy.usgs.gov/api/uspvdb/v1
+  # As on the USWTDB, and for the same reason: this base path also serves
+  # a `turbines` table holding the 75,727 wind turbines of the other
+  # database. The table is declared, never inferred.
+  table: projects
+  id_column: case_id
+  default_order: case_id
+  state_column: p_state
+  county_column: p_county
+  name_column: p_name
+  latitude_column: ylat
+  longitude_column: xlong
+  confidence_columns:
+    p_dig_conf: 4
+  confidence_note: >
+    p_dig_conf runs 1 to 4, and 4 is the confident case: 1 means one
+    polygon standing in for several facilities that could not be told
+    apart, 2 several polygons drawn against unclear EIA records, 3 a
+    polygon covering only part of the facility because the imagery was
+    poor, 4 a facility polygon drawn with high confidence. In cases 1
+    to 3 the attributes may not describe the whole facility.
+    p_img_date is the date of the image the boundary was digitised
+    from, which is the honest vintage of the polygon.
+  units_note: >
+    p_cap_ac and p_cap_dc are megawatts, alternating and direct
+    current, and the two differ for every facility. p_area is square
+    metres, p_tilt and p_azimuth are degrees, and xlong and ylat are
+    decimal degrees for the facility's centre rather than its outline.
+  dataset_doi: 10.5066/P9IA3TUS
+
+access:
+  mode: anonymous
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://energy.usgs.gov/uspvdb/api-doc/
+  terms_reviewed_at: "2026-09-08"
+  terms_notes: >
+    USGS work in the public domain. Jointly funded by DOE's solar
+    office through LBNL's Energy Markets and Policy department and by
+    USGS's Energy Resources Program. The API asks for no key for reads
+    and answered a scripted client on 2026-09-08; authenticated users
+    may also submit facilities, which this project never does. A
+    citation is suggested rather than required.
+  citation_required: false
+  citation_text: >
+    Fujita, K.S., Ancona, Z.H., Kramer, L.A., Straka, M., Gautreau,
+    T.E., Garrity, C.P., Robson, D., Diffendorfer, J.E., and Hoen, B.,
+    2023, United States Large-Scale Solar Photovoltaic Database (v4.0,
+    April 2026): U.S. Geological Survey and Lawrence Berkeley National
+    Laboratory data release, https://doi.org/10.5066/P9IA3TUS.
+  rate_limit_note: >
+    None published. Absence of a stated ceiling is not permission; the
+    politeness budget in the fetch path is what keeps this polite.
+
+freshness:
+  expected_cadence: annual
+  cadence_source: >
+    Observed; versioned releases each spring (ver. 3.0 April 2025,
+    ver. 4.0 April 2026).
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Locations, array boundaries, and facility attributes (panel
+    technology, axis type, site type, first year of operation, power
+    region) for ground-mounted PV facilities of one megawatt or more.
+  temporal: 1985 onward, as of ver. 4.0 (April 2026)
+  dataset_version: "USPVDB v4.0 (April 2026)"
+  record_count: 6611
+  record_count_checked: "2026-09-08"
+  known_limitations:
+    - >
+      One megawatt and up. Rooftop and community-scale solar are not
+      here; LBNL's Tracking the Sun covers the distributed side.
+    - >
+      Polygons are digitised from imagery with a confidence code per
+      site. The image date rides on each record and is the honest
+      vintage of the boundary.
+    - >
+      The API serves the facility's centre point and its attributes.
+      The array outline itself is in the downloadable geospatial
+      release, not in these rows.
+
+authority_notes: >
+  Primary. USGS hosts it, LBNL co-produces it, DOE's solar office funds
+  the LBNL share. The same PostgREST service as the USWTDB, published
+  under a second path alias with the same OpenAPI document, which is
+  why both manifests name their table explicitly and share one adapter.
+  Found in the 2026-09-08 gap sweep.
+
+health:
+  probe: postgrest_row_count
+  expect:
+    min_records: 6000
+
+lifecycle:
+  declared_state: active
+  added: "2026-09-08"
+  last_verified: "2026-09-08"
+  verified_by: pranava0x0

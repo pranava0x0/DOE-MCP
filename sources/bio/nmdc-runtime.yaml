@@ -1,0 +1,73 @@
+id: nmdc-runtime
+name: National Microbiome Data Collaborative Runtime API
+domain: bio
+
+publisher:
+  steward: lbnl
+  authority_level: official_secondary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [lbnl, anl, ornl, pnnl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+planned_capabilities: [bio.search_studies]
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://microbiomedata.org/
+  terms_notes: >
+    Reads are open and keyless: a 79-path OpenAPI description with 93
+    operations, confirmed reachable without credentials during the
+    platform survey. Write operations require accounts and are outside
+    this project.
+  terms_reviewed_at: "2026-09-01"
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed; studies and biosamples are added as they are processed.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Microbiome studies, biosamples, omics processing records, and
+    workflow outputs across a multi-laboratory collaboration.
+  temporal: current
+  dataset_version: "current"
+  known_limitations:
+    - >
+      A 79-path API is far larger than any tool surface should mirror.
+      Under decision 0014 the shape is a handful of semantic tools over
+      the paths that answer real questions, not a tool per path.
+    - >
+      Metadata and workflow records rather than raw sequence data; raw
+      reads live in the sequence archives and are reached by pointer.
+
+authority_notes: >
+  Intended capabilities: bio.search_studies. Phase 4. Multi-laboratory:
+  LBNL leads, with ANL, ORNL, and PNNL participating, which is why the
+  crosswalk lists four labs rather than one.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Phase 4. Needs the bio domain server. No access obstacle; the work
+    is choosing which of 93 operations become tools.

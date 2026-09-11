@@ -1,0 +1,80 @@
+id: lbnl-materials-project
+name: Materials Project
+domain: materials
+
+publisher:
+  steward: lbnl
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [lbnl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+planned_capabilities: [materials.search]
+adapter:
+  type: none
+
+access:
+  mode: api_key
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://next-gen.materialsproject.org/
+  terms_notes: >
+    Free API key by registration. One of DOE's seven PuRe data
+    resources, and the flagship reuse case: its own first-party MCP
+    server lives INSIDE the `mp-api` Python library, which under
+    decision 0011 makes it depend-and-wrap rather than a catalog entry
+    — declare the library, write thin tools over it, one install,
+    envelope applies natively, no MCP inside MCP.
+  terms_reviewed_at: "2026-09-01"
+  credential_ref: MP_API_KEY
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed; a continuously extended computed database.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Computed properties of inorganic materials: structures, energetics,
+    electronic structure, phase diagrams.
+  temporal: current
+  dataset_version: "current"
+  known_limitations:
+    - >
+      Computed, not measured. A Materials Project formation energy is a
+      calculation's output under a stated functional, and treating it as
+      an experimental value is a category error.
+    - >
+      Depend-and-wrap means the upstream library's surface gets reshaped
+      into this project's tool contract rather than re-exported:
+      decision 0014's sizing bands bind the wrapper exactly as they
+      bind everything else.
+
+authority_notes: >
+  Primary for its own computed data. Intended capabilities:
+  materials.search. Phase 4. The reason 0011's reuse rule splits on what
+  the upstream SHIPS rather than on who maintains it: because this one
+  ships a library, absorbing it costs one dependency instead of a second
+  server the user has to install.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Phase 4. Adding `mp-api` to the materials extra is the whole
+    integration; the work is the tool contract, not the access.

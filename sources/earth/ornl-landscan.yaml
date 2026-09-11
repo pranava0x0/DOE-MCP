@@ -1,0 +1,79 @@
+id: ornl-landscan
+name: LandScan population distribution
+domain: earth
+
+publisher:
+  steward: ornl
+  funder: nga
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [ornl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: manual_review_required
+  tier: catalog_pointer
+  terms_url: https://landscan.ornl.gov/
+  terms_notes: >
+    Access tier is CONFLICTING in the sources found: some material
+    describes open access, some describes registration. The docs host
+    also drops plain HTTP clients, so the survey could not settle it.
+    Recorded as needing a human to attempt an actual download and see
+    what happens.
+
+freshness:
+  expected_cadence: annual
+  cadence_source: >
+    Stated; LandScan Global is released annually with a year in its
+    identity.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Ambient population distribution at roughly 1 km resolution, global.
+  temporal: 2000 onward, annual releases
+  dataset_version: "LandScan 2023"
+  known_limitations:
+    - >
+      Release year is identity, not metadata: LandScan 2023 and LandScan
+      2022 are different data and comparing them without saying so is a
+      mixed-vintage error.
+    - >
+      NGA co-funds it. The publisher triple names both, because a
+      population dataset with a defence-agency funder is something a
+      caller may want to know about the provenance of.
+    - >
+      landscan.ornl.gov documentation returned 403 to a scripted fetch —
+      blocked_probe, not gated. Nothing user-facing may call this gated
+      until a browser has looked.
+
+authority_notes: >
+  Primary: ORNL produces LandScan. WMS/WCS subsetting is believed
+  available, which would make it a subset-tool candidate under DECISIONS
+  0010 rather than pointer-only.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Access tier unresolved and the docs host blocks scripted probes.
+    Next step is a browser check plus an attempted download; the answer
+    decides whether this is thin-proxy or pointer-only.

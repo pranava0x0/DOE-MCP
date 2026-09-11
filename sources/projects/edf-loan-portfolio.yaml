@@ -1,0 +1,69 @@
+id: edf-loan-portfolio
+name: EDF (formerly LPO) loan portfolio and activity reports
+domain: projects
+
+publisher:
+  steward: edf
+  authority_level: primary
+
+aliases:
+  former_names: ["Loan Programs Office portfolio"]
+  former_domains: []
+
+labs: []
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+planned_capabilities: [projects.search_awards]
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: unknown
+  tier: crawl_or_defer
+  terms_url: https://www.energy.gov/lpo/portfolio
+  terms_notes: >
+    A public portfolio map and a Monthly Application Activity Report.
+    Whether a JSON endpoint sits behind the map is unverified; the
+    ARPA-E JavaScript-bundle technique is the obvious next probe.
+
+freshness:
+  expected_cadence: monthly
+  cadence_source: >
+    Stated for the activity report.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    DOE loan and loan-guarantee portfolio: borrowers, technologies,
+    amounts, status.
+  temporal: current
+  dataset_version: "current"
+  known_limitations:
+    - >
+      LPO became EDF in the 2025-26 reorganization, so energy.gov paths
+      and every document written before then use the old name. The alias
+      resolves it; a caller should still expect old material to look
+      like a different office.
+    - >
+      Map backend unverified.
+
+authority_notes: >
+  Intended capabilities: projects.search_awards. Phase 5.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Map backend unverified. Next step is the JavaScript-bundle probe
+    that worked on ARPA-E.

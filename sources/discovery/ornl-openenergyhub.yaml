@@ -1,0 +1,97 @@
+# ORNL's Open Energy Data Hub. Standard OpenDataSoft Explore v2.1, no auth,
+# 185 datasets — including EV Watts and ARPA-E PERFORM, which are named here
+# because they are the two people go looking for.
+#
+# This graduated to a thin proxy on the strength of one probe: the generic
+# OpenDataSoft adapter thesis held, so one client covers all 185 datasets
+# uniformly and any future OpenDataSoft portal in this ecosystem is a
+# manifest rather than code.
+id: ornl-openenergyhub
+name: Open Energy Data Hub (ORNL)
+domain: discovery
+
+publisher:
+  steward: ornl
+  authority_level: official_secondary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [ornl]
+
+capabilities:
+  - id: discovery.search_catalogs
+    tool_hint: discovery.search_all_catalogs
+
+adapter:
+  type: opendatasoft
+  base_url: https://openenergyhub.ornl.gov/api/explore/v2.1
+  portal_url: https://openenergyhub.ornl.gov
+
+access:
+  mode: anonymous
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://openenergyhub.ornl.gov
+  terms_notes: >
+    Public OpenDataSoft portal, anonymous API access confirmed live
+    2026-09-01 and again 2026-09-02 (total_count 185 both times). No key, no
+    stated automated-use restriction on the portal. Individual datasets carry
+    their own licences in their metadata, which are returned per dataset
+    rather than assumed uniform.
+  terms_reviewed_at: "2026-09-02"
+  terms_gap: >
+    The portal states no site-wide licence, so per-dataset licence metadata
+    is the only rights signal available and it is not populated on every
+    dataset.
+  citation_required: false
+  rate_limit_note: >
+    No rate limit is stated on the Explore v2.1 console
+    (checked 2026-09-08). OpenDataSoft portals commonly enforce a per-IP
+    quota that this one does not document, so the politeness budget is the
+    only ceiling this client can rely on.
+
+freshness:
+  expected_cadence: unknown
+  cadence_source: >
+    No stated refresh SLA. Individual datasets carry their own `modified`
+    dates, which are surfaced per result rather than replaced by a portal-
+    level date.
+  ttl_hint_seconds: 43200
+
+coverage:
+  scope: >
+    ORNL-hosted energy datasets across transportation electrification, grid,
+    and buildings, including EV Watts and ARPA-E PERFORM.
+  temporal: varies by dataset
+  dataset_version: current
+  record_count: 185
+  record_count_checked: "2026-09-02"
+  known_limitations:
+    - >
+      A portal, not a census. It holds what ORNL chose to publish here; other
+      ORNL data lives on the DAAC, HydroSource, the Bioenergy KDF, and
+      LandScan, each with its own access model.
+    - >
+      Dataset-level metadata is well-formed; record-level schemas vary
+      per dataset and are not normalized. A tool that searches the catalog is
+      reliable; one that assumes a shared record shape across all 185 would
+      not be.
+
+authority_notes: >
+  Official_secondary: ORNL publishes and hosts this portal, but several
+  datasets on it originate with other programs — ARPA-E PERFORM among them —
+  and for those the funding program is the authority. Registered as a
+  discovery source under decision 0009-B, fanned out behind DDE.
+
+health:
+  probe: opendatasoft_total_count
+  expect:
+    min_records: 150
+
+lifecycle:
+  declared_state: active
+  added: "2026-09-02"
+  last_verified: "2026-09-02"
+  verified_by: pranava0x0

@@ -1,0 +1,21 @@
+CC0 1.0 Universal — Public Domain Dedication
+https://creativecommons.org/publicdomain/zero/1.0/
+
+The source registry in this directory — every manifest, the organization
+table, and the capability vocabulary — is dedicated to the public domain.
+
+This is deliberate and it is the point. What the registry encodes is an
+inventory: which public systems exist across DOE and its seventeen national
+laboratories, who stewards each one, who funds it, what its terms say, what
+it does not cover, and what is blocking the ones that are not wired up yet.
+That inventory took the research recorded in this repository's research/
+directory to assemble, and it is more useful to the world unencumbered than
+it is as anything this project owns.
+
+Take it. Fork it, machine-read it, build a competing set of servers on it,
+or fold it into a government system. No attribution is required, though a
+pointer back is welcome so corrections can find their way home.
+
+The code that reads this registry is Apache-2.0 (see ../LICENSE). Data
+retrieved FROM the systems described here carries its own publisher's terms,
+recorded per source in each manifest and in ../THIRD_PARTY_DATA.yml.

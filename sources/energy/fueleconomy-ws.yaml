@@ -1,0 +1,107 @@
+# fueleconomy.gov — the DOE/EPA vehicle fuel-economy web service, run by ORNL.
+#
+# Three organizations in one source, which is why the publisher triple exists:
+# DOE and EPA own it jointly, ORNL operates it. Calling this "DOE data" drops
+# EPA; calling it EPA's drops the operator. The envelope shows all three.
+#
+# Small, keyless, stable, and verified live 2026-09-02 across all three
+# shapes: the menu drill-down, the vehicle detail record, and current fuel
+# prices.
+id: fueleconomy-ws
+name: fueleconomy.gov web service
+domain: energy
+
+publisher:
+  steward: doe
+  funder: epa
+  host: ornl
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [ornl]
+
+capabilities:
+  - id: vehicle.find
+    tool_hint: fuel.find_vehicle
+  - id: vehicle.fuel_prices
+    tool_hint: fuel.get_prices
+
+adapter:
+  type: fueleconomy
+  base_url: https://www.fueleconomy.gov/ws/rest
+
+access:
+  mode: anonymous
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://www.fueleconomy.gov/feg/info.shtml
+  terms_notes: >
+    A public federal web service, no key and no registration; read live
+    2026-09-02 across the menu, vehicle-detail, and fuel-price endpoints. The
+    site publishes the service for third-party use and states no restriction
+    on programmatic access.
+  terms_reviewed_at: "2026-09-02"
+  citation_required: false
+  rate_limit_note: >
+    No rate limit is published in the web-services
+    documentation (checked 2026-09-08). The drill-down shape is itself a
+    budget: a vehicle lookup is four small calls, each cached under the
+    manifest's TTL.
+
+freshness:
+  expected_cadence: >
+    Vehicle records annually as model years are certified; fuel prices
+    weekly.
+  cadence_source: >
+    Observed. The year menu returned 1984 through 2027 on 2026-09-02, so next
+    model year's vehicles are already loaded, and the fuel-price endpoint
+    returns a current national average per fuel type.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Official EPA fuel-economy ratings for US-market vehicles from 1984
+    onward, roughly 140 fields per vehicle including city/highway/combined
+    ratings, tailpipe CO2, electric range and consumption for EVs and PHEVs,
+    and annual fuel cost. Plus current national average fuel prices by fuel
+    type.
+  temporal: 1984-2027
+  dataset_version: current
+  known_limitations:
+    - >
+      US-market vehicles that EPA certified. Not a global vehicle database,
+      and not a used-vehicle valuation source.
+    - >
+      Ratings are EPA test-cycle values, not measured real-world consumption.
+      A caller comparing them to their own mileage is comparing two different
+      things.
+    - >
+      The drill-down returns `menuItem` as an OBJECT rather than a
+      one-element array when a step has exactly one answer. A client
+      iterating the value gets the dict's keys as if they were results. The
+      adapter normalizes this.
+    - >
+      Fuel prices are a single current national average per fuel type, with
+      no history and no regional breakdown. Regional and historical price
+      series are EIA's.
+
+authority_notes: >
+  Primary: this is the official rating, the one on the window sticker. The
+  three-role publisher block is doing real work here — DOE and EPA jointly
+  own the program, EPA runs the certification testing the numbers come from,
+  and ORNL operates the service. A provenance entry naming only DOE would be
+  an overclaim about a jointly-owned federal program.
+
+health:
+  probe: fueleconomy_year_menu
+  expect:
+    min_years: 30
+
+lifecycle:
+  declared_state: active
+  added: "2026-09-02"
+  last_verified: "2026-09-02"
+  verified_by: pranava0x0

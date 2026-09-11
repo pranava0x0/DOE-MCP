@@ -1,0 +1,127 @@
+# The one Power Marketing Administration that publishes its own operating
+# data directly, and the registry's plainest format case: a tab-delimited
+# text file on a web server, no key, no API wrapper, five-minute resolution.
+#
+# Also a live churn case. The portal page these files sit under announces
+# that it has MOVED to www.bpa.gov/energy-and-services/transmission/
+# operations-information, but the deep links under the old
+# transmission.bpa.gov path still resolve and are what the feed is served
+# from. The terms link points at the current page; the adapter fetches the
+# path that actually answers. Both were checked on 2026-09-02.
+id: bpa-operations
+name: BPA transmission operations feeds
+domain: energy
+
+publisher:
+  steward: bpa
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: []
+
+capabilities:
+  - id: grid.operations_feed
+    tool_hint: grid.get_bpa_operations
+
+adapter:
+  type: text_feed
+  base_url: https://transmission.bpa.gov/business/operations/Wind
+  feeds:
+    balancing_authority: baltwg.txt
+    balancing_authority_interchange: baltwg3.txt
+  default_feed: balancing_authority_interchange
+  timezone_note: >
+    Pacific Time, stated in the file's own header and never as a UTC offset.
+    The HTTP Last-Modified header is the unambiguous version and is what
+    reaches the envelope.
+  units: MW
+
+access:
+  mode: anonymous
+  automation_status: public_download
+  tier: thin_proxy
+  terms_url: https://www.bpa.gov/energy-and-services/transmission/operations-information
+  terms_notes: >
+    Five-minute operational text files published openly, plus an ArcGIS Hub
+    for spatial layers. No key and no registration. The site's own notice
+    states it is owned and operated by the Bonneville Power Administration,
+    United States Department of Energy, and states no restriction on
+    programmatic access. Read live 2026-09-02: both feed files returned 200
+    as text/plain with a Last-Modified stamp minutes old.
+  terms_reviewed_at: "2026-09-02"
+  citation_required: false
+  rate_limit_note: >
+    No rate limit is published. The real control is the
+    TTL: the file is rewritten every five minutes, so re-reading it faster
+    than that costs BPA bandwidth and returns the same bytes.
+
+freshness:
+  expected_cadence: every 5 minutes
+  cadence_source: >
+    Stated and observed. The file's header names five-minute intervals over
+    the last seven days, and the 2026-09-02 read carried a Last-Modified
+    three minutes before the request with the newest valued interval two
+    minutes before that.
+  ttl_hint_seconds: 300
+
+coverage:
+  scope: >
+    Near-live load and generation inside the Bonneville Power Administration
+    balancing authority at five-minute resolution over a rolling seven-day
+    window: load, VER (variable energy resources — wind and solar), hydro,
+    fossil/biomass, and nuclear, with net interchange on the second feed.
+    Values are megawatts from BPA's own SCADA system.
+  temporal: rolling 7-day window
+  dataset_version: current
+  known_limitations:
+    - >
+      A rolling window, not an archive. The file holds roughly 2,016
+      five-minute intervals and older data falls off it; a caller wanting
+      history needs EIA-930, which is a different source with hourly
+      resolution and its own revision semantics.
+    - >
+      The file is padded to the end of the current day with intervals that
+      have a timestamp and no values — 171 of 2,016 at the 2026-09-02 read.
+      They are intervals that have not happened yet, not an outage and not
+      zero generation. The adapter drops the trailing run and reports how
+      many it dropped, so the padding cannot be read as a grid that stopped
+      generating at midday.
+    - >
+      The two feeds do not carry the same columns: baltwg3.txt adds
+      Interchange, baltwg.txt does not. The adapter reads the header row of
+      whichever file it fetched rather than assuming a column set.
+    - >
+      Timestamps are Pacific local time with no offset in the file, so they
+      cross a daylight-saving boundary twice a year with nothing in the data
+      to mark it.
+    - >
+      This is BPA's balancing authority, which includes loads and resources
+      that are not BPA's own and excludes BPA loads served by transfer or
+      scheduled to customers with their own balancing authorities. The
+      file's header says so; it is not a figure for "BPA the utility".
+    - >
+      One balancing authority. The other three Power Marketing
+      Administrations publish report-shaped material instead, and their
+      operating data reaches the public through EIA.
+    - >
+      Operational SCADA readings, published minutes after the fact and not
+      settled. They are not billing-quality or revision-controlled figures.
+
+authority_notes: >
+  Primary: BPA's own operating data, published by BPA from its own SCADA
+  system. The spatial layers on BPA's ArcGIS Hub are a separate surface and
+  are not covered here; that needs the arcgis adapter.
+
+health:
+  probe: bpa_operations_feed
+  expect:
+    min_records: 288
+
+lifecycle:
+  declared_state: active
+  added: "2026-09-02"
+  last_verified: "2026-09-02"
+  verified_by: pranava0x0

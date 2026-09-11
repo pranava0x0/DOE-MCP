@@ -1,0 +1,71 @@
+id: anl-mdf
+name: Materials Data Facility
+domain: materials
+
+publisher:
+  steward: anl
+  authority_level: official_secondary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [anl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+planned_capabilities: [materials.search]
+adapter:
+  type: none
+
+access:
+  mode: account_token
+  automation_status: public_api
+  tier: catalog_pointer
+  terms_url: https://www.materialsdatafacility.org/
+  terms_notes: >
+    Globus Search over 880+ datasets; a free Globus token is required
+    for search. Datasets carry their own licences. Operated by Argonne
+    with the University of Chicago.
+  terms_reviewed_at: "2026-09-01"
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed; deposit-driven.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Published materials-science datasets with searchable metadata.
+  temporal: current
+  dataset_version: "current"
+  record_count: 880
+  record_count_checked: "2026-09-01"
+  known_limitations:
+    - >
+      Globus Search is not a REST API in the shape everything else here
+      uses; the token flow is a genuine onboarding cost for a caller.
+    - >
+      Data files are reached through Globus transfer, so answers are
+      access recipes rather than data.
+
+authority_notes: >
+  Intended capabilities: materials.search. Phase 4, alongside the
+  depend-and-wrap work on Materials Project.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Phase 4. Needs a globus_search adapter and the credential model
+    extended to Globus tokens, which behave unlike API keys.

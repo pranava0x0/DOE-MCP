@@ -1,0 +1,245 @@
+# The controlled capability vocabulary.
+#
+# A capability is what a caller wants done, named in the caller's terms rather
+# than the publisher's: `literature.search`, not `osti_records_query`. Tools
+# route on these, manifests declare them, and skills compose them — which is
+# also what lets a plugged-in sub-MCP (decision 0018) map its own tools into
+# the same vocabulary and be routed to like anything else.
+#
+# Adding one is a reviewed change. The vocabulary is meant to stay small
+# enough to hold in your head; a capability per dataset would be a synonym
+# list, not a vocabulary.
+#
+# CC0-1.0.
+
+capabilities:
+
+  # --- literature, data catalogs, software (Phase 1) ---------------------
+
+  - id: literature.search
+    description: >
+      Find DOE-funded reports, journal articles, conference papers, patents,
+      and theses by topic, author, organization, or date.
+
+  - id: literature.get_record
+    description: One bibliographic record by its identifier, in full.
+
+  - id: literature.fulltext_link
+    description: >
+      Where the full text of a publication can actually be read, when the
+      publisher exposes one.
+
+  - id: dataset.search
+    description: >
+      Find DOE-funded research datasets by topic, organization, or date.
+      Returns metadata and DOIs pointing at data held elsewhere, not the data.
+      One id for every dataset repository, with the repository as a filter:
+      the geothermal, marine, hydropower, bioenergy and carbon-storage
+      repositories answer to this id rather than to one each (decision 0026).
+
+  - id: dataset.get_record
+    description: One dataset's metadata record, with its DOI and landing page.
+
+  - id: software.search
+    description: Find DOE-funded software by topic, language, licence, or lab.
+
+  - id: software.get_record
+    description: One software record, with repository link and licence.
+
+  # --- registry and discovery (Phase 1) ----------------------------------
+
+  - id: registry.resolve_org
+    description: >
+      Resolve an organization name, abbreviation, former name, or domain to a
+      stable id — the tool that answers "NREL" with NLR and says the name is
+      historical.
+
+  - id: registry.search_sources
+    description: >
+      Which public systems this project knows about, active or not, and what
+      each one's terms and limitations are.
+
+  - id: registry.lab_crosswalk
+    description: >
+      What a given national laboratory publishes, across every platform that
+      carries its data.
+
+  - id: discovery.search_catalogs
+    description: >
+      Search several DOE catalogs at once for a dataset, labelling each
+      result with the catalog it came from and that catalog's vintage.
+
+  - id: discovery.pure_resources
+    description: >
+      DOE's own designated Public Reusable Research (PuRe) data resources —
+      the department's list of its most durable public data holdings.
+
+  # --- energy statistics and vehicles (Phase 2) --------------------------
+
+  - id: energy.discover_routes
+    description: >
+      Walk EIA's self-describing route tree to find which dataset answers a
+      question, and what facets and frequencies it offers.
+
+  - id: energy.get_data
+    description: Rows from a named EIA dataset route, with facets applied.
+
+  - id: energy.grid_status
+    description: >
+      Recent hourly electricity demand, generation, and interchange by
+      balancing authority.
+
+  - id: vehicle.find
+    description: Find a vehicle's official fuel-economy record by year, make, and model.
+
+  - id: vehicle.fuel_prices
+    description: Current national average fuel prices by fuel type.
+
+  # --- later phases: declared so proposed manifests can list their target
+  #     capability under planned_capabilities, and so coverage gaps can
+  #     answer "not yet, and here is what is blocking it" -----------------
+
+  - id: solar.estimate_production
+    description: Modelled photovoltaic production for a location and system design.
+
+  - id: solar.get_resource
+    description: Solar resource data (irradiance) for a location.
+
+  - id: rates.find_tariffs
+    description: Electricity tariffs for a utility or location.
+
+  - id: stations.find_alt_fuel
+    description: Alternative-fuel and charging stations near a location.
+
+  - id: grid.operations_feed
+    description: Live or near-live balancing-authority operations data.
+
+  - id: grid.outage_history
+    description: Historical electricity-outage records by county and interval.
+
+  - id: grid.interconnection_queue
+    description: Generation and storage projects in interconnection queues.
+
+  - id: earth.point_weather
+    description: Daily surface weather for a single point.
+
+  - id: earth.search_streams
+    description: Atmospheric or ecological measurement streams by site and instrument.
+
+  - id: earth.search_datasets
+    description: Environmental-system-science datasets by topic and site.
+
+  - id: climate.search_cmip
+    description: CMIP climate-model output by model, experiment, and variable.
+
+  - id: materials.search
+    description: Computed or measured materials properties by composition or structure.
+
+  - id: nuclear.get_nuclide
+    description: Structure and decay properties of a nuclide.
+
+  - id: nuclear.search_cross_sections
+    description: Evaluated neutron cross-section data.
+
+  - id: bio.search_studies
+    description: Microbiome or genomic studies and their biosamples.
+
+  - id: projects.search_awards
+    description: Funded projects, awards, and demonstration portfolios.
+
+  - id: docs.search_nepa
+    description: NEPA environmental review documents (EIS, EA, CX).
+
+  - id: docs.get_directive
+    description: DOE directives, orders, and standards.
+
+  # --- added in the 2026-09-08 gap sweep (research/notes/verification-round6.md)
+
+  - id: facility.locations
+    description: >
+      Where energy facilities are: wind turbines and utility-scale solar
+      sites by state, county, project, or bounding box, with their
+      specifications. An inventory, not generation data.
+
+  - id: compute.facility_status
+    description: >
+      Current status and planned outages of a DOE computing facility's
+      systems. Public status only; nothing about a user's jobs.
+
+  - id: chemistry.basis_sets
+    description: >
+      A quantum-chemistry basis set by name, element, and program format,
+      with the references that describe it.
+
+  - id: environment.site_monitoring
+    description: >
+      Environmental monitoring records at a DOE cleanup site: groundwater,
+      waste sites, tank data, and site geography.
+
+  - id: docs.search_rulemakings
+    description: >
+      DOE rules, proposed rules, notices, and dockets by topic, office, date,
+      or docket id, with links to the published text and the comment record.
+
+  - id: docs.get_rulemaking
+    description: >
+      One published rule, proposed rule, or notice in full by its document
+      number, with its docket, CFR references, and full-text link.
+
+  - id: tech.licensable_ip
+    description: >
+      Patents a national laboratory holds and software it has released, for
+      technology transfer: by laboratory, topic, inventor, or type, with
+      claims, assignees, and licence terms.
+
+  - id: transport.statistics
+    description: >
+      Transportation energy statistics from a compiled reference: vehicle
+      stock, fuel use, travel, and emissions tables with their primary
+      sources named.
+
+  - id: products.certified_models
+    description: >
+      Appliance and equipment models certified to federal energy-conservation
+      standards, with their rated performance.
+
+  - id: bio.search_genome_projects
+    description: >
+      Genome and metagenome sequencing projects by organism, ecosystem, or
+      status, with links to where the data is held.
+
+  # --- added when doe-earth was built (research/notes/verification-round12.md)
+
+  - id: earth.get_dataset
+    description: >
+      One environmental dataset's record in full: creators, funders, licence,
+      keywords, methods, and the spatial and temporal extent it covers.
+
+  - id: climate.discover_facets
+    description: >
+      Which facets a climate-model archive can be searched on, and what
+      values one of them takes — the directory walk that has to happen
+      before a search over millions of model datasets means anything.
+
+  - id: sensors.node_inventory
+    description: >
+      Where an edge-sensor network's nodes are deployed and what instruments
+      and computers each one carries. An inventory, not measurements.
+
+  # --- added when doe-materials was built (research/notes/verification-round13.md)
+
+  - id: materials.get_structure
+    description: >
+      One material's crystal structure and formulas by its identifier, with
+      whatever the publishing database adds to the standard fields.
+
+  - id: materials.describe_fields
+    description: >
+      Which properties a materials database can be filtered on, including
+      the provider-specific ones a federation standard reserves a prefix
+      for — the directory walk before a structure search.
+
+  - id: chemistry.search_basis_sets
+    description: >
+      Find quantum-chemistry basis sets by name, family, role, or the
+      elements they cover.

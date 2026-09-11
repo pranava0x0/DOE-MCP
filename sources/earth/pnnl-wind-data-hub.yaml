@@ -1,0 +1,66 @@
+id: pnnl-wind-data-hub
+name: Wind Data Hub (A2e DAP)
+domain: earth
+
+publisher:
+  steward: pnnl
+  funder: cmei
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [pnnl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+planned_capabilities: [earth.search_streams]
+adapter:
+  type: none
+
+access:
+  mode: account_token
+  automation_status: manual_review_required
+  tier: catalog_pointer
+  terms_url: https://wdh.energy.gov/
+  terms_notes: >
+    Account-based access to atmospheric measurement campaigns; data-use
+    terms per campaign.
+
+freshness:
+  expected_cadence: continuous
+  cadence_source: >
+    Observed; campaign-driven.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    More than 242 TB of lidar, meteorological, and model data from wind-
+    energy research campaigns.
+  temporal: current
+  dataset_version: "current"
+  known_limitations:
+    - >
+      242+ TB. Pointer-and-recipe territory by construction.
+    - >
+      Funded through what is now CMEI, an office that did not exist
+      under that name when much of this data was collected.
+
+authority_notes: >
+  Intended capabilities: earth.search_streams. Phase 4.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Account-gated and bulk-shaped; Phase 4, pointer-first.

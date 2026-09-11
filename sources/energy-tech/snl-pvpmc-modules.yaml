@@ -1,0 +1,73 @@
+id: snl-pvpmc-modules
+name: PVPMC module parameter dataset
+domain: energy-tech
+
+publisher:
+  steward: snl
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [snl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: public_download
+  tier: catalog_pointer
+  terms_url: https://zenodo.org/
+  terms_notes: >
+    A 16,857-module parameter CSV published on Zenodo under CC-BY-4.0.
+    An open licence with an attribution condition, so the citation block
+    is populated and attribution rides through the envelope.
+  terms_reviewed_at: "2026-09-01"
+
+freshness:
+  expected_cadence: on release
+  cadence_source: >
+    Stated; versioned releases on Zenodo, each with its own DOI.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Photovoltaic module electrical parameters for modelling.
+  temporal: current release
+  dataset_version: "current"
+  record_count: 16857
+  record_count_checked: "2026-09-01"
+  known_limitations:
+    - >
+      A static file, not a service. It is fetched, parsed, and served
+      from a local index — which makes its version identity load-
+      bearing, since a newer Zenodo release is a different dataset with
+      a different DOI.
+    - >
+      CC-BY-4.0 requires attribution. That is a condition, and the
+      envelope carries it.
+
+authority_notes: >
+  Primary: Sandia's PV Performance Modeling Collaborative maintains it.
+  Intended capabilities: solar.get_resource adjacent — module parameters
+  for production modelling. Phase 3.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Phase 3. Needs a zenodo_static adapter and Gate E review for
+    retaining a parsed copy.

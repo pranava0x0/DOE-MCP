@@ -1,0 +1,61 @@
+id: lm-gems
+name: GEMS (Geospatial Environmental Mapping System)
+domain: earth
+
+publisher:
+  steward: lm
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: []
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: unknown
+  tier: catalog_pointer
+  terms_url: https://gems.lm.doe.gov/
+  terms_notes: >
+    Legacy Management's public environmental mapping system. ArcGIS
+    backend suspected, unconfirmed.
+
+freshness:
+  expected_cadence: unknown
+  cadence_source: >
+    Unknown.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Environmental monitoring data for DOE legacy sites.
+  temporal: current
+  dataset_version: "current"
+  known_limitations:
+    - >
+      Backend unconfirmed. If ArcGIS, the genre adapter covers it.
+
+authority_notes: >
+  Resolves an open hypothesis from the headquarters survey about where
+  Legacy Management's GIS lives.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    ArcGIS backend probe pending; a browser-grade check would settle it.

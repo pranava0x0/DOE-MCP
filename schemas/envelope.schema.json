@@ -1,0 +1,758 @@
+{
+  "$defs": {
+    "AccessPath": {
+      "enum": [
+        "live",
+        "cache",
+        "index"
+      ],
+      "title": "AccessPath",
+      "type": "string"
+    },
+    "AccessRecipe": {
+      "additionalProperties": false,
+      "description": "A typed instruction for reaching data this answer only points at.\n\nEvery field but `kind` and `uri` is optional because the recipes differ:\nan S3 prefix needs a region and a note about anonymous access, a DOI\nneeds nothing, a Globus endpoint needs a collection id.",
+      "properties": {
+        "kind": {
+          "$ref": "#/$defs/RecipeKind"
+        },
+        "uri": {
+          "title": "Uri",
+          "type": "string"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Label"
+        },
+        "instructions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Instructions"
+        },
+        "requires_account": {
+          "default": false,
+          "title": "Requires Account",
+          "type": "boolean"
+        },
+        "approximate_size": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Approximate Size"
+        }
+      },
+      "required": [
+        "kind",
+        "uri"
+      ],
+      "title": "AccessRecipe",
+      "type": "object"
+    },
+    "AuthorityLevel": {
+      "enum": [
+        "primary",
+        "official_secondary",
+        "official_derived",
+        "third_party",
+        "unverified"
+      ],
+      "title": "AuthorityLevel",
+      "type": "string"
+    },
+    "Citation": {
+      "additionalProperties": false,
+      "description": "How to cite what this source entry contributed (architecture Part 1 \u00a7 3.3).\n\n`required` is the publisher's own condition of use, not a courtesy: ARM\nand AmeriFlux both state one. When it is true the builder raises a\ncitation_required warning so the obligation reaches the caller rather\nthan sitting in a manifest.",
+      "properties": {
+        "doi": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Doi"
+        },
+        "recommended": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Recommended"
+        },
+        "required": {
+          "default": false,
+          "title": "Required",
+          "type": "boolean"
+        }
+      },
+      "title": "Citation",
+      "type": "object"
+    },
+    "Coverage": {
+      "additionalProperties": false,
+      "description": "Five independent dimensions; never collapse them into one status.",
+      "properties": {
+        "registry": {
+          "$ref": "#/$defs/RegistryCoverage"
+        },
+        "execution": {
+          "$ref": "#/$defs/ExecutionCoverage"
+        },
+        "pagination": {
+          "$ref": "#/$defs/PaginationCoverage",
+          "default": "unknown"
+        },
+        "source_claim": {
+          "$ref": "#/$defs/SourceClaimCoverage",
+          "default": "unknown"
+        },
+        "result": {
+          "$ref": "#/$defs/ResultCoverage"
+        },
+        "sources_searched": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Sources Searched",
+          "type": "array"
+        },
+        "sources_unavailable": {
+          "items": {
+            "$ref": "#/$defs/SourceGap"
+          },
+          "title": "Sources Unavailable",
+          "type": "array"
+        },
+        "time_range": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TimeRange"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "source_failures": {
+          "items": {
+            "$ref": "#/$defs/SourceFailure"
+          },
+          "title": "Source Failures",
+          "type": "array"
+        },
+        "known_limitations": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Known Limitations",
+          "type": "array"
+        }
+      },
+      "required": [
+        "registry",
+        "execution",
+        "result"
+      ],
+      "title": "Coverage",
+      "type": "object"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "source_ref": {
+          "title": "Source Ref",
+          "type": "string"
+        },
+        "record_id": {
+          "title": "Record Id",
+          "type": "string"
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Locator"
+        },
+        "retrieved_at": {
+          "title": "Retrieved At",
+          "type": "string"
+        },
+        "effective_at": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Effective At"
+        },
+        "transformations": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Transformations",
+          "type": "array"
+        },
+        "payload_hash": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Payload Hash"
+        },
+        "raw_recovery": {
+          "$ref": "#/$defs/RawRecovery",
+          "default": "available"
+        }
+      },
+      "required": [
+        "id",
+        "source_ref",
+        "record_id",
+        "retrieved_at"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "ExecutionCoverage": {
+      "enum": [
+        "complete",
+        "partial",
+        "failed"
+      ],
+      "title": "ExecutionCoverage",
+      "type": "string"
+    },
+    "ExecutionProvenance": {
+      "additionalProperties": false,
+      "properties": {
+        "server": {
+          "title": "Server",
+          "type": "string"
+        },
+        "server_version": {
+          "title": "Server Version",
+          "type": "string"
+        },
+        "tool": {
+          "title": "Tool",
+          "type": "string"
+        },
+        "tool_contract_version": {
+          "title": "Tool Contract Version",
+          "type": "string"
+        },
+        "envelope_version": {
+          "default": "1",
+          "title": "Envelope Version",
+          "type": "string"
+        },
+        "adapters": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Adapters",
+          "type": "object"
+        },
+        "registry_revision": {
+          "title": "Registry Revision",
+          "type": "string"
+        },
+        "request_id": {
+          "title": "Request Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "server",
+        "server_version",
+        "tool",
+        "tool_contract_version",
+        "registry_revision",
+        "request_id"
+      ],
+      "title": "ExecutionProvenance",
+      "type": "object"
+    },
+    "NextAction": {
+      "additionalProperties": false,
+      "properties": {
+        "finding": {
+          "title": "Finding",
+          "type": "string"
+        },
+        "suggested_capability": {
+          "title": "Suggested Capability",
+          "type": "string"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "finding",
+        "suggested_capability",
+        "reason"
+      ],
+      "title": "NextAction",
+      "type": "object"
+    },
+    "PaginationCoverage": {
+      "enum": [
+        "complete",
+        "truncated",
+        "unknown"
+      ],
+      "title": "PaginationCoverage",
+      "type": "string"
+    },
+    "RawRecovery": {
+      "enum": [
+        "available",
+        "forbidden_by_terms",
+        "expired"
+      ],
+      "title": "RawRecovery",
+      "type": "string"
+    },
+    "RecipeKind": {
+      "description": "How to actually get at data this answer only points to\n(architecture Part 1 \u00a7 3.3, decision 0010).",
+      "enum": [
+        "landing_page",
+        "doi",
+        "fulltext_pdf",
+        "s3_uri",
+        "opendap_url",
+        "wcs_getcoverage",
+        "globus_endpoint",
+        "hsds_domain",
+        "bulk_download",
+        "repository",
+        "contact_required"
+      ],
+      "title": "RecipeKind",
+      "type": "string"
+    },
+    "RegistryCoverage": {
+      "description": "Does DOE-MCP have a source for this question at all?\n\nThe distinction this dimension exists to protect: `none` means the\nregistry has nothing, so the data may well exist and we cannot see it.\nAn empty result under `covered` means the searched systems hold no\nrecord. Collapsing the two is the single most damaging thing a\ngovernment-data tool can do to a caller.",
+      "enum": [
+        "covered",
+        "partial",
+        "none",
+        "unknown"
+      ],
+      "title": "RegistryCoverage",
+      "type": "string"
+    },
+    "ResourceRef": {
+      "additionalProperties": false,
+      "properties": {
+        "uri": {
+          "title": "Uri",
+          "type": "string"
+        },
+        "media_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Media Type"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        }
+      },
+      "required": [
+        "uri"
+      ],
+      "title": "ResourceRef",
+      "type": "object"
+    },
+    "ResultCoverage": {
+      "enum": [
+        "hit",
+        "empty"
+      ],
+      "title": "ResultCoverage",
+      "type": "string"
+    },
+    "SourceClaimCoverage": {
+      "description": "What the publisher itself claims to cover, which is often less than\nthe caller assumes: DOE PAGES holds public-access literature after an\nembargo interval, not everything DOE funded.",
+      "enum": [
+        "complete",
+        "partial",
+        "unknown"
+      ],
+      "title": "SourceClaimCoverage",
+      "type": "string"
+    },
+    "SourceEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        },
+        "steward": {
+          "title": "Steward",
+          "type": "string"
+        },
+        "funder": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Funder"
+        },
+        "host": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Host"
+        },
+        "system": {
+          "title": "System",
+          "type": "string"
+        },
+        "dataset": {
+          "title": "Dataset",
+          "type": "string"
+        },
+        "dataset_version": {
+          "title": "Dataset Version",
+          "type": "string"
+        },
+        "authority_level": {
+          "$ref": "#/$defs/AuthorityLevel"
+        },
+        "access_path": {
+          "$ref": "#/$defs/AccessPath"
+        },
+        "source_updated_at": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Source Updated At"
+        },
+        "retrieved_at": {
+          "title": "Retrieved At",
+          "type": "string"
+        },
+        "cache_age_seconds": {
+          "title": "Cache Age Seconds",
+          "type": "integer"
+        },
+        "citation": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Citation"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "id",
+        "source_id",
+        "steward",
+        "system",
+        "dataset",
+        "dataset_version",
+        "authority_level",
+        "access_path",
+        "source_updated_at",
+        "retrieved_at",
+        "cache_age_seconds"
+      ],
+      "title": "SourceEntry",
+      "type": "object"
+    },
+    "SourceFailure": {
+      "additionalProperties": false,
+      "properties": {
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        },
+        "error": {
+          "title": "Error",
+          "type": "string"
+        },
+        "detail": {
+          "title": "Detail",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_id",
+        "error",
+        "detail"
+      ],
+      "title": "SourceFailure",
+      "type": "object"
+    },
+    "SourceGap": {
+      "additionalProperties": false,
+      "description": "Why a registered source contributed nothing to this answer.",
+      "properties": {
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_id",
+        "reason"
+      ],
+      "title": "SourceGap",
+      "type": "object"
+    },
+    "TimeRange": {
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "From"
+        },
+        "to": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "To"
+        }
+      },
+      "title": "TimeRange",
+      "type": "object"
+    },
+    "WarningCode": {
+      "description": "Adding a value is a reviewed change.\n\nThe first block is the base contract's; the second is DOE's, each one\nnamed for a confusion this ecosystem measurably produces.",
+      "enum": [
+        "screening_only",
+        "stale_source",
+        "freshness_unavailable",
+        "alias_match",
+        "mixed_vintages",
+        "terms_note",
+        "insecure_transport",
+        "truncated_inline",
+        "derived_layer",
+        "catalog_vintage",
+        "domain_migrated",
+        "citation_required",
+        "rate_limited_demo"
+      ],
+      "title": "WarningCode",
+      "type": "string"
+    },
+    "WarningNote": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/WarningCode"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "source_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Id"
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ],
+      "title": "WarningNote",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "data": {
+      "additionalProperties": true,
+      "title": "Data",
+      "type": "object"
+    },
+    "provenance": {
+      "items": {
+        "$ref": "#/$defs/SourceEntry"
+      },
+      "title": "Provenance",
+      "type": "array"
+    },
+    "evidence": {
+      "items": {
+        "$ref": "#/$defs/Evidence"
+      },
+      "title": "Evidence",
+      "type": "array"
+    },
+    "coverage": {
+      "$ref": "#/$defs/Coverage"
+    },
+    "warnings": {
+      "items": {
+        "$ref": "#/$defs/WarningNote"
+      },
+      "title": "Warnings",
+      "type": "array"
+    },
+    "access_recipes": {
+      "items": {
+        "$ref": "#/$defs/AccessRecipe"
+      },
+      "title": "Access Recipes",
+      "type": "array"
+    },
+    "next_actions": {
+      "items": {
+        "$ref": "#/$defs/NextAction"
+      },
+      "title": "Next Actions",
+      "type": "array"
+    },
+    "resources": {
+      "items": {
+        "$ref": "#/$defs/ResourceRef"
+      },
+      "title": "Resources",
+      "type": "array"
+    },
+    "requires_user_choice": {
+      "default": false,
+      "title": "Requires User Choice",
+      "type": "boolean"
+    },
+    "_execution": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ExecutionProvenance"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "data",
+    "coverage"
+  ],
+  "title": "DoeMcpEnvelope",
+  "type": "object",
+  "$comment": "envelope_version 1; generated from doe_mcp.core.envelope \u2014 edit the models, not this file."
+}

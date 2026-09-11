@@ -1,0 +1,68 @@
+id: anl-gem
+name: Geospatial Energy Mapper (GEM)
+domain: energy
+
+publisher:
+  steward: anl
+  funder: gdo
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [anl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: unknown
+  tier: catalog_pointer
+  terms_url: https://gem.anl.gov/
+  terms_notes: >
+    More than 190 public GIS siting layers. gem.anl.gov drops plain HTTP
+    clients — blocked_probe, not gated — so the ArcGIS reachability
+    question is open.
+
+freshness:
+  expected_cadence: unknown
+  cadence_source: >
+    Unknown.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Energy infrastructure siting layers: transmission, generation,
+    environmental constraints.
+  temporal: current
+  dataset_version: "current"
+  known_limitations:
+    - >
+      One of five DOE hosts confirmed dropping scripted clients.
+    - >
+      Funded by the Grid Deployment Office, which was dismantled in the
+      2025-26 reorganization. The funder field names an office that no
+      longer exists, which is correct for data produced under it.
+
+authority_notes: >
+  High potential for siting work. Phase 3-4.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Blocked probe. Needs one browser-grade check before its access
+    posture can be recorded.

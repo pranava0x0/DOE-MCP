@@ -1,0 +1,133 @@
+id: usgs-uswtdb
+name: US Wind Turbine Database (USWTDB)
+domain: energy
+
+publisher:
+  steward: usgs
+  funder: cmei
+  host: usgs
+  authority_level: primary
+
+aliases:
+  former_names: []
+  # The API answered on eersc.usgs.gov until at least 2026-09-08 and now
+  # returns 301 to energy.usgs.gov. Recorded rather than dropped: a caller
+  # holding the old host is exactly who needs to be told where it went.
+  former_domains: ['eersc.usgs.gov']
+
+labs: ['lbnl']
+
+capabilities:
+  - id: facility.locations
+    tool_hint: facility.find_wind_turbines
+
+planned_capabilities: []
+
+adapter:
+  type: postgrest
+  base_url: https://energy.usgs.gov/api/uswtdb/v1
+  # Read from here and never from base_url. Both USGS path aliases serve
+  # BOTH tables: uswtdb/v1/projects returns the 6,611 SOLAR facilities of
+  # the USPVDB, not wind projects.
+  table: turbines
+  id_column: case_id
+  default_order: case_id
+  state_column: t_state
+  county_column: t_county
+  name_column: p_name
+  latitude_column: ylat
+  longitude_column: xlong
+  confidence_columns:
+    t_conf_loc: 3
+    t_conf_atr: 3
+  confidence_note: >
+    t_conf_loc and t_conf_atr both run 1 to 3, and 3 is the confident
+    case. Location: 1 means no turbine was visible in the image, 2 a
+    pad or parts on the ground, 3 an installed turbine. Attributes: 1
+    means nothing beyond total height and year, 2 incomplete or
+    conflicting sources, 3 complete and consistent across sources.
+    t_img_date is the date of the image the location was checked
+    against, and t_img_src names the imagery.
+  units_note: >
+    t_cap is one turbine's rated capacity in kilowatts and p_cap is the
+    whole project's capacity in megawatts, which are different units on
+    adjacent columns. Hub height (t_hh), rotor diameter (t_rd) and total
+    height to blade tip (t_ttlh) are metres; rotor swept area (t_rsa) is
+    square metres; xlong and ylat are decimal degrees.
+  dataset_doi: 10.5066/F7TX3DN0
+
+access:
+  mode: anonymous
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://energy.usgs.gov/uswtdb/
+  terms_reviewed_at: "2026-09-08"
+  terms_notes: >
+    USGS work in the public domain. The database is a joint product of
+    USGS, LBNL's Energy Markets and Policy department, and the wind
+    industry's trade association under a CRADA, funded in part by DOE's
+    wind office. The API asks for no key and answered a scripted client
+    on 2026-09-08. A citation to the database version is suggested
+    rather than required.
+  citation_required: false
+  citation_text: >
+    Hoen, B.D., Diffendorfer, J.E., Rand, J.T., Kramer, L.A., Garrity,
+    C.P., and Hunt, H.E., 2018, United States Wind Turbine Database
+    V9.0 (June 26, 2026): U.S. Geological Survey, American Clean Power
+    Association, and Lawrence Berkeley National Laboratory data
+    release, https://doi.org/10.5066/F7TX3DN0.
+  rate_limit_note: >
+    None published. Absence of a stated ceiling is not permission; the
+    politeness budget in the fetch path is what keeps this polite.
+
+freshness:
+  expected_cadence: quarterly
+  cadence_source: >
+    Stated; the publisher updates as frequently as quarterly and says
+    the data lag installations by about one quarter.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    Location, project, and turbine specifications for every utility-
+    scale wind turbine in the United States, land-based and offshore,
+    with FAA identifiers and the project's capacity and year.
+  temporal: 1981 onward
+  dataset_version: "USWTDB V9.0 (26 June 2026)"
+  record_count: 75727
+  record_count_checked: "2026-09-08"
+  known_limitations:
+    - >
+      A turbine inventory, not generation data. Output and capacity
+      factors come from EIA; this answers where the turbines are and
+      what they are.
+    - >
+      Confidence fields matter. Each turbine carries location and
+      attribute confidence codes; a tool that drops them presents an
+      estimate as a survey.
+    - >
+      The API states no version of its own. The release named in
+      dataset_version is this registry's record of it, checked on the
+      date in record_count_checked, and a quarterly release lands
+      without changing anything the endpoint says about itself.
+
+authority_notes: >
+  Primary. USGS hosts and publishes it, LBNL co-produces it, DOE's wind
+  office funds the LBNL share. A PostgREST service: filters are
+  column=operator.value query parameters and the schema is published as
+  OpenAPI at the base path. That published schema is shared with the
+  USPVDB — both path aliases serve both tables — so the table this
+  source reads is declared in the adapter block rather than inferred.
+  Found in the 2026-09-08 gap sweep
+  (research/notes/verification-round6.md).
+
+health:
+  probe: postgrest_row_count
+  expect:
+    min_records: 70000
+
+lifecycle:
+  declared_state: active
+  added: "2026-09-08"
+  last_verified: "2026-09-08"
+  verified_by: pranava0x0

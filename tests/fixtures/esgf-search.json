@@ -1,0 +1,5229 @@
+{
+  "note": "Recorded live from ESGF search (CMIP6) (https://esgf.github.io/) by tools/record_fixtures.py. Publisher content redistributed under the terms recorded in THIRD_PARTY_DATA.yml.",
+  "redaction": "Email addresses replaced with redacted@example.invalid and credential values with 'redacted' at record time. Field shapes and lengths are otherwise the publisher's.",
+  "interactions": [
+    {
+      "url": "https://esgf-node.ornl.gov/esgf-1-5-bridge/openapi.json",
+      "params": {},
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "openapi": "3.1.0",
+        "info": {
+          "title": "ESGF 1.5 Bridge API",
+          "summary": "An adapter service to translate and execute ESGSearch queries on a Globus Search Index.",
+          "version": "0.1.0"
+        },
+        "servers": [
+          {
+            "url": "/esgf-1-5-bridge"
+          }
+        ],
+        "paths": {
+          "/search": {
+            "get": {
+              "tags": [
+                "Search"
+              ],
+              "summary": "Search",
+              "description": "Redirects to the root path for esgf-pyclient compatibility.",
+              "operationId": "search_search_get",
+              "responses": {
+                "200": {
+                  "description": "Successful Response",
+                  "content": {
+                    "application/json": {
+                      "schema": {}
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "/": {
+            "get": {
+              "tags": [
+                "Search"
+              ],
+              "summary": "Root",
+              "description": "Allows searching the ESGF Globus Index using the same query requests and responses as the old Solr based ESG Search application.",
+              "operationId": "root__get",
+              "parameters": [
+                {
+                  "name": "query",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "A Solr search string.",
+                    "title": "Query"
+                  },
+                  "description": "A Solr search string."
+                },
+                {
+                  "name": "format",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "application/solr+xml",
+                      "application/solr+json"
+                    ],
+                    "type": "string",
+                    "description": "The format of the response.",
+                    "default": "application/solr+json",
+                    "title": "Format"
+                  },
+                  "description": "The format of the response."
+                },
+                {
+                  "name": "bbox",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "The geospatial search box [west, south, east, north]",
+                    "title": "Bbox"
+                  },
+                  "description": "The geospatial search box [west, south, east, north]"
+                },
+                {
+                  "name": "offset",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "maximum": 9999,
+                        "minimum": 0
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "The number of records to skip. Globus Search only allows from 0 to 9999, so we limit it to that range.",
+                    "default": 0,
+                    "title": "Offset"
+                  },
+                  "description": "The number of records to skip. Globus Search only allows from 0 to 9999, so we limit it to that range."
+                },
+                {
+                  "name": "limit",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "The number of records to return",
+                    "default": 10,
+                    "title": "Limit"
+                  },
+                  "description": "The number of records to return"
+                },
+                {
+                  "name": "replica",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Enable to include replicas in the search results",
+                    "title": "Replica"
+                  },
+                  "description": "Enable to include replicas in the search results"
+                },
+                {
+                  "name": "distrib",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Enable to search across all federated nodes",
+                    "title": "Distrib"
+                  },
+                  "description": "Enable to search across all federated nodes"
+                },
+                {
+                  "name": "facets",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "\\w+(,\\w+)*?"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "A comma-separated list of field names to facet on.",
+                    "title": "Facets"
+                  },
+                  "description": "A comma-separated list of field names to facet on."
+                },
+                {
+                  "name": "min_version",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Constrain query results to `version` field after this date.",
+                    "title": "Min Version"
+                  },
+                  "description": "Constrain query results to `version` field after this date."
+                },
+                {
+                  "name": "max_version",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Constrain query results to `version` field before this date.",
+                    "title": "Max Version"
+                  },
+                  "description": "Constrain query results to `version` field before this date."
+                },
+                {
+                  "name": "from",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Return records last modified after this timestamp",
+                    "title": "From"
+                  },
+                  "description": "Return records last modified after this timestamp"
+                },
+                {
+                  "name": "to",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Return records last modified before this timestamp",
+                    "title": "To"
+                  },
+                  "description": "Return records last modified before this timestamp"
+                },
+                {
+                  "name": "id",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Id"
+                  }
+                },
+                {
+                  "name": "dataset_id",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Dataset Id"
+                  }
+                },
+                {
+                  "name": "type",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "Dataset",
+                      "File"
+                    ],
+                    "type": "string",
+                    "description": "The type of record to search for.",
+                    "default": "Dataset",
+                    "title": "Type"
+                  },
+                  "description": "The type of record to search for."
+                },
+                {
+                  "name": "access",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Access level of the dataset.",
+                    "title": "Access"
+                  },
+                  "description": "Access level of the dataset."
+                },
+                {
+                  "name": "activity",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Activity of the dataset.",
+                    "title": "Activity"
+                  },
+                  "description": "Activity of the dataset."
+                },
+                {
+                  "name": "activity_drs",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Activity DRS of the dataset.",
+                    "title": "Activity Drs"
+                  },
+                  "description": "Activity DRS of the dataset."
+                },
+                {
+                  "name": "activity_id",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Activity ID of the dataset.",
+                    "title": "Activity Id"
+                  },
+                  "description": "Activity ID of the dataset."
+                },
+                {
+                  "name": "atmos_grid_resolution",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Atmospheric grid resolution of the dataset.",
+                    "title": "Atmos Grid Resolution"
+                  },
+                  "description": "Atmospheric grid resolution of the dataset."
+                },
+                {
+                  "name": "branch_method",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Branch method of the dataset.",
+                    "title": "Branch Method"
+                  },
+                  "description": "Branch method of the dataset."
+                },
+                {
+                  "name": "campaign",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Campaign of the dataset.",
+                    "title": "Campaign"
+                  },
+                  "description": "Campaign of the dataset."
+                },
+                {
+                  "name": "Campaign",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Campaign of the dataset.",
+                    "title": "Campaign"
+                  },
+                  "description": "Campaign of the dataset."
+                },
+                {
+                  "name": "catalog_version",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Catalog version of the dataset.",
+                    "title": "Catalog Version"
+                  },
+                  "description": "Catalog version of the dataset."
+                },
+                {
+                  "name": "cf_standard_name",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "CF standard name of the dataset.",
+                    "title": "Cf Standard Name"
+                  },
+                  "description": "CF standard name of the dataset."
+                },
+                {
+                  "name": "cmor_table",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "CMOR table of the dataset.",
+                    "title": "Cmor Table"
+                  },
+                  "description": "CMOR table of the dataset."
+                },
+                {
+                  "name": "contact",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Contact of the dataset.",
+                    "title": "Contact"
+                  },
+                  "description": "Contact of the dataset."
+                },
+                {
+                  "name": "Conventions",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Conventions of the dataset.",
+                    "title": "Conventions"
+                  },
+                  "description": "Conventions of the dataset."
+                },
+                {
+                  "name": "creation_date",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Creation date of the dataset.",
+                    "title": "Creation Date"
+                  },
+                  "description": "Creation date of the dataset."
+                },
+                {
+                  "name": "data_node",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Data node of the dataset.",
+                    "title": "Data Node"
+                  },
+                  "description": "Data node of the dataset."
+                },
+                {
+                  "name": "data_specs_version",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Data specs version of the dataset.",
+                    "title": "Data Specs Version"
+                  },
+                  "description": "Data specs version of the dataset."
+                },
+                {
+                  "name": "data_structure",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Data structure of the dataset.",
+                    "title": "Data Structure"
+                  },
+                  "description": "Data structure of the dataset."
+                },
+                {
+                  "name": "data_type",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Data type of the dataset.",
+                    "title": "Data Type"
+                  },
+                  "description": "Data type of the dataset."
+                },
+                {
+                  "name": "dataset_category",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Dataset category of the dataset.",
+                    "title": "Dataset Category"
+                  },
+                  "description": "Dataset category of the dataset."
+                },
+                {
+                  "name": "dataset_status",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Dataset status of the dataset.",
+                    "title": "Dataset Status"
+                  },
+                  "description": "Dataset status of the dataset."
+                },
+                {
+                  "name": "dataset_version",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Dataset version of the dataset.",
+                    "title": "Dataset Version"
+                  },
+                  "description": "Dataset version of the dataset."
+                },
+                {
+                  "name": "dataset_version_number",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Dataset version number of the dataset.",
+                    "title": "Dataset Version Number"
+                  },
+                  "description": "Dataset version number of the dataset."
+                },
+                {
+                  "name": "datetime_end",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Datetime end of the dataset.",
+                    "title": "Datetime End"
+                  },
+                  "description": "Datetime end of the dataset."
+                },
+                {
+                  "name": "deprecated",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Deprecated of the dataset.",
+                    "title": "Deprecated"
+                  },
+                  "description": "Deprecated of the dataset."
+                },
+                {
+                  "name": "directory_format_template_",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Directory format template of the dataset.",
+                    "title": "Directory Format Template "
+                  },
+                  "description": "Directory format template of the dataset."
+                },
+                {
+                  "name": "ensemble",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Ensemble of the dataset.",
+                    "title": "Ensemble"
+                  },
+                  "description": "Ensemble of the dataset."
+                },
+                {
+                  "name": "ensemble_member",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Ensemble member of the dataset.",
+                    "title": "Ensemble Member"
+                  },
+                  "description": "Ensemble member of the dataset."
+                },
+                {
+                  "name": "ensemble_member_",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Ensemble member of the dataset.",
+                    "title": "Ensemble Member "
+                  },
+                  "description": "Ensemble member of the dataset."
+                },
+                {
+                  "name": "experiment",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Experiment of the dataset.",
+                    "title": "Experiment"
+                  },
+                  "description": "Experiment of the dataset."
+                },
+                {
+                  "name": "experiment_family",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Experiment family of the dataset.",
+                    "title": "Experiment Family"
+                  },
+                  "description": "Experiment family of the dataset."
+                },
+                {
+                  "name": "experiment_id",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Experiment ID of the dataset.",
+                    "title": "Experiment Id"
+                  },
+                  "description": "Experiment ID of the dataset."
+                },
+                {
+                  "name": "experiment_title",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Experiment title of the dataset.",
+                    "title": "Experiment Title"
+                  },
+                  "description": "Experiment title of the dataset."
+                },
+                {
+                  "name": "forcing",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Forcing of the dataset.",
+                    "title": "Forcing"
+                  },
+                  "description": "Forcing of the dataset."
+                },
+                {
+                  "name": "frequency",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Frequency of the dataset.",
+                    "title": "Frequency"
+                  },
+                  "description": "Frequency of the dataset."
+                },
+                {
+                  "name": "grid",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Grid of the dataset.",
+                    "title": "Grid"
+                  },
+                  "description": "Grid of the dataset."
+                },
+                {
+                  "name": "grid_label",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Grid label of the dataset.",
+                    "title": "Grid Label"
+                  },
+                  "description": "Grid label of the dataset."
+                },
+                {
+                  "name": "grid_resolution",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Grid resolution of the dataset.",
+                    "title": "Grid Resolution"
+                  },
+                  "description": "Grid resolution of the dataset."
+                },
+                {
+                  "name": "height-units",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Height units of the dataset.",
+                    "title": "Height-Units"
+                  },
+                  "description": "Height units of the dataset."
+                },
+                {
+                  "name": "index_node",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Index node of the dataset.",
+                    "title": "Index Node"
+                  },
+                  "description": "Index node of the dataset."
+                },
+                {
+                  "name": "institute",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Institute of the dataset.",
+                    "title": "Institute"
+                  },
+                  "description": "Institute of the dataset."
+                },
+                {
+                  "name": "institution",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Institution of the dataset.",
+                    "title": "Institution"
+                  },
+                  "description": "Institution of the dataset."
+                },
+                {
+                  "name": "institution_id",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Institution ID of the dataset.",
+                    "title": "Institution Id"
+                  },
+                  "description": "Institution ID of the dataset."
+                },
+                {
+                  "name": "instrument",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Instrument of the dataset.",
+                    "title": "Instrument"
+                  },
+                  "description": "Instrument of the dataset."
+                },
+                {
+                  "name": "land_grid_resolution",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Land grid resolution of the dataset.",
+                    "title": "Land Grid Resolution"
+                  },
+                  "description": "Land grid resolution of the dataset."
+                },
+                {
+                  "name": "master_gateway",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Master gateway of the dataset.",
+                    "title": "Master Gateway"
+                  },
+                  "description": "Master gateway of the dataset."
+                },
+                {
+                  "name": "member_id",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Member ID of the dataset.",
+                    "title": "Member Id"
+                  },
+                  "description": "Member ID of the dataset."
+                },
+                {
+                  "name": "metadata_format",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Metadata format of the dataset.",
+                    "title": "Metadata Format"
+                  },
+                  "description": "Metadata format of the dataset."
+                },
+                {
+                  "name": "mip_era",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "MIP era of the dataset.",
+                    "title": "Mip Era"
+                  },
+                  "description": "MIP era of the dataset."
+                },
+                {
+                  "name": "model",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Model of the dataset.",
+                    "title": "Model"
+                  },
+                  "description": "Model of the dataset."
+                },
+                {
+                  "name": "nominal_resolution",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Nominal resolution of the dataset.",
+                    "title": "Nominal Resolution"
+                  },
+                  "description": "Nominal resolution of the dataset."
+                },
+                {
+                  "name": "ocean_grid_resolution",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Ocean grid resolution of the dataset.",
+                    "title": "Ocean Grid Resolution"
+                  },
+                  "description": "Ocean grid resolution of the dataset."
+                },
+                {
+                  "name": "Period",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Period of the dataset.",
+                    "title": "Period"
+                  },
+                  "description": "Period of the dataset."
+                },
+                {
+                  "name": "period",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Period of the dataset.",
+                    "title": "Period"
+                  },
+                  "description": "Period of the dataset."
+                },
+                {
+                  "name": "processing_level",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Processing level of the dataset.",
+                    "title": "Processing Level"
+                  },
+                  "description": "Processing level of the dataset."
+                },
+                {
+                  "name": "product",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Product of the dataset.",
+                    "title": "Product"
+                  },
+                  "description": "Product of the dataset."
+                },
+                {
+                  "name": "project",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Project of the dataset.",
+                    "title": "Project"
+                  },
+                  "description": "Project of the dataset."
+                },
+                {
+                  "name": "quality_control_flags",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Quality control flags of the dataset.",
+                    "title": "Quality Control Flags"
+                  },
+                  "description": "Quality control flags of the dataset."
+                },
+                {
+                  "name": "range",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Range of the dataset.",
+                    "title": "Range"
+                  },
+                  "description": "Range of the dataset."
+                },
+                {
+                  "name": "realm",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Realm of the dataset.",
+                    "title": "Realm"
+                  },
+                  "description": "Realm of the dataset."
+                },
+                {
+                  "name": "realm_drs",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Realm DRS of the dataset.",
+                    "title": "Realm Drs"
+                  },
+                  "description": "Realm DRS of the dataset."
+                },
+                {
+                  "name": "region",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Region of the dataset.",
+                    "title": "Region"
+                  },
+                  "description": "Region of the dataset."
+                },
+                {
+                  "name": "regridding",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Regridding of the dataset.",
+                    "title": "Regridding"
+                  },
+                  "description": "Regridding of the dataset."
+                },
+                {
+                  "name": "run_category",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Run category of the dataset.",
+                    "title": "Run Category"
+                  },
+                  "description": "Run category of the dataset."
+                },
+                {
+                  "name": "Science Driver",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Science Driver of the dataset.",
+                    "title": "Science Driver"
+                  },
+                  "description": "Science Driver of the dataset."
+                },
+                {
+                  "name": "science driver",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Science driver of the dataset.",
+                    "title": "Science Driver"
+                  },
+                  "description": "Science driver of the dataset."
+                },
+                {
+                  "name": "science_driver",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Science driver of the dataset.",
+                    "title": "Science Driver"
+                  },
+                  "description": "Science driver of the dataset."
+                },
+                {
+                  "name": "seaice_grid_resolution",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Sea ice grid resolution of the dataset.",
+                    "title": "Seaice Grid Resolution"
+                  },
+                  "description": "Sea ice grid resolution of the dataset."
+                },
+                {
+                  "name": "set_name",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Set name of the dataset.",
+                    "title": "Set Name"
+                  },
+                  "description": "Set name of the dataset."
+                },
+                {
+                  "name": "short_description",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Short description of the dataset.",
+                    "title": "Short Description"
+                  },
+                  "description": "Short description of the dataset."
+                },
+                {
+                  "name": "source",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Source of the dataset.",
+                    "title": "Source"
+                  },
+                  "description": "Source of the dataset."
+                },
+                {
+                  "name": "source_id",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Source ID of the dataset.",
+                    "title": "Source Id"
+                  },
+                  "description": "Source ID of the dataset."
+                },
+                {
+                  "name": "source_type",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Source type of the dataset.",
+                    "title": "Source Type"
+                  },
+                  "description": "Source type of the dataset."
+                },
+                {
+                  "name": "source_version",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Source version of the dataset.",
+                    "title": "Source Version"
+                  },
+                  "description": "Source version of the dataset."
+                },
+                {
+                  "name": "source_version_number",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Source version number of the dataset.",
+                    "title": "Source Version Number"
+                  },
+                  "description": "Source version number of the dataset."
+                },
+                {
+                  "name": "status",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Status of the dataset.",
+                    "title": "Status"
+                  },
+                  "description": "Status of the dataset."
+                },
+                {
+                  "name": "sub_experiment_id",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Sub experiment ID of the dataset.",
+                    "title": "Sub Experiment Id"
+                  },
+                  "description": "Sub experiment ID of the dataset."
+                },
+                {
+                  "name": "table",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Table of the dataset.",
+                    "title": "Table"
+                  },
+                  "description": "Table of the dataset."
+                },
+                {
+                  "name": "table_id",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Table ID of the dataset.",
+                    "title": "Table Id"
+                  },
+                  "description": "Table ID of the dataset."
+                },
+                {
+                  "name": "target_mip",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Target MIP of the dataset.",
+                    "title": "Target Mip"
+                  },
+                  "description": "Target MIP of the dataset."
+                },
+                {
+                  "name": "target_mip_list",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Target MIP list of the dataset.",
+                    "title": "Target Mip List"
+                  },
+                  "description": "Target MIP list of the dataset."
+                },
+                {
+                  "name": "target_mip_listsource",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Target MIP listsource of the dataset.",
+                    "title": "Target Mip Listsource"
+                  },
+                  "description": "Target MIP listsource of the dataset."
+                },
+                {
+                  "name": "target_mip_single",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Target MIP single of the dataset.",
+                    "title": "Target Mip Single"
+                  },
+                  "description": "Target MIP single of the dataset."
+                },
+                {
+                  "name": "time_frequency",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Time frequency of the dataset.",
+                    "title": "Time Frequency"
+                  },
+                  "description": "Time frequency of the dataset."
+                },
+                {
+                  "name": "tuning",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Tuning of the dataset.",
+                    "title": "Tuning"
+                  },
+                  "description": "Tuning of the dataset."
+                },
+                {
+                  "name": "variable",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Variable of the dataset.",
+                    "title": "Variable"
+                  },
+                  "description": "Variable of the dataset."
+                },
+                {
+                  "name": "variable_id",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Variable ID of the dataset.",
+                    "title": "Variable Id"
+                  },
+                  "description": "Variable ID of the dataset."
+                },
+                {
+                  "name": "variable_label",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Variable label of the dataset.",
+                    "title": "Variable Label"
+                  },
+                  "description": "Variable label of the dataset."
+                },
+                {
+                  "name": "variable_long_name",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Variable long name of the dataset.",
+                    "title": "Variable Long Name"
+                  },
+                  "description": "Variable long name of the dataset."
+                },
+                {
+                  "name": "variant_label",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Variant label of the dataset.",
+                    "title": "Variant Label"
+                  },
+                  "description": "Variant label of the dataset."
+                },
+                {
+                  "name": "version",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Version of the dataset.",
+                    "title": "Version"
+                  },
+                  "description": "Version of the dataset."
+                },
+                {
+                  "name": "versionnum",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Version number of the dataset.",
+                    "title": "Versionnum"
+                  },
+                  "description": "Version number of the dataset."
+                },
+                {
+                  "name": "year_of_aggregation",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Year of aggregation of the dataset.",
+                    "title": "Year Of Aggregation"
+                  },
+                  "description": "Year of aggregation of the dataset."
+                },
+                {
+                  "name": "start",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Beginning of the temporal coverage in the dataset",
+                    "title": "Start"
+                  },
+                  "description": "Beginning of the temporal coverage in the dataset"
+                },
+                {
+                  "name": "end",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Ending of the temporal coverage in the dataset",
+                    "title": "End"
+                  },
+                  "description": "Ending of the temporal coverage in the dataset"
+                },
+                {
+                  "name": "latest",
+                  "in": "query",
+                  "required": false,
+                  "schema": {
+                    "anyOf": [
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Enable to only return the latest versions",
+                    "title": "Latest"
+                  },
+                  "description": "Enable to only return the latest versions"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "Successful Response",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ESGSearchResponse"
+                      }
+                    }
+                  }
+                },
+                "422": {
+                  "description": "Validation Error",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/HTTPValidationError"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "/healthz/liveness": {
+            "get": {
+              "tags": [
+                "Observability",
+                "Kubernetes"
+              ],
+              "summary": "Liveness Probe",
+              "description": "Reports liveness status to Kubernetes controller.\n\nReturns:\n    ProbeResponse: {'status': 'live'}",
+              "operationId": "liveness_probe_healthz_liveness_get",
+              "responses": {
+                "200": {
+                  "description": "Successful Response",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProbeResponse"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "/healthz/readiness": {
+            "get": {
+              "tags": [
+                "Observability",
+                "Kubernetes"
+              ],
+              "summary": "Readiness Probe",
+              "description": "Reports liveness status to Kubernetes controller.\n\nReturns:\n    ProbeResponse: {'status': 'ready'}",
+              "operationId": "readiness_probe_healthz_readiness_get",
+              "responses": {
+                "200": {
+                  "description": "Successful Response",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProbeResponse"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "components": {
+          "schemas": {
+            "ESGFSearchFacetResult": {
+              "properties": {
+                "facet_queries": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Facet Queries",
+                  "default": {}
+                },
+                "facet_fields": {
+                  "additionalProperties": {
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "integer"
+                        }
+                      ]
+                    },
+                    "type": "array"
+                  },
+                  "type": "object",
+                  "title": "Facet Fields",
+                  "default": {}
+                },
+                "facet_ranges": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Facet Ranges",
+                  "default": {}
+                },
+                "facet_intervals": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Facet Intervals",
+                  "default": {}
+                },
+                "facet_heatmaps": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Facet Heatmaps",
+                  "default": {}
+                }
+              },
+              "type": "object",
+              "title": "ESGFSearchFacetResult",
+              "description": "Represents a facet result from ESG Search."
+            },
+            "ESGSearchHeader": {
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "title": "Status",
+                  "default": 0
+                },
+                "QTime": {
+                  "type": "integer",
+                  "title": "Qtime"
+                },
+                "params": {
+                  "$ref": "#/components/schemas/ESGSearchResultParams"
+                }
+              },
+              "type": "object",
+              "required": [
+                "QTime",
+                "params"
+              ],
+              "title": "ESGSearchHeader",
+              "description": "Represents the response header for the ESG Search Result."
+            },
+            "ESGSearchResponse": {
+              "properties": {
+                "responseHeader": {
+                  "$ref": "#/components/schemas/ESGSearchHeader"
+                },
+                "response": {
+                  "$ref": "#/components/schemas/ESGSearchResult"
+                },
+                "facet_counts": {
+                  "$ref": "#/components/schemas/ESGFSearchFacetResult",
+                  "default": {
+                    "facet_queries": {},
+                    "facet_fields": {},
+                    "facet_ranges": {},
+                    "facet_intervals": {},
+                    "facet_heatmaps": {}
+                  }
+                }
+              },
+              "type": "object",
+              "required": [
+                "responseHeader",
+                "response"
+              ],
+              "title": "ESGSearchResponse",
+              "description": "Represents a response from ESG Search."
+            },
+            "ESGSearchResult": {
+              "properties": {
+                "numFound": {
+                  "type": "integer",
+                  "title": "Numfound"
+                },
+                "start": {
+                  "type": "integer",
+                  "title": "Start"
+                },
+                "docs": {
+                  "items": {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  "type": "array",
+                  "title": "Docs"
+                },
+                "maxScore": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Maxscore",
+                  "description": "Maximum score for the search results.",
+                  "readOnly": true
+                }
+              },
+              "type": "object",
+              "required": [
+                "numFound",
+                "start",
+                "docs",
+                "maxScore"
+              ],
+              "title": "ESGSearchResult",
+              "description": "Represents a search result from ESG Search."
+            },
+            "ESGSearchResultParams": {
+              "properties": {
+                "df": {
+                  "type": "string",
+                  "title": "Df",
+                  "default": "text"
+                },
+                "q.alt": {
+                  "type": "string",
+                  "title": "Q.Alt",
+                  "default": "*:*"
+                },
+                "indent": {
+                  "type": "boolean",
+                  "title": "Indent",
+                  "default": "true"
+                },
+                "echoParams": {
+                  "type": "string",
+                  "title": "Echoparams",
+                  "default": "all"
+                },
+                "fl": {
+                  "type": "string",
+                  "title": "Fl",
+                  "default": "*,score"
+                },
+                "start": {
+                  "type": "string",
+                  "title": "Start"
+                },
+                "fq": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  ],
+                  "title": "Fq"
+                },
+                "rows": {
+                  "type": "string",
+                  "title": "Rows",
+                  "default": "10"
+                },
+                "q": {
+                  "type": "string",
+                  "title": "Q"
+                },
+                "shards": {
+                  "type": "string",
+                  "minLength": 1,
+                  "format": "uri",
+                  "title": "Shards",
+                  "default": "esgf-data-node-solr-query:8983/solr/datasets"
+                },
+                "tie": {
+                  "type": "string",
+                  "title": "Tie",
+                  "default": "0.01"
+                },
+                "facet.limit": {
+                  "type": "string",
+                  "title": "Facet.Limit",
+                  "default": "-1"
+                },
+                "qf": {
+                  "type": "string",
+                  "title": "Qf",
+                  "default": "text"
+                },
+                "facet.method": {
+                  "type": "string",
+                  "title": "Facet.Method",
+                  "default": "enum"
+                },
+                "facet.mincount": {
+                  "type": "string",
+                  "title": "Facet.Mincount",
+                  "default": "1"
+                },
+                "facet": {
+                  "type": "boolean",
+                  "title": "Facet",
+                  "default": "true"
+                },
+                "wt": {
+                  "type": "string",
+                  "enum": [
+                    "json",
+                    "xml"
+                  ],
+                  "title": "Wt",
+                  "default": "json"
+                },
+                "facet.sort": {
+                  "type": "string",
+                  "title": "Facet.Sort",
+                  "default": "lex"
+                }
+              },
+              "type": "object",
+              "required": [
+                "start",
+                "fq",
+                "q"
+              ],
+              "title": "ESGSearchResultParams",
+              "description": "Represents the `params` field of an ESGSearch result."
+            },
+            "HTTPValidationError": {
+              "properties": {
+                "detail": {
+                  "items": {
+                    "$ref": "#/components/schemas/ValidationError"
+                  },
+                  "type": "array",
+                  "title": "Detail"
+                }
+              },
+              "type": "object",
+              "title": "HTTPValidationError"
+            },
+            "ProbeResponse": {
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "ready",
+                    "live"
+                  ],
+                  "title": "Status"
+                }
+              },
+              "type": "object",
+              "required": [
+                "status"
+              ],
+              "title": "ProbeResponse",
+              "description": "Represents the possible response statuses of a Probe."
+            },
+            "ValidationError": {
+              "properties": {
+                "loc": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "integer"
+                      }
+                    ]
+                  },
+                  "type": "array",
+                  "title": "Location"
+                },
+                "msg": {
+                  "type": "string",
+                  "title": "Message"
+                },
+                "type": {
+                  "type": "string",
+                  "title": "Error Type"
+                }
+              },
+              "type": "object",
+              "required": [
+                "loc",
+                "msg",
+                "type"
+              ],
+              "title": "ValidationError"
+            }
+          }
+        }
+      }
+    },
+    {
+      "url": "https://esgf-node.ornl.gov/esgf-1-5-bridge",
+      "params": {
+        "project": "CMIP6",
+        "source_id": "CanESM5",
+        "experiment_id": "historical",
+        "variable_id": "tas",
+        "limit": "5",
+        "offset": "0",
+        "format": "application/solr+json",
+        "latest": "true"
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "responseHeader": {
+          "status": 0,
+          "QTime": 45060,
+          "params": {
+            "df": "text",
+            "q.alt": "*:*",
+            "indent": "true",
+            "echoParams": "all",
+            "fl": "*,score",
+            "start": "0",
+            "fq": [
+              "type:Dataset",
+              "experiment_id:\"historical\"",
+              "project:\"CMIP6\"",
+              "source_id:\"CanESM5\"",
+              "variable_id:\"tas\"",
+              "latest:True"
+            ],
+            "rows": "5",
+            "q": "*:*",
+            "shards": "esgf-data-node-solr-query:8983/solr/datasets",
+            "tie": "0.01",
+            "facet.limit": "-1",
+            "qf": "text",
+            "facet.method": "enum",
+            "facet.mincount": "1",
+            "facet": "true",
+            "wt": "json",
+            "facet.sort": "lex"
+          }
+        },
+        "response": {
+          "numFound": 366,
+          "start": 0,
+          "docs": [
+            {
+              "master_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.Amon.tas.gn",
+              "south_degrees": -87.8638,
+              "datetime_stop": "2014-12-16T12:00:00Z",
+              "experiment_title": [
+                "all-forcing simulation of the recent past"
+              ],
+              "replica": true,
+              "data_specs_version": [
+                "01.00.30"
+              ],
+              "variable_units": [
+                "K"
+              ],
+              "project": [
+                "CMIP6"
+              ],
+              "pid": [
+                "hdl:21.14100/3c1de6b2-74e4-3eab-b4a5-72feaf37c788"
+              ],
+              "table_id": [
+                "Amon"
+              ],
+              "type": "Dataset",
+              "frequency": [
+                "mon"
+              ],
+              "institution_id": [
+                "CCCma"
+              ],
+              "west_degrees": 0.0,
+              "score": 0.5,
+              "east_degrees": 357.1875,
+              "north_degrees": 87.8638,
+              "variable_id": [
+                "tas"
+              ],
+              "activity_id": [
+                "CMIP"
+              ],
+              "id": "CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.Amon.tas.gn.v20190429|esgf-node.ornl.gov",
+              "_timestamp": "2020-03-13T17:19:08.077Z",
+              "number_of_aggregations": 2,
+              "data_node": "esgf-node.ornl.gov",
+              "variable_long_name": [
+                "Near-Surface Air Temperature"
+              ],
+              "datetime_start": "1850-01-16T12:00:00Z",
+              "source_type": [
+                "AOGCM"
+              ],
+              "cf_standard_name": [
+                "air_temperature"
+              ],
+              "version": 20190429,
+              "further_info_url": [
+                "https://furtherinfo.es-doc.org/CMIP6.CCCma.CanESM5.historical.none.r12i1p2f1"
+              ],
+              "instance_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.Amon.tas.gn.v20190429",
+              "size": 52456974,
+              "grid_label": [
+                "gn"
+              ],
+              "nominal_resolution": [
+                "500 km"
+              ],
+              "xlink": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.Amon.tas.gn.v20190429.json|Citation|citation",
+                "http://hdl.handle.net/hdl:21.14100/3c1de6b2-74e4-3eab-b4a5-72feaf37c788|PID|pid"
+              ],
+              "access": [
+                "HTTPServer",
+                "GridFTP",
+                "OPENDAP",
+                "Globus",
+                "LAS"
+              ],
+              "citation_url": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.Amon.tas.gn.v20190429.json"
+              ],
+              "number_of_files": 1,
+              "directory_format_template_": [
+                "%(root)s/%(mip_era)s/%(activity_drs)s/%(institution_id)s/%(source_id)s/%(experiment_id)s/%(member_id)s/%(table_id)s/%(variable_id)s/%(grid_label)s/%(version)s"
+              ],
+              "index_node": "us-index",
+              "title": "CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.Amon.tas.gn",
+              "geo": [
+                "ENVELOPE(-180.0, -2.8125, 87.8638, -87.8638)",
+                "ENVELOPE(0.0, 180.0, 87.8638, -87.8638)"
+              ],
+              "retracted": false,
+              "variant_label": [
+                "r12i1p2f1"
+              ],
+              "latest": true,
+              "member_id": [
+                "r12i1p2f1"
+              ],
+              "sub_experiment_id": [
+                "none"
+              ],
+              "mip_era": [
+                "CMIP6"
+              ],
+              "product": [
+                "model-output"
+              ],
+              "model_cohort": [
+                "Registered"
+              ],
+              "experiment_id": [
+                "historical"
+              ],
+              "activity_drs": [
+                "CMIP"
+              ],
+              "dataset_id_template_": [
+                "%(mip_era)s.%(activity_drs)s.%(institution_id)s.%(source_id)s.%(experiment_id)s.%(member_id)s.%(table_id)s.%(variable_id)s.%(grid_label)s"
+              ],
+              "geo_units": [
+                "degrees_east"
+              ],
+              "_version_": 1767516983001088000,
+              "grid": [
+                "T63L49 native atmosphere, T63 Linear Gaussian Grid; 128 x 64 longitude/latitude; 49 levels; top level 1 hPa"
+              ],
+              "variable": [
+                "tas"
+              ],
+              "realm": [
+                "atmos"
+              ],
+              "source_id": [
+                "CanESM5"
+              ]
+            },
+            {
+              "master_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.day.tas.gn",
+              "south_degrees": -87.8638,
+              "datetime_stop": "2014-12-31T12:00:00Z",
+              "experiment_title": [
+                "all-forcing simulation of the recent past"
+              ],
+              "replica": false,
+              "data_specs_version": [
+                "01.00.30"
+              ],
+              "variable_units": [
+                "K"
+              ],
+              "project": [
+                "CMIP6"
+              ],
+              "pid": [
+                "hdl:21.14100/b319adab-7e42-32b7-ad88-51e75e7b8c2a"
+              ],
+              "table_id": [
+                "day"
+              ],
+              "type": "Dataset",
+              "frequency": [
+                "day"
+              ],
+              "institution_id": [
+                "CCCma"
+              ],
+              "west_degrees": 0.0,
+              "score": 0.5,
+              "east_degrees": 357.1875,
+              "north_degrees": 87.8638,
+              "variable_id": [
+                "tas"
+              ],
+              "activity_id": [
+                "CMIP"
+              ],
+              "id": "CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.day.tas.gn.v20190429|crd-esgf-drc.ec.gc.ca",
+              "_timestamp": "2019-08-13T19:39:47.916Z",
+              "number_of_aggregations": 2,
+              "data_node": "crd-esgf-drc.ec.gc.ca",
+              "variable_long_name": [
+                "Near-Surface Air Temperature"
+              ],
+              "datetime_start": "1850-01-01T12:00:00Z",
+              "source_type": [
+                "AOGCM"
+              ],
+              "cf_standard_name": [
+                "air_temperature"
+              ],
+              "version": 20190429,
+              "further_info_url": [
+                "https://furtherinfo.es-doc.org/CMIP6.CCCma.CanESM5.historical.none.r12i1p2f1"
+              ],
+              "instance_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.day.tas.gn.v20190429",
+              "size": 1600967425,
+              "grid_label": [
+                "gn"
+              ],
+              "nominal_resolution": [
+                "500 km"
+              ],
+              "xlink": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.day.tas.gn.v20190429.json|Citation|citation",
+                "http://hdl.handle.net/hdl:21.14100/b319adab-7e42-32b7-ad88-51e75e7b8c2a|PID|pid"
+              ],
+              "access": [
+                "HTTPServer",
+                "GridFTP",
+                "OPENDAP",
+                "LAS"
+              ],
+              "citation_url": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.day.tas.gn.v20190429.json"
+              ],
+              "number_of_files": 1,
+              "directory_format_template_": [
+                "%(root)s/%(mip_era)s/%(activity_drs)s/%(institution_id)s/%(source_id)s/%(experiment_id)s/%(member_id)s/%(table_id)s/%(variable_id)s/%(grid_label)s/%(version)s"
+              ],
+              "index_node": "us-index",
+              "title": "CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.day.tas.gn",
+              "geo": [
+                "ENVELOPE(-180.0, -2.8125, 87.8638, -87.8638)",
+                "ENVELOPE(0.0, 180.0, 87.8638, -87.8638)"
+              ],
+              "retracted": false,
+              "variant_label": [
+                "r12i1p2f1"
+              ],
+              "latest": true,
+              "member_id": [
+                "r12i1p2f1"
+              ],
+              "sub_experiment_id": [
+                "none"
+              ],
+              "mip_era": [
+                "CMIP6"
+              ],
+              "product": [
+                "model-output"
+              ],
+              "model_cohort": [
+                "Registered"
+              ],
+              "experiment_id": [
+                "historical"
+              ],
+              "activity_drs": [
+                "CMIP"
+              ],
+              "dataset_id_template_": [
+                "%(mip_era)s.%(activity_drs)s.%(institution_id)s.%(source_id)s.%(experiment_id)s.%(member_id)s.%(table_id)s.%(variable_id)s.%(grid_label)s"
+              ],
+              "geo_units": [
+                "degrees_east"
+              ],
+              "_version_": 1641781854644207616,
+              "grid": [
+                "T63L49 native atmosphere, T63 Linear Gaussian Grid; 128 x 64 longitude/latitude; 49 levels; top level 1 hPa"
+              ],
+              "variable": [
+                "tas"
+              ],
+              "realm": [
+                "atmos"
+              ],
+              "source_id": [
+                "CanESM5"
+              ]
+            },
+            {
+              "master_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r13i1p2f1.day.tas.gn",
+              "south_degrees": -87.8638,
+              "experiment_title": [
+                "all-forcing simulation of the recent past"
+              ],
+              "replica": true,
+              "data_specs_version": [
+                "01.00.30"
+              ],
+              "variable_units": [
+                "K"
+              ],
+              "project": [
+                "CMIP6"
+              ],
+              "pid": [
+                "hdl:21.14100/4431ff64-3136-3adb-8a04-865189d1d9fb"
+              ],
+              "table_id": [
+                "day"
+              ],
+              "type": "Dataset",
+              "institution_id": [
+                "CCCma"
+              ],
+              "frequency": [
+                "day"
+              ],
+              "west_degrees": 0.0,
+              "datetime_end": "2014-11-21T12:00:00Z",
+              "score": 0.5,
+              "east_degrees": 357.1875,
+              "variable_id": [
+                "tas"
+              ],
+              "north_degrees": 87.8638,
+              "activity_id": [
+                "CMIP"
+              ],
+              "id": "CMIP6.CMIP.CCCma.CanESM5.historical.r13i1p2f1.day.tas.gn.v20190429|eagle.alcf.anl.gov",
+              "_timestamp": "2023-11-04T14:38:59.542Z",
+              "data_node": "eagle.alcf.anl.gov",
+              "variable_long_name": [
+                "Near-Surface Air Temperature"
+              ],
+              "datetime_start": "1850-01-01T12:00:00Z",
+              "source_type": [
+                "AOGCM"
+              ],
+              "creation_date": "2019-07-30T19:46:31Z",
+              "cf_standard_name": [
+                "air_temperature"
+              ],
+              "version": 20190429,
+              "further_info_url": [
+                "https://furtherinfo.es-doc.org/CMIP6.CCCma.CanESM5.historical.none.r13i1p2f1"
+              ],
+              "instance_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r13i1p2f1.day.tas.gn.v20190429",
+              "size": 1601062361,
+              "grid_label": [
+                "gn"
+              ],
+              "nominal_resolution": [
+                "500 km"
+              ],
+              "xlink": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r13i1p2f1.day.tas.gn.v20190429.json|Citation|citation",
+                "http://hdl.handle.net/hdl:21.14100/4431ff64-3136-3adb-8a04-865189d1d9fb|PID|pid"
+              ],
+              "short_description": [
+                "CanESM5 output prepared for CMIP6"
+              ],
+              "access": [
+                "HTTPServer",
+                "Globus"
+              ],
+              "citation_url": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r13i1p2f1.day.tas.gn.v20190429.json"
+              ],
+              "number_of_files": 1,
+              "index_node": "us-index",
+              "directory_format_template_": [
+                "%(root)s/%(mip_era)s/%(activity_drs)s/%(institution_id)s/%(source_id)s/%(experiment_id)s/%(member_id)s/%(table_id)s/%(variable_id)s/%(grid_label)s/%(version)s"
+              ],
+              "title": "CMIP6.CMIP.CCCma.CanESM5.historical.r13i1p2f1.day.tas.gn",
+              "retracted": false,
+              "variant_label": [
+                "r13i1p2f1"
+              ],
+              "latest": true,
+              "member_id": [
+                "r13i1p2f1"
+              ],
+              "sub_experiment_id": [
+                "none"
+              ],
+              "mip_era": [
+                "CMIP6"
+              ],
+              "product": [
+                "model-output"
+              ],
+              "model_cohort": [
+                "Registered"
+              ],
+              "experiment_id": [
+                "historical"
+              ],
+              "activity_drs": [
+                "CMIP"
+              ],
+              "dataset_id_template_": [
+                "%(mip_era)s.%(activity_drs)s.%(institution_id)s.%(source_id)s.%(experiment_id)s.%(member_id)s.%(table_id)s.%(variable_id)s.%(grid_label)s"
+              ],
+              "_version_": 1781644645673992192,
+              "grid": [
+                "T63L49 native atmosphere, T63 Linear Gaussian Grid; 128 x 64 longitude/latitude; 49 levels; top level 1 hPa"
+              ],
+              "variable": [
+                "tas"
+              ],
+              "realm": [
+                "atmos"
+              ],
+              "source_id": [
+                "CanESM5"
+              ]
+            },
+            {
+              "master_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r14i1p1f1.Amon.tas.gn",
+              "south_degrees": -87.8638,
+              "experiment_title": [
+                "all-forcing simulation of the recent past"
+              ],
+              "replica": true,
+              "data_specs_version": [
+                "01.00.29"
+              ],
+              "variable_units": [
+                "K"
+              ],
+              "project": [
+                "CMIP6"
+              ],
+              "pid": [
+                "hdl:21.14100/4a32c112-d1a6-3b22-a9ee-0a0b6fed9573"
+              ],
+              "table_id": [
+                "Amon"
+              ],
+              "type": "Dataset",
+              "institution_id": [
+                "CCCma"
+              ],
+              "frequency": [
+                "mon"
+              ],
+              "west_degrees": 0.0,
+              "datetime_end": "2014-11-06T12:00:00Z",
+              "score": 0.5,
+              "east_degrees": 357.1875,
+              "variable_id": [
+                "tas"
+              ],
+              "north_degrees": 87.8638,
+              "activity_id": [
+                "CMIP"
+              ],
+              "id": "CMIP6.CMIP.CCCma.CanESM5.historical.r14i1p1f1.Amon.tas.gn.v20190429|eagle.alcf.anl.gov",
+              "_timestamp": "2023-11-04T14:37:35.665Z",
+              "data_node": "eagle.alcf.anl.gov",
+              "variable_long_name": [
+                "Near-Surface Air Temperature"
+              ],
+              "datetime_start": "1850-01-16T12:00:00Z",
+              "source_type": [
+                "AOGCM"
+              ],
+              "creation_date": "2019-04-30T17:50:21Z",
+              "cf_standard_name": [
+                "air_temperature"
+              ],
+              "version": 20190429,
+              "further_info_url": [
+                "https://furtherinfo.es-doc.org/CMIP6.CCCma.CanESM5.historical.none.r14i1p1f1"
+              ],
+              "instance_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r14i1p1f1.Amon.tas.gn.v20190429",
+              "size": 52453272,
+              "grid_label": [
+                "gn"
+              ],
+              "nominal_resolution": [
+                "500 km"
+              ],
+              "xlink": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r14i1p1f1.Amon.tas.gn.v20190429.json|Citation|citation",
+                "http://hdl.handle.net/hdl:21.14100/4a32c112-d1a6-3b22-a9ee-0a0b6fed9573|PID|pid"
+              ],
+              "short_description": [
+                "CanESM5 output prepared for CMIP6"
+              ],
+              "access": [
+                "HTTPServer",
+                "Globus"
+              ],
+              "citation_url": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r14i1p1f1.Amon.tas.gn.v20190429.json"
+              ],
+              "number_of_files": 1,
+              "index_node": "us-index",
+              "directory_format_template_": [
+                "%(root)s/%(mip_era)s/%(activity_drs)s/%(institution_id)s/%(source_id)s/%(experiment_id)s/%(member_id)s/%(table_id)s/%(variable_id)s/%(grid_label)s/%(version)s"
+              ],
+              "title": "CMIP6.CMIP.CCCma.CanESM5.historical.r14i1p1f1.Amon.tas.gn",
+              "retracted": false,
+              "variant_label": [
+                "r14i1p1f1"
+              ],
+              "latest": true,
+              "member_id": [
+                "r14i1p1f1"
+              ],
+              "sub_experiment_id": [
+                "none"
+              ],
+              "mip_era": [
+                "CMIP6"
+              ],
+              "product": [
+                "model-output"
+              ],
+              "model_cohort": [
+                "Registered"
+              ],
+              "experiment_id": [
+                "historical"
+              ],
+              "activity_drs": [
+                "CMIP"
+              ],
+              "dataset_id_template_": [
+                "%(mip_era)s.%(activity_drs)s.%(institution_id)s.%(source_id)s.%(experiment_id)s.%(member_id)s.%(table_id)s.%(variable_id)s.%(grid_label)s"
+              ],
+              "_version_": 1781644557723631616,
+              "grid": [
+                "T63L49 native atmosphere, T63 Linear Gaussian Grid; 128 x 64 longitude/latitude; 49 levels; top level 1 hPa"
+              ],
+              "variable": [
+                "tas"
+              ],
+              "realm": [
+                "atmos"
+              ],
+              "source_id": [
+                "CanESM5"
+              ]
+            },
+            {
+              "master_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r19i1p1f1.day.tas.gn",
+              "south_degrees": -87.8638,
+              "datetime_stop": "2014-12-31T12:00:00Z",
+              "experiment_title": [
+                "all-forcing simulation of the recent past"
+              ],
+              "replica": true,
+              "data_specs_version": [
+                "01.00.29"
+              ],
+              "variable_units": [
+                "K"
+              ],
+              "project": [
+                "CMIP6"
+              ],
+              "pid": [
+                "hdl:21.14100/a932c055-dd70-3261-973c-4e05729c3f10"
+              ],
+              "table_id": [
+                "day"
+              ],
+              "type": "Dataset",
+              "frequency": [
+                "day"
+              ],
+              "institution_id": [
+                "CCCma"
+              ],
+              "west_degrees": 0.0,
+              "score": 0.5,
+              "east_degrees": 357.1875,
+              "north_degrees": 87.8638,
+              "variable_id": [
+                "tas"
+              ],
+              "activity_id": [
+                "CMIP"
+              ],
+              "id": "CMIP6.CMIP.CCCma.CanESM5.historical.r19i1p1f1.day.tas.gn.v20190429|esgf-node.ornl.gov",
+              "_timestamp": "2020-03-12T15:58:44.135Z",
+              "number_of_aggregations": 2,
+              "data_node": "esgf-node.ornl.gov",
+              "variable_long_name": [
+                "Near-Surface Air Temperature"
+              ],
+              "datetime_start": "1850-01-01T12:00:00Z",
+              "source_type": [
+                "AOGCM"
+              ],
+              "cf_standard_name": [
+                "air_temperature"
+              ],
+              "version": 20190429,
+              "further_info_url": [
+                "https://furtherinfo.es-doc.org/CMIP6.CCCma.CanESM5.historical.none.r19i1p1f1"
+              ],
+              "instance_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r19i1p1f1.day.tas.gn.v20190429",
+              "size": 1600914528,
+              "grid_label": [
+                "gn"
+              ],
+              "nominal_resolution": [
+                "500 km"
+              ],
+              "xlink": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r19i1p1f1.day.tas.gn.v20190429.json|Citation|citation",
+                "http://hdl.handle.net/hdl:21.14100/a932c055-dd70-3261-973c-4e05729c3f10|PID|pid"
+              ],
+              "access": [
+                "HTTPServer",
+                "GridFTP",
+                "OPENDAP",
+                "Globus",
+                "LAS"
+              ],
+              "citation_url": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r19i1p1f1.day.tas.gn.v20190429.json"
+              ],
+              "number_of_files": 1,
+              "directory_format_template_": [
+                "%(root)s/%(mip_era)s/%(activity_drs)s/%(institution_id)s/%(source_id)s/%(experiment_id)s/%(member_id)s/%(table_id)s/%(variable_id)s/%(grid_label)s/%(version)s"
+              ],
+              "index_node": "us-index",
+              "title": "CMIP6.CMIP.CCCma.CanESM5.historical.r19i1p1f1.day.tas.gn",
+              "geo": [
+                "ENVELOPE(-180.0, -2.8125, 87.8638, -87.8638)",
+                "ENVELOPE(0.0, 180.0, 87.8638, -87.8638)"
+              ],
+              "retracted": false,
+              "variant_label": [
+                "r19i1p1f1"
+              ],
+              "latest": true,
+              "member_id": [
+                "r19i1p1f1"
+              ],
+              "sub_experiment_id": [
+                "none"
+              ],
+              "mip_era": [
+                "CMIP6"
+              ],
+              "product": [
+                "model-output"
+              ],
+              "model_cohort": [
+                "Registered"
+              ],
+              "experiment_id": [
+                "historical"
+              ],
+              "activity_drs": [
+                "CMIP"
+              ],
+              "dataset_id_template_": [
+                "%(mip_era)s.%(activity_drs)s.%(institution_id)s.%(source_id)s.%(experiment_id)s.%(member_id)s.%(table_id)s.%(variable_id)s.%(grid_label)s"
+              ],
+              "geo_units": [
+                "degrees_east"
+              ],
+              "_version_": 1767516988774547456,
+              "grid": [
+                "T63L49 native atmosphere, T63 Linear Gaussian Grid; 128 x 64 longitude/latitude; 49 levels; top level 1 hPa"
+              ],
+              "variable": [
+                "tas"
+              ],
+              "realm": [
+                "atmos"
+              ],
+              "source_id": [
+                "CanESM5"
+              ]
+            }
+          ],
+          "maxScore": 0.5
+        },
+        "facet_counts": {
+          "facet_queries": {},
+          "facet_fields": {},
+          "facet_ranges": {},
+          "facet_intervals": {},
+          "facet_heatmaps": {}
+        }
+      }
+    },
+    {
+      "url": "https://esgf-node.ornl.gov/esgf-1-5-bridge",
+      "params": {
+        "project": "CMIP6",
+        "source_id": "CanESM5",
+        "experiment_id": "historical",
+        "variable_id": "tas",
+        "limit": "5",
+        "offset": "0",
+        "format": "application/solr+json"
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "responseHeader": {
+          "status": 0,
+          "QTime": 44390,
+          "params": {
+            "df": "text",
+            "q.alt": "*:*",
+            "indent": "true",
+            "echoParams": "all",
+            "fl": "*,score",
+            "start": "0",
+            "fq": [
+              "type:Dataset",
+              "experiment_id:\"historical\"",
+              "project:\"CMIP6\"",
+              "source_id:\"CanESM5\"",
+              "variable_id:\"tas\""
+            ],
+            "rows": "5",
+            "q": "*:*",
+            "shards": "esgf-data-node-solr-query:8983/solr/datasets",
+            "tie": "0.01",
+            "facet.limit": "-1",
+            "qf": "text",
+            "facet.method": "enum",
+            "facet.mincount": "1",
+            "facet": "true",
+            "wt": "json",
+            "facet.sort": "lex"
+          }
+        },
+        "response": {
+          "numFound": 456,
+          "start": 0,
+          "docs": [
+            {
+              "master_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r11i1p1f1.Amon.tas.gn",
+              "south_degrees": -87.8638,
+              "datetime_stop": "2014-12-16T12:00:00Z",
+              "experiment_title": [
+                "all-forcing simulation of the recent past"
+              ],
+              "replica": false,
+              "data_specs_version": [
+                "01.00.29"
+              ],
+              "variable_units": [
+                "K"
+              ],
+              "project": [
+                "CMIP6"
+              ],
+              "pid": [
+                "hdl:21.14100/3ea77834-165e-3767-975d-50a71060af52"
+              ],
+              "table_id": [
+                "Amon"
+              ],
+              "type": "Dataset",
+              "frequency": [
+                "mon"
+              ],
+              "institution_id": [
+                "CCCma"
+              ],
+              "west_degrees": 0.0,
+              "score": 0.5,
+              "east_degrees": 357.1875,
+              "north_degrees": 87.8638,
+              "variable_id": [
+                "tas"
+              ],
+              "activity_id": [
+                "CMIP"
+              ],
+              "id": "CMIP6.CMIP.CCCma.CanESM5.historical.r11i1p1f1.Amon.tas.gn.v20190306|crd-esgf-drc.ec.gc.ca",
+              "_timestamp": "2019-04-10T20:43:32.009Z",
+              "number_of_aggregations": 2,
+              "data_node": "crd-esgf-drc.ec.gc.ca",
+              "variable_long_name": [
+                "Near-Surface Air Temperature"
+              ],
+              "datetime_start": "1850-01-16T12:00:00Z",
+              "source_type": [
+                "AOGCM"
+              ],
+              "cf_standard_name": [
+                "air_temperature"
+              ],
+              "version": 20190306,
+              "further_info_url": [
+                "https://furtherinfo.es-doc.org/CMIP6.CCCma.CanESM5.historical.none.r11i1p1f1"
+              ],
+              "instance_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r11i1p1f1.Amon.tas.gn.v20190306",
+              "size": 56555717,
+              "grid_label": [
+                "gn"
+              ],
+              "nominal_resolution": [
+                "500 km"
+              ],
+              "xlink": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r11i1p1f1.Amon.tas.gn.v20190306.json|Citation|citation",
+                "http://hdl.handle.net/hdl:21.14100/3ea77834-165e-3767-975d-50a71060af52|PID|pid"
+              ],
+              "access": [
+                "HTTPServer",
+                "GridFTP",
+                "OPENDAP",
+                "LAS"
+              ],
+              "citation_url": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r11i1p1f1.Amon.tas.gn.v20190306.json"
+              ],
+              "number_of_files": 1,
+              "directory_format_template_": [
+                "%(root)s/%(mip_era)s/%(activity_drs)s/%(institution_id)s/%(source_id)s/%(experiment_id)s/%(member_id)s/%(table_id)s/%(variable_id)s/%(grid_label)s/%(version)s"
+              ],
+              "index_node": "us-index",
+              "title": "CMIP6.CMIP.CCCma.CanESM5.historical.r11i1p1f1.Amon.tas.gn",
+              "geo": [
+                "ENVELOPE(-180.0, -2.8125, 87.8638, -87.8638)",
+                "ENVELOPE(0.0, 180.0, 87.8638, -87.8638)"
+              ],
+              "retracted": true,
+              "variant_label": [
+                "r11i1p1f1"
+              ],
+              "latest": false,
+              "member_id": [
+                "r11i1p1f1"
+              ],
+              "sub_experiment_id": [
+                "none"
+              ],
+              "mip_era": [
+                "CMIP6"
+              ],
+              "product": [
+                "model-output"
+              ],
+              "model_cohort": [
+                "Registered"
+              ],
+              "experiment_id": [
+                "historical"
+              ],
+              "activity_drs": [
+                "CMIP"
+              ],
+              "dataset_id_template_": [
+                "%(mip_era)s.%(activity_drs)s.%(institution_id)s.%(source_id)s.%(experiment_id)s.%(member_id)s.%(table_id)s.%(variable_id)s.%(grid_label)s"
+              ],
+              "geo_units": [
+                "degrees_east"
+              ],
+              "_version_": 1635335234551545856,
+              "grid": [
+                "T63L49 native atmosphere, T63 Linear Gaussian Grid; 128 x 64 longitude/latitude; 49 levels; top level 1 hPa"
+              ],
+              "variable": [
+                "tas"
+              ],
+              "realm": [
+                "atmos"
+              ],
+              "source_id": [
+                "CanESM5"
+              ]
+            },
+            {
+              "master_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r11i1p1f1.day.tas.gn",
+              "south_degrees": -87.8638,
+              "datetime_stop": "2014-12-31T12:00:00Z",
+              "experiment_title": [
+                "all-forcing simulation of the recent past"
+              ],
+              "replica": false,
+              "data_specs_version": [
+                "01.00.29"
+              ],
+              "variable_units": [
+                "K"
+              ],
+              "project": [
+                "CMIP6"
+              ],
+              "pid": [
+                "hdl:21.14100/7dbcfe9f-1f67-3f70-bb64-623b0f2cdc44"
+              ],
+              "table_id": [
+                "day"
+              ],
+              "type": "Dataset",
+              "frequency": [
+                "day"
+              ],
+              "institution_id": [
+                "CCCma"
+              ],
+              "west_degrees": 0.0,
+              "score": 0.5,
+              "east_degrees": 357.1875,
+              "north_degrees": 87.8638,
+              "variable_id": [
+                "tas"
+              ],
+              "activity_id": [
+                "CMIP"
+              ],
+              "id": "CMIP6.CMIP.CCCma.CanESM5.historical.r11i1p1f1.day.tas.gn.v20190306|crd-esgf-drc.ec.gc.ca",
+              "_timestamp": "2019-04-10T20:48:59.482Z",
+              "number_of_aggregations": 2,
+              "data_node": "crd-esgf-drc.ec.gc.ca",
+              "variable_long_name": [
+                "Near-Surface Air Temperature"
+              ],
+              "datetime_start": "1850-01-01T12:00:00Z",
+              "source_type": [
+                "AOGCM"
+              ],
+              "cf_standard_name": [
+                "air_temperature"
+              ],
+              "version": 20190306,
+              "further_info_url": [
+                "https://furtherinfo.es-doc.org/CMIP6.CCCma.CanESM5.historical.none.r11i1p1f1"
+              ],
+              "instance_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r11i1p1f1.day.tas.gn.v20190306",
+              "size": 1602075392,
+              "grid_label": [
+                "gn"
+              ],
+              "nominal_resolution": [
+                "500 km"
+              ],
+              "xlink": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r11i1p1f1.day.tas.gn.v20190306.json|Citation|citation",
+                "http://hdl.handle.net/hdl:21.14100/7dbcfe9f-1f67-3f70-bb64-623b0f2cdc44|PID|pid"
+              ],
+              "access": [
+                "HTTPServer",
+                "GridFTP",
+                "OPENDAP",
+                "LAS"
+              ],
+              "citation_url": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r11i1p1f1.day.tas.gn.v20190306.json"
+              ],
+              "number_of_files": 1,
+              "directory_format_template_": [
+                "%(root)s/%(mip_era)s/%(activity_drs)s/%(institution_id)s/%(source_id)s/%(experiment_id)s/%(member_id)s/%(table_id)s/%(variable_id)s/%(grid_label)s/%(version)s"
+              ],
+              "index_node": "us-index",
+              "title": "CMIP6.CMIP.CCCma.CanESM5.historical.r11i1p1f1.day.tas.gn",
+              "geo": [
+                "ENVELOPE(-180.0, -2.8125, 87.8638, -87.8638)",
+                "ENVELOPE(0.0, 180.0, 87.8638, -87.8638)"
+              ],
+              "retracted": true,
+              "variant_label": [
+                "r11i1p1f1"
+              ],
+              "latest": false,
+              "member_id": [
+                "r11i1p1f1"
+              ],
+              "sub_experiment_id": [
+                "none"
+              ],
+              "mip_era": [
+                "CMIP6"
+              ],
+              "product": [
+                "model-output"
+              ],
+              "model_cohort": [
+                "Registered"
+              ],
+              "experiment_id": [
+                "historical"
+              ],
+              "activity_drs": [
+                "CMIP"
+              ],
+              "dataset_id_template_": [
+                "%(mip_era)s.%(activity_drs)s.%(institution_id)s.%(source_id)s.%(experiment_id)s.%(member_id)s.%(table_id)s.%(variable_id)s.%(grid_label)s"
+              ],
+              "geo_units": [
+                "degrees_east"
+              ],
+              "_version_": 1635335551369347072,
+              "grid": [
+                "T63L49 native atmosphere, T63 Linear Gaussian Grid; 128 x 64 longitude/latitude; 49 levels; top level 1 hPa"
+              ],
+              "variable": [
+                "tas"
+              ],
+              "realm": [
+                "atmos"
+              ],
+              "source_id": [
+                "CanESM5"
+              ]
+            },
+            {
+              "master_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.Amon.tas.gn",
+              "south_degrees": -87.8638,
+              "datetime_stop": "2014-12-16T12:00:00Z",
+              "experiment_title": [
+                "all-forcing simulation of the recent past"
+              ],
+              "replica": true,
+              "data_specs_version": [
+                "01.00.30"
+              ],
+              "variable_units": [
+                "K"
+              ],
+              "project": [
+                "CMIP6"
+              ],
+              "pid": [
+                "hdl:21.14100/3c1de6b2-74e4-3eab-b4a5-72feaf37c788"
+              ],
+              "table_id": [
+                "Amon"
+              ],
+              "type": "Dataset",
+              "frequency": [
+                "mon"
+              ],
+              "institution_id": [
+                "CCCma"
+              ],
+              "west_degrees": 0.0,
+              "score": 0.5,
+              "east_degrees": 357.1875,
+              "north_degrees": 87.8638,
+              "variable_id": [
+                "tas"
+              ],
+              "activity_id": [
+                "CMIP"
+              ],
+              "id": "CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.Amon.tas.gn.v20190429|esgf-node.ornl.gov",
+              "_timestamp": "2020-03-13T17:19:08.077Z",
+              "number_of_aggregations": 2,
+              "data_node": "esgf-node.ornl.gov",
+              "variable_long_name": [
+                "Near-Surface Air Temperature"
+              ],
+              "datetime_start": "1850-01-16T12:00:00Z",
+              "source_type": [
+                "AOGCM"
+              ],
+              "cf_standard_name": [
+                "air_temperature"
+              ],
+              "version": 20190429,
+              "further_info_url": [
+                "https://furtherinfo.es-doc.org/CMIP6.CCCma.CanESM5.historical.none.r12i1p2f1"
+              ],
+              "instance_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.Amon.tas.gn.v20190429",
+              "size": 52456974,
+              "grid_label": [
+                "gn"
+              ],
+              "nominal_resolution": [
+                "500 km"
+              ],
+              "xlink": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.Amon.tas.gn.v20190429.json|Citation|citation",
+                "http://hdl.handle.net/hdl:21.14100/3c1de6b2-74e4-3eab-b4a5-72feaf37c788|PID|pid"
+              ],
+              "access": [
+                "HTTPServer",
+                "GridFTP",
+                "OPENDAP",
+                "Globus",
+                "LAS"
+              ],
+              "citation_url": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.Amon.tas.gn.v20190429.json"
+              ],
+              "number_of_files": 1,
+              "directory_format_template_": [
+                "%(root)s/%(mip_era)s/%(activity_drs)s/%(institution_id)s/%(source_id)s/%(experiment_id)s/%(member_id)s/%(table_id)s/%(variable_id)s/%(grid_label)s/%(version)s"
+              ],
+              "index_node": "us-index",
+              "title": "CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.Amon.tas.gn",
+              "geo": [
+                "ENVELOPE(-180.0, -2.8125, 87.8638, -87.8638)",
+                "ENVELOPE(0.0, 180.0, 87.8638, -87.8638)"
+              ],
+              "retracted": false,
+              "variant_label": [
+                "r12i1p2f1"
+              ],
+              "latest": true,
+              "member_id": [
+                "r12i1p2f1"
+              ],
+              "sub_experiment_id": [
+                "none"
+              ],
+              "mip_era": [
+                "CMIP6"
+              ],
+              "product": [
+                "model-output"
+              ],
+              "model_cohort": [
+                "Registered"
+              ],
+              "experiment_id": [
+                "historical"
+              ],
+              "activity_drs": [
+                "CMIP"
+              ],
+              "dataset_id_template_": [
+                "%(mip_era)s.%(activity_drs)s.%(institution_id)s.%(source_id)s.%(experiment_id)s.%(member_id)s.%(table_id)s.%(variable_id)s.%(grid_label)s"
+              ],
+              "geo_units": [
+                "degrees_east"
+              ],
+              "_version_": 1767516983001088000,
+              "grid": [
+                "T63L49 native atmosphere, T63 Linear Gaussian Grid; 128 x 64 longitude/latitude; 49 levels; top level 1 hPa"
+              ],
+              "variable": [
+                "tas"
+              ],
+              "realm": [
+                "atmos"
+              ],
+              "source_id": [
+                "CanESM5"
+              ]
+            },
+            {
+              "master_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.day.tas.gn",
+              "south_degrees": -87.8638,
+              "datetime_stop": "2014-12-31T12:00:00Z",
+              "experiment_title": [
+                "all-forcing simulation of the recent past"
+              ],
+              "replica": false,
+              "data_specs_version": [
+                "01.00.30"
+              ],
+              "variable_units": [
+                "K"
+              ],
+              "project": [
+                "CMIP6"
+              ],
+              "pid": [
+                "hdl:21.14100/b319adab-7e42-32b7-ad88-51e75e7b8c2a"
+              ],
+              "table_id": [
+                "day"
+              ],
+              "type": "Dataset",
+              "frequency": [
+                "day"
+              ],
+              "institution_id": [
+                "CCCma"
+              ],
+              "west_degrees": 0.0,
+              "score": 0.5,
+              "east_degrees": 357.1875,
+              "north_degrees": 87.8638,
+              "variable_id": [
+                "tas"
+              ],
+              "activity_id": [
+                "CMIP"
+              ],
+              "id": "CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.day.tas.gn.v20190429|crd-esgf-drc.ec.gc.ca",
+              "_timestamp": "2019-08-13T19:39:47.916Z",
+              "number_of_aggregations": 2,
+              "data_node": "crd-esgf-drc.ec.gc.ca",
+              "variable_long_name": [
+                "Near-Surface Air Temperature"
+              ],
+              "datetime_start": "1850-01-01T12:00:00Z",
+              "source_type": [
+                "AOGCM"
+              ],
+              "cf_standard_name": [
+                "air_temperature"
+              ],
+              "version": 20190429,
+              "further_info_url": [
+                "https://furtherinfo.es-doc.org/CMIP6.CCCma.CanESM5.historical.none.r12i1p2f1"
+              ],
+              "instance_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.day.tas.gn.v20190429",
+              "size": 1600967425,
+              "grid_label": [
+                "gn"
+              ],
+              "nominal_resolution": [
+                "500 km"
+              ],
+              "xlink": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.day.tas.gn.v20190429.json|Citation|citation",
+                "http://hdl.handle.net/hdl:21.14100/b319adab-7e42-32b7-ad88-51e75e7b8c2a|PID|pid"
+              ],
+              "access": [
+                "HTTPServer",
+                "GridFTP",
+                "OPENDAP",
+                "LAS"
+              ],
+              "citation_url": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.day.tas.gn.v20190429.json"
+              ],
+              "number_of_files": 1,
+              "directory_format_template_": [
+                "%(root)s/%(mip_era)s/%(activity_drs)s/%(institution_id)s/%(source_id)s/%(experiment_id)s/%(member_id)s/%(table_id)s/%(variable_id)s/%(grid_label)s/%(version)s"
+              ],
+              "index_node": "us-index",
+              "title": "CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.day.tas.gn",
+              "geo": [
+                "ENVELOPE(-180.0, -2.8125, 87.8638, -87.8638)",
+                "ENVELOPE(0.0, 180.0, 87.8638, -87.8638)"
+              ],
+              "retracted": false,
+              "variant_label": [
+                "r12i1p2f1"
+              ],
+              "latest": true,
+              "member_id": [
+                "r12i1p2f1"
+              ],
+              "sub_experiment_id": [
+                "none"
+              ],
+              "mip_era": [
+                "CMIP6"
+              ],
+              "product": [
+                "model-output"
+              ],
+              "model_cohort": [
+                "Registered"
+              ],
+              "experiment_id": [
+                "historical"
+              ],
+              "activity_drs": [
+                "CMIP"
+              ],
+              "dataset_id_template_": [
+                "%(mip_era)s.%(activity_drs)s.%(institution_id)s.%(source_id)s.%(experiment_id)s.%(member_id)s.%(table_id)s.%(variable_id)s.%(grid_label)s"
+              ],
+              "geo_units": [
+                "degrees_east"
+              ],
+              "_version_": 1641781854644207616,
+              "grid": [
+                "T63L49 native atmosphere, T63 Linear Gaussian Grid; 128 x 64 longitude/latitude; 49 levels; top level 1 hPa"
+              ],
+              "variable": [
+                "tas"
+              ],
+              "realm": [
+                "atmos"
+              ],
+              "source_id": [
+                "CanESM5"
+              ]
+            },
+            {
+              "master_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r13i1p2f1.day.tas.gn",
+              "south_degrees": -87.8638,
+              "experiment_title": [
+                "all-forcing simulation of the recent past"
+              ],
+              "replica": true,
+              "data_specs_version": [
+                "01.00.30"
+              ],
+              "variable_units": [
+                "K"
+              ],
+              "project": [
+                "CMIP6"
+              ],
+              "pid": [
+                "hdl:21.14100/4431ff64-3136-3adb-8a04-865189d1d9fb"
+              ],
+              "table_id": [
+                "day"
+              ],
+              "type": "Dataset",
+              "institution_id": [
+                "CCCma"
+              ],
+              "frequency": [
+                "day"
+              ],
+              "west_degrees": 0.0,
+              "datetime_end": "2014-11-21T12:00:00Z",
+              "score": 0.5,
+              "east_degrees": 357.1875,
+              "variable_id": [
+                "tas"
+              ],
+              "north_degrees": 87.8638,
+              "activity_id": [
+                "CMIP"
+              ],
+              "id": "CMIP6.CMIP.CCCma.CanESM5.historical.r13i1p2f1.day.tas.gn.v20190429|eagle.alcf.anl.gov",
+              "_timestamp": "2023-11-04T14:38:59.542Z",
+              "data_node": "eagle.alcf.anl.gov",
+              "variable_long_name": [
+                "Near-Surface Air Temperature"
+              ],
+              "datetime_start": "1850-01-01T12:00:00Z",
+              "source_type": [
+                "AOGCM"
+              ],
+              "creation_date": "2019-07-30T19:46:31Z",
+              "cf_standard_name": [
+                "air_temperature"
+              ],
+              "version": 20190429,
+              "further_info_url": [
+                "https://furtherinfo.es-doc.org/CMIP6.CCCma.CanESM5.historical.none.r13i1p2f1"
+              ],
+              "instance_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r13i1p2f1.day.tas.gn.v20190429",
+              "size": 1601062361,
+              "grid_label": [
+                "gn"
+              ],
+              "nominal_resolution": [
+                "500 km"
+              ],
+              "xlink": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r13i1p2f1.day.tas.gn.v20190429.json|Citation|citation",
+                "http://hdl.handle.net/hdl:21.14100/4431ff64-3136-3adb-8a04-865189d1d9fb|PID|pid"
+              ],
+              "short_description": [
+                "CanESM5 output prepared for CMIP6"
+              ],
+              "access": [
+                "HTTPServer",
+                "Globus"
+              ],
+              "citation_url": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r13i1p2f1.day.tas.gn.v20190429.json"
+              ],
+              "number_of_files": 1,
+              "index_node": "us-index",
+              "directory_format_template_": [
+                "%(root)s/%(mip_era)s/%(activity_drs)s/%(institution_id)s/%(source_id)s/%(experiment_id)s/%(member_id)s/%(table_id)s/%(variable_id)s/%(grid_label)s/%(version)s"
+              ],
+              "title": "CMIP6.CMIP.CCCma.CanESM5.historical.r13i1p2f1.day.tas.gn",
+              "retracted": false,
+              "variant_label": [
+                "r13i1p2f1"
+              ],
+              "latest": true,
+              "member_id": [
+                "r13i1p2f1"
+              ],
+              "sub_experiment_id": [
+                "none"
+              ],
+              "mip_era": [
+                "CMIP6"
+              ],
+              "product": [
+                "model-output"
+              ],
+              "model_cohort": [
+                "Registered"
+              ],
+              "experiment_id": [
+                "historical"
+              ],
+              "activity_drs": [
+                "CMIP"
+              ],
+              "dataset_id_template_": [
+                "%(mip_era)s.%(activity_drs)s.%(institution_id)s.%(source_id)s.%(experiment_id)s.%(member_id)s.%(table_id)s.%(variable_id)s.%(grid_label)s"
+              ],
+              "_version_": 1781644645673992192,
+              "grid": [
+                "T63L49 native atmosphere, T63 Linear Gaussian Grid; 128 x 64 longitude/latitude; 49 levels; top level 1 hPa"
+              ],
+              "variable": [
+                "tas"
+              ],
+              "realm": [
+                "atmos"
+              ],
+              "source_id": [
+                "CanESM5"
+              ]
+            }
+          ],
+          "maxScore": 0.5
+        },
+        "facet_counts": {
+          "facet_queries": {},
+          "facet_fields": {},
+          "facet_ranges": {},
+          "facet_intervals": {},
+          "facet_heatmaps": {}
+        }
+      }
+    },
+    {
+      "url": "https://esgf-node.ornl.gov/esgf-1-5-bridge",
+      "params": {
+        "project": "CMIP6",
+        "limit": "0",
+        "offset": "0",
+        "format": "application/solr+json",
+        "latest": "true",
+        "facets": "source_id"
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "responseHeader": {
+          "status": 0,
+          "QTime": 101690,
+          "params": {
+            "df": "text",
+            "q.alt": "*:*",
+            "indent": "true",
+            "echoParams": "all",
+            "fl": "*,score",
+            "start": "0",
+            "fq": [
+              "type:Dataset",
+              "project:\"CMIP6\"",
+              "latest:True"
+            ],
+            "rows": "0",
+            "q": "*:*",
+            "shards": "esgf-data-node-solr-query:8983/solr/datasets",
+            "tie": "0.01",
+            "facet.limit": "-1",
+            "qf": "text",
+            "facet.method": "enum",
+            "facet.mincount": "1",
+            "facet": "true",
+            "wt": "json",
+            "facet.sort": "lex"
+          }
+        },
+        "response": {
+          "numFound": 14217502,
+          "start": 0,
+          "docs": [],
+          "maxScore": null
+        },
+        "facet_counts": {
+          "facet_queries": {},
+          "facet_fields": {
+            "source_id": [
+              "IPSL-CM6A-LR",
+              2496842,
+              "CanESM5",
+              2318157,
+              "CESM1-1-CAM5-CMIP5",
+              1076758,
+              "NorESM2-LM",
+              763981,
+              "MIROC6",
+              601826,
+              "HadGEM3-GC31-MM",
+              572389,
+              "CNRM-CM6-1",
+              513734,
+              "CESM2",
+              496587,
+              "NorCPM1",
+              447664,
+              "CMCC-CM2-SR5",
+              438267,
+              "MRI-ESM2-0",
+              433240,
+              "GISS-E2-1-G",
+              402078,
+              "MPI-ESM1-2-LR",
+              395986,
+              "MIROC-ES2L",
+              395804,
+              "EC-Earth3",
+              320119,
+              "CESM1-WACCM-SC",
+              289920,
+              "ACCESS-ESM1-5",
+              250597,
+              "FGOALS-f3-L",
+              222867,
+              "UKESM1-0-LL",
+              158785,
+              "AWI-CM-1-1-MR",
+              137098,
+              "MPI-ESM1-2-HR",
+              132445,
+              "BCC-CSM2-MR",
+              130905,
+              "CNRM-ESM2-1",
+              105612,
+              "CanESM5-1",
+              100515,
+              "TaiESM1",
+              98898,
+              "E3SM-1-0",
+              88311,
+              "CESM2-WACCM",
+              78281,
+              "HadGEM3-GC31-LL",
+              59273,
+              "GISS-E2-1-H",
+              47665,
+              "EC-Earth3-CC",
+              44909,
+              "GFDL-ESM4",
+              43723,
+              "GISS-E2-2-G",
+              43638,
+              "MPI-ESM-1-2-HAM",
+              34686,
+              "ACCESS-CM2",
+              33016,
+              "FGOALS-g3",
+              26352,
+              "CanESM5-CanOE",
+              25422,
+              "EC-Earth3-Veg",
+              24483,
+              "MIROC-ES2H",
+              21475,
+              "CESM2-FV2",
+              21267,
+              "GFDL-CM4",
+              20595,
+              "EC-Earth3-AerChem",
+              19321,
+              "BCC-ESM1",
+              18756,
+              "EC-Earth3-HR",
+              18081,
+              "CESM2-WACCM-FV2",
+              17532,
+              "NorESM2-MM",
+              14792,
+              "CMCC-ESM2",
+              14515,
+              "CNRM-CM6-1-HR",
+              12683,
+              "EC-Earth3-Veg-LR",
+              11389,
+              "INM-CM5-0",
+              11111,
+              "CAS-ESM2-0",
+              8807,
+              "KACE-1-0-G",
+              8650,
+              "E3SM-2-0",
+              8589,
+              "GISS-E2-1-G-CC",
+              8468,
+              "IPSL-CM5A2-INCA",
+              7892,
+              "IPSL-CM6A-LR-INCA",
+              7881,
+              "NESM3",
+              7499,
+              "IPSL-CM6A-MR1",
+              6780,
+              "INM-CM4-8",
+              5892,
+              "KIOST-ESM",
+              5677,
+              "FIO-ESM-2-0",
+              5552,
+              "CIESM",
+              4420,
+              "AWI-ESM-1-1-LR",
+              4400,
+              "GISS-E2-2-H",
+              4232,
+              "EC-Earth3P",
+              4016,
+              "CAMS-CSM1-0",
+              3814,
+              "EC-Earth3P-HR",
+              3809,
+              "ICON-ESM-LR",
+              3743,
+              "HadGEM3-GC31-HM",
+              3385,
+              "SAM0-UNICON",
+              2527,
+              "UKESM1-1-LL",
+              2240,
+              "CMCC-CM2-HR4",
+              2234,
+              "E3SM-1-1",
+              2188,
+              "E3SM-2-1",
+              1994,
+              "IITM-ESM",
+              1946,
+              "HadGEM3-GC31-LM",
+              1610,
+              "BCC-CSM2-HR",
+              1593,
+              "MIROC-ES2H-NB",
+              1573,
+              "E3SM-2-0-NARRM",
+              1502,
+              "ECMWF-IFS-LR",
+              1395,
+              "GISS-E3-G",
+              1372,
+              "ECMWF-IFS-HR",
+              1292,
+              "EC-Earth3-LR",
+              1278,
+              "IPSL-CM6A-ATM-ICO-LR",
+              1217,
+              "GFDL-ESM2M",
+              1199,
+              "MCM-UA-1-0",
+              1195,
+              "MPI-ESM1-2-XR",
+              1179,
+              "GFDL-CM4C192",
+              1174,
+              "IPSL-CM6A-ATM-ICO-MR",
+              1169,
+              "CESM1-CAM5-SE-LR",
+              1131,
+              "INM-CM5-H",
+              1129,
+              "IPSL-CM6A-ATM-ICO-HR",
+              1098,
+              "FGOALS-f3-H",
+              1075,
+              "IPSL-CM6A-ATM-ICO-VHR",
+              1027,
+              "NorESM1-F",
+              1001,
+              "MRI-AGCM3-2-H",
+              937,
+              "CESM1-CAM5-SE-HR",
+              930,
+              "E3SM-1-1-ECA",
+              927,
+              "MRI-AGCM3-2-S",
+              842,
+              "HadGEM3-GC31-HH",
+              811,
+              "ECMWF-IFS-MR",
+              750,
+              "UKESM1-ice-LL",
+              704,
+              "CMCC-CM2-VHR4",
+              674,
+              "HiRAM-SIT-LR",
+              603,
+              "ACCESS-OM2",
+              558,
+              "IPSL-CM6A-ATM-HR",
+              539,
+              "CMCC-ESM2-SR5",
+              514,
+              "HiRAM-SIT-HR",
+              482,
+              "NICAM16-7S",
+              433,
+              "AWI-ESM-1-REcoM",
+              419,
+              "NICAM16-9S",
+              381,
+              "NICAM16-8S",
+              368,
+              "AWI-CM-1-1-HR",
+              306,
+              "AWI-CM-1-1-LR",
+              293,
+              "GFDL-AM4",
+              253,
+              "EC-Earth3-ESM-1",
+              243,
+              "HadGEM3-GC31-MH",
+              242,
+              "IPSL-CM6A-ATM-LR-REPROBUS",
+              211,
+              "TaiESM1-TIMCOM",
+              172,
+              "TaiESM1-TIMCOM2",
+              140,
+              "ACCESS-OM2-025",
+              132,
+              "CAM-MPAS-LR",
+              112,
+              "GFDL-OM4p5B",
+              112,
+              "CAM-MPAS-HR",
+              110,
+              "GFDL-GRTCODE",
+              36,
+              "ARTS-2-3",
+              16,
+              "LBLRTM-12-8",
+              16,
+              "4AOP-v1-5",
+              12,
+              "GFDL-RFM-DISORT",
+              12,
+              "RTE-RRTMGP-181204",
+              8,
+              "RRTMG-LW-4-91",
+              4,
+              "RRTMG-SW-4-02",
+              4,
+              "EC-Earth3P-VHR",
+              2
+            ]
+          },
+          "facet_ranges": {},
+          "facet_intervals": {},
+          "facet_heatmaps": {}
+        }
+      }
+    },
+    {
+      "url": "https://esgf-node.ornl.gov/esgf-1-5-bridge",
+      "params": {
+        "project": "CMIP6",
+        "source_id": "GFDL-ESM4",
+        "experiment_id": "ssp585",
+        "variable_id": "tas",
+        "limit": "5",
+        "offset": "0",
+        "format": "application/solr+json",
+        "latest": "true"
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "responseHeader": {
+          "status": 0,
+          "QTime": 44420,
+          "params": {
+            "df": "text",
+            "q.alt": "*:*",
+            "indent": "true",
+            "echoParams": "all",
+            "fl": "*,score",
+            "start": "0",
+            "fq": [
+              "type:Dataset",
+              "experiment_id:\"ssp585\"",
+              "project:\"CMIP6\"",
+              "source_id:\"GFDL-ESM4\"",
+              "variable_id:\"tas\"",
+              "latest:True"
+            ],
+            "rows": "5",
+            "q": "*:*",
+            "shards": "esgf-data-node-solr-query:8983/solr/datasets",
+            "tie": "0.01",
+            "facet.limit": "-1",
+            "qf": "text",
+            "facet.method": "enum",
+            "facet.mincount": "1",
+            "facet": "true",
+            "wt": "json",
+            "facet.sort": "lex"
+          }
+        },
+        "response": {
+          "numFound": 11,
+          "start": 0,
+          "docs": [
+            {
+              "master_id": "CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.day.tas.gr1",
+              "south_degrees": -89.5,
+              "experiment_title": [
+                "update of RCP8.5 based on SSP5"
+              ],
+              "replica": true,
+              "data_specs_version": [
+                "01.00.27"
+              ],
+              "variable_units": [
+                "K"
+              ],
+              "project": [
+                "CMIP6"
+              ],
+              "pid": [
+                "hdl:21.14100/e02387a0-85c6-374c-86fc-0256278cb283"
+              ],
+              "table_id": [
+                "day"
+              ],
+              "type": "Dataset",
+              "institution_id": [
+                "NOAA-GFDL"
+              ],
+              "frequency": [
+                "day"
+              ],
+              "west_degrees": 0.625,
+              "datetime_end": "2100-10-31T00:00:00Z",
+              "score": 0.5,
+              "east_degrees": 359.375,
+              "variable_id": [
+                "tas"
+              ],
+              "north_degrees": 89.5,
+              "activity_id": [
+                "ScenarioMIP"
+              ],
+              "id": "CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.day.tas.gr1.v20180701|eagle.alcf.anl.gov",
+              "_timestamp": "2023-11-04T22:17:50.569Z",
+              "data_node": "eagle.alcf.anl.gov",
+              "variable_long_name": [
+                "Near-Surface Air Temperature"
+              ],
+              "datetime_start": "2014-11-22T00:00:00Z",
+              "source_type": [
+                "AOGCM",
+                "AER",
+                "CHEM",
+                "BGC"
+              ],
+              "creation_date": "2019-06-18T22:55:01Z",
+              "cf_standard_name": [
+                "air_temperature"
+              ],
+              "version": 20180701,
+              "further_info_url": [
+                "https://furtherinfo.es-doc.org/CMIP6.NOAA-GFDL.GFDL-ESM4.ssp585.none.r1i1p1f1"
+              ],
+              "instance_id": "CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.day.tas.gr1.v20180701",
+              "size": 3719525670,
+              "grid_label": [
+                "gr1"
+              ],
+              "nominal_resolution": [
+                "100 km"
+              ],
+              "xlink": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.day.tas.gr1.v20180701.json|Citation|citation",
+                "http://hdl.handle.net/hdl:21.14100/e02387a0-85c6-374c-86fc-0256278cb283|PID|pid"
+              ],
+              "short_description": [
+                "NOAA GFDL GFDL-ESM4 model output prepared for CMIP6 update of RCP8.5 based on SSP5"
+              ],
+              "access": [
+                "HTTPServer",
+                "Globus"
+              ],
+              "citation_url": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.day.tas.gr1.v20180701.json"
+              ],
+              "number_of_files": 5,
+              "index_node": "us-index",
+              "directory_format_template_": [
+                "%(root)s/%(mip_era)s/%(activity_drs)s/%(institution_id)s/%(source_id)s/%(experiment_id)s/%(member_id)s/%(table_id)s/%(variable_id)s/%(grid_label)s/%(version)s"
+              ],
+              "title": "CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.day.tas.gr1",
+              "retracted": false,
+              "variant_label": [
+                "r1i1p1f1"
+              ],
+              "latest": true,
+              "member_id": [
+                "r1i1p1f1"
+              ],
+              "sub_experiment_id": [
+                "none"
+              ],
+              "mip_era": [
+                "CMIP6"
+              ],
+              "product": [
+                "model-output"
+              ],
+              "model_cohort": [
+                "Registered"
+              ],
+              "experiment_id": [
+                "ssp585"
+              ],
+              "activity_drs": [
+                "ScenarioMIP"
+              ],
+              "dataset_id_template_": [
+                "%(mip_era)s.%(activity_drs)s.%(institution_id)s.%(source_id)s.%(experiment_id)s.%(member_id)s.%(table_id)s.%(variable_id)s.%(grid_label)s"
+              ],
+              "_version_": 1781673514048159744,
+              "grid": [
+                "atmos data regridded from Cubed-sphere (c96) to 180,288; interpolation method: conserve_order2"
+              ],
+              "variable": [
+                "tas"
+              ],
+              "realm": [
+                "atmos"
+              ],
+              "source_id": [
+                "GFDL-ESM4"
+              ]
+            },
+            {
+              "master_id": "CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.3hr.tas.gr1",
+              "south_degrees": -89.5,
+              "experiment_title": [
+                "update of RCP8.5 based on SSP5"
+              ],
+              "replica": true,
+              "data_specs_version": [
+                "01.00.27"
+              ],
+              "variable_units": [
+                "K"
+              ],
+              "project": [
+                "CMIP6"
+              ],
+              "pid": [
+                "hdl:21.14100/5fbc03ea-9847-3b95-965d-27d042ded773"
+              ],
+              "table_id": [
+                "3hr"
+              ],
+              "type": "Dataset",
+              "institution_id": [
+                "NOAA-GFDL"
+              ],
+              "frequency": [
+                "3hr"
+              ],
+              "west_degrees": 0.625,
+              "datetime_end": "2100-11-01T00:00:00Z",
+              "score": 0.5,
+              "east_degrees": 359.375,
+              "variable_id": [
+                "tas"
+              ],
+              "north_degrees": 89.5,
+              "activity_id": [
+                "ScenarioMIP"
+              ],
+              "id": "CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.3hr.tas.gr1.v20180701|esgf-node.ornl.gov",
+              "_timestamp": "2021-09-24T03:12:55.431Z",
+              "data_node": "esgf-node.ornl.gov",
+              "variable_long_name": [
+                "Near-Surface Air Temperature"
+              ],
+              "datetime_start": "2014-11-22T00:00:00Z",
+              "source_type": [
+                "AOGCM",
+                "AER",
+                "CHEM",
+                "BGC"
+              ],
+              "creation_date": "2019-06-18T22:53:04Z",
+              "cf_standard_name": [
+                "air_temperature"
+              ],
+              "version": 20180701,
+              "further_info_url": [
+                "https://furtherinfo.es-doc.org/CMIP6.NOAA-GFDL.GFDL-ESM4.ssp585.none.r1i1p1f1"
+              ],
+              "instance_id": "CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.3hr.tas.gr1.v20180701",
+              "size": 30018146928,
+              "grid_label": [
+                "gr1"
+              ],
+              "nominal_resolution": [
+                "100 km"
+              ],
+              "xlink": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.3hr.tas.gr1.v20180701.json|Citation|citation",
+                "http://hdl.handle.net/hdl:21.14100/5fbc03ea-9847-3b95-965d-27d042ded773|PID|pid"
+              ],
+              "short_description": [
+                "NOAA GFDL GFDL-ESM4 model output prepared for CMIP6 update of RCP8.5 based on SSP5"
+              ],
+              "access": [
+                "HTTPServer",
+                "OPENDAP",
+                "GridFTP",
+                "Globus"
+              ],
+              "citation_url": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.3hr.tas.gr1.v20180701.json"
+              ],
+              "number_of_files": 5,
+              "index_node": "us-index",
+              "directory_format_template_": [
+                "%(root)s/%(mip_era)s/%(activity_drs)s/%(institution_id)s/%(source_id)s/%(experiment_id)s/%(member_id)s/%(table_id)s/%(variable_id)s/%(grid_label)s/%(version)s"
+              ],
+              "title": "CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.3hr.tas.gr1",
+              "retracted": false,
+              "variant_label": [
+                "r1i1p1f1"
+              ],
+              "latest": true,
+              "member_id": [
+                "r1i1p1f1"
+              ],
+              "sub_experiment_id": [
+                "none"
+              ],
+              "mip_era": [
+                "CMIP6"
+              ],
+              "product": [
+                "model-output"
+              ],
+              "model_cohort": [
+                "Registered"
+              ],
+              "experiment_id": [
+                "ssp585"
+              ],
+              "activity_drs": [
+                "ScenarioMIP"
+              ],
+              "dataset_id_template_": [
+                "%(mip_era)s.%(activity_drs)s.%(institution_id)s.%(source_id)s.%(experiment_id)s.%(member_id)s.%(table_id)s.%(variable_id)s.%(grid_label)s"
+              ],
+              "_version_": 1767520045028605955,
+              "grid": [
+                "atmos data regridded from Cubed-sphere (c96) to 180,288; interpolation method: conserve_order2"
+              ],
+              "variable": [
+                "tas"
+              ],
+              "realm": [
+                "atmos"
+              ],
+              "source_id": [
+                "GFDL-ESM4"
+              ]
+            },
+            {
+              "master_id": "CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.Amon.tas.gr1",
+              "south_degrees": -89.5,
+              "experiment_title": [
+                "update of RCP8.5 based on SSP5"
+              ],
+              "replica": true,
+              "data_specs_version": [
+                "01.00.27"
+              ],
+              "variable_units": [
+                "K"
+              ],
+              "project": [
+                "CMIP6"
+              ],
+              "pid": [
+                "hdl:21.14100/6346538e-10b2-318d-882b-7ea1ef490bcb"
+              ],
+              "table_id": [
+                "Amon"
+              ],
+              "type": "Dataset",
+              "institution_id": [
+                "NOAA-GFDL"
+              ],
+              "frequency": [
+                "mon"
+              ],
+              "west_degrees": 0.625,
+              "datetime_end": "2100-10-16T12:00:00Z",
+              "score": 0.5,
+              "east_degrees": 359.375,
+              "variable_id": [
+                "tas"
+              ],
+              "north_degrees": 89.5,
+              "activity_id": [
+                "ScenarioMIP"
+              ],
+              "id": "CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.Amon.tas.gr1.v20180701|eagle.alcf.anl.gov",
+              "_timestamp": "2023-11-04T22:15:46.746Z",
+              "data_node": "eagle.alcf.anl.gov",
+              "variable_long_name": [
+                "Near-Surface Air Temperature"
+              ],
+              "datetime_start": "2014-12-07T12:00:00Z",
+              "source_type": [
+                "AOGCM",
+                "AER",
+                "CHEM",
+                "BGC"
+              ],
+              "creation_date": "2019-06-18T17:42:06Z",
+              "cf_standard_name": [
+                "air_temperature"
+              ],
+              "version": 20180701,
+              "further_info_url": [
+                "https://furtherinfo.es-doc.org/CMIP6.NOAA-GFDL.GFDL-ESM4.ssp585.none.r1i1p1f1"
+              ],
+              "instance_id": "CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.Amon.tas.gr1.v20180701",
+              "size": 119621105,
+              "grid_label": [
+                "gr1"
+              ],
+              "nominal_resolution": [
+                "100 km"
+              ],
+              "xlink": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.Amon.tas.gr1.v20180701.json|Citation|citation",
+                "http://hdl.handle.net/hdl:21.14100/6346538e-10b2-318d-882b-7ea1ef490bcb|PID|pid"
+              ],
+              "short_description": [
+                "NOAA GFDL GFDL-ESM4 model output prepared for CMIP6 update of RCP8.5 based on SSP5"
+              ],
+              "access": [
+                "HTTPServer",
+                "Globus"
+              ],
+              "citation_url": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.Amon.tas.gr1.v20180701.json"
+              ],
+              "number_of_files": 1,
+              "index_node": "us-index",
+              "directory_format_template_": [
+                "%(root)s/%(mip_era)s/%(activity_drs)s/%(institution_id)s/%(source_id)s/%(experiment_id)s/%(member_id)s/%(table_id)s/%(variable_id)s/%(grid_label)s/%(version)s"
+              ],
+              "title": "CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.Amon.tas.gr1",
+              "retracted": false,
+              "variant_label": [
+                "r1i1p1f1"
+              ],
+              "latest": true,
+              "member_id": [
+                "r1i1p1f1"
+              ],
+              "sub_experiment_id": [
+                "none"
+              ],
+              "mip_era": [
+                "CMIP6"
+              ],
+              "product": [
+                "model-output"
+              ],
+              "model_cohort": [
+                "Registered"
+              ],
+              "experiment_id": [
+                "ssp585"
+              ],
+              "activity_drs": [
+                "ScenarioMIP"
+              ],
+              "dataset_id_template_": [
+                "%(mip_era)s.%(activity_drs)s.%(institution_id)s.%(source_id)s.%(experiment_id)s.%(member_id)s.%(table_id)s.%(variable_id)s.%(grid_label)s"
+              ],
+              "_version_": 1781673384210333696,
+              "grid": [
+                "atmos data regridded from Cubed-sphere (c96) to 180,288; interpolation method: conserve_order2"
+              ],
+              "variable": [
+                "tas"
+              ],
+              "realm": [
+                "atmos"
+              ],
+              "source_id": [
+                "GFDL-ESM4"
+              ]
+            },
+            {
+              "master_id": "CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.day.tas.gr1",
+              "south_degrees": -89.5,
+              "datetime_stop": "2100-12-31T12:00:00Z",
+              "experiment_title": [
+                "update of RCP8.5 based on SSP5"
+              ],
+              "replica": false,
+              "data_specs_version": [
+                "01.00.27"
+              ],
+              "variable_units": [
+                "K"
+              ],
+              "project": [
+                "CMIP6"
+              ],
+              "pid": [
+                "hdl:21.14100/e02387a0-85c6-374c-86fc-0256278cb283"
+              ],
+              "table_id": [
+                "day"
+              ],
+              "type": "Dataset",
+              "frequency": [
+                "day"
+              ],
+              "institution_id": [
+                "NOAA-GFDL"
+              ],
+              "west_degrees": 0.625,
+              "score": 0.5,
+              "east_degrees": 359.375,
+              "north_degrees": 89.5,
+              "variable_id": [
+                "tas"
+              ],
+              "activity_id": [
+                "ScenarioMIP"
+              ],
+              "id": "CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.day.tas.gr1.v20180701|esgdata.gfdl.noaa.gov",
+              "_timestamp": "2019-08-12T20:08:24.452Z",
+              "number_of_aggregations": 2,
+              "data_node": "esgdata.gfdl.noaa.gov",
+              "variable_long_name": [
+                "Near-Surface Air Temperature"
+              ],
+              "datetime_start": "2015-01-01T12:00:00Z",
+              "source_type": [
+                "AOGCM",
+                "AER",
+                "CHEM",
+                "BGC"
+              ],
+              "cf_standard_name": [
+                "air_temperature"
+              ],
+              "version": 20180701,
+              "further_info_url": [
+                "https://furtherinfo.es-doc.org/CMIP6.NOAA-GFDL.GFDL-ESM4.ssp585.none.r1i1p1f1"
+              ],
+              "instance_id": "CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.day.tas.gr1.v20180701",
+              "size": 3719525670,
+              "grid_label": [
+                "gr1"
+              ],
+              "nominal_resolution": [
+                "100 km"
+              ],
+              "branch_method": [
+                "standard"
+              ],
+              "xlink": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.day.tas.gr1.v20180701.json|Citation|citation",
+                "http://hdl.handle.net/hdl:21.14100/e02387a0-85c6-374c-86fc-0256278cb283|PID|pid"
+              ],
+              "access": [
+                "HTTPServer",
+                "GridFTP",
+                "OPENDAP",
+                "Globus",
+                "LAS"
+              ],
+              "citation_url": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.day.tas.gr1.v20180701.json"
+              ],
+              "number_of_files": 5,
+              "directory_format_template_": [
+                "%(root)s/%(mip_era)s/%(activity_drs)s/%(institution_id)s/%(source_id)s/%(experiment_id)s/%(member_id)s/%(table_id)s/%(variable_id)s/%(grid_label)s/%(version)s"
+              ],
+              "index_node": "us-index",
+              "title": "CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.day.tas.gr1",
+              "geo": [
+                "ENVELOPE(-180.0, -0.625, 89.5, -89.5)",
+                "ENVELOPE(0.625, 180.0, 89.5, -89.5)"
+              ],
+              "retracted": false,
+              "variant_label": [
+                "r1i1p1f1"
+              ],
+              "latest": true,
+              "member_id": [
+                "r1i1p1f1"
+              ],
+              "sub_experiment_id": [
+                "none"
+              ],
+              "mip_era": [
+                "CMIP6"
+              ],
+              "product": [
+                "model-output"
+              ],
+              "model_cohort": [
+                "Registered"
+              ],
+              "experiment_id": [
+                "ssp585"
+              ],
+              "activity_drs": [
+                "ScenarioMIP"
+              ],
+              "dataset_id_template_": [
+                "%(mip_era)s.%(activity_drs)s.%(institution_id)s.%(source_id)s.%(experiment_id)s.%(member_id)s.%(table_id)s.%(variable_id)s.%(grid_label)s"
+              ],
+              "geo_units": [
+                "degrees_east"
+              ],
+              "_version_": 1641693057597308928,
+              "grid": [
+                "atmos data regridded from Cubed-sphere (c96) to 180,288; interpolation method: conserve_order2"
+              ],
+              "variable": [
+                "tas"
+              ],
+              "realm": [
+                "atmos"
+              ],
+              "source_id": [
+                "GFDL-ESM4"
+              ]
+            },
+            {
+              "master_id": "CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.day.tas.gr1",
+              "south_degrees": -89.5,
+              "datetime_stop": "2100-12-31T12:00:00Z",
+              "experiment_title": [
+                "update of RCP8.5 based on SSP5"
+              ],
+              "replica": true,
+              "data_specs_version": [
+                "01.00.27"
+              ],
+              "variable_units": [
+                "K"
+              ],
+              "project": [
+                "CMIP6"
+              ],
+              "pid": [
+                "hdl:21.14100/e02387a0-85c6-374c-86fc-0256278cb283"
+              ],
+              "table_id": [
+                "day"
+              ],
+              "type": "Dataset",
+              "frequency": [
+                "day"
+              ],
+              "institution_id": [
+                "NOAA-GFDL"
+              ],
+              "west_degrees": 0.625,
+              "score": 0.5,
+              "east_degrees": 359.375,
+              "north_degrees": 89.5,
+              "variable_id": [
+                "tas"
+              ],
+              "activity_id": [
+                "ScenarioMIP"
+              ],
+              "id": "CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.day.tas.gr1.v20180701|esgf-data04.diasjp.net",
+              "_timestamp": "2022-09-30T12:00:50.677Z",
+              "number_of_aggregations": 1,
+              "data_node": "esgf-data04.diasjp.net",
+              "variable_long_name": [
+                "Near-Surface Air Temperature"
+              ],
+              "datetime_start": "2015-01-01T12:00:00Z",
+              "source_type": [
+                "AOGCM",
+                "AER",
+                "CHEM",
+                "BGC"
+              ],
+              "cf_standard_name": [
+                "air_temperature"
+              ],
+              "version": 20180701,
+              "further_info_url": [
+                "https://furtherinfo.es-doc.org/CMIP6.NOAA-GFDL.GFDL-ESM4.ssp585.none.r1i1p1f1"
+              ],
+              "instance_id": "CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.day.tas.gr1.v20180701",
+              "size": 3719525670,
+              "grid_label": [
+                "gr1"
+              ],
+              "nominal_resolution": [
+                "100 km"
+              ],
+              "xlink": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.day.tas.gr1.v20180701.json|Citation|citation",
+                "http://hdl.handle.net/hdl:21.14100/e02387a0-85c6-374c-86fc-0256278cb283|PID|pid"
+              ],
+              "access": [
+                "HTTPServer",
+                "OPENDAP"
+              ],
+              "citation_url": [
+                "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.day.tas.gr1.v20180701.json"
+              ],
+              "number_of_files": 5,
+              "directory_format_template_": [
+                "%(root)s/%(mip_era)s/%(activity_drs)s/%(institution_id)s/%(source_id)s/%(experiment_id)s/%(member_id)s/%(table_id)s/%(variable_id)s/%(grid_label)s/%(version)s"
+              ],
+              "index_node": "us-index",
+              "title": "CMIP6.ScenarioMIP.NOAA-GFDL.GFDL-ESM4.ssp585.r1i1p1f1.day.tas.gr1",
+              "geo": [
+                "ENVELOPE(-180.0, -0.625, 89.5, -89.5)",
+                "ENVELOPE(0.625, 180.0, 89.5, -89.5)"
+              ],
+              "retracted": false,
+              "variant_label": [
+                "r1i1p1f1"
+              ],
+              "latest": true,
+              "member_id": [
+                "r1i1p1f1"
+              ],
+              "sub_experiment_id": [
+                "none"
+              ],
+              "mip_era": [
+                "CMIP6"
+              ],
+              "product": [
+                "model-output"
+              ],
+              "model_cohort": [
+                "Published"
+              ],
+              "experiment_id": [
+                "ssp585"
+              ],
+              "activity_drs": [
+                "ScenarioMIP"
+              ],
+              "dataset_id_template_": [
+                "%(mip_era)s.%(activity_drs)s.%(institution_id)s.%(source_id)s.%(experiment_id)s.%(member_id)s.%(table_id)s.%(variable_id)s.%(grid_label)s"
+              ],
+              "geo_units": [
+                "degrees_east"
+              ],
+              "_version_": 1745395909317885952,
+              "grid": [
+                "atmos data regridded from Cubed-sphere (c96) to 180,288; interpolation method: conserve_order2"
+              ],
+              "variable": [
+                "tas"
+              ],
+              "realm": [
+                "atmos"
+              ],
+              "source_id": [
+                "GFDL-ESM4"
+              ]
+            }
+          ],
+          "maxScore": 0.5
+        },
+        "facet_counts": {
+          "facet_queries": {},
+          "facet_fields": {},
+          "facet_ranges": {},
+          "facet_intervals": {},
+          "facet_heatmaps": {}
+        }
+      }
+    }
+  ]
+}

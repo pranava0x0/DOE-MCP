@@ -1,0 +1,103 @@
+# energy.gov/code.json — DOE's code.gov software inventory. 5,879 releases in
+# one 7.5 MB document, no auth, one pull.
+#
+# Its vintage problem is more pointed than data.json's: the URL says
+# `code.json`, implying current, and it 302s to
+# `sites/default/files/2025-05/code-05-01-2025.json` — a file whose own name
+# dates it to 1 May 2025. Verified live 2026-09-02. So the URL is a promise
+# the content does not keep, and every answer from this source names the date.
+id: doe-code-json
+name: DOE Software Inventory (code.json)
+domain: discovery
+
+publisher:
+  steward: ocio
+  authority_level: official_derived
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: []
+
+capabilities:
+  - id: discovery.search_catalogs
+    tool_hint: discovery.search_all_catalogs
+
+adapter:
+  type: json_document
+  document_url: https://www.energy.gov/code.json
+  collection_key: releases
+  title_key: name
+  description_key: description
+  modified_key: date
+  landing_key: repositoryURL
+  identifier_key: name
+  schema_note: code.gov metadata schema 2.0.0 (version declared in the document)
+
+access:
+  mode: anonymous
+  automation_status: public_download
+  tier: thin_proxy
+  terms_url: https://www.energy.gov/cio/open-source-software
+  terms_notes: >
+    Public federal source-code inventory. Read live 2026-09-02: a 302 from
+    energy.gov/code.json to a dated static file, then HTTP 200 and 7.5 MB
+    with 5,879 releases. No key, no stated restriction. The redirect target
+    is on the same host, so it passes the per-source egress allowlist without
+    widening it.
+  terms_reviewed_at: "2026-09-02"
+  citation_required: false
+  rate_limit_note: >
+    No rate limit is published, and /code.json is outside
+    every robots.txt Disallow rule on www.energy.gov. Fetched whole once per
+    TTL and searched locally.
+
+freshness:
+  expected_cadence: annual
+  cadence_source: >
+    Observed from the redirect target's filename, code-05-01-2025.json, which
+    dates the document to 2025-05-01 — sixteen months before this manifest
+    was written. Federal source-code inventories are expected annually.
+  ttl_hint_seconds: 604800
+
+coverage:
+  scope: >
+    DOE's declared inventory of software releases across the department and
+    its laboratories: name, description, repository URL, licence
+    permissions, languages, and organization.
+  temporal: as of the document's own date
+  dataset_version: "code-05-01-2025"
+  record_count: 5879
+  record_count_checked: "2026-09-02"
+  known_limitations:
+    - >
+      Sixteen months stale as read. Software released since 2025-05-01 is
+      absent, and repositories that moved or were archived since then are
+      still listed at their old URLs.
+    - >
+      Overlaps DOE CODE without matching it: 5,879 releases here against
+      7,675 records there, compiled by different processes for different
+      purposes. Neither is a superset. DOE CODE is the live one and should be
+      preferred for any current question.
+    - >
+      7.5 MB fetched whole and searched in memory. That is right at this size
+      and would not be at ten times it; a document that grows past this
+      shape needs a real index, which is reviewed work.
+
+authority_notes: >
+  Official_derived: a compiled self-report, and a dated one. Registered for
+  the discovery fan-out and because a stale catalog whose staleness is
+  labelled is a usable source, while a stale catalog presented as current is
+  a trap. For live software questions, DOE CODE is the source.
+
+health:
+  probe: json_document_count
+  expect:
+    min_records: 4000
+
+lifecycle:
+  declared_state: active
+  added: "2026-09-02"
+  last_verified: "2026-09-02"
+  verified_by: pranava0x0

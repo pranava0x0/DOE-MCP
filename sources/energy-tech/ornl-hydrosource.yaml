@@ -1,0 +1,65 @@
+id: ornl-hydrosource
+name: HydroSource
+domain: energy-tech
+
+publisher:
+  steward: ornl
+  authority_level: primary
+
+aliases:
+  former_names: []
+  former_domains: []
+
+labs: [ornl]
+
+# Capabilities stay empty until this source is active: a capability id
+# is a routing promise, and the activation gate refuses one from a
+# manifest nothing can query. What this source would serve is listed
+# under planned_capabilities, which nothing routes on.
+capabilities: []
+planned_capabilities: [dataset.search]
+
+adapter:
+  type: none
+
+access:
+  mode: anonymous
+  automation_status: unknown
+  tier: catalog_pointer
+  terms_url: https://hydrosource.ornl.gov/
+  terms_notes: >
+    Public data portal for hydropower research. An ArcGIS backend is
+    suspected behind the map interface but was not confirmed.
+
+freshness:
+  expected_cadence: unknown
+  cadence_source: >
+    Unknown.
+  ttl_hint_seconds: 86400
+
+coverage:
+  scope: >
+    US hydropower resource, infrastructure, and environmental datasets.
+  temporal: current
+  dataset_version: "current"
+  known_limitations:
+    - >
+      Map backend unconfirmed. If it is ArcGIS, the existing genre
+      adapter covers it and this becomes cheap; if not, it is a harvest
+      job.
+
+authority_notes: >
+  Intended capabilities: dataset.search over the repository's own
+  catalog, once its map backend is confirmed (decision 0026). Phase 4.
+
+health:
+  probe: none
+
+lifecycle:
+  declared_state: proposed
+  added: "2026-09-02"
+  last_verified: "2026-09-01"
+  verified_by: pranava0x0
+  blocked_reason: >
+    Map backend unconfirmed. Next step is a browser-grade look at the
+    portal's own network calls.
