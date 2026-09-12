@@ -26,8 +26,7 @@ jobs:
     steps:
       # Pinned to commit SHAs rather than tags (§ 1): a tag can be moved
       # onto attacker code and every run after it is compromised silently.
-      # Dependabot understands these pins and bumps them as reviewable pull
-      # requests.
+      # Action pins are audited and updated manually; automated bot PRs are disabled.
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5
       - run: uv python install 3.12

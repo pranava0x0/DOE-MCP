@@ -33,9 +33,8 @@ def test_every_action_is_pinned_to_a_commit_not_a_tag(path):
     """A tag can be moved onto attacker code; a commit cannot.
 
     This is the tj-actions/reviewdog class of incident, and it applies to
-    first-party actions too: "reputable" is not "immutable". Dependabot
-    understands a SHA pin with a version comment and raises the bump as a
-    pull request somebody reads.
+    first-party actions too: "reputable" is not "immutable". Pins are
+    recorded with their commit SHA and verified in this suite.
     """
     floating = []
     for line in path.read_text().splitlines():
@@ -71,15 +70,15 @@ def test_the_workflow_scopes_its_token(path):
             "nothing here writes.")
 
 
-def test_dependabot_keeps_the_action_pins_current():
-    """Pinning without a bump path is how a pin becomes a stale, unpatched
-    action nobody is watching."""
-    path = ROOT / ".github" / "dependabot.yml"
-    if not path.exists():
-        pytest.skip("dependabot is disabled")
-    doc = yaml.safe_load(path.read_text())
-    ecosystems = {u["package-ecosystem"] for u in doc["updates"]}
-    assert "github-actions" in ecosystems
+def test_dependabot_is_disabled():
+    """Dependabot is permanently disabled on this repository per maintainer
+    policy to prevent unsolicited automated pull requests."""
+    assert not (ROOT / ".github" / "dependabot.yml").exists(), (
+        "dependabot.yml must not be configured; Dependabot is disabled"
+    )
+    assert not (ROOT / ".github" / "dependabot.yaml").exists(), (
+        "dependabot.yaml must not be configured; Dependabot is disabled"
+    )
 
 
 def test_a_server_holds_only_the_credentials_it_declares():
