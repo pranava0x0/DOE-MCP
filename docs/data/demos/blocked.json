@@ -1,0 +1,120 @@
+{
+  "format_version": "1",
+  "case": "blocked",
+  "title": "A capability not yet served",
+  "question": "Can DOE-MCP return the solar resource at a candidate site?",
+  "mode": "recorded",
+  "simulation": false,
+  "registry_revision": "2026-10-08",
+  "generated_at": null,
+  "replay_clock": "2026-10-08T00:00:00Z",
+  "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
+  "fixtures": [],
+  "limitations": [
+    "Registry inventory only. Proposed sources were not queried.",
+    "Missing tool coverage does not mean the data does not exist."
+  ],
+  "steps": [
+    {
+      "tool": "registry.search_sources",
+      "args": {
+        "capability": "solar.get_resource"
+      },
+      "envelope": {
+        "data": {
+          "sources": [
+            {
+              "id": "nlr-developer-network",
+              "name": "NLR Developer Network",
+              "domain": "energy-tech",
+              "steward": "nlr",
+              "authority_level": "primary",
+              "declared_state": "proposed",
+              "operational_state": "unknown",
+              "automation_status": "public_api",
+              "tier": "thin_proxy",
+              "host": "gsa",
+              "planned_capabilities": [
+                "rates.find_tariffs",
+                "solar.estimate_production",
+                "solar.get_resource",
+                "stations.find_alt_fuel"
+              ],
+              "blocked_reason": "Phase 3. Needs the apidatagov_rest adapter and the credential UX proven out on EIA first (Phase 2), since this is the key whose shared budget is the more dangerous of the two."
+            }
+          ],
+          "record_count": 1,
+          "total_matches": 1,
+          "note": "Active sources can be queried now. Proposed ones are inventory: DOE-MCP knows they exist and each carries a blocked_reason saying what stands in the way. That is a different answer from 'we have never heard of it'."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "doe-mcp-registry",
+            "steward": "The DOE-MCP project",
+            "system": "DOE-MCP source registry and organization table",
+            "dataset": "DOE-MCP source registry and organization table",
+            "dataset_version": "2026-10-08",
+            "authority_level": "unverified",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "cache_age_seconds": 0
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "nlr-developer-network",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": null,
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit"
+        },
+        "warnings": [],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "registry.search_sources",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-10-08",
+          "request_id": "recorded-workflow"
+        }
+      }
+    }
+  ]
+}

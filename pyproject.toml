@@ -45,6 +45,7 @@ dev = [
     "pytest==9.1.1",
     "pytest-asyncio==1.4.0",
     "ruff==0.13.0",
+    "mypy==2.3.1",
 ]
 
 [tool.ruff]
@@ -68,6 +69,7 @@ doe-research = "doe_mcp.servers.research:main"
 doe-energy-data = "doe_mcp.servers.energy_data:main"
 doe-earth = "doe_mcp.servers.earth:main"
 doe-materials = "doe_mcp.servers.materials:main"
+doe-bio = "doe_mcp.servers.bio:main"
 
 [build-system]
 requires = ["hatchling"]
@@ -79,8 +81,18 @@ packages = ["src/doe_mcp"]
 [tool.hatch.build.targets.wheel.force-include]
 "sources" = "doe_mcp/_sources"
 "schemas" = "doe_mcp/_schemas"
+"skills" = "doe_mcp/_skills"
+"tests/fixtures" = "doe_mcp/_fixtures"
+"THIRD_PARTY_DATA.yml" = "doe_mcp/THIRD_PARTY_DATA.yml"
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 testpaths = ["tests"]
 addopts = "-q"
+
+[tool.mypy]
+# Start with the envelope and a publisher page boundary; expand deliberately.
+files = ["src/doe_mcp/core/envelope.py", "src/doe_mcp/adapters/osti_family.py"]
+follow_imports = "skip"
+check_untyped_defs = true
+warn_unused_ignores = true

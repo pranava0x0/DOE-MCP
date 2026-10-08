@@ -1,0 +1,971 @@
+{
+  "format_version": "1",
+  "case": "site",
+  "title": "Rhode Island facility context",
+  "question": "Which sampled wind and solar facilities appear in this inventory?",
+  "mode": "recorded",
+  "simulation": false,
+  "registry_revision": "2026-10-08",
+  "generated_at": null,
+  "replay_clock": "2026-10-08T00:00:00Z",
+  "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
+  "fixtures": [
+    {
+      "file": "usgs-uspvdb.json",
+      "sha256": "4d93ec19e3b23d1de9ad1a1d618cca40070ae455764062a91d8a19a4c975c24c",
+      "captured_at": null
+    },
+    {
+      "file": "usgs-uswtdb.json",
+      "sha256": "717c92092351ab13cd9ad61bd10f8988c06748fe63201b872ef22d12fd23b70a",
+      "captured_at": null
+    }
+  ],
+  "limitations": [
+    "First page only; map bounds describe returned points, not a complete site search.",
+    "Parcel ownership, queue position, available MW, tariffs and environmental clearance remain unknown.",
+    "NEPA-MCP is a separate installation and manual handoff. No external server was called."
+  ],
+  "steps": [
+    {
+      "tool": "facility.find_wind_turbines",
+      "args": {
+        "state": "RI",
+        "rows": 5
+      },
+      "envelope": {
+        "data": {
+          "records": [
+            {
+              "case_id": 3001502,
+              "faa_ors": null,
+              "faa_asn": null,
+              "usgs_pr_id": 38309,
+              "t_state": "RI",
+              "t_county": "Kent County",
+              "t_fips": "44003",
+              "p_name": "New England Tech",
+              "p_year": 2009,
+              "p_tnum": 1,
+              "p_cap": 0.1,
+              "t_manu": "Northern Power Systems",
+              "t_model": "NW100",
+              "t_cap": 100,
+              "t_hh": 37.0,
+              "t_rd": 21.0,
+              "t_rsa": 346.36,
+              "t_ttlh": 47.5,
+              "t_conf_atr": 2,
+              "t_conf_loc": 3,
+              "t_img_date": "9/13/2017",
+              "t_img_src": "Maxar",
+              "xlong": -71.4515,
+              "ylat": 41.73279,
+              "eia_id": null,
+              "t_retrofit": 0,
+              "t_retro_yr": null,
+              "t_offshore": 0
+            },
+            {
+              "case_id": 3015899,
+              "faa_ors": "44-020002",
+              "faa_asn": "2005-ANE-1002-OE",
+              "usgs_pr_id": 38302,
+              "t_state": "RI",
+              "t_county": "Newport County",
+              "t_fips": "44005",
+              "p_name": "Portsmouth Abbey School",
+              "p_year": 2006,
+              "p_tnum": 1,
+              "p_cap": 0.66,
+              "t_manu": "Vestas",
+              "t_model": "V47-0.66",
+              "t_cap": 660,
+              "t_hh": 50.0,
+              "t_rd": 47.0,
+              "t_rsa": 1734.94,
+              "t_ttlh": 73.5,
+              "t_conf_atr": 3,
+              "t_conf_loc": 3,
+              "t_img_date": null,
+              "t_img_src": "Bing Maps Aerial",
+              "xlong": -71.2687,
+              "ylat": 41.59909,
+              "eia_id": null,
+              "t_retrofit": 0,
+              "t_retro_yr": null,
+              "t_offshore": 0
+            },
+            {
+              "case_id": 3034241,
+              "faa_ors": "44-020102",
+              "faa_asn": "2010-WTE-12453-OE",
+              "usgs_pr_id": 38304,
+              "t_state": "RI",
+              "t_county": "Newport County",
+              "t_fips": "44005",
+              "p_name": "Sandywoods",
+              "p_year": 2012,
+              "p_tnum": 1,
+              "p_cap": 0.28,
+              "t_manu": "Vergnet",
+              "t_model": "GEV MP",
+              "t_cap": 275,
+              "t_hh": 55.0,
+              "t_rd": 32.0,
+              "t_rsa": 804.25,
+              "t_ttlh": 71.0,
+              "t_conf_atr": 3,
+              "t_conf_loc": 3,
+              "t_img_date": "11/18/2020",
+              "t_img_src": "Maxar",
+              "xlong": -71.1539,
+              "ylat": 41.62049,
+              "eia_id": null,
+              "t_retrofit": 0,
+              "t_retro_yr": null,
+              "t_offshore": 0
+            },
+            {
+              "case_id": 3039300,
+              "faa_ors": "44-020088",
+              "faa_asn": "2011-WTE-8243-OE",
+              "usgs_pr_id": 38306,
+              "t_state": "RI",
+              "t_county": "Providence County",
+              "t_fips": "44007",
+              "p_name": "Field's Point Wastewater Treatment Facility",
+              "p_year": 2012,
+              "p_tnum": 3,
+              "p_cap": 4.5,
+              "t_manu": "Goldwind",
+              "t_model": "GW82",
+              "t_cap": 1500,
+              "t_hh": 70.0,
+              "t_rd": 82.0,
+              "t_rsa": 5281.02,
+              "t_ttlh": 110.9,
+              "t_conf_atr": 3,
+              "t_conf_loc": 3,
+              "t_img_date": "2/16/2017",
+              "t_img_src": "Maxar",
+              "xlong": -71.3898,
+              "ylat": 41.79279,
+              "eia_id": 59692,
+              "t_retrofit": 0,
+              "t_retro_yr": null,
+              "t_offshore": 0
+            },
+            {
+              "case_id": 3039301,
+              "faa_ors": "44-020089",
+              "faa_asn": "2011-WTE-8244-OE",
+              "usgs_pr_id": 38307,
+              "t_state": "RI",
+              "t_county": "Providence County",
+              "t_fips": "44007",
+              "p_name": "Field's Point Wastewater Treatment Facility",
+              "p_year": 2012,
+              "p_tnum": 3,
+              "p_cap": 4.5,
+              "t_manu": "Goldwind",
+              "t_model": "GW82",
+              "t_cap": 1500,
+              "t_hh": 70.0,
+              "t_rd": 82.0,
+              "t_rsa": 5281.02,
+              "t_ttlh": 110.9,
+              "t_conf_atr": 3,
+              "t_conf_loc": 3,
+              "t_img_date": "2/16/2017",
+              "t_img_src": "Maxar",
+              "xlong": -71.3873,
+              "ylat": 41.79449,
+              "eia_id": 59692,
+              "t_retrofit": 0,
+              "t_retro_yr": null,
+              "t_offshore": 0
+            }
+          ],
+          "record_count": 5,
+          "total_matches": 35,
+          "offset": 0,
+          "columns": [
+            "case_id",
+            "eia_id",
+            "faa_asn",
+            "faa_ors",
+            "p_cap",
+            "p_name",
+            "p_tnum",
+            "p_year",
+            "t_cap",
+            "t_conf_atr",
+            "t_conf_loc",
+            "t_county",
+            "t_fips",
+            "t_hh",
+            "t_img_date",
+            "t_img_src",
+            "t_manu",
+            "t_model",
+            "t_offshore",
+            "t_rd",
+            "t_retro_yr",
+            "t_retrofit",
+            "t_rsa",
+            "t_state",
+            "t_ttlh",
+            "usgs_pr_id",
+            "xlong",
+            "ylat"
+          ],
+          "query": [
+            "t_state=eq.RI"
+          ],
+          "units": "t_cap is one turbine's rated capacity in kilowatts and p_cap is the whole project's capacity in megawatts, which are different units on adjacent columns. Hub height (t_hh), rotor diameter (t_rd) and total height to blade tip (t_ttlh) are metres; rotor swept area (t_rsa) is square metres; xlong and ylat are decimal degrees.",
+          "confidence_codes": "t_conf_loc and t_conf_atr both run 1 to 3, and 3 is the confident case. Location: 1 means no turbine was visible in the image, 2 a pad or parts on the ground, 3 an installed turbine. Attributes: 1 means nothing beyond total height and year, 2 incomplete or conflicting sources, 3 complete and consistent across sources. t_img_date is the date of the image the location was checked against, and t_img_src names the imagery.",
+          "dataset_version": "USWTDB V9.0 (26 June 2026)",
+          "note": "An inventory of individual wind turbines: where they are and what they are, one row each, not how much they generated. For output, capacity factors, or anything hourly, use energy.get_data against EIA \u2014 the eia_id column on these rows is EIA's own plant id and is how the two line up. The API states no release version of its own, so dataset_version is this registry's record of the current release, checked 2026-09-08.",
+          "more": "35 records match. Page with offset to read past the 5 returned here rather than describing these as all of them."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "usgs-uswtdb",
+            "steward": "US Geological Survey",
+            "funder": "Office of Critical Materials and Energy Innovation",
+            "host": "US Geological Survey",
+            "system": "US Wind Turbine Database (USWTDB)",
+            "dataset": "US Wind Turbine Database (USWTDB)",
+            "dataset_version": "USWTDB V9.0 (26 June 2026)",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": "10.5066/F7TX3DN0",
+              "recommended": "Hoen, B.D., Diffendorfer, J.E., Rand, J.T., Kramer, L.A., Garrity, C.P., and Hunt, H.E., 2018, United States Wind Turbine Database V9.0 (June 26, 2026): U.S. Geological Survey, American Clean Power Association, and Lawrence Berkeley National Laboratory data release, https://doi.org/10.5066/F7TX3DN0.",
+              "required": false
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "turbines#3001502",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": null,
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_02",
+            "source_ref": "source_01",
+            "record_id": "turbines#3015899",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": null,
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_03",
+            "source_ref": "source_01",
+            "record_id": "turbines#3034241",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": null,
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_04",
+            "source_ref": "source_01",
+            "record_id": "turbines#3039300",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": null,
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_05",
+            "source_ref": "source_01",
+            "record_id": "turbines#3039301",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": null,
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "truncated",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "usgs-uswtdb"
+          ]
+        },
+        "warnings": [
+          {
+            "code": "screening_only",
+            "message": "1 of the 5 records returned carry a confidence code below the publisher's top score, which means the compilers could not fully confirm the location or the attributes from imagery and records. Those rows are estimates and are marked as such in the data; reporting them beside the confirmed ones without the distinction turns an estimate into a survey. The codes are decoded in confidence_codes.",
+            "source_id": "usgs-uswtdb"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "facility.find_wind_turbines",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-10-08",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "facility.find_solar_facilities",
+      "args": {
+        "state": "RI",
+        "rows": 5
+      },
+      "envelope": {
+        "data": {
+          "records": [
+            {
+              "case_id": 400417,
+              "multi_poly": "single",
+              "eia_id": 58214,
+              "p_state": "RI",
+              "p_county": "Kent",
+              "ylat": 41.6518,
+              "xlong": -71.7111,
+              "p_area": 32794,
+              "p_img_date": 20220306,
+              "p_dig_conf": 4,
+              "p_name": "West Greenwich Solar",
+              "p_year": 2013,
+              "p_pwr_reg": "ISNE",
+              "p_tech_pri": "PV",
+              "p_tech_sec": "c-si",
+              "p_axis": "fixed-tilt",
+              "p_azimuth": 180,
+              "p_tilt": 25,
+              "p_battery": null,
+              "p_cap_ac": 1.9,
+              "p_cap_dc": 2.0,
+              "p_type": "greenfield",
+              "p_agrivolt": "non-agrivoltaic",
+              "p_zscore": -0.19,
+              "p_comm": null,
+              "p_sys_type": "ground"
+            },
+            {
+              "case_id": 400618,
+              "multi_poly": "multi",
+              "eia_id": 58583,
+              "p_state": "RI",
+              "p_county": "Providence",
+              "ylat": 41.7738,
+              "xlong": -71.3403,
+              "p_area": 113419,
+              "p_img_date": 20210825,
+              "p_dig_conf": 4,
+              "p_name": "Forbes Street Solar",
+              "p_year": 2013,
+              "p_pwr_reg": "ISNE",
+              "p_tech_pri": "PV",
+              "p_tech_sec": "c-si",
+              "p_axis": "fixed-tilt",
+              "p_azimuth": 180,
+              "p_tilt": 20,
+              "p_battery": null,
+              "p_cap_ac": 3.0,
+              "p_cap_dc": 3.7,
+              "p_type": "landfill",
+              "p_agrivolt": "non-agrivoltaic",
+              "p_zscore": -0.59,
+              "p_comm": null,
+              "p_sys_type": "ground"
+            },
+            {
+              "case_id": 401343,
+              "multi_poly": "single",
+              "eia_id": 59858,
+              "p_state": "RI",
+              "p_county": "Providence",
+              "ylat": 41.8014,
+              "xlong": -71.5585,
+              "p_area": 19906,
+              "p_img_date": 20210830,
+              "p_dig_conf": 4,
+              "p_name": "Johnston Solar",
+              "p_year": 2015,
+              "p_pwr_reg": "ISNE",
+              "p_tech_pri": "PV",
+              "p_tech_sec": "c-si",
+              "p_axis": "fixed-tilt",
+              "p_azimuth": 180,
+              "p_tilt": 25,
+              "p_battery": null,
+              "p_cap_ac": 1.0,
+              "p_cap_dc": 1.5,
+              "p_type": "greenfield",
+              "p_agrivolt": "non-agrivoltaic",
+              "p_zscore": 0.01,
+              "p_comm": null,
+              "p_sys_type": "ground"
+            },
+            {
+              "case_id": 401715,
+              "multi_poly": "single",
+              "eia_id": 60451,
+              "p_state": "RI",
+              "p_county": "Providence",
+              "ylat": 41.9861,
+              "xlong": -71.5848,
+              "p_area": 20315,
+              "p_img_date": 20241008,
+              "p_dig_conf": 4,
+              "p_name": "Brookside",
+              "p_year": 2015,
+              "p_pwr_reg": "ISNE",
+              "p_tech_pri": "PV",
+              "p_tech_sec": "c-si",
+              "p_axis": "fixed-tilt",
+              "p_azimuth": 180,
+              "p_tilt": 30,
+              "p_battery": null,
+              "p_cap_ac": 1.0,
+              "p_cap_dc": 1.2,
+              "p_type": "greenfield",
+              "p_agrivolt": "non-agrivoltaic",
+              "p_zscore": -0.22,
+              "p_comm": null,
+              "p_sys_type": "ground"
+            },
+            {
+              "case_id": 401746,
+              "multi_poly": "multi",
+              "eia_id": 60495,
+              "p_state": "RI",
+              "p_county": "Providence",
+              "ylat": 41.799,
+              "xlong": -71.4362,
+              "p_area": 16554,
+              "p_img_date": 20241202,
+              "p_dig_conf": 4,
+              "p_name": "Little Bay",
+              "p_year": 2014,
+              "p_pwr_reg": "ISNE",
+              "p_tech_pri": "PV",
+              "p_tech_sec": "c-si",
+              "p_axis": "fixed-tilt",
+              "p_azimuth": 180,
+              "p_tilt": 14,
+              "p_battery": null,
+              "p_cap_ac": 1.3,
+              "p_cap_dc": 1.5,
+              "p_type": "greenfield",
+              "p_agrivolt": "non-agrivoltaic",
+              "p_zscore": 0.22,
+              "p_comm": null,
+              "p_sys_type": "ground"
+            }
+          ],
+          "record_count": 5,
+          "total_matches": 71,
+          "offset": 0,
+          "columns": [
+            "case_id",
+            "eia_id",
+            "multi_poly",
+            "p_agrivolt",
+            "p_area",
+            "p_axis",
+            "p_azimuth",
+            "p_battery",
+            "p_cap_ac",
+            "p_cap_dc",
+            "p_comm",
+            "p_county",
+            "p_dig_conf",
+            "p_img_date",
+            "p_name",
+            "p_pwr_reg",
+            "p_state",
+            "p_sys_type",
+            "p_tech_pri",
+            "p_tech_sec",
+            "p_tilt",
+            "p_type",
+            "p_year",
+            "p_zscore",
+            "xlong",
+            "ylat"
+          ],
+          "query": [
+            "p_state=eq.RI"
+          ],
+          "units": "p_cap_ac and p_cap_dc are megawatts, alternating and direct current, and the two differ for every facility. p_area is square metres, p_tilt and p_azimuth are degrees, and xlong and ylat are decimal degrees for the facility's centre rather than its outline.",
+          "confidence_codes": "p_dig_conf runs 1 to 4, and 4 is the confident case: 1 means one polygon standing in for several facilities that could not be told apart, 2 several polygons drawn against unclear EIA records, 3 a polygon covering only part of the facility because the imagery was poor, 4 a facility polygon drawn with high confidence. In cases 1 to 3 the attributes may not describe the whole facility. p_img_date is the date of the image the boundary was digitised from, which is the honest vintage of the polygon.",
+          "dataset_version": "USPVDB v4.0 (April 2026)",
+          "note": "An inventory of utility-scale solar facilities of one megawatt and up: where they are and what they are, one row each, not how much they generated. For output, capacity factors, or anything hourly, use energy.get_data against EIA \u2014 the eia_id column on these rows is EIA's own plant id and is how the two line up. The API states no release version of its own, so dataset_version is this registry's record of the current release, checked 2026-09-08.",
+          "more": "71 records match. Page with offset to read past the 5 returned here rather than describing these as all of them."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "usgs-uspvdb",
+            "steward": "US Geological Survey",
+            "funder": "Office of Critical Materials and Energy Innovation",
+            "host": "US Geological Survey",
+            "system": "US Large-Scale Solar Photovoltaic Database (USPVDB)",
+            "dataset": "US Large-Scale Solar Photovoltaic Database (USPVDB)",
+            "dataset_version": "USPVDB v4.0 (April 2026)",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": "10.5066/P9IA3TUS",
+              "recommended": "Fujita, K.S., Ancona, Z.H., Kramer, L.A., Straka, M., Gautreau, T.E., Garrity, C.P., Robson, D., Diffendorfer, J.E., and Hoen, B., 2023, United States Large-Scale Solar Photovoltaic Database (v4.0, April 2026): U.S. Geological Survey and Lawrence Berkeley National Laboratory data release, https://doi.org/10.5066/P9IA3TUS.",
+              "required": false
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "projects#400417",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": null,
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_02",
+            "source_ref": "source_01",
+            "record_id": "projects#400618",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": null,
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_03",
+            "source_ref": "source_01",
+            "record_id": "projects#401343",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": null,
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_04",
+            "source_ref": "source_01",
+            "record_id": "projects#401715",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": null,
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_05",
+            "source_ref": "source_01",
+            "record_id": "projects#401746",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": null,
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "truncated",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "usgs-uspvdb"
+          ]
+        },
+        "warnings": [],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "facility.find_solar_facilities",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-10-08",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "registry.search_sources",
+      "args": {
+        "capability": "grid.interconnection_queue"
+      },
+      "envelope": {
+        "data": {
+          "sources": [
+            {
+              "id": "lbnl-emp-datasets",
+              "name": "LBNL Electricity Markets and Policy datasets",
+              "domain": "energy",
+              "steward": "lbnl",
+              "authority_level": "primary",
+              "declared_state": "proposed",
+              "operational_state": "unknown",
+              "automation_status": "public_download",
+              "tier": "catalog_pointer",
+              "planned_capabilities": [
+                "grid.interconnection_queue"
+              ],
+              "blocked_reason": "Phase 3. Spreadsheet parsing per annual edition; no access obstacle."
+            }
+          ],
+          "record_count": 1,
+          "total_matches": 1,
+          "note": "Active sources can be queried now. Proposed ones are inventory: DOE-MCP knows they exist and each carries a blocked_reason saying what stands in the way. That is a different answer from 'we have never heard of it'."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "doe-mcp-registry",
+            "steward": "The DOE-MCP project",
+            "system": "DOE-MCP source registry and organization table",
+            "dataset": "DOE-MCP source registry and organization table",
+            "dataset_version": "2026-10-08",
+            "authority_level": "unverified",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "cache_age_seconds": 0
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "lbnl-emp-datasets",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": null,
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit"
+        },
+        "warnings": [],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "registry.search_sources",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-10-08",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "registry.list_neighbors",
+      "args": {
+        "capability": ""
+      },
+      "envelope": {
+        "data": {
+          "neighbors": [
+            {
+              "id": "building-simulation-mcps",
+              "name": "EnergyPlus-MCP and OpenStudio-MCP",
+              "maintainer": "LBNL Energy Technologies Area; National Laboratory of the Rockies",
+              "status": "listed",
+              "compliance": "opaque",
+              "why_not_absorbed": "A different product class. These wrap SIMULATORS \u2014 you give them a model and they run it \u2014 where DOE-MCP serves published data. Wrapping a simulator means owning its installation, its version compatibility, and its runtime, none of which the provenance envelope has anything useful to say about. The 185 or more combined tools would also breach the sizing ceiling ninefold.",
+              "tool_count": 185,
+              "install": {
+                "method": "source",
+                "command": "git clone https://github.com/LBNL-ETA/EnergyPlus-MCP"
+              },
+              "repository": "https://github.com/LBNL-ETA/EnergyPlus-MCP"
+            },
+            {
+              "id": "genesis-lane-servers",
+              "name": "DOE Genesis Mission MCP deployments (gated)",
+              "maintainer": "Various DOE national laboratories",
+              "status": "watch",
+              "compliance": "opaque",
+              "why_not_absorbed": "Access-gated by design and pointed at internal instruments, facilities, and compute. Wrapping a gated server would produce a tool that fails for every public user, which is worse than not having it. The named watch items are BNL's PanDA MCP, Argonne's Globus-service MCPs, LBNL's CBorg, and the gated Genesis Skills repository on OSTI's GitLab.",
+              "install": {
+                "method": "source",
+                "command": "unavailable \u2014 access is gated (OneID / RFA / SSO)"
+              }
+            },
+            {
+              "id": "materials-project-mcp",
+              "name": "Materials Project MCP (inside mp-api)",
+              "maintainer": "Materials Project, Lawrence Berkeley National Laboratory",
+              "status": "watch",
+              "compliance": "full",
+              "why_not_absorbed": "It IS absorbed, which is why this entry exists to say so. Materials Project ships its first-party MCP server inside the `mp-api` Python library (search and fetch shipped as of 0.46.0; fetch_all, fetch_many, phase-diagram lookup and an mpmcp CLI in development). Because the upstream ships a LIBRARY rather than only a server, decision 0011 routes it to depend-and-wrap: declare the dependency, write thin tools over it, and avoid asking a user to install and configure a second MCP server for one domain. The library's surface is reshaped into DOE-MCP's tool contract rather than re-exported, because 0014's sizing bands bind a wrapper like anything else.",
+              "capabilities": [
+                "materials.search"
+              ],
+              "install": {
+                "method": "pip",
+                "command": "pip install \"doe-mcp[materials]\""
+              },
+              "repository": "https://github.com/materialsproject/api"
+            },
+            {
+              "id": "nasa-earthdata-mcp",
+              "name": "NASA Earthdata (CMR) MCP",
+              "maintainer": "NASA Earthdata",
+              "status": "listed",
+              "compliance": "opaque",
+              "why_not_absorbed": "Another agency's data and another agency's server, already hosted and already working. Rebuilding it would duplicate NASA's own infrastructure to no one's benefit. The overlap with DOE-MCP is narrow and specific \u2014 the ORNL DAAC \u2014 and there the publisher triple already carries the answer on every provenance entry: ORNL operates it, NASA funds it.",
+              "capabilities": [
+                "earth.search_datasets"
+              ],
+              "install": {
+                "method": "source",
+                "command": "remote server \u2014 configure the endpoint cmr.earthdata.nasa.gov/mcp/v1"
+              }
+            },
+            {
+              "id": "nepa-mcp",
+              "name": "NEPA-MCP",
+              "maintainer": "Pacific Northwest National Laboratory",
+              "status": "listed",
+              "compliance": "opaque",
+              "why_not_absorbed": "Server-only and far too large. 56 tools across 23 servers is more than twice the hard ceiling a single DOE-MCP profile may carry, and its release cadence \u2014 every three to six days \u2014 would make any wrapper permanently behind. DOE-MCP registers the underlying NEPA document database as a `proposed` manifest that says exactly this, so the registry answers \"not a gap, a decision\".",
+              "capabilities": [
+                "docs.search_nepa"
+              ],
+              "tool_count": 56,
+              "install": {
+                "method": "pipx",
+                "command": "pipx install nepa-mcp"
+              },
+              "repository": "https://github.com/pnnl/nepa-mcp"
+            }
+          ],
+          "record_count": 5,
+          "note": "MCP has no mechanism for one server to advertise or install another (checked against the protocol 2026-09-01), so these carry executable install commands rather than links. Results from a server listed as 'opaque' are unverified external evidence and should be labelled as such \u2014 being official does not make a server's output carry provenance."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "doe-mcp-registry",
+            "steward": "The DOE-MCP project",
+            "system": "DOE-MCP source registry and organization table",
+            "dataset": "DOE-MCP source registry and organization table",
+            "dataset_version": "2026-10-08",
+            "authority_level": "unverified",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "cache_age_seconds": 0
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "building-simulation-mcps",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": null,
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_02",
+            "source_ref": "source_01",
+            "record_id": "genesis-lane-servers",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": null,
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_03",
+            "source_ref": "source_01",
+            "record_id": "materials-project-mcp",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": null,
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_04",
+            "source_ref": "source_01",
+            "record_id": "nasa-earthdata-mcp",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": null,
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_05",
+            "source_ref": "source_01",
+            "record_id": "nepa-mcp",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": null,
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit"
+        },
+        "warnings": [],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "registry.list_neighbors",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-10-08",
+          "request_id": "recorded-workflow"
+        }
+      }
+    }
+  ]
+}

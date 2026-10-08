@@ -144,6 +144,17 @@ capabilities:
   - id: bio.search_studies
     description: Microbiome or genomic studies and their biosamples.
 
+  - id: bio.get_study
+    description: >
+      One microbiome study in full: its investigators, funding, DOIs and
+      how many biosamples it holds.
+
+  - id: bio.biosamples
+    description: >
+      Biosamples by study, ecosystem, environmental medium, place or
+      collection date, with coordinates and the environmental terms they
+      were described with. Sample metadata, not sequence data.
+
   - id: projects.search_awards
     description: Funded projects, awards, and demonstration portfolios.
 

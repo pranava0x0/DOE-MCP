@@ -1,0 +1,59 @@
+checked:
+- task: 1
+  steps:
+  - tool: bio.search_biosamples
+    args:
+      ecosystem_type: Soil
+      place: washington
+      rows: 5
+    expect:
+      coverage.result: hit
+      coverage.registry: covered
+      data.biosamples:
+        nonempty: true
+- task: 2
+  steps:
+  - tool: bio.get_study
+    args:
+      study_id: nmdc:sty-11-34xj1150
+    expect:
+      coverage.result: hit
+      data.biosample_count:
+        min: 1000
+      next_actions: nonempty
+- task: 3
+  steps:
+  - tool: bio.search_studies
+    args:
+      text: shale
+    expect:
+      coverage.result: hit
+      data.studies:
+        any:
+          study_id: nmdc:sty-11-8fb6t785
+  - tool: bio.search_biosamples
+    args:
+      study_id: nmdc:sty-11-8fb6t785
+      rows: 5
+    expect:
+      coverage.result: hit
+      coverage.pagination: truncated
+- task: 4
+  steps:
+  - tool: bio.search_biosamples
+    args:
+      place: zzzznotaplacezzzz
+      rows: 5
+    expect:
+      coverage.result: empty
+      coverage.registry: covered
+      data.total_matches: 0
+- task: 5
+  steps:
+  - tool: earth.search_datasets
+    args:
+      text: permafrost
+      rows: 5
+    expect:
+      coverage.result: hit
+reader: []

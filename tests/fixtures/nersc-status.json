@@ -1,0 +1,272 @@
+{
+  "note": "Recorded live from NERSC Superfacility API (system status) (https://docs.nersc.gov/services/sfapi/) by tools/record_fixtures.py. Publisher content redistributed under the terms recorded in THIRD_PARTY_DATA.yml.",
+  "recorded_at": "2026-10-08T23:12:37.080875+00:00",
+  "redaction": "Email addresses replaced with redacted@example.invalid and credential values with 'redacted' at record time. Field shapes and lengths are otherwise the publisher's.",
+  "interactions": [
+    {
+      "url": "https://api.nersc.gov/api/v1.2/status",
+      "params": {},
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": [
+        {
+          "name": "perlmutter",
+          "full_name": "Perlmutter",
+          "description": "System is active",
+          "system_type": "compute",
+          "notes": [],
+          "status": "active",
+          "updated_at": "2026-09-22T17:00:00"
+        },
+        {
+          "name": "global_common",
+          "full_name": "Global Common",
+          "description": "System is active",
+          "system_type": "filesystem",
+          "notes": [],
+          "status": "active",
+          "updated_at": "2026-08-03T17:35:00"
+        },
+        {
+          "name": "community_filesystem",
+          "full_name": "Community File System (CFS)",
+          "description": "System is active",
+          "system_type": "filesystem",
+          "notes": [],
+          "status": "active",
+          "updated_at": "2026-08-03T17:35:00"
+        },
+        {
+          "name": "global_homes",
+          "full_name": "Global Homes",
+          "description": "System is active",
+          "system_type": "filesystem",
+          "notes": [],
+          "status": "active",
+          "updated_at": "2026-08-06T15:30:30"
+        },
+        {
+          "name": "dtns",
+          "full_name": "Data Transfer Nodes",
+          "description": "System is active",
+          "system_type": "service",
+          "notes": [],
+          "status": "active",
+          "updated_at": "2026-09-24T11:00:00"
+        },
+        {
+          "name": "sgns",
+          "full_name": "Science Gateway Services",
+          "description": "System is active",
+          "system_type": "service",
+          "notes": [],
+          "status": "active",
+          "updated_at": "2026-08-03T17:35:00"
+        },
+        {
+          "name": "sciencedatabases",
+          "full_name": "Science Databases",
+          "description": "System is active",
+          "system_type": "service",
+          "notes": [],
+          "status": "active",
+          "updated_at": "2026-09-16T12:15:00"
+        },
+        {
+          "name": "spin",
+          "full_name": "Spin",
+          "description": "System is active",
+          "system_type": "service",
+          "notes": [],
+          "status": "active",
+          "updated_at": "2026-09-16T17:40:00"
+        },
+        {
+          "name": "globus",
+          "full_name": "Globus",
+          "description": "System is active",
+          "system_type": "service",
+          "notes": [],
+          "status": "active",
+          "updated_at": "2026-08-03T17:35:00"
+        },
+        {
+          "name": "jupyter",
+          "full_name": "Jupyter",
+          "description": "System is active",
+          "system_type": "service",
+          "notes": [],
+          "status": "active",
+          "updated_at": "2026-08-16T08:55:00"
+        },
+        {
+          "name": "website",
+          "full_name": "NERSC Website",
+          "description": "System is active",
+          "system_type": "service",
+          "notes": [],
+          "status": "active",
+          "updated_at": "2026-06-09T15:25:00"
+        },
+        {
+          "name": "network",
+          "full_name": "Network",
+          "description": "System is active",
+          "system_type": "service",
+          "notes": [],
+          "status": "active",
+          "updated_at": "2026-09-16T10:21:00"
+        },
+        {
+          "name": "authentication_servi",
+          "full_name": "Authentication Services",
+          "description": "System is active",
+          "system_type": "service",
+          "notes": [],
+          "status": "active",
+          "updated_at": "2026-09-01T11:00:00"
+        },
+        {
+          "name": "thinlinc",
+          "full_name": "Thinlinc",
+          "description": "System is active",
+          "system_type": "service",
+          "notes": [],
+          "status": "active",
+          "updated_at": "2026-09-21T09:25:00"
+        },
+        {
+          "name": "helpportal",
+          "full_name": "Help Portal",
+          "description": "System is active",
+          "system_type": "service",
+          "notes": [],
+          "status": "active",
+          "updated_at": "2026-08-03T17:35:00"
+        },
+        {
+          "name": "iris",
+          "full_name": "IRIS",
+          "description": "System is active",
+          "system_type": "service",
+          "notes": [],
+          "status": "active",
+          "updated_at": "2026-10-08T14:05:00"
+        },
+        {
+          "name": "archive",
+          "full_name": "HPSS Archive (User)",
+          "description": "System is active",
+          "system_type": "filesystem",
+          "notes": [],
+          "status": "active",
+          "updated_at": "2026-10-07T13:25:00"
+        },
+        {
+          "name": "container_runtimes",
+          "full_name": "Container Runtimes",
+          "description": "System is active",
+          "system_type": "service",
+          "notes": [],
+          "status": "active",
+          "updated_at": "2026-09-16T20:10:41"
+        },
+        {
+          "name": "regent",
+          "full_name": "HPSS Regent (Backup)",
+          "description": "System is active",
+          "system_type": "filesystem",
+          "notes": [],
+          "status": "active",
+          "updated_at": "2026-09-30T08:47:00"
+        }
+      ]
+    },
+    {
+      "url": "https://api.nersc.gov/api/v1.2/status/outages/planned",
+      "params": {},
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": [
+        [
+          {
+            "name": "perlmutter",
+            "start_at": "2026-10-21T06:00:00",
+            "end_at": "2026-10-21T22:00:00",
+            "description": "Perlmutter Monthly Maintenance",
+            "notes": "NERSC engineers will be performing a monthly scheduled maintenance.",
+            "status": "Planned",
+            "swo": null,
+            "update_at": null
+          },
+          {
+            "name": "perlmutter",
+            "start_at": "2026-11-11T06:00:00",
+            "end_at": "2026-11-11T22:00:00",
+            "description": "Perlmutter Monthly Maintenance",
+            "notes": "NERSC engineers will be performing a monthly scheduled maintenance.",
+            "status": "Planned",
+            "swo": null,
+            "update_at": null
+          },
+          {
+            "name": "perlmutter",
+            "start_at": "2026-12-16T06:00:00",
+            "end_at": "2026-12-16T22:00:00",
+            "description": "Perlmutter Monthly Maintenance",
+            "notes": "NERSC engineers will be performing a monthly scheduled maintenance.",
+            "status": "Planned",
+            "swo": null,
+            "update_at": null
+          }
+        ],
+        [
+          {
+            "name": "archive",
+            "start_at": "2026-11-01T19:00:00",
+            "end_at": "2026-11-06T17:00:00",
+            "description": "HPSS Archive - Planned Maintenance",
+            "notes": "HPSS Archive upgrade from V9.3 to V11.3. The main HPSS User environment, Archive, will be shut down from 7 pm (Pacific Time) on November 1 until 5 pm on November 6, 2026, while a new version of the system is deployed. During this five-day period, it will not be possible to store or retrieve data from the system. Users are strongly encouraged to plan accordingly.",
+            "status": "Planned",
+            "swo": null,
+            "update_at": null
+          }
+        ],
+        [
+          {
+            "name": "container_runtimes",
+            "start_at": "2026-10-21T06:00:00",
+            "end_at": "2026-10-21T22:00:00",
+            "description": "Perlmutter Monthly Maintenance",
+            "notes": "NERSC engineers will be performing a monthly scheduled maintenance.",
+            "status": "Planned",
+            "swo": null,
+            "update_at": null
+          },
+          {
+            "name": "container_runtimes",
+            "start_at": "2026-11-11T06:00:00",
+            "end_at": "2026-11-11T22:00:00",
+            "description": "Perlmutter Monthly Maintenance",
+            "notes": "NERSC engineers will be performing a monthly scheduled maintenance.",
+            "status": "Planned",
+            "swo": null,
+            "update_at": null
+          },
+          {
+            "name": "container_runtimes",
+            "start_at": "2026-12-16T06:00:00",
+            "end_at": "2026-12-16T22:00:00",
+            "description": "Perlmutter Monthly Maintenance",
+            "notes": "NERSC engineers will be performing a monthly scheduled maintenance.",
+            "status": "Planned",
+            "swo": null,
+            "update_at": null
+          }
+        ]
+      ]
+    }
+  ]
+}

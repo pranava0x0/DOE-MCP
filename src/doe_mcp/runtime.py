@@ -15,9 +15,11 @@ from .adapters.daymet import DaymetAdapter
 from .adapters.eia_v2 import EiaV2Adapter
 from .adapters.esgf import EsgfAdapter
 from .adapters.essdive import EssDiveAdapter
+from .adapters.facility_status import FacilityStatusAdapter
 from .adapters.federal_register import FederalRegisterAdapter
 from .adapters.fueleconomy import FuelEconomyAdapter
 from .adapters.json_document import JsonDocumentAdapter
+from .adapters.nmdc import NmdcAdapter
 from .adapters.opendatasoft import OpenDataSoftAdapter
 from .adapters.optimade import OptimadeAdapter
 from .adapters.osti_family import OstiFamilyAdapter
@@ -80,6 +82,8 @@ class RuntimeContext:
     sage: SageAdapter
     optimade: OptimadeAdapter
     basis_sets: BasisSetExchangeAdapter
+    facility_status: FacilityStatusAdapter
+    nmdc: NmdcAdapter
     server_name: str = "doe-mcp"
     server_version: str = __version__
     adapters: dict[str, str] = field(

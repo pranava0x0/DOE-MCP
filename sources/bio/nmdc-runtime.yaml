@@ -4,6 +4,7 @@ domain: bio
 
 publisher:
   steward: lbnl
+  funder: sc
   authority_level: official_secondary
 
 aliases:
@@ -12,15 +13,19 @@ aliases:
 
 labs: [lbnl, anl, ornl, pnnl]
 
-# Capabilities stay empty until this source is active: a capability id
-# is a routing promise, and the activation gate refuses one from a
-# manifest nothing can query. What this source would serve is listed
-# under planned_capabilities, which nothing routes on.
-capabilities: []
+capabilities:
+  - id: bio.search_studies
+    tool_hint: bio.search_studies
+  - id: bio.get_study
+    tool_hint: bio.get_study
+  - id: bio.biosamples
+    tool_hint: bio.search_biosamples
 
-planned_capabilities: [bio.search_studies]
+planned_capabilities: []
+
 adapter:
-  type: none
+  type: nmdc
+  base_url: https://api.microbiomedata.org
 
 access:
   mode: anonymous
@@ -30,9 +35,19 @@ access:
   terms_notes: >
     Reads are open and keyless: a 79-path OpenAPI description with 93
     operations, confirmed reachable without credentials during the
-    platform survey. Write operations require accounts and are outside
-    this project.
-  terms_reviewed_at: "2026-09-01"
+    platform survey and again on 2026-10-08, when the two collections this
+    project reads held 85 studies and 27,352 biosamples. Write operations
+    require accounts and are outside this project. Study records carry
+    investigators' email addresses and profile images; the adapter keeps
+    names and ORCIDs and drops the rest.
+  terms_reviewed_at: "2026-10-08"
+  terms_gap: >
+    No published rate limit and no data-use statement on the API itself;
+    the data portal's usage terms were not found in a scripted read.
+  citation_required: false
+  rate_limit_note: >
+    None published. The study collection is one 327 KB request per cache
+    window; a biosample search is one request per page.
 
 freshness:
   expected_cadence: continuous
@@ -42,32 +57,49 @@ freshness:
 
 coverage:
   scope: >
-    Microbiome studies, biosamples, omics processing records, and
-    workflow outputs across a multi-laboratory collaboration.
+    Microbiome studies and their biosamples across a multi-laboratory
+    collaboration: ecosystem classification, environmental terms, place,
+    coordinates, collection date and depth for each sample, and
+    investigators, funding and DOIs for each study.
   temporal: current
   dataset_version: "current"
+  record_count: 85
+  record_count_checked: "2026-10-08"
   known_limitations:
     - >
-      A 79-path API is far larger than any tool surface should mirror.
-      Under decision 0014 the shape is a handful of semantic tools over
-      the paths that answer real questions, not a tool per path.
+      Metadata, not sequence data. Reads, assemblies and annotations live
+      in the sequence archives and at JGI, and are reached through a
+      study's DOIs rather than through this source.
     - >
-      Metadata and workflow records rather than raw sequence data; raw
-      reads live in the sequence archives and are reached by pointer.
+      Studies NMDC has ingested, not every microbiome study. Most of the
+      85 are JGI or EMSL projects and a consortium study such as NEON's
+      appears once with thousands of samples, so counts describe NMDC's
+      holdings rather than the field.
+    - >
+      Only 8 of 85 studies carry an ecosystem classification of their
+      own; the rest are classified sample by sample. An ecosystem filter
+      on studies therefore misses most of them, and the biosample filter
+      is the one to use.
+    - >
+      Place is free text as submitted ('USA: Washington, Abby Road'), so
+      a place search is a substring match and a state name may miss
+      samples recorded only by site or coordinates.
 
 authority_notes: >
-  Intended capabilities: bio.search_studies. Phase 4. Multi-laboratory:
-  LBNL leads, with ANL, ORNL, and PNNL participating, which is why the
-  crosswalk lists four labs rather than one.
+  Official_secondary: NMDC curates metadata submitted by the projects that
+  ran the studies, so for any one study the authority is its team and the
+  archive holding its sequence data. Multi-laboratory: LBNL leads, with
+  ANL, ORNL and PNNL participating, which is why the crosswalk lists four
+  labs rather than one. Activated on 2026-10-08 as the first source of the
+  doe-bio server.
 
 health:
-  probe: none
+  probe: nmdc_study_count
+  expect:
+    min_records: 50
 
 lifecycle:
-  declared_state: proposed
+  declared_state: active
   added: "2026-09-02"
-  last_verified: "2026-09-01"
+  last_verified: "2026-10-08"
   verified_by: pranava0x0
-  blocked_reason: >
-    Phase 4. Needs the bio domain server. No access obstacle; the work
-    is choosing which of 93 operations become tools.

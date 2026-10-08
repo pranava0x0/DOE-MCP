@@ -17,7 +17,8 @@ from __future__ import annotations
 import asyncio
 from typing import Any
 
-from ..core.assemble import failure, gap, result_dim
+from ..core.assemble import (failure, gap, result_dim,
+                             selection_coverage)
 from ..core.envelope import (Coverage, Envelope, ExecutionCoverage,
                              PaginationCoverage, RecipeKind, RegistryCoverage,
                              SourceClaimCoverage, WarningCode)
@@ -31,6 +32,8 @@ DISCOVERY_TOOLS = ToolRegistry(package="discovery")
 
 # Ordered. DOE Data Explorer goes first because it already indexes the
 # repositories the others only describe.
+FACILITY_STATUS_SOURCE = "nersc-status"
+
 FANOUT = ("osti-data-explorer", "ornl-openenergyhub", "doe-open-data-catalog",
           "doe-code-json")
 
@@ -263,6 +266,80 @@ async def list_pure_resources(ctx: RuntimeContext) -> Envelope:
                  sources_searched=[manifest.id]))
 
 
+async def facility_status(ctx: RuntimeContext, system: str = "",
+                          include_planned: bool = True) -> Envelope:
+    b = builder(ctx, "compute.facility_status", contract_version="1")
+    manifest = require_active_source(ctx, FACILITY_STATUS_SOURCE)
+    registry_dim, gaps = selection_coverage(ctx.sources,
+                                            "compute.facility_status",
+                                            [manifest])
+    fetched = await ctx.facility_status.board(manifest, system=system,
+                                              include_planned=include_planned)
+    board = fetched.value
+    params = ctx.facility_status.params_for(manifest)
+    ref = add_manifest_source(b, ctx, manifest,
+                              retrieved_at=fetched.retrieved_at,
+                              cache_age_seconds=fetched.cache_age_seconds,
+                              from_cache=fetched.from_cache)
+    for s in board.systems:
+        b.add_evidence(source_ref=ref, record_id=s.name,
+                       retrieved_at=fetched.retrieved_at,
+                       effective_at=s.updated_at, transformations=[])
+
+    not_active = [s for s in board.systems if not s.active]
+    data: dict[str, Any] = {
+        "facility": board.facility,
+        "systems": [{"name": s.name, "full_name": s.full_name,
+                     "type": s.system_type, "status": s.status,
+                     "description": s.description, "notes": s.notes,
+                     "updated_at": s.updated_at}
+                    for s in board.systems],
+        "record_count": len(board.systems),
+        "systems_on_board": board.systems_on_board,
+        "not_active": [s.name for s in not_active],
+        "timestamps": params.timezone_note,
+        "note": ("The facility's own public status board. updated_at is "
+                 "when a row last changed, not when it was checked, so an "
+                 "old date on an active system means a quiet system. "
+                 "Nothing here describes a user's jobs, queue or "
+                 "allocation."),
+    }
+    if include_planned:
+        # Each window is its own record, so each gets evidence a citation
+        # can point at. The board gives a window no id; system and start
+        # time together are unique on it.
+        for o in board.planned:
+            b.add_evidence(source_ref=ref,
+                           record_id=f"{o.system}@{o.start_at or 'unscheduled'}",
+                           retrieved_at=fetched.retrieved_at,
+                           effective_at=o.start_at, transformations=[])
+        data["planned_outages"] = [
+            {"system": o.system, "start_at": o.start_at, "end_at": o.end_at,
+             "description": o.description, "notes": o.notes,
+             "status": o.status} for o in board.planned]
+    # The other facilities are registered and unreadable. Naming them with
+    # their reasons is what keeps "NERSC is up" from being read as "DOE's
+    # computing is up".
+    unread = ctx.sources.proposed_for_capability("compute.facility_status")
+    if unread:
+        data["other_facilities"] = [
+            {"source_id": m.id, "name": m.name,
+             "why_not_read": " ".join((m.lifecycle.blocked_reason
+                                       or "").split()) or None}
+            for m in unread]
+        data["other_facilities_note"] = (
+            "Registered and not readable by DOE-MCP. Their absence from "
+            "this answer says nothing about whether they are up.")
+
+    return b.build(data, Coverage(
+        registry=registry_dim, execution=ExecutionCoverage.complete,
+        pagination=PaginationCoverage.complete,
+        source_claim=SourceClaimCoverage.complete,
+        result=result_dim(len(board.systems)),
+        sources_searched=[manifest.id], sources_unavailable=gaps,
+        known_limitations=sorted(manifest.coverage.known_limitations)))
+
+
 DISCOVERY_TOOLS.register(ToolSpec(
     name="discovery.search_all_catalogs",
     description=(
@@ -286,3 +363,19 @@ DISCOVERY_TOOLS.register(ToolSpec(
         "considers its flagship public data, or wants an authoritative "
         "starting point for a scientific domain."),
     toolset="default", contract_version="1", fn=list_pure_resources))
+
+# Behind the `facilities` toolset rather than on the default surface: one
+# facility's status board answers a narrow question, and research:default is
+# one tool from decision 0014's ceiling.
+DISCOVERY_TOOLS.register(ToolSpec(
+    name="compute.facility_status",
+    description=(
+        "Current status of NERSC's systems (Perlmutter, the filesystems, "
+        "Globus, Jupyter and the other services) and the scheduled outages "
+        "ahead, from NERSC's own public status board. Pass `system` with a "
+        "board name such as 'perlmutter' to narrow it. Use for 'is "
+        "Perlmutter up' or 'when is the next maintenance'. Public status "
+        "only: nothing about anyone's jobs or allocation. NERSC is the one "
+        "DOE computing facility with a reachable status interface; OLCF and "
+        "ALCF are named as registered but unreadable, never as up."),
+    toolset="facilities", contract_version="1", fn=facility_status))

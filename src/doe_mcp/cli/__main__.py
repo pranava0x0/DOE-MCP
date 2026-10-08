@@ -265,6 +265,15 @@ async def _probe(ctx: RuntimeContext, source_id: str) -> int | None:
         return page.data_available
     if kind == "basis_sets":
         return (await ctx.basis_sets.catalog(manifest)).value.total
+    if kind == "nmdc":
+        # The collection is read whole, so the count is the collection's
+        # size and the manifest's floor is checked against all of it.
+        page = (await ctx.nmdc.studies(manifest)).value
+        return page.collection_size
+    if kind == "facility_status":
+        board = (await ctx.facility_status.board(
+            manifest, include_planned=False)).value
+        return board.systems_on_board
     if kind == "self_registry":
         return len(ctx.sources.manifests)
     return None
@@ -529,7 +538,8 @@ def cmd_tools_call(args: argparse.Namespace) -> int:
 
     if target_profile is None:
         # Auto-detect profile: first check research:all, then check each server's :all profile.
-        candidate_profiles = ["research:all", "energy:all", "earth:all", "materials:all"]
+        candidate_profiles = ["research:all", "energy:all", "earth:all",
+                              "materials:all", "bio:all"]
         for cand in candidate_profiles:
             specs = {s.name: s for s in expand_profile(cand, all_regs)}
             if args.tool in specs:
@@ -563,7 +573,11 @@ def cmd_tools_call(args: argparse.Namespace) -> int:
 
 def cmd_serve(args: argparse.Namespace) -> int:
     from ..servers.build import build_server
-    ctx = _load_ctx()
+    from ..servers.lineup import for_profile
+    server = for_profile(args.profile)
+    if server is None:
+        return _fail("profile has no shipping server")
+    ctx = load_context(server_name=server.name)
     build_server(ctx, args.profile).run()
     return 0
 
@@ -577,6 +591,11 @@ def main() -> int:
     ap.add_argument("--version", action="version",
                     version=f"doe-mcp {__version__}")
     sub = ap.add_subparsers(dest="command", required=True)
+
+    from .workflows import register as register_workflows
+    register_workflows(sub)
+    from ..evaluation import register as register_evaluation
+    register_evaluation(sub)
 
     d = sub.add_parser("doctor", help="check the install, registry, "
                                       "credentials, and client configs")

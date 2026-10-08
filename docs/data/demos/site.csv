@@ -1,0 +1,17 @@
+step,tool,source,record_id,locator,effective_at,mode
+1,facility.find_wind_turbines,usgs-uswtdb,turbines#3001502,,,recorded
+1,facility.find_wind_turbines,usgs-uswtdb,turbines#3015899,,,recorded
+1,facility.find_wind_turbines,usgs-uswtdb,turbines#3034241,,,recorded
+1,facility.find_wind_turbines,usgs-uswtdb,turbines#3039300,,,recorded
+1,facility.find_wind_turbines,usgs-uswtdb,turbines#3039301,,,recorded
+2,facility.find_solar_facilities,usgs-uspvdb,projects#400417,,,recorded
+2,facility.find_solar_facilities,usgs-uspvdb,projects#400618,,,recorded
+2,facility.find_solar_facilities,usgs-uspvdb,projects#401343,,,recorded
+2,facility.find_solar_facilities,usgs-uspvdb,projects#401715,,,recorded
+2,facility.find_solar_facilities,usgs-uspvdb,projects#401746,,,recorded
+3,registry.search_sources,doe-mcp-registry,lbnl-emp-datasets,,,recorded
+4,registry.list_neighbors,doe-mcp-registry,building-simulation-mcps,,,recorded
+4,registry.list_neighbors,doe-mcp-registry,genesis-lane-servers,,,recorded
+4,registry.list_neighbors,doe-mcp-registry,materials-project-mcp,,,recorded
+4,registry.list_neighbors,doe-mcp-registry,nasa-earthdata-mcp,,,recorded
+4,registry.list_neighbors,doe-mcp-registry,nepa-mcp,,,recorded

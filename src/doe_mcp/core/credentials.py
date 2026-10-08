@@ -117,8 +117,8 @@ class Credentials:
         removed.
 
         Least privilege between servers, not only between a server and the
-        outside. `doe-research`, `doe-earth` and `doe-materials` declare no
-        credentials at all, and until this existed each of them loaded the
+        outside. `doe-research`, `doe-earth`, `doe-materials` and `doe-bio`
+        declare no credentials at all, and until this existed each loaded the
         whole file — the EIA key, and every key the later phases add — into
         a process that has no source to spend it on. A prompt injection
         reaching a tool in one of those servers had the other servers' keys

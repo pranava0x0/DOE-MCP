@@ -1,0 +1,424 @@
+{
+  "format_version": "1",
+  "case": "partial",
+  "title": "One collection unavailable",
+  "question": "What can the remaining literature collection answer?",
+  "mode": "recorded",
+  "simulation": true,
+  "registry_revision": "2026-10-08",
+  "generated_at": null,
+  "replay_clock": "2026-10-08T00:00:00Z",
+  "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
+  "fixtures": [
+    {
+      "file": "osti-gov-records.json",
+      "sha256": "c6fd5ded484f83064397a670a15639a4c3903b1add64a6ddcb849cf6da404d17",
+      "captured_at": "2026-09-22T12:33:14.364511+00:00"
+    }
+  ],
+  "limitations": [
+    "A sampled literature search is not a systematic review.",
+    "A common topic does not prove that a paper and dataset are linked."
+  ],
+  "steps": [
+    {
+      "tool": "research.search_literature",
+      "args": {
+        "query": "perovskite solar",
+        "rows": 3
+      },
+      "envelope": {
+        "data": {
+          "records": [
+            {
+              "id": "3484888",
+              "title": "Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells",
+              "authors": [
+                "Yan, Feng [Materials Science and Engineering Program, School for Engineering of Matter, Transport and Energy, Arizona State University, Tempe, AZ, 85287]"
+              ],
+              "publication_date": "2026-08-26",
+              "product_type": "Technical Report",
+              "doi": "10.2172/3484888",
+              "report_number": "EE0009833",
+              "research_orgs": [
+                "Univ. of Alabama, Tuscaloosa, AL (United States)",
+                "Arizona State Univ., Tempe, AZ (United States)",
+                "National Renewable Energy Laboratory (NREL), Golden, CO (United States)"
+              ]
+            },
+            {
+              "id": "3625672",
+              "title": "Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative Research and Development Final Report, CRADA Number CRD-19-00810",
+              "authors": [
+                "Luther, Joey [National Laboratory of the Rockies, Golden, CO (United States)]",
+                "Larson, Bryon [National Laboratory of the Rockies, Golden, CO (United States)]",
+                "Reiter, Kyle [National Laboratory of the Rockies, Golden, CO (United States)]"
+              ],
+              "publication_date": "2026-08-26",
+              "product_type": "Technical Report",
+              "doi": "10.66816/tp5080615",
+              "report_number": "NLR/TP-5F00-99345",
+              "research_orgs": [
+                "National Laboratory of the Rockies (NLR), Golden, CO (United States)"
+              ]
+            },
+            {
+              "id": "3409109",
+              "title": "Reducing non-radiative recombination in perovskite solar cells with a SiO<sub>2</sub>-graphene oxide buried interface layer",
+              "authors": [
+                "Cao, Zikun [Univ. of Texas, Arlington, TX (United States); Univ. of Miami, FL (United States)]",
+                "You, Shuai [National Laboratory of the Rockies (NLR), Golden, CO (United States)]",
+                "Zhang, Xiyao [Univ. of Texas, Arlington, TX (United States); Univ. of Akron, OH (United States)]",
+                "Liu, Lei [Univ. of Akron, OH (United States)]",
+                "Zhang, Haixing [Univ. of Miami, FL (United States)]"
+              ],
+              "publication_date": "2026-09-01",
+              "product_type": "Journal Article",
+              "authors_truncated": 4,
+              "doi": "10.1016/j.nanoen.2026.112209",
+              "journal": "Nano Energy",
+              "report_number": "NLR/JA-5900-101333",
+              "research_orgs": [
+                "National Laboratory of the Rockies (NLR), Golden, CO (United States)"
+              ]
+            }
+          ],
+          "record_count": 3,
+          "per_source": [
+            {
+              "source_id": "osti-gov-records",
+              "system": "OSTI.GOV Search API",
+              "total_matches": 8313,
+              "returned": 3
+            }
+          ]
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "osti-gov-records",
+            "steward": "Office of Scientific and Technical Information",
+            "system": "OSTI.GOV Search API",
+            "dataset": "OSTI.GOV Search API",
+            "dataset_version": "current",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "cache_age_seconds": 0
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "3484888",
+            "locator": "https://www.osti.gov/biblio/3484888",
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": "2026-08-27T11:00:26Z",
+            "transformations": [
+              "normalize"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_02",
+            "source_ref": "source_01",
+            "record_id": "3625672",
+            "locator": "https://www.osti.gov/biblio/3625672",
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": "2026-09-02T10:56:05Z",
+            "transformations": [
+              "normalize"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_03",
+            "source_ref": "source_01",
+            "record_id": "3409109",
+            "locator": "https://www.osti.gov/biblio/3409109",
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": "2026-09-18T15:49:56Z",
+            "transformations": [
+              "normalize"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "truncated",
+          "source_claim": "partial",
+          "result": "hit",
+          "sources_searched": [
+            "osti-gov-records"
+          ],
+          "sources_unavailable": [
+            {
+              "source_id": "osti-doe-pages",
+              "reason": "source_not_activated"
+            }
+          ],
+          "known_limitations": [
+            "A fulltext link is present when `has_fulltext` is true and absent otherwise; the servlet URL pattern resolves for those records only. Constructing one for a record without full text produces a dead link, so the adapter emits only what the API supplies or the manifest templates for records the API marked as having full text.",
+            "An index of DOE-funded results, not of all energy research. Absence here says nothing about whether work exists; it says DOE did not fund or receive it.",
+            "ScienceCinema was retired as a standalone product on 2025-09-05 and its ~3,600 multimedia items folded into this collection. Whether they can be isolated by any filter here is unverified.",
+            "Some records carry future `publication_date` values, which is correct rather than a data error: OSTI accepts scheduled-publication metadata. Sorting by date puts unpublished work first unless a range is set.",
+            "`product_type` filters on OSTI's own vocabulary \u2014 \"Technical Report\", \"Journal Article\" \u2014 and the value \"Dataset\" returns zero here even though datasets exist, because dataset records live in DOE Data Explorer. Checked live 2026-09-02. A caller filtering for datasets on this API gets an empty result that means \"wrong API\", not \"none\"."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "terms_note",
+            "message": "No published rate limit means none of us knows what the real one is. If OSTI ever publishes one, or answers an email about it, this field becomes a number and the politeness budget follows it.",
+            "source_id": "osti-gov-records"
+          }
+        ],
+        "access_recipes": [
+          {
+            "kind": "doi",
+            "uri": "https://doi.org/10.2172/3484888",
+            "label": "Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Plan",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "fulltext_pdf",
+            "uri": "https://www.osti.gov/servlets/purl/3484888",
+            "label": "Full text (OSTI)",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "doi",
+            "uri": "https://doi.org/10.66816/tp5080615",
+            "label": "Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative ",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "fulltext_pdf",
+            "uri": "https://www.osti.gov/servlets/purl/3625672",
+            "label": "Full text (OSTI)",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "doi",
+            "uri": "https://doi.org/10.1016/j.nanoen.2026.112209",
+            "label": "Reducing non-radiative recombination in perovskite solar cells with a SiO<sub>2<",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "fulltext_pdf",
+            "uri": "https://www.osti.gov/servlets/purl/3409109",
+            "label": "Full text (OSTI)",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          }
+        ],
+        "next_actions": [
+          {
+            "finding": "More matches exist than the 3 returned.",
+            "suggested_capability": "literature.search",
+            "reason": "Call again with a higher page number, or narrow the filters. Do not describe these as all the results."
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "research.search_literature",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-10-08",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "research.get_record",
+      "args": {
+        "record_id": "3484888",
+        "collection": "literature"
+      },
+      "envelope": {
+        "data": {
+          "record": {
+            "id": "3484888",
+            "title": "Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells",
+            "authors": [
+              "Yan, Feng [Materials Science and Engineering Program, School for Engineering of Matter, Transport and Energy, Arizona State University, Tempe, AZ, 85287]"
+            ],
+            "publication_date": "2026-08-26",
+            "product_type": "Technical Report",
+            "doi": "10.2172/3484888",
+            "report_number": "EE0009833",
+            "research_orgs": [
+              "Univ. of Alabama, Tuscaloosa, AL (United States)",
+              "Arizona State Univ., Tempe, AZ (United States)",
+              "National Renewable Energy Laboratory (NREL), Golden, CO (United States)"
+            ],
+            "description": "This Final Technical Report summarizes work completed under Award Number DEEE0009833, titled \"Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells.\" The project addressed the central technical problem that carbon-electrode perovskite solar cells (C-PSCs) can reduce electrode costs and improve environmental durability, but they have historically lagged noble-metalcontact devices due to poor carbon/perovskite contact, high carbon-electrode resistance, imperfect hole extraction, and insufficient operational stability. The Statement of Project Objectives (SOPO), therefore, required systematic engineering of thermally pressed carbon-based planar perovskite solar cells by improving the carbon/perovskite interface quality, improving carbon-electrode conductivity, and further increasing device stability. The work advanced understanding of carbon-based perovskite photovoltaics by connecting device performance to three coupled mechanisms: interfacial recombination at the perovskite/hole-transport-layer/carbon stack; lateral and vertical transport losses in carbon contacts; and instability driven by moisture, heat, illumination, ion migration, and slow/variable manufacturing steps.",
+            "subjects": [
+              "14 SOLAR ENERGY",
+              "Perovskite Solar Cell, Carbon electrode, Efficiency, Stability"
+            ],
+            "sponsor_orgs": [
+              "USDOE Office of Energy Efficiency and Renewable Energy (EERE), Renewable Power Office. Solar Energy Technologies Office",
+              "USDOE Office of Critical Minerals and Energy Innovation (CMEI)"
+            ]
+          },
+          "fulltext": {
+            "available": true,
+            "url": "https://www.osti.gov/servlets/purl/3484888",
+            "doi_fallback": "https://doi.org/10.2172/3484888",
+            "note": "OSTI serves the full text directly at this URL."
+          }
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "osti-gov-records",
+            "steward": "Office of Scientific and Technical Information",
+            "system": "OSTI.GOV Search API",
+            "dataset": "OSTI.GOV Search API",
+            "dataset_version": "current",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": "10.2172/3484888",
+              "recommended": null,
+              "required": false
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "3484888",
+            "locator": "https://www.osti.gov/biblio/3484888",
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": "2026-08-27T11:00:26Z",
+            "transformations": [
+              "normalize"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "osti-gov-records"
+          ]
+        },
+        "warnings": [
+          {
+            "code": "terms_note",
+            "message": "No published rate limit means none of us knows what the real one is. If OSTI ever publishes one, or answers an email about it, this field becomes a number and the politeness budget follows it.",
+            "source_id": "osti-gov-records"
+          }
+        ],
+        "access_recipes": [
+          {
+            "kind": "doi",
+            "uri": "https://doi.org/10.2172/3484888",
+            "label": "Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Plan",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "fulltext_pdf",
+            "uri": "https://www.osti.gov/servlets/purl/3484888",
+            "label": "Full text (OSTI)",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "landing_page",
+            "uri": "https://www.osti.gov/biblio/3484888",
+            "label": "OSTI record page",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "research.get_record",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-10-08",
+          "request_id": "recorded-workflow"
+        }
+      }
+    }
+  ]
+}

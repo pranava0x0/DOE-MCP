@@ -28,6 +28,10 @@ least one is checked; the suite holds both rules.
 | Skill | What it answers | Servers |
 |---|---|---|
 | [find-doe-data](find-doe-data/SKILL.md) | Does DOE publish this, where is it, and how do I get it — ending in a locator or in a named reason there is not one | `doe-research` |
-| [grid-status-brief](grid-status-brief/SKILL.md) | What a balancing authority's grid did over the last day or hour, from EIA-930 and BPA's five-minute feed, with the caveat each carries | `doe-energy-data`, `doe-research` |
+| [grid-status-brief](grid-status-brief/SKILL.md) | What a balancing authority's grid did over the last day or hour, from EIA-930 and BPA's five-minute feed with the caveat each carries, and which EAGLE-I release holds a past year's outages | `doe-energy-data`, `doe-research` |
 | [energy-project-site-screen](energy-project-site-screen/SKILL.md) | What is already built around a candidate wind or solar site, the grid it would join, and the named inputs a full screen needs that DOE-MCP cannot serve yet | `doe-energy-data`, `doe-research` |
 | [materials-structure-and-code](materials-structure-and-code/SKILL.md) | Computed crystal structures from the Materials Project and basis sets from the Basis Set Exchange | `doe-materials`, `doe-research` |
+| [environmental-study-brief](environmental-study-brief/SKILL.md) | Environmental datasets and bounded modelled weather, with geography and dates kept explicit | `doe-earth` |
+| [doe-literature-review](doe-literature-review/SKILL.md) | What DOE has published on a topic, as an evidence table that says how much of the result set it covers and where each record can be read | `doe-research` |
+| [doe-rulemaking-brief](doe-rulemaking-brief/SKILL.md) | DOE's final rules, proposed rules and notices on a topic, with dockets, dates and the FERC documents dropped by scope | `doe-research` |
+| [microbiome-data-finder](microbiome-data-finder/SKILL.md) | Microbiome studies and samples for an environment or a place, and the DOIs that lead to their sequence data | `doe-bio`, `doe-earth` |

@@ -4,7 +4,8 @@
     "docs/data",
     "docs/index.html",
     "schemas",
-    "docs/reference.md"
+    "docs/reference.md",
+    "docs/demos.html"
   ],
   "allow": [
     {

@@ -29,16 +29,11 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT))
 
 from doe_mcp import __version__  # noqa: E402
-from doe_mcp.adapters import ADAPTER_CLASSES  # noqa: E402
-from doe_mcp.adapters.base import TTLCache  # noqa: E402
-from doe_mcp.adapters.replay import ReplayFetcher  # noqa: E402
-from doe_mcp.core.credentials import Credentials  # noqa: E402
 from doe_mcp.core.organizations import OrganizationTable  # noqa: E402
 from doe_mcp.core.registry import SourceRegistry  # noqa: E402
 from doe_mcp.core.catalog import SubMcpCatalog  # noqa: E402
 from doe_mcp.core.envelope import ExecutionCoverage, ResultCoverage  # noqa: E402
 from doe_mcp.core.toolreg import PROFILES, expand_profile  # noqa: E402
-from doe_mcp.runtime import load_context  # noqa: E402
 from doe_mcp.servers.build import build_server, registries  # noqa: E402
 from doe_mcp.servers.lineup import SERVER_LINEUP, shipping  # noqa: E402
 
@@ -66,7 +61,7 @@ QUESTIONS = [
      "registry.lab_crosswalk", "doe-research"),
     ("I have an old NREL URL that 404s. What happened?",
      "registry.resolve_org", "doe-research"),
-    ("Which DOE catalog holds the EAGLE-I outage data?",
+    ("Which DOE catalogs hold geothermal datasets?",
      "discovery.search_all_catalogs", "doe-research"),
     ("What data does DOE itself call durable?",
      "discovery.list_pure_resources", "doe-research"),
@@ -92,6 +87,12 @@ QUESTIONS = [
      "chemistry.search_basis_sets", "doe-materials"),
     ("What is BPA's wind output right now?",
      "grid.get_bpa_operations", "doe-energy-data"),
+    ("Which EAGLE-I release holds county outage history for 2021?",
+     "grid.find_outage_history", "doe-energy-data"),
+    ("Is there soil microbiome data from Washington State?",
+     "bio.search_biosamples", "doe-bio"),
+    ("Is Perlmutter up, and when is NERSC's next maintenance?",
+     "compute.facility_status", "doe-research"),
     ("What has DOE proposed on appliance standards this year?",
      "docs.search_rulemakings", "doe-research"),
     ("What can I license from Oak Ridge?",
@@ -104,32 +105,47 @@ SERVERS = [(sv.name, sv.default_profile, sv.status, sv.description)
            for sv in SERVER_LINEUP]
 
 
+def _profile_note(tool: str, server: str,
+                  tools_by_server: dict[str, list[dict]]) -> str | None:
+    """The smallest profile that carries a tool its server's default
+    profile does not, so the page does not present a discovery-profile
+    tool as something every install has."""
+    if any(t["name"] == tool for t in tools_by_server.get(server, [])):
+        return None
+    key = next((sv.key for sv in SERVER_LINEUP if sv.name == server), "")
+    carrying = sorted(
+        (len(expand_profile(name, registries())), name)
+        for name in PROFILES if name.startswith(f"{key}:")
+        and any(t.name == tool for t in expand_profile(name, registries())))
+    return carrying[0][1] if carrying else None
+
+
+def skill_summaries() -> list[dict]:
+    """Each skill's name, the first sentence of its description, and the
+    servers it walks, read from the frontmatter so the page lists the
+    skills that exist rather than the ones someone remembered to add."""
+    import yaml
+
+    out = []
+    for path in sorted((ROOT / "skills").glob("*/SKILL.md")):
+        _, raw, _ = path.read_text(encoding="utf-8").split("---\n", 2)
+        front = yaml.safe_load(raw) or {}
+        description = " ".join(str(front.get("description", "")).split())
+        first = description.split(". ")[0].rstrip(".") + "."
+        out.append({"name": front.get("name", path.parent.name),
+                    "summary": first,
+                    "servers": list(front.get("servers") or [])})
+    return out
+
+
 def replay_context():
-    """Every adapter with a fetcher seam replays the recorded responses, and
-    no credential is read: the build never touches the network or the
-    developer's keys. The first version of this wired three adapters by
-    hand, which is why the page carried examples from one server only."""
-    merged: dict = {}
-    for path in sorted(FIXTURES.glob("*.json")):
-        merged.update(ReplayFetcher.from_file(path).interactions)
-    fetcher = ReplayFetcher(interactions=merged)
-    cache = TTLCache()
-    creds = Credentials(values={}, path=Path("/nonexistent"),
-                        file_exists=False)
-    adapters = {}
-    for kind, (field_name, cls) in ADAPTER_CLASSES.items():
-        if kind == "curated":
-            continue
-        kwargs = {"fetcher": fetcher, "cache": cache}
-        if kind == "eia_v2":
-            kwargs["credentials"] = creds
-        adapters[field_name] = cls(**kwargs)
-    return load_context(SOURCES, credentials=creds, **adapters)
+    from doe_mcp.replay import load_replay_context
+    return load_replay_context(FIXTURES, SOURCES)
 
 
 async def worked_examples(ctx) -> list[dict]:
     """Real envelopes from real recorded responses."""
-    from doe_mcp.domains import (discovery, earth, energy, materials,
+    from doe_mcp.domains import (bio, discovery, earth, energy, materials,
                                  registry_tools, research)
     out = []
     # One captured answer per shipping server after the first three, so the
@@ -163,6 +179,11 @@ async def worked_examples(ctx) -> list[dict]:
          "Materials Project's OPTIMADE endpoint, marked as computed rather "
          "than measured.",
          materials.search_structures(ctx, elements="Ga,N", rows=5)),
+        ("bio.search_biosamples", "doe-bio",
+         "Soil microbiome samples NMDC holds from Washington State, with "
+         "the filter the publisher echoed back and the total it counted.",
+         bio.search_biosamples(ctx, ecosystem_type="Soil",
+                               place="washington", rows=5)),
     ]
     for tool, server, why, coro in plans:
         try:
@@ -236,6 +257,16 @@ def build_data(with_fixtures: bool) -> dict:
                 {"name": s.name, "toolset": s.toolset,
                  "description": s.description}
                 for s in expand_profile(profile, registries())]
+
+    # Tools a server carries outside its default profile, such as the
+    # research server's facilities toolset. Counted so the page can say a
+    # default profile is not the whole server.
+    tools_all_by_server: dict[str, int] = {}
+    for name, profile, _, _ in SERVERS:
+        all_profile = f"{profile.split(':')[0]}:all" if profile else None
+        if all_profile in PROFILES:
+            tools_all_by_server[name] = len(
+                expand_profile(all_profile, registries()))
 
     sources = []
     for m in sorted(manifests, key=lambda m: (not m.is_active(), m.id)):
@@ -336,11 +367,14 @@ def build_data(with_fixtures: bool) -> dict:
             "records_reachable": sum(m.coverage.record_count or 0
                                      for m in active),
         },
-        "questions": [{"question": q, "tool": t, "server": s}
+        "questions": [{"question": q, "tool": t, "server": s,
+                       "profile": _profile_note(t, s, tools_by_server)}
                       for q, t, s in QUESTIONS],
         "servers": [{"name": n, "profile": p, "status": st,
-                     "description": d, "tools": tools_by_server.get(n, [])}
+                     "description": d, "tools": tools_by_server.get(n, []),
+                     "tools_all": tools_all_by_server.get(n)}
                     for n, p, st, d in SERVERS],
+        "skills": skill_summaries(),
         "sources": sources,
         "crosswalk": crosswalk,
         "neighbors": neighbors,
@@ -490,9 +524,27 @@ def render_reference(tools_by_profile: dict[str, list[dict]]) -> str:
                     lines.append("")
     lines += ["A `?` after an argument in the profile tables marks it "
               "optional. Every tool is read-only and returns the provenance "
-              "envelope described in `design/architecture.md` Part 1 § 3.3.",
+              "envelope described in [the workflow guide](guide.md).",
               ""]
     return "\n".join(lines)
+
+
+async def write_workflows():
+    from doe_mcp.replay import fixture_manifest, load_replay_context
+    from doe_mcp.workflows import CASES, evidence_csv, run_workflow
+    from render_workflows import render as render_workflows
+    output = DOCS / "data" / "demos"
+    output.mkdir(parents=True, exist_ok=True)
+    reports = []
+    manifest = fixture_manifest(FIXTURES)
+    for case in CASES:
+        ctx = load_replay_context(FIXTURES, SOURCES, keyed=case == "eia")
+        report = await run_workflow(ctx, case, fixtures=manifest)
+        reports.append(report)
+        (output / f"{case}.json").write_text(json.dumps(report, indent=2) + "\n")
+        (output / f"{case}.csv").write_text(evidence_csv(report))
+    (DOCS / "demos.html").write_text(render_workflows(reports))
+    print("wrote recorded workflow pages and evidence exports")
 
 
 def main() -> int:
@@ -516,6 +568,9 @@ def main() -> int:
     html_out = DOCS / "index.html"
     html_out.write_text(render(data))
     print(f"wrote {html_out}")
+
+    if args.fixtures:
+        asyncio.run(write_workflows())
 
     write_readme_status(data)
     REFERENCE.write_text(render_reference(

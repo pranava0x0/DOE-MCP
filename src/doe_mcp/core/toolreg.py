@@ -83,7 +83,8 @@ PROFILES: dict[str, list[tuple[str, str]]] = {
                            ("discovery", "default"),
                            ("docs", "default"),
                            ("tech", "default"),
-                           ("registry", "discovery")],
+                           ("registry", "discovery"),
+                           ("discovery", "facilities")],
     "research:all": [("research", "*"), ("registry", "*"),
                      ("discovery", "*"), ("docs", "*"),
                      ("tech", "*")],
@@ -94,6 +95,8 @@ PROFILES: dict[str, list[tuple[str, str]]] = {
     "materials:default": [("materials", "default"),
                           ("registry", "discovery-min")],
     "materials:all": [("materials", "*"), ("registry", "*")],
+    "bio:default": [("bio", "default"), ("registry", "discovery-min")],
+    "bio:all": [("bio", "*"), ("registry", "*")],
 }
 
 PROFILE_FLOOR = 8

@@ -11,6 +11,7 @@ capabilities:
   - energy.discover_routes
   - energy.grid_status
   - grid.operations_feed
+  - grid.outage_history
   - registry.search_sources
 servers:
   - doe-energy-data
@@ -50,11 +51,14 @@ grid did, is wrong in a way the reader cannot see.
    megawatt-hours per hour, and its "VER" column is wind and solar together.
    Say which feed a number came from.
 
-4. **Say what the brief cannot say.** Neither source reports outages. If
-   the question is whether the grid is in trouble, `registry.search_sources`
-   with `capability="grid.outage_history"` names the EAGLE-I source and why
-   it is not served yet; that sentence belongs in the brief in place of a
-   guess.
+4. **Say what the brief cannot say.** Neither feed reports outages, and
+   DOE-MCP has no live outage source: the live EAGLE-I platform is gated.
+   What it has is EAGLE-I's history, published a year at a time.
+   `grid.find_outage_history` with the current year says no release covers
+   it yet and names the newest one; that sentence belongs in the brief in
+   place of a guess. For a past event, the same tool with that year
+   returns the release and its DOI, and the county customer-count dataset
+   that any share-of-customers figure needs.
 
 5. **Compose.** One paragraph per balancing authority: the metric, the
    period range, the latest value with its unit, the publisher, and the
@@ -64,8 +68,9 @@ grid did, is wrong in a way the reader cannot see.
 ## What this skill will not do
 
 It will not report a forecast as a measurement, it will not describe
-EIA-930's hourly figures as live, and it will not infer an outage from a
-drop in demand.
+EIA-930's hourly figures as live, it will not infer an outage from a drop
+in demand, and it will not present an annual outage release as current
+status.
 
 ## Bench tasks
 
@@ -74,4 +79,5 @@ drop in demand.
 | 1 | "How much electricity did CAISO use last night?" | Reports demand, metric code D, with the period range EIA returned and the preliminary-data caveat. Fails if the number is the day-ahead forecast or if the caveat is dropped. |
 | 2 | "What is BPA's wind output right now?" | Uses the five-minute feed, quotes the latest interval's timestamp, gives the value in megawatts, and says VER is wind and solar together. |
 | 3 | "Compare PJM and ERCOT demand yesterday." | Two calls with the same metric and window; each authority's own period range is stated; no forecast row is mixed in. |
-| 4 | "Is the grid in trouble right now?" | Answers with what the two feeds measure and names the outage source DOE-MCP has and cannot serve yet, with its blocked reason, rather than inferring an outage. |
+| 4 | "Is the grid in trouble right now?" | Answers with what the two feeds measure, says DOE-MCP has no live outage source, and names the newest EAGLE-I release as history rather than inferring an outage. |
+| 5 | "Where can I get county outage data for 2021?" | Names the EAGLE-I release covering 2014 to 2022 with its DOI, and the county customer-count dataset as the denominator. Fails if it reports an outage figure it did not read. |

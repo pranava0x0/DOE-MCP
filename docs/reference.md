@@ -8,7 +8,7 @@ Literature, datasets, software, and discovery over OSTI's four public APIs, DOE'
 
 Profiles: `research:all`, `research:default` (default), `research:discovery`
 
-### Profile `research:all` — 14 tools
+### Profile `research:all` — 15 tools
 
 | Tool | Arguments |
 |---|---|
@@ -23,6 +23,7 @@ Profiles: `research:all`, `research:default` (default), `research:discovery`
 | `registry.list_neighbors` | `capability`? |
 | `discovery.search_all_catalogs` | `query`, `per_catalog`?, `catalogs`? |
 | `discovery.list_pure_resources` | none |
+| `compute.facility_status` | `system`?, `include_planned`? |
 | `docs.search_rulemakings` | `query`?, `document_type`?, `agency`?, `docket`?, `since`?, `until`?, `rows`?, `page`? |
 | `docs.get_rulemaking` | `document_number` |
 | `tech.find_licensable_ip` | `query`?, `lab`?, `record_type`?, `inventor`?, `taxonomy`?, `since`?, `until`?, `record_id`?, `rows`?, `cursor`? |
@@ -43,7 +44,7 @@ Profiles: `research:all`, `research:default` (default), `research:discovery`
 | `docs.get_rulemaking` | `document_number` |
 | `tech.find_licensable_ip` | `query`?, `lab`?, `record_type`?, `inventor`?, `taxonomy`?, `since`?, `until`?, `record_id`?, `rows`?, `cursor`? |
 
-### Profile `research:discovery` — 14 tools
+### Profile `research:discovery` — 15 tools
 
 | Tool | Arguments |
 |---|---|
@@ -61,6 +62,7 @@ Profiles: `research:all`, `research:default` (default), `research:discovery`
 | `registry.search_sources` | `text`?, `domain`?, `capability`?, `state`?, `limit`? |
 | `registry.describe_source` | `source_id` |
 | `registry.list_neighbors` | `capability`? |
+| `compute.facility_status` | `system`?, `include_planned`? |
 
 #### `research.search_literature`
 
@@ -181,6 +183,15 @@ Search four DOE dataset catalogs at once — DOE Data Explorer, ORNL's Open Ener
 
 DOE's seven designated Public Reusable Research (PuRe) data resources — the department's own list of its most durable public data holdings: ATcT, Materials Project, ARM, JGI, KBase, the Particle Data Group, and NNDC. Use when a user asks what DOE considers its flagship public data, or wants an authoritative starting point for a scientific domain.
 
+#### `compute.facility_status`
+
+Current status of NERSC's systems (Perlmutter, the filesystems, Globus, Jupyter and the other services) and the scheduled outages ahead, from NERSC's own public status board. Pass `system` with a board name such as 'perlmutter' to narrow it. Use for 'is Perlmutter up' or 'when is the next maintenance'. Public status only: nothing about anyone's jobs or allocation. NERSC is the one DOE computing facility with a reachable status interface; OLCF and ALCF are named as registered but unreadable, never as up.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `system` | string | no | `""` |
+| `include_planned` | boolean | no | `true` |
+
 #### `docs.search_rulemakings`
 
 DOE's rules, proposed rules, and notices as published in the Federal Register: the official text, with docket id, CFR parts, regulatory identifier, and a full-text link on every record. `query` is full-text; `document_type` takes NOTICE, PRESDOCU, PRORULE, RULE (comma-separated); `docket`, `since` and `until` (YYYY-MM-DD) narrow further. FERC is filed under DOE in this API and is out of DOE-MCP's scope, so its documents are dropped and the count of dropped ones rides on the answer. Comments and docket material are NOT here.
@@ -223,13 +234,13 @@ Patents held and software released by the US national laboratories, from PNNL's 
 
 ## doe-energy-data
 
-EIA's self-describing statistics tree, BPA's five-minute grid feed, the USGS/LBNL wind and solar facility inventories, and the DOE/EPA vehicle fuel-economy service.
+EIA's self-describing statistics tree, BPA's five-minute grid feed, EAGLE-I's annual outage releases, the USGS/LBNL wind and solar facility inventories, and the DOE/EPA vehicle fuel-economy service.
 
 Profiles: `energy:all`, `energy:default` (default)
 
 Credentials: `EIA_API_KEY` (set with `doe-mcp configure credentials`).
 
-### Profile `energy:all` — 13 tools
+### Profile `energy:all` — 14 tools
 
 | Tool | Arguments |
 |---|---|
@@ -241,13 +252,14 @@ Credentials: `EIA_API_KEY` (set with `doe-mcp configure credentials`).
 | `fuel.get_prices` | none |
 | `facility.find_wind_turbines` | `state`?, `county`?, `project`?, `filters`?, `bbox`?, `order`?, `rows`?, `offset`? |
 | `facility.find_solar_facilities` | `state`?, `county`?, `facility`?, `filters`?, `bbox`?, `order`?, `rows`?, `offset`? |
+| `grid.find_outage_history` | `year`? |
 | `registry.resolve_org` | `query` |
 | `registry.lab_crosswalk` | `lab`? |
 | `registry.search_sources` | `text`?, `domain`?, `capability`?, `state`?, `limit`? |
 | `registry.describe_source` | `source_id` |
 | `registry.list_neighbors` | `capability`? |
 
-### Profile `energy:default` — 10 tools
+### Profile `energy:default` — 11 tools
 
 | Tool | Arguments |
 |---|---|
@@ -259,6 +271,7 @@ Credentials: `EIA_API_KEY` (set with `doe-mcp configure credentials`).
 | `fuel.get_prices` | none |
 | `facility.find_wind_turbines` | `state`?, `county`?, `project`?, `filters`?, `bbox`?, `order`?, `rows`?, `offset`? |
 | `facility.find_solar_facilities` | `state`?, `county`?, `facility`?, `filters`?, `bbox`?, `order`?, `rows`?, `offset`? |
+| `grid.find_outage_history` | `year`? |
 | `registry.resolve_org` | `query` |
 | `registry.lab_crosswalk` | `lab`? |
 
@@ -348,6 +361,14 @@ Where US utility-scale solar facilities of one megawatt and up are and what they
 | `order` | string | no | `""` |
 | `rows` | integer | no | `20` |
 | `offset` | integer | no | `0` |
+
+#### `grid.find_outage_history`
+
+Which EAGLE-I release holds US electricity-outage history for a year, and where it is. EAGLE-I (DOE CESER, built at ORNL) publishes county-level counts of customers without power at 15-minute intervals, 2014 onward, one release a year through OSTI. Returns each release with the years it covers, its DOI, the documentation record and the county customer-count dataset that is the denominator. Pass `year` to pick the release that covers it. Pointers to files, not outage figures, and not live status: the live EAGLE-I platform is gated.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `year` | integer or null | no |  |
 
 #### `registry.resolve_org`
 
@@ -672,4 +693,111 @@ Other MCP servers over DOE-adjacent data — PNNL's NEPA-MCP, the building-simul
 |---|---|---|---|
 | `capability` | string | no | `""` |
 
-A `?` after an argument in the profile tables marks it optional. Every tool is read-only and returns the provenance envelope described in `design/architecture.md` Part 1 § 3.3.
+## doe-bio
+
+Microbiome studies and their biosamples from the National Microbiome Data Collaborative, with DOIs leading to the sequence data at JGI and EMSL.
+
+Profiles: `bio:all`, `bio:default` (default)
+
+### Profile `bio:all` — 8 tools
+
+| Tool | Arguments |
+|---|---|
+| `bio.search_studies` | `text`?, `ecosystem`?, `category`?, `rows`?, `offset`? |
+| `bio.get_study` | `study_id` |
+| `bio.search_biosamples` | `study_id`?, `ecosystem_type`?, `env_medium`?, `place`?, `collected`?, `rows`?, `page`? |
+| `registry.resolve_org` | `query` |
+| `registry.lab_crosswalk` | `lab`? |
+| `registry.search_sources` | `text`?, `domain`?, `capability`?, `state`?, `limit`? |
+| `registry.describe_source` | `source_id` |
+| `registry.list_neighbors` | `capability`? |
+
+### Profile `bio:default` — 5 tools
+
+| Tool | Arguments |
+|---|---|
+| `bio.search_studies` | `text`?, `ecosystem`?, `category`?, `rows`?, `offset`? |
+| `bio.get_study` | `study_id` |
+| `bio.search_biosamples` | `study_id`?, `ecosystem_type`?, `env_medium`?, `place`?, `collected`?, `rows`?, `page`? |
+| `registry.resolve_org` | `query` |
+| `registry.lab_crosswalk` | `lab`? |
+
+#### `bio.search_studies`
+
+Search the microbiome studies the National Microbiome Data Collaborative (NMDC; LBNL with ANL, ORNL and PNNL) has ingested: soil, freshwater, marine, plant-associated, subsurface and other environmental microbiomes. `text` matches every word against a study's name, title and description; `ecosystem` matches the study's own classification, which most studies lack; `category` is research_study or consortium. Returns investigators with ORCID, DOIs leading to the sequence data, and the study id for bio.get_study and bio.search_biosamples. Metadata, not sequence data.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `text` | string | no | `""` |
+| `ecosystem` | string | no | `""` |
+| `category` | string | no | `""` |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `bio.get_study`
+
+One NMDC microbiome study in full by its id ('nmdc:sty-11-...'): description, investigators and roles, funding statements, DOIs, GOLD ids, the parent study if it is part of one, and how many biosamples are linked to it.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `study_id` | string | yes |  |
+
+#### `bio.search_biosamples`
+
+Search NMDC's biosamples (over 27,000) by `study_id`, `ecosystem_type` (NMDC's whole value, any case, e.g. 'Soil'), `env_medium` (an environmental-ontology term such as 'soil' or 'sediment'), `place` (a substring of the submitted location, e.g. 'Washington') or `collected` (the start of the date, '2017' or '2017-06'). Each sample comes with coordinates, collection date, place, ecosystem and environmental terms, and depth in metres where stated. Sample metadata, not sequence data.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `study_id` | string | no | `""` |
+| `ecosystem_type` | string | no | `""` |
+| `env_medium` | string | no | `""` |
+| `place` | string | no | `""` |
+| `collected` | string | no | `""` |
+| `rows` | integer | no | `20` |
+| `page` | integer | no | `1` |
+
+#### `registry.resolve_org`
+
+Resolve a DOE organization from a name, abbreviation, FORMER name, or domain — including dead ones. Use FIRST whenever a user names a lab or office, because this ecosystem renames things and the old URLs do not redirect. 'NREL' resolves to the National Laboratory of the Rockies and warns that the name is historical; a *.nrel.gov domain resolves the same way and warns that the URL is dead with no forwarding. Same for EERE (now CMEI), FECM (now HGEO), LPO (now EDF), HFTO and BETO (merged into AFFO), IEDO (now ITO), and the dismantled Grid Deployment Office.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `query` | string | yes |  |
+
+#### `registry.lab_crosswalk`
+
+What a DOE national laboratory publishes, across every platform carrying its data. Call with no argument for all seventeen labs and their source counts. Servers here are organized by data domain, not by laboratory, so this is how a lab-oriented question gets answered — and it is the honest way, since several labs' flagship data lives on shared cross-lab platforms rather than their own domains. A lab with zero sources is a gap in this project, not a claim that the lab publishes nothing.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `lab` | string | no | `""` |
+
+#### `registry.search_sources`
+
+Search DOE-MCP's own source registry: which public DOE systems this project knows about, active or not. Use to answer 'what does DOE-MCP cover?' BEFORE assuming coverage, and to explain a gap — every non-active source carries a blocked_reason naming what stands in the way, which is a real answer where an empty result is not. Not a data-query tool: use the research.* tools for records.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `text` | string | no | `""` |
+| `domain` | string | no | `""` |
+| `capability` | string | no | `""` |
+| `state` | string | no | `""` |
+| `limit` | integer | no | `25` |
+
+#### `registry.describe_source`
+
+The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `source_id` | string | yes |  |
+
+#### `registry.list_neighbors`
+
+Other MCP servers over DOE-adjacent data — PNNL's NEPA-MCP, the building-simulation servers, NASA's Earthdata server, the gated Genesis-lane deployments — with an executable install command and a stated reason DOE-MCP does not duplicate each one. Use when a question falls outside this project's coverage and a neighbouring server serves it.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `capability` | string | no | `""` |
+
+A `?` after an argument in the profile tables marks it optional. Every tool is read-only and returns the provenance envelope described in [the workflow guide](guide.md).

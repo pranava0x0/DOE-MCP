@@ -1,0 +1,7 @@
+step,tool,source,record_id,locator,effective_at,mode
+1,earth.search_datasets,ess-dive,ess-dive-3ae4bf47c8a5c01-20260821T191107282,https://data.ess-dive.lbl.gov/view/doi:10.5440/1575068,2026-08-21T19:11:09.012Z,recorded
+1,earth.search_datasets,ess-dive,ess-dive-59891b16a14f206-20260821T190846262,https://data.ess-dive.lbl.gov/view/doi:10.3334/CDIAC/SPRUCE.042,2026-08-21T19:08:47.405Z,recorded
+1,earth.search_datasets,ess-dive,ess-dive-9b961ab3bdda867-20260817T151917925,https://data.ess-dive.lbl.gov/view/doi:10.15485/3023308,2026-08-17T15:19:19.031Z,recorded
+1,earth.search_datasets,ess-dive,ess-dive-387aca9b8ac0fa9-20260717T202253310452,https://data.ess-dive.lbl.gov/view/doi:10.5440/1832016,2026-07-17T20:22:54.969Z,recorded
+1,earth.search_datasets,ess-dive,ess-dive-b92428d4a59674c-20260717T202221097472,https://data.ess-dive.lbl.gov/view/doi:10.5440/1778212,2026-07-17T20:22:24.225Z,recorded
+2,earth.get_daymet_point,ornl-daac,"tile:11208@35.9313,-84.3104",,2023-06-01,recorded

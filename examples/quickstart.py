@@ -25,7 +25,7 @@ async def main() -> None:
     res1 = await resolve_tool.fn(ctx, query="NREL")
     resolved = res1.data.get("resolved", {})
     print(f"   Name: {resolved.get('name')}")
-    print(f"   Status: {resolved.get('status')}")
+    print(f"   Registry result: {res1.coverage.result.value}")
     print(f"   Former names: {resolved.get('former_names')}")
     print(f"   Provenance: {res1.provenance[0].steward}")
 
@@ -42,7 +42,7 @@ async def main() -> None:
     # 3. Search registry sources
     search_tool = tools["registry.search_sources"]
     print("\n3. Searching registry sources for 'climate'...")
-    res3 = await search_tool.fn(ctx, text="climate", limit=2)
+    res3 = await search_tool.fn(ctx, text="climate")
     matched = res3.data.get("sources", [])
     print(f"   Matched systems: {len(matched)}")
     for m in matched[:2]:

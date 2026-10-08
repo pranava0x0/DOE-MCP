@@ -1,128 +1,167 @@
 {
   "version": "0.1.0.dev0",
-  "registry_revision": "2026-09-09",
+  "registry_revision": "2026-10-08",
   "counts": {
     "sources": 83,
-    "active": 22,
+    "active": 25,
     "organizations": 54,
     "labs": 17,
-    "capabilities": 51,
-    "capabilities_served": 33,
-    "skills": 4,
+    "capabilities": 53,
+    "capabilities_served": 38,
+    "skills": 8,
     "program_offices": 19,
     "pmas": 4,
-    "servers_shipping": 4,
-    "servers_planned": 5,
-    "tools": 30,
-    "adapters": 17,
+    "servers_shipping": 5,
+    "servers_planned": 4,
+    "tools": 34,
+    "adapters": 19,
     "neighbors": 5,
-    "records_reachable": 20176445
+    "records_reachable": 20176556
   },
   "questions": [
     {
       "question": "What DOE-funded work exists on perovskite tandem cells?",
       "tool": "research.search_literature",
-      "server": "doe-research"
+      "server": "doe-research",
+      "profile": null
     },
     {
       "question": "Where is the dataset behind this paper, and what is its DOI?",
       "tool": "research.search_datasets",
-      "server": "doe-research"
+      "server": "doe-research",
+      "profile": null
     },
     {
       "question": "Has a national laboratory released Python code for lattice QCD?",
       "tool": "research.search_software",
-      "server": "doe-research"
+      "server": "doe-research",
+      "profile": null
     },
     {
       "question": "Can I actually read the full text of this report?",
       "tool": "research.get_record",
-      "server": "doe-research"
+      "server": "doe-research",
+      "profile": null
     },
     {
       "question": "What does Oak Ridge publish?",
       "tool": "registry.lab_crosswalk",
-      "server": "doe-research"
+      "server": "doe-research",
+      "profile": null
     },
     {
       "question": "I have an old NREL URL that 404s. What happened?",
       "tool": "registry.resolve_org",
-      "server": "doe-research"
+      "server": "doe-research",
+      "profile": null
     },
     {
-      "question": "Which DOE catalog holds the EAGLE-I outage data?",
+      "question": "Which DOE catalogs hold geothermal datasets?",
       "tool": "discovery.search_all_catalogs",
-      "server": "doe-research"
+      "server": "doe-research",
+      "profile": null
     },
     {
       "question": "What data does DOE itself call durable?",
       "tool": "discovery.list_pure_resources",
-      "server": "doe-research"
+      "server": "doe-research",
+      "profile": null
     },
     {
       "question": "Does DOE-MCP cover geothermal, and if not, why not?",
       "tool": "registry.search_sources",
-      "server": "doe-research"
+      "server": "doe-research",
+      "profile": "research:all"
     },
     {
       "question": "How much electricity did CAISO demand last night?",
       "tool": "energy.grid_status",
-      "server": "doe-energy-data"
+      "server": "doe-energy-data",
+      "profile": null
     },
     {
       "question": "What does this car actually get?",
       "tool": "fuel.find_vehicle",
-      "server": "doe-energy-data"
+      "server": "doe-energy-data",
+      "profile": null
     },
     {
       "question": "Which wind turbines and solar farms are in this county?",
       "tool": "facility.find_wind_turbines",
-      "server": "doe-energy-data"
+      "server": "doe-energy-data",
+      "profile": null
     },
     {
       "question": "What was the weather at these coordinates every day last summer?",
       "tool": "earth.get_daymet_point",
-      "server": "doe-earth"
+      "server": "doe-earth",
+      "profile": null
     },
     {
       "question": "What data came out of the NGEE Arctic campaign?",
       "tool": "earth.search_datasets",
-      "server": "doe-earth"
+      "server": "doe-earth",
+      "profile": null
     },
     {
       "question": "Which climate models ran this experiment for surface temperature?",
       "tool": "climate.search_cmip",
-      "server": "doe-earth"
+      "server": "doe-earth",
+      "profile": null
     },
     {
       "question": "Where are the air-quality sensors near this city?",
       "tool": "sensors.find_nodes",
-      "server": "doe-earth"
+      "server": "doe-earth",
+      "profile": null
     },
     {
       "question": "Which computed structures contain gallium and nitrogen?",
       "tool": "materials.search_structures",
-      "server": "doe-materials"
+      "server": "doe-materials",
+      "profile": null
     },
     {
       "question": "Which basis sets cover uranium, and what do they look like in NWChem?",
       "tool": "chemistry.search_basis_sets",
-      "server": "doe-materials"
+      "server": "doe-materials",
+      "profile": null
     },
     {
       "question": "What is BPA's wind output right now?",
       "tool": "grid.get_bpa_operations",
-      "server": "doe-energy-data"
+      "server": "doe-energy-data",
+      "profile": null
+    },
+    {
+      "question": "Which EAGLE-I release holds county outage history for 2021?",
+      "tool": "grid.find_outage_history",
+      "server": "doe-energy-data",
+      "profile": null
+    },
+    {
+      "question": "Is there soil microbiome data from Washington State?",
+      "tool": "bio.search_biosamples",
+      "server": "doe-bio",
+      "profile": null
+    },
+    {
+      "question": "Is Perlmutter up, and when is NERSC's next maintenance?",
+      "tool": "compute.facility_status",
+      "server": "doe-research",
+      "profile": "research:all"
     },
     {
       "question": "What has DOE proposed on appliance standards this year?",
       "tool": "docs.search_rulemakings",
-      "server": "doe-research"
+      "server": "doe-research",
+      "profile": null
     },
     {
       "question": "What can I license from Oak Ridge?",
       "tool": "tech.find_licensable_ip",
-      "server": "doe-research"
+      "server": "doe-research",
+      "profile": null
     }
   ],
   "servers": [
@@ -187,13 +226,14 @@
           "toolset": "default",
           "description": "Patents held and software released by the US national laboratories, from PNNL's technology-transfer index \u2014 the one place a single laboratory's own output is searchable. Use for 'what has Idaho patented on X', 'what software has PNNL released', 'who invented this'. `lab` takes an acronym or a laboratory name and is resolved against the alias table first, because this service answers an unknown acronym with zero results and no error. `record_type` is Patent or Software; `query`, `inventor`, `taxonomy`, `since` and `until` narrow further. Pass `record_id` for one record whole, including the filed patent text a search page omits. Page with `cursor` ALONE \u2014 filters sent with a cursor are ignored by the service. Being listed is not an offer to license."
         }
-      ]
+      ],
+      "tools_all": 15
     },
     {
       "name": "doe-energy-data",
       "profile": "energy:default",
       "status": "shipping",
-      "description": "EIA's self-describing statistics tree, BPA's five-minute grid feed, the USGS/LBNL wind and solar facility inventories, and the DOE/EPA vehicle fuel-economy service.",
+      "description": "EIA's self-describing statistics tree, BPA's five-minute grid feed, EAGLE-I's annual outage releases, the USGS/LBNL wind and solar facility inventories, and the DOE/EPA vehicle fuel-economy service.",
       "tools": [
         {
           "name": "energy.discover_routes",
@@ -236,6 +276,11 @@
           "description": "Where US utility-scale solar facilities of one megawatt and up are and what they are, from the USGS/LBNL photovoltaic database: state, county, facility name, AC and DC capacity, panel technology, axis type, tilt, site type, agrivoltaic status, year, power region, and coordinates. Same filter arguments as facility.find_wind_turbines, against this table's columns ('p_cap_ac=gt.100;p_axis=eq.single-axis'). Rooftop and community solar are not in it. An inventory, not generation."
         },
         {
+          "name": "grid.find_outage_history",
+          "toolset": "default",
+          "description": "Which EAGLE-I release holds US electricity-outage history for a year, and where it is. EAGLE-I (DOE CESER, built at ORNL) publishes county-level counts of customers without power at 15-minute intervals, 2014 onward, one release a year through OSTI. Returns each release with the years it covers, its DOI, the documentation record and the county customer-count dataset that is the denominator. Pass `year` to pick the release that covers it. Pointers to files, not outage figures, and not live status: the live EAGLE-I platform is gated."
+        },
+        {
           "name": "registry.resolve_org",
           "toolset": "discovery-min",
           "description": "Resolve a DOE organization from a name, abbreviation, FORMER name, or domain \u2014 including dead ones. Use FIRST whenever a user names a lab or office, because this ecosystem renames things and the old URLs do not redirect. 'NREL' resolves to the National Laboratory of the Rockies and warns that the name is historical; a *.nrel.gov domain resolves the same way and warns that the URL is dead with no forwarding. Same for EERE (now CMEI), FECM (now HGEO), LPO (now EDF), HFTO and BETO (merged into AFFO), IEDO (now ITO), and the dismantled Grid Deployment Office."
@@ -245,14 +290,16 @@
           "toolset": "discovery-min",
           "description": "What a DOE national laboratory publishes, across every platform carrying its data. Call with no argument for all seventeen labs and their source counts. Servers here are organized by data domain, not by laboratory, so this is how a lab-oriented question gets answered \u2014 and it is the honest way, since several labs' flagship data lives on shared cross-lab platforms rather than their own domains. A lab with zero sources is a gap in this project, not a claim that the lab publishes nothing."
         }
-      ]
+      ],
+      "tools_all": 14
     },
     {
       "name": "doe-energy-tech",
       "profile": null,
       "status": "planned",
       "description": "What is modelled, tested or published for an energy technology: the NLR developer network (PVWatts, solar resource, tariffs, alternative-fuel stations), the ATB and Cambium releases, module and battery test data, and the geothermal, marine, hydropower, bioenergy and carbon-storage repositories. Holds the api.data.gov and EDX keys; nothing in it is built yet.",
-      "tools": []
+      "tools": [],
+      "tools_all": null
     },
     {
       "name": "doe-earth",
@@ -300,7 +347,8 @@
           "toolset": "discovery-min",
           "description": "What a DOE national laboratory publishes, across every platform carrying its data. Call with no argument for all seventeen labs and their source counts. Servers here are organized by data domain, not by laboratory, so this is how a lab-oriented question gets answered \u2014 and it is the honest way, since several labs' flagship data lives on shared cross-lab platforms rather than their own domains. A lab with zero sources is a gap in this project, not a claim that the lab publishes nothing."
         }
-      ]
+      ],
+      "tools_all": 11
     },
     {
       "name": "doe-materials",
@@ -343,35 +391,128 @@
           "toolset": "discovery-min",
           "description": "What a DOE national laboratory publishes, across every platform carrying its data. Call with no argument for all seventeen labs and their source counts. Servers here are organized by data domain, not by laboratory, so this is how a lab-oriented question gets answered \u2014 and it is the honest way, since several labs' flagship data lives on shared cross-lab platforms rather than their own domains. A lab with zero sources is a gap in this project, not a claim that the lab publishes nothing."
         }
-      ]
+      ],
+      "tools_all": 10
     },
     {
       "name": "doe-nuclear",
       "profile": null,
       "status": "planned",
       "description": "Nuclide structure and decay data. The ingest-versus-wrap question is deliberately still open.",
-      "tools": []
+      "tools": [],
+      "tools_all": null
     },
     {
       "name": "doe-bio",
-      "profile": null,
-      "status": "planned",
-      "description": "Microbiome studies and biosamples; JGI and EMSL as pointer tools.",
-      "tools": []
+      "profile": "bio:default",
+      "status": "shipping",
+      "description": "Microbiome studies and their biosamples from the National Microbiome Data Collaborative, with DOIs leading to the sequence data at JGI and EMSL.",
+      "tools": [
+        {
+          "name": "bio.search_studies",
+          "toolset": "default",
+          "description": "Search the microbiome studies the National Microbiome Data Collaborative (NMDC; LBNL with ANL, ORNL and PNNL) has ingested: soil, freshwater, marine, plant-associated, subsurface and other environmental microbiomes. `text` matches every word against a study's name, title and description; `ecosystem` matches the study's own classification, which most studies lack; `category` is research_study or consortium. Returns investigators with ORCID, DOIs leading to the sequence data, and the study id for bio.get_study and bio.search_biosamples. Metadata, not sequence data."
+        },
+        {
+          "name": "bio.get_study",
+          "toolset": "default",
+          "description": "One NMDC microbiome study in full by its id ('nmdc:sty-11-...'): description, investigators and roles, funding statements, DOIs, GOLD ids, the parent study if it is part of one, and how many biosamples are linked to it."
+        },
+        {
+          "name": "bio.search_biosamples",
+          "toolset": "default",
+          "description": "Search NMDC's biosamples (over 27,000) by `study_id`, `ecosystem_type` (NMDC's whole value, any case, e.g. 'Soil'), `env_medium` (an environmental-ontology term such as 'soil' or 'sediment'), `place` (a substring of the submitted location, e.g. 'Washington') or `collected` (the start of the date, '2017' or '2017-06'). Each sample comes with coordinates, collection date, place, ecosystem and environmental terms, and depth in metres where stated. Sample metadata, not sequence data."
+        },
+        {
+          "name": "registry.resolve_org",
+          "toolset": "discovery-min",
+          "description": "Resolve a DOE organization from a name, abbreviation, FORMER name, or domain \u2014 including dead ones. Use FIRST whenever a user names a lab or office, because this ecosystem renames things and the old URLs do not redirect. 'NREL' resolves to the National Laboratory of the Rockies and warns that the name is historical; a *.nrel.gov domain resolves the same way and warns that the URL is dead with no forwarding. Same for EERE (now CMEI), FECM (now HGEO), LPO (now EDF), HFTO and BETO (merged into AFFO), IEDO (now ITO), and the dismantled Grid Deployment Office."
+        },
+        {
+          "name": "registry.lab_crosswalk",
+          "toolset": "discovery-min",
+          "description": "What a DOE national laboratory publishes, across every platform carrying its data. Call with no argument for all seventeen labs and their source counts. Servers here are organized by data domain, not by laboratory, so this is how a lab-oriented question gets answered \u2014 and it is the honest way, since several labs' flagship data lives on shared cross-lab platforms rather than their own domains. A lab with zero sources is a gap in this project, not a claim that the lab publishes nothing."
+        }
+      ],
+      "tools_all": 8
     },
     {
       "name": "doe-projects",
       "profile": null,
       "status": "planned",
       "description": "ARPA-E awards, the loan portfolio, the Lab Partnering Service. VIPS did not wait for it: the laboratories' patents and software ship in doe-research as tech.find_licensable_ip.",
-      "tools": []
+      "tools": [],
+      "tools_all": null
     },
     {
       "name": "doe-docs",
       "profile": null,
       "status": "planned",
       "description": "NEPA documents and DOE directives \u2014 or a catalog entry pointing at PNNL's NEPA-MCP, which already serves them. The Federal Register slice did not wait for it: it needs no crawler and ships in doe-research as docs.search_rulemakings and docs.get_rulemaking.",
-      "tools": []
+      "tools": [],
+      "tools_all": null
+    }
+  ],
+  "skills": [
+    {
+      "name": "doe-literature-review",
+      "summary": "A short evidence table of DOE-funded publications on a topic: what was found in OSTI.GOV and DOE PAGES, which records were read in full, where each can be read, and how much of the result set the table covers.",
+      "servers": [
+        "doe-research"
+      ]
+    },
+    {
+      "name": "doe-rulemaking-brief",
+      "summary": "A sourced brief on what DOE has published in the Federal Register on a topic: final rules, proposed rules and notices, each with its docket, regulation identifier, CFR parts, dates and a link to the published text.",
+      "servers": [
+        "doe-research"
+      ]
+    },
+    {
+      "name": "energy-project-site-screen",
+      "summary": "A first-pass screen of a candidate site for a wind or solar project from what DOE-MCP can see today: the turbines and utility-scale solar already built in the area, the balancing authority's recent demand, and a named list of what a full screen needs that DOE-MCP does not serve yet, each with its reason, plus the hand-off to NEPA-MCP for the environmental review.",
+      "servers": [
+        "doe-energy-data",
+        "doe-research"
+      ]
+    },
+    {
+      "name": "environmental-study-brief",
+      "summary": "Find environmental datasets and interpret a bounded Daymet weather window.",
+      "servers": [
+        "doe-earth"
+      ]
+    },
+    {
+      "name": "find-doe-data",
+      "summary": "Find whether the US Department of Energy publishes a given kind of data, where it lives, and how to actually get at it \u2014 ending in a real locator or in a named reason there is not one.",
+      "servers": [
+        "doe-research"
+      ]
+    },
+    {
+      "name": "grid-status-brief",
+      "summary": "A short, sourced brief on what a US balancing authority's grid did over the last day or the last hour: demand, generation and interchange from EIA-930, and for the Pacific Northwest the five-minute load and wind from BPA.",
+      "servers": [
+        "doe-energy-data",
+        "doe-research"
+      ]
+    },
+    {
+      "name": "materials-structure-and-code",
+      "summary": "Find computed crystal structures and export the quantum-chemistry basis sets needed to model them.",
+      "servers": [
+        "doe-materials",
+        "doe-research"
+      ]
+    },
+    {
+      "name": "microbiome-data-finder",
+      "summary": "Find DOE-linked microbiome studies and samples for a kind of environment or a place, and say where the sequence data behind them is held.",
+      "servers": [
+        "doe-bio",
+        "doe-earth"
+      ]
     }
   ],
   "sources": [
@@ -450,6 +591,31 @@
       "blocked_reason": null,
       "labs": [],
       "terms_url": "https://www.bpa.gov/energy-and-services/transmission/operations-information"
+    },
+    {
+      "id": "ceser-eagle-i-outages",
+      "name": "EAGLE-I historical outage datasets",
+      "domain": "energy",
+      "state": "active",
+      "steward": "Office of Cybersecurity, Energy Security, and Emergency Response",
+      "funder": null,
+      "host": "Oak Ridge National Laboratory",
+      "authority": "primary",
+      "automation_status": "public_api",
+      "tier": "catalog_pointer",
+      "adapter": "osti_family",
+      "fixture": true,
+      "scope": "The catalog records of EAGLE-I's annual historical outage releases: county-level counts of customers without power at 15-minute intervals, 2014 onward, with the documentation record and the county customer-count dataset that serves as the denominator.",
+      "record_count": 7,
+      "capabilities": [
+        "grid.outage_history"
+      ],
+      "planned_capabilities": [],
+      "blocked_reason": null,
+      "labs": [
+        "ornl"
+      ],
+      "terms_url": "https://www.osti.gov/dataexplorer/about"
     },
     {
       "id": "doe-code-json",
@@ -704,6 +870,61 @@
         "lbnl"
       ],
       "terms_url": "https://next-gen.materialsproject.org/about/terms"
+    },
+    {
+      "id": "nersc-status",
+      "name": "NERSC Superfacility API (system status)",
+      "domain": "discovery",
+      "state": "active",
+      "steward": "Lawrence Berkeley National Laboratory",
+      "funder": "Office of Science",
+      "host": null,
+      "authority": "primary",
+      "automation_status": "public_api",
+      "tier": "thin_proxy",
+      "adapter": "facility_status",
+      "fixture": true,
+      "scope": "Current status of every NERSC system (compute, filesystems, services) and the schedule of planned outages, as JSON.",
+      "record_count": 19,
+      "capabilities": [
+        "compute.facility_status"
+      ],
+      "planned_capabilities": [],
+      "blocked_reason": null,
+      "labs": [
+        "lbnl"
+      ],
+      "terms_url": "https://docs.nersc.gov/services/sfapi/"
+    },
+    {
+      "id": "nmdc-runtime",
+      "name": "National Microbiome Data Collaborative Runtime API",
+      "domain": "bio",
+      "state": "active",
+      "steward": "Lawrence Berkeley National Laboratory",
+      "funder": "Office of Science",
+      "host": null,
+      "authority": "official_secondary",
+      "automation_status": "public_api",
+      "tier": "thin_proxy",
+      "adapter": "nmdc",
+      "fixture": true,
+      "scope": "Microbiome studies and their biosamples across a multi-laboratory collaboration: ecosystem classification, environmental terms, place, coordinates, collection date and depth for each sample, and investigators, funding and DOIs for each study.",
+      "record_count": 85,
+      "capabilities": [
+        "bio.biosamples",
+        "bio.get_study",
+        "bio.search_studies"
+      ],
+      "planned_capabilities": [],
+      "blocked_reason": null,
+      "labs": [
+        "lbnl",
+        "anl",
+        "ornl",
+        "pnnl"
+      ],
+      "terms_url": "https://microbiomedata.org/"
     },
     {
       "id": "ornl-daac",
@@ -1217,31 +1438,6 @@
       "terms_url": "https://www.nndc.bnl.gov/"
     },
     {
-      "id": "ceser-eagle-i-outages",
-      "name": "EAGLE-I historical outage datasets",
-      "domain": "energy",
-      "state": "proposed",
-      "steward": "Office of Cybersecurity, Energy Security, and Emergency Response",
-      "funder": null,
-      "host": "Oak Ridge National Laboratory",
-      "authority": "primary",
-      "automation_status": "public_api",
-      "tier": "catalog_pointer",
-      "adapter": "none",
-      "fixture": false,
-      "scope": "County-level electricity outage records covering roughly 92% of US customers at 15-minute intervals, released annually.",
-      "record_count": null,
-      "capabilities": [],
-      "planned_capabilities": [
-        "grid.outage_history"
-      ],
-      "blocked_reason": "Phase 3. No adapter work needed \u2014 the datasets are reachable through the existing osti_family adapter \u2014 but the tool contract over outage history is not written. It lands in doe-energy-data, which already serves the grid readings (decision 0026).",
-      "labs": [
-        "ornl"
-      ],
-      "terms_url": "https://www.osti.gov/dataexplorer/"
-    },
-    {
       "id": "doe-ai-use-case-inventory",
       "name": "DOE AI Use Case Inventory",
       "domain": "discovery",
@@ -1663,31 +1859,6 @@
       "terms_url": "https://gems.lm.doe.gov/"
     },
     {
-      "id": "nersc-status",
-      "name": "NERSC Superfacility API (system status)",
-      "domain": "discovery",
-      "state": "proposed",
-      "steward": "Lawrence Berkeley National Laboratory",
-      "funder": "Office of Science",
-      "host": null,
-      "authority": "primary",
-      "automation_status": "public_api",
-      "tier": "thin_proxy",
-      "adapter": "none",
-      "fixture": false,
-      "scope": "Current status of every NERSC system (compute, filesystems, services) and the schedule of planned outages, as JSON.",
-      "record_count": null,
-      "capabilities": [],
-      "planned_capabilities": [
-        "compute.facility_status"
-      ],
-      "blocked_reason": "No server for a facility-status capability exists and one source does not justify one (architecture Part 1 section 3.4). The question of whether there were more was closed on 2026-09-08: of the three leadership computing facilities, NERSC is the only one with a reachable machine interface, so the capability has one source rather than three and a facilities server stays unjustified. It reopens if ALCF's blocked probe clears in a browser.",
-      "labs": [
-        "lbnl"
-      ],
-      "terms_url": "https://docs.nersc.gov/services/sfapi/"
-    },
-    {
       "id": "netl-edx",
       "name": "NETL Energy Data eXchange (EDX)",
       "domain": "energy-tech",
@@ -1877,34 +2048,6 @@
         "jlab"
       ],
       "terms_url": "https://developer.nlr.gov/"
-    },
-    {
-      "id": "nmdc-runtime",
-      "name": "National Microbiome Data Collaborative Runtime API",
-      "domain": "bio",
-      "state": "proposed",
-      "steward": "Lawrence Berkeley National Laboratory",
-      "funder": null,
-      "host": null,
-      "authority": "official_secondary",
-      "automation_status": "public_api",
-      "tier": "thin_proxy",
-      "adapter": "none",
-      "fixture": false,
-      "scope": "Microbiome studies, biosamples, omics processing records, and workflow outputs across a multi-laboratory collaboration.",
-      "record_count": null,
-      "capabilities": [],
-      "planned_capabilities": [
-        "bio.search_studies"
-      ],
-      "blocked_reason": "Phase 4. Needs the bio domain server. No access obstacle; the work is choosing which of 93 operations become tools.",
-      "labs": [
-        "lbnl",
-        "anl",
-        "ornl",
-        "pnnl"
-      ],
-      "terms_url": "https://microbiomedata.org/"
     },
     {
       "id": "oced-community-benefits-map",
@@ -2617,7 +2760,7 @@
         {
           "id": "nmdc-runtime",
           "name": "National Microbiome Data Collaborative Runtime API",
-          "state": "proposed",
+          "state": "active",
           "domain": "bio"
         },
         {
@@ -2651,7 +2794,7 @@
           "domain": "projects"
         }
       ],
-      "active": 7
+      "active": 8
     },
     {
       "id": "bnl",
@@ -3021,7 +3164,7 @@
         {
           "id": "nersc-status",
           "name": "NERSC Superfacility API (system status)",
-          "state": "proposed",
+          "state": "active",
           "domain": "discovery"
         },
         {
@@ -3039,7 +3182,7 @@
         {
           "id": "nmdc-runtime",
           "name": "National Microbiome Data Collaborative Runtime API",
-          "state": "proposed",
+          "state": "active",
           "domain": "bio"
         },
         {
@@ -3091,7 +3234,7 @@
           "domain": "energy"
         }
       ],
-      "active": 10
+      "active": 12
     },
     {
       "id": "llnl",
@@ -3318,7 +3461,7 @@
         {
           "id": "ceser-eagle-i-outages",
           "name": "EAGLE-I historical outage datasets",
-          "state": "proposed",
+          "state": "active",
           "domain": "energy"
         },
         {
@@ -3348,7 +3491,7 @@
         {
           "id": "nmdc-runtime",
           "name": "National Microbiome Data Collaborative Runtime API",
-          "state": "proposed",
+          "state": "active",
           "domain": "bio"
         },
         {
@@ -3448,7 +3591,7 @@
           "domain": "projects"
         }
       ],
-      "active": 10
+      "active": 12
     },
     {
       "id": "pnnl",
@@ -3480,7 +3623,7 @@
         {
           "id": "nmdc-runtime",
           "name": "National Microbiome Data Collaborative Runtime API",
-          "state": "proposed",
+          "state": "active",
           "domain": "bio"
         },
         {
@@ -3550,7 +3693,7 @@
           "domain": "earth"
         }
       ],
-      "active": 6
+      "active": 7
     },
     {
       "id": "pppl",
@@ -3871,11 +4014,11 @@
         {
           "id": "ceser-eagle-i-outages",
           "name": "EAGLE-I historical outage datasets",
-          "state": "proposed",
+          "state": "active",
           "domain": "energy"
         }
       ],
-      "active": 0
+      "active": 1
     },
     {
       "id": "cmei",
@@ -4210,8 +4353,14 @@
         {
           "id": "nersc-status",
           "name": "NERSC Superfacility API (system status)",
-          "state": "proposed",
+          "state": "active",
           "domain": "discovery"
+        },
+        {
+          "id": "nmdc-runtime",
+          "name": "National Microbiome Data Collaborative Runtime API",
+          "state": "active",
+          "domain": "bio"
         },
         {
           "id": "olcf-status",
@@ -4226,7 +4375,7 @@
           "domain": "projects"
         }
       ],
-      "active": 3
+      "active": 5
     },
     {
       "id": "bpa",
@@ -4414,98 +4563,80 @@
               ]
             },
             {
-              "id": "3505044",
-              "title": "Tandem Photovoltaics Core Program Final Technical Report",
+              "id": "3409109",
+              "title": "Reducing non-radiative recombination in perovskite solar cells with a SiO<sub>2</sub>-graphene oxide buried interface layer",
               "authors": [
-                "Warren, Emily [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000185687881)",
-                "Zhu, Kai [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000309083909)",
-                "Owen-Bellini, Michael [National Laboratory of the Rockies, Golden, CO (United States)]",
-                "McMahon, Bill [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000150362032)",
-                "Alberi, Kirstin [National Laboratory of the Rockies, Golden, CO (United States)]"
+                "Cao, Zikun [Univ. of Texas, Arlington, TX (United States); Univ. of Miami, FL (United States)]",
+                "You, Shuai [National Laboratory of the Rockies (NLR), Golden, CO (United States)]",
+                "Zhang, Xiyao [Univ. of Texas, Arlington, TX (United States); Univ. of Akron, OH (United States)]",
+                "Liu, Lei [Univ. of Akron, OH (United States)]",
+                "Zhang, Haixing [Univ. of Miami, FL (United States)]"
               ],
-              "publication_date": "2026-08-21",
-              "product_type": "Technical Report",
-              "authors_truncated": 13,
-              "doi": "10.66816/tp6712117",
-              "report_number": "NLR/TP-5900-95272",
+              "publication_date": "2026-09-01",
+              "product_type": "Journal Article",
+              "authors_truncated": 4,
+              "doi": "10.1016/j.nanoen.2026.112209",
+              "journal": "Nano Energy",
+              "report_number": "NLR/JA-5900-101333",
               "research_orgs": [
                 "National Laboratory of the Rockies (NLR), Golden, CO (United States)"
               ]
             },
             {
-              "id": "3407885",
-              "title": "Molecular Additive Engineering for Process-Humidity Robustness and Reproducible Fabrication of Perovskite Solar Cells and Modules",
+              "id": "3818255",
+              "title": "Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide Perovskites",
               "authors": [
-                "Saeed, Muhammad Mohsin [University of Toledo, OH (United States)]",
-                "Kwon, Hyoung Woo [University of Toledo, OH (United States)]",
-                "Li, You [University of Toledo, OH (United States)]",
-                "Fu, Sheng [University of Toledo, OH (United States)] (ORCID:0009000859121145)",
-                "Lee, Seungmin [University of Toledo, OH (United States)]"
+                "Westbrook, Robert J. E. [University of Washington, Seattle, WA (United States)] (ORCID:0000000212030712)",
+                "Taddei, Margherita [University of Washington, Seattle, WA (United States)] (ORCID:0000000341228418)",
+                "Sanchez-Diaz, Jes\u00fas [Universitat Jaume, Castell\u00f3n (Spain)]",
+                "Mushtaq, Tehmina [Universitat Jaume, Castell\u00f3n (Spain)]",
+                "S\u00e1nchez, Rafael S [Universitat Jaume, Castell\u00f3n (Spain)] (ORCID:0000000189486120)"
               ],
-              "publication_date": "2026-07-22",
+              "publication_date": "2026-08-26",
               "product_type": "Journal Article",
-              "authors_truncated": 15,
-              "doi": "10.1021/acsami.6c09922",
-              "journal": "ACS Applied Materials and Interfaces",
-              "research_orgs": [
-                "University of Toledo, OH (United States)"
-              ]
-            },
-            {
-              "id": "3424874",
-              "title": "Large Polaron Screening Delays Mobility Roll-Off in Halide Perovskites under High Injection",
-              "authors": [
-                "Taddei, Margherita [National Laboratory of the Rockies (NLR), Golden, CO (United States)] (ORCID:0000000341228418)",
-                "Dong, Yifan [National Laboratory of the Rockies (NLR), Golden, CO (United States); University of California, Riverside, CA (United States)] (ORCID:0000000329123322)",
-                "Shelton, Jacob [National Laboratory of the Rockies (NLR), Golden, CO (United States)]",
-                "Reid, Obadiah [National Laboratory of the Rockies (NLR), Golden, CO (United States); RASEI: The Joint CU-Boulder/NLR Energy Institute, Boulder, CO (United States)]",
-                "Marder, Seth R. [National Laboratory of the Rockies (NLR), Golden, CO (United States); RASEI: The Joint CU-Boulder/NLR Energy Institute, Boulder, CO (United States)]"
-              ],
-              "publication_date": "2026-08-04",
-              "product_type": "Journal Article",
-              "authors_truncated": 2,
-              "doi": "10.1021/acsenergylett.6c01114",
+              "authors_truncated": 4,
+              "doi": "10.1021/acsenergylett.6c01751",
               "journal": "ACS Energy Letters",
               "research_orgs": [
-                "Alliance for Energy Innovation, LLC, Golden, CO (United States)"
+                "University of Washington, Seattle, WA (United States)"
               ]
             },
             {
-              "id": "3377207",
-              "title": "Solar cell efficiency tables: Version 68",
+              "id": "3818626",
+              "title": "Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of Perovskite Photovoltaics",
               "authors": [
-                "Green, Martin A. [Univ. of New South Wales, Sydney, NSW (Australia)]",
-                "Dunlop, Ewan D. [European Commission, Ispra (Italy). Joint Research Centre]",
-                "Yoshita, Masahiro [National Institute of Advanced Industrial Science and Technology (AIST) (Japan)]",
-                "Kopidakis, Nikos [National Laboratory of the Rockies (NLR), Golden, CO (United States)]",
-                "Bothe, Karsten [Inst. for Solar Energy Research GmbH GmbH (Germany)]"
+                "Shih, Meng-Chen",
+                "Tan, Shaun",
+                "Lu, Yongli",
+                "Kodalle, Tim",
+                "Terlier, Tanguy"
               ],
-              "publication_date": "2026-07-14",
+              "publication_date": "2026-08-11",
               "product_type": "Journal Article",
-              "authors_truncated": 2,
-              "doi": "10.1016/j.joule.2026.102494",
-              "journal": "Joule",
-              "report_number": "NLR/JA-5900-101224",
+              "authors_truncated": 10,
+              "doi": "10.1021/jacs.6c05503",
+              "journal": "Journal of the American Chemical Society",
               "research_orgs": [
-                "National Laboratory of the Rockies (NLR), Golden, CO (United States)"
+                "Lawrence Berkeley National Laboratory (LBNL), Berkeley, CA (United States)"
               ]
             }
           ],
-          "record_count": 6,
+          "record_count": 5,
           "per_source": [
             {
               "source_id": "osti-gov-records",
               "system": "OSTI.GOV Search API",
-              "total_matches": 8255,
+              "total_matches": 8313,
               "returned": 3
             },
             {
               "source_id": "osti-doe-pages",
               "system": "DOE PAGES (Public Access Gateway for Energy and Science)",
-              "total_matches": 5611,
+              "total_matches": 5669,
               "returned": 3
             }
-          ]
+          ],
+          "deduplicated_by_doi": 1
         },
         "provenance": [
           {
@@ -4518,7 +4649,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "cache_age_seconds": 0
           },
           {
@@ -4531,7 +4662,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -4541,7 +4672,7 @@
             "source_ref": "source_01",
             "record_id": "3484888",
             "locator": "https://www.osti.gov/biblio/3484888",
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "effective_at": "2026-08-27T11:00:26Z",
             "transformations": [
               "normalize"
@@ -4554,7 +4685,7 @@
             "source_ref": "source_01",
             "record_id": "3625672",
             "locator": "https://www.osti.gov/biblio/3625672",
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "effective_at": "2026-09-02T10:56:05Z",
             "transformations": [
               "normalize"
@@ -4565,10 +4696,10 @@
           {
             "id": "evidence_03",
             "source_ref": "source_01",
-            "record_id": "3505044",
-            "locator": "https://www.osti.gov/biblio/3505044",
-            "retrieved_at": "2026-09-09T00:00:00Z",
-            "effective_at": "2026-08-28T10:59:35Z",
+            "record_id": "3409109",
+            "locator": "https://www.osti.gov/biblio/3409109",
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": "2026-09-18T15:49:56Z",
             "transformations": [
               "normalize"
             ],
@@ -4578,10 +4709,10 @@
           {
             "id": "evidence_04",
             "source_ref": "source_02",
-            "record_id": "3407885",
-            "locator": "https://www.osti.gov/biblio/3407885",
-            "retrieved_at": "2026-09-09T00:00:00Z",
-            "effective_at": "2026-08-11T07:32:50Z",
+            "record_id": "3409109",
+            "locator": "https://www.osti.gov/biblio/3409109",
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": "2026-09-18T11:49:56Z",
             "transformations": [
               "normalize"
             ],
@@ -4591,10 +4722,10 @@
           {
             "id": "evidence_05",
             "source_ref": "source_02",
-            "record_id": "3424874",
-            "locator": "https://www.osti.gov/biblio/3424874",
-            "retrieved_at": "2026-09-09T00:00:00Z",
-            "effective_at": "2026-08-20T05:00:20Z",
+            "record_id": "3818255",
+            "locator": "https://www.osti.gov/biblio/3818255",
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": "2026-09-17T10:27:35Z",
             "transformations": [
               "normalize"
             ],
@@ -4604,10 +4735,10 @@
           {
             "id": "evidence_06",
             "source_ref": "source_02",
-            "record_id": "3377207",
-            "locator": "https://www.osti.gov/biblio/3377207",
-            "retrieved_at": "2026-09-09T00:00:00Z",
-            "effective_at": "2026-08-27T07:29:27Z",
+            "record_id": "3818626",
+            "locator": "https://www.osti.gov/biblio/3818626",
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": "2026-09-18T08:11:09Z",
             "transformations": [
               "normalize"
             ],
@@ -4683,15 +4814,15 @@
           },
           {
             "kind": "doi",
-            "uri": "https://doi.org/10.66816/tp6712117",
-            "label": "Tandem Photovoltaics Core Program Final Technical Report",
+            "uri": "https://doi.org/10.1016/j.nanoen.2026.112209",
+            "label": "Reducing non-radiative recombination in perovskite solar cells with a SiO<sub>2<",
             "instructions": null,
             "requires_account": false,
             "approximate_size": null
           },
           {
             "kind": "fulltext_pdf",
-            "uri": "https://www.osti.gov/servlets/purl/3505044",
+            "uri": "https://www.osti.gov/servlets/purl/3409109",
             "label": "Full text (OSTI)",
             "instructions": null,
             "requires_account": false,
@@ -4699,15 +4830,15 @@
           },
           {
             "kind": "doi",
-            "uri": "https://doi.org/10.1021/acsami.6c09922",
-            "label": "Molecular Additive Engineering for Process-Humidity Robustness and Reproducible ",
+            "uri": "https://doi.org/10.1021/acsenergylett.6c01751",
+            "label": "Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide Pero",
             "instructions": null,
             "requires_account": false,
             "approximate_size": null
           },
           {
             "kind": "fulltext_pdf",
-            "uri": "https://www.osti.gov/servlets/purl/3407885",
+            "uri": "https://www.osti.gov/servlets/purl/3818255",
             "label": "Full text (OSTI)",
             "instructions": null,
             "requires_account": false,
@@ -4715,31 +4846,15 @@
           },
           {
             "kind": "doi",
-            "uri": "https://doi.org/10.1021/acsenergylett.6c01114",
-            "label": "Large Polaron Screening Delays Mobility Roll-Off in Halide Perovskites under Hig",
+            "uri": "https://doi.org/10.1021/jacs.6c05503",
+            "label": "Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of Pero",
             "instructions": null,
             "requires_account": false,
             "approximate_size": null
           },
           {
             "kind": "fulltext_pdf",
-            "uri": "https://www.osti.gov/servlets/purl/3424874",
-            "label": "Full text (OSTI)",
-            "instructions": null,
-            "requires_account": false,
-            "approximate_size": null
-          },
-          {
-            "kind": "doi",
-            "uri": "https://doi.org/10.1016/j.joule.2026.102494",
-            "label": "Solar cell efficiency tables: Version 68",
-            "instructions": null,
-            "requires_account": false,
-            "approximate_size": null
-          },
-          {
-            "kind": "fulltext_pdf",
-            "uri": "https://www.osti.gov/servlets/purl/3377207",
+            "uri": "https://www.osti.gov/servlets/purl/3818626",
             "label": "Full text (OSTI)",
             "instructions": null,
             "requires_account": false,
@@ -4776,10 +4891,12 @@
             "sage": "1",
             "optimade": "1",
             "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-09-09",
+          "registry_revision": "2026-10-08",
           "request_id": "worked-example"
         }
       }
@@ -4839,11 +4956,11 @@
             "steward": "The DOE-MCP project",
             "system": "DOE-MCP source registry and organization table",
             "dataset": "DOE-MCP source registry and organization table",
-            "dataset_version": "2026-09-09",
+            "dataset_version": "2026-10-08",
             "authority_level": "unverified",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -4853,7 +4970,7 @@
             "source_ref": "source_01",
             "record_id": "nlr",
             "locator": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -4897,10 +5014,12 @@
             "sage": "1",
             "optimade": "1",
             "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-09-09",
+          "registry_revision": "2026-10-08",
           "request_id": "worked-example"
         }
       }
@@ -5006,7 +5125,7 @@
             "authority_level": "official_secondary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "cache_age_seconds": 0
           },
           {
@@ -5019,7 +5138,7 @@
             "authority_level": "official_secondary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "cache_age_seconds": 0
           },
           {
@@ -5032,7 +5151,7 @@
             "authority_level": "official_derived",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "cache_age_seconds": 0
           },
           {
@@ -5045,7 +5164,7 @@
             "authority_level": "official_derived",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -5055,7 +5174,7 @@
             "source_ref": "source_01",
             "record_id": "1148737",
             "locator": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "normalize"
@@ -5068,7 +5187,7 @@
             "source_ref": "source_01",
             "record_id": "1542650",
             "locator": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "normalize"
@@ -5081,7 +5200,7 @@
             "source_ref": "source_02",
             "record_id": "glass-buttes-exploration-and-drilling-2010-geothermal-technologies-program-peer-",
             "locator": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "normalize"
@@ -5094,7 +5213,7 @@
             "source_ref": "source_02",
             "record_id": "investigation-of-stimulation-response-relationships-for-complex-fracture-systems",
             "locator": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "normalize"
@@ -5195,10 +5314,12 @@
             "sage": "1",
             "optimade": "1",
             "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-09-09",
+          "registry_revision": "2026-10-08",
           "request_id": "worked-example"
         }
       }
@@ -5416,7 +5537,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "cache_age_seconds": 0,
             "citation": {
               "doi": "10.5066/F7TX3DN0",
@@ -5431,7 +5552,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3001502",
             "locator": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -5442,7 +5563,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3015899",
             "locator": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -5453,7 +5574,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3034241",
             "locator": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -5464,7 +5585,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3039300",
             "locator": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -5475,7 +5596,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3039301",
             "locator": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -5522,10 +5643,12 @@
             "sage": "1",
             "optimade": "1",
             "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-09-09",
+          "registry_revision": "2026-10-08",
           "request_id": "worked-example"
         }
       }
@@ -5631,7 +5754,7 @@
             "authority_level": "official_secondary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -5641,7 +5764,7 @@
             "source_ref": "source_01",
             "record_id": "tile:11208@35.9313,-84.3104",
             "locator": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "effective_at": "2023-06-01",
             "transformations": [
               "day-of-year converted to calendar date"
@@ -5694,10 +5817,12 @@
             "sage": "1",
             "optimade": "1",
             "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-09-09",
+          "registry_revision": "2026-10-08",
           "request_id": "worked-example"
         }
       }
@@ -5931,7 +6056,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -5941,7 +6066,7 @@
             "source_ref": "source_01",
             "record_id": "mp-1244984",
             "locator": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "effective_at": "2019-07-02T00:29:18.792000",
             "transformations": [],
             "payload_hash": null,
@@ -5952,7 +6077,7 @@
             "source_ref": "source_01",
             "record_id": "mp-1223660",
             "locator": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "effective_at": "2022-06-10T06:23:20.905000",
             "transformations": [],
             "payload_hash": null,
@@ -5963,7 +6088,7 @@
             "source_ref": "source_01",
             "record_id": "mp-1199250",
             "locator": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "effective_at": "2021-03-09T23:05:01.374000",
             "transformations": [],
             "payload_hash": null,
@@ -5974,7 +6099,7 @@
             "source_ref": "source_01",
             "record_id": "mp-1245997",
             "locator": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "effective_at": "2021-02-04T20:40:18.753000",
             "transformations": [],
             "payload_hash": null,
@@ -5985,7 +6110,7 @@
             "source_ref": "source_01",
             "record_id": "mp-1198425",
             "locator": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "effective_at": "2021-03-10T07:53:43.904000",
             "transformations": [],
             "payload_hash": null,
@@ -6038,10 +6163,277 @@
             "sage": "1",
             "optimade": "1",
             "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-09-09",
+          "registry_revision": "2026-10-08",
+          "request_id": "worked-example"
+        }
+      }
+    },
+    {
+      "tool": "bio.search_biosamples",
+      "server": "doe-bio",
+      "why": "Soil microbiome samples NMDC holds from Washington State, with the filter the publisher echoed back and the total it counted.",
+      "envelope": {
+        "data": {
+          "biosamples": [
+            {
+              "sample_id": "nmdc:bsm-13-mrzb2q96",
+              "name": "Groundwater microbial communities from the Columbia River, Washington, USA - GW-RW N1_20_30",
+              "studies": [
+                "nmdc:sty-11-aygzgv51"
+              ],
+              "collected": "2014-04-01",
+              "latitude": 46.372,
+              "longitude": -119.272,
+              "place": "USA: Columbia River, Washington",
+              "ecosystem": [
+                "Environmental",
+                "Terrestrial",
+                "Soil",
+                "Sand"
+              ],
+              "env_broad_scale": "ENVO:00000873",
+              "env_local_scale": "ENVO:00000022",
+              "env_medium": "ENVO:01000017",
+              "depth_m": null
+            },
+            {
+              "sample_id": "nmdc:bsm-13-4aw9ra87",
+              "name": "Groundwater microbial communities from the Columbia River, Washington, USA - GW-RW N1_30_40",
+              "studies": [
+                "nmdc:sty-11-aygzgv51"
+              ],
+              "collected": "2014-04-01",
+              "latitude": 46.372,
+              "longitude": -119.272,
+              "place": "USA: Columbia River, Washington",
+              "ecosystem": [
+                "Environmental",
+                "Terrestrial",
+                "Soil",
+                "Sand"
+              ],
+              "env_broad_scale": "ENVO:00000873",
+              "env_local_scale": "ENVO:00000022",
+              "env_medium": "ENVO:01000017",
+              "depth_m": null
+            },
+            {
+              "sample_id": "nmdc:bsm-13-z9wten89",
+              "name": "Groundwater microbial communities from the Columbia River, Washington, USA - GW-RW N1_00_10",
+              "studies": [
+                "nmdc:sty-11-aygzgv51"
+              ],
+              "collected": "2014-04-01",
+              "latitude": 46.372,
+              "longitude": -119.272,
+              "place": "USA: Columbia River, Washington",
+              "ecosystem": [
+                "Environmental",
+                "Terrestrial",
+                "Soil",
+                "Sand"
+              ],
+              "env_broad_scale": "ENVO:00000873",
+              "env_local_scale": "ENVO:00000022",
+              "env_medium": "ENVO:01000017",
+              "depth_m": null
+            },
+            {
+              "sample_id": "nmdc:bsm-13-wktc3357",
+              "name": "Groundwater microbial communities from the Columbia River, Washington, USA - GW-RW N1_40_50",
+              "studies": [
+                "nmdc:sty-11-aygzgv51"
+              ],
+              "collected": "2014-04-01",
+              "latitude": 46.372,
+              "longitude": -119.272,
+              "place": "USA: Columbia River, Washington",
+              "ecosystem": [
+                "Environmental",
+                "Terrestrial",
+                "Soil",
+                "Sand"
+              ],
+              "env_broad_scale": "ENVO:00000873",
+              "env_local_scale": "ENVO:00000022",
+              "env_medium": "ENVO:01000017",
+              "depth_m": null
+            },
+            {
+              "sample_id": "nmdc:bsm-13-ap544f22",
+              "name": "Groundwater microbial communities from the Columbia River, Washington, USA - GW-RW N2_00_30",
+              "studies": [
+                "nmdc:sty-11-aygzgv51"
+              ],
+              "collected": "2014-04-01",
+              "latitude": 46.372,
+              "longitude": -119.272,
+              "place": "USA: Columbia River, Washington",
+              "ecosystem": [
+                "Environmental",
+                "Terrestrial",
+                "Soil",
+                "Sand"
+              ],
+              "env_broad_scale": "ENVO:00000873",
+              "env_local_scale": "ENVO:00000022",
+              "env_medium": "ENVO:01000017",
+              "depth_m": null
+            }
+          ],
+          "record_count": 5,
+          "total_matches": 188,
+          "page": 1,
+          "filter_applied": {
+            "ecosystem_type": {
+              "$regex": "(?i)^Soil$"
+            },
+            "geo_loc_name.has_raw_value": {
+              "$regex": "(?i)washington"
+            }
+          },
+          "note": "Sample metadata as submitted. ecosystem_type matches NMDC's whole value without regard to case ('soil', 'Freshwater'); env_medium and place match a substring without regard to case; collected matches the start of the date as written ('2017', '2017-06'). Depth is reported only where it was stated in metres. Metadata only. Reads, assemblies and annotations are held at JGI, EMSL and the sequence archives; a study's DOIs in access_recipes lead to them and are never fetched here."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "nmdc-runtime",
+            "steward": "Lawrence Berkeley National Laboratory",
+            "funder": "Office of Science",
+            "system": "National Microbiome Data Collaborative Runtime API",
+            "dataset": "National Microbiome Data Collaborative Runtime API",
+            "dataset_version": "current",
+            "authority_level": "official_secondary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "cache_age_seconds": 0
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "nmdc:bsm-13-mrzb2q96",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": "2014-04-01",
+            "transformations": [
+              "normalize"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_02",
+            "source_ref": "source_01",
+            "record_id": "nmdc:bsm-13-4aw9ra87",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": "2014-04-01",
+            "transformations": [
+              "normalize"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_03",
+            "source_ref": "source_01",
+            "record_id": "nmdc:bsm-13-z9wten89",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": "2014-04-01",
+            "transformations": [
+              "normalize"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_04",
+            "source_ref": "source_01",
+            "record_id": "nmdc:bsm-13-wktc3357",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": "2014-04-01",
+            "transformations": [
+              "normalize"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_05",
+            "source_ref": "source_01",
+            "record_id": "nmdc:bsm-13-ap544f22",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": "2014-04-01",
+            "transformations": [
+              "normalize"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "truncated",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "nmdc-runtime"
+          ],
+          "known_limitations": [
+            "Metadata, not sequence data. Reads, assemblies and annotations live in the sequence archives and at JGI, and are reached through a study's DOIs rather than through this source.",
+            "Only 8 of 85 studies carry an ecosystem classification of their own; the rest are classified sample by sample. An ecosystem filter on studies therefore misses most of them, and the biosample filter is the one to use.",
+            "Place is free text as submitted ('USA: Washington, Abby Road'), so a place search is a substring match and a state name may miss samples recorded only by site or coordinates.",
+            "Studies NMDC has ingested, not every microbiome study. Most of the 85 are JGI or EMSL projects and a consortium study such as NEON's appears once with thousands of samples, so counts describe NMDC's holdings rather than the field."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "terms_note",
+            "message": "No published rate limit and no data-use statement on the API itself; the data portal's usage terms were not found in a scripted read.",
+            "source_id": "nmdc-runtime"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "bio.search_biosamples",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-10-08",
           "request_id": "worked-example"
         }
       }

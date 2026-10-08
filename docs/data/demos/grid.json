@@ -1,0 +1,401 @@
+{
+  "format_version": "1",
+  "case": "grid",
+  "title": "BPA grid briefing",
+  "question": "What do the recorded five-minute load readings show?",
+  "mode": "recorded",
+  "simulation": false,
+  "registry_revision": "2026-10-08",
+  "generated_at": null,
+  "replay_clock": "2026-10-08T00:00:00Z",
+  "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
+  "fixtures": [
+    {
+      "file": "bpa-operations.json",
+      "sha256": "4d69703d9b889d9a1c13fb09ec2476a79e4c0977f5f2a2b79a1fc4fd0139e394",
+      "captured_at": null
+    }
+  ],
+  "limitations": [
+    "BPA balancing-authority load is not local connection capacity.",
+    "Publisher timestamps are Pacific Time; no UTC offset is inferred."
+  ],
+  "steps": [
+    {
+      "tool": "grid.get_bpa_operations",
+      "args": {
+        "intervals": 12
+      },
+      "envelope": {
+        "data": {
+          "feed": "balancing_authority_interchange",
+          "title": "BPA Balancing Authority Load & Total VER",
+          "units": "MW",
+          "columns": [
+            "Load",
+            "VER",
+            "Hydro",
+            "Fossil/Biomass",
+            "Interchange",
+            "Nuclear"
+          ],
+          "latest": {
+            "timestamp": "09/03/2026 01:55",
+            "values": {
+              "Load": 5728,
+              "VER": 623,
+              "Hydro": 3726,
+              "Fossil/Biomass": 804,
+              "Interchange": 600,
+              "Nuclear": 1134
+            }
+          },
+          "intervals": [
+            {
+              "timestamp": "09/03/2026 01:00",
+              "values": {
+                "Load": 5894,
+                "VER": 603,
+                "Hydro": 3863,
+                "Fossil/Biomass": 801,
+                "Interchange": 548,
+                "Nuclear": 1134
+              }
+            },
+            {
+              "timestamp": "09/03/2026 01:05",
+              "values": {
+                "Load": 5832,
+                "VER": 600,
+                "Hydro": 3988,
+                "Fossil/Biomass": 801,
+                "Interchange": 735,
+                "Nuclear": 1136
+              }
+            },
+            {
+              "timestamp": "09/03/2026 01:10",
+              "values": {
+                "Load": 5812,
+                "VER": 593,
+                "Hydro": 3954,
+                "Fossil/Biomass": 801,
+                "Interchange": 709,
+                "Nuclear": 1132
+              }
+            },
+            {
+              "timestamp": "09/03/2026 01:15",
+              "values": {
+                "Load": 5823,
+                "VER": 635,
+                "Hydro": 3913,
+                "Fossil/Biomass": 803,
+                "Interchange": 700,
+                "Nuclear": 1131
+              }
+            },
+            {
+              "timestamp": "09/03/2026 01:20",
+              "values": {
+                "Load": 5877,
+                "VER": 663,
+                "Hydro": 3898,
+                "Fossil/Biomass": 803,
+                "Interchange": 665,
+                "Nuclear": 1138
+              }
+            },
+            {
+              "timestamp": "09/03/2026 01:25",
+              "values": {
+                "Load": 5874,
+                "VER": 682,
+                "Hydro": 3895,
+                "Fossil/Biomass": 803,
+                "Interchange": 683,
+                "Nuclear": 1136
+              }
+            },
+            {
+              "timestamp": "09/03/2026 01:30",
+              "values": {
+                "Load": 5866,
+                "VER": 671,
+                "Hydro": 3906,
+                "Fossil/Biomass": 804,
+                "Interchange": 694,
+                "Nuclear": 1139
+              }
+            },
+            {
+              "timestamp": "09/03/2026 01:35",
+              "values": {
+                "Load": 5877,
+                "VER": 649,
+                "Hydro": 3810,
+                "Fossil/Biomass": 802,
+                "Interchange": 557,
+                "Nuclear": 1132
+              }
+            },
+            {
+              "timestamp": "09/03/2026 01:40",
+              "values": {
+                "Load": 5839,
+                "VER": 654,
+                "Hydro": 3793,
+                "Fossil/Biomass": 802,
+                "Interchange": 585,
+                "Nuclear": 1134
+              }
+            },
+            {
+              "timestamp": "09/03/2026 01:45",
+              "values": {
+                "Load": 5826,
+                "VER": 669,
+                "Hydro": 3756,
+                "Fossil/Biomass": 803,
+                "Interchange": 579,
+                "Nuclear": 1137
+              }
+            },
+            {
+              "timestamp": "09/03/2026 01:50",
+              "values": {
+                "Load": 5801,
+                "VER": 660,
+                "Hydro": 3795,
+                "Fossil/Biomass": 804,
+                "Interchange": 632,
+                "Nuclear": 1133
+              }
+            },
+            {
+              "timestamp": "09/03/2026 01:55",
+              "values": {
+                "Load": 5728,
+                "VER": 623,
+                "Hydro": 3726,
+                "Fossil/Biomass": 804,
+                "Interchange": 600,
+                "Nuclear": 1134
+              }
+            }
+          ],
+          "record_count": 12,
+          "reported_through": "09/03/2026 01:55",
+          "window": "Dates: 03Sep2026 - 10Sep2026 (last updated 9Sep2026 07:26:18) Pacific Time",
+          "window_intervals": 24,
+          "pending_intervals": 12,
+          "publisher_last_updated": "9Sep2026 07:26:18",
+          "timestamps": "Pacific Time, stated in the file's own header and never as a UTC offset. The HTTP Last-Modified header is the unambiguous version and is what reaches the envelope.",
+          "note": "Five-minute SCADA readings from BPA's balancing authority, in megawatts. VER is variable energy resources \u2014 wind and solar together. The balancing authority includes loads and resources that are not BPA's own and excludes BPA loads served by transfer, so this is not a figure for 'BPA the utility'. For hourly history, or for any other balancing authority, use energy.grid_status; BPA's EIA-930 respondent code is BPAT.",
+          "pending_note": "The file also listed 12 later interval(s) today with a timestamp and no values. Those have not happened yet; they are not zero generation and not an outage. They are excluded from every figure above."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "bpa-operations",
+            "steward": "Bonneville Power Administration",
+            "system": "BPA transmission operations feeds",
+            "dataset": "BPA Balancing Authority Load & Total VER",
+            "dataset_version": "current",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "cache_age_seconds": 0
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "balancing_authority_interchange#09/03/2026 01:00",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": "09/03/2026 01:00",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_02",
+            "source_ref": "source_01",
+            "record_id": "balancing_authority_interchange#09/03/2026 01:05",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": "09/03/2026 01:05",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_03",
+            "source_ref": "source_01",
+            "record_id": "balancing_authority_interchange#09/03/2026 01:10",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": "09/03/2026 01:10",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_04",
+            "source_ref": "source_01",
+            "record_id": "balancing_authority_interchange#09/03/2026 01:15",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": "09/03/2026 01:15",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_05",
+            "source_ref": "source_01",
+            "record_id": "balancing_authority_interchange#09/03/2026 01:20",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": "09/03/2026 01:20",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_06",
+            "source_ref": "source_01",
+            "record_id": "balancing_authority_interchange#09/03/2026 01:25",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": "09/03/2026 01:25",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_07",
+            "source_ref": "source_01",
+            "record_id": "balancing_authority_interchange#09/03/2026 01:30",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": "09/03/2026 01:30",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_08",
+            "source_ref": "source_01",
+            "record_id": "balancing_authority_interchange#09/03/2026 01:35",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": "09/03/2026 01:35",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_09",
+            "source_ref": "source_01",
+            "record_id": "balancing_authority_interchange#09/03/2026 01:40",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": "09/03/2026 01:40",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_10",
+            "source_ref": "source_01",
+            "record_id": "balancing_authority_interchange#09/03/2026 01:45",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": "09/03/2026 01:45",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_11",
+            "source_ref": "source_01",
+            "record_id": "balancing_authority_interchange#09/03/2026 01:50",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": "09/03/2026 01:50",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_12",
+            "source_ref": "source_01",
+            "record_id": "balancing_authority_interchange#09/03/2026 01:55",
+            "locator": null,
+            "retrieved_at": "2026-10-08T00:00:00Z",
+            "effective_at": "09/03/2026 01:55",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "truncated",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "bpa-operations"
+          ],
+          "time_range": {
+            "from": "09/03/2026 01:00",
+            "to": "09/03/2026 01:55"
+          }
+        },
+        "warnings": [
+          {
+            "code": "screening_only",
+            "message": "Operational SCADA readings published minutes after the fact. They are situational awareness, not settled, revision-controlled or billing-quality figures, and should not be used as a system-of-record number.",
+            "source_id": "bpa-operations"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "grid.get_bpa_operations",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-10-08",
+          "request_id": "recorded-workflow"
+        }
+      }
+    }
+  ]
+}

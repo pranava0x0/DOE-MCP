@@ -1,0 +1,53 @@
+checked:
+- task: 1
+  steps:
+  - tool: docs.search_rulemakings
+    args:
+      document_type: RULE
+      rows: 5
+    expect:
+      coverage.result: hit
+      data.excluded_documents:
+        min: 1
+- task: 2
+  steps:
+  - tool: docs.get_rulemaking
+    args:
+      document_number: 2026-17979
+    expect:
+      coverage.result: hit
+      data.docket_ids:
+      - EERE-2026-FEMP-0067
+      data.regulation_id_numbers:
+      - 1904-AG17
+      data.effective_on: null
+- task: 3
+  steps:
+  - tool: docs.get_rulemaking
+    args:
+      document_number: 2026-18232
+    expect:
+      coverage.result: empty
+      data.found: true
+      data.served: false
+- task: 4
+  steps:
+  - tool: docs.search_rulemakings
+    args:
+      document_type: NOTICE
+      rows: 5
+      page: 2
+    expect:
+      coverage.result: empty
+      data.excluded_documents: 5
+      data.total_matches: 10000
+- task: 5
+  steps:
+  - tool: registry.search_sources
+    args:
+      capability: docs.search_rulemakings
+    expect:
+      data.sources:
+        any:
+          id: regulations-gov-doe
+reader: []

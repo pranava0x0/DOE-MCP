@@ -70,6 +70,12 @@ class OstiFamilyParams(BaseModel):
     """Query parameters this API accepts beyond the shared set. Validated
     against, so a filter that silently does nothing fails loudly instead of
     returning an unfiltered result the caller believes was filtered."""
+    fixed_filters: dict[str, str] = Field(default_factory=dict)
+    """Filters sent on every search, for a source that is one publisher's
+    release series inside an OSTI catalog rather than the whole catalog.
+    EAGLE-I's outage releases are seven DOE Data Explorer records; without
+    the pin, the source's own probe would count all 1.03 million. A caller
+    filter that names the same parameter is refused, not merged."""
 
 
 register_adapter_params("osti_family", OstiFamilyParams)
@@ -213,6 +219,12 @@ class OstiFamilyAdapter:
                      filters: dict[str, Any], rows: int = DEFAULT_ROWS,
                      page: int = 1) -> Fetched[OstiPage]:
         params = self.params_for(manifest)
+        clash = sorted(set(filters) & set(params.fixed_filters))
+        if clash:
+            raise InvalidQuery(
+                f"{manifest.id} pins {clash} to define the source; a "
+                "search cannot replace them.")
+        filters = {**filters, **params.fixed_filters}
         self.validate_filters(params, filters)
         if rows < 1 or rows > MAX_ROWS:
             raise InvalidQuery(f"rows must be between 1 and {MAX_ROWS}; "

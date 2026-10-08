@@ -23,6 +23,7 @@ from mcp.types import ToolAnnotations
 from ..core.audit import error_record, record_from_envelope
 from ..core.errors import DoeMcpError
 from ..core.toolreg import (DEPRECATED_TOOL_ALIASES, ToolSpec, expand_profile)
+from ..domains.bio import BIO_TOOLS
 from ..domains.discovery import DISCOVERY_TOOLS
 from ..domains.docs import DOCS_TOOLS
 from ..domains.earth import EARTH_TOOLS
@@ -48,7 +49,8 @@ def registries():
     return {"research": RESEARCH_TOOLS, "registry": REGISTRY_TOOLS,
             "discovery": DISCOVERY_TOOLS, "energy": ENERGY_TOOLS,
             "docs": DOCS_TOOLS, "tech": TECH_TOOLS,
-            "earth": EARTH_TOOLS, "materials": MATERIALS_TOOLS}
+            "earth": EARTH_TOOLS, "materials": MATERIALS_TOOLS,
+            "bio": BIO_TOOLS}
 
 
 def _bind(spec: ToolSpec, ctx: RuntimeContext):
