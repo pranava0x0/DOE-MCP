@@ -305,6 +305,14 @@ async def facility_status(ctx: RuntimeContext, system: str = "",
                  "allocation."),
     }
     if include_planned:
+        # Each window is its own record, so each gets evidence a citation
+        # can point at. The board gives a window no id; system and start
+        # time together are unique on it.
+        for o in board.planned:
+            b.add_evidence(source_ref=ref,
+                           record_id=f"{o.system}@{o.start_at or 'unscheduled'}",
+                           retrieved_at=fetched.retrieved_at,
+                           effective_at=o.start_at, transformations=[])
         data["planned_outages"] = [
             {"system": o.system, "start_at": o.start_at, "end_at": o.end_at,
              "description": o.description, "notes": o.notes,

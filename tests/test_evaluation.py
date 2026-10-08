@@ -75,3 +75,21 @@ print(json.dumps(out))
     assert report['runs'][0]['status'] == 'needs_review'
     assert not report['runs'][0]['automatic_failures']
     assert report['runs'][0]['steps'][0]['envelope']['data']['resolved']['id'] == 'nlr'
+
+
+async def test_the_model_is_told_tool_results_are_replays(tmp_path):
+    """The envelopes in a replay read access_path=live; the prompt has to
+    say otherwise or a 'latest value' task measures false freshness."""
+    seen = tmp_path / 'request.json'
+    driver = tmp_path / 'driver'
+    driver.write_text(f'''#!{sys.executable}
+import json,sys
+r=json.load(sys.stdin)
+open({str(seen)!r},'w').write(json.dumps(r))
+print(json.dumps({{'answer':{{'text':'x','citations':[]}},'usage':{{'input_tokens':1,'output_tokens':1}}}}))
+''')
+    driver.chmod(0o700)
+    await run(options(driver, tmp_path / 'report.json', repeats=1))
+    system = json.loads(seen.read_text())['messages'][0]['content']
+    assert 'replay of publisher responses' in system
+    assert 'Do not describe any value as current or live' in system

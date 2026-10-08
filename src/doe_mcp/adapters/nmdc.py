@@ -51,7 +51,11 @@ DEFAULT_ROWS = 20
 MAX_ROWS = 100
 STUDY_PAGE = 200
 MAX_STUDY_PAGES = 10
-_ID = re.compile(r"^nmdc:[a-z]{2,5}-\d{2}-[a-z0-9]+$")
+_ID = re.compile(r"^nmdc:(?P<kind>[a-z]{2,5})-\d{2}-[a-z0-9]+$")
+# NMDC's id prefix for each kind of record. A biosample id passed where a
+# study id belongs is refused by name: sent on, it reads as a study that
+# does not exist or as a filter that matches nothing.
+ID_PREFIX = {"study": "sty", "biosample": "bsm"}
 
 
 class NmdcParams(BaseModel):
@@ -236,7 +240,15 @@ def _number(value: Any) -> float | None:
 
 def check_id(identifier: str, kind: str) -> str:
     value = identifier.strip()
-    if not _ID.match(value):
+    match = _ID.match(value)
+    if match and match.group("kind") != ID_PREFIX[kind]:
+        found = next((k for k, v in ID_PREFIX.items()
+                      if v == match.group("kind")), match.group("kind"))
+        raise InvalidQuery(
+            f"{value!r} is an NMDC {found} id, not a {kind} id. A {kind} id "
+            f"starts 'nmdc:{ID_PREFIX[kind]}-'; a biosample's studies are "
+            "listed in its `studies` field.")
+    if not match:
         raise InvalidQuery(
             f"{identifier!r} is not an NMDC {kind} id. Ids look like "
             "'nmdc:sty-11-8fb6t785' for a study and 'nmdc:bsm-11-06qrej20' "

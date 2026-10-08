@@ -119,9 +119,13 @@ def _system(entry: Any, source_id: str) -> SystemStatus:
         if isinstance(notes, list) else [])
 
 
-def _outage(entry: Any) -> PlannedOutage | None:
+def _outage(entry: Any, source_id: str) -> PlannedOutage:
+    # Refused rather than skipped: a dropped row would leave a shorter
+    # maintenance schedule reported as complete, which is the answer
+    # someone planning around an outage can least afford.
     if not isinstance(entry, dict) or not _text(entry.get("name")):
-        return None
+        raise SourceSchemaChanged(
+            f"{source_id}: a planned-outage row carries no system 'name'.")
     return PlannedOutage(
         system=_text(entry["name"]) or "",
         start_at=_text(entry.get("start_at")),
@@ -195,7 +199,7 @@ class FacilityStatusAdapter:
         flat: list[Any] = []
         for group in payload:
             flat.extend(group if isinstance(group, list) else [group])
-        out = [o for o in (_outage(e) for e in flat) if o is not None]
+        out = [_outage(e, source_id) for e in flat]
         out.sort(key=lambda o: (o.start_at or "", o.system))
         return out
 

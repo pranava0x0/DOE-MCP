@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import pytest
 
-from doe_mcp.adapters.base import JsonResponse
+from doe_mcp.adapters.base import JsonResponse, TTLCache
 from doe_mcp.adapters.facility_status import FacilityStatusAdapter
 from doe_mcp.core.envelope import RegistryCoverage, ResultCoverage
 from doe_mcp.core.errors import InvalidQuery, SourceSchemaChanged
@@ -64,13 +64,33 @@ class _Fixed:
 
 async def test_a_board_that_is_not_an_array_is_a_schema_change(ctx):
     manifest = ctx.sources.get("nersc-status")
-    adapter = FacilityStatusAdapter(fetcher=_Fixed({"detail": "moved"}))
+    adapter = FacilityStatusAdapter(cache=TTLCache(), fetcher=_Fixed({"detail": "moved"}))
     with pytest.raises(SourceSchemaChanged):
         await adapter.board(manifest)
 
 
 async def test_a_row_without_a_name_is_a_schema_change(ctx):
     manifest = ctx.sources.get("nersc-status")
-    adapter = FacilityStatusAdapter(fetcher=_Fixed([{"status": "active"}]))
+    adapter = FacilityStatusAdapter(cache=TTLCache(), fetcher=_Fixed([{"status": "active"}]))
     with pytest.raises(SourceSchemaChanged):
         await adapter.board(manifest, include_planned=False)
+
+
+async def test_a_planned_outage_without_a_system_is_a_schema_change(ctx):
+    manifest = ctx.sources.get("nersc-status")
+
+    class _Two:
+        async def fetch_json(self, url, params):
+            body = ([{"name": "perlmutter", "status": "active"}]
+                    if url.endswith("/status") else [[{"start_at": "x"}]])
+            return JsonResponse(url=url, payload=body, headers={})
+
+    with pytest.raises(SourceSchemaChanged, match="planned-outage"):
+        await FacilityStatusAdapter(cache=TTLCache(), fetcher=_Two()).board(manifest)
+
+
+async def test_every_planned_outage_can_be_cited(ctx):
+    env = await discovery.facility_status(ctx, system="perlmutter")
+    ids = {e.record_id for e in env.evidence}
+    for o in env.data["planned_outages"]:
+        assert f"{o['system']}@{o['start_at']}" in ids

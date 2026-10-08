@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import pytest
 
-from doe_mcp.adapters.base import JsonResponse
+from doe_mcp.adapters.base import JsonResponse, TTLCache
 from doe_mcp.adapters.nmdc import NmdcAdapter, build_filter, check_id
 from doe_mcp.core.envelope import (PaginationCoverage, RegistryCoverage,
                                    ResultCoverage)
@@ -130,7 +130,7 @@ class _Fixed:
 
 async def test_an_echo_that_differs_from_the_filter_sent_is_drift(ctx):
     manifest = ctx.sources.get("nmdc-runtime")
-    adapter = NmdcAdapter(fetcher=_Fixed(
+    adapter = NmdcAdapter(cache=TTLCache(), fetcher=_Fixed(
         {"meta": {"mongo_filter_dict": {}, "count": 27352},
          "results": []}))
     with pytest.raises(SourceSchemaChanged, match="differently filtered"):
@@ -139,7 +139,7 @@ async def test_an_echo_that_differs_from_the_filter_sent_is_drift(ctx):
 
 async def test_a_partial_study_collection_is_refused(ctx):
     manifest = ctx.sources.get("nmdc-runtime")
-    adapter = NmdcAdapter(fetcher=_Fixed(
+    adapter = NmdcAdapter(cache=TTLCache(), fetcher=_Fixed(
         {"meta": {"count": 85}, "results": [{"id": SHALE, "name": "x"}]}))
     with pytest.raises(SourceSchemaChanged, match="partial"):
         await adapter.studies(manifest)
@@ -147,11 +147,18 @@ async def test_a_partial_study_collection_is_refused(ctx):
 
 async def test_a_study_404_names_the_id_and_an_outage_stays_an_outage(ctx):
     manifest = ctx.sources.get("nmdc-runtime")
-    missing = NmdcAdapter(fetcher=_Fixed(
+    missing = NmdcAdapter(cache=TTLCache(), fetcher=_Fixed(
         refusal=SourceUnavailable("HTTP 404", status=404)))
     with pytest.raises(InvalidQuery, match="has no study"):
         await missing.get_study(manifest, "nmdc:sty-00-zzzzzz")
-    down = NmdcAdapter(fetcher=_Fixed(
+    down = NmdcAdapter(cache=TTLCache(), fetcher=_Fixed(
         refusal=SourceUnavailable("HTTP 503", status=503)))
     with pytest.raises(SourceUnavailable):
         await down.get_study(manifest, "nmdc:sty-00-zzzzzz")
+
+
+async def test_a_biosample_id_where_a_study_belongs_is_named_as_such(ctx):
+    with pytest.raises(InvalidQuery, match="biosample id, not a study id"):
+        await bio.get_study(ctx, "nmdc:bsm-11-06qrej20")
+    with pytest.raises(InvalidQuery, match="biosample id"):
+        await bio.search_biosamples(ctx, study_id="nmdc:bsm-11-06qrej20")
