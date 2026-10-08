@@ -31,3 +31,4 @@ least one is checked; the suite holds both rules.
 | [grid-status-brief](grid-status-brief/SKILL.md) | What a balancing authority's grid did over the last day or hour, from EIA-930 and BPA's five-minute feed, with the caveat each carries | `doe-energy-data`, `doe-research` |
 | [energy-project-site-screen](energy-project-site-screen/SKILL.md) | What is already built around a candidate wind or solar site, the grid it would join, and the named inputs a full screen needs that DOE-MCP cannot serve yet | `doe-energy-data`, `doe-research` |
 | [materials-structure-and-code](materials-structure-and-code/SKILL.md) | Computed crystal structures from the Materials Project and basis sets from the Basis Set Exchange | `doe-materials`, `doe-research` |
+| [environmental-study-brief](environmental-study-brief/SKILL.md) | Environmental datasets and bounded modelled weather, with geography and dates kept explicit | `doe-earth` |

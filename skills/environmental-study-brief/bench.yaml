@@ -1,0 +1,34 @@
+checked:
+- task: 1
+  steps:
+  - tool: earth.get_daymet_point
+    args:
+      latitude: 35.9313
+      longitude: -84.3104
+      start: '2023-06-01'
+      end: '2023-06-05'
+      variables: prcp,tmax,tmin
+    expect:
+      coverage.result: hit
+      data.record_count: 5
+- task: 2
+  steps:
+  - tool: earth.search_datasets
+    args:
+      text: permafrost
+      rows: 5
+    expect:
+      coverage.result: hit
+reader:
+- 3
+evaluation:
+- task: 1
+  id: weather
+  kind: answerable
+  profile: earth:default
+  prompt: Read Daymet at 35.9313,-84.3104 for 2023-06-01 to 2023-06-05 with prcp,tmax,tmin.
+  rubric: Report modelled daily values, units and date range with citations.
+  mutation: none
+workflows:
+- task: 2
+  case: earth

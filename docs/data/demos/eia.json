@@ -1,0 +1,177 @@
+{
+  "format_version": "1",
+  "case": "eia",
+  "title": "CAISO demand briefing",
+  "question": "What are the latest three measured hourly demand values?",
+  "mode": "recorded",
+  "simulation": false,
+  "registry_revision": "2026-09-09",
+  "generated_at": null,
+  "replay_clock": "2026-09-09T00:00:00Z",
+  "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
+  "fixtures": [
+    {
+      "file": "eia-api-v2.json",
+      "sha256": "339c0326900d553dd8146f9c5c379bdacde0bab625a34596f3dca670433ea48d",
+      "captured_at": null
+    }
+  ],
+  "limitations": [
+    "Measured hourly energy demand in MWh (D), not forecast (DF).",
+    "This regional series does not measure spare connection capacity."
+  ],
+  "steps": [
+    {
+      "tool": "energy.grid_status",
+      "args": {
+        "balancing_authority": "CISO",
+        "hours": 3,
+        "metric": "demand"
+      },
+      "envelope": {
+        "data": {
+          "balancing_authority": "CISO",
+          "metric": "Demand",
+          "metric_code": "D",
+          "observations": [
+            {
+              "period": "2026-09-09T13",
+              "respondent": "CISO",
+              "respondent-name": "California Independent System Operator",
+              "type": "D",
+              "type-name": "Demand",
+              "value": "30013",
+              "value-units": "megawatthours"
+            },
+            {
+              "period": "2026-09-09T12",
+              "respondent": "CISO",
+              "respondent-name": "California Independent System Operator",
+              "type": "D",
+              "type-name": "Demand",
+              "value": "30450",
+              "value-units": "megawatthours"
+            },
+            {
+              "period": "2026-09-09T11",
+              "respondent": "CISO",
+              "respondent-name": "California Independent System Operator",
+              "type": "D",
+              "type-name": "Demand",
+              "value": "30569",
+              "value-units": "megawatthours"
+            }
+          ],
+          "record_count": 3,
+          "units": "megawatthours",
+          "note": "EIA-930 hourly demand for this balancing authority. Recent hours are PRELIMINARY and are revised: a number read today for last night may change. Treat it as operational reporting, not as a settled statistic. This route carries four metrics \u2014 demand, forecast, generation, interchange \u2014 under one `value` column, and only the one named above is here."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "eia-api-v2",
+            "steward": "US Energy Information Administration",
+            "system": "EIA API v2",
+            "dataset": "EIA-930 hourly electric grid monitor",
+            "dataset_version": "v2",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-09-09T00:00:00Z",
+            "cache_age_seconds": 0
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "electricity/rto/region-data#0",
+            "locator": null,
+            "retrieved_at": "2026-09-09T00:00:00Z",
+            "effective_at": "2026-09-09T13",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_02",
+            "source_ref": "source_01",
+            "record_id": "electricity/rto/region-data#1",
+            "locator": null,
+            "retrieved_at": "2026-09-09T00:00:00Z",
+            "effective_at": "2026-09-09T12",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_03",
+            "source_ref": "source_01",
+            "record_id": "electricity/rto/region-data#2",
+            "locator": null,
+            "retrieved_at": "2026-09-09T00:00:00Z",
+            "effective_at": "2026-09-09T11",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "truncated",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "eia-api-v2"
+          ],
+          "time_range": {
+            "from": "2026-09-09T11",
+            "to": "2026-09-09T13"
+          }
+        },
+        "warnings": [
+          {
+            "code": "terms_note",
+            "message": "Exact request-rate limits are not published in the v2 documentation this project has read. Treated as unknown, so the standard politeness budget applies.",
+            "source_id": "eia-api-v2"
+          },
+          {
+            "code": "stale_source",
+            "message": "EIA-930 publishes with a reporting lag and revises recent hours. The most recent observation here is not 'now'.",
+            "source_id": "eia-api-v2"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "energy.grid_status",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-09-09",
+          "request_id": "recorded-workflow"
+        }
+      }
+    }
+  ]
+}

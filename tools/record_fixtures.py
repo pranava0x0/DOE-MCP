@@ -24,6 +24,7 @@ that guarantee with a sentinel key.
 """
 from __future__ import annotations
 
+import argparse
 import asyncio
 import sys
 from pathlib import Path
@@ -48,6 +49,7 @@ PLANS: dict[str, list[tuple[str, str]]] = {
     "osti-gov-records": [
         ("unfiltered head", "search:rows=1"),
         ("topic search", "search:q=perovskite solar,rows=3"),
+        ("follow first topic record", "first_record:q=perovskite solar,rows=3"),
         # A wider page of the SAME query, because the deduplication test
         # needs the two collections to actually overlap and they no longer
         # do in the first three hits: OSTI.GOV leads with technical reports
@@ -326,6 +328,12 @@ async def run(source_id: str, plan: list[tuple[str, str]]) -> None:
         try:
             if kind == "record":
                 await ctx.osti.get_record(manifest, rest)
+            elif kind == "first_record":
+                filters, rows = _parse_search(rest)
+                page = await ctx.osti.search(manifest, filters=filters, rows=rows)
+                if not page.value.records:
+                    raise ValueError("dependent lookup requires a search result")
+                await ctx.osti.get_record(manifest, page.value.records[0].record_id)
             elif kind == "search":
                 filters, rows = _parse_search(rest)
                 await ctx.osti.search(manifest, filters=filters, rows=rows)
@@ -601,8 +609,12 @@ def _trim_keyed_object(source_id: str,
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--source", choices=sorted(PLANS), action="append")
+    args = parser.parse_args()
     FIXTURES.mkdir(parents=True, exist_ok=True)
-    for source_id, plan in PLANS.items():
+    for source_id in args.source or PLANS:
+        plan = PLANS[source_id]
         print(source_id)
         asyncio.run(run(source_id, plan))
     return 0

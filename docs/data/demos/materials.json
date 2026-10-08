@@ -1,0 +1,674 @@
+{
+  "format_version": "1",
+  "case": "materials",
+  "title": "Materials evidence sheet",
+  "question": "Inspect a computed GaN structure and a separate basis-set example.",
+  "mode": "recorded",
+  "simulation": false,
+  "registry_revision": "2026-09-09",
+  "generated_at": null,
+  "replay_clock": "2026-09-09T00:00:00Z",
+  "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
+  "fixtures": [
+    {
+      "file": "basis-set-exchange.json",
+      "sha256": "0dfd2e7d23d4802bc7325a7334ccd4e306ad519c222ca0436964c901e17e8043",
+      "captured_at": null
+    },
+    {
+      "file": "lbnl-mp-optimade.json",
+      "sha256": "8a5d15ebe6a47c4103d3611661903b8f41de8b5d101ba203df541e2a7b35e280",
+      "captured_at": null
+    }
+  ],
+  "limitations": [
+    "Computed structures are not experimental validation.",
+    "The H/C/O basis set is a separate chemistry example, not a recommendation for gallium nitride."
+  ],
+  "steps": [
+    {
+      "tool": "materials.search_structures",
+      "args": {
+        "elements": "Ga,N",
+        "rows": 5
+      },
+      "envelope": {
+        "data": {
+          "structures": [
+            {
+              "id": "mp-1244984",
+              "formula": "GaN",
+              "formula_descriptive": "GaN",
+              "formula_hill": "Ga50N50",
+              "elements": [
+                "Ga",
+                "N"
+              ],
+              "element_ratios": [
+                0.5,
+                0.5
+              ],
+              "element_count": 2,
+              "sites": 100,
+              "space_group_number": null,
+              "space_group_symbol": null,
+              "periodic_dimensions": 3,
+              "last_modified": "2019-07-02T00:29:18.792000",
+              "provider_fields": {
+                "_mp_chemical_system": "Ga-N",
+                "_mp_stability": {
+                  "gga_gga+u_r2scan": {
+                    "thermo_id": "mp-1244984_GGA_GGA+U_R2SCAN",
+                    "energy_above_hull": 0.7416738018000011,
+                    "formation_energy_per_atom": 0.07162439492499971,
+                    "last_updated_thermo": "2023-04-27T01:24:08.875000"
+                  },
+                  "gga_gga+u": {
+                    "thermo_id": "mp-1244984_GGA_GGA+U",
+                    "energy_above_hull": 0.7416738018000002,
+                    "formation_energy_per_atom": 0.0848569330500004,
+                    "last_updated_thermo": "2023-04-27T01:24:20.078000"
+                  }
+                }
+              }
+            },
+            {
+              "id": "mp-1223660",
+              "formula": "GaInN2",
+              "formula_descriptive": "GaInN2",
+              "formula_hill": "GaInN2",
+              "elements": [
+                "Ga",
+                "In",
+                "N"
+              ],
+              "element_ratios": [
+                0.25,
+                0.25,
+                0.5
+              ],
+              "element_count": 3,
+              "sites": 4,
+              "space_group_number": null,
+              "space_group_symbol": null,
+              "periodic_dimensions": 3,
+              "last_modified": "2022-06-10T06:23:20.905000",
+              "provider_fields": {
+                "_mp_chemical_system": "Ga-In-N",
+                "_mp_stability": {
+                  "gga_gga+u_r2scan": {
+                    "thermo_id": "mp-1223660_GGA_GGA+U_R2SCAN",
+                    "energy_above_hull": 0.07719281500000008,
+                    "formation_energy_per_atom": -0.3166822218750003,
+                    "last_updated_thermo": "2023-04-27T01:30:31.450000"
+                  },
+                  "gga_gga+u": {
+                    "thermo_id": "mp-1223660_GGA_GGA+U",
+                    "energy_above_hull": 0.07719281500000008,
+                    "formation_energy_per_atom": -0.2906402068750005,
+                    "last_updated_thermo": "2023-04-27T01:30:39.045000"
+                  }
+                }
+              }
+            },
+            {
+              "id": "mp-1199250",
+              "formula": "F6GaN3",
+              "formula_descriptive": "F24Ga4N12",
+              "formula_hill": "F24Ga4N12",
+              "elements": [
+                "F",
+                "Ga",
+                "N"
+              ],
+              "element_ratios": [
+                0.1,
+                0.3,
+                0.6
+              ],
+              "element_count": 3,
+              "sites": 40,
+              "space_group_number": null,
+              "space_group_symbol": null,
+              "periodic_dimensions": 3,
+              "last_modified": "2021-03-09T23:05:01.374000",
+              "provider_fields": {
+                "_mp_chemical_system": "F-Ga-N",
+                "_mp_stability": {
+                  "gga_gga+u_r2scan": {
+                    "thermo_id": "mp-1199250_GGA_GGA+U_R2SCAN",
+                    "energy_above_hull": 1.3350707470000014,
+                    "formation_energy_per_atom": 0.19073120524999893,
+                    "last_updated_thermo": "2023-04-27T01:29:59.276000"
+                  },
+                  "gga_gga+u": {
+                    "thermo_id": "mp-1199250_GGA_GGA+U",
+                    "energy_above_hull": 1.3350707470000014,
+                    "formation_energy_per_atom": 0.16329291549999994,
+                    "last_updated_thermo": "2023-04-27T01:30:03.644000"
+                  }
+                }
+              }
+            },
+            {
+              "id": "mp-1245997",
+              "formula": "Cd3Ga3N5",
+              "formula_descriptive": "Cd6Ga6N10",
+              "formula_hill": "Cd6Ga6N10",
+              "elements": [
+                "Cd",
+                "Ga",
+                "N"
+              ],
+              "element_ratios": [
+                0.2727272727272727,
+                0.2727272727272727,
+                0.45454545454545453
+              ],
+              "element_count": 3,
+              "sites": 22,
+              "space_group_number": null,
+              "space_group_symbol": null,
+              "periodic_dimensions": 3,
+              "last_modified": "2021-02-04T20:40:18.753000",
+              "provider_fields": {
+                "_mp_chemical_system": "Cd-Ga-N",
+                "_mp_stability": {
+                  "gga_gga+u_r2scan": {
+                    "thermo_id": "mp-1245997_GGA_GGA+U_R2SCAN",
+                    "energy_above_hull": 0.36648617227272595,
+                    "formation_energy_per_atom": 0.0010046776136350259,
+                    "last_updated_thermo": "2023-04-27T01:14:17.472000"
+                  },
+                  "gga_gga+u": {
+                    "thermo_id": "mp-1245997_GGA_GGA+U",
+                    "energy_above_hull": 0.36648617227272773,
+                    "formation_energy_per_atom": 0.008222425681818312,
+                    "last_updated_thermo": "2023-04-27T01:14:22.121000"
+                  }
+                }
+              }
+            },
+            {
+              "id": "mp-1198425",
+              "formula": "BGaH5NO9P2",
+              "formula_descriptive": "B4Ga4H20N4O36P8",
+              "formula_hill": "B4Ga4H20N4O36P8",
+              "elements": [
+                "B",
+                "Ga",
+                "H",
+                "N",
+                "O",
+                "P"
+              ],
+              "element_ratios": [
+                0.05263157894736842,
+                0.05263157894736842,
+                0.10526315789473684,
+                0.2631578947368421,
+                0.05263157894736842,
+                0.47368421052631576
+              ],
+              "element_count": 6,
+              "sites": 76,
+              "space_group_number": null,
+              "space_group_symbol": null,
+              "periodic_dimensions": 3,
+              "last_modified": "2021-03-10T07:53:43.904000",
+              "provider_fields": {
+                "_mp_chemical_system": "B-Ga-H-N-O-P",
+                "_mp_stability": {
+                  "gga_gga+u_r2scan": {
+                    "thermo_id": "mp-1198425_GGA_GGA+U_R2SCAN",
+                    "energy_above_hull": 0.005111285844309421,
+                    "formation_energy_per_atom": -2.0148944074843356,
+                    "last_updated_thermo": "2023-04-27T04:27:33.583000"
+                  },
+                  "gga_gga+u": {
+                    "thermo_id": "mp-1198425_GGA_GGA+U",
+                    "energy_above_hull": 0.002660023563606728,
+                    "formation_energy_per_atom": -2.018499772083334,
+                    "last_updated_thermo": "2023-04-27T04:27:34.891000"
+                  }
+                }
+              }
+            }
+          ],
+          "record_count": 5,
+          "total_matches": 264,
+          "entries_in_database": 154387,
+          "offset": 0,
+          "filter_sent": "elements HAS ALL \"Ga\",\"N\"",
+          "provider": "Materials Project - OPTIMADE",
+          "coverage_note": "This keyless route serves structures and formulas. The Materials Project's electronic structure, phase diagrams, elastic tensors and the rest are behind its own keyed API and the mp-api library, which is a separate source in this registry. A caller reading \"Materials Project\" will assume the whole database; this route is one part of it.\n",
+          "federation_note": "This is one provider in the OPTIMADE federation, and the DOE member of it. A material absent here may exist at another provider; that is a different answer from its not existing.",
+          "note": "Crystal structures matching the filter. `filter` takes the OPTIMADE grammar directly through filter_expression, and the named arguments build one for the common cases; call materials.describe_structure_fields for the properties this provider allows and for its own extension fields."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "lbnl-mp-optimade",
+            "steward": "Lawrence Berkeley National Laboratory",
+            "funder": "Office of Science",
+            "system": "Materials Project OPTIMADE endpoint",
+            "dataset": "Materials Project OPTIMADE endpoint",
+            "dataset_version": "1.2.0",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-09-09T00:00:00Z",
+            "cache_age_seconds": 0
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "mp-1244984",
+            "locator": null,
+            "retrieved_at": "2026-09-09T00:00:00Z",
+            "effective_at": "2019-07-02T00:29:18.792000",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_02",
+            "source_ref": "source_01",
+            "record_id": "mp-1223660",
+            "locator": null,
+            "retrieved_at": "2026-09-09T00:00:00Z",
+            "effective_at": "2022-06-10T06:23:20.905000",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_03",
+            "source_ref": "source_01",
+            "record_id": "mp-1199250",
+            "locator": null,
+            "retrieved_at": "2026-09-09T00:00:00Z",
+            "effective_at": "2021-03-09T23:05:01.374000",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_04",
+            "source_ref": "source_01",
+            "record_id": "mp-1245997",
+            "locator": null,
+            "retrieved_at": "2026-09-09T00:00:00Z",
+            "effective_at": "2021-02-04T20:40:18.753000",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_05",
+            "source_ref": "source_01",
+            "record_id": "mp-1198425",
+            "locator": null,
+            "retrieved_at": "2026-09-09T00:00:00Z",
+            "effective_at": "2021-03-10T07:53:43.904000",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "truncated",
+          "source_claim": "partial",
+          "result": "hit",
+          "sources_searched": [
+            "lbnl-mp-optimade"
+          ],
+          "known_limitations": [
+            "Computed, not measured. A Materials Project structure is a calculation's output under a stated functional, and treating it as an experimental crystal structure is a category error.",
+            "This route is narrower than the publisher's own API. Structures and formulas are here; energetics beyond the stability block, electronic structure, and phase diagrams are behind the keyed route.",
+            "OPTIMADE is a federation standard with 29 providers, of which this is the DOE member. A structure absent here may well exist at another provider, and that is a different answer from its not existing.",
+            "The provider extension fields are not portable. `_mp_stability` means what the Materials Project says it means and has no counterpart at another provider."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "derived_layer",
+            "message": "These are computed structures, not measured ones: each is a calculation's output under a stated functional. Reporting one as an experimentally determined crystal structure is a category error.",
+            "source_id": "lbnl-mp-optimade"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "materials.search_structures",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-09-09",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "materials.get_structure",
+      "args": {
+        "structure_id": "mp-1244984"
+      },
+      "envelope": {
+        "data": {
+          "id": "mp-1244984",
+          "formula": "GaN",
+          "formula_descriptive": "GaN",
+          "formula_hill": "Ga50N50",
+          "elements": [
+            "Ga",
+            "N"
+          ],
+          "element_ratios": [
+            0.5,
+            0.5
+          ],
+          "element_count": 2,
+          "sites": 100,
+          "space_group_number": null,
+          "space_group_symbol": null,
+          "periodic_dimensions": 3,
+          "last_modified": "2019-07-02T00:29:18.792000",
+          "provider_fields": {
+            "_mp_chemical_system": "Ga-N",
+            "_mp_stability": {
+              "gga_gga+u_r2scan": {
+                "thermo_id": "mp-1244984_GGA_GGA+U_R2SCAN",
+                "energy_above_hull": 0.7416738018000011,
+                "formation_energy_per_atom": 0.07162439492499971,
+                "last_updated_thermo": "2023-04-27T01:24:08.875000"
+              },
+              "gga_gga+u": {
+                "thermo_id": "mp-1244984_GGA_GGA+U",
+                "energy_above_hull": 0.7416738018000002,
+                "formation_energy_per_atom": 0.0848569330500004,
+                "last_updated_thermo": "2023-04-27T01:24:20.078000"
+              }
+            }
+          },
+          "lattice_vectors": [
+            [
+              13.01620829,
+              0.74325844,
+              0.67698607
+            ],
+            [
+              0.78279776,
+              13.27587227,
+              1.26189026
+            ],
+            [
+              0.66583054,
+              1.25062875,
+              13.2247994
+            ]
+          ],
+          "structure_features": [],
+          "immutable_id": "645d2b75bcd30f748b474a14",
+          "coverage_note": "This keyless route serves structures and formulas. The Materials Project's electronic structure, phase diagrams, elastic tensors and the rest are behind its own keyed API and the mp-api library, which is a separate source in this registry. A caller reading \"Materials Project\" will assume the whole database; this route is one part of it.\n",
+          "note": "One structure in full. Fields under provider_fields are this database's own additions to the OPTIMADE standard and have no counterpart at another provider."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "lbnl-mp-optimade",
+            "steward": "Lawrence Berkeley National Laboratory",
+            "funder": "Office of Science",
+            "system": "Materials Project OPTIMADE endpoint",
+            "dataset": "Materials Project OPTIMADE endpoint",
+            "dataset_version": "OPTIMADE 1.2.0",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-09-09T00:00:00Z",
+            "cache_age_seconds": 0
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "mp-1244984",
+            "locator": null,
+            "retrieved_at": "2026-09-09T00:00:00Z",
+            "effective_at": "2019-07-02T00:29:18.792000",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "partial",
+          "result": "hit",
+          "sources_searched": [
+            "lbnl-mp-optimade"
+          ]
+        },
+        "warnings": [
+          {
+            "code": "derived_layer",
+            "message": "A computed structure under a stated functional, not a measured one.",
+            "source_id": "lbnl-mp-optimade"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "materials.get_structure",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-09-09",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "chemistry.get_basis_set",
+      "args": {
+        "name": "6-31g",
+        "output_format": "nwchem",
+        "elements": "H,C,O"
+      },
+      "envelope": {
+        "data": {
+          "key": "6-31g",
+          "name": "6-31G",
+          "family": "pople",
+          "role": "orbital",
+          "description": "6-31G valence double-zeta",
+          "version": "1",
+          "output_format": "nwchem",
+          "format_name": "NWChem",
+          "elements_requested": [
+            "H",
+            "C",
+            "O"
+          ],
+          "elements_available": [
+            "H",
+            "He",
+            "Li",
+            "Be",
+            "B",
+            "C",
+            "N",
+            "O",
+            "F",
+            "Ne",
+            "Na",
+            "Mg",
+            "Al",
+            "Si",
+            "P",
+            "S",
+            "Cl",
+            "Ar",
+            "K",
+            "Ca",
+            "Sc",
+            "Ti",
+            "V",
+            "Cr",
+            "Mn",
+            "Fe",
+            "Co",
+            "Ni",
+            "Cu",
+            "Zn",
+            "Ga",
+            "Ge",
+            "As",
+            "Se",
+            "Br",
+            "Kr"
+          ],
+          "data": "#----------------------------------------------------------------------\n# Basis Set Exchange\n# Version 0.12\n# https://www.basissetexchange.org\n#----------------------------------------------------------------------\n#   Basis set: 6-31G\n# Description: 6-31G valence double-zeta\n#        Role: orbital\n#     Version: 1  (Data from Gaussian 09/GAMESS)\n#----------------------------------------------------------------------\n\n\nBASIS \"ao basis\" SPHERICAL PRINT\n#BASIS SET: (4s) -> [2s]\nH    S\n      0.1873113696E+02       0.3349460434E-01\n      0.2825394365E+01       0.2347269535E+00\n      0.6401216923E+00       0.8137573261E+00\nH    S\n      0.1612777588E+00       1.0000000\n#BASIS SET: (10s,4p) -> [3s,2p]\nC    S\n      0.3047524880E+04       0.1834737132E-02\n      0.4573695180E+03       0.1403732281E-01\n      0.1039486850E+03       0.6884262226E-01\n      0.2921015530E+02       0.2321844432E+00\n      0.9286662960E+01       0.4679413484E+00\n      0.3163926960E+01       0.3623119853E+00\nC    SP\n      0.7868272350E+01      -0.1193324198E+00       0.6899906659E-01\n      0.1881288540E+01      -0.1608541517E+00       0.3164239610E+00\n      0.5442492580E+00       0.1143456438E+01       0.7443082909E+00\nC    SP\n      0.1687144782E+00       0.1000000000E+01       0.1000000000E+01\n#BASIS SET: (10s,4p) -> [3s,2p]\nO    S\n      0.5484671660E+04       0.1831074430E-02\n      0.8252349460E+03       0.1395017220E-01\n      0.1880469580E+03       0.6844507810E-01\n      0.5296450000E+02       0.2327143360E+00\n      0.1689757040E+02       0.4701928980E+00\n      0.5799635340E+01       0.3585208530E+00\nO    SP\n      0.1553961625E+02      -0.1107775495E+00       0.7087426823E-01\n      0.3599933586E+01      -0.1480262627E+00       0.3397528391E+00\n      0.1013761750E+01       0.1130767015E+01       0.7271585773E+00\nO    SP\n      0.2700058226E+00       0.1000000000E+01       0.1000000000E+01\nEND\n",
+          "references": "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n% If you downloaded data from the basis set\n% exchange or used the basis set exchange python library, please cite:\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n@article{pritchard2019a,\n    author = {Pritchard, Benjamin P. and Altarawy, Doaa and Didier, Brett and Gibsom, Tara D. and Windus, Theresa L.},\n    title = {A New Basis Set Exchange: An Open, Up-to-date Resource for the Molecular Sciences Community},\n    journal = {J. Chem. Inf. Model.},\n    volume = {59},\n    pages = {4814-4820},\n    year = {2019},\n    doi = {10.1021/acs.jcim.9b00725}\n}\n\n@article{feller1996a,\n    author = {Feller, David},\n    title = {The role of databases in support of computational chemistry calculations},\n    journal = {J. Comput. Chem.},\n    volume = {17},\n    pages = {1571-1586},\n    year = {1996},\n    doi = {10.1002/(SICI)1096-987X(199610)17:13<1571::AID-JCC9>3.0.CO;2-P}\n}\n\n@article{schuchardt2007a,\n    author = {Schuchardt, Karen L. and Didier, Brett T. and Elsethagen, Todd and Sun, Lisong and Gurumoorthi, Vidhya and Chase, Jared and Li, Jun and Windus, Theresa L.},\n    title = {Basis Set Exchange: A Community Database for Computational Sciences},\n    journal = {J. Chem. Inf. Model.},\n    volume = {47},\n    pages = {1045-1052},\n    year = {2007},\n    doi = {10.1021/ci600510j}\n}\n\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n% References for the basis set\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n% H\n%     31G Split-valence basis set for H,He\n%         ditchfield1971a\n%\n% C,O\n%     6-31G Split-valence basis set\n%         hehre1972a\n%\n\n\n@article{ditchfield1971a,\n    author = {Ditchfield, R. and Hehre, W. J. and Pople, J. A.},\n    title = {Self-Consistent Molecular-Orbital Methods. IX. An Extended Gaussian-Type Basis for Molecular-Orbital Studies of Organic Molecules},\n    journal = {J. Chem. Phys.},\n    volume = {54},\n    pages = {724-728},\n    year = {1971},\n    doi = {10.1063/1.1674902}\n}\n\n@article{hehre1972a,\n    author = {Hehre, W. J. and Ditchfield, R. and Pople, J. A.},\n    title = {Self-Consistent Molecular Orbital Methods. XII. Further Extensions of Gaussian-Type Basis Sets for Use in Molecular Orbital Studies of Organic Molecules},\n    journal = {J. Chem. Phys.},\n    volume = {56},\n    pages = {2257-2261},\n    year = {1972},\n    doi = {10.1063/1.1677527}\n}\n\n",
+          "note": "The basis set as this program's own input text, ready to paste into a calculation. `references` holds the citations for the set itself, which are separate from the citation for the service and are what the publisher asks be cited alongside it."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "basis-set-exchange",
+            "steward": "Molecular Sciences Software Institute",
+            "system": "Basis Set Exchange",
+            "dataset": "6-31G (NWChem)",
+            "dataset_version": "1",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-09-09T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "Pritchard, B.P., Altarawy, D., Didier, B., Gibson, T.D., and Windus, T.L. 2019. New Basis Set Exchange: An Open, Up-to-Date Resource for the Molecular Sciences Community. Journal of Chemical Information and Modeling 59(11):4814-4820. https://doi.org/10.1021/acs.jcim.9b00725 \u2014 and, in addition, the references the service returns for the particular set used.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "6-31g",
+            "locator": null,
+            "retrieved_at": "2026-09-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "rendered into nwchem format"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "basis-set-exchange"
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: Pritchard, B.P., Altarawy, D., Didier, B., Gibson, T.D., and Windus, T.L. 2019. New Basis Set Exchange: An Open, Up-to-Date Resource for the Molecular Sciences Community. Journal of Chemical Information and Modeling 59(11):4814-4820. https://doi.org/10.1021/acs.jcim.9b00725 \u2014 and, in addition, the references the service returns for the particular set used.",
+            "source_id": "basis-set-exchange"
+          }
+        ],
+        "access_recipes": [
+          {
+            "kind": "landing_page",
+            "uri": "https://www.basissetexchange.org/basis/6-31g/",
+            "label": "6-31G at the Basis Set Exchange",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "chemistry.get_basis_set",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-09-09",
+          "request_id": "recorded-workflow"
+        }
+      }
+    }
+  ]
+}

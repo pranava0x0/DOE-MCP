@@ -8,7 +8,7 @@
     "labs": 17,
     "capabilities": 51,
     "capabilities_served": 33,
-    "skills": 4,
+    "skills": 5,
     "program_offices": 19,
     "pmas": 4,
     "servers_shipping": 4,
@@ -4414,98 +4414,80 @@
               ]
             },
             {
-              "id": "3505044",
-              "title": "Tandem Photovoltaics Core Program Final Technical Report",
+              "id": "3409109",
+              "title": "Reducing non-radiative recombination in perovskite solar cells with a SiO<sub>2</sub>-graphene oxide buried interface layer",
               "authors": [
-                "Warren, Emily [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000185687881)",
-                "Zhu, Kai [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000309083909)",
-                "Owen-Bellini, Michael [National Laboratory of the Rockies, Golden, CO (United States)]",
-                "McMahon, Bill [National Laboratory of the Rockies, Golden, CO (United States)] (ORCID:0000000150362032)",
-                "Alberi, Kirstin [National Laboratory of the Rockies, Golden, CO (United States)]"
+                "Cao, Zikun [Univ. of Texas, Arlington, TX (United States); Univ. of Miami, FL (United States)]",
+                "You, Shuai [National Laboratory of the Rockies (NLR), Golden, CO (United States)]",
+                "Zhang, Xiyao [Univ. of Texas, Arlington, TX (United States); Univ. of Akron, OH (United States)]",
+                "Liu, Lei [Univ. of Akron, OH (United States)]",
+                "Zhang, Haixing [Univ. of Miami, FL (United States)]"
               ],
-              "publication_date": "2026-08-21",
-              "product_type": "Technical Report",
-              "authors_truncated": 13,
-              "doi": "10.66816/tp6712117",
-              "report_number": "NLR/TP-5900-95272",
+              "publication_date": "2026-09-01",
+              "product_type": "Journal Article",
+              "authors_truncated": 4,
+              "doi": "10.1016/j.nanoen.2026.112209",
+              "journal": "Nano Energy",
+              "report_number": "NLR/JA-5900-101333",
               "research_orgs": [
                 "National Laboratory of the Rockies (NLR), Golden, CO (United States)"
               ]
             },
             {
-              "id": "3407885",
-              "title": "Molecular Additive Engineering for Process-Humidity Robustness and Reproducible Fabrication of Perovskite Solar Cells and Modules",
+              "id": "3818255",
+              "title": "Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide Perovskites",
               "authors": [
-                "Saeed, Muhammad Mohsin [University of Toledo, OH (United States)]",
-                "Kwon, Hyoung Woo [University of Toledo, OH (United States)]",
-                "Li, You [University of Toledo, OH (United States)]",
-                "Fu, Sheng [University of Toledo, OH (United States)] (ORCID:0009000859121145)",
-                "Lee, Seungmin [University of Toledo, OH (United States)]"
+                "Westbrook, Robert J. E. [University of Washington, Seattle, WA (United States)] (ORCID:0000000212030712)",
+                "Taddei, Margherita [University of Washington, Seattle, WA (United States)] (ORCID:0000000341228418)",
+                "Sanchez-Diaz, Jes\u00fas [Universitat Jaume, Castell\u00f3n (Spain)]",
+                "Mushtaq, Tehmina [Universitat Jaume, Castell\u00f3n (Spain)]",
+                "S\u00e1nchez, Rafael S [Universitat Jaume, Castell\u00f3n (Spain)] (ORCID:0000000189486120)"
               ],
-              "publication_date": "2026-07-22",
+              "publication_date": "2026-08-26",
               "product_type": "Journal Article",
-              "authors_truncated": 15,
-              "doi": "10.1021/acsami.6c09922",
-              "journal": "ACS Applied Materials and Interfaces",
-              "research_orgs": [
-                "University of Toledo, OH (United States)"
-              ]
-            },
-            {
-              "id": "3424874",
-              "title": "Large Polaron Screening Delays Mobility Roll-Off in Halide Perovskites under High Injection",
-              "authors": [
-                "Taddei, Margherita [National Laboratory of the Rockies (NLR), Golden, CO (United States)] (ORCID:0000000341228418)",
-                "Dong, Yifan [National Laboratory of the Rockies (NLR), Golden, CO (United States); University of California, Riverside, CA (United States)] (ORCID:0000000329123322)",
-                "Shelton, Jacob [National Laboratory of the Rockies (NLR), Golden, CO (United States)]",
-                "Reid, Obadiah [National Laboratory of the Rockies (NLR), Golden, CO (United States); RASEI: The Joint CU-Boulder/NLR Energy Institute, Boulder, CO (United States)]",
-                "Marder, Seth R. [National Laboratory of the Rockies (NLR), Golden, CO (United States); RASEI: The Joint CU-Boulder/NLR Energy Institute, Boulder, CO (United States)]"
-              ],
-              "publication_date": "2026-08-04",
-              "product_type": "Journal Article",
-              "authors_truncated": 2,
-              "doi": "10.1021/acsenergylett.6c01114",
+              "authors_truncated": 4,
+              "doi": "10.1021/acsenergylett.6c01751",
               "journal": "ACS Energy Letters",
               "research_orgs": [
-                "Alliance for Energy Innovation, LLC, Golden, CO (United States)"
+                "University of Washington, Seattle, WA (United States)"
               ]
             },
             {
-              "id": "3377207",
-              "title": "Solar cell efficiency tables: Version 68",
+              "id": "3818626",
+              "title": "Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of Perovskite Photovoltaics",
               "authors": [
-                "Green, Martin A. [Univ. of New South Wales, Sydney, NSW (Australia)]",
-                "Dunlop, Ewan D. [European Commission, Ispra (Italy). Joint Research Centre]",
-                "Yoshita, Masahiro [National Institute of Advanced Industrial Science and Technology (AIST) (Japan)]",
-                "Kopidakis, Nikos [National Laboratory of the Rockies (NLR), Golden, CO (United States)]",
-                "Bothe, Karsten [Inst. for Solar Energy Research GmbH GmbH (Germany)]"
+                "Shih, Meng-Chen",
+                "Tan, Shaun",
+                "Lu, Yongli",
+                "Kodalle, Tim",
+                "Terlier, Tanguy"
               ],
-              "publication_date": "2026-07-14",
+              "publication_date": "2026-08-11",
               "product_type": "Journal Article",
-              "authors_truncated": 2,
-              "doi": "10.1016/j.joule.2026.102494",
-              "journal": "Joule",
-              "report_number": "NLR/JA-5900-101224",
+              "authors_truncated": 10,
+              "doi": "10.1021/jacs.6c05503",
+              "journal": "Journal of the American Chemical Society",
               "research_orgs": [
-                "National Laboratory of the Rockies (NLR), Golden, CO (United States)"
+                "Lawrence Berkeley National Laboratory (LBNL), Berkeley, CA (United States)"
               ]
             }
           ],
-          "record_count": 6,
+          "record_count": 5,
           "per_source": [
             {
               "source_id": "osti-gov-records",
               "system": "OSTI.GOV Search API",
-              "total_matches": 8255,
+              "total_matches": 8313,
               "returned": 3
             },
             {
               "source_id": "osti-doe-pages",
               "system": "DOE PAGES (Public Access Gateway for Energy and Science)",
-              "total_matches": 5611,
+              "total_matches": 5669,
               "returned": 3
             }
-          ]
+          ],
+          "deduplicated_by_doi": 1
         },
         "provenance": [
           {
@@ -4565,10 +4547,10 @@
           {
             "id": "evidence_03",
             "source_ref": "source_01",
-            "record_id": "3505044",
-            "locator": "https://www.osti.gov/biblio/3505044",
+            "record_id": "3409109",
+            "locator": "https://www.osti.gov/biblio/3409109",
             "retrieved_at": "2026-09-09T00:00:00Z",
-            "effective_at": "2026-08-28T10:59:35Z",
+            "effective_at": "2026-09-18T15:49:56Z",
             "transformations": [
               "normalize"
             ],
@@ -4578,10 +4560,10 @@
           {
             "id": "evidence_04",
             "source_ref": "source_02",
-            "record_id": "3407885",
-            "locator": "https://www.osti.gov/biblio/3407885",
+            "record_id": "3409109",
+            "locator": "https://www.osti.gov/biblio/3409109",
             "retrieved_at": "2026-09-09T00:00:00Z",
-            "effective_at": "2026-08-11T07:32:50Z",
+            "effective_at": "2026-09-18T11:49:56Z",
             "transformations": [
               "normalize"
             ],
@@ -4591,10 +4573,10 @@
           {
             "id": "evidence_05",
             "source_ref": "source_02",
-            "record_id": "3424874",
-            "locator": "https://www.osti.gov/biblio/3424874",
+            "record_id": "3818255",
+            "locator": "https://www.osti.gov/biblio/3818255",
             "retrieved_at": "2026-09-09T00:00:00Z",
-            "effective_at": "2026-08-20T05:00:20Z",
+            "effective_at": "2026-09-17T10:27:35Z",
             "transformations": [
               "normalize"
             ],
@@ -4604,10 +4586,10 @@
           {
             "id": "evidence_06",
             "source_ref": "source_02",
-            "record_id": "3377207",
-            "locator": "https://www.osti.gov/biblio/3377207",
+            "record_id": "3818626",
+            "locator": "https://www.osti.gov/biblio/3818626",
             "retrieved_at": "2026-09-09T00:00:00Z",
-            "effective_at": "2026-08-27T07:29:27Z",
+            "effective_at": "2026-09-18T08:11:09Z",
             "transformations": [
               "normalize"
             ],
@@ -4683,15 +4665,15 @@
           },
           {
             "kind": "doi",
-            "uri": "https://doi.org/10.66816/tp6712117",
-            "label": "Tandem Photovoltaics Core Program Final Technical Report",
+            "uri": "https://doi.org/10.1016/j.nanoen.2026.112209",
+            "label": "Reducing non-radiative recombination in perovskite solar cells with a SiO<sub>2<",
             "instructions": null,
             "requires_account": false,
             "approximate_size": null
           },
           {
             "kind": "fulltext_pdf",
-            "uri": "https://www.osti.gov/servlets/purl/3505044",
+            "uri": "https://www.osti.gov/servlets/purl/3409109",
             "label": "Full text (OSTI)",
             "instructions": null,
             "requires_account": false,
@@ -4699,15 +4681,15 @@
           },
           {
             "kind": "doi",
-            "uri": "https://doi.org/10.1021/acsami.6c09922",
-            "label": "Molecular Additive Engineering for Process-Humidity Robustness and Reproducible ",
+            "uri": "https://doi.org/10.1021/acsenergylett.6c01751",
+            "label": "Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide Pero",
             "instructions": null,
             "requires_account": false,
             "approximate_size": null
           },
           {
             "kind": "fulltext_pdf",
-            "uri": "https://www.osti.gov/servlets/purl/3407885",
+            "uri": "https://www.osti.gov/servlets/purl/3818255",
             "label": "Full text (OSTI)",
             "instructions": null,
             "requires_account": false,
@@ -4715,31 +4697,15 @@
           },
           {
             "kind": "doi",
-            "uri": "https://doi.org/10.1021/acsenergylett.6c01114",
-            "label": "Large Polaron Screening Delays Mobility Roll-Off in Halide Perovskites under Hig",
+            "uri": "https://doi.org/10.1021/jacs.6c05503",
+            "label": "Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of Pero",
             "instructions": null,
             "requires_account": false,
             "approximate_size": null
           },
           {
             "kind": "fulltext_pdf",
-            "uri": "https://www.osti.gov/servlets/purl/3424874",
-            "label": "Full text (OSTI)",
-            "instructions": null,
-            "requires_account": false,
-            "approximate_size": null
-          },
-          {
-            "kind": "doi",
-            "uri": "https://doi.org/10.1016/j.joule.2026.102494",
-            "label": "Solar cell efficiency tables: Version 68",
-            "instructions": null,
-            "requires_account": false,
-            "approximate_size": null
-          },
-          {
-            "kind": "fulltext_pdf",
-            "uri": "https://www.osti.gov/servlets/purl/3377207",
+            "uri": "https://www.osti.gov/servlets/purl/3818626",
             "label": "Full text (OSTI)",
             "instructions": null,
             "requires_account": false,

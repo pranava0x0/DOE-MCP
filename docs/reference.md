@@ -672,4 +672,4 @@ Other MCP servers over DOE-adjacent data — PNNL's NEPA-MCP, the building-simul
 |---|---|---|---|
 | `capability` | string | no | `""` |
 
-A `?` after an argument in the profile tables marks it optional. Every tool is read-only and returns the provenance envelope described in `design/architecture.md` Part 1 § 3.3.
+A `?` after an argument in the profile tables marks it optional. Every tool is read-only and returns the provenance envelope described in [the workflow guide](guide.md).

@@ -23,13 +23,13 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 
 # What we write ourselves.
-AUTHORED = ["tools/render_site.py", "README.md"]
+AUTHORED = ["tools/render_site.py", "tools/render_workflows.py", "README.md"]
 # Plus the rendered page, which also carries publisher text — paper titles,
 # manifest prose, tool descriptions — that this project does not write and
 # must not launder. A rule about OUR register is checked against the files
 # we author; a rule about a construction that could only be ours is checked
 # against the page as well.
-RENDERED = AUTHORED + ["docs/index.html"]
+RENDERED = AUTHORED + ["docs/index.html", "docs/demos.html"]
 
 # (phrase, surfaces, why it is out). Matched case-insensitively as a
 # substring, so keep each one specific enough not to catch a legitimate use.

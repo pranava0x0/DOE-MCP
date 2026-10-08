@@ -29,16 +29,11 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT))
 
 from doe_mcp import __version__  # noqa: E402
-from doe_mcp.adapters import ADAPTER_CLASSES  # noqa: E402
-from doe_mcp.adapters.base import TTLCache  # noqa: E402
-from doe_mcp.adapters.replay import ReplayFetcher  # noqa: E402
-from doe_mcp.core.credentials import Credentials  # noqa: E402
 from doe_mcp.core.organizations import OrganizationTable  # noqa: E402
 from doe_mcp.core.registry import SourceRegistry  # noqa: E402
 from doe_mcp.core.catalog import SubMcpCatalog  # noqa: E402
 from doe_mcp.core.envelope import ExecutionCoverage, ResultCoverage  # noqa: E402
 from doe_mcp.core.toolreg import PROFILES, expand_profile  # noqa: E402
-from doe_mcp.runtime import load_context  # noqa: E402
 from doe_mcp.servers.build import build_server, registries  # noqa: E402
 from doe_mcp.servers.lineup import SERVER_LINEUP, shipping  # noqa: E402
 
@@ -105,26 +100,8 @@ SERVERS = [(sv.name, sv.default_profile, sv.status, sv.description)
 
 
 def replay_context():
-    """Every adapter with a fetcher seam replays the recorded responses, and
-    no credential is read: the build never touches the network or the
-    developer's keys. The first version of this wired three adapters by
-    hand, which is why the page carried examples from one server only."""
-    merged: dict = {}
-    for path in sorted(FIXTURES.glob("*.json")):
-        merged.update(ReplayFetcher.from_file(path).interactions)
-    fetcher = ReplayFetcher(interactions=merged)
-    cache = TTLCache()
-    creds = Credentials(values={}, path=Path("/nonexistent"),
-                        file_exists=False)
-    adapters = {}
-    for kind, (field_name, cls) in ADAPTER_CLASSES.items():
-        if kind == "curated":
-            continue
-        kwargs = {"fetcher": fetcher, "cache": cache}
-        if kind == "eia_v2":
-            kwargs["credentials"] = creds
-        adapters[field_name] = cls(**kwargs)
-    return load_context(SOURCES, credentials=creds, **adapters)
+    from doe_mcp.replay import load_replay_context
+    return load_replay_context(FIXTURES, SOURCES)
 
 
 async def worked_examples(ctx) -> list[dict]:
@@ -490,9 +467,27 @@ def render_reference(tools_by_profile: dict[str, list[dict]]) -> str:
                     lines.append("")
     lines += ["A `?` after an argument in the profile tables marks it "
               "optional. Every tool is read-only and returns the provenance "
-              "envelope described in `design/architecture.md` Part 1 § 3.3.",
+              "envelope described in [the workflow guide](guide.md).",
               ""]
     return "\n".join(lines)
+
+
+async def write_workflows():
+    from doe_mcp.replay import fixture_manifest, load_replay_context
+    from doe_mcp.workflows import CASES, evidence_csv, run_workflow
+    from render_workflows import render as render_workflows
+    output = DOCS / "data" / "demos"
+    output.mkdir(parents=True, exist_ok=True)
+    reports = []
+    manifest = fixture_manifest(FIXTURES)
+    for case in CASES:
+        ctx = load_replay_context(FIXTURES, SOURCES, keyed=case == "eia")
+        report = await run_workflow(ctx, case, fixtures=manifest)
+        reports.append(report)
+        (output / f"{case}.json").write_text(json.dumps(report, indent=2) + "\n")
+        (output / f"{case}.csv").write_text(evidence_csv(report))
+    (DOCS / "demos.html").write_text(render_workflows(reports))
+    print("wrote recorded workflow pages and evidence exports")
 
 
 def main() -> int:
@@ -516,6 +511,9 @@ def main() -> int:
     html_out = DOCS / "index.html"
     html_out.write_text(render(data))
     print(f"wrote {html_out}")
+
+    if args.fixtures:
+        asyncio.run(write_workflows())
 
     write_readme_status(data)
     REFERENCE.write_text(render_reference(

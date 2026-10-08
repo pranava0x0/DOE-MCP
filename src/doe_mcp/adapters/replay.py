@@ -12,6 +12,7 @@ fails on SourceSchemaChanged.
 from __future__ import annotations
 
 import dataclasses
+from datetime import datetime, timezone
 import json
 import re
 from dataclasses import dataclass, field
@@ -258,6 +259,7 @@ class RecordingFetcher:
                 "reason to overwrite what was recorded when it was up.")
         text = json.dumps(
             {"note": note,
+             "recorded_at": datetime.now(timezone.utc).isoformat(),
              "redaction": f"Email addresses replaced with "
                           f"{REDACTED_EMAIL} and credential values with "
                           f"{REDACTED_SECRET!r} at record time. Field shapes "

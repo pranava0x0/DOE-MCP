@@ -636,7 +636,7 @@ def _provenance(data: dict) -> str:
     first = examples[0]
     body = json.dumps(first["envelope"], indent=2)
     if len(body) > 4000:
-        body = body[:4000] + "\n  … trimmed for the page …\n}"
+        body = body[:4000].rstrip() + "\n  … trimmed for the page …\n}"
     dl = "".join(f"<dt>{k}</dt><dd>{v}</dd>" for k, v in ANNOTATIONS)
     others = "".join(
         f"<details><summary><code class='tool'>{e(x['tool'])}</code>"
@@ -737,6 +737,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
   <p class="tagline">Public Department of Energy and national-laboratory
   data, reachable by an agent. Every answer names the systems it came from,
   when they were read, and what it did not cover.</p>
+  <p><a href="demos.html">Explore recorded evidence walkthroughs</a> · <a href="guide.md">Local workflow guide</a></p>
   {_inventory(c)}
   <p class="works">Works with: {works}</p>
 </div></header>
@@ -761,7 +762,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
 <details class="sect">
   <summary><h2><span class="num">02</span>Quick start</h2></summary>
   <div class="sect-body">
-  <p class="lede">Install, verify, and connect to an MCP client in four steps. No API keys are required for default operations.</p>
+  <p class="lede">Install, verify, and connect to an MCP client in four steps. The research workflow needs no API key; EIA queries require your own key.</p>
   {_quickstart(data, data.get("examples") or [])}
   </div>
 </details>

@@ -563,7 +563,11 @@ def cmd_tools_call(args: argparse.Namespace) -> int:
 
 def cmd_serve(args: argparse.Namespace) -> int:
     from ..servers.build import build_server
-    ctx = _load_ctx()
+    from ..servers.lineup import for_profile
+    server = for_profile(args.profile)
+    if server is None:
+        return _fail("profile has no shipping server")
+    ctx = load_context(server_name=server.name)
     build_server(ctx, args.profile).run()
     return 0
 
@@ -577,6 +581,11 @@ def main() -> int:
     ap.add_argument("--version", action="version",
                     version=f"doe-mcp {__version__}")
     sub = ap.add_subparsers(dest="command", required=True)
+
+    from .workflows import register as register_workflows
+    register_workflows(sub)
+    from ..evaluation import register as register_evaluation
+    register_evaluation(sub)
 
     d = sub.add_parser("doctor", help="check the install, registry, "
                                       "credentials, and client configs")

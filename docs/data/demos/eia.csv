@@ -1,0 +1,4 @@
+step,tool,source,record_id,locator,effective_at,mode
+1,energy.grid_status,eia-api-v2,electricity/rto/region-data#0,,2026-09-09T13,recorded
+1,energy.grid_status,eia-api-v2,electricity/rto/region-data#1,,2026-09-09T12,recorded
+1,energy.grid_status,eia-api-v2,electricity/rto/region-data#2,,2026-09-09T11,recorded

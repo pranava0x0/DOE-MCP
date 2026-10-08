@@ -87,7 +87,7 @@ Search multidisciplinary environmental datasets from DOE field studies:
 
 ```bash
 doe-mcp tools call earth.search_datasets \
-  --args '{"query": "permafrost thaw carbon", "rows": 3}'
+  --args '{"text": "permafrost", "rows": 5}'
 ```
 
 ---
@@ -122,11 +122,11 @@ doe-mcp tools call chemistry.get_basis_set \
 ## 5. Discovery, Software & Technology Transfer
 
 ### Cross-catalog federated discovery (keyless)
-Search across OSTI, Energy Data eXchange (EDX), and OpenEnergyHub simultaneously:
+Search DOE Data Explorer, OpenEnergyHub, DOE data.json, and DOE code.json:
 
 ```bash
 doe-mcp tools call discovery.search_all_catalogs \
-  --args '{"query": "geothermal reservoir", "rows": 3}'
+  --args '{"query": "geothermal", "per_catalog": 2}'
 ```
 
 ### DOE scientific software and simulation codes
@@ -142,7 +142,7 @@ Search active Department of Energy regulatory actions and public comment deadlin
 
 ```bash
 doe-mcp tools call docs.search_rulemakings \
-  --args '{"query": "heat pump", "year": 2024}'
+  --args '{"query": "heat pump", "since": "2024-01-01", "until": "2024-12-31"}'
 ```
 
 ### Licensable patents and national laboratory intellectual property
@@ -158,7 +158,7 @@ Query official EPA/DOE fuel economy metrics and electric vehicle specifications:
 
 ```bash
 doe-mcp tools call fuel.find_vehicle \
-  --args '{"make": "Chevrolet", "model": "Bolt", "year": 2023}'
+  --args '{"make": "Chevrolet", "model": "Bolt", "year": "2023"}'
 ```
 
 ---
@@ -175,9 +175,27 @@ python examples/quickstart.py
 ```
 
 ### JSON-RPC stdio client integration (`mcp_client_demo.py`)
-Spawns an MCP server subprocess (`doe-mcp serve --profile research:default`) and executes standard JSON-RPC protocol discovery over stdio:
+Starts a server through the SDK client, initializes the session, calls a
+registry tool, validates structured content, checks a typed error, and
+closes the subprocess under a timeout:
 
 ```bash
 python examples/mcp_client_demo.py
 ```
 
+
+## Recorded workflows and installed skills
+
+```bash
+doe-mcp demo evidence --output ./evidence-run
+doe-mcp demo grid --output ./grid-run
+doe-mcp demo site --output ./site-run
+doe-mcp demo earth --output ./earth-run
+doe-mcp demo materials --output ./materials-run
+doe-mcp skills find-doe-data --show
+```
+
+These use recorded publisher responses, with capture-time limits stated in
+the exports. Add `--live` to query publishers locally. The
+[workflow guide](../docs/guide.md) documents all cases, model evaluation and
+the distinction between replay checks and current publisher availability.

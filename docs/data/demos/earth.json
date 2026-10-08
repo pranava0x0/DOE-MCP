@@ -1,0 +1,470 @@
+{
+  "format_version": "1",
+  "case": "earth",
+  "title": "Environmental study brief",
+  "question": "Find permafrost datasets and inspect modelled weather at Oak Ridge.",
+  "mode": "recorded",
+  "simulation": false,
+  "registry_revision": "2026-09-09",
+  "generated_at": null,
+  "replay_clock": "2026-09-09T00:00:00Z",
+  "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
+  "fixtures": [
+    {
+      "file": "ess-dive.json",
+      "sha256": "28399526c4bbec1055c0740219c1bee5468f0ebf5b5662182f77fb88f28d827a",
+      "captured_at": null
+    },
+    {
+      "file": "ornl-daac.json",
+      "sha256": "9fea63aa5e38eaa7fdf8d095bec8d6a70b291f4cc6a9751facf53548d565574a",
+      "captured_at": null
+    }
+  ],
+  "limitations": [
+    "The dataset search and Oak Ridge weather example are independent; no geographic or temporal relationship is asserted.",
+    "Daymet values are modelled grid-cell estimates, not station observations."
+  ],
+  "steps": [
+    {
+      "tool": "earth.search_datasets",
+      "args": {
+        "text": "permafrost",
+        "rows": 5
+      },
+      "envelope": {
+        "data": {
+          "datasets": [
+            {
+              "package_id": "ess-dive-3ae4bf47c8a5c01-20260821T191107282",
+              "doi": "doi:10.5440/1575068",
+              "name": "Leaf Carbon and Nitrogen Content, Seward Peninsula, Alaska, 2014",
+              "description": "Carbon and nitrogen content of leaves sampled from locations on the Council, Kougarok and Teller roads, Seward Peninsula, Alaska. Species not fully identified in all cases, but include samples from the genera: Alnus, Arctagrostis, Arctophila, Arctostaphylos, Betula, Carex, Eriophorum, Petasites, Picea, Populus, Rubus, Salix, Saxifraga and Vaccinium. Locations along the Council, Kougarok and Teller roads, Seward Peninsula, Alaska. Samples were collected from various locations as part of reconnaissance field work prior to establishment of formal NGEE Arctic study sites between August 22, 2014 and August 24, 2014. There is a single datafile in .csv format. The Next-Generation Ecosystem Experiments: Arctic (NGEE Arctic), was a research effort to reduce uncertainty in Earth System Models by developing a predictive understanding of carbon-rich Arctic ecosystems and feedbacks to climate. NGEE Arctic was supported by the Department of Energy's Office of Biological and Environmental Research. The NGEE Arctic project had two field research sites: 1) located within the Arctic polygonal tundra coastal region on the Barrow Environmental Observatory (BEO) and the North Slope near Utqiagvik (Barrow), Alaska and 2) multiple areas on the discontinuous permafrost region of the Seward Peninsula north of Nome, Alaska. Through observations, experiments, and synthesis with existing datasets, NGEE Arctic provided an enhanced knowledge base for multi-scale modeling and contributed to improved process representation at global pan-Arctic scales within the Department of Energy's Earth system Model (the Energy Exascale Earth System Model, or E3SM), and specifically within the E3SM Land Model component (ELM).",
+              "project": null,
+              "creators": [],
+              "funders": [],
+              "keywords": [],
+              "places": [],
+              "temporal_coverage": {},
+              "date_published": "2020",
+              "date_uploaded": "2026-08-21T19:11:09.012Z",
+              "date_modified": "2026-08-21T19:11:09.243Z",
+              "view_url": "https://data.ess-dive.lbl.gov/view/doi:10.5440/1575068"
+            },
+            {
+              "package_id": "ess-dive-59891b16a14f206-20260821T190846262",
+              "doi": "doi:10.3334/CDIAC/SPRUCE.042",
+              "name": "SPRUCE Geochemical Changes in Porewater from Northern Peatlands at Multiple Depths in Field Samples and over Time in Peat Incubations",
+              "description": "This data set reports the results of the analysis of dissolved organic matter (DOM) in porewater samples collected from multiple depths in northern peatlands and during laboratory peat incubations to characterize the gain or loss of specific chemical moieties (e.g. CH2, H2, CH2O, etc.) that may be attributed to microbial degradation. During incubations, CO2 and CH4 concentrations and stable isotopes were determined by isotope ratio mass spectrometry. Porewater samples were collected from the S1 Bog (April 2015), a Sphagnum-dominated site at northern Minnesota peatland in the Marcell Experimental Forest, using permanently-installed piezometers, which provided profiles from the watertable surface to 200 cm depth. This is the site of the SPRUCE experiment. Porewater and peat samples were collected in July 2015 from an additional Sphagnum-dominated site within Stordalen Mire, Sweden, a palsa mire underlain by thawing permafrost, using perforated stainless steel tubes that were inserted into the peat to the desired depths (13 cm and 32 cm). Porewater samples were analyzed by Fourier transform ion cyclotron resonance mass spectrometry (FTICRMS) followed by Kendrick mass transform analysis. The Kendrick mass (i.e., Kendrick 1963) transform analysis identifies the gain or loss of specific chemical moieties (e.g. CH2, H2, CH2O, etc.) via mass differences, and was used to infer potential microbial degradation pathways by which compounds were consumed in these samples. Increasing depth would suggest more degradation of DOM with the greater length of time for peat accumulation and similarly, with increasing length of peat incubation. During incubations, CO2 and CH4 concentrations and stable isotopes were determined by isotope ratio mass spectrometry. There are four files provided in comma separated value (*.csv) format.",
+              "project": null,
+              "creators": [],
+              "funders": [],
+              "keywords": [],
+              "places": [],
+              "temporal_coverage": {},
+              "date_published": "2017",
+              "date_uploaded": "2026-08-21T19:08:47.405Z",
+              "date_modified": "2026-08-21T19:08:47.514Z",
+              "view_url": "https://data.ess-dive.lbl.gov/view/doi:10.3334/CDIAC/SPRUCE.042"
+            },
+            {
+              "package_id": "ess-dive-9b961ab3bdda867-20260817T151917925",
+              "doi": "doi:10.15485/3023308",
+              "name": "Permafrost Thaw, Uneven Subsidence and Projected Drying of Ice-wedge Polygon Tundra: Modeling Archive",
+              "description": "This dataset is a model archive of the paper Permafrost Thaw, Uneven Subsidence and Projected Drying of Ice-wedge Polygon Tundra (in prep) to support a modeling study investigating how projected increases in Arctic temperature and precipitation will jointly influence hydrologic conditions in ice-rich tundra landscapes. With this dataset, this study is to address the research question: Will Arctic tundra landscapes become wetter or drier with increasing precipitation and temperature in the future when thaw-induced ground subsidence and associated microtopographic evolution are represented? The simulations focus on ice-wedge polygon tundra, a widespread form of ice-rich permafrost terrain that is highly sensitive to thaw-driven landscape change. This dataset contains model input and output data for four study watersheds in Alaska: Anaktuvuk, Utqiagvik (formerly Barrow), Brooks Foothills, and Prudhoe Bay. Simulations were performed using the Advanced Terrestrial Simulator (ATS, v1.5), a physics-rich integrated surface\u2013subsurface hydrologic model. For each watershed, ten modeling cases were performed representing two landscape evolution conditions (with subsidence and without subsidence) combined with five climate forcing scenarios derived from Shared Socioeconomic Pathways (SSP5, SSP5 with precipitation trend, SSP2, SSP2 with precipitation trend, and SSP2 with double precipitation trend). Particularly, for each watershed under the forcing SSP2 with precipitation trend, there are two additional simulations considering spatially heterogeneous subsidence distributions: one assumes randomly distributed scaling and the other includes elevation dependent distribution scaling. These simulations span 1980\u20132099 and include spin-up runs (1980\u20132009) followed by transient projections (2010\u20132099). To facilitate reproducibility of simulations, all datasets are organized by watershed. For each study watershed, the dataset contains: (1) Pre-partitioned mesh files for 32-core modeling (.par.32.XX), located in EACH_WATERSHED/mesh/basin; and also a non-partitioned mesh file (.exo) located in EACH_WATERSHED/mesh; (2) Climate forcings corresponding to the five SSP scenarios (.h5), located in EACH_WATERSHED/data; (3) Final states (.h5) from column spin-up modeling used to initialize historical watershed-scale spin-up runs from 1980 to 2009, located in EACH_WATERSHED/PreSpinupHistorical; (4) Final states (.h5) of historical watershed-scale spin-up runs from 1980 to 2009 used to initialize projection runs, located in EACH_WATERSHED/Spinup_daymetERA5; (5) ATS modeling input files (.xml), located in EACH_WATERSHED/EACH_SIMULATION_SCENARIO/inputfiles; (6) ATS modeling output files (.dat), located in in EACH_WATERSHED/EACH_SIMULATION_SCENARIO/combined_obs; (7) For the Brooks Foothills watershed, additional spatial model outputs are provided (.h5) for selected years (2033 and 2093) used to generate spatial figures in this study, located in Brooksfoothills/EACH_SIMULATION_SCENARIO/results-WITH/WITHOUT_SUBSIDENCE-year2033/2093. All data files with suffix .h5 can be accessible through Python h5py, and all data files with suffix of .dat can be imported by Python pandas. Mesh file with .exo can be visualized through Paraview or read by Python netCDF. The Next-Generation Ecosystem Experiments in the Arctic (NGEE Arctic) project is a research effort to reduce uncertainty in the Department of Energy\u2019s Energy Exascale Earth System Model (E3SM) by developing a predictive understanding of Arctic tundra ecosystems underlain by permafrost and to quantify feedbacks from the Arctic tundra to the Earth system. NGEE Arctic is supported by the Department of Energy's Office of Biological and Environmental Research. Over Phases 1\u20133, observations made by the NGEE Arctic team across a gradient of permafrost landscapes in Arctic Alaska improved the representation of tundra processes in the land surface component of E3SM (the E3SM Land Model, ELM). Model improvements emphasized unique aspects of permafrost environments and explored reductions in model complexity while retaining predictive power. The Arctic-informed ELM developed by NGEE Arctic has been used to make novel predictions on processes ranging from permafrost thaw to soil biogeochemical cycling to Earth system feedbacks associated with the unique characteristics of tundra plants. In Phase 4, the NGEE Arctic team is evaluating our new predictive understanding under novel conditions across the Arctic domain. In collaboration with partners at long-term pan-Arctic research sites we are examining whether an Arctic-informed ELM can faithfully simulate interactions among surface and subsurface processes at site, regional, and pan-Arctic scales. In turn, we are using variety of tools to dynamically extend and evaluate ELM inference, with an emphasis on data synthesis and pan-Arctic model evaluation, reintegration of code with an evolving E3SM, scaling across heterogeneous Arctic landscapes, and the appropriate representation of the impacts of increasingly frequent Arctic disturbances.",
+              "project": null,
+              "creators": [],
+              "funders": [],
+              "keywords": [],
+              "places": [],
+              "temporal_coverage": {},
+              "date_published": "2026",
+              "date_uploaded": "2026-08-17T15:19:19.031Z",
+              "date_modified": "2026-08-17T15:19:19.186Z",
+              "view_url": "https://data.ess-dive.lbl.gov/view/doi:10.15485/3023308"
+            },
+            {
+              "package_id": "ess-dive-387aca9b8ac0fa9-20260717T202253310452",
+              "doi": "doi:10.5440/1832016",
+              "name": "National Center for Airborne Laser Mapping (NCALM) LiDAR, Imagery, and DEM data from five NGEE Arctic Sites, Seward Peninsula, Alaska, August 2021",
+              "description": "From August 8 through August 16 of 2021, airborne remote sensing data was collected by the National Center for Airborne Laser Mapping (NCALM) in collaboration with NGEE Arctic scientists. Data was collected around five NGEE Arctic study sites on the Seward Peninsula of Alaska: Teller mm 27, Teller mm 47, Kougarok mm 64, Kougarok mm 86, and Council mm 71. A Robinson R44 II helicopter with a RIEGL VQ-580 II airborne laser scanner was used to collect the LiDAR point cloud data for each study site. A Phase One iXM-RS100F camera was integrated with the Riegl sensor to collect RGB imagery. This data package contains LiDAR point clouds (.las), RGB imagery (tif), 1 m or 50 cm Digital Elevation Models (.tif) generated from the LiDAR data, and shapefiles of the .las tiling system for each site (.shp). Two supplemental documents are also included in the package: 1) a report describing data collection details, GNSS corrections, and processing steps and 2) a document describing the LiDAR Classification used (.pdf). This survey was conducted towards the end of the summer on the Seward Peninsula, and can be paired with data collected in April of 2022 during the snow-on campaign \"National Center for Airborne Laser Mapping (NCALM) LiDAR and DEM data from two NGEE Arctic Sites, Seward Peninsula, Alaska, Winter 2022\" (Singhania et.al, 2023) (NGA314).  The Next-Generation Ecosystem Experiments: Arctic (NGEE Arctic), was a research effort to reduce uncertainty in Earth System Models by developing a predictive understanding of carbon-rich Arctic ecosystems and feedbacks to climate. NGEE Arctic was supported by the Department of Energy's Office of Biological and Environmental Research. The NGEE Arctic project had two field research sites: 1) located within the Arctic polygonal tundra coastal region on the Barrow Environmental Observatory (BEO) and the North Slope near Utqiagvik (Barrow), Alaska and 2) multiple areas on the discontinuous permafrost region of the Seward Peninsula north of Nome, Alaska. Through observations, experiments, and synthesis with existing datasets, NGEE Arctic provided an enhanced knowledge base for multi-scale modeling and contributed to improved process representation at global pan-Arctic scales within the Department of Energy's Earth system Model (the Energy Exascale Earth System Model, or E3SM), and specifically within the E3SM Land Model component (ELM).",
+              "project": null,
+              "creators": [],
+              "funders": [],
+              "keywords": [],
+              "places": [],
+              "temporal_coverage": {},
+              "date_published": "2023",
+              "date_uploaded": "2026-07-17T20:22:54.969Z",
+              "date_modified": "2026-07-17T20:22:55.053Z",
+              "view_url": "https://data.ess-dive.lbl.gov/view/doi:10.5440/1832016"
+            },
+            {
+              "package_id": "ess-dive-b92428d4a59674c-20260717T202221097472",
+              "doi": "doi:10.5440/1778212",
+              "name": "Landscape-scale Characterization of Arctic Tundra Vegetation Composition, Structure, and Function with a Multi-sensor Unoccupied Aerial System: Supporting Data.",
+              "description": "Airborne remote sensing data collected using the Brookhaven National Laboratory's (BNL) heavy-lift unoccupied aerial system (UAS) octocopter platform, the Osprey, operated by the Terrestrial Ecosystem Science and Technology (TEST) group (https://www.bnl.gov/testgroup). This package includes data from three flights flown over the NGEE-Arctic Council, Kougarok and Teller sites in July, 2018. The Osprey is a multi-sensor UAS platform that simultaneously measures very high spatial resolution optical red/green/blue (RGB) and thermal infrared (TIR) surface 'skin' temperature imagery, as well as surface reflectance at 1 nm intervals in the visible to near-infrared spectral range 350 - 1000 nm measured at regular intervals along each flight path. Derived image products include ortho-mosaiced RGB and TIR images, an RGB-based digital surface model (DSM) using the structure from motion (SfM) technique, digital terrain model (DTM), and a canopy height model (CHM). In addition, a VNIR surface reflectance file is provided for the trigger locations collected during each flight campaign. Ancillary aircraft data, flight mission parameters, and general flight conditions provided by the onboard flight and data collection computers are also included. Unprocessed and processed data products are included in this package (processing levels 0-3). Data and metadata are provided as text (*.txt, *.json, *.kml, *hdr, *.enp), tabular (*.dat, *.csv, *.waypoint, ENVI format (no extension)), point cloud (*.laz) and image (*.jpg, *.tif, *png) formats. This metadata document contains flight campaign, instrument and file metadata, along with a description of data processing levels, data products and file naming scheme.The Next-Generation Ecosystem Experiments: Arctic (NGEE Arctic), a research effort to reduce uncertainty in Earth System Models by developing a predictive understanding of carbon-rich Arctic ecosystems and feedbacks to climate. NGEE Arctic was supported by the Department of Energy?s Office of Biological and Environmental Research.The NGEE Arctic project had two field research sites: 1) located within the Arctic polygonal tundra coastal region on the Barrow Environmental Observatory (BEO) and the North Slope near Utqiagvik (Barrow), Alaska and 2) multiple areas on the discontinuous permafrost region of the Seward Peninsula north of Nome, Alaska.Through observations, experiments, and synthesis with existing datasets, NGEE Arctic provided an enhanced knowledge base for multi-scale modeling and contributed to improved process representation at global pan-Arctic scales within the Department of Energy's Earth system Model (the Energy Exascale Earth System Model, or E3SM), and specifically within the E3SM Land Model component (ELM).",
+              "project": null,
+              "creators": [],
+              "funders": [],
+              "keywords": [],
+              "places": [],
+              "temporal_coverage": {},
+              "date_published": "2021",
+              "date_uploaded": "2026-07-17T20:22:24.225Z",
+              "date_modified": "2026-07-17T20:22:24.350Z",
+              "view_url": "https://data.ess-dive.lbl.gov/view/doi:10.5440/1778212"
+            }
+          ],
+          "record_count": 5,
+          "total_matches": 329,
+          "offset": 0,
+          "searched": {
+            "isPublic": true,
+            "text": "permafrost",
+            "sort": "dateUploaded:desc"
+          },
+          "note": "Package-level metadata from DOE's environmental system science repository. Each record points at files held in the repository rather than carrying them; earth.get_dataset returns one record in full. The search runs over metadata, so a variable measured but never named in a record's keywords or description is not findable here."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "ess-dive",
+            "steward": "Lawrence Berkeley National Laboratory",
+            "funder": "Biological and Environmental Research",
+            "system": "ESS-DIVE (Environmental System Science Data Infrastructure)",
+            "dataset": "ESS-DIVE (Environmental System Science Data Infrastructure)",
+            "dataset_version": "current",
+            "authority_level": "official_secondary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-09-09T00:00:00Z",
+            "cache_age_seconds": 0
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "ess-dive-3ae4bf47c8a5c01-20260821T191107282",
+            "locator": "https://data.ess-dive.lbl.gov/view/doi:10.5440/1575068",
+            "retrieved_at": "2026-09-09T00:00:00Z",
+            "effective_at": "2026-08-21T19:11:09.012Z",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_02",
+            "source_ref": "source_01",
+            "record_id": "ess-dive-59891b16a14f206-20260821T190846262",
+            "locator": "https://data.ess-dive.lbl.gov/view/doi:10.3334/CDIAC/SPRUCE.042",
+            "retrieved_at": "2026-09-09T00:00:00Z",
+            "effective_at": "2026-08-21T19:08:47.405Z",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_03",
+            "source_ref": "source_01",
+            "record_id": "ess-dive-9b961ab3bdda867-20260817T151917925",
+            "locator": "https://data.ess-dive.lbl.gov/view/doi:10.15485/3023308",
+            "retrieved_at": "2026-09-09T00:00:00Z",
+            "effective_at": "2026-08-17T15:19:19.031Z",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_04",
+            "source_ref": "source_01",
+            "record_id": "ess-dive-387aca9b8ac0fa9-20260717T202253310452",
+            "locator": "https://data.ess-dive.lbl.gov/view/doi:10.5440/1832016",
+            "retrieved_at": "2026-09-09T00:00:00Z",
+            "effective_at": "2026-07-17T20:22:54.969Z",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_05",
+            "source_ref": "source_01",
+            "record_id": "ess-dive-b92428d4a59674c-20260717T202221097472",
+            "locator": "https://data.ess-dive.lbl.gov/view/doi:10.5440/1778212",
+            "retrieved_at": "2026-09-09T00:00:00Z",
+            "effective_at": "2026-07-17T20:22:24.225Z",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "truncated",
+          "source_claim": "partial",
+          "result": "hit",
+          "sources_searched": [
+            "ess-dive"
+          ],
+          "known_limitations": [
+            "A repository, so coverage is what investigators deposited. Absence reflects deposit practice, not the absence of research.",
+            "Package-level metadata is well structured; the files inside a package are heterogeneous scientific formats reached by pointer.",
+            "The search is over metadata, not over the data files. A variable measured but not named in the record's keywords or description is not findable here.",
+            "Paging counts rows from one, not from zero. The service refuses rowStart=0 outright, which makes it the one paging mistake on this source that cannot pass silently."
+          ]
+        },
+        "warnings": [],
+        "access_recipes": [
+          {
+            "kind": "landing_page",
+            "uri": "https://data.ess-dive.lbl.gov/view/doi:10.5440/1575068",
+            "label": "Leaf Carbon and Nitrogen Content, Seward Peninsula, Alaska, 2014",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "landing_page",
+            "uri": "https://data.ess-dive.lbl.gov/view/doi:10.3334/CDIAC/SPRUCE.042",
+            "label": "SPRUCE Geochemical Changes in Porewater from Northern Peatlands at Multiple Depths in Field Samples and over Time in Peat Incubations",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "landing_page",
+            "uri": "https://data.ess-dive.lbl.gov/view/doi:10.15485/3023308",
+            "label": "Permafrost Thaw, Uneven Subsidence and Projected Drying of Ice-wedge Polygon Tundra: Modeling Archive",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "landing_page",
+            "uri": "https://data.ess-dive.lbl.gov/view/doi:10.5440/1832016",
+            "label": "National Center for Airborne Laser Mapping (NCALM) LiDAR, Imagery, and DEM data from five NGEE Arctic Sites, Seward Peninsula, Alaska, August 2021",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "landing_page",
+            "uri": "https://data.ess-dive.lbl.gov/view/doi:10.5440/1778212",
+            "label": "Landscape-scale Characterization of Arctic Tundra Vegetation Composition, Structure, and Function with a Multi-sensor Unoccupied Aerial System: Supporting Data.",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "earth.search_datasets",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-09-09",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "earth.get_daymet_point",
+      "args": {
+        "latitude": 35.9313,
+        "longitude": -84.3104,
+        "start": "2023-06-01",
+        "end": "2023-06-05",
+        "variables": "prcp,tmax,tmin"
+      },
+      "envelope": {
+        "data": {
+          "latitude": 35.9313,
+          "longitude": -84.3104,
+          "elevation_meters": 261.0,
+          "tile": "11208",
+          "projected_coordinates": "1352953.24 -569846.6",
+          "software_version": "All years; all variables; Daymet Software Version 4.0",
+          "publisher_citation": "Thornton; M.M.; R. Shrestha; Y. Wei; P.E. Thornton; S-C. Kao; and B.E. Wilson. 2022. Daymet: Daily Surface Weather Data on a 1-km Grid for North America; Version 4 R1. ORNL DAAC; Oak Ridge; Tennessee; USA. https://doi.org/10.3334/ORNLDAAC/2129",
+          "columns": [
+            {
+              "name": "prcp",
+              "units": "mm/day",
+              "description": "Daily total precipitation, millimetres per day"
+            },
+            {
+              "name": "tmax",
+              "units": "deg c",
+              "description": "Daily maximum 2-metre air temperature, degrees Celsius"
+            },
+            {
+              "name": "tmin",
+              "units": "deg c",
+              "description": "Daily minimum 2-metre air temperature, degrees Celsius"
+            }
+          ],
+          "days": [
+            {
+              "date": "2023-06-01",
+              "yday": 152,
+              "values": {
+                "prcp": 0.0,
+                "tmax": 28.62,
+                "tmin": 16.9
+              }
+            },
+            {
+              "date": "2023-06-02",
+              "yday": 153,
+              "values": {
+                "prcp": 0.0,
+                "tmax": 31.43,
+                "tmin": 16.08
+              }
+            },
+            {
+              "date": "2023-06-03",
+              "yday": 154,
+              "values": {
+                "prcp": 0.0,
+                "tmax": 32.28,
+                "tmin": 14.76
+              }
+            },
+            {
+              "date": "2023-06-04",
+              "yday": 155,
+              "values": {
+                "prcp": 0.0,
+                "tmax": 31.05,
+                "tmin": 16.8
+              }
+            },
+            {
+              "date": "2023-06-05",
+              "yday": 156,
+              "values": {
+                "prcp": 2.12,
+                "tmax": 29.2,
+                "tmin": 16.24
+              }
+            }
+          ],
+          "record_count": 5,
+          "requested_range": {
+            "from": "2023-06-01",
+            "to": "2023-06-05"
+          },
+          "returned_range": {
+            "from": "2023-06-01",
+            "to": "2023-06-05"
+          },
+          "calendar": "Daymet's year is always 365 days. 29 February is present and 31 December is dropped in leap years, so an annual total from a leap year is a 365-day total and the missing date is named on any answer whose range covers it.",
+          "note": "Daily modelled surface weather for the 1 km cell holding this point. Precipitation is a daily total; tmax and tmin are daily extremes, so a daily mean has to be computed and is not published. For observations at a station rather than a modelled grid cell, this is the wrong source."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "ornl-daac",
+            "steward": "Oak Ridge National Laboratory",
+            "funder": "National Aeronautics and Space Administration",
+            "system": "ORNL DAAC (Daymet, MODIS/VIIRS subsets)",
+            "dataset": "Daymet single-pixel extraction",
+            "dataset_version": "Daymet V4 R1",
+            "authority_level": "official_secondary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-09-09T00:00:00Z",
+            "cache_age_seconds": 0
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "tile:11208@35.9313,-84.3104",
+            "locator": null,
+            "retrieved_at": "2026-09-09T00:00:00Z",
+            "effective_at": "2023-06-01",
+            "transformations": [
+              "day-of-year converted to calendar date"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "ornl-daac"
+          ],
+          "time_range": {
+            "from": "2023-06-01",
+            "to": "2023-06-05"
+          }
+        },
+        "warnings": [
+          {
+            "code": "derived_layer",
+            "message": "Values are modelled estimates for the 1 km cell containing the point, interpolated from ground stations. They are not a station observation and the service reports no cell centre, so a value here is the model's account of that kilometre rather than a measurement at the coordinates given.",
+            "source_id": "ornl-daac"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "earth.get_daymet_point",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-09-09",
+          "request_id": "recorded-workflow"
+        }
+      }
+    }
+  ]
+}

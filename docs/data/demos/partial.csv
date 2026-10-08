@@ -1,0 +1,5 @@
+step,tool,source,record_id,locator,effective_at,mode
+1,research.search_literature,osti-gov-records,3484888,https://www.osti.gov/biblio/3484888,2026-08-27T11:00:26Z,recorded
+1,research.search_literature,osti-gov-records,3625672,https://www.osti.gov/biblio/3625672,2026-09-02T10:56:05Z,recorded
+1,research.search_literature,osti-gov-records,3409109,https://www.osti.gov/biblio/3409109,2026-09-18T15:49:56Z,recorded
+2,research.get_record,osti-gov-records,3484888,https://www.osti.gov/biblio/3484888,2026-08-27T11:00:26Z,recorded

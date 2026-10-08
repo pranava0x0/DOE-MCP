@@ -34,7 +34,7 @@ import json
 from datetime import datetime, timezone
 from typing import Any
 
-from pydantic import BaseModel, ConfigDict, Field, model_serializer
+from pydantic import AliasChoices, BaseModel, ConfigDict, Field, model_serializer
 
 ENVELOPE_VERSION = "1"
 
@@ -103,7 +103,7 @@ class AuthorityLevel(str, enum.Enum):
 class AccessPath(str, enum.Enum):
     live = "live"
     cache = "cache"
-    index = "index"
+    index = "index"  # type: ignore[assignment]  # Wire enum value shadows str.index.
 
 
 class RawRecovery(str, enum.Enum):
@@ -314,7 +314,8 @@ class Envelope(_Strict):
     next_actions: list[NextAction] = Field(default_factory=list)
     resources: list[ResourceRef] = Field(default_factory=list)
     requires_user_choice: bool = False
-    execution: ExecutionProvenance | None = None
+    execution: ExecutionProvenance | None = Field(
+        default=None, validation_alias=AliasChoices("execution", "_execution"))
 
     @classmethod
     def __get_pydantic_json_schema__(cls, core_schema, handler):
