@@ -680,8 +680,10 @@ async def find_solar_facilities(ctx: RuntimeContext, state: str = "",
 # title is the only place a release states the years it covers: "EAGLE-I
 # Power Outage Data 2014 - 2022" is nine years and "... 2025" is one.
 OUTAGE_PAGE = 50
-_YEAR_SPAN = re.compile(r"\b((?:19|20)\d{2})\s*[-\u2013]\s*((?:19|20)\d{2})\b")
-_ONE_YEAR = re.compile(r"\b((?:19|20)\d{2})\b")
+_YEAR_SPAN = re.compile(
+    r"\b((?:19|20)\d{2})\s*(?:-|\u2013|to|through)\s*((?:19|20)?\d{2})\b",
+    re.IGNORECASE)
+_YEAR = re.compile(r"(?<!\d)((?:19|20)\d{2})(?!\d)")
 
 
 def _outage_kind(title: str) -> str:
@@ -696,12 +698,16 @@ def _outage_kind(title: str) -> str:
 
 
 def _covered_years(title: str) -> tuple[int, int] | None:
+    """The years a release title states, or None when it states them in a
+    way this cannot read with confidence. None is reported as an undated
+    release rather than guessed: a wrong span would invent a gap."""
     span = _YEAR_SPAN.search(title)
     if span:
-        first, last = int(span.group(1)), int(span.group(2))
+        first, end = int(span.group(1)), span.group(2)
+        last = int(end) if len(end) == 4 else first // 100 * 100 + int(end)
         return (first, last) if first <= last else None
-    one = _ONE_YEAR.search(title)
-    return (int(one.group(1)),) * 2 if one else None
+    years = {int(y) for y in _YEAR.findall(title)}
+    return (years.pop(),) * 2 if len(years) == 1 else None
 
 
 def _releases(records: list[OstiRecord]) -> list[dict[str, Any]]:
@@ -801,12 +807,22 @@ async def find_outage_history(ctx: RuntimeContext,
             "customers without power at 15-minute intervals behind its DOI. "
             "Customers out is not people out, coverage is roughly 92% of US "
             "customers with small utilities and cooperatives missing, and "
-            "the county customer-count dataset is the denominator for any "
-            "share-of-customers figure."),
+            "the county customer-count dataset is the denominator for a "
+            "share-of-customers figure. That dataset is a snapshot dated in "
+            "its own title, so a share for a different year mixes "
+            "vintages."),
     }
     other = [r for r in releases if r["kind"] == "other"]
     if other:
         data["other_records"] = other
+    undated = [r["title"] for r in outage if not r["covers_years"]]
+    if undated:
+        data["undated_releases"] = undated
+        data["undated_note"] = (
+            "These release titles state their years in a form this tool "
+            "cannot read with confidence, so they are left out of "
+            "years_covered, missing_years and any match by year. Read the "
+            "title before concluding that a year is missing.")
 
     selected = outage
     if year is not None:
@@ -824,7 +840,9 @@ async def find_outage_history(ctx: RuntimeContext,
                                       "repository behind this DOI; returned "
                                       "as data and never fetched here.")
 
-    if len({r["published"] for r in outage if r["published"]}) > 1:
+    # Over the releases this answer selects, by publication year: one
+    # release cannot mix vintages with itself.
+    if len({r["published"][:4] for r in selected if r["published"]}) > 1:
         b.warn(WarningCode.mixed_vintages,
                "The releases were published in different years and each "
                "is a snapshot of its own processing; a multi-year series "

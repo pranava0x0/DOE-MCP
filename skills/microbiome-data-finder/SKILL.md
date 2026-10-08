@@ -47,7 +47,9 @@ nothing" has said something about NMDC.
    `bio.get_study` returns the investigators with ORCID, the funding
    statements, the DOIs, and how many samples the study holds in total.
    The DOIs are where the sequence data is; pass them on rather than
-   describing the data from its metadata.
+   describing the data from its metadata. A consortium such as NEON is a
+   parent study with no samples of its own: `bio.get_study` names the
+   child studies that hold them, and the count is theirs.
 
 4. **Check the environmental repository when NMDC is thin.** ESS-DIVE
    holds DOE's environmental-system-science datasets, some with microbial

@@ -44,7 +44,7 @@ def _study_summary(study: Study, *, full: bool) -> dict[str, Any]:
         description = description[:DESCRIPTION_CHARS].rstrip() + "…"
     out: dict[str, Any] = {
         "study_id": study.study_id, "name": study.name,
-        "category": study.category, "ecosystem": study.ecosystem,
+        "title": study.title, "category": study.category, "ecosystem": study.ecosystem,
         "description": description,
         "investigators": [
             {"name": p.name, "orcid": p.orcid}
@@ -54,7 +54,7 @@ def _study_summary(study: Study, *, full: bool) -> dict[str, Any]:
         "part_of": study.part_of,
     }
     if full:
-        out |= {"title": study.title, "funding": study.funding,
+        out |= {"funding": study.funding,
                 "gold_ids": study.gold_ids, "websites": study.websites}
     return out
 
@@ -123,7 +123,11 @@ async def search_studies(ctx: RuntimeContext, text: str = "",
             "own; their samples do. A study missing here may still hold "
             "samples from that ecosystem: bio.search_biosamples with "
             "ecosystem_type finds them.")
-    if not page.studies:
+    if page.studies and not shown:
+        data["note"] = (
+            f"offset {offset} is past the {page.total_matched} matching "
+            "studies; the matches are on earlier pages. " + SEQUENCE_NOTE)
+    elif not page.studies:
         data["note"] = (
             f"None of NMDC's {page.collection_size} studies matched. That is "
             "a statement about what NMDC has ingested, not about whether "
@@ -160,6 +164,21 @@ async def get_study(ctx: RuntimeContext, study_id: str) -> Envelope:
     data = _study_summary(study, full=True)
     data["biosample_count"] = counted.value
     data["note"] = SEQUENCE_NOTE
+    if not counted.value:
+        # A consortium or parent study holds no samples itself; they hang
+        # off its child studies through `part_of`. Reporting 0 alone would
+        # answer "how many samples does NEON have" with none.
+        collection = await ctx.nmdc.studies(manifest)
+        children = [s for s in collection.value.studies
+                    if study.study_id in s.part_of]
+        if children:
+            data["child_studies"] = [
+                {"study_id": c.study_id, "name": c.name} for c in children]
+            data["biosample_count_note"] = (
+                f"No biosample is linked to this study directly. Its "
+                f"{len(children)} child studies hold its samples; "
+                "bio.get_study on each gives their counts, and "
+                "bio.search_biosamples with a child's study_id lists them.")
     if counted.value:
         b.next_action(
             finding=f"{counted.value} biosamples are linked to this study.",
@@ -217,14 +236,21 @@ async def search_biosamples(ctx: RuntimeContext, study_id: str = "",
         "total_matches": result.total,
         "page": page,
         "filter_applied": result.applied_filter,
-        "note": ("Sample metadata as submitted. ecosystem_type is an exact "
-                 "match on NMDC's value ('Soil', 'Freshwater'); env_medium "
+        "note": ("Sample metadata as submitted. ecosystem_type matches "
+                 "NMDC's whole value without regard to case ('soil', "
+                 "'Freshwater'); env_medium "
                  "and place match a substring without regard to case; "
                  "collected matches the start of the date as written "
                  "('2017', '2017-06'). Depth is reported only where it was "
                  "stated in metres. " + SEQUENCE_NOTE),
     }
-    if not result.samples:
+    past_end = (not result.samples and result.total
+                 and (page - 1) * rows >= result.total)
+    if past_end:
+        data["note"] = (
+            f"page {page} is past the {result.total} matching biosamples; "
+            "the matches are on earlier pages. " + SEQUENCE_NOTE)
+    elif not result.samples:
         data["note"] = (
             "NMDC holds no biosample matching every filter given. Place is "
             "free text as submitted, so a state or site name can miss "
@@ -269,7 +295,8 @@ BIO_TOOLS.register(ToolSpec(
     name="bio.search_biosamples",
     description=(
         "Search NMDC's biosamples (over 27,000) by `study_id`, "
-        "`ecosystem_type` (NMDC's exact value, e.g. 'Soil'), `env_medium` "
+        "`ecosystem_type` (NMDC's whole value, any case, e.g. 'Soil'), "
+        "`env_medium` "
         "(an environmental-ontology term such as 'soil' or 'sediment'), "
         "`place` (a substring of the submitted location, e.g. 'Washington') "
         "or `collected` (the start of the date, '2017' or '2017-06'). Each "

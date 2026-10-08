@@ -49,6 +49,13 @@ async def test_no_contact_details_reach_an_answer(ctx):
         assert "email" not in text
         assert "profile_image" not in text
     assert whole.data["investigators"][0]["orcid"].startswith("orcid:")
+    # The keys themselves, not a string search: the fixtures are already
+    # redacted, so a leak of the redacted address would pass a text check.
+    for person in whole.data["investigators"]:
+        assert set(person) <= {"name", "orcid", "roles"}
+    for study in found.data["studies"]:
+        for person in study["investigators"]:
+            assert set(person) <= {"name", "orcid"}
 
 
 async def test_a_study_comes_with_its_sample_count_and_next_step(ctx):
@@ -162,3 +169,44 @@ async def test_a_biosample_id_where_a_study_belongs_is_named_as_such(ctx):
         await bio.get_study(ctx, "nmdc:bsm-11-06qrej20")
     with pytest.raises(InvalidQuery, match="biosample id"):
         await bio.search_biosamples(ctx, study_id="nmdc:bsm-11-06qrej20")
+
+
+
+async def test_a_parent_study_names_the_children_that_hold_its_samples(ctx):
+    env = await bio.get_study(ctx, "nmdc:sty-11-nxrz9m96")
+    assert env.data["biosample_count"] == 0
+    assert env.data["name"] == "National Ecological Observatory Network (NEON)"
+    assert NEON in {c["study_id"] for c in env.data["child_studies"]}
+    assert "child studies hold its samples" in env.data["biosample_count_note"]
+
+
+async def test_a_study_with_no_name_is_listed_under_its_title(ctx):
+    env = await bio.search_studies(ctx, text="National Ecological", rows=50)
+    assert all(s["name"] for s in env.data["studies"])
+
+
+async def test_a_study_page_past_the_end_says_so(ctx):
+    env = await bio.search_studies(ctx, text="soil", offset=500)
+    assert env.data["record_count"] == 0
+    assert "past the" in env.data["note"]
+
+
+async def test_a_sample_page_past_the_end_says_so(ctx):
+    ctx.nmdc = NmdcAdapter(cache=TTLCache(), fetcher=_Fixed(
+        {"meta": {"mongo_filter_dict": {"associated_studies": SHALE},
+                  "count": 23}, "results": []}))
+    env = await bio.search_biosamples(ctx, study_id=SHALE, rows=5, page=10)
+    assert env.data["total_matches"] == 23
+    assert "past the 23 matching biosamples" in env.data["note"]
+
+
+def test_ecosystem_type_is_a_whole_value_match_without_regard_to_case():
+    expression, expected = build_filter({"ecosystem_type": "soil"})
+    assert expression == "ecosystem_type.search:(?i)^soil$"
+    assert expected == {"ecosystem_type": {"$regex": "(?i)^soil$"}}
+
+
+def test_a_leading_comparison_sign_is_escaped_not_sent_as_an_operator():
+    expression, _ = build_filter({"ecosystem_type": ">Soil"})
+    assert expression == r"ecosystem_type.search:(?i)^>Soil$"
+    assert ":>" not in expression.replace(".search:(?i)^>", "")

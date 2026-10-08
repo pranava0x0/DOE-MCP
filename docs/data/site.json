@@ -22,122 +22,146 @@
     {
       "question": "What DOE-funded work exists on perovskite tandem cells?",
       "tool": "research.search_literature",
-      "server": "doe-research"
+      "server": "doe-research",
+      "profile": null
     },
     {
       "question": "Where is the dataset behind this paper, and what is its DOI?",
       "tool": "research.search_datasets",
-      "server": "doe-research"
+      "server": "doe-research",
+      "profile": null
     },
     {
       "question": "Has a national laboratory released Python code for lattice QCD?",
       "tool": "research.search_software",
-      "server": "doe-research"
+      "server": "doe-research",
+      "profile": null
     },
     {
       "question": "Can I actually read the full text of this report?",
       "tool": "research.get_record",
-      "server": "doe-research"
+      "server": "doe-research",
+      "profile": null
     },
     {
       "question": "What does Oak Ridge publish?",
       "tool": "registry.lab_crosswalk",
-      "server": "doe-research"
+      "server": "doe-research",
+      "profile": null
     },
     {
       "question": "I have an old NREL URL that 404s. What happened?",
       "tool": "registry.resolve_org",
-      "server": "doe-research"
+      "server": "doe-research",
+      "profile": null
     },
     {
       "question": "Which DOE catalogs hold geothermal datasets?",
       "tool": "discovery.search_all_catalogs",
-      "server": "doe-research"
+      "server": "doe-research",
+      "profile": null
     },
     {
       "question": "What data does DOE itself call durable?",
       "tool": "discovery.list_pure_resources",
-      "server": "doe-research"
+      "server": "doe-research",
+      "profile": null
     },
     {
       "question": "Does DOE-MCP cover geothermal, and if not, why not?",
       "tool": "registry.search_sources",
-      "server": "doe-research"
+      "server": "doe-research",
+      "profile": "research:all"
     },
     {
       "question": "How much electricity did CAISO demand last night?",
       "tool": "energy.grid_status",
-      "server": "doe-energy-data"
+      "server": "doe-energy-data",
+      "profile": null
     },
     {
       "question": "What does this car actually get?",
       "tool": "fuel.find_vehicle",
-      "server": "doe-energy-data"
+      "server": "doe-energy-data",
+      "profile": null
     },
     {
       "question": "Which wind turbines and solar farms are in this county?",
       "tool": "facility.find_wind_turbines",
-      "server": "doe-energy-data"
+      "server": "doe-energy-data",
+      "profile": null
     },
     {
       "question": "What was the weather at these coordinates every day last summer?",
       "tool": "earth.get_daymet_point",
-      "server": "doe-earth"
+      "server": "doe-earth",
+      "profile": null
     },
     {
       "question": "What data came out of the NGEE Arctic campaign?",
       "tool": "earth.search_datasets",
-      "server": "doe-earth"
+      "server": "doe-earth",
+      "profile": null
     },
     {
       "question": "Which climate models ran this experiment for surface temperature?",
       "tool": "climate.search_cmip",
-      "server": "doe-earth"
+      "server": "doe-earth",
+      "profile": null
     },
     {
       "question": "Where are the air-quality sensors near this city?",
       "tool": "sensors.find_nodes",
-      "server": "doe-earth"
+      "server": "doe-earth",
+      "profile": null
     },
     {
       "question": "Which computed structures contain gallium and nitrogen?",
       "tool": "materials.search_structures",
-      "server": "doe-materials"
+      "server": "doe-materials",
+      "profile": null
     },
     {
       "question": "Which basis sets cover uranium, and what do they look like in NWChem?",
       "tool": "chemistry.search_basis_sets",
-      "server": "doe-materials"
+      "server": "doe-materials",
+      "profile": null
     },
     {
       "question": "What is BPA's wind output right now?",
       "tool": "grid.get_bpa_operations",
-      "server": "doe-energy-data"
+      "server": "doe-energy-data",
+      "profile": null
     },
     {
       "question": "Which EAGLE-I release holds county outage history for 2021?",
       "tool": "grid.find_outage_history",
-      "server": "doe-energy-data"
+      "server": "doe-energy-data",
+      "profile": null
     },
     {
       "question": "Is there soil microbiome data from Washington State?",
       "tool": "bio.search_biosamples",
-      "server": "doe-bio"
+      "server": "doe-bio",
+      "profile": null
     },
     {
       "question": "Is Perlmutter up, and when is NERSC's next maintenance?",
       "tool": "compute.facility_status",
-      "server": "doe-research"
+      "server": "doe-research",
+      "profile": "research:all"
     },
     {
       "question": "What has DOE proposed on appliance standards this year?",
       "tool": "docs.search_rulemakings",
-      "server": "doe-research"
+      "server": "doe-research",
+      "profile": null
     },
     {
       "question": "What can I license from Oak Ridge?",
       "tool": "tech.find_licensable_ip",
-      "server": "doe-research"
+      "server": "doe-research",
+      "profile": null
     }
   ],
   "servers": [
@@ -397,7 +421,7 @@
         {
           "name": "bio.search_biosamples",
           "toolset": "default",
-          "description": "Search NMDC's biosamples (over 27,000) by `study_id`, `ecosystem_type` (NMDC's exact value, e.g. 'Soil'), `env_medium` (an environmental-ontology term such as 'soil' or 'sediment'), `place` (a substring of the submitted location, e.g. 'Washington') or `collected` (the start of the date, '2017' or '2017-06'). Each sample comes with coordinates, collection date, place, ecosystem and environmental terms, and depth in metres where stated. Sample metadata, not sequence data."
+          "description": "Search NMDC's biosamples (over 27,000) by `study_id`, `ecosystem_type` (NMDC's whole value, any case, e.g. 'Soil'), `env_medium` (an environmental-ontology term such as 'soil' or 'sediment'), `place` (a substring of the submitted location, e.g. 'Washington') or `collected` (the start of the date, '2017' or '2017-06'). Each sample comes with coordinates, collection date, place, ecosystem and environmental terms, and depth in metres where stated. Sample metadata, not sequence data."
         },
         {
           "name": "registry.resolve_org",
@@ -6266,12 +6290,14 @@
           "total_matches": 188,
           "page": 1,
           "filter_applied": {
-            "ecosystem_type": "Soil",
+            "ecosystem_type": {
+              "$regex": "(?i)^Soil$"
+            },
             "geo_loc_name.has_raw_value": {
               "$regex": "(?i)washington"
             }
           },
-          "note": "Sample metadata as submitted. ecosystem_type is an exact match on NMDC's value ('Soil', 'Freshwater'); env_medium and place match a substring without regard to case; collected matches the start of the date as written ('2017', '2017-06'). Depth is reported only where it was stated in metres. Metadata only. Reads, assemblies and annotations are held at JGI, EMSL and the sequence archives; a study's DOIs in access_recipes lead to them and are never fetched here."
+          "note": "Sample metadata as submitted. ecosystem_type matches NMDC's whole value without regard to case ('soil', 'Freshwater'); env_medium and place match a substring without regard to case; collected matches the start of the date as written ('2017', '2017-06'). Depth is reported only where it was stated in metres. Metadata only. Reads, assemblies and annotations are held at JGI, EMSL and the sequence archives; a study's DOIs in access_recipes lead to them and are never fetched here."
         },
         "provenance": [
           {

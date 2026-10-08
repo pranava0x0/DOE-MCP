@@ -223,6 +223,7 @@ h3{font-size:.98rem;margin:1.6rem 0 .5rem}
 .lede{color:var(--muted);margin:0 0 1.1rem;max-width:45rem}
 
 table{border-collapse:collapse;width:100%;font-size:.88rem}
+td .faint{color:var(--faint);font-size:.78rem}
 th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid var(--line);
   vertical-align:top}
 th{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;
@@ -392,7 +393,9 @@ def _questions(data: dict) -> str:
     rows = "".join(
         f"<tr><td>{e(q['question'])}</td>"
         f"<td><code class='tool'>{e(q['tool'])}</code></td>"
-        f"<td class='mono'>{e(q['server'])}</td></tr>"
+        f"<td class='mono'>{e(q['server'])}"
+        + (f"<br><span class='faint'>{e(q['profile'])} profile</span>"
+           if q.get("profile") else "") + "</td></tr>"
         for q in questions)
     return ("<table><thead><tr><th>Question</th><th>Tool</th><th>Server</th>"
             f"</tr></thead><tbody>{rows}</tbody></table>")

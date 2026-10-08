@@ -105,6 +105,21 @@ SERVERS = [(sv.name, sv.default_profile, sv.status, sv.description)
            for sv in SERVER_LINEUP]
 
 
+def _profile_note(tool: str, server: str,
+                  tools_by_server: dict[str, list[dict]]) -> str | None:
+    """The smallest profile that carries a tool its server's default
+    profile does not, so the page does not present a discovery-profile
+    tool as something every install has."""
+    if any(t["name"] == tool for t in tools_by_server.get(server, [])):
+        return None
+    key = next((sv.key for sv in SERVER_LINEUP if sv.name == server), "")
+    carrying = sorted(
+        (len(expand_profile(name, registries())), name)
+        for name in PROFILES if name.startswith(f"{key}:")
+        and any(t.name == tool for t in expand_profile(name, registries())))
+    return carrying[0][1] if carrying else None
+
+
 def skill_summaries() -> list[dict]:
     """Each skill's name, the first sentence of its description, and the
     servers it walks, read from the frontmatter so the page lists the
@@ -352,7 +367,8 @@ def build_data(with_fixtures: bool) -> dict:
             "records_reachable": sum(m.coverage.record_count or 0
                                      for m in active),
         },
-        "questions": [{"question": q, "tool": t, "server": s}
+        "questions": [{"question": q, "tool": t, "server": s,
+                       "profile": _profile_note(t, s, tools_by_server)}
                       for q, t, s in QUESTIONS],
         "servers": [{"name": n, "profile": p, "status": st,
                      "description": d, "tools": tools_by_server.get(n, []),

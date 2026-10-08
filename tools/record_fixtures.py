@@ -188,6 +188,9 @@ PLANS: dict[str, list[tuple[str, str]]] = {
     "nmdc-runtime": [
         ("study collection", "nmdc:studies"),
         ("one study", "nmdc:study"),
+        # NEON's parent study: no sample is linked to it directly, so the
+        # tool has to find its child studies to answer "how many samples".
+        ("a parent study", "nmdc:parent"),
         ("one study's samples", "nmdc:samples=study_id=nmdc:sty-11-8fb6t785"),
         ("soil samples in Washington",
          "nmdc:samples=ecosystem_type=Soil;place=washington"),
@@ -323,6 +326,7 @@ RECORDED_BASIS_SET = "6-31g"
 # NEON's soil metagenome study: a consortium study with thousands of
 # samples, so the recorded count is large enough to show paging matters.
 RECORDED_STUDY = "nmdc:sty-11-34xj1150"
+RECORDED_PARENT_STUDY = "nmdc:sty-11-nxrz9m96"
 
 
 def _declared_third_party() -> set[str]:
@@ -436,9 +440,11 @@ async def run(source_id: str, plan: list[tuple[str, str]]) -> None:
             elif kind == "nmdc":
                 if rest == "studies":
                     await ctx.nmdc.studies(manifest)
-                elif rest == "study":
-                    await ctx.nmdc.get_study(manifest, RECORDED_STUDY)
-                    await ctx.nmdc.count_biosamples(manifest, RECORDED_STUDY)
+                elif rest in ("study", "parent"):
+                    study = (RECORDED_STUDY if rest == "study"
+                             else RECORDED_PARENT_STUDY)
+                    await ctx.nmdc.get_study(manifest, study)
+                    await ctx.nmdc.count_biosamples(manifest, study)
                 else:
                     _, _, clauses = rest.partition("=")
                     filters = dict(c.split("=", 1)

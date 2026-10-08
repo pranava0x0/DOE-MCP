@@ -66,10 +66,14 @@ class NmdcParams(BaseModel):
 register_adapter_params("nmdc", NmdcParams)
 
 # Caller argument -> (API field, match). "exact" sends `field:value`;
-# "text" sends `field.search:(?i)<escaped>`.
+# "whole" sends `field.search:(?i)^<escaped>$`, a case-blind match on the
+# whole value; "text" sends `field.search:(?i)<escaped>`; "prefix" sends
+# `field.search:^<escaped>`. Caller text never reaches the grammar
+# unescaped: an exact clause beginning with '>' or '<' is read by NMDC as
+# a comparison, so only ids, which are checked first, go out as "exact".
 BIOSAMPLE_FILTERS: dict[str, tuple[str, str]] = {
     "study_id": ("associated_studies", "exact"),
-    "ecosystem_type": ("ecosystem_type", "exact"),
+    "ecosystem_type": ("ecosystem_type", "whole"),
     "env_medium": ("env_medium.term.name", "text"),
     "place": ("geo_loc_name.has_raw_value", "text"),
     "collected": ("collection_date.has_raw_value", "prefix"),
@@ -189,7 +193,9 @@ def parse_study(raw: Any, source_id: str) -> Study:
                          "category": _text(doi.get("doi_category")) or "",
                          "provider": _text(doi.get("doi_provider")) or ""})
     return Study(
-        study_id=raw["id"].strip(), name=_text(raw.get("name")) or "",
+        # Nine of 85 studies have an empty name and carry it in `title`.
+        study_id=raw["id"].strip(),
+        name=_text(raw.get("name")) or _text(raw.get("title")) or "",
         title=_text(raw.get("title")),
         description=_text(raw.get("description")),
         category=_text(raw.get("study_category")),
@@ -300,8 +306,9 @@ def build_filter(filters: dict[str, str]) -> tuple[str, dict[str, Any]]:
             clauses.append(f"{api_field}:{text}")
             expected[api_field] = text
         else:
-            pattern = (f"(?i){re.escape(text)}" if match == "text"
-                       else f"^{re.escape(text)}")
+            pattern = {"text": f"(?i){re.escape(text)}",
+                       "whole": f"(?i)^{re.escape(text)}$",
+                       "prefix": f"^{re.escape(text)}"}[match]
             clauses.append(f"{api_field}.search:{pattern}")
             expected[api_field] = {"$regex": pattern}
     return ",".join(clauses), expected
@@ -336,6 +343,7 @@ class NmdcAdapter:
         url = params.base_url.rstrip("/") + "/studies"
         everything: list[Study] = []
         first: FetchResult | None = None
+        count = 0
         for page in range(1, MAX_STUDY_PAGES + 1):
             result = await self._fetch(manifest, params, url,
                                        {"per_page": str(STUDY_PAGE),
@@ -351,8 +359,9 @@ class NmdcAdapter:
                     "so whether it was read whole cannot be known.")
             if len(everything) >= count or not body["results"]:
                 break
-        assert first is not None
-        if len(everything) < (count or 0):
+        if first is None:
+            raise SourceSchemaChanged(f"{manifest.id}: no study page read.")
+        if len(everything) < count:
             raise SourceSchemaChanged(
                 f"{manifest.id}: the study collection reports {count} "
                 f"studies and {MAX_STUDY_PAGES} pages held "
@@ -374,7 +383,8 @@ class NmdcAdapter:
         identifier = check_id(study_id, "study")
         url = f"{params.base_url.rstrip('/')}/studies/{identifier}"
         try:
-            result = await self._fetch(manifest, params, url, {})
+            result = await self._fetch(manifest, params, url, {},
+                                       envelope=False)
         except SourceUnavailable as refusal:
             # A record route answering 404 means the id names no study,
             # which is what NMDC's body says. A search never sees this
@@ -440,12 +450,21 @@ class NmdcAdapter:
         return payload
 
     async def _fetch(self, manifest: SourceManifest, params: NmdcParams,
-                     url: str, query: dict[str, str]) -> FetchResult:
+                     url: str, query: dict[str, str], *,
+                     envelope: bool = True) -> FetchResult:
         ttl = manifest.freshness.ttl_hint_seconds
         cached = self._cache.get(manifest.id, url, query, ttl)
         if cached is not None:
             return cached
         response = await self._fetcher_for(manifest, params).fetch_json(
             url, query)
+        # Checked before it is cached: a 200 carrying an error page would
+        # otherwise be replayed for the whole day-long TTL.
+        if envelope:
+            self._envelope(response.payload, manifest.id)
+        elif not isinstance(response.payload, dict):
+            raise SourceSchemaChanged(
+                f"{manifest.id}: a record lookup returned "
+                f"{type(response.payload).__name__}, not an object.")
         return self._cache.put(manifest.id, url, query, response.payload,
                                response.headers)

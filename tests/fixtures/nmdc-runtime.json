@@ -1,6 +1,6 @@
 {
   "note": "Recorded live from National Microbiome Data Collaborative Runtime API (https://microbiomedata.org/) by tools/record_fixtures.py. Publisher content redistributed under the terms recorded in THIRD_PARTY_DATA.yml. SCRUBBED: 34 personal field(s) named ['profile_image_url'] were removed from the recorded records; the adapter drops them from answers in any case.",
-  "recorded_at": "2026-10-08T23:18:40.872946+00:00",
+  "recorded_at": "2026-10-08T23:37:56.653277+00:00",
   "redaction": "Email addresses replaced with redacted@example.invalid and credential values with 'redacted' at record time. Field shapes and lengths are otherwise the publisher's.",
   "interactions": [
     {
@@ -17,7 +17,7 @@
           "mongo_filter_dict": {},
           "mongo_sort_list": null,
           "count": 85,
-          "db_response_time_ms": 11,
+          "db_response_time_ms": 10,
           "page": 1,
           "per_page": 200
         },
@@ -11557,6 +11557,115 @@
       }
     },
     {
+      "url": "https://api.microbiomedata.org/studies/nmdc:sty-11-nxrz9m96",
+      "params": {},
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "id": "nmdc:sty-11-nxrz9m96",
+        "description": "The National Science Foundation's National Ecological Observatory Network (NEON) is a continental-scale observation facility operated by Battelle and designed to collect long-term open access ecological data to better understand how U.S. ecosystems are changing. NEON monitors ecosystems across the United States. Freshwater ecosystems include streams, rivers, and lakes while terrestrial ecosystems span from deserts to tropical forests.",
+        "funding_sources": [
+          "The National Ecological Observatory Network is a major facility fully funded by the National Science Foundation, NSF#1724433."
+        ],
+        "title": "National Ecological Observatory Network (NEON)",
+        "websites": [],
+        "study_category": "consortium",
+        "homepage_website": [
+          "https://www.neonscience.org/"
+        ],
+        "study_image": [
+          {
+            "url": "https://portal.nersc.gov/project/m3408/profile_images/nmdc_sty-11-34xj1150.jpg",
+            "type": "nmdc:ImageValue"
+          }
+        ],
+        "has_credit_associations": [
+          {
+            "applied_roles": [
+              "Methodology",
+              "Data curation"
+            ],
+            "type": "prov:Association",
+            "applies_to_agent": {
+              "name": "Hugh Cross",
+              "orcid": "orcid:0000-0002-6745-9479",
+              "email": "redacted@example.invalid",
+              "type": "nmdc:Person"
+            }
+          },
+          {
+            "applied_roles": [
+              "Methodology",
+              "Data curation"
+            ],
+            "type": "prov:Association",
+            "applies_to_agent": {
+              "name": "Samantha Weintraub-Leff",
+              "orcid": "orcid:0000-0003-4789-5086",
+              "email": "redacted@example.invalid",
+              "type": "nmdc:Person"
+            }
+          },
+          {
+            "applied_roles": [
+              "Principal Investigator"
+            ],
+            "type": "prov:Association",
+            "applies_to_agent": {
+              "name": "Kate Thibault",
+              "orcid": "orcid:0000-0003-3477-6424",
+              "email": "redacted@example.invalid",
+              "type": "nmdc:Person"
+            }
+          },
+          {
+            "applied_roles": [
+              "Methodology",
+              "Data curation"
+            ],
+            "type": "prov:Association",
+            "applies_to_agent": {
+              "name": "Stephanie Parker",
+              "orcid": "orcid:0000-0002-7180-7245",
+              "email": "redacted@example.invalid",
+              "type": "nmdc:Person"
+            }
+          }
+        ],
+        "type": "nmdc:Study",
+        "provenance_metadata": {
+          "type": "nmdc:ProvenanceMetadata",
+          "mod_date": "2026-08-26T21:18:52Z"
+        }
+      }
+    },
+    {
+      "url": "https://api.microbiomedata.org/biosamples",
+      "params": {
+        "per_page": "1",
+        "page": "1",
+        "filter": "associated_studies:nmdc:sty-11-nxrz9m96"
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "meta": {
+          "mongo_filter_dict": {
+            "associated_studies": "nmdc:sty-11-nxrz9m96"
+          },
+          "mongo_sort_list": null,
+          "count": 0,
+          "db_response_time_ms": 25,
+          "page": 1,
+          "per_page": 1
+        },
+        "results": [],
+        "group_by": []
+      }
+    },
+    {
       "url": "https://api.microbiomedata.org/biosamples",
       "params": {
         "per_page": "5",
@@ -12057,7 +12166,7 @@
       "params": {
         "per_page": "5",
         "page": "1",
-        "filter": "ecosystem_type:Soil,geo_loc_name.has_raw_value.search:(?i)washington"
+        "filter": "ecosystem_type.search:(?i)^Soil$,geo_loc_name.has_raw_value.search:(?i)washington"
       },
       "headers": {
         "content-type": "application/json"
@@ -12065,14 +12174,16 @@
       "body": {
         "meta": {
           "mongo_filter_dict": {
-            "ecosystem_type": "Soil",
+            "ecosystem_type": {
+              "$regex": "(?i)^Soil$"
+            },
             "geo_loc_name.has_raw_value": {
               "$regex": "(?i)washington"
             }
           },
           "mongo_sort_list": null,
           "count": 188,
-          "db_response_time_ms": 3,
+          "db_response_time_ms": 6,
           "page": 1,
           "per_page": 5
         },
@@ -12405,7 +12516,7 @@
           },
           "mongo_sort_list": null,
           "count": 0,
-          "db_response_time_ms": 32,
+          "db_response_time_ms": 31,
           "page": 1,
           "per_page": 5
         },

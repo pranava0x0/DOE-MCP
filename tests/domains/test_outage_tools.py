@@ -71,6 +71,11 @@ async def test_releases_from_different_years_warn_about_vintages(ctx):
     assert WarningCode.mixed_vintages in {w.code for w in env.warnings}
 
 
+async def test_one_release_does_not_warn_about_mixed_vintages(ctx):
+    env = await energy.find_outage_history(ctx, year=2025)
+    assert WarningCode.mixed_vintages not in {w.code for w in env.warnings}
+
+
 async def test_a_nonsense_year_is_refused(ctx):
     with pytest.raises(InvalidQuery):
         await energy.find_outage_history(ctx, year=21)
@@ -92,8 +97,12 @@ def test_titles_are_classified_by_what_they_hold():
         == (2014, 2022)
     assert energy._covered_years("EAGLE-I Power Outage Data 2023") \
         == (2023, 2023)
-    # A reversed span is not a span.
+    for title in ("Outage Data 2014 to 2022", "Outage Data 2014 - 22",
+                  "Outage Data 2014 through 2022"):
+        assert energy._covered_years(title) == (2014, 2022), title
+    # A reversed span is not a span, and two loose years are not one.
     assert energy._covered_years("Outage Data 2022 - 2014") is None
+    assert energy._covered_years("Outage Data 2020 and 2021") is None
 
 
 def test_a_release_without_a_doi_is_kept_under_its_record_id():

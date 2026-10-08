@@ -744,7 +744,7 @@ One NMDC microbiome study in full by its id ('nmdc:sty-11-...'): description, in
 
 #### `bio.search_biosamples`
 
-Search NMDC's biosamples (over 27,000) by `study_id`, `ecosystem_type` (NMDC's exact value, e.g. 'Soil'), `env_medium` (an environmental-ontology term such as 'soil' or 'sediment'), `place` (a substring of the submitted location, e.g. 'Washington') or `collected` (the start of the date, '2017' or '2017-06'). Each sample comes with coordinates, collection date, place, ecosystem and environmental terms, and depth in metres where stated. Sample metadata, not sequence data.
+Search NMDC's biosamples (over 27,000) by `study_id`, `ecosystem_type` (NMDC's whole value, any case, e.g. 'Soil'), `env_medium` (an environmental-ontology term such as 'soil' or 'sediment'), `place` (a substring of the submitted location, e.g. 'Washington') or `collected` (the start of the date, '2017' or '2017-06'). Each sample comes with coordinates, collection date, place, ecosystem and environmental terms, and depth in metres where stated. Sample metadata, not sequence data.
 
 | Argument | Type | Required | Default |
 |---|---|---|---|

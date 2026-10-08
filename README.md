@@ -129,7 +129,7 @@ matches exist than the three returned. No credential is involved.
 | What data exists from the NGEE Arctic campaign, and who produced it? | `earth.search_datasets`, `earth.get_dataset` |
 | Which climate models ran the historical experiment for surface temperature? | `climate.discover_facets`, `climate.search_cmip` |
 | Where are the air-quality sensors near this city, and what is on them? | `sensors.find_nodes` |
-| Is Perlmutter up, and when is NERSC's next maintenance? | `compute.facility_status` |
+| Is Perlmutter up, and when is NERSC's next maintenance? | `compute.facility_status` (in the `research:discovery` profile) |
 | Is there soil microbiome data from Washington State, and who collected it? | `bio.search_biosamples`, `bio.get_study` |
 
 ## Architecture

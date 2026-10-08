@@ -211,5 +211,11 @@ class FacilityStatusAdapter:
             return cached
         response = await self._fetcher_for(manifest, params).fetch_json(
             url, {})
+        # Checked before it is cached, so an error body is not replayed for
+        # the rest of the cache window.
+        if not isinstance(response.payload, list):
+            raise SourceSchemaChanged(
+                f"{manifest.id}: {url} returned a "
+                f"{type(response.payload).__name__} rather than an array.")
         return self._cache.put(manifest.id, url, {}, response.payload,
                                response.headers)
