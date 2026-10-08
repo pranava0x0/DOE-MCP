@@ -1,7 +1,8 @@
 # DOE-MCP Examples
 
-Real-world command and tool call examples across DOE-MCP's four shipping servers:
-`doe-research`, `doe-energy-data`, `doe-earth`, and `doe-materials`.
+Command and tool call examples across DOE-MCP's five shipping servers:
+`doe-research`, `doe-energy-data`, `doe-earth`, `doe-materials` and
+`doe-bio`.
 
 Every tool returns a structured provenance envelope with data, publisher
 citations, coverage metrics, and caveats.
@@ -62,6 +63,15 @@ doe-mcp tools call grid.get_bpa_operations \
   --args '{"intervals": 3}'
 ```
 
+### Outage history (EAGLE-I releases, keyless)
+Find the EAGLE-I release that holds county-level outage history for a year,
+with its DOI and the county customer-count dataset used as the denominator:
+
+```bash
+doe-mcp tools call grid.find_outage_history \
+  --args '{"year": 2021}'
+```
+
 ### Wind turbine and solar facility screening
 Locate wind turbines in a given state or bounding box with turbine specifications:
 
@@ -88,6 +98,27 @@ Search multidisciplinary environmental datasets from DOE field studies:
 ```bash
 doe-mcp tools call earth.search_datasets \
   --args '{"text": "permafrost", "rows": 5}'
+```
+
+### Microbiome studies and biosamples (NMDC, keyless)
+Search the microbiome studies NMDC has ingested, then read one with its
+sample count:
+
+```bash
+doe-mcp tools call bio.search_studies \
+  --args '{"text": "soil", "rows": 3}'
+```
+
+```bash
+doe-mcp tools call bio.get_study \
+  --args '{"study_id": "nmdc:sty-11-34xj1150"}'
+```
+
+Search biosamples by ecosystem and place, with coordinates and dates:
+
+```bash
+doe-mcp tools call bio.search_biosamples \
+  --args '{"ecosystem_type": "Soil", "place": "washington", "rows": 5}'
 ```
 
 ---
@@ -127,6 +158,14 @@ Search DOE Data Explorer, OpenEnergyHub, DOE data.json, and DOE code.json:
 ```bash
 doe-mcp tools call discovery.search_all_catalogs \
   --args '{"query": "geothermal", "per_catalog": 2}'
+```
+
+### Computing facility status (NERSC, keyless)
+Read NERSC's public status board and its planned maintenance windows:
+
+```bash
+doe-mcp tools call compute.facility_status \
+  --args '{"system": "perlmutter"}'
 ```
 
 ### DOE scientific software and simulation codes

@@ -5,9 +5,9 @@
   "question": "What are the latest three measured hourly demand values?",
   "mode": "recorded",
   "simulation": false,
-  "registry_revision": "2026-09-09",
+  "registry_revision": "2026-10-08",
   "generated_at": null,
-  "replay_clock": "2026-09-09T00:00:00Z",
+  "replay_clock": "2026-10-08T00:00:00Z",
   "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
   "fixtures": [
     {
@@ -77,7 +77,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -87,7 +87,7 @@
             "source_ref": "source_01",
             "record_id": "electricity/rto/region-data#0",
             "locator": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "effective_at": "2026-09-09T13",
             "transformations": [],
             "payload_hash": null,
@@ -98,7 +98,7 @@
             "source_ref": "source_01",
             "record_id": "electricity/rto/region-data#1",
             "locator": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "effective_at": "2026-09-09T12",
             "transformations": [],
             "payload_hash": null,
@@ -109,7 +109,7 @@
             "source_ref": "source_01",
             "record_id": "electricity/rto/region-data#2",
             "locator": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "effective_at": "2026-09-09T11",
             "transformations": [],
             "payload_hash": null,
@@ -165,10 +165,12 @@
             "sage": "1",
             "optimade": "1",
             "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-09-09",
+          "registry_revision": "2026-10-08",
           "request_id": "recorded-workflow"
         }
       }

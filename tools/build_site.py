@@ -61,7 +61,7 @@ QUESTIONS = [
      "registry.lab_crosswalk", "doe-research"),
     ("I have an old NREL URL that 404s. What happened?",
      "registry.resolve_org", "doe-research"),
-    ("Which DOE catalog holds the EAGLE-I outage data?",
+    ("Which DOE catalogs hold geothermal datasets?",
      "discovery.search_all_catalogs", "doe-research"),
     ("What data does DOE itself call durable?",
      "discovery.list_pure_resources", "doe-research"),
@@ -87,6 +87,12 @@ QUESTIONS = [
      "chemistry.search_basis_sets", "doe-materials"),
     ("What is BPA's wind output right now?",
      "grid.get_bpa_operations", "doe-energy-data"),
+    ("Which EAGLE-I release holds county outage history for 2021?",
+     "grid.find_outage_history", "doe-energy-data"),
+    ("Is there soil microbiome data from Washington State?",
+     "bio.search_biosamples", "doe-bio"),
+    ("Is Perlmutter up, and when is NERSC's next maintenance?",
+     "compute.facility_status", "doe-research"),
     ("What has DOE proposed on appliance standards this year?",
      "docs.search_rulemakings", "doe-research"),
     ("What can I license from Oak Ridge?",
@@ -99,6 +105,24 @@ SERVERS = [(sv.name, sv.default_profile, sv.status, sv.description)
            for sv in SERVER_LINEUP]
 
 
+def skill_summaries() -> list[dict]:
+    """Each skill's name, the first sentence of its description, and the
+    servers it walks, read from the frontmatter so the page lists the
+    skills that exist rather than the ones someone remembered to add."""
+    import yaml
+
+    out = []
+    for path in sorted((ROOT / "skills").glob("*/SKILL.md")):
+        _, raw, _ = path.read_text(encoding="utf-8").split("---\n", 2)
+        front = yaml.safe_load(raw) or {}
+        description = " ".join(str(front.get("description", "")).split())
+        first = description.split(". ")[0].rstrip(".") + "."
+        out.append({"name": front.get("name", path.parent.name),
+                    "summary": first,
+                    "servers": list(front.get("servers") or [])})
+    return out
+
+
 def replay_context():
     from doe_mcp.replay import load_replay_context
     return load_replay_context(FIXTURES, SOURCES)
@@ -106,7 +130,7 @@ def replay_context():
 
 async def worked_examples(ctx) -> list[dict]:
     """Real envelopes from real recorded responses."""
-    from doe_mcp.domains import (discovery, earth, energy, materials,
+    from doe_mcp.domains import (bio, discovery, earth, energy, materials,
                                  registry_tools, research)
     out = []
     # One captured answer per shipping server after the first three, so the
@@ -140,6 +164,11 @@ async def worked_examples(ctx) -> list[dict]:
          "Materials Project's OPTIMADE endpoint, marked as computed rather "
          "than measured.",
          materials.search_structures(ctx, elements="Ga,N", rows=5)),
+        ("bio.search_biosamples", "doe-bio",
+         "Soil microbiome samples NMDC holds from Washington State, with "
+         "the filter the publisher echoed back and the total it counted.",
+         bio.search_biosamples(ctx, ecosystem_type="Soil",
+                               place="washington", rows=5)),
     ]
     for tool, server, why, coro in plans:
         try:
@@ -213,6 +242,16 @@ def build_data(with_fixtures: bool) -> dict:
                 {"name": s.name, "toolset": s.toolset,
                  "description": s.description}
                 for s in expand_profile(profile, registries())]
+
+    # Tools a server carries outside its default profile, such as the
+    # research server's facilities toolset. Counted so the page can say a
+    # default profile is not the whole server.
+    tools_all_by_server: dict[str, int] = {}
+    for name, profile, _, _ in SERVERS:
+        all_profile = f"{profile.split(':')[0]}:all" if profile else None
+        if all_profile in PROFILES:
+            tools_all_by_server[name] = len(
+                expand_profile(all_profile, registries()))
 
     sources = []
     for m in sorted(manifests, key=lambda m: (not m.is_active(), m.id)):
@@ -316,8 +355,10 @@ def build_data(with_fixtures: bool) -> dict:
         "questions": [{"question": q, "tool": t, "server": s}
                       for q, t, s in QUESTIONS],
         "servers": [{"name": n, "profile": p, "status": st,
-                     "description": d, "tools": tools_by_server.get(n, [])}
+                     "description": d, "tools": tools_by_server.get(n, []),
+                     "tools_all": tools_all_by_server.get(n)}
                     for n, p, st, d in SERVERS],
+        "skills": skill_summaries(),
         "sources": sources,
         "crosswalk": crosswalk,
         "neighbors": neighbors,

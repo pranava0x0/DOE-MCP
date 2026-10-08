@@ -5,9 +5,9 @@
   "question": "Can DOE-MCP return the solar resource at a candidate site?",
   "mode": "recorded",
   "simulation": false,
-  "registry_revision": "2026-09-09",
+  "registry_revision": "2026-10-08",
   "generated_at": null,
-  "replay_clock": "2026-09-09T00:00:00Z",
+  "replay_clock": "2026-10-08T00:00:00Z",
   "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
   "fixtures": [],
   "limitations": [
@@ -54,11 +54,11 @@
             "steward": "The DOE-MCP project",
             "system": "DOE-MCP source registry and organization table",
             "dataset": "DOE-MCP source registry and organization table",
-            "dataset_version": "2026-09-09",
+            "dataset_version": "2026-10-08",
             "authority_level": "unverified",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -68,7 +68,7 @@
             "source_ref": "source_01",
             "record_id": "nlr-developer-network",
             "locator": null,
-            "retrieved_at": "2026-09-09T00:00:00Z",
+            "retrieved_at": "2026-10-08T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -106,10 +106,12 @@
             "sage": "1",
             "optimade": "1",
             "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-09-09",
+          "registry_revision": "2026-10-08",
           "request_id": "recorded-workflow"
         }
       }

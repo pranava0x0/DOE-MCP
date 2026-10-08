@@ -294,6 +294,7 @@ details .body{padding:0 .8rem .75rem 1.85rem;font-size:.86rem;color:var(--muted)
 .arch-tier{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:1.1rem 1.2rem}
 .arch-tier-title{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin:0 0 .8rem;font-weight:600}
 .arch-boxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:.8rem}
+.arch-boxes.servers{grid-template-columns:repeat(auto-fit,minmax(10rem,1fr))}
 .arch-box{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:.8rem .9rem;box-shadow:0 1px 3px rgba(0,0,0,.03)}
 .arch-box-title{font-size:.88rem;font-weight:600;margin:0 0 .3rem}
 .arch-box-desc{font-size:.76rem;color:var(--muted);margin:0;line-height:1.4}
@@ -310,6 +311,9 @@ a{color:var(--accent)}
   .util .long{display:none}
   .util .short{display:inline}
   h1{font-size:1.8rem}
+  /* A wide table scrolls inside its own box rather than widening the
+     page; the question and tool columns do not fit 375px side by side. */
+  table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -380,11 +384,16 @@ def _crosswalk(data: dict) -> str:
 
 
 def _questions(data: dict) -> str:
+    # Grouped by server, in lineup order, so a reader scanning for one
+    # domain finds its questions together.
+    order = {sv["name"]: i for i, sv in enumerate(data["servers"])}
+    questions = sorted(data["questions"],
+                       key=lambda q: order.get(q["server"], len(order)))
     rows = "".join(
         f"<tr><td>{e(q['question'])}</td>"
         f"<td><code class='tool'>{e(q['tool'])}</code></td>"
         f"<td class='mono'>{e(q['server'])}</td></tr>"
-        for q in data["questions"])
+        for q in questions)
     return ("<table><thead><tr><th>Question</th><th>Tool</th><th>Server</th>"
             f"</tr></thead><tbody>{rows}</tbody></table>")
 
@@ -432,71 +441,61 @@ reachable keyless.</p>
 
 
 def _arch_diagram(data: dict) -> str:
-    """A clean, styled architecture diagram explaining the layers."""
-    return """
+    """The three layers, drawn from the generated data: the skills in the
+    tree, the shipping servers with their tool counts, and the registry's
+    own numbers. It was hand-written once and was a server and four skills
+    behind within a month."""
+    c = data["counts"]
+    skills = "".join(f"""
+      <div class="arch-box">
+        <div class="arch-box-title">{e(sk['name'])}</div>
+        <div class="arch-box-desc">{e(sk['summary'])}</div>
+      </div>""" for sk in data.get("skills") or [])
+    servers = []
+    for sv in data["servers"]:
+        if sv["status"] != "shipping":
+            continue
+        default = len(sv["tools"])
+        more = sv.get("tools_all")
+        count = (f"{default} tools by default, {more} in all profiles"
+                 if more and more != default else f"{default} tools")
+        servers.append(f"""
+      <div class="arch-box">
+        <div class="arch-box-title"><code class="tool">{e(sv['name'])}</code></div>
+        <div class="arch-box-desc"><b>{e(count)}.</b> {e(sv['description'])}</div>
+      </div>""")
+    return f"""
 <div class="arch-flow" id="servers-arch">
   <div class="arch-tier">
-    <div class="arch-tier-title">Layer 1: Agent Workflows &amp; Skills</div>
-    <div class="arch-boxes">
-      <div class="arch-box">
-        <div class="arch-box-title">find-doe-data</div>
-        <div class="arch-box-desc">Identifies whether DOE publishes data on a topic, resolves lab naming changes, and locates active endpoints.</div>
-      </div>
-      <div class="arch-box">
-        <div class="arch-box-title">grid-status-brief</div>
-        <div class="arch-box-desc">Synthesizes balancing authority demand and 5-minute grid operations with preliminary-data caveats.</div>
-      </div>
-      <div class="arch-box">
-        <div class="arch-box-title">energy-project-site-screen</div>
-        <div class="arch-box-desc">First-pass screen of existing wind/solar assets and grid demand surrounding a prospective site.</div>
-      </div>
-      <div class="arch-box">
-        <div class="arch-box-title">materials-structure-and-code</div>
-        <div class="arch-box-desc">Explores computed inorganic crystal structures and exports quantum-chemistry basis sets.</div>
-      </div>
+    <div class="arch-tier-title">Layer 1: Skills (task walks over the capability vocabulary)</div>
+    <div class="arch-boxes">{skills}
     </div>
   </div>
 
   <div class="arch-arrow">&#8595;</div>
 
   <div class="arch-tier">
-    <div class="arch-tier-title">Layer 2: Shipping MCP Servers (Profiles: 8&ndash;12 tools default, &le;20 ceiling)</div>
-    <div class="arch-boxes">
-      <div class="arch-box">
-        <div class="arch-box-title"><code class="tool">doe-research</code></div>
-        <div class="arch-box-desc">11 tools: literature, datasets, software, rulemakings, patents, lab crosswalk, and catalog fan-out.</div>
-      </div>
-      <div class="arch-box">
-        <div class="arch-box-title"><code class="tool">doe-energy-data</code></div>
-        <div class="arch-box-desc">10 tools: EIA-930 grid demand, BPA operations, wind/solar facility screening, and vehicle fuel economy.</div>
-      </div>
-      <div class="arch-box">
-        <div class="arch-box-title"><code class="tool">doe-earth</code></div>
-        <div class="arch-box-desc">8 tools: Daymet single-pixel daily weather, ESS-DIVE field datasets, ESGF CMIP6 climate models, and Sage sensor nodes.</div>
-      </div>
-      <div class="arch-box">
-        <div class="arch-box-title"><code class="tool">doe-materials</code></div>
-        <div class="arch-box-desc">7 tools: Materials Project OPTIMADE crystal structures and Basis Set Exchange quantum-chemistry sets.</div>
-      </div>
+    <div class="arch-tier-title">Layer 2: Shipping MCP servers (8&ndash;12 tools in a default profile, at most 20 in any)</div>
+    <div class="arch-boxes servers">{"".join(servers)}
     </div>
   </div>
 
   <div class="arch-arrow">&#8595;</div>
 
   <div class="arch-tier">
-    <div class="arch-tier-title">Layer 3: Core Registry, Adapters &amp; Structured Responses</div>
+    <div class="arch-tier-title">Layer 3: Registry, adapters and the response envelope</div>
     <div class="arch-boxes">
       <div class="arch-box">
-        <div class="arch-box-title">Source Registry (CC0)</div>
-        <div class="arch-box-desc">83 source manifests, 22 active, 54 organizations. Validated activation gates and blocked reasons.</div>
+        <div class="arch-box-title">Source registry (CC0)</div>
+        <div class="arch-box-desc">{c['sources']} source manifests, {c['active']} active, {c['organizations']} organizations. Each inactive source carries the reason it is not queried.</div>
       </div>
       <div class="arch-box">
-        <div class="arch-box-title">17 Publisher Adapters</div>
-        <div class="arch-box-desc">Read-only GET-only clients translating publisher dialects and enforcing concurrency and pagination invariants.</div>
+        <div class="arch-box-title">{c['adapters']} publisher adapters</div>
+        <div class="arch-box-desc">GET-only clients, one per publisher dialect, that read each API's own counts, errors and quirks.</div>
       </div>
       <div class="arch-box">
-        <div class="arch-box-title">Structured Provenance Response</div>
-        <div class="arch-box-desc">Consistent response with 5-part contract: data payload, source provenance, record citations, 5-dimensional coverage, and typed warnings.</div>
+        <div class="arch-box-title">Provenance envelope</div>
+        <div class="arch-box-desc">Every answer carries its data, the sources read, one evidence entry per record, five coverage dimensions and typed warnings.</div>
       </div>
     </div>
   </div>
@@ -748,11 +747,11 @@ family=Roboto+Mono:wght@400;500&display=swap">
 <details class="sect" open>
   <summary><h2><span class="num">01</span>Overview</h2></summary>
   <div class="sect-body">
-  <h3 id="overview-about">What is MCP and why use DOE-MCP?</h3>
-  <p class="lede">The <b>Model Context Protocol (MCP)</b> is an open standard that allows AI assistants—such as Claude Code, Claude Desktop, Cursor, and VS Code—to securely connect to external tools and live data systems without custom one-off integrations.</p>
-  <p class="lede">The US Department of Energy and its 17 national laboratories publish large collections of scientific literature, power grid metrics, climate simulations, and materials data. However, these datasets are distributed across separate portals, REST APIs, and catalog formats. <b>DOE-MCP</b> provides curated, read-only MCP servers that connect AI assistants directly to these public resources, returning structured results with citations, data vintages, and coverage indicators.</p>
-  <h3 id="overview-queries">Sample queries</h3>
-  <p class="lede">Common questions an AI assistant can resolve using the active tools:</p>
+  <h3 id="overview-about">What this is</h3>
+  <p class="lede">The <b>Model Context Protocol (MCP)</b> is how an AI client such as Claude Code, Claude Desktop, Cursor or VS Code calls tools that run outside it.</p>
+  <p class="lede">DOE and its 17 national laboratories publish literature, grid readings, climate-model indexes, microbiome samples and materials data, each through its own portal or API. <b>DOE-MCP</b> is a set of read-only MCP servers over the public ones. Every answer names the publisher it came from, when it was read, and what the search did not cover.</p>
+  <h3 id="overview-queries">Questions it answers</h3>
+  <p class="lede">Each question below is answered by one tool on one server:</p>
   {_questions(data)}
   </div>
 </details>
@@ -772,7 +771,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
 <details class="sect">
   <summary><h2><span class="num">03</span>Servers</h2></summary>
   <div class="sect-body">
-  <p class="lede">Four domain servers provide focused tools for research literature, power grid operations, earth systems, and materials science. {c['servers_shipping']} servers are active today, with {c['servers_planned']} additional servers planned.</p>
+  <p class="lede">Each server covers one data domain with a small set of tools. {c['servers_shipping']} ship today; {c['servers_planned']} more are planned, and each planned one lists the sources it would serve and what blocks them.</p>
   <h3 id="servers-arch">Architecture</h3>
   {_arch_diagram(data)}
   <h3 id="servers-list">Server list</h3>

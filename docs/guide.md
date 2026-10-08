@@ -63,6 +63,12 @@ Earth search results and Oak Ridge modelled weather are separate examples,
 not a claimed study-site match. The materials walkthrough likewise keeps
 the computed GaN structure separate from the H/C/O basis-set example.
 
+The outage-history, facility-status and microbiome tools have checked
+skill tasks but no walkthrough page yet; [the examples](../examples/README.md)
+show one call for each. Outage history returns the EAGLE-I release that
+covers a year and its DOI, not outage figures. The microbiome tools return
+study and sample metadata; sequence data stays behind each study's DOIs.
+
 ## Connect a client and provide a skill
 
 ```bash
