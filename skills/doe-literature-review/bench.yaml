@@ -1,0 +1,54 @@
+checked:
+- task: 1
+  steps:
+  - tool: research.search_literature
+    args:
+      query: perovskite solar
+      rows: 5
+    expect:
+      coverage.result: hit
+      coverage.pagination: truncated
+      data.deduplicated_by_doi:
+        min: 1
+      data.per_source:
+        any:
+          source_id: osti-doe-pages
+- task: 2
+  steps:
+  - tool: research.get_record
+    args:
+      record_id: '3413920'
+      collection: literature
+    expect:
+      coverage.result: hit
+      data.fulltext.available: true
+      evidence:
+        locators: some
+- task: 3
+  steps:
+  - tool: research.get_record
+    args:
+      record_id: '3389573'
+      collection: literature
+    expect:
+      data.fulltext.available: false
+- task: 4
+  steps:
+  - tool: registry.resolve_org
+    args:
+      query: NREL
+    expect:
+      coverage.result: hit
+      data.resolved.id: nlr
+      warnings:
+      - alias_match
+- task: 5
+  steps:
+  - tool: research.search_literature
+    args:
+      query: zzzznotarealtopiczzzz
+      rows: 3
+    expect:
+      coverage.result: empty
+      coverage.registry: covered
+reader: []
