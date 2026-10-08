@@ -13,15 +13,23 @@ aliases:
 
 labs: ['lbnl']
 
-# Capabilities stay empty until this source is active: a capability id
-# is a routing promise, and the activation gate refuses one from a
-# manifest nothing can query. What this source would serve is listed
-# under planned_capabilities, which nothing routes on.
-capabilities: []
+capabilities:
+  - id: compute.facility_status
+    tool_hint: compute.facility_status
 
-planned_capabilities: ['compute.facility_status']
+planned_capabilities: []
+
 adapter:
-  type: none
+  type: facility_status
+  base_url: https://api.nersc.gov/api/v1.2
+  facility: NERSC
+  status_path: /status
+  planned_path: /status/outages/planned
+  timezone_note: >
+    The board's timestamps carry no UTC offset and the response does not
+    state a zone. They are printed as NERSC wrote them; NERSC is in
+    Berkeley, California, but the zone is an inference this project does
+    not make for the caller.
 
 access:
   mode: anonymous
@@ -29,55 +37,68 @@ access:
   tier: thin_proxy
   terms_url: https://docs.nersc.gov/services/sfapi/
   terms_notes: >
-    The Superfacility API's status routes answer without
-    authentication; everything else on the API (jobs, files, accounts)
-    needs a NERSC account and is out of scope. The documentation
-    states that informational queries such as system status can be
-    made without authenticating. Probed 200 on 2026-09-08.
+    The Superfacility API's status routes answer without authentication;
+    everything else on the API (jobs, files, accounts) needs a NERSC
+    account and is out of scope, and the adapter has no route to it. The
+    documentation states that informational queries such as system status
+    can be made without authenticating. Probed 200 on 2026-09-08 and again
+    on 2026-10-08, when the board listed 19 systems and 7 planned outages.
+  terms_reviewed_at: "2026-10-08"
+  citation_required: false
+  rate_limit_note: >
+    None published. The board is served with a 30-second public cache
+    header; this project caches it for five minutes, so a burst of calls
+    costs two requests.
 
 freshness:
   expected_cadence: continuous
   cadence_source: >
-    Observed; each system row carries its own updated_at.
+    Observed; each system row carries its own updated_at, which changes
+    when the row's status changes rather than on a schedule.
   ttl_hint_seconds: 300
 
 coverage:
   scope: >
-    Current status of every NERSC system (compute, filesystems,
-    services) and the schedule of planned outages, as JSON.
+    Current status of every NERSC system (compute, filesystems, services)
+    and the schedule of planned outages, as JSON.
   temporal: current, with planned outages ahead
   dataset_version: "current"
+  record_count: 19
+  record_count_checked: "2026-10-08"
   known_limitations:
     - >
-      Status, not availability of the data. Nothing about a user's jobs
-      or allocations is public, and this project asks for none of it.
+      Status, not availability for any user. Nothing about a user's jobs,
+      queue position or allocation is public, and this project asks for
+      none of it.
     - >
-      One facility, and now known to be the only one. OLCF and ALCF
-      were checked on 2026-09-08: ALCF's status application answers a
-      scripted client with an HTTP 403 challenge and OLCF publishes no
-      machine interface that could be found. Both are registered
-      (alcf-status, olcf-status).
+      One facility. OLCF and ALCF were checked on 2026-09-08: ALCF's
+      status application answers a scripted client with an HTTP 403
+      challenge and OLCF publishes no machine interface that could be
+      found. Both are registered (alcf-status, olcf-status) as proposed.
+    - >
+      Timestamps carry no UTC offset, and updated_at is when a row last
+      changed, not when it was checked: a filesystem that has been fine
+      for two months reads two months old.
+    - >
+      Planned outages only. The publisher's record of past outages is a
+      separate route this tool does not read.
 
 authority_notes: >
   Primary: NERSC publishes its own status. The first member of a
-  facility-status class the inventory had assumed was gated along
-  with the rest of each facility. No server owns it yet; the
-  promotion rule in architecture Part 1 section 3.4 decides where it
-  lands. Found in the 2026-09-08 gap sweep.
+  facility-status class the inventory had assumed was gated along with the
+  rest of each facility. Served from the research server's discovery
+  toolset because one source does not justify a facilities server
+  (architecture Part 1 section 3.4); a facilities server is reconsidered
+  if ALCF's blocked probe clears in a browser. Found in the 2026-09-08 gap
+  sweep; activated 2026-10-08.
 
 health:
-  probe: none
+  probe: facility_system_count
+  expect:
+    min_records: 5
 
 lifecycle:
-  declared_state: proposed
+  declared_state: active
   added: "2026-09-08"
-  last_verified: "2026-09-08"
+  last_verified: "2026-10-08"
   verified_by: pranava0x0
-  blocked_reason: >
-    No server for a facility-status capability exists and one source
-    does not justify one (architecture Part 1 section 3.4). The
-    question of whether there were more was closed on 2026-09-08: of
-    the three leadership computing facilities, NERSC is the only one
-    with a reachable machine interface, so the capability has one
-    source rather than three and a facilities server stays unjustified.
-    It reopens if ALCF's blocked probe clears in a browser.

@@ -20,6 +20,7 @@ from .daymet import DaymetAdapter
 from .eia_v2 import EiaV2Adapter
 from .esgf import EsgfAdapter
 from .essdive import EssDiveAdapter
+from .facility_status import FacilityStatusAdapter
 from .federal_register import FederalRegisterAdapter
 from .fueleconomy import FuelEconomyAdapter
 from .json_document import JsonDocumentAdapter
@@ -56,6 +57,7 @@ ADAPTER_CLASSES: dict[str, tuple[str, type]] = {
     "sage": ("sage", SageAdapter),
     "optimade": ("optimade", OptimadeAdapter),
     "basis_sets": ("basis_sets", BasisSetExchangeAdapter),
+    "facility_status": ("facility_status", FacilityStatusAdapter),
 }
 
 ADAPTER_VERSIONS = {
@@ -75,6 +77,7 @@ ADAPTER_VERSIONS = {
     "sage": SageAdapter.version,
     "optimade": OptimadeAdapter.version,
     "basis_sets": BasisSetExchangeAdapter.version,
+    "facility_status": FacilityStatusAdapter.version,
     "none": "1",
     "self_registry": "1",
 }
@@ -85,4 +88,4 @@ __all__ = ["OstiFamilyAdapter", "OpenDataSoftAdapter", "JsonDocumentAdapter",
            "FederalRegisterAdapter", "VipsAdapter", "DaymetAdapter",
            "EssDiveAdapter", "EsgfAdapter", "SageAdapter",
            "OptimadeAdapter", "BasisSetExchangeAdapter",
-           "ADAPTER_CLASSES", "ADAPTER_VERSIONS"]
+           "FacilityStatusAdapter", "ADAPTER_CLASSES", "ADAPTER_VERSIONS"]

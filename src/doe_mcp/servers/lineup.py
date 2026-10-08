@@ -111,20 +111,25 @@ SERVER_LINEUP: tuple[ServerSpec, ...] = (
             "period. tech.find_licensable_ip is the one tool here that "
             "answers for a single laboratory; it resolves a renamed lab "
             "before searching, because its upstream answers an old acronym "
-            "with zero results and no error. "
+            "with zero results and no error. compute.facility_status, in "
+            "the discovery and all profiles, reads NERSC's public status "
+            "board; it is one facility, and the others it names as "
+            "unreadable are not thereby up. "
             + UNTRUSTED_CONTENT_RULE + " " + NON_AFFILIATION)),
     ServerSpec(
         name="doe-energy-data", key="energy", status="shipping",
         default_profile="energy:default",
         needs_credentials=("EIA_API_KEY",),
         description=("EIA's self-describing statistics tree, BPA's "
-                     "five-minute grid feed, the USGS/LBNL wind and solar "
-                     "facility inventories, and the DOE/EPA vehicle "
-                     "fuel-economy service."),
+                     "five-minute grid feed, EAGLE-I's annual outage "
+                     "releases, the USGS/LBNL wind and solar facility "
+                     "inventories, and the DOE/EPA vehicle fuel-economy "
+                     "service."),
         instructions=(
             "DOE-MCP energy-data server: EIA's energy statistics tree, the "
             "Bonneville Power Administration's near-live balancing-authority "
-            "feed, the USGS/LBNL inventories of US wind turbines and "
+            "feed, EAGLE-I's annual county outage releases, the USGS/LBNL "
+            "inventories of US wind turbines and "
             "utility-scale solar facilities, and the DOE/EPA vehicle "
             "fuel-economy service. "
             + COVERAGE_RULE +
@@ -134,7 +139,11 @@ SERVER_LINEUP: tuple[ServerSpec, ...] = (
             "grid questions, energy.grid_status covers every US balancing "
             "authority hourly and grid.get_bpa_operations covers only the "
             "Pacific Northwest, at five-minute resolution — both are "
-            "operational readings rather than settled statistics. The two "
+            "operational readings rather than settled statistics. Neither "
+            "reports outages, and nothing here is live outage status: "
+            "grid.find_outage_history names the EAGLE-I release that covers "
+            "a past year and where its files are, published a year at a "
+            "time. The two "
             "facility tools are inventories — where a turbine or a solar "
             "farm IS, not what it produced — so pair them with EIA through "
             "the eia_id column when a user asks about output. "

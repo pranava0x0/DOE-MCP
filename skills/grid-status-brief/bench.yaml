@@ -23,14 +23,25 @@ checked:
         nonempty: true
 - task: 4
   steps:
-  - tool: registry.search_sources
+  - tool: grid.find_outage_history
     args:
-      capability: grid.outage_history
+      year: 2026
     expect:
-      data.sources:
+      coverage.result: empty
+      coverage.registry: covered
+      data.releases_for_year: []
+- task: 5
+  steps:
+  - tool: grid.find_outage_history
+    args:
+      year: 2021
+    expect:
+      coverage.result: hit
+      data.releases_for_year:
         any:
-          id: ceser-eagle-i-outages
-          declared_state: proposed
+          doi: 10.13139/ORNLNCCS/1975202
+      data.customer_counts:
+        nonempty: true
 reader:
 - 3
 evaluation:

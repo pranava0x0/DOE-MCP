@@ -82,6 +82,13 @@ PLANS: dict[str, list[tuple[str, str]]] = {
     "osti-doe-code": [
         ("software search", "search:all_fields=machine learning,rows=3"),
     ],
+    # The whole release series in one page, which is how the tool reads it,
+    # and the one-row page the health probe sends. The manifest pins the
+    # title filter, so neither spec names it.
+    "ceser-eagle-i-outages": [
+        ("release series", "search:rows=50"),
+        ("probe", "search:rows=1"),
+    ],
     "ornl-openenergyhub": [("catalog head", "ods:limit=3"),
                            ("fan-out query", "ods:limit=2,text=geothermal")],
     "fueleconomy-ws": [("year menu", "fe:menu:year"),
@@ -174,6 +181,8 @@ PLANS: dict[str, list[tuple[str, str]]] = {
         ("a model that spells the end date differently", "esgf:second"),
     ],
     "anl-sage-waggle": [("node manifest", "sage:nodes")],
+    # Both public routes in one call: the board and the planned outages.
+    "nersc-status": [("status board and planned outages", "status:board")],
     # The published property list as well as searches: the adapter checks
     # every property named in a filter against that document before sending
     # one, so a fixture without it could not replay a query at all. The
@@ -408,6 +417,8 @@ async def run(source_id: str, plan: list[tuple[str, str]]) -> None:
                                  else RECORDED_CMIP),
                         rows=RECORDED_ROWS,
                         latest=None if rest == "superseded" else True)
+            elif kind == "status":
+                await ctx.facility_status.board(manifest)
             elif kind == "sage":
                 await ctx.sage.nodes(manifest, rows=RECORDED_ROWS)
             elif kind == "optimade":

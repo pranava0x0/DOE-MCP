@@ -265,6 +265,10 @@ async def _probe(ctx: RuntimeContext, source_id: str) -> int | None:
         return page.data_available
     if kind == "basis_sets":
         return (await ctx.basis_sets.catalog(manifest)).value.total
+    if kind == "facility_status":
+        board = (await ctx.facility_status.board(
+            manifest, include_planned=False)).value
+        return board.systems_on_board
     if kind == "self_registry":
         return len(ctx.sources.manifests)
     return None

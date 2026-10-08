@@ -18,6 +18,7 @@ technology; the two domains are also the two credential classes.
 """
 from __future__ import annotations
 
+import re
 from typing import Any
 
 from ..adapters.eia_v2 import MAX_ROWS_PER_RESPONSE
@@ -25,10 +26,11 @@ from ..adapters.postgrest import (DEFAULT_ROWS, Filter,
                                   parse_filters, parse_order)
 from ..core.assemble import pagination_coverage
 from ..core.assemble import result_dim, selection_coverage
+from ..adapters.osti_family import OstiRecord
 from ..core.envelope import (Coverage, Envelope, ExecutionCoverage,
-                             PaginationCoverage, RegistryCoverage,
-                             ResultCoverage, SourceClaimCoverage, TimeRange,
-                             WarningCode)
+                             PaginationCoverage, RecipeKind,
+                             RegistryCoverage, ResultCoverage,
+                             SourceClaimCoverage, TimeRange, WarningCode)
 from ..core.errors import InvalidQuery, SourceSchemaChanged
 from ..core.toolreg import ToolRegistry, ToolSpec
 from ..runtime import RuntimeContext
@@ -41,6 +43,7 @@ VEHICLE_SOURCE = "fueleconomy-ws"
 BPA_SOURCE = "bpa-operations"
 WIND_TURBINE_SOURCE = "usgs-uswtdb"
 SOLAR_FACILITY_SOURCE = "usgs-uspvdb"
+OUTAGE_SOURCE = "ceser-eagle-i-outages"
 
 # EIA-930's hourly grid route. Named because "grid status" is the question
 # people actually ask, and making them discover the route first would be a
@@ -670,6 +673,176 @@ async def find_solar_facilities(ctx: RuntimeContext, state: str = "",
         state=state, county=county, name=facility, filters=filters,
         bbox=bbox, order=order, rows=rows, offset=offset)
 
+# --- outage history (EAGLE-I's annual releases, through OSTI) -------------
+
+# The series is seven catalog records, so one page holds all of it and a
+# year is answered by reading titles rather than by a second query. The
+# title is the only place a release states the years it covers: "EAGLE-I
+# Power Outage Data 2014 - 2022" is nine years and "... 2025" is one.
+OUTAGE_PAGE = 50
+_YEAR_SPAN = re.compile(r"\b((?:19|20)\d{2})\s*[-\u2013]\s*((?:19|20)\d{2})\b")
+_ONE_YEAR = re.compile(r"\b((?:19|20)\d{2})\b")
+
+
+def _outage_kind(title: str) -> str:
+    lowered = title.lower()
+    if "customer" in lowered:
+        return "customer_counts"
+    if "outage data" in lowered and "information" in lowered:
+        return "documentation"
+    if "outage data" in lowered:
+        return "outage_data"
+    return "other"
+
+
+def _covered_years(title: str) -> tuple[int, int] | None:
+    span = _YEAR_SPAN.search(title)
+    if span:
+        first, last = int(span.group(1)), int(span.group(2))
+        return (first, last) if first <= last else None
+    one = _ONE_YEAR.search(title)
+    return (int(one.group(1)),) * 2 if one else None
+
+
+def _releases(records: list[OstiRecord]) -> list[dict[str, Any]]:
+    """One entry per DOI, naming every record that carries it.
+
+    OSTI lists the 2025 release twice, as 3012826 and 3019924, with one DOI
+    between them. Reporting both would count one release as two; dropping
+    one would hide a record id a caller may already hold.
+    """
+    grouped: dict[str, list[OstiRecord]] = {}
+    for record in records:
+        grouped.setdefault(record.doi or f"osti:{record.record_id}",
+                           []).append(record)
+    out = []
+    for group in grouped.values():
+        group.sort(key=lambda r: (r.publication_date or "", r.record_id))
+        newest = group[-1]
+        kind = _outage_kind(newest.title)
+        years = _covered_years(newest.title) if kind == "outage_data" else None
+        out.append({
+            "title": newest.title,
+            "kind": kind,
+            "covers_years": ({"from": years[0], "to": years[1]}
+                             if years else None),
+            "doi": newest.doi,
+            "doi_url": newest.doi_url,
+            "catalog_record": newest.biblio_url,
+            "osti_ids": [r.record_id for r in group],
+            "published": (newest.publication_date or "")[:10] or None,
+        })
+    out.sort(key=lambda r: ((r["covers_years"] or {}).get("from") or 0,
+                            r["title"]))
+    return out
+
+
+def _missing_years(spans: list[tuple[int, int]]) -> list[int]:
+    if not spans:
+        return []
+    covered = {y for first, last in spans for y in range(first, last + 1)}
+    return [y for y in range(min(covered), max(covered) + 1)
+            if y not in covered]
+
+
+def _no_release_note(year: int, spans: list[tuple[int, int]]) -> str:
+    if not spans:
+        return (f"No release covers {year}: the catalog returned no dated "
+                "release at all.")
+    first = min(f for f, _ in spans)
+    last = max(t for _, t in spans)
+    if year > last:
+        return (f"No release covers {year}. The newest ends in {last}, and "
+                "EAGLE-I publishes a year early in the following one, so a "
+                "later year may not be out yet.")
+    if year < first:
+        return f"No release covers {year}. The releases start in {first}."
+    return (f"No release covers {year}, which falls inside a gap between "
+            "releases; missing_years lists every such year.")
+
+
+async def find_outage_history(ctx: RuntimeContext,
+                              year: int | None = None) -> Envelope:
+    b = builder(ctx, "grid.find_outage_history", contract_version="1")
+    manifest = require_active_source(ctx, OUTAGE_SOURCE)
+    registry_dim, gaps = selection_coverage(ctx.sources, "grid.outage_history",
+                                            [manifest])
+    if year is not None and not 1900 <= year <= 2100:
+        raise InvalidQuery(f"year {year} is not a calendar year.")
+
+    fetched = await ctx.osti.search(manifest, filters={}, rows=OUTAGE_PAGE)
+    page = fetched.value
+    ref = add_manifest_source(b, ctx, manifest,
+                              retrieved_at=fetched.retrieved_at,
+                              cache_age_seconds=fetched.cache_age_seconds,
+                              from_cache=fetched.from_cache)
+    for record in page.records:
+        b.add_evidence(source_ref=ref, record_id=record.record_id,
+                       retrieved_at=fetched.retrieved_at,
+                       effective_at=record.publication_date,
+                       locator=record.biblio_url,
+                       transformations=["normalize", "dedupe_by_doi"])
+
+    releases = _releases(page.records)
+    outage = [r for r in releases if r["kind"] == "outage_data"]
+    spans = [(r["covers_years"]["from"], r["covers_years"]["to"])
+             for r in outage if r["covers_years"]]
+    data: dict[str, Any] = {
+        "releases": outage,
+        "documentation": [r for r in releases if r["kind"] == "documentation"],
+        "customer_counts": [r for r in releases
+                            if r["kind"] == "customer_counts"],
+        "years_covered": ({"from": min(f for f, _ in spans),
+                           "to": max(t for _, t in spans)} if spans else None),
+        "missing_years": _missing_years(spans),
+        "note": (
+            "Catalog records for EAGLE-I's annual releases, not outage "
+            "numbers. Each release is a set of county-level files of "
+            "customers without power at 15-minute intervals behind its DOI. "
+            "Customers out is not people out, coverage is roughly 92% of US "
+            "customers with small utilities and cooperatives missing, and "
+            "the county customer-count dataset is the denominator for any "
+            "share-of-customers figure."),
+    }
+    other = [r for r in releases if r["kind"] == "other"]
+    if other:
+        data["other_records"] = other
+
+    selected = outage
+    if year is not None:
+        selected = [r for r in outage if r["covers_years"]
+                    and r["covers_years"]["from"] <= year
+                    <= r["covers_years"]["to"]]
+        data["requested_year"] = year
+        data["releases_for_year"] = selected
+        if not selected:
+            data["note_for_year"] = _no_release_note(year, spans)
+    for r in selected + data["customer_counts"] + data["documentation"]:
+        if r["doi_url"]:
+            b.add_recipe(RecipeKind.doi, r["doi_url"], label=r["title"][:80],
+                         instructions="The files are held at ORNL's "
+                                      "repository behind this DOI; returned "
+                                      "as data and never fetched here.")
+
+    if len({r["published"] for r in outage if r["published"]}) > 1:
+        b.warn(WarningCode.mixed_vintages,
+               "The releases were published in different years and each "
+               "is a snapshot of its own processing; a multi-year series "
+               "assembled from them mixes vintages.", manifest.id)
+
+    return b.build(data, Coverage(
+        registry=registry_dim, execution=ExecutionCoverage.complete,
+        pagination=pagination_coverage(page.total_matches,
+                                       len(page.records)),
+        source_claim=SourceClaimCoverage.complete,
+        result=result_dim(len(selected)),
+        sources_searched=[manifest.id], sources_unavailable=gaps,
+        time_range=(TimeRange(**{"from": str(data["years_covered"]["from"]),
+                                 "to": str(data["years_covered"]["to"])})
+                    if spans else None),
+        known_limitations=sorted(manifest.coverage.known_limitations)))
+
+
 ENERGY_TOOLS.register(ToolSpec(
     name="energy.discover_routes",
     description=(
@@ -768,3 +941,17 @@ ENERGY_TOOLS.register(ToolSpec(
         "axis'). Rooftop and community solar are not in it. An inventory, "
         "not generation."),
     toolset="default", contract_version="1", fn=find_solar_facilities))
+
+ENERGY_TOOLS.register(ToolSpec(
+    name="grid.find_outage_history",
+    description=(
+        "Which EAGLE-I release holds US electricity-outage history for a "
+        "year, and where it is. EAGLE-I (DOE CESER, built at ORNL) publishes "
+        "county-level counts of customers without power at 15-minute "
+        "intervals, 2014 onward, one release a year through OSTI. Returns "
+        "each release with the years it covers, its DOI, the documentation "
+        "record and the county customer-count dataset that is the "
+        "denominator. Pass `year` to pick the release that covers it. "
+        "Pointers to files, not outage figures, and not live status: the "
+        "live EAGLE-I platform is gated."),
+    toolset="default", contract_version="1", fn=find_outage_history))
