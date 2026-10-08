@@ -21,8 +21,8 @@ from doe_mcp.core.errors import (SourceNotActivated, SourceUnavailable,
                                  TermsRestricted)
 from doe_mcp.core.registry import (AutomationStatus, DeclaredState,
                                    OperationalState)
-from doe_mcp.domains import (discovery, docs, earth, energy, materials,
-                             registry_tools, research, tech)
+from doe_mcp.domains import (bio, discovery, docs, earth, energy,
+                             materials, registry_tools, research, tech)
 
 FIXED_SOURCE_TOOLS = [
     ("osti-data-explorer", "research.search_datasets",
@@ -54,6 +54,13 @@ FIXED_SOURCE_TOOLS = [
      lambda ctx: energy.find_outage_history(ctx, year=2021)),
     ("nersc-status", "compute.facility_status",
      lambda ctx: discovery.facility_status(ctx)),
+    ("nmdc-runtime", "bio.search_studies",
+     lambda ctx: bio.search_studies(ctx, text="soil")),
+    ("nmdc-runtime", "bio.get_study",
+     lambda ctx: bio.get_study(ctx, "nmdc:sty-11-34xj1150")),
+    ("nmdc-runtime", "bio.search_biosamples",
+     lambda ctx: bio.search_biosamples(ctx, study_id="nmdc:sty-11-8fb6t785",
+                                       rows=5)),
     ("federal-register-doe", "docs.search_rulemakings",
      lambda ctx: docs.search_rulemakings(ctx, document_type="RULE", rows=5)),
     ("federal-register-doe", "docs.get_rulemaking",

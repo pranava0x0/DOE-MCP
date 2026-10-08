@@ -181,6 +181,18 @@ PLANS: dict[str, list[tuple[str, str]]] = {
         ("a model that spells the end date differently", "esgf:second"),
     ],
     "anl-sage-waggle": [("node manifest", "sage:nodes")],
+    # The whole study collection, because the adapter refuses to search a
+    # partial one; a study read whole with its sample count; and three
+    # biosample searches: by study, by ecosystem and place, and one that
+    # matches nothing, so the empty path replays the publisher's own 200.
+    "nmdc-runtime": [
+        ("study collection", "nmdc:studies"),
+        ("one study", "nmdc:study"),
+        ("one study's samples", "nmdc:samples=study_id=nmdc:sty-11-8fb6t785"),
+        ("soil samples in Washington",
+         "nmdc:samples=ecosystem_type=Soil;place=washington"),
+        ("no matches", "nmdc:samples=place=zzzznotaplacezzzz"),
+    ],
     # Both public routes in one call: the board and the planned outages.
     "nersc-status": [("status board and planned outages", "status:board")],
     # The published property list as well as searches: the adapter checks
@@ -308,6 +320,10 @@ RECORDED_STRUCTURE = "mp-1244984"
 # reference file and coverage through the first thirty elements.
 RECORDED_BASIS_SET = "6-31g"
 
+# NEON's soil metagenome study: a consortium study with thousands of
+# samples, so the recorded count is large enough to show paging matters.
+RECORDED_STUDY = "nmdc:sty-11-34xj1150"
+
 
 def _declared_third_party() -> set[str]:
     doc = yaml.safe_load(THIRD_PARTY.read_text()) or {}
@@ -417,6 +433,18 @@ async def run(source_id: str, plan: list[tuple[str, str]]) -> None:
                                  else RECORDED_CMIP),
                         rows=RECORDED_ROWS,
                         latest=None if rest == "superseded" else True)
+            elif kind == "nmdc":
+                if rest == "studies":
+                    await ctx.nmdc.studies(manifest)
+                elif rest == "study":
+                    await ctx.nmdc.get_study(manifest, RECORDED_STUDY)
+                    await ctx.nmdc.count_biosamples(manifest, RECORDED_STUDY)
+                else:
+                    _, _, clauses = rest.partition("=")
+                    filters = dict(c.split("=", 1)
+                                   for c in clauses.split(";"))
+                    await ctx.nmdc.biosamples(manifest, filters=filters,
+                                              rows=RECORDED_ROWS)
             elif kind == "status":
                 await ctx.facility_status.board(manifest)
             elif kind == "sage":
@@ -475,12 +503,15 @@ async def run(source_id: str, plan: list[tuple[str, str]]) -> None:
         return
 
     trimmed = _trim(source_id, recorder)
+    scrubbed = _scrub_contacts(source_id, recorder)
     note = (f"Recorded live from {manifest.name} "
             f"({manifest.access.terms_url}) by tools/record_fixtures.py. "
             "Publisher content redistributed under the terms recorded in "
             "THIRD_PARTY_DATA.yml.")
     if trimmed:
         note += f" TRIMMED: {trimmed}."
+    if scrubbed:
+        note += f" SCRUBBED: {scrubbed}."
     recorder.write(FIXTURES / f"{source_id}.json", note=note)
     if source_id not in _declared_third_party():
         print(f"  ! {source_id}: recorded, but THIRD_PARTY_DATA.yml has no "
@@ -503,6 +534,43 @@ def _parse_search(rest: str) -> tuple[dict, int]:
         else:
             filters[key.strip()] = value.strip()
     return filters, rows
+
+
+# Personal fields a publisher includes in records this project
+# redistributes as fixtures, beyond the email addresses `write` already
+# redacts everywhere. The adapters drop them from every answer; the
+# recorder drops them from the files in the repository and the wheel, so
+# the project does not republish a researcher's photograph it never shows
+# a caller.
+CONTACT_FIELDS = {"nmdc-runtime": ("profile_image_url",)}
+
+
+def _scrub_contacts(source_id: str, recorder: RecordingFetcher) -> str | None:
+    fields = CONTACT_FIELDS.get(source_id)
+    if not fields:
+        return None
+    removed = 0
+
+    def walk(node):
+        nonlocal removed
+        if isinstance(node, dict):
+            for name in fields:
+                if name in node:
+                    del node[name]
+                    removed += 1
+            for value in node.values():
+                walk(value)
+        elif isinstance(node, list):
+            for value in node:
+                walk(value)
+
+    for interaction in recorder.interactions:
+        walk(interaction.get("body"))
+    if not removed:
+        return None
+    return (f"{removed} personal field(s) named {list(fields)} were removed "
+            "from the recorded records; the adapter drops them from answers "
+            "in any case")
 
 
 def _trim(source_id: str, recorder: RecordingFetcher) -> str | None:

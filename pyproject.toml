@@ -69,6 +69,7 @@ doe-research = "doe_mcp.servers.research:main"
 doe-energy-data = "doe_mcp.servers.energy_data:main"
 doe-earth = "doe_mcp.servers.earth:main"
 doe-materials = "doe_mcp.servers.materials:main"
+doe-bio = "doe_mcp.servers.bio:main"
 
 [build-system]
 requires = ["hatchling"]

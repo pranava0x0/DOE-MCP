@@ -24,6 +24,7 @@ from .facility_status import FacilityStatusAdapter
 from .federal_register import FederalRegisterAdapter
 from .fueleconomy import FuelEconomyAdapter
 from .json_document import JsonDocumentAdapter
+from .nmdc import NmdcAdapter
 from .opendatasoft import OpenDataSoftAdapter
 from .optimade import OptimadeAdapter
 from .osti_family import OstiFamilyAdapter
@@ -58,6 +59,7 @@ ADAPTER_CLASSES: dict[str, tuple[str, type]] = {
     "optimade": ("optimade", OptimadeAdapter),
     "basis_sets": ("basis_sets", BasisSetExchangeAdapter),
     "facility_status": ("facility_status", FacilityStatusAdapter),
+    "nmdc": ("nmdc", NmdcAdapter),
 }
 
 ADAPTER_VERSIONS = {
@@ -78,6 +80,7 @@ ADAPTER_VERSIONS = {
     "optimade": OptimadeAdapter.version,
     "basis_sets": BasisSetExchangeAdapter.version,
     "facility_status": FacilityStatusAdapter.version,
+    "nmdc": NmdcAdapter.version,
     "none": "1",
     "self_registry": "1",
 }
@@ -88,4 +91,4 @@ __all__ = ["OstiFamilyAdapter", "OpenDataSoftAdapter", "JsonDocumentAdapter",
            "FederalRegisterAdapter", "VipsAdapter", "DaymetAdapter",
            "EssDiveAdapter", "EsgfAdapter", "SageAdapter",
            "OptimadeAdapter", "BasisSetExchangeAdapter",
-           "FacilityStatusAdapter", "ADAPTER_CLASSES", "ADAPTER_VERSIONS"]
+           "FacilityStatusAdapter", "NmdcAdapter", "ADAPTER_CLASSES", "ADAPTER_VERSIONS"]

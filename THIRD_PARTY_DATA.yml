@@ -374,6 +374,22 @@ redistributed:
       user, job or allocation data is requested or recorded.
     attribution_required: false
 
+  - source_id: nmdc-runtime
+    publisher: National Microbiome Data Collaborative
+    system: NMDC Runtime API
+    url: https://api.microbiomedata.org
+    retrieved: "2026-10-08"
+    content: >
+      The study collection (85 study records), one study lookup with its
+      sample count, and three biosample searches of five records each:
+      study and sample metadata, not sequence data.
+    rights: >
+      Openly published metadata. The study records as recorded include
+      investigators' names, ORCIDs and contact fields exactly as NMDC
+      publishes them; the adapter drops the contact fields before any
+      answer, and no sequence data is recorded.
+    attribution_required: false
+
 citation_required_when_integrated:
   - source_id: arm-data-center
     publisher: ARM Data Center (ORNL)

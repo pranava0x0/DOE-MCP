@@ -265,6 +265,11 @@ async def _probe(ctx: RuntimeContext, source_id: str) -> int | None:
         return page.data_available
     if kind == "basis_sets":
         return (await ctx.basis_sets.catalog(manifest)).value.total
+    if kind == "nmdc":
+        # The collection is read whole, so the count is the collection's
+        # size and the manifest's floor is checked against all of it.
+        page = (await ctx.nmdc.studies(manifest)).value
+        return page.collection_size
     if kind == "facility_status":
         board = (await ctx.facility_status.board(
             manifest, include_planned=False)).value
@@ -533,7 +538,8 @@ def cmd_tools_call(args: argparse.Namespace) -> int:
 
     if target_profile is None:
         # Auto-detect profile: first check research:all, then check each server's :all profile.
-        candidate_profiles = ["research:all", "energy:all", "earth:all", "materials:all"]
+        candidate_profiles = ["research:all", "energy:all", "earth:all",
+                              "materials:all", "bio:all"]
         for cand in candidate_profiles:
             specs = {s.name: s for s in expand_profile(cand, all_regs)}
             if args.tool in specs:

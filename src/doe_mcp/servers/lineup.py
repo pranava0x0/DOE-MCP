@@ -216,9 +216,30 @@ SERVER_LINEUP: tuple[ServerSpec, ...] = (
         description=("Nuclide structure and decay data. The ingest-versus-"
                      "wrap question is deliberately still open.")),
     ServerSpec(
-        name="doe-bio", key="bio", status="planned",
-        description=("Microbiome studies and biosamples; JGI and EMSL as "
-                     "pointer tools.")),
+        name="doe-bio", key="bio", status="shipping",
+        default_profile="bio:default",
+        description=("Microbiome studies and their biosamples from the "
+                     "National Microbiome Data Collaborative, with DOIs "
+                     "leading to the sequence data at JGI and EMSL."),
+        instructions=(
+            "DOE-MCP bio server: the microbiome studies and biosamples the "
+            "National Microbiome Data Collaborative (NMDC; LBNL with ANL, "
+            "ORNL and PNNL) has ingested. "
+            + COVERAGE_RULE +
+            " Find a study with bio.search_studies, read it with "
+            "bio.get_study, and list its samples with "
+            "bio.search_biosamples. Most studies carry no ecosystem "
+            "classification of their own while their samples do, so an "
+            "ecosystem question is a biosample search. Place is free text "
+            "as submitted. Everything here is metadata: sequence data sits "
+            "at JGI, EMSL and the archives behind each study's DOIs, which "
+            "are returned and never fetched. An empty answer describes what "
+            "NMDC has ingested, not what exists. Investigator email "
+            "addresses are dropped; names and ORCIDs are kept. "
+            "Organization names in this ecosystem change and old domains "
+            "do not redirect, so call registry.resolve_org whenever a user "
+            "names a lab or office. "
+            + UNTRUSTED_CONTENT_RULE + " " + NON_AFFILIATION)),
     ServerSpec(
         name="doe-projects", key="projects", status="planned",
         description=("ARPA-E awards, the loan portfolio, the Lab Partnering "
