@@ -1,6 +1,6 @@
 ---
 name: doe-rulemaking-brief
-description: >
+description: >-
   A sourced brief on what DOE has published in the Federal Register on a
   topic: final rules, proposed rules and notices, each with its docket,
   regulation identifier, CFR parts, dates and a link to the published

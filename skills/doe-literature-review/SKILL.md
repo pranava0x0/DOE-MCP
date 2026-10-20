@@ -1,6 +1,6 @@
 ---
 name: doe-literature-review
-description: >
+description: >-
   A short evidence table of DOE-funded publications on a topic: what was
   found in OSTI.GOV and DOE PAGES, which records were read in full, where
   each can be read, and how much of the result set the table covers. Use

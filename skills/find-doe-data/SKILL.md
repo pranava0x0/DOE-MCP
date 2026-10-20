@@ -1,6 +1,6 @@
 ---
 name: find-doe-data
-description: >
+description: >-
   Find whether the US Department of Energy publishes a given kind of data,
   where it lives, and how to actually get at it — ending in a real locator
   or in a named reason there is not one. Use when someone asks "does DOE

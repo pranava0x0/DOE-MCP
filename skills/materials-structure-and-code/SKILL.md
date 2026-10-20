@@ -1,6 +1,6 @@
 ---
 name: materials-structure-and-code
-description: >
+description: >-
   Find computed crystal structures and export the quantum-chemistry basis sets
   needed to model them. Use when someone asks "how do I model this material",
   "what computed structures exist for gallium nitride or lithium iron oxide",

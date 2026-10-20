@@ -1,6 +1,6 @@
 ---
 name: environmental-study-brief
-description: >
+description: >-
   Find environmental datasets and read a bounded Daymet weather window for
   one point and date range. Use when someone asks for modelled daily
   weather at a place, or which environmental datasets DOE holds for a

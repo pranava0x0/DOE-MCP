@@ -1,6 +1,6 @@
 ---
 name: energy-project-site-screen
-description: >
+description: >-
   A first-pass screen of a candidate site for a wind or solar project from
   what DOE-MCP can see today: the turbines and utility-scale solar already
   built in the area, the balancing authority's recent demand, and a named

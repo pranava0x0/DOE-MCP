@@ -1,6 +1,6 @@
 ---
 name: grid-status-brief
-description: >
+description: >-
   A short, sourced brief on what a US balancing authority's grid did over
   the last day or the last hour: demand, generation and interchange from
   EIA-930, and for the Pacific Northwest the five-minute load and wind from

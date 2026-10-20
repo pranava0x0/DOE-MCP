@@ -1,6 +1,6 @@
 ---
 name: microbiome-data-finder
-description: >
+description: >-
   Find DOE-linked microbiome studies and samples for a kind of environment
   or a place, and say where the sequence data behind them is held. Use when
   someone asks "is there soil microbiome data from Washington", "which
