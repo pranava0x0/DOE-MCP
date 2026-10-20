@@ -226,3 +226,27 @@ async def test_a_missing_record_carries_the_same_shape(ctx):
     record was found first."""
     env = await research.get_record(ctx, "3389573", collection="literature")
     assert "fulltext" in env.data
+
+
+def test_a_record_summary_says_when_it_cut_a_list():
+    """Authors were the only list whose cut was stated. Organizations and
+    subjects were cut silently, so a record naming eight laboratories read
+    as one naming three. Each cut now carries a count of what was dropped,
+    and an uncut list carries no count at all."""
+    from doe_mcp.adapters.osti_family import OstiRecord
+    from doe_mcp.domains.research import _record_summary
+
+    long = OstiRecord(record_id="1", title="t", raw={},
+                      research_orgs=[f"org {i}" for i in range(8)],
+                      subjects=[f"s{i}" for i in range(14)])
+    out = _record_summary(long, detailed=True)
+    assert out["research_orgs"] == ["org 0", "org 1", "org 2"]
+    assert out["research_orgs_truncated"] == 5
+    assert len(out["subjects"]) == 10
+    assert out["subjects_truncated"] == 4
+
+    short = OstiRecord(record_id="2", title="t", raw={},
+                       research_orgs=["one"], subjects=["a"])
+    out = _record_summary(short, detailed=True)
+    assert "research_orgs_truncated" not in out
+    assert "subjects_truncated" not in out

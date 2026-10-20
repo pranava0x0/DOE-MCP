@@ -84,6 +84,8 @@ def _record_summary(record: OstiRecord, *, detailed: bool) -> dict[str, Any]:
         out["report_number"] = record.report_number
     if record.research_orgs:
         out["research_orgs"] = record.research_orgs[:3]
+        if len(record.research_orgs) > 3:
+            out["research_orgs_truncated"] = len(record.research_orgs) - 3
     if record.repository_link:
         out["repository"] = record.repository_link
     if record.licenses:
@@ -97,6 +99,8 @@ def _record_summary(record: OstiRecord, *, detailed: bool) -> dict[str, Any]:
             out["description"] = record.description
         if record.subjects:
             out["subjects"] = record.subjects[:10]
+            if len(record.subjects) > 10:
+                out["subjects_truncated"] = len(record.subjects) - 10
         if record.sponsor_orgs:
             out["sponsor_orgs"] = record.sponsor_orgs
         if record.site_url:
