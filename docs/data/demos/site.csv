@@ -11,6 +11,7 @@ step,tool,source,record_id,locator,effective_at,mode
 2,facility.find_solar_facilities,usgs-uspvdb,projects#401746,,,recorded
 3,registry.search_sources,doe-mcp-registry,lbnl-emp-datasets,,,recorded
 4,registry.list_neighbors,doe-mcp-registry,building-simulation-mcps,,,recorded
+4,registry.list_neighbors,doe-mcp-registry,genesis-agent-skills,,,recorded
 4,registry.list_neighbors,doe-mcp-registry,genesis-lane-servers,,,recorded
 4,registry.list_neighbors,doe-mcp-registry,materials-project-mcp,,,recorded
 4,registry.list_neighbors,doe-mcp-registry,nasa-earthdata-mcp,,,recorded

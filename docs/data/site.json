@@ -15,7 +15,7 @@
     "servers_planned": 4,
     "tools": 34,
     "adapters": 19,
-    "neighbors": 5,
+    "neighbors": 6,
     "records_reachable": 20176556
   },
   "questions": [
@@ -4469,6 +4469,7 @@
     {
       "id": "building-simulation-mcps",
       "name": "EnergyPlus-MCP and OpenStudio-MCP",
+      "kind": "server",
       "maintainer": "LBNL Energy Technologies Area; National Laboratory of the Rockies",
       "status": "listed",
       "compliance": "opaque",
@@ -4478,8 +4479,21 @@
       "tool_count": 185
     },
     {
+      "id": "genesis-agent-skills",
+      "name": "Genesis Agent Skills (DOE ModCon)",
+      "kind": "skill_pack",
+      "maintainer": "ModCon BASE team, co-led by PNNL and Berkeley Lab",
+      "status": "listed",
+      "compliance": "opaque",
+      "why_not_absorbed": "It is instructions rather than data or tools, so there is nothing for DOE-MCP to wrap. Its subtrees carry different licenses and some carry none, so nothing is copied here. DOE-MCP's own skills use the same Agent Skills file format and pass the pack's own validator, which is the extent of the integration.\n",
+      "install": "git clone https://github.com/AI-ModCon/genesis-skills",
+      "repository": "https://github.com/AI-ModCon/genesis-skills",
+      "tool_count": null
+    },
+    {
       "id": "genesis-lane-servers",
       "name": "DOE Genesis Mission MCP deployments (gated)",
+      "kind": "server",
       "maintainer": "Various DOE national laboratories",
       "status": "watch",
       "compliance": "opaque",
@@ -4491,6 +4505,7 @@
     {
       "id": "materials-project-mcp",
       "name": "Materials Project MCP (inside mp-api)",
+      "kind": "server",
       "maintainer": "Materials Project, Lawrence Berkeley National Laboratory",
       "status": "watch",
       "compliance": "full",
@@ -4502,6 +4517,7 @@
     {
       "id": "nasa-earthdata-mcp",
       "name": "NASA Earthdata (CMR) MCP",
+      "kind": "server",
       "maintainer": "NASA Earthdata",
       "status": "listed",
       "compliance": "opaque",
@@ -4513,6 +4529,7 @@
     {
       "id": "nepa-mcp",
       "name": "NEPA-MCP",
+      "kind": "server",
       "maintainer": "Pacific Northwest National Laboratory",
       "status": "listed",
       "compliance": "opaque",

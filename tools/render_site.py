@@ -662,7 +662,9 @@ def _provenance(data: dict) -> str:
 def _neighbours(data: dict) -> str:
     rows = "".join(
         f"<tr><td><b>{e(n['name'])}</b><br><span class='mono' "
-        f"style='color:var(--faint)'>{e(n['maintainer'])}</span></td>"
+        f"style='color:var(--faint)'>{e(n['maintainer'])}"
+        f"{' · skill pack' if n.get('kind') == 'skill_pack' else ''}"
+        f"</span></td>"
         f"<td><span class='pill "
         f"{'active' if n['status'] == 'listed' else 'proposed'}'>"
         f"{e(n['status'])}</span><br><span class='mono' "
@@ -670,7 +672,7 @@ def _neighbours(data: dict) -> str:
         f"<td>{e(n['why_not_absorbed'])}</td>"
         f"<td><code>{e(n['install'] or '—')}</code></td></tr>"
         for n in data["neighbors"])
-    return ("<table><thead><tr><th>Server</th><th>Status</th>"
+    return ("<table><thead><tr><th>Server or skill pack</th><th>Status</th>"
             "<th>Why DOE-MCP does not duplicate it</th><th>Install</th>"
             f"</tr></thead><tbody>{rows}</tbody></table>")
 

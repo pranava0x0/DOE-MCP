@@ -44,5 +44,6 @@ notes: >
   read-only mirror. It is a catalog of agent instructions, not a server or
   a data source, so it maps to no capability here; its subtrees carry
   different licenses, and DOE-MCP has vendored none of it. DOE-MCP's skills
-  follow the same Agent Skills file format.
+  follow the same Agent Skills file format. It has its own entry,
+  genesis-agent-skills, as a skill pack.
 last_checked: "2026-10-20"

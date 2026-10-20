@@ -779,6 +779,7 @@
             {
               "id": "building-simulation-mcps",
               "name": "EnergyPlus-MCP and OpenStudio-MCP",
+              "kind": "server",
               "maintainer": "LBNL Energy Technologies Area; National Laboratory of the Rockies",
               "status": "listed",
               "compliance": "opaque",
@@ -791,8 +792,23 @@
               "repository": "https://github.com/LBNL-ETA/EnergyPlus-MCP"
             },
             {
+              "id": "genesis-agent-skills",
+              "name": "Genesis Agent Skills (DOE ModCon)",
+              "kind": "skill_pack",
+              "maintainer": "ModCon BASE team, co-led by PNNL and Berkeley Lab",
+              "status": "listed",
+              "compliance": "opaque",
+              "why_not_absorbed": "It is instructions rather than data or tools, so there is nothing for DOE-MCP to wrap. Its subtrees carry different licenses and some carry none, so nothing is copied here. DOE-MCP's own skills use the same Agent Skills file format and pass the pack's own validator, which is the extent of the integration.",
+              "install": {
+                "method": "source",
+                "command": "git clone https://github.com/AI-ModCon/genesis-skills"
+              },
+              "repository": "https://github.com/AI-ModCon/genesis-skills"
+            },
+            {
               "id": "genesis-lane-servers",
               "name": "DOE Genesis Mission MCP deployments (gated)",
+              "kind": "server",
               "maintainer": "Various DOE national laboratories",
               "status": "watch",
               "compliance": "opaque",
@@ -805,6 +821,7 @@
             {
               "id": "materials-project-mcp",
               "name": "Materials Project MCP (inside mp-api)",
+              "kind": "server",
               "maintainer": "Materials Project, Lawrence Berkeley National Laboratory",
               "status": "watch",
               "compliance": "full",
@@ -821,6 +838,7 @@
             {
               "id": "nasa-earthdata-mcp",
               "name": "NASA Earthdata (CMR) MCP",
+              "kind": "server",
               "maintainer": "NASA Earthdata",
               "status": "listed",
               "compliance": "opaque",
@@ -836,6 +854,7 @@
             {
               "id": "nepa-mcp",
               "name": "NEPA-MCP",
+              "kind": "server",
               "maintainer": "Pacific Northwest National Laboratory",
               "status": "listed",
               "compliance": "opaque",
@@ -851,8 +870,8 @@
               "repository": "https://github.com/pnnl/nepa-mcp"
             }
           ],
-          "record_count": 5,
-          "note": "MCP has no mechanism for one server to advertise or install another (checked against the protocol 2026-09-01), so these carry executable install commands rather than links. Results from a server listed as 'opaque' are unverified external evidence and should be labelled as such \u2014 being official does not make a server's output carry provenance."
+          "record_count": 6,
+          "note": "MCP has no mechanism for one server to advertise or install another (checked against the protocol 2026-09-01), so these carry executable install commands rather than links. Results from a server listed as 'opaque' are unverified external evidence and should be labelled as such \u2014 being official does not make a server's output carry provenance. A 'skill_pack' is agent instructions, not a server: there is nothing to call, and its skills can run commands, so read one before using it."
         },
         "provenance": [
           {
@@ -884,7 +903,7 @@
           {
             "id": "evidence_02",
             "source_ref": "source_01",
-            "record_id": "genesis-lane-servers",
+            "record_id": "genesis-agent-skills",
             "locator": null,
             "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
@@ -895,7 +914,7 @@
           {
             "id": "evidence_03",
             "source_ref": "source_01",
-            "record_id": "materials-project-mcp",
+            "record_id": "genesis-lane-servers",
             "locator": null,
             "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
@@ -906,7 +925,7 @@
           {
             "id": "evidence_04",
             "source_ref": "source_01",
-            "record_id": "nasa-earthdata-mcp",
+            "record_id": "materials-project-mcp",
             "locator": null,
             "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
@@ -916,6 +935,17 @@
           },
           {
             "id": "evidence_05",
+            "source_ref": "source_01",
+            "record_id": "nasa-earthdata-mcp",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": null,
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_06",
             "source_ref": "source_01",
             "record_id": "nepa-mcp",
             "locator": null,

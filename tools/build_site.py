@@ -326,7 +326,8 @@ def build_data(with_fixtures: bool) -> dict:
             })
 
     neighbors = [{
-        "id": e.id, "name": e.name, "maintainer": e.maintainer,
+        "id": e.id, "name": e.name, "kind": e.kind.value,
+        "maintainer": e.maintainer,
         "status": e.status.value, "compliance": e.compliance.value,
         "why_not_absorbed": e.why_not_absorbed,
         "install": e.install.command if e.install else None,

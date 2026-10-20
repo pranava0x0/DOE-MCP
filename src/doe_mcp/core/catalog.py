@@ -24,6 +24,13 @@ server. That finding is why reuse splits two ways:
    recipe rather than a link, so a shell-capable client can offer one
    reviewed command.
 
+3. **Skill pack** (`kind: skill_pack`, added 2026-10-20) — instructions for
+   an agent, not a server. DOE's Genesis Agent Skills is the first: a
+   catalog of `SKILL.md` files in the format this project's own skills
+   follow. A pack answers nothing, so it maps to no capability and the
+   model refuses one that claims any; its install recipe is the clone a
+   person reads before use, not a server command.
+
 Compliance level describes servers we would CALL, and is deliberately
 pessimistic: `opaque` results are labelled unverified external evidence,
 because a server that does not speak this envelope cannot be assumed to carry
@@ -35,7 +42,7 @@ import enum
 from pathlib import Path
 
 import yaml
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 
 class ComplianceLevel(str, enum.Enum):
@@ -45,6 +52,15 @@ class ComplianceLevel(str, enum.Enum):
     """Returns sources but not the full contract."""
     opaque = "opaque"
     """Results are treated as unverified external evidence and labelled so."""
+
+
+class EntryKind(str, enum.Enum):
+    server = "server"
+    """An MCP server a client can install and call."""
+    skill_pack = "skill_pack"
+    """Agent instructions in the Agent Skills format. Nothing to call, so
+    no capability mapping and no compliance level that means anything
+    beyond `opaque`."""
 
 
 class EntryStatus(str, enum.Enum):
@@ -74,6 +90,7 @@ class InstallRecipe(_Strict):
 class CatalogEntry(_Strict):
     id: str
     name: str
+    kind: EntryKind = EntryKind.server
     maintainer: str
     maintainer_org: str | None = None
     """Organization id where the maintainer is in this project's table."""
@@ -95,6 +112,19 @@ class CatalogEntry(_Strict):
     list of things nobody got round to."""
     notes: str | None = None
     last_checked: str
+
+    @model_validator(mode="after")
+    def _a_skill_pack_answers_nothing(self) -> "CatalogEntry":
+        """A capability id is a routing promise that a tool answers it in an
+        envelope (decision 0018). A skill pack has no tools, so mapping one
+        would let `for_capability` route a question to instructions."""
+        if self.kind == EntryKind.skill_pack:
+            if self.capabilities:
+                raise ValueError(f"{self.id}: a skill pack maps to no capability")
+            if self.compliance != ComplianceLevel.opaque:
+                raise ValueError(f"{self.id}: a skill pack is opaque; it carries "
+                                 "no envelope")
+        return self
 
 
 class SubMcpCatalog:

@@ -163,7 +163,7 @@ The full registry entry for one source: publisher and funder, authority level, t
 
 #### `registry.list_neighbors`
 
-Other MCP servers over DOE-adjacent data — PNNL's NEPA-MCP, the building-simulation servers, NASA's Earthdata server, the gated Genesis-lane deployments — with an executable install command and a stated reason DOE-MCP does not duplicate each one. Use when a question falls outside this project's coverage and a neighbouring server serves it.
+Other MCP servers over DOE-adjacent data — PNNL's NEPA-MCP, the building-simulation servers, NASA's Earthdata server, the gated Genesis-lane deployments — and skill packs such as DOE's Genesis Agent Skills, each with an install command, its kind (server or skill_pack), and a stated reason DOE-MCP does not duplicate it. Use when a question falls outside this project's coverage and a neighbouring server serves it.
 
 | Argument | Type | Required | Default |
 |---|---|---|---|
@@ -408,7 +408,7 @@ The full registry entry for one source: publisher and funder, authority level, t
 
 #### `registry.list_neighbors`
 
-Other MCP servers over DOE-adjacent data — PNNL's NEPA-MCP, the building-simulation servers, NASA's Earthdata server, the gated Genesis-lane deployments — with an executable install command and a stated reason DOE-MCP does not duplicate each one. Use when a question falls outside this project's coverage and a neighbouring server serves it.
+Other MCP servers over DOE-adjacent data — PNNL's NEPA-MCP, the building-simulation servers, NASA's Earthdata server, the gated Genesis-lane deployments — and skill packs such as DOE's Genesis Agent Skills, each with an install command, its kind (server or skill_pack), and a stated reason DOE-MCP does not duplicate it. Use when a question falls outside this project's coverage and a neighbouring server serves it.
 
 | Argument | Type | Required | Default |
 |---|---|---|---|
@@ -563,7 +563,7 @@ The full registry entry for one source: publisher and funder, authority level, t
 
 #### `registry.list_neighbors`
 
-Other MCP servers over DOE-adjacent data — PNNL's NEPA-MCP, the building-simulation servers, NASA's Earthdata server, the gated Genesis-lane deployments — with an executable install command and a stated reason DOE-MCP does not duplicate each one. Use when a question falls outside this project's coverage and a neighbouring server serves it.
+Other MCP servers over DOE-adjacent data — PNNL's NEPA-MCP, the building-simulation servers, NASA's Earthdata server, the gated Genesis-lane deployments — and skill packs such as DOE's Genesis Agent Skills, each with an install command, its kind (server or skill_pack), and a stated reason DOE-MCP does not duplicate it. Use when a question falls outside this project's coverage and a neighbouring server serves it.
 
 | Argument | Type | Required | Default |
 |---|---|---|---|
@@ -687,7 +687,7 @@ The full registry entry for one source: publisher and funder, authority level, t
 
 #### `registry.list_neighbors`
 
-Other MCP servers over DOE-adjacent data — PNNL's NEPA-MCP, the building-simulation servers, NASA's Earthdata server, the gated Genesis-lane deployments — with an executable install command and a stated reason DOE-MCP does not duplicate each one. Use when a question falls outside this project's coverage and a neighbouring server serves it.
+Other MCP servers over DOE-adjacent data — PNNL's NEPA-MCP, the building-simulation servers, NASA's Earthdata server, the gated Genesis-lane deployments — and skill packs such as DOE's Genesis Agent Skills, each with an install command, its kind (server or skill_pack), and a stated reason DOE-MCP does not duplicate it. Use when a question falls outside this project's coverage and a neighbouring server serves it.
 
 | Argument | Type | Required | Default |
 |---|---|---|---|
@@ -794,7 +794,7 @@ The full registry entry for one source: publisher and funder, authority level, t
 
 #### `registry.list_neighbors`
 
-Other MCP servers over DOE-adjacent data — PNNL's NEPA-MCP, the building-simulation servers, NASA's Earthdata server, the gated Genesis-lane deployments — with an executable install command and a stated reason DOE-MCP does not duplicate each one. Use when a question falls outside this project's coverage and a neighbouring server serves it.
+Other MCP servers over DOE-adjacent data — PNNL's NEPA-MCP, the building-simulation servers, NASA's Earthdata server, the gated Genesis-lane deployments — and skill packs such as DOE's Genesis Agent Skills, each with an install command, its kind (server or skill_pack), and a stated reason DOE-MCP does not duplicate it. Use when a question falls outside this project's coverage and a neighbouring server serves it.
 
 | Argument | Type | Required | Default |
 |---|---|---|---|
