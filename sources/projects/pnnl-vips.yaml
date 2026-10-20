@@ -38,7 +38,10 @@ access:
     and answered a scripted client on 2026-09-08. It states no terms of
     use of its own; the records describe US Government-funded work and
     the patents themselves are public documents. Write routes exist
-    behind an admin portal and are never called.
+    behind an admin portal and are never called. As of 2026-10-20
+    the "no login" and "answered a scripted client" statements describe
+    the September review only; search now requires an API key (see
+    terms_gap and blocked_reason).
   terms_gap: >
     Correction 2026-10-20: the search route returns HTTP 401 with
     "Valid API key required". Anonymous access is no longer available.
