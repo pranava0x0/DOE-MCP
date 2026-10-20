@@ -1,6 +1,6 @@
 {
   "version": "0.1.0.dev0",
-  "registry_revision": "2026-10-08",
+  "registry_revision": "2026-10-20",
   "counts": {
     "sources": 83,
     "active": 25,
@@ -4649,7 +4649,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0
           },
           {
@@ -4662,7 +4662,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -4672,7 +4672,7 @@
             "source_ref": "source_01",
             "record_id": "3484888",
             "locator": "https://www.osti.gov/biblio/3484888",
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2026-08-27T11:00:26Z",
             "transformations": [
               "normalize"
@@ -4685,7 +4685,7 @@
             "source_ref": "source_01",
             "record_id": "3625672",
             "locator": "https://www.osti.gov/biblio/3625672",
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2026-09-02T10:56:05Z",
             "transformations": [
               "normalize"
@@ -4698,7 +4698,7 @@
             "source_ref": "source_01",
             "record_id": "3409109",
             "locator": "https://www.osti.gov/biblio/3409109",
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2026-09-18T15:49:56Z",
             "transformations": [
               "normalize"
@@ -4711,7 +4711,7 @@
             "source_ref": "source_02",
             "record_id": "3409109",
             "locator": "https://www.osti.gov/biblio/3409109",
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2026-09-18T11:49:56Z",
             "transformations": [
               "normalize"
@@ -4724,7 +4724,7 @@
             "source_ref": "source_02",
             "record_id": "3818255",
             "locator": "https://www.osti.gov/biblio/3818255",
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2026-09-17T10:27:35Z",
             "transformations": [
               "normalize"
@@ -4737,7 +4737,7 @@
             "source_ref": "source_02",
             "record_id": "3818626",
             "locator": "https://www.osti.gov/biblio/3818626",
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2026-09-18T08:11:09Z",
             "transformations": [
               "normalize"
@@ -4896,7 +4896,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-08",
+          "registry_revision": "2026-10-20",
           "request_id": "worked-example"
         }
       }
@@ -4956,11 +4956,11 @@
             "steward": "The DOE-MCP project",
             "system": "DOE-MCP source registry and organization table",
             "dataset": "DOE-MCP source registry and organization table",
-            "dataset_version": "2026-10-08",
+            "dataset_version": "2026-10-20",
             "authority_level": "unverified",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -4970,7 +4970,7 @@
             "source_ref": "source_01",
             "record_id": "nlr",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -5019,7 +5019,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-08",
+          "registry_revision": "2026-10-20",
           "request_id": "worked-example"
         }
       }
@@ -5125,7 +5125,7 @@
             "authority_level": "official_secondary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0
           },
           {
@@ -5138,7 +5138,7 @@
             "authority_level": "official_secondary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0
           },
           {
@@ -5151,7 +5151,7 @@
             "authority_level": "official_derived",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0
           },
           {
@@ -5164,7 +5164,7 @@
             "authority_level": "official_derived",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -5174,7 +5174,7 @@
             "source_ref": "source_01",
             "record_id": "1148737",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "normalize"
@@ -5187,7 +5187,7 @@
             "source_ref": "source_01",
             "record_id": "1542650",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "normalize"
@@ -5200,7 +5200,7 @@
             "source_ref": "source_02",
             "record_id": "glass-buttes-exploration-and-drilling-2010-geothermal-technologies-program-peer-",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "normalize"
@@ -5213,7 +5213,7 @@
             "source_ref": "source_02",
             "record_id": "investigation-of-stimulation-response-relationships-for-complex-fracture-systems",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "normalize"
@@ -5319,7 +5319,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-08",
+          "registry_revision": "2026-10-20",
           "request_id": "worked-example"
         }
       }
@@ -5537,7 +5537,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0,
             "citation": {
               "doi": "10.5066/F7TX3DN0",
@@ -5552,7 +5552,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3001502",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -5563,7 +5563,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3015899",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -5574,7 +5574,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3034241",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -5585,7 +5585,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3039300",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -5596,7 +5596,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3039301",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -5648,7 +5648,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-08",
+          "registry_revision": "2026-10-20",
           "request_id": "worked-example"
         }
       }
@@ -5754,7 +5754,7 @@
             "authority_level": "official_secondary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -5764,7 +5764,7 @@
             "source_ref": "source_01",
             "record_id": "tile:11208@35.9313,-84.3104",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2023-06-01",
             "transformations": [
               "day-of-year converted to calendar date"
@@ -5822,7 +5822,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-08",
+          "registry_revision": "2026-10-20",
           "request_id": "worked-example"
         }
       }
@@ -6056,7 +6056,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -6066,7 +6066,7 @@
             "source_ref": "source_01",
             "record_id": "mp-1244984",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2019-07-02T00:29:18.792000",
             "transformations": [],
             "payload_hash": null,
@@ -6077,7 +6077,7 @@
             "source_ref": "source_01",
             "record_id": "mp-1223660",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2022-06-10T06:23:20.905000",
             "transformations": [],
             "payload_hash": null,
@@ -6088,7 +6088,7 @@
             "source_ref": "source_01",
             "record_id": "mp-1199250",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2021-03-09T23:05:01.374000",
             "transformations": [],
             "payload_hash": null,
@@ -6099,7 +6099,7 @@
             "source_ref": "source_01",
             "record_id": "mp-1245997",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2021-02-04T20:40:18.753000",
             "transformations": [],
             "payload_hash": null,
@@ -6110,7 +6110,7 @@
             "source_ref": "source_01",
             "record_id": "mp-1198425",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2021-03-10T07:53:43.904000",
             "transformations": [],
             "payload_hash": null,
@@ -6168,7 +6168,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-08",
+          "registry_revision": "2026-10-20",
           "request_id": "worked-example"
         }
       }
@@ -6311,7 +6311,7 @@
             "authority_level": "official_secondary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -6321,7 +6321,7 @@
             "source_ref": "source_01",
             "record_id": "nmdc:bsm-13-mrzb2q96",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2014-04-01",
             "transformations": [
               "normalize"
@@ -6334,7 +6334,7 @@
             "source_ref": "source_01",
             "record_id": "nmdc:bsm-13-4aw9ra87",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2014-04-01",
             "transformations": [
               "normalize"
@@ -6347,7 +6347,7 @@
             "source_ref": "source_01",
             "record_id": "nmdc:bsm-13-z9wten89",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2014-04-01",
             "transformations": [
               "normalize"
@@ -6360,7 +6360,7 @@
             "source_ref": "source_01",
             "record_id": "nmdc:bsm-13-wktc3357",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2014-04-01",
             "transformations": [
               "normalize"
@@ -6373,7 +6373,7 @@
             "source_ref": "source_01",
             "record_id": "nmdc:bsm-13-ap544f22",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2014-04-01",
             "transformations": [
               "normalize"
@@ -6433,7 +6433,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-08",
+          "registry_revision": "2026-10-20",
           "request_id": "worked-example"
         }
       }

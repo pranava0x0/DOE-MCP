@@ -49,7 +49,7 @@ evaluation limits.
 | Verified live | Sage / Waggle edge sensor network, Basis Set Exchange, BPA transmission operations feeds, EAGLE-I historical outage datasets, DOE Software Inventory (code.json), DOE Open Data Catalog (data.json), EIA API v2, ESGF search (CMIP6), ESS-DIVE (Environmental System Science Data Infrastructure), Federal Register API (Department of Energy documents), fueleconomy.gov web service, Materials Project OPTIMADE endpoint, NERSC Superfacility API (system status), National Microbiome Data Collaborative Runtime API, ORNL DAAC (Daymet, MODIS/VIIRS subsets), Open Energy Data Hub (ORNL), DOE Data Explorer, DOE CODE, DOE PAGES (Public Access Gateway for Energy and Science), OSTI.GOV Search API, VIPS (DOE patent and software database), US Large-Scale Solar Photovoltaic Database (USPVDB), US Wind Turbine Database (USWTDB) |
 | Not verified | none |
 | Records reachable with no credential | 20,176,556 |
-| Registry revision | 2026-10-08 |
+| Registry revision | 2026-10-20 |
 <!-- status:end -->
 
 ## Install

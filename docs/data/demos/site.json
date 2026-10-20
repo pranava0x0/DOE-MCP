@@ -5,9 +5,9 @@
   "question": "Which sampled wind and solar facilities appear in this inventory?",
   "mode": "recorded",
   "simulation": false,
-  "registry_revision": "2026-10-08",
+  "registry_revision": "2026-10-20",
   "generated_at": null,
-  "replay_clock": "2026-10-08T00:00:00Z",
+  "replay_clock": "2026-10-20T00:00:00Z",
   "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
   "fixtures": [
     {
@@ -242,7 +242,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0,
             "citation": {
               "doi": "10.5066/F7TX3DN0",
@@ -257,7 +257,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3001502",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -268,7 +268,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3015899",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -279,7 +279,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3034241",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -290,7 +290,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3039300",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -301,7 +301,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3039301",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -353,7 +353,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-08",
+          "registry_revision": "2026-10-20",
           "request_id": "recorded-workflow"
         }
       }
@@ -561,7 +561,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0,
             "citation": {
               "doi": "10.5066/P9IA3TUS",
@@ -576,7 +576,7 @@
             "source_ref": "source_01",
             "record_id": "projects#400417",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -587,7 +587,7 @@
             "source_ref": "source_01",
             "record_id": "projects#400618",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -598,7 +598,7 @@
             "source_ref": "source_01",
             "record_id": "projects#401343",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -609,7 +609,7 @@
             "source_ref": "source_01",
             "record_id": "projects#401715",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -620,7 +620,7 @@
             "source_ref": "source_01",
             "record_id": "projects#401746",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -666,7 +666,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-08",
+          "registry_revision": "2026-10-20",
           "request_id": "recorded-workflow"
         }
       }
@@ -706,11 +706,11 @@
             "steward": "The DOE-MCP project",
             "system": "DOE-MCP source registry and organization table",
             "dataset": "DOE-MCP source registry and organization table",
-            "dataset_version": "2026-10-08",
+            "dataset_version": "2026-10-20",
             "authority_level": "unverified",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -720,7 +720,7 @@
             "source_ref": "source_01",
             "record_id": "lbnl-emp-datasets",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -763,7 +763,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-08",
+          "registry_revision": "2026-10-20",
           "request_id": "recorded-workflow"
         }
       }
@@ -861,11 +861,11 @@
             "steward": "The DOE-MCP project",
             "system": "DOE-MCP source registry and organization table",
             "dataset": "DOE-MCP source registry and organization table",
-            "dataset_version": "2026-10-08",
+            "dataset_version": "2026-10-20",
             "authority_level": "unverified",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -875,7 +875,7 @@
             "source_ref": "source_01",
             "record_id": "building-simulation-mcps",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -886,7 +886,7 @@
             "source_ref": "source_01",
             "record_id": "genesis-lane-servers",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -897,7 +897,7 @@
             "source_ref": "source_01",
             "record_id": "materials-project-mcp",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -908,7 +908,7 @@
             "source_ref": "source_01",
             "record_id": "nasa-earthdata-mcp",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -919,7 +919,7 @@
             "source_ref": "source_01",
             "record_id": "nepa-mcp",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -962,7 +962,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-08",
+          "registry_revision": "2026-10-20",
           "request_id": "recorded-workflow"
         }
       }
