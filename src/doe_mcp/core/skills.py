@@ -47,13 +47,21 @@ class Skill:
 
 def split_frontmatter(text: str) -> tuple[str, str]:
     """Return (raw frontmatter, body). The delimiters are whole `---` lines,
-    not the substring, so a `---` inside a value cannot end the block."""
-    lines = text.splitlines(keepends=True)
-    if not lines or lines[0].rstrip("\r\n") != "---":
-        raise ValueError("no YAML frontmatter: the file must open with ---")
+    not the substring, so a `---` inside a value cannot end the block.
+    Lines split on newline only: `str.splitlines` also breaks on form feeds
+    and other separators, which would let one inside a value end the block
+    early."""
+    if text.startswith("\ufeff"):
+        raise ValueError("the file opens with a byte-order mark; save it "
+                         "as UTF-8 without one")
+    lines = text.split("\n")
+    if lines[0].rstrip("\r") != "---":
+        raise ValueError("no YAML frontmatter: the file must open with a "
+                         "line that is exactly ---")
     for i, line in enumerate(lines[1:], start=1):
-        if line.rstrip("\r\n") == "---":
-            return "".join(lines[1:i]), "".join(lines[i + 1:])
+        if line.rstrip("\r") == "---":
+            return ("".join(ln + "\n" for ln in lines[1:i]),
+                    "\n".join(lines[i + 1:]))
     raise ValueError("frontmatter is not closed by a --- line")
 
 
@@ -71,6 +79,8 @@ def _ids(path: Path, metadata: dict, field: str) -> tuple[str, ...]:
         return ()
     if NONE in words:
         raise ValueError(f"{path}: {key!r} mixes {NONE!r} with ids")
+    if len(set(words)) != len(words):
+        raise ValueError(f"{path}: {key!r} repeats an id")
     return words
 
 

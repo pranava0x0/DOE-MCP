@@ -72,20 +72,25 @@ def test_the_user_agent_carries_a_reachable_contact_path():
 
 
 BROWSER_SHAPES = re.compile(r"Mozilla/|AppleWebKit|Chrome/\d|Safari/\d|Gecko/")
+UA_HEADER = re.compile(r"[\"']user[-_]agent[\"']\s*(?:\]\s*=|:)\s*([^,}\n]+)",
+                       re.IGNORECASE)
 
 
 def test_nothing_in_the_package_wears_a_browser_user_agent():
     """Never circumventing a publisher's anti-automation posture is a rule in
     AGENTS.md, and the most common way to break it is one line: a browser
     User-Agent. DOE's own Genesis `i2-api` skill ships one (read
-    2026-10-20). This makes the rule checkable: no browser shape anywhere in
-    the package, and the one header assignment is the honest constant."""
+    2026-10-20). This makes the common slip checkable: no browser shape
+    written anywhere in the package, and every literal User-Agent header,
+    as a dict key or a subscript assignment, carries the honest constant. A
+    string assembled at runtime would get past it; review is the guard
+    there."""
     src = ROOT / "src" / "doe_mcp"
     for path in sorted(src.rglob("*.py")):
         text = path.read_text(encoding="utf-8")
         assert not BROWSER_SHAPES.search(text), (
             f"{path.relative_to(ROOT)} carries a browser User-Agent shape")
-        for match in re.finditer(r"[\"']User-Agent[\"']\s*:\s*([^,}\n]+)", text):
+        for match in UA_HEADER.finditer(text):
             assert match.group(1).strip() == "USER_AGENT", (
                 f"{path.relative_to(ROOT)} sets a User-Agent other than the "
                 f"honest constant: {match.group(1).strip()}")

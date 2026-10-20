@@ -29,6 +29,7 @@ from __future__ import annotations
 
 import re
 from pathlib import Path
+from urllib.parse import unquote
 
 import pytest
 import yaml
@@ -45,7 +46,9 @@ NAME = re.compile(r"[a-z0-9]+(-[a-z0-9]+)*")
 USE_CUE = re.compile(r"\b(use|when)\b", re.IGNORECASE)
 CONTROL = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]")
 CLIENT_TOKENS = ("$ARGUMENTS", "${CLAUDE_", "!`")
-LINK = re.compile(r"\]\(([^)\s]+)\)")
+LINK = re.compile(r"\]\(([^)\s]+)\)|^\s{0,3}\[[^\]]+\]:\s*(\S+)", re.MULTILINE)
+SCHEME = re.compile(r"[a-z][a-z0-9+.-]*:", re.IGNORECASE)
+FENCE = re.compile(r"^(```|~~~).*?^\1", re.MULTILINE | re.DOTALL)
 MAX_LINES = 500
 
 
@@ -55,7 +58,8 @@ def _syntax_problems(raw: str) -> list[str]:
     wins without a word). Read from the event and node streams instead."""
     problems = []
     if "\t" in raw:
-        problems.append("tab character in frontmatter")  # spec-fm-tabs-structural
+        # stricter than spec-fm-tabs-structural: a tab anywhere, not only in indentation
+        problems.append("tab character in frontmatter")
     if CONTROL.search(raw):
         problems.append("control character in frontmatter")  # spec-fm-control-characters-crash
     try:
@@ -71,7 +75,7 @@ def _syntax_problems(raw: str) -> list[str]:
         if isinstance(ev, (ev_.ScalarEvent, ev_.MappingStartEvent,
                            ev_.SequenceStartEvent)):
             implicit = getattr(ev, "implicit", True)
-            if ev.tag is not None and not (implicit is True or (
+            if ev.tag == "!" or ev.tag is not None and not (implicit is True or (
                     isinstance(implicit, tuple) and any(implicit))):
                 problems.append(f"explicit tag {ev.tag}")  # spec-fm-no-tags
 
@@ -79,6 +83,9 @@ def _syntax_problems(raw: str) -> list[str]:
         if isinstance(node, node_.MappingNode):
             seen = set()
             for key, value in node.value:
+                if not isinstance(key, node_.ScalarNode):
+                    problems.append("a mapping key that is not a plain value")
+                    continue
                 if key.value in seen:
                     problems.append(f"duplicate key {key.value!r}")  # spec-fm-no-duplicate-keys
                 seen.add(key.value)
@@ -152,10 +159,12 @@ def spec_problems(text: str, dirname: str, skill_dir: Path | None = None) -> lis
         if token in body:
             problems.append(f"client-specific token {token!r} in body")  # spec-sem-body-tokens-not-interpreted
     if skill_dir is not None:
-        for target in LINK.findall(body):
-            if re.match(r"[a-z]+:", target) or target.startswith("#"):
+        for inline, reference in LINK.findall(FENCE.sub("", body)):
+            target = inline or reference
+            if SCHEME.match(target) or target.startswith("#"):
                 continue
-            resolved = (skill_dir / target.split("#")[0]).resolve()
+            local = unquote(re.split(r"[?#]", target)[0])
+            resolved = (skill_dir / local).resolve()
             if not resolved.is_relative_to(skill_dir.resolve()) or not resolved.exists():
                 problems.append(f"relative link {target!r} leaves or misses the skill")  # spec-files-relative-paths-from-root
     return problems
@@ -212,6 +221,16 @@ def test_the_good_sample_passes():
      "duplicate key"),
     ("# Sample\n", "# Sample\nRun $ARGUMENTS\n", "client-specific token"),
     ("---\nname", "name", "no YAML frontmatter"),
+    ("name: sample-skill", "name: sample-skill\t", "tab character"),
+    ("name: sample-skill", "name: sample\x07skill", "control character"),
+    ("Use when someone asks where the thing is.",
+     "Use when someone asks. " + "x" * 1024, "over 1024"),
+    ("compatibility: Needs the DOE-MCP server doe-research.",
+     "compatibility: " + "x" * 501, "1 to 500"),
+    ("compatibility: Needs the DOE-MCP server doe-research.",
+     "compatibility: 3", "1 to 500"),
+    ("compatibility: Needs", "compatibility: ! Needs", "explicit tag"),
+    ("metadata:\n", "? [a]\n: b\nmetadata:\n", "not a plain value"),
 ])
 def test_each_rule_fails_the_file_it_describes(old, new, expect):
     bad = GOOD.replace(old, new, 1)
@@ -224,9 +243,36 @@ def test_a_relative_link_must_stay_inside_the_skill(tmp_path):
     skill = tmp_path / "sample-skill"
     skill.mkdir()
     (skill / "notes.md").write_text("x")
-    inside = GOOD + "\nSee [notes](notes.md).\n"
-    outside = GOOD + "\nSee [readme](../README.md).\n"
     (tmp_path / "README.md").write_text("x")
-    assert spec_problems(inside, "sample-skill", skill) == []
-    assert any("leaves or misses" in p
-               for p in spec_problems(outside, "sample-skill", skill))
+    fine = GOOD + ("\nSee [notes](notes.md), [the part](notes.md#part), "
+                   "[a query](notes.md?x=1), [news](News:comp.lang.python), "
+                   "[web](HTTPS://example.org) and [here](#sample).\n"
+                   "\n```\n[not a link](nowhere.md)\n```\n")
+    assert spec_problems(fine, "sample-skill", skill) == []
+    for bad in ("See [readme](../README.md).", "See [gone](missing.md).",
+                "[ref]: ../README.md"):
+        problems = spec_problems(GOOD + "\n" + bad + "\n", "sample-skill", skill)
+        assert any("leaves or misses" in p for p in problems), bad
+
+
+def test_the_reader_names_what_it_refuses(tmp_path):
+    """The reader is the one parser of the shape, so its refusals have to say
+    which rule a file broke rather than fail somewhere downstream."""
+    from doe_mcp.core.skills import read_skill
+    skill = tmp_path / "sample-skill" / "SKILL.md"
+    skill.parent.mkdir()
+    for text, expect in [
+        ("﻿" + GOOD, "byte-order mark"),
+        (GOOD.replace("---\n", "--- \n", 1), "exactly ---"),
+        (GOOD.replace("doe-mcp-servers: doe-research",
+                      "doe-mcp-servers: doe-research doe-research"), "repeats"),
+        (GOOD.replace("doe-mcp-credentials: none",
+                      "doe-mcp-credentials: none EIA_API_KEY"), "mixes"),
+    ]:
+        skill.write_text(text, encoding="utf-8")
+        with pytest.raises(ValueError, match=expect):
+            read_skill(skill)
+    # a form feed inside a value does not end the frontmatter early
+    skill.write_text(GOOD.replace("# Sample", "x\f\n---\n# Sample"),
+                     encoding="utf-8")
+    assert read_skill(skill).credentials == ()
