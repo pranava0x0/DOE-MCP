@@ -18,6 +18,7 @@ CASES = {
     "dataset-card": ("Geothermal dataset-card starter", "What can public catalog metadata fill in, and what still needs a dataset owner?"),
     "microbiome": ("Microbiome study and sample finder", "Find a shale microbiome study and inspect a sample of its biosamples."),
     "rulemaking": ("DOE rulemaking brief", "What did DOE publish, which docket does it belong to, and what dates did the publisher supply?"),
+    "outage-history": ("Historical outage-data finder", "Which EAGLE-I release covers 2021, and what else is needed to calculate an outage rate?"),
     "partial": ("One collection unavailable", "What can the remaining literature collection answer?"),
     "blocked": ("A capability not yet served", "Can DOE-MCP return the solar resource at a candidate site?"),
     "grid": ("BPA grid briefing", "What do the recorded five-minute load readings show?"),
@@ -131,6 +132,13 @@ async def run_workflow(ctx: RuntimeContext, case: str, *, mode: str = "recorded"
         limits += ["A sampled Federal Register search, not a complete docket or a determination of current legal effect.",
                    "Publication, effective and comment-close dates are separate publisher fields; missing dates remain unknown.",
                    "Search totals include excluded FERC documents. Docket comments and supporting materials were not retrieved."]
+    elif case == "outage-history":
+        found = await call("grid.find_outage_history", year=2021)
+        if not found.data["releases_for_year"]:
+            raise SourceUnavailable("no outage release found for the requested year")
+        limits += ["Release metadata only. No county outage files were downloaded and no outage counts or rates were calculated.",
+                   "Customers without power are not people without power; coverage is incomplete.",
+                   "The customer-count dataset has its own vintage. Pairing it with another year's outages can produce a misleading rate."]
     elif case == "blocked":
         await call("registry.search_sources", capability="solar.get_resource")
         limits += ["Registry inventory only. Proposed sources were not queried.",

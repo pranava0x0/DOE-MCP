@@ -13,7 +13,7 @@ summary{cursor:pointer;padding:12px 0;font-weight:650}.mono{font-family:monospac
 [hidden]{display:none!important}@media(max-width:600px){main,header,footer{padding:16px}td,th{padding:8px}article{padding:16px}}
 </style></head>
 <body><header><a href="index.html">DOE-MCP home</a><p class="kicker">Inspect the answer</p><h1>Public data. Visible evidence.</h1><p>Recorded examples across DOE research, energy, earth, materials and microbiome data. Inspect the returned records and what each search leaves unknown. No live requests run in this page. These examples require no account, API key or paid model.</p><p>Independent project. Not affiliated with the US Department of Energy.</p></header>
-<main><div id="picker" hidden><label for="workflow">Choose a walkthrough</label><select id="workflow"><option value="evidence">DOE evidence finder</option><option value="dataset-card">Geothermal dataset-card starter</option><option value="microbiome">Microbiome study and sample finder</option><option value="rulemaking">DOE rulemaking brief</option><option value="partial">One collection unavailable</option><option value="blocked">A capability not yet served</option><option value="grid">BPA grid briefing</option><option value="eia">CAISO demand briefing</option><option value="site">Rhode Island facility context</option><option value="earth">Environmental study brief</option><option value="materials">Materials evidence sheet</option></select></div><article id="evidence"><p class="kicker">recorded walkthrough</p><h2>DOE evidence finder</h2><p>Find perovskite solar research and inspect one returned record.</p><p class="answer">5 distinct records returned. Followed record 3484888: Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>A sampled literature search is not a systematic review.</li><li>A common topic does not prove that a paper and dataset are linked.</li></ul><p class="downloads"><a download href="data/demos/evidence.json">Download JSON evidence</a><a download href="data/demos/evidence.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo evidence --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="step"><h3>1. research.search_literature</h3><p class="mono">{&quot;query&quot;: &quot;perovskite solar&quot;, &quot;rows&quot;: 3}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>partial</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: osti-gov-records, osti-doe-pages</p><h4>Warnings</h4><ul><li>No published rate limit means none of us knows what the real one is. If OSTI ever publishes one, or answers an email about it, this field becomes a number and the politeness budget follows it.</li><li>No published rate limit, same as the rest of the OSTI family.</li></ul><div class="scroll"><table><caption>Counts reported by each collection; totals can overlap</caption><thead><tr><th scope="col">Collection</th><th scope="col">Matches</th><th scope="col">Returned</th></tr></thead><tbody><tr><td>OSTI.GOV Search API</td><td>8313</td><td>3</td></tr><tr><td>DOE PAGES (Public Access Gateway for Energy and Science)</td><td>5669</td><td>3</td></tr></tbody></table></div><h4>Publisher access recipes</h4><ul><li><a href="https://doi.org/10.2172/3484888" rel="noreferrer">Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Plan</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3484888" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.66816/tp5080615" rel="noreferrer">Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative </a> — </li><li><a href="https://www.osti.gov/servlets/purl/3625672" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.1016/j.nanoen.2026.112209" rel="noreferrer">Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3409109" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.1021/acsenergylett.6c01751" rel="noreferrer">Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide Pero</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3818255" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.1021/jacs.6c05503" rel="noreferrer">Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of Pero</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3818626" rel="noreferrer">Full text (OSTI)</a> — </li></ul><ul class="evidence"><li><strong>Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells</strong><br>OSTI.GOV Search API · record 3484888<br><a href="https://www.osti.gov/biblio/3484888" rel="noreferrer">Publisher record</a><br>Record date: 2026-08-27T11:00:26Z</li><li><strong>Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative Research and Development Final Report, CRADA Number CRD-19-00810</strong><br>OSTI.GOV Search API · record 3625672<br><a href="https://www.osti.gov/biblio/3625672" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-02T10:56:05Z</li><li><strong>Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;/sub&gt;-graphene oxide buried interface layer</strong><br>OSTI.GOV Search API · record 3409109<br><a href="https://www.osti.gov/biblio/3409109" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T15:49:56Z</li><li><strong>Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;/sub&gt;-graphene oxide buried interface layer</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3409109<br><a href="https://www.osti.gov/biblio/3409109" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T11:49:56Z</li><li><strong>Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide Perovskites</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3818255<br><a href="https://www.osti.gov/biblio/3818255" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-17T10:27:35Z</li><li><strong>Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of Perovskite Photovoltaics</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3818626<br><a href="https://www.osti.gov/biblio/3818626" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T08:11:09Z</li></ul><details><summary>Full response and evidence</summary><pre>{
+<main><div id="picker" hidden><label for="workflow">Choose a walkthrough</label><select id="workflow"><option value="evidence">DOE evidence finder</option><option value="dataset-card">Geothermal dataset-card starter</option><option value="microbiome">Microbiome study and sample finder</option><option value="rulemaking">DOE rulemaking brief</option><option value="outage-history">Historical outage-data finder</option><option value="partial">One collection unavailable</option><option value="blocked">A capability not yet served</option><option value="grid">BPA grid briefing</option><option value="eia">CAISO demand briefing</option><option value="site">Rhode Island facility context</option><option value="earth">Environmental study brief</option><option value="materials">Materials evidence sheet</option></select></div><article id="evidence"><p class="kicker">recorded walkthrough</p><h2>DOE evidence finder</h2><p>Find perovskite solar research and inspect one returned record.</p><p class="answer">5 distinct records returned. Followed record 3484888: Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>A sampled literature search is not a systematic review.</li><li>A common topic does not prove that a paper and dataset are linked.</li></ul><p class="downloads"><a download href="data/demos/evidence.json">Download JSON evidence</a><a download href="data/demos/evidence.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo evidence --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="step"><h3>1. research.search_literature</h3><p class="mono">{&quot;query&quot;: &quot;perovskite solar&quot;, &quot;rows&quot;: 3}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>partial</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: osti-gov-records, osti-doe-pages</p><h4>Warnings</h4><ul><li>No published rate limit means none of us knows what the real one is. If OSTI ever publishes one, or answers an email about it, this field becomes a number and the politeness budget follows it.</li><li>No published rate limit, same as the rest of the OSTI family.</li></ul><div class="scroll"><table><caption>Counts reported by each collection; totals can overlap</caption><thead><tr><th scope="col">Collection</th><th scope="col">Matches</th><th scope="col">Returned</th></tr></thead><tbody><tr><td>OSTI.GOV Search API</td><td>8313</td><td>3</td></tr><tr><td>DOE PAGES (Public Access Gateway for Energy and Science)</td><td>5669</td><td>3</td></tr></tbody></table></div><h4>Publisher access recipes</h4><ul><li><a href="https://doi.org/10.2172/3484888" rel="noreferrer">Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Plan</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3484888" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.66816/tp5080615" rel="noreferrer">Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative </a> — </li><li><a href="https://www.osti.gov/servlets/purl/3625672" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.1016/j.nanoen.2026.112209" rel="noreferrer">Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3409109" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.1021/acsenergylett.6c01751" rel="noreferrer">Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide Pero</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3818255" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.1021/jacs.6c05503" rel="noreferrer">Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of Pero</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3818626" rel="noreferrer">Full text (OSTI)</a> — </li></ul><ul class="evidence"><li><strong>Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells</strong><br>OSTI.GOV Search API · record 3484888<br><a href="https://www.osti.gov/biblio/3484888" rel="noreferrer">Publisher record</a><br>Record date: 2026-08-27T11:00:26Z</li><li><strong>Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative Research and Development Final Report, CRADA Number CRD-19-00810</strong><br>OSTI.GOV Search API · record 3625672<br><a href="https://www.osti.gov/biblio/3625672" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-02T10:56:05Z</li><li><strong>Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;/sub&gt;-graphene oxide buried interface layer</strong><br>OSTI.GOV Search API · record 3409109<br><a href="https://www.osti.gov/biblio/3409109" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T15:49:56Z</li><li><strong>Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;/sub&gt;-graphene oxide buried interface layer</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3409109<br><a href="https://www.osti.gov/biblio/3409109" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T11:49:56Z</li><li><strong>Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide Perovskites</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3818255<br><a href="https://www.osti.gov/biblio/3818255" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-17T10:27:35Z</li><li><strong>Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of Perovskite Photovoltaics</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3818626<br><a href="https://www.osti.gov/biblio/3818626" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T08:11:09Z</li></ul><details><summary>Full response and evidence</summary><pre>{
   &quot;data&quot;: {
     &quot;records&quot;: [
       {
@@ -1151,7 +1151,7 @@ summary{cursor:pointer;padding:12px 0;font-weight:650}.mono{font-family:monospac
     &quot;registry_revision&quot;: &quot;2026-10-20&quot;,
     &quot;request_id&quot;: &quot;recorded-workflow&quot;
   }
-}</pre></details></section><details><summary>Recording manifest and capture times</summary><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td>nmdc-runtime.json</td><td>2026-10-08T23:37:56.653277+00:00</td><td>a47cb8d2a0a93dcec1b30c3de2eca0769c8e5fb4fe9eca8edda61eb580432b78</td></tr></tbody></table></div></details></article><article id="rulemaking"><p class="kicker">recorded walkthrough</p><h2>DOE rulemaking brief</h2><p>What did DOE publish, which docket does it belong to, and what dates did the publisher supply?</p><p class="answer">Followed document 2026-17979. Publisher action: Notification of stay. Excluded from this page: 1 out-of-scope records from the search page.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>A sampled Federal Register search, not a complete docket or a determination of current legal effect.</li><li>Publication, effective and comment-close dates are separate publisher fields; missing dates remain unknown.</li><li>Search totals include excluded FERC documents. Docket comments and supporting materials were not retrieved.</li></ul><p class="downloads"><a download href="data/demos/rulemaking.json">Download JSON evidence</a><a download href="data/demos/rulemaking.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo rulemaking --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="step"><h3>1. docs.search_rulemakings</h3><p class="mono">{&quot;document_type&quot;: &quot;RULE&quot;, &quot;rows&quot;: 5}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>partial</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>complete</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: federal-register-doe</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Returned</th><th scope="col">Total matches</th></tr></thead><tbody><tr><td>4</td><td>1690</td></tr></tbody></table></div><div class="scroll"><table><caption>Publisher metadata; dates do not establish current legal effect</caption><thead><tr><th scope="col">Document</th><th scope="col">Action</th><th scope="col">Published</th><th scope="col">Effective</th><th scope="col">Comments close</th><th scope="col">Dockets</th></tr></thead><tbody><tr><td>2026-17979</td><td>Notification of stay.</td><td>2026-09-02</td><td>Unknown</td><td>Unknown</td><td>EERE-2026-FEMP-0067</td></tr><tr><td>2026-17872</td><td>Final rule.</td><td>2026-09-01</td><td>2026-10-01</td><td>Unknown</td><td>EERE-2025-OT-0031</td></tr><tr><td>2026-17381</td><td>Direct final rule; further delay of effective date.</td><td>2026-08-26</td><td>2025-05-16</td><td>Unknown</td><td>DOE-HQ-2025-0014</td></tr><tr><td>2026-16425</td><td>Interim final rule; request for comments.</td><td>2026-08-12</td><td>2026-08-12</td><td>2026-09-11</td><td>DOE-HQ-2026-0529</td></tr></tbody></table></div><p>total_matches is the Federal Register&#x27;s own count for this query and includes the documents dropped above. 1 of the 5 on this page were dropped, so the number of DOE documents matching is lower than total_matches and this tool cannot say by how much without reading every page.</p><ul class="evidence"><li><strong>Repeal of Fossil Fuel Restrictions for New Federal Buildings and Major Renovations of Federal Buildings</strong><br>Federal Register API (Department of Energy documents) · record 2026-17979<br>No publisher locator supplied<br>Record date: 2026-09-02</li><li><strong>Rescission of Production Incentives for Cellulosic Biofuels</strong><br>Federal Register API (Department of Energy documents) · record 2026-17872<br>No publisher locator supplied<br>Record date: 2026-09-01</li><li><strong>Rescinding Regulations for Loans for Minority Business Enterprises Seeking DOE Contracts and Assistance</strong><br>Federal Register API (Department of Energy documents) · record 2026-17381<br>No publisher locator supplied<br>Record date: 2026-08-26</li><li><strong>Rescission of DOE&#x27;s Procedures for Traffic Control on the Nevada Test Site</strong><br>Federal Register API (Department of Energy documents) · record 2026-16425<br>No publisher locator supplied<br>Record date: 2026-08-12</li></ul><details><summary>Full response and evidence</summary><pre>{
+}</pre></details></section><details><summary>Recording manifest and capture times</summary><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td>nmdc-runtime.json</td><td>2026-10-08T23:37:56.653277+00:00</td><td>a47cb8d2a0a93dcec1b30c3de2eca0769c8e5fb4fe9eca8edda61eb580432b78</td></tr></tbody></table></div></details></article><article id="rulemaking"><p class="kicker">recorded walkthrough</p><h2>DOE rulemaking brief</h2><p>What did DOE publish, which docket does it belong to, and what dates did the publisher supply?</p><p class="answer">Followed document 2026-17979. Publisher action: Notification of stay. Excluded from this page: 1 out-of-scope records.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>A sampled Federal Register search, not a complete docket or a determination of current legal effect.</li><li>Publication, effective and comment-close dates are separate publisher fields; missing dates remain unknown.</li><li>Search totals include excluded FERC documents. Docket comments and supporting materials were not retrieved.</li></ul><p class="downloads"><a download href="data/demos/rulemaking.json">Download JSON evidence</a><a download href="data/demos/rulemaking.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo rulemaking --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="step"><h3>1. docs.search_rulemakings</h3><p class="mono">{&quot;document_type&quot;: &quot;RULE&quot;, &quot;rows&quot;: 5}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>partial</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>complete</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: federal-register-doe</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Returned</th><th scope="col">Total matches</th></tr></thead><tbody><tr><td>4</td><td>1690</td></tr></tbody></table></div><div class="scroll"><table><caption>Publisher metadata; dates do not establish current legal effect</caption><thead><tr><th scope="col">Document</th><th scope="col">Action</th><th scope="col">Published</th><th scope="col">Effective</th><th scope="col">Comments close</th><th scope="col">Dockets</th></tr></thead><tbody><tr><td>2026-17979</td><td>Notification of stay.</td><td>2026-09-02</td><td>Unknown</td><td>Unknown</td><td>EERE-2026-FEMP-0067</td></tr><tr><td>2026-17872</td><td>Final rule.</td><td>2026-09-01</td><td>2026-10-01</td><td>Unknown</td><td>EERE-2025-OT-0031</td></tr><tr><td>2026-17381</td><td>Direct final rule; further delay of effective date.</td><td>2026-08-26</td><td>2025-05-16</td><td>Unknown</td><td>DOE-HQ-2025-0014</td></tr><tr><td>2026-16425</td><td>Interim final rule; request for comments.</td><td>2026-08-12</td><td>2026-08-12</td><td>2026-09-11</td><td>DOE-HQ-2026-0529</td></tr></tbody></table></div><p>total_matches is the Federal Register&#x27;s own count for this query and includes the documents dropped above. 1 of the 5 on this page were dropped, so the number of DOE documents matching is lower than total_matches and this tool cannot say by how much without reading every page.</p><ul class="evidence"><li><strong>Repeal of Fossil Fuel Restrictions for New Federal Buildings and Major Renovations of Federal Buildings</strong><br>Federal Register API (Department of Energy documents) · record 2026-17979<br>No publisher locator supplied<br>Record date: 2026-09-02</li><li><strong>Rescission of Production Incentives for Cellulosic Biofuels</strong><br>Federal Register API (Department of Energy documents) · record 2026-17872<br>No publisher locator supplied<br>Record date: 2026-09-01</li><li><strong>Rescinding Regulations for Loans for Minority Business Enterprises Seeking DOE Contracts and Assistance</strong><br>Federal Register API (Department of Energy documents) · record 2026-17381<br>No publisher locator supplied<br>Record date: 2026-08-26</li><li><strong>Rescission of DOE&#x27;s Procedures for Traffic Control on the Nevada Test Site</strong><br>Federal Register API (Department of Energy documents) · record 2026-16425<br>No publisher locator supplied<br>Record date: 2026-08-12</li></ul><details><summary>Full response and evidence</summary><pre>{
   &quot;data&quot;: {
     &quot;documents&quot;: [
       {
@@ -1471,7 +1471,326 @@ summary{cursor:pointer;padding:12px 0;font-weight:650}.mono{font-family:monospac
     &quot;registry_revision&quot;: &quot;2026-10-20&quot;,
     &quot;request_id&quot;: &quot;recorded-workflow&quot;
   }
-}</pre></details></section><details><summary>Recording manifest and capture times</summary><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td>federal-register-doe.json</td><td>Unknown; old recording</td><td>f1b81fd332bdb47df868b0d419aef22e387c2d3fb8ffb2649375d459a1a56a3b</td></tr></tbody></table></div></details></article><article id="partial"><p class="kicker">recorded walkthrough</p><h2>One collection unavailable</h2><p>What can the remaining literature collection answer?</p><p class="answer">3 distinct records returned. Followed record 3484888: Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells.</p><p class="notice">Simulated source outage. The publisher status was changed only in this isolated replay.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>A sampled literature search is not a systematic review.</li><li>A common topic does not prove that a paper and dataset are linked.</li></ul><p class="downloads"><a download href="data/demos/partial.json">Download JSON evidence</a><a download href="data/demos/partial.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo partial --output ./demo-output</pre></details><section class="step"><h3>1. research.search_literature</h3><p class="mono">{&quot;query&quot;: &quot;perovskite solar&quot;, &quot;rows&quot;: 3}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>partial</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: osti-gov-records</p><h4>Unavailable sources</h4><ul><li>osti-doe-pages: source_not_activated</li></ul><h4>Warnings</h4><ul><li>No published rate limit means none of us knows what the real one is. If OSTI ever publishes one, or answers an email about it, this field becomes a number and the politeness budget follows it.</li></ul><div class="scroll"><table><caption>Counts reported by each collection; totals can overlap</caption><thead><tr><th scope="col">Collection</th><th scope="col">Matches</th><th scope="col">Returned</th></tr></thead><tbody><tr><td>OSTI.GOV Search API</td><td>8313</td><td>3</td></tr></tbody></table></div><h4>Publisher access recipes</h4><ul><li><a href="https://doi.org/10.2172/3484888" rel="noreferrer">Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Plan</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3484888" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.66816/tp5080615" rel="noreferrer">Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative </a> — </li><li><a href="https://www.osti.gov/servlets/purl/3625672" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.1016/j.nanoen.2026.112209" rel="noreferrer">Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3409109" rel="noreferrer">Full text (OSTI)</a> — </li></ul><ul class="evidence"><li><strong>Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells</strong><br>OSTI.GOV Search API · record 3484888<br><a href="https://www.osti.gov/biblio/3484888" rel="noreferrer">Publisher record</a><br>Record date: 2026-08-27T11:00:26Z</li><li><strong>Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative Research and Development Final Report, CRADA Number CRD-19-00810</strong><br>OSTI.GOV Search API · record 3625672<br><a href="https://www.osti.gov/biblio/3625672" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-02T10:56:05Z</li><li><strong>Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;/sub&gt;-graphene oxide buried interface layer</strong><br>OSTI.GOV Search API · record 3409109<br><a href="https://www.osti.gov/biblio/3409109" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T15:49:56Z</li></ul><details><summary>Full response and evidence</summary><pre>{
+}</pre></details></section><details><summary>Recording manifest and capture times</summary><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td>federal-register-doe.json</td><td>Unknown; old recording</td><td>f1b81fd332bdb47df868b0d419aef22e387c2d3fb8ffb2649375d459a1a56a3b</td></tr></tbody></table></div></details></article><article id="outage-history"><p class="kicker">recorded walkthrough</p><h2>Historical outage-data finder</h2><p>Which EAGLE-I release covers 2021, and what else is needed to calculate an outage rate?</p><p class="answer">Found 1 release covering 2021. Documentation and customer-count metadata are shown separately; no outage rate is calculated.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>Release metadata only. No county outage files were downloaded and no outage counts or rates were calculated.</li><li>Customers without power are not people without power; coverage is incomplete.</li><li>The customer-count dataset has its own vintage. Pairing it with another year&#x27;s outages can produce a misleading rate.</li></ul><p class="downloads"><a download href="data/demos/outage-history.json">Download JSON evidence</a><a download href="data/demos/outage-history.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo outage-history --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="step"><h3>1. grid.find_outage_history</h3><p class="mono">{&quot;year&quot;: 2021}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>complete</td></tr><tr><td>source_claim</td><td>complete</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: ceser-eagle-i-outages</p><h4>Warnings</h4><ul><li>No published rate limit, same as the rest of the OSTI family.</li></ul><h4>Releases covering the requested year</h4><ul><li><a href="https://doi.org/10.13139/ORNLNCCS/1975202" rel="noreferrer">EAGLE-I Power Outage Data 2014 - 2022</a><br>Published: 2023-05-25</li></ul><h4>How to interpret the data</h4><ul><li><a href="https://doi.org/10.13139/ORNLNCCS/1975203" rel="noreferrer">EAGLE-I Power Outage Data Information</a><br>Published: 2023-05-25</li></ul><h4>Customer denominator — check its vintage</h4><ul><li><a href="https://doi.org/10.13139/ORNLNCCS/3022751" rel="noreferrer">EAGLE-I County Customer Dataset Fall 2025</a><br>Published: 2026-05-05</li></ul><p>Catalog records for EAGLE-I&#x27;s annual releases, not outage numbers. Each release is a set of county-level files of customers without power at 15-minute intervals behind its DOI. Customers out is not people out, coverage is roughly 92% of US customers with small utilities and cooperatives missing, and the county customer-count dataset is the denominator for a share-of-customers figure. That dataset is a snapshot dated in its own title, so a share for a different year mixes vintages.</p><h4>Publisher access recipes</h4><ul><li><a href="https://doi.org/10.13139/ORNLNCCS/1975202" rel="noreferrer">EAGLE-I Power Outage Data 2014 - 2022</a> — The files are held at ORNL&#x27;s repository behind this DOI; returned as data and never fetched here.</li><li><a href="https://doi.org/10.13139/ORNLNCCS/3022751" rel="noreferrer">EAGLE-I County Customer Dataset Fall 2025</a> — The files are held at ORNL&#x27;s repository behind this DOI; returned as data and never fetched here.</li><li><a href="https://doi.org/10.13139/ORNLNCCS/1975203" rel="noreferrer">EAGLE-I Power Outage Data Information</a> — The files are held at ORNL&#x27;s repository behind this DOI; returned as data and never fetched here.</li></ul><ul class="evidence"><li><strong>3022751</strong><br>EAGLE-I historical outage datasets · record 3022751<br><a href="https://www.osti.gov/dataexplorer/biblio/3022751" rel="noreferrer">Publisher record</a><br>Record date: 2026-05-05T20:00:00Z</li><li><strong>3019924</strong><br>EAGLE-I historical outage datasets · record 3019924<br><a href="https://www.osti.gov/dataexplorer/biblio/3019924" rel="noreferrer">Publisher record</a><br>Record date: 2026-01-31T19:00:00Z</li><li><strong>3012826</strong><br>EAGLE-I historical outage datasets · record 3012826<br><a href="https://www.osti.gov/dataexplorer/biblio/3012826" rel="noreferrer">Publisher record</a><br>Record date: 2026-02-18T19:00:00Z</li><li><strong>2500278</strong><br>EAGLE-I historical outage datasets · record 2500278<br><a href="https://www.osti.gov/dataexplorer/biblio/2500278" rel="noreferrer">Publisher record</a><br>Record date: 2025-04-02T20:00:00Z</li><li><strong>2297398</strong><br>EAGLE-I historical outage datasets · record 2297398<br><a href="https://www.osti.gov/dataexplorer/biblio/2297398" rel="noreferrer">Publisher record</a><br>Record date: 2024-02-11T19:00:00Z</li><li><strong>1975203</strong><br>EAGLE-I historical outage datasets · record 1975203<br><a href="https://www.osti.gov/dataexplorer/biblio/1975203" rel="noreferrer">Publisher record</a><br>Record date: 2023-05-25T20:00:00Z</li><li><strong>1975202</strong><br>EAGLE-I historical outage datasets · record 1975202<br><a href="https://www.osti.gov/dataexplorer/biblio/1975202" rel="noreferrer">Publisher record</a><br>Record date: 2023-05-25T20:00:00Z</li></ul><details><summary>Full response and evidence</summary><pre>{
+  &quot;data&quot;: {
+    &quot;releases&quot;: [
+      {
+        &quot;title&quot;: &quot;EAGLE-I Power Outage Data 2014 - 2022&quot;,
+        &quot;kind&quot;: &quot;outage_data&quot;,
+        &quot;covers_years&quot;: {
+          &quot;from&quot;: 2014,
+          &quot;to&quot;: 2022
+        },
+        &quot;doi&quot;: &quot;10.13139/ORNLNCCS/1975202&quot;,
+        &quot;doi_url&quot;: &quot;https://doi.org/10.13139/ORNLNCCS/1975202&quot;,
+        &quot;catalog_record&quot;: &quot;https://www.osti.gov/dataexplorer/biblio/1975202&quot;,
+        &quot;osti_ids&quot;: [
+          &quot;1975202&quot;
+        ],
+        &quot;published&quot;: &quot;2023-05-25&quot;
+      },
+      {
+        &quot;title&quot;: &quot;EAGLE-I Power Outage Data 2023&quot;,
+        &quot;kind&quot;: &quot;outage_data&quot;,
+        &quot;covers_years&quot;: {
+          &quot;from&quot;: 2023,
+          &quot;to&quot;: 2023
+        },
+        &quot;doi&quot;: &quot;10.13139/OLCF/2297398&quot;,
+        &quot;doi_url&quot;: &quot;https://doi.org/10.13139/OLCF/2297398&quot;,
+        &quot;catalog_record&quot;: &quot;https://www.osti.gov/dataexplorer/biblio/2297398&quot;,
+        &quot;osti_ids&quot;: [
+          &quot;2297398&quot;
+        ],
+        &quot;published&quot;: &quot;2024-02-11&quot;
+      },
+      {
+        &quot;title&quot;: &quot;EAGLE-I Power Outage Data 2024&quot;,
+        &quot;kind&quot;: &quot;outage_data&quot;,
+        &quot;covers_years&quot;: {
+          &quot;from&quot;: 2024,
+          &quot;to&quot;: 2024
+        },
+        &quot;doi&quot;: &quot;10.13139/OLCF/2500278&quot;,
+        &quot;doi_url&quot;: &quot;https://doi.org/10.13139/OLCF/2500278&quot;,
+        &quot;catalog_record&quot;: &quot;https://www.osti.gov/dataexplorer/biblio/2500278&quot;,
+        &quot;osti_ids&quot;: [
+          &quot;2500278&quot;
+        ],
+        &quot;published&quot;: &quot;2025-04-02&quot;
+      },
+      {
+        &quot;title&quot;: &quot;EAGLE-I Power Outage Data 2025&quot;,
+        &quot;kind&quot;: &quot;outage_data&quot;,
+        &quot;covers_years&quot;: {
+          &quot;from&quot;: 2025,
+          &quot;to&quot;: 2025
+        },
+        &quot;doi&quot;: &quot;10.13139/ORNLNCCS/3012826&quot;,
+        &quot;doi_url&quot;: &quot;https://doi.org/10.13139/ORNLNCCS/3012826&quot;,
+        &quot;catalog_record&quot;: &quot;https://www.osti.gov/dataexplorer/biblio/3012826&quot;,
+        &quot;osti_ids&quot;: [
+          &quot;3019924&quot;,
+          &quot;3012826&quot;
+        ],
+        &quot;published&quot;: &quot;2026-02-18&quot;
+      }
+    ],
+    &quot;documentation&quot;: [
+      {
+        &quot;title&quot;: &quot;EAGLE-I Power Outage Data Information&quot;,
+        &quot;kind&quot;: &quot;documentation&quot;,
+        &quot;covers_years&quot;: null,
+        &quot;doi&quot;: &quot;10.13139/ORNLNCCS/1975203&quot;,
+        &quot;doi_url&quot;: &quot;https://doi.org/10.13139/ORNLNCCS/1975203&quot;,
+        &quot;catalog_record&quot;: &quot;https://www.osti.gov/dataexplorer/biblio/1975203&quot;,
+        &quot;osti_ids&quot;: [
+          &quot;1975203&quot;
+        ],
+        &quot;published&quot;: &quot;2023-05-25&quot;
+      }
+    ],
+    &quot;customer_counts&quot;: [
+      {
+        &quot;title&quot;: &quot;EAGLE-I County Customer Dataset Fall 2025&quot;,
+        &quot;kind&quot;: &quot;customer_counts&quot;,
+        &quot;covers_years&quot;: null,
+        &quot;doi&quot;: &quot;10.13139/ORNLNCCS/3022751&quot;,
+        &quot;doi_url&quot;: &quot;https://doi.org/10.13139/ORNLNCCS/3022751&quot;,
+        &quot;catalog_record&quot;: &quot;https://www.osti.gov/dataexplorer/biblio/3022751&quot;,
+        &quot;osti_ids&quot;: [
+          &quot;3022751&quot;
+        ],
+        &quot;published&quot;: &quot;2026-05-05&quot;
+      }
+    ],
+    &quot;years_covered&quot;: {
+      &quot;from&quot;: 2014,
+      &quot;to&quot;: 2025
+    },
+    &quot;missing_years&quot;: [],
+    &quot;note&quot;: &quot;Catalog records for EAGLE-I&#x27;s annual releases, not outage numbers. Each release is a set of county-level files of customers without power at 15-minute intervals behind its DOI. Customers out is not people out, coverage is roughly 92% of US customers with small utilities and cooperatives missing, and the county customer-count dataset is the denominator for a share-of-customers figure. That dataset is a snapshot dated in its own title, so a share for a different year mixes vintages.&quot;,
+    &quot;requested_year&quot;: 2021,
+    &quot;releases_for_year&quot;: [
+      {
+        &quot;title&quot;: &quot;EAGLE-I Power Outage Data 2014 - 2022&quot;,
+        &quot;kind&quot;: &quot;outage_data&quot;,
+        &quot;covers_years&quot;: {
+          &quot;from&quot;: 2014,
+          &quot;to&quot;: 2022
+        },
+        &quot;doi&quot;: &quot;10.13139/ORNLNCCS/1975202&quot;,
+        &quot;doi_url&quot;: &quot;https://doi.org/10.13139/ORNLNCCS/1975202&quot;,
+        &quot;catalog_record&quot;: &quot;https://www.osti.gov/dataexplorer/biblio/1975202&quot;,
+        &quot;osti_ids&quot;: [
+          &quot;1975202&quot;
+        ],
+        &quot;published&quot;: &quot;2023-05-25&quot;
+      }
+    ]
+  },
+  &quot;provenance&quot;: [
+    {
+      &quot;id&quot;: &quot;source_01&quot;,
+      &quot;source_id&quot;: &quot;ceser-eagle-i-outages&quot;,
+      &quot;steward&quot;: &quot;Office of Cybersecurity, Energy Security, and Emergency Response&quot;,
+      &quot;host&quot;: &quot;Oak Ridge National Laboratory&quot;,
+      &quot;system&quot;: &quot;EAGLE-I historical outage datasets&quot;,
+      &quot;dataset&quot;: &quot;EAGLE-I historical outage datasets&quot;,
+      &quot;dataset_version&quot;: &quot;current&quot;,
+      &quot;authority_level&quot;: &quot;primary&quot;,
+      &quot;access_path&quot;: &quot;live&quot;,
+      &quot;source_updated_at&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;cache_age_seconds&quot;: 0
+    }
+  ],
+  &quot;evidence&quot;: [
+    {
+      &quot;id&quot;: &quot;evidence_01&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;3022751&quot;,
+      &quot;locator&quot;: &quot;https://www.osti.gov/dataexplorer/biblio/3022751&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2026-05-05T20:00:00Z&quot;,
+      &quot;transformations&quot;: [
+        &quot;normalize&quot;,
+        &quot;dedupe_by_doi&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_02&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;3019924&quot;,
+      &quot;locator&quot;: &quot;https://www.osti.gov/dataexplorer/biblio/3019924&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2026-01-31T19:00:00Z&quot;,
+      &quot;transformations&quot;: [
+        &quot;normalize&quot;,
+        &quot;dedupe_by_doi&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_03&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;3012826&quot;,
+      &quot;locator&quot;: &quot;https://www.osti.gov/dataexplorer/biblio/3012826&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2026-02-18T19:00:00Z&quot;,
+      &quot;transformations&quot;: [
+        &quot;normalize&quot;,
+        &quot;dedupe_by_doi&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_04&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;2500278&quot;,
+      &quot;locator&quot;: &quot;https://www.osti.gov/dataexplorer/biblio/2500278&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2025-04-02T20:00:00Z&quot;,
+      &quot;transformations&quot;: [
+        &quot;normalize&quot;,
+        &quot;dedupe_by_doi&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_05&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;2297398&quot;,
+      &quot;locator&quot;: &quot;https://www.osti.gov/dataexplorer/biblio/2297398&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2024-02-11T19:00:00Z&quot;,
+      &quot;transformations&quot;: [
+        &quot;normalize&quot;,
+        &quot;dedupe_by_doi&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_06&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;1975203&quot;,
+      &quot;locator&quot;: &quot;https://www.osti.gov/dataexplorer/biblio/1975203&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2023-05-25T20:00:00Z&quot;,
+      &quot;transformations&quot;: [
+        &quot;normalize&quot;,
+        &quot;dedupe_by_doi&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_07&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;1975202&quot;,
+      &quot;locator&quot;: &quot;https://www.osti.gov/dataexplorer/biblio/1975202&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2023-05-25T20:00:00Z&quot;,
+      &quot;transformations&quot;: [
+        &quot;normalize&quot;,
+        &quot;dedupe_by_doi&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    }
+  ],
+  &quot;coverage&quot;: {
+    &quot;registry&quot;: &quot;covered&quot;,
+    &quot;execution&quot;: &quot;complete&quot;,
+    &quot;pagination&quot;: &quot;complete&quot;,
+    &quot;source_claim&quot;: &quot;complete&quot;,
+    &quot;result&quot;: &quot;hit&quot;,
+    &quot;sources_searched&quot;: [
+      &quot;ceser-eagle-i-outages&quot;
+    ],
+    &quot;time_range&quot;: {
+      &quot;from&quot;: &quot;2014&quot;,
+      &quot;to&quot;: &quot;2025&quot;
+    },
+    &quot;known_limitations&quot;: [
+      &quot;Customers out is not people out, and an interval count is not an outage event. Turning the series into events or durations is a modelling choice the releases leave to the reader.&quot;,
+      &quot;OSTI lists the 2025 release twice, under two record ids with one DOI. The tool reports the release once and names both records.&quot;,
+      &quot;Pointers to the releases, not outage numbers. Each release is a set of files behind its DOI; this source says which release covers a year and where it is, and reading the files is a second step.&quot;,
+      &quot;Roughly 92% of customers, not all. The gap is small utilities and cooperatives, and it is not randomly distributed: rural areas are underrepresented in exactly the analyses that most want them.&quot;,
+      &quot;The live platform is not this. Anyone wanting current outage status needs the gated system or a utility&#x27;s own feed; this is history, published a year at a time.&quot;
+    ]
+  },
+  &quot;warnings&quot;: [
+    {
+      &quot;code&quot;: &quot;terms_note&quot;,
+      &quot;message&quot;: &quot;No published rate limit, same as the rest of the OSTI family.&quot;,
+      &quot;source_id&quot;: &quot;ceser-eagle-i-outages&quot;
+    }
+  ],
+  &quot;access_recipes&quot;: [
+    {
+      &quot;kind&quot;: &quot;doi&quot;,
+      &quot;uri&quot;: &quot;https://doi.org/10.13139/ORNLNCCS/1975202&quot;,
+      &quot;label&quot;: &quot;EAGLE-I Power Outage Data 2014 - 2022&quot;,
+      &quot;instructions&quot;: &quot;The files are held at ORNL&#x27;s repository behind this DOI; returned as data and never fetched here.&quot;,
+      &quot;requires_account&quot;: false,
+      &quot;approximate_size&quot;: null
+    },
+    {
+      &quot;kind&quot;: &quot;doi&quot;,
+      &quot;uri&quot;: &quot;https://doi.org/10.13139/ORNLNCCS/3022751&quot;,
+      &quot;label&quot;: &quot;EAGLE-I County Customer Dataset Fall 2025&quot;,
+      &quot;instructions&quot;: &quot;The files are held at ORNL&#x27;s repository behind this DOI; returned as data and never fetched here.&quot;,
+      &quot;requires_account&quot;: false,
+      &quot;approximate_size&quot;: null
+    },
+    {
+      &quot;kind&quot;: &quot;doi&quot;,
+      &quot;uri&quot;: &quot;https://doi.org/10.13139/ORNLNCCS/1975203&quot;,
+      &quot;label&quot;: &quot;EAGLE-I Power Outage Data Information&quot;,
+      &quot;instructions&quot;: &quot;The files are held at ORNL&#x27;s repository behind this DOI; returned as data and never fetched here.&quot;,
+      &quot;requires_account&quot;: false,
+      &quot;approximate_size&quot;: null
+    }
+  ],
+  &quot;_execution&quot;: {
+    &quot;server&quot;: &quot;doe-mcp&quot;,
+    &quot;server_version&quot;: &quot;0.1.0.dev0&quot;,
+    &quot;tool&quot;: &quot;grid.find_outage_history&quot;,
+    &quot;tool_contract_version&quot;: &quot;1&quot;,
+    &quot;envelope_version&quot;: &quot;1&quot;,
+    &quot;adapters&quot;: {
+      &quot;osti_family&quot;: &quot;1&quot;,
+      &quot;opendatasoft&quot;: &quot;1&quot;,
+      &quot;json_document&quot;: &quot;1&quot;,
+      &quot;curated&quot;: &quot;1&quot;,
+      &quot;eia_v2&quot;: &quot;1&quot;,
+      &quot;fueleconomy&quot;: &quot;1&quot;,
+      &quot;text_feed&quot;: &quot;1&quot;,
+      &quot;postgrest&quot;: &quot;1&quot;,
+      &quot;federal_register&quot;: &quot;1&quot;,
+      &quot;vips&quot;: &quot;1&quot;,
+      &quot;daymet&quot;: &quot;1&quot;,
+      &quot;essdive&quot;: &quot;1&quot;,
+      &quot;esgf&quot;: &quot;1&quot;,
+      &quot;sage&quot;: &quot;1&quot;,
+      &quot;optimade&quot;: &quot;1&quot;,
+      &quot;basis_sets&quot;: &quot;1&quot;,
+      &quot;facility_status&quot;: &quot;1&quot;,
+      &quot;nmdc&quot;: &quot;1&quot;,
+      &quot;none&quot;: &quot;1&quot;,
+      &quot;self_registry&quot;: &quot;1&quot;
+    },
+    &quot;registry_revision&quot;: &quot;2026-10-20&quot;,
+    &quot;request_id&quot;: &quot;recorded-workflow&quot;
+  }
+}</pre></details></section><details><summary>Recording manifest and capture times</summary><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td>ceser-eagle-i-outages.json</td><td>2026-10-08T23:09:56.476179+00:00</td><td>d3928d3e55187b8b5a951a6bbfffeb78d9faa00f645759c1845a98194e7a7685</td></tr></tbody></table></div></details></article><article id="partial"><p class="kicker">recorded walkthrough</p><h2>One collection unavailable</h2><p>What can the remaining literature collection answer?</p><p class="answer">3 distinct records returned. Followed record 3484888: Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells.</p><p class="notice">Simulated source outage. The publisher status was changed only in this isolated replay.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>A sampled literature search is not a systematic review.</li><li>A common topic does not prove that a paper and dataset are linked.</li></ul><p class="downloads"><a download href="data/demos/partial.json">Download JSON evidence</a><a download href="data/demos/partial.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo partial --output ./demo-output</pre></details><section class="step"><h3>1. research.search_literature</h3><p class="mono">{&quot;query&quot;: &quot;perovskite solar&quot;, &quot;rows&quot;: 3}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>partial</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: osti-gov-records</p><h4>Unavailable sources</h4><ul><li>osti-doe-pages: source_not_activated</li></ul><h4>Warnings</h4><ul><li>No published rate limit means none of us knows what the real one is. If OSTI ever publishes one, or answers an email about it, this field becomes a number and the politeness budget follows it.</li></ul><div class="scroll"><table><caption>Counts reported by each collection; totals can overlap</caption><thead><tr><th scope="col">Collection</th><th scope="col">Matches</th><th scope="col">Returned</th></tr></thead><tbody><tr><td>OSTI.GOV Search API</td><td>8313</td><td>3</td></tr></tbody></table></div><h4>Publisher access recipes</h4><ul><li><a href="https://doi.org/10.2172/3484888" rel="noreferrer">Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Plan</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3484888" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.66816/tp5080615" rel="noreferrer">Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative </a> — </li><li><a href="https://www.osti.gov/servlets/purl/3625672" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.1016/j.nanoen.2026.112209" rel="noreferrer">Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3409109" rel="noreferrer">Full text (OSTI)</a> — </li></ul><ul class="evidence"><li><strong>Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells</strong><br>OSTI.GOV Search API · record 3484888<br><a href="https://www.osti.gov/biblio/3484888" rel="noreferrer">Publisher record</a><br>Record date: 2026-08-27T11:00:26Z</li><li><strong>Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative Research and Development Final Report, CRADA Number CRD-19-00810</strong><br>OSTI.GOV Search API · record 3625672<br><a href="https://www.osti.gov/biblio/3625672" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-02T10:56:05Z</li><li><strong>Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;/sub&gt;-graphene oxide buried interface layer</strong><br>OSTI.GOV Search API · record 3409109<br><a href="https://www.osti.gov/biblio/3409109" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T15:49:56Z</li></ul><details><summary>Full response and evidence</summary><pre>{
   &quot;data&quot;: {
     &quot;records&quot;: [
       {

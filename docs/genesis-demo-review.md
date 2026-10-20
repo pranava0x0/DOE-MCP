@@ -60,3 +60,18 @@ microbiome summary so a missing total is shown as unknown.
 The inherited CI liveness failure is an OSTI timeout also reported on
 main. Replay tests do not establish future publisher uptime or model
 answer accuracy. No paid service was used and the PR is left unmerged.
+
+## Additional demos — October 20 follow-up
+
+Added `rulemaking` and `outage-history`, bringing the walkthrough count to
+twelve. The rulemaking demo follows a returned document number and keeps
+actions, dates, docket IDs and FERC exclusions visible. The outage finder
+separates releases, documentation and denominator metadata; it calculates
+no outage rate. Both support recorded replay and completed live keyless
+reads during verification. The landing page now highlights six workflows.
+
+All 717 tests pass, including empty-result refusal, rulemaking dependency,
+unknown-date preservation, denominator-vintage visibility and safe links.
+Ruff and registry validation pass. Schema and site regenerated. Tablet,
+phone and desktop browser checks cover the new picker entries and links.
+No new dependency, paid service or upstream code was introduced.

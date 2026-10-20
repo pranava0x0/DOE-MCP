@@ -106,7 +106,10 @@ def outcome(report) -> str:
         return f"{followed} Showing {samples['record_count']} biosamples out of {extent}."
     if case == 'rulemaking':
         document = report['steps'][1]['envelope']['data']
-        return f"Followed document {document['document_number']}. Publisher action: {(document.get('action') or 'Unknown').rstrip('.')}. Excluded from this page: {data.get('excluded_documents',0)} out-of-scope records from the search page."
+        return f"Followed document {document['document_number']}. Publisher action: {(document.get('action') or 'Unknown').rstrip('.')}. Excluded from this page: {data.get('excluded_documents',0)} out-of-scope records."
+    if case == 'outage-history':
+        count = len(data["releases_for_year"])
+        return f"Found {count} {'release' if count == 1 else 'releases'} covering {data['requested_year']}. Documentation and customer-count metadata are shown separately; no outage rate is calculated."
     if case == 'grid':
         latest = data['latest']
         return f"Latest recorded load: {latest['values']['Load']:,} MW at {latest['timestamp']} Pacific Time. This is a historical replay."
@@ -159,6 +162,10 @@ def step_view(step, number) -> str:
     if step['tool'] in {'docs.search_rulemakings','docs.get_rulemaking'}:
         extra=table(['Document','Action','Published','Effective','Comments close','Dockets'],[(r['document_number'],r.get('action'),r.get('publication_date'),r.get('effective_on'),r.get('comments_close_on'),', '.join(r.get('docket_ids',[]))) for r in records], 'Publisher metadata; dates do not establish current legal effect')
         extra += '<p>'+esc(data.get('total_matches_is_unfiltered',''))+'</p>'
+    if step['tool']=='grid.find_outage_history':
+        for key,label in [('releases_for_year','Releases covering the requested year'),('documentation','How to interpret the data'),('customer_counts','Customer denominator — check its vintage')]:
+            extra += '<h4>'+esc(label)+'</h4><ul>'+''.join('<li>'+link(r.get('doi_url'),r['title'])+'<br>Published: '+esc(r.get('published') or 'Unknown')+'</li>' for r in data.get(key,[]))+'</ul>'
+        extra += '<p>'+esc(data.get('note',''))+'</p>'
     if step['tool']=='bio.search_biosamples':
         extra=table(['Sample','Place','Collected','Environment'],[(r['sample_id'],r.get('place'),r.get('collected'),', '.join(r.get('ecosystem',[]))) for r in data['biosamples']], 'Sample metadata; no sequence data retrieved')
     if step['tool']=='grid.get_bpa_operations':

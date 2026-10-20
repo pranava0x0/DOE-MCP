@@ -1,0 +1,8 @@
+step,tool,source,record_id,locator,effective_at,mode
+1,grid.find_outage_history,ceser-eagle-i-outages,3022751,https://www.osti.gov/dataexplorer/biblio/3022751,2026-05-05T20:00:00Z,recorded
+1,grid.find_outage_history,ceser-eagle-i-outages,3019924,https://www.osti.gov/dataexplorer/biblio/3019924,2026-01-31T19:00:00Z,recorded
+1,grid.find_outage_history,ceser-eagle-i-outages,3012826,https://www.osti.gov/dataexplorer/biblio/3012826,2026-02-18T19:00:00Z,recorded
+1,grid.find_outage_history,ceser-eagle-i-outages,2500278,https://www.osti.gov/dataexplorer/biblio/2500278,2025-04-02T20:00:00Z,recorded
+1,grid.find_outage_history,ceser-eagle-i-outages,2297398,https://www.osti.gov/dataexplorer/biblio/2297398,2024-02-11T19:00:00Z,recorded
+1,grid.find_outage_history,ceser-eagle-i-outages,1975203,https://www.osti.gov/dataexplorer/biblio/1975203,2023-05-25T20:00:00Z,recorded
+1,grid.find_outage_history,ceser-eagle-i-outages,1975202,https://www.osti.gov/dataexplorer/biblio/1975202,2023-05-25T20:00:00Z,recorded

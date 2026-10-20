@@ -114,6 +114,7 @@ async def test_microbiome_follows_search_id_and_keeps_sample_scope(ctx):
 
 
 @pytest.mark.parametrize('case,tool,key', [
+    ('outage-history', 'grid.find_outage_history', 'releases_for_year'),
     ('rulemaking', 'docs.search_rulemakings', 'documents'),
     ('dataset-card', 'research.search_datasets', 'datasets'),
     ('microbiome', 'bio.search_studies', 'studies'),
@@ -185,3 +186,15 @@ async def test_rulemaking_follows_returned_document_and_preserves_unknown_date(c
     assert 'includes the documents dropped' in page
     doc['action'] = '<script>alert(1)</script>'
     assert '<script>alert(1)</script>' not in render([report])
+
+
+async def test_outage_demo_separates_release_and_denominator(ctx):
+    report = await run_workflow(ctx, 'outage-history')
+    data = report['steps'][0]['envelope']['data']
+    assert report['steps'][0]['args'] == {'year': 2021}
+    assert all(r['covers_years']['from'] <= 2021 <= r['covers_years']['to'] for r in data['releases_for_year'])
+    page = render([report])
+    assert 'Customer denominator' in page and 'Fall 2025' in page
+    assert 'no outage rate is calculated' in page
+    data['customer_counts'][0]['doi_url'] = 'javascript:alert(1)'
+    assert 'href="javascript:' not in render([report])

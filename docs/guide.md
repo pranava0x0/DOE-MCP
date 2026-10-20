@@ -25,7 +25,7 @@ error, and closes the process. Neither command needs an API key or a
 publisher connection.
 
 Available walkthroughs: `evidence`, `partial`, `blocked`, `grid`, `eia`,
-`site`, `earth`, `materials`, `dataset-card`, `microbiome`, and `rulemaking`. The partial case explicitly simulates one
+`site`, `earth`, `materials`, `dataset-card`, `microbiome`, `rulemaking`, and `outage-history`. The partial case explicitly simulates one
 unavailable source in an isolated replay. The blocked case reads registry
 inventory; it does not query the proposed publisher.
 
@@ -63,7 +63,7 @@ Earth search results and Oak Ridge modelled weather are separate examples,
 not a claimed study-site match. The materials walkthrough likewise keeps
 the computed GaN structure separate from the H/C/O basis-set example.
 
-The outage-history and facility-status tools have checked
+The facility-status tool has checked
 skill tasks but no walkthrough page yet; [the examples](../examples/README.md)
 show one call for each. Outage history returns the EAGLE-I release that
 covers a year and its DOI, not outage figures. The microbiome tools return
@@ -239,3 +239,13 @@ comment-close dates separate. Unknown dates stay unknown. FERC documents
 are excluded, and the publisher total still includes those exclusions.
 This is document metadata, not a legal-status assessment or a full docket.
 Add `--live` for a current search; no key or model is required.
+
+## Historical outage-data finder
+
+`doe-mcp demo outage-history --output ./outage-history` finds the EAGLE-I
+release covering 2021 and presents its DOI, documentation and the separate
+customer-count dataset. This locates files; it does not download county
+measurements or compute an outage rate. The denominator's vintage is shown
+in its publisher title, because mixing years can mislead. Customers are
+not people, and publisher coverage is incomplete. Add `--live` to check
+the public catalog without a key or model.
