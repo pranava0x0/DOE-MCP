@@ -7,7 +7,7 @@ from doe_mcp.core.envelope import Envelope
 from doe_mcp.core.errors import SourceUnavailable
 from doe_mcp.replay import fixture_manifest, load_replay_context
 from doe_mcp.workflows import CASES, evidence_csv, run_workflow
-from tools.render_workflows import link, render, series_chart
+from tools.render_workflows import link, outcome, render, series_chart
 
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURES = ROOT / 'tests' / 'fixtures'
@@ -155,3 +155,18 @@ async def test_microbiome_refuses_when_no_study_lists_samples(ctx, monkeypatch):
     with pytest.raises(SourceUnavailable, match='listed biosamples'):
         await run_workflow(ctx, 'microbiome')
     assert tried and len(tried) == len(set(tried))
+
+
+async def test_microbiome_outcome_reads_the_attempt_that_listed_samples(ctx):
+    """When an earlier study's follow-up came back empty, the summary must
+    describe the attempt that succeeded, not the first one."""
+    import copy
+    report = await run_workflow(ctx, 'microbiome')
+    search, samples = report['steps']
+    empty = copy.deepcopy(samples)
+    empty['envelope']['data'].update(biosamples=[], record_count=0)
+    report['steps'] = [search, empty, samples]
+    text = outcome(report)
+    assert 'Tried 2 returned studies' in text
+    assert f"Showing {samples['envelope']['data']['record_count']} biosamples" in text
+    assert 'Showing 0' not in text

@@ -96,10 +96,14 @@ def outcome(report) -> str:
     if case == 'dataset-card':
         return f"{len(report['drafts'])} metadata drafts from DOE Data Explorer. File checksums, reuse permissions and governance still need review."
     if case == 'microbiome':
-        samples = report['steps'][1]['envelope']['data']
+        # The workflow may try more than one study; the last attempt is the one that listed samples.
+        tries = [s for s in report['steps'] if s['tool'] == 'bio.search_biosamples']
+        samples = tries[-1]['envelope']['data']
         total = samples.get("total_matches")
         extent = f"{total} matches" if total is not None else "an unknown total"
-        return f"Followed one returned study. Showing {samples['record_count']} biosamples out of {extent}."
+        followed = ("Followed one returned study." if len(tries) == 1 else
+                    f"Tried {len(tries)} returned studies; only the last listed samples.")
+        return f"{followed} Showing {samples['record_count']} biosamples out of {extent}."
     if case == 'grid':
         latest = data['latest']
         return f"Latest recorded load: {latest['values']['Load']:,} MW at {latest['timestamp']} Pacific Time. This is a historical replay."
