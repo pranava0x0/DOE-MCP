@@ -75,6 +75,8 @@ coverage:
       status application answers a scripted client with an HTTP 403
       challenge and OLCF publishes no machine interface that could be
       found. Both are registered (alcf-status, olcf-status) as proposed.
+      On 2026-10-20 ALCF's documented IRI Facility API answered a plain
+      status read; it awaits a terms review (see alcf-status).
     - >
       Timestamps carry no UTC offset, and updated_at is when a row last
       changed, not when it was checked: a filesystem that has been fine

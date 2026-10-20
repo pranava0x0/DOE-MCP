@@ -1,0 +1,6 @@
+step,tool,source,record_id,locator,effective_at,mode
+1,docs.search_rulemakings,federal-register-doe,2026-17979,https://www.federalregister.gov/documents/2026/09/02/2026-17979/repeal-of-fossil-fuel-restrictions-for-new-federal-buildings-and-major-renovations-of-federal,2026-09-02,recorded
+1,docs.search_rulemakings,federal-register-doe,2026-17872,https://www.federalregister.gov/documents/2026/09/01/2026-17872/rescission-of-production-incentives-for-cellulosic-biofuels,2026-09-01,recorded
+1,docs.search_rulemakings,federal-register-doe,2026-17381,https://www.federalregister.gov/documents/2026/08/26/2026-17381/rescinding-regulations-for-loans-for-minority-business-enterprises-seeking-doe-contracts-and,2026-08-26,recorded
+1,docs.search_rulemakings,federal-register-doe,2026-16425,https://www.federalregister.gov/documents/2026/08/12/2026-16425/rescission-of-does-procedures-for-traffic-control-on-the-nevada-test-site,2026-08-12,recorded
+2,docs.get_rulemaking,federal-register-doe,2026-17979,https://www.federalregister.gov/documents/2026/09/02/2026-17979/repeal-of-fossil-fuel-restrictions-for-new-federal-buildings-and-major-renovations-of-federal,2026-09-02,recorded

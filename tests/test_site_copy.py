@@ -34,6 +34,9 @@ RENDERED = AUTHORED + ["docs/index.html", "docs/demos.html"]
 # (phrase, surfaces, why it is out). Matched case-insensitively as a
 # substring, so keep each one specific enough not to catch a legitimate use.
 BANNED = [
+    ("public data. visible evidence.", RENDERED,
+     "User rejected paired slogan fragments; use a descriptive title."),
+    ('class="kicker"', RENDERED, "User requested no eyebrow labels."),
     ("what it answers", RENDERED,
      "a brochure heading with a vague subject. Every other heading here is "
      "a concrete noun; this one asked the reader to guess what 'it' is."),
@@ -93,3 +96,43 @@ def test_the_generated_page_is_rebuilt_from_the_current_renderer():
     page = (ROOT / "docs" / "index.html")
     assert page.exists(), "run tools/build_site.py"
     assert "<section id=" in page.read_text(encoding="utf-8")
+
+
+def test_the_site_links_rendered_pages_not_raw_markdown():
+    """GitHub Pages renders `guide.md` to `guide.html` and serves the `.md`
+    URL itself as `text/markdown` (checked 2026-10-20), so a phone shows a
+    visitor raw markdown or a download. Relative links go to the `.html`."""
+    import re
+    for name in ("docs/index.html", "docs/demos.html"):
+        page = (ROOT / name).read_text(encoding="utf-8")
+        raw = [h for h in re.findall(r'href="([^"]+)"', page)
+               if not re.match(r"[a-z]+:", h) and re.search(r"\.md(#|$)", h)]
+        assert not raw, f"{name} links raw markdown: {raw}"
+
+
+def test_each_headline_number_links_to_what_it_counts():
+    """The four numbers at the top are the first thing a reader wants to
+    expand; each is one tap from its list, and every target exists."""
+    import re
+    page = (ROOT / "docs" / "index.html").read_text(encoding="utf-8")
+    funnel = page.split('class="funnel"', 1)[1].split("</div>", 1)[0]
+    targets = re.findall(r'class="step" href="([^"]+)"', funnel)
+    assert len(targets) == 4, targets
+    ids = set(re.findall(r'id="([^"]+)"', page))
+    for target in targets:
+        if target.startswith("#"):
+            assert target[1:] in ids, target
+        else:
+            assert (ROOT / "docs" / target.replace(".html", ".md")).exists(), target
+
+
+@pytest.mark.parametrize("name", ["docs/index.html", "docs/demos.html"])
+def test_every_id_on_a_page_is_unique(name):
+    """An in-page link lands on the first element with its id; a second
+    one is unreachable, which is how the skills link once opened the
+    architecture heading instead of the skills."""
+    import re
+    from collections import Counter
+    page = (ROOT / name).read_text(encoding="utf-8")
+    dupes = [i for i, n in Counter(re.findall(r'\bid="([^"]+)"', page)).items() if n > 1]
+    assert not dupes, dupes

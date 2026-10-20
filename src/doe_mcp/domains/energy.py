@@ -835,7 +835,7 @@ async def find_outage_history(ctx: RuntimeContext,
             data["note_for_year"] = _no_release_note(year, spans)
     for r in selected + data["customer_counts"] + data["documentation"]:
         if r["doi_url"]:
-            b.add_recipe(RecipeKind.doi, r["doi_url"], label=r["title"][:80],
+            b.add_recipe(RecipeKind.doi, r["doi_url"], label=r["title"],
                          instructions="The files are held at ORNL's "
                                       "repository behind this DOI; returned "
                                       "as data and never fetched here.")

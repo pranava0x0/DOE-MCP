@@ -51,3 +51,6 @@ checked:
         any:
           id: regulations-gov-doe
 reader: []
+workflows:
+- task: 1
+  case: rulemaking

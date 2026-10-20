@@ -15,6 +15,12 @@ from .servers.build import registries
 
 CASES = {
     "evidence": ("DOE evidence finder", "Find perovskite solar research and inspect one returned record."),
+    "dataset-card": ("Geothermal dataset-card starter", "What can public catalog metadata fill in, and what still needs a dataset owner?"),
+    "microbiome": ("Microbiome study and sample finder", "Find a shale microbiome study and inspect a sample of its biosamples."),
+    "rulemaking": ("DOE rulemaking brief", "What did DOE publish, which docket does it belong to, and what dates did the publisher supply?"),
+    "outage-history": ("Historical outage-data finder", "Which EAGLE-I release covers 2021, and what else is needed to calculate an outage rate?"),
+    "find-data": ("Does DOE publish this?", "Where would I find geothermal data from NREL, and what does an empty catalog mean?"),
+    "facility-status": ("NERSC facility status", "Is Perlmutter up on the recorded board, and is maintenance scheduled?"),
     "partial": ("One collection unavailable", "What can the remaining literature collection answer?"),
     "blocked": ("A capability not yet served", "Can DOE-MCP return the solar resource at a candidate site?"),
     "grid": ("BPA grid briefing", "What do the recorded five-minute load readings show?"),
@@ -59,6 +65,7 @@ async def run_workflow(ctx: RuntimeContext, case: str, *, mode: str = "recorded"
         manifest.lifecycle.blocked_reason = "Simulated outage for this recorded demonstration"
     steps: list[dict] = []
     limits: list[str] = []
+    drafts: list[dict] = []
 
     async def call(tool_name: str, **args) -> Envelope:
         env = await tool_spec(tool_name).fn(ctx, **args)
@@ -81,6 +88,77 @@ async def run_workflow(ctx: RuntimeContext, case: str, *, mode: str = "recorded"
             raise SourceUnavailable("selected record is no longer available")
         limits += ["A sampled literature search is not a systematic review.",
                    "A common topic does not prove that a paper and dataset are linked."]
+    elif case == "dataset-card":
+        found = await call("research.search_datasets", site_code="DOE-GDR", rows=2)
+        for record in found.data["datasets"]:
+            refs = [{"source_ref": e.source_ref, "record_id": e.record_id,
+                     "locator": e.locator} for e in found.evidence
+                    if e.record_id == record["id"]]
+            drafts.append({"status": "draft_metadata_only", "metadata": record,
+                           "evidence": refs,
+                           "needs_owner_review": [
+                               "Downloadable files and access conditions",
+                               "File formats, sizes and checksums",
+                               "License and permitted reuse",
+                               "Sensitivity and governance review",
+                               "Data quality and suitability for AI use"]})
+        if not drafts:
+            raise SourceUnavailable("dataset search returned no metadata to draft")
+        limits += ["A documentation starter, not a validated Genesis datacard or Croissant record.",
+                   "Only catalog metadata was read; no dataset files were downloaded or inspected.",
+                   "A public metadata record does not establish that the underlying data is freely accessible or licensed for reuse."]
+    elif case == "microbiome":
+        found = await call("bio.search_studies", text="shale")
+        studies = found.data["studies"]
+        if not studies:
+            raise SourceUnavailable("no shale study returned to follow")
+        # A parent study can list no samples of its own; an empty follow-up is
+        # not a biosample walkthrough, so try the next returned study.
+        for study in studies[:3]:
+            samples = await call("bio.search_biosamples", study_id=study["study_id"], rows=5)
+            if samples.data.get("biosamples"):
+                break
+        else:
+            raise SourceUnavailable("no returned shale study listed biosamples to follow")
+        limits += ["Study and sample metadata only; no sequences, assemblies or annotations were downloaded.",
+                   "At most five samples are shown; they do not establish study completeness or biological function.",
+                   "The publisher's access recipes distinguish dataset DOIs from award DOIs; a DOI alone does not establish free access."]
+    elif case == "rulemaking":
+        found = await call("docs.search_rulemakings", document_type="RULE", rows=5)
+        documents = found.data["documents"]
+        if not documents:
+            raise SourceUnavailable("no DOE rulemaking returned to follow")
+        detail = await call("docs.get_rulemaking", document_number=documents[0]["document_number"])
+        if detail.coverage.result.value != "hit":
+            raise SourceUnavailable("selected DOE rulemaking is no longer available")
+        limits += ["A sampled Federal Register search, not a complete docket or a determination of current legal effect.",
+                   "Publication, effective and comment-close dates are separate publisher fields; missing dates remain unknown.",
+                   "Search totals include excluded FERC documents. Docket comments and supporting materials were not retrieved."]
+    elif case == "outage-history":
+        found = await call("grid.find_outage_history", year=2021)
+        if not found.data["releases_for_year"]:
+            raise SourceUnavailable("no outage release found for the requested year")
+        limits += ["Release metadata only. No county outage files were downloaded and no outage counts or rates were calculated.",
+                   "Customers without power are not people without power; coverage is incomplete.",
+                   "The customer-count dataset has its own vintage. Pairing it with another year's outages can produce a misleading rate."]
+    elif case == "find-data":
+        org = await call("registry.resolve_org", query="NREL")
+        if not org.data.get("resolved"):
+            raise SourceUnavailable("the organization did not resolve")
+        await call("registry.search_sources", text="geothermal")
+        found = await call("discovery.search_all_catalogs", query="geothermal", per_catalog=2)
+        if not found.data["results"]:
+            raise SourceUnavailable("no catalog returned a geothermal record")
+        limits += ["NREL is now the National Laboratory of the Rockies; nrel.gov has no DNS, so an old link or acronym can return nothing without an error.",
+                   "Two of the four catalogs are harvested files with an old newest entry; zero matches there is not evidence that DOE holds nothing.",
+                   "Registry sources marked proposed were named, not queried."]
+    elif case == "facility-status":
+        board = await call("compute.facility_status")
+        if not board.data["systems"]:
+            raise SourceUnavailable("the status board returned no systems")
+        limits += ["One facility. ALCF and OLCF are registered and not read here; their absence says nothing about whether they are up.",
+                   "Status is not queue position, allocation or permission to run a job.",
+                   "The board's timestamps carry no time zone, and updated_at is the last change, not the last check. This is a recorded board, not current status."]
     elif case == "blocked":
         await call("registry.search_sources", capability="solar.get_resource")
         limits += ["Registry inventory only. Proposed sources were not queried.",
@@ -128,6 +206,7 @@ async def run_workflow(ctx: RuntimeContext, case: str, *, mode: str = "recorded"
                      {source["source_id"] for step in steps for source in step["envelope"]["provenance"]}],
         "limitations": limits,
         "steps": freeze(steps, clock) if mode == "recorded" else steps,
+        **({"drafts": drafts} if drafts else {}),
     }
 
 

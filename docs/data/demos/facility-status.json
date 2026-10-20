@@ -1,0 +1,636 @@
+{
+  "format_version": "1",
+  "case": "facility-status",
+  "title": "NERSC facility status",
+  "question": "Is Perlmutter up on the recorded board, and is maintenance scheduled?",
+  "mode": "recorded",
+  "simulation": false,
+  "registry_revision": "2026-10-20",
+  "generated_at": null,
+  "replay_clock": "2026-10-20T00:00:00Z",
+  "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
+  "fixtures": [
+    {
+      "file": "nersc-status.json",
+      "sha256": "1d6915f666940b312c349bfb9e9dcb32e123e89850582f3f7b2e282aeda911a7",
+      "captured_at": "2026-10-08T23:12:37.080875+00:00"
+    }
+  ],
+  "limitations": [
+    "One facility. ALCF and OLCF are registered and not read here; their absence says nothing about whether they are up.",
+    "Status is not queue position, allocation or permission to run a job.",
+    "The board's timestamps carry no time zone, and updated_at is the last change, not the last check. This is a recorded board, not current status."
+  ],
+  "steps": [
+    {
+      "tool": "compute.facility_status",
+      "args": {},
+      "envelope": {
+        "data": {
+          "facility": "NERSC",
+          "systems": [
+            {
+              "name": "perlmutter",
+              "full_name": "Perlmutter",
+              "type": "compute",
+              "status": "active",
+              "description": "System is active",
+              "notes": [],
+              "updated_at": "2026-09-22T17:00:00"
+            },
+            {
+              "name": "global_common",
+              "full_name": "Global Common",
+              "type": "filesystem",
+              "status": "active",
+              "description": "System is active",
+              "notes": [],
+              "updated_at": "2026-08-03T17:35:00"
+            },
+            {
+              "name": "community_filesystem",
+              "full_name": "Community File System (CFS)",
+              "type": "filesystem",
+              "status": "active",
+              "description": "System is active",
+              "notes": [],
+              "updated_at": "2026-08-03T17:35:00"
+            },
+            {
+              "name": "global_homes",
+              "full_name": "Global Homes",
+              "type": "filesystem",
+              "status": "active",
+              "description": "System is active",
+              "notes": [],
+              "updated_at": "2026-08-06T15:30:30"
+            },
+            {
+              "name": "dtns",
+              "full_name": "Data Transfer Nodes",
+              "type": "service",
+              "status": "active",
+              "description": "System is active",
+              "notes": [],
+              "updated_at": "2026-09-24T11:00:00"
+            },
+            {
+              "name": "sgns",
+              "full_name": "Science Gateway Services",
+              "type": "service",
+              "status": "active",
+              "description": "System is active",
+              "notes": [],
+              "updated_at": "2026-08-03T17:35:00"
+            },
+            {
+              "name": "sciencedatabases",
+              "full_name": "Science Databases",
+              "type": "service",
+              "status": "active",
+              "description": "System is active",
+              "notes": [],
+              "updated_at": "2026-09-16T12:15:00"
+            },
+            {
+              "name": "spin",
+              "full_name": "Spin",
+              "type": "service",
+              "status": "active",
+              "description": "System is active",
+              "notes": [],
+              "updated_at": "2026-09-16T17:40:00"
+            },
+            {
+              "name": "globus",
+              "full_name": "Globus",
+              "type": "service",
+              "status": "active",
+              "description": "System is active",
+              "notes": [],
+              "updated_at": "2026-08-03T17:35:00"
+            },
+            {
+              "name": "jupyter",
+              "full_name": "Jupyter",
+              "type": "service",
+              "status": "active",
+              "description": "System is active",
+              "notes": [],
+              "updated_at": "2026-08-16T08:55:00"
+            },
+            {
+              "name": "website",
+              "full_name": "NERSC Website",
+              "type": "service",
+              "status": "active",
+              "description": "System is active",
+              "notes": [],
+              "updated_at": "2026-06-09T15:25:00"
+            },
+            {
+              "name": "network",
+              "full_name": "Network",
+              "type": "service",
+              "status": "active",
+              "description": "System is active",
+              "notes": [],
+              "updated_at": "2026-09-16T10:21:00"
+            },
+            {
+              "name": "authentication_servi",
+              "full_name": "Authentication Services",
+              "type": "service",
+              "status": "active",
+              "description": "System is active",
+              "notes": [],
+              "updated_at": "2026-09-01T11:00:00"
+            },
+            {
+              "name": "thinlinc",
+              "full_name": "Thinlinc",
+              "type": "service",
+              "status": "active",
+              "description": "System is active",
+              "notes": [],
+              "updated_at": "2026-09-21T09:25:00"
+            },
+            {
+              "name": "helpportal",
+              "full_name": "Help Portal",
+              "type": "service",
+              "status": "active",
+              "description": "System is active",
+              "notes": [],
+              "updated_at": "2026-08-03T17:35:00"
+            },
+            {
+              "name": "iris",
+              "full_name": "IRIS",
+              "type": "service",
+              "status": "active",
+              "description": "System is active",
+              "notes": [],
+              "updated_at": "2026-10-08T14:05:00"
+            },
+            {
+              "name": "archive",
+              "full_name": "HPSS Archive (User)",
+              "type": "filesystem",
+              "status": "active",
+              "description": "System is active",
+              "notes": [],
+              "updated_at": "2026-10-07T13:25:00"
+            },
+            {
+              "name": "container_runtimes",
+              "full_name": "Container Runtimes",
+              "type": "service",
+              "status": "active",
+              "description": "System is active",
+              "notes": [],
+              "updated_at": "2026-09-16T20:10:41"
+            },
+            {
+              "name": "regent",
+              "full_name": "HPSS Regent (Backup)",
+              "type": "filesystem",
+              "status": "active",
+              "description": "System is active",
+              "notes": [],
+              "updated_at": "2026-09-30T08:47:00"
+            }
+          ],
+          "record_count": 19,
+          "systems_on_board": 19,
+          "not_active": [],
+          "timestamps": "The board's timestamps carry no UTC offset and the response does not state a zone. They are printed as NERSC wrote them; NERSC is in Berkeley, California, but the zone is an inference this project does not make for the caller.",
+          "note": "The facility's own public status board. updated_at is when a row last changed, not when it was checked, so an old date on an active system means a quiet system. Nothing here describes a user's jobs, queue or allocation.",
+          "planned_outages": [
+            {
+              "system": "container_runtimes",
+              "start_at": "2026-10-21T06:00:00",
+              "end_at": "2026-10-21T22:00:00",
+              "description": "Perlmutter Monthly Maintenance",
+              "notes": "NERSC engineers will be performing a monthly scheduled maintenance.",
+              "status": "Planned"
+            },
+            {
+              "system": "perlmutter",
+              "start_at": "2026-10-21T06:00:00",
+              "end_at": "2026-10-21T22:00:00",
+              "description": "Perlmutter Monthly Maintenance",
+              "notes": "NERSC engineers will be performing a monthly scheduled maintenance.",
+              "status": "Planned"
+            },
+            {
+              "system": "archive",
+              "start_at": "2026-11-01T19:00:00",
+              "end_at": "2026-11-06T17:00:00",
+              "description": "HPSS Archive - Planned Maintenance",
+              "notes": "HPSS Archive upgrade from V9.3 to V11.3. The main HPSS User environment, Archive, will be shut down from 7 pm (Pacific Time) on November 1 until 5 pm on November 6, 2026, while a new version of the system is deployed. During this five-day period, it will not be possible to store or retrieve data from the system. Users are strongly encouraged to plan accordingly.",
+              "status": "Planned"
+            },
+            {
+              "system": "container_runtimes",
+              "start_at": "2026-11-11T06:00:00",
+              "end_at": "2026-11-11T22:00:00",
+              "description": "Perlmutter Monthly Maintenance",
+              "notes": "NERSC engineers will be performing a monthly scheduled maintenance.",
+              "status": "Planned"
+            },
+            {
+              "system": "perlmutter",
+              "start_at": "2026-11-11T06:00:00",
+              "end_at": "2026-11-11T22:00:00",
+              "description": "Perlmutter Monthly Maintenance",
+              "notes": "NERSC engineers will be performing a monthly scheduled maintenance.",
+              "status": "Planned"
+            },
+            {
+              "system": "container_runtimes",
+              "start_at": "2026-12-16T06:00:00",
+              "end_at": "2026-12-16T22:00:00",
+              "description": "Perlmutter Monthly Maintenance",
+              "notes": "NERSC engineers will be performing a monthly scheduled maintenance.",
+              "status": "Planned"
+            },
+            {
+              "system": "perlmutter",
+              "start_at": "2026-12-16T06:00:00",
+              "end_at": "2026-12-16T22:00:00",
+              "description": "Perlmutter Monthly Maintenance",
+              "notes": "NERSC engineers will be performing a monthly scheduled maintenance.",
+              "status": "Planned"
+            }
+          ],
+          "other_facilities": [
+            {
+              "source_id": "alcf-status",
+              "name": "ALCF computing status",
+              "why_not_read": "Blocked probe. The status page is an Angular application and its data paths return HTTP 403 with a Cloudflare challenge to a scripted client, which under decision 0007 is blocked_probe and NOT gated: a WAF refusing this client shape says nothing about whether the data is public. One real-browser check, watching the application's own network calls, would settle both the endpoint and the posture. Joins the blocked-probe backlog. Note, 2026-10-20. One plain GET of the status page answered 200 with the application shell, so the 403 did not recur; one probe from one machine is not evidence that the posture changed. The page's own data path was found and is not a candidate: it is undocumented and carries queued and running job records, which this project does not read for any facility. ALCF documents a separate machine route, its implementation of the IRI Facility API at api.alcf.anl.gov, whose status reads answered a plain GET with JSON. Under decision 0025 that is a different source with its own terms, and it waits on a terms review before it is registered; this manifest stays proposed until then."
+            },
+            {
+              "source_id": "olcf-status",
+              "name": "OLCF center status",
+              "why_not_read": "No machine interface found. status.olcf.ornl.gov does not resolve in DNS; the center-status page is a 1.5 KB stub; and the lab site's WordPress API exposes only WordPress's own routes, where /wp/v2/statuses is post statuses rather than system status. The next step is asking OLCF whether one exists rather than guessing at more paths."
+            }
+          ],
+          "other_facilities_note": "Registered and not readable by DOE-MCP. Their absence from this answer says nothing about whether they are up."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "nersc-status",
+            "steward": "Lawrence Berkeley National Laboratory",
+            "funder": "Office of Science",
+            "system": "NERSC Superfacility API (system status)",
+            "dataset": "NERSC Superfacility API (system status)",
+            "dataset_version": "current",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "cache_age_seconds": 0
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "perlmutter",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-09-22T17:00:00",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_02",
+            "source_ref": "source_01",
+            "record_id": "global_common",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-08-03T17:35:00",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_03",
+            "source_ref": "source_01",
+            "record_id": "community_filesystem",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-08-03T17:35:00",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_04",
+            "source_ref": "source_01",
+            "record_id": "global_homes",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-08-06T15:30:30",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_05",
+            "source_ref": "source_01",
+            "record_id": "dtns",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-09-24T11:00:00",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_06",
+            "source_ref": "source_01",
+            "record_id": "sgns",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-08-03T17:35:00",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_07",
+            "source_ref": "source_01",
+            "record_id": "sciencedatabases",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-09-16T12:15:00",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_08",
+            "source_ref": "source_01",
+            "record_id": "spin",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-09-16T17:40:00",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_09",
+            "source_ref": "source_01",
+            "record_id": "globus",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-08-03T17:35:00",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_10",
+            "source_ref": "source_01",
+            "record_id": "jupyter",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-08-16T08:55:00",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_11",
+            "source_ref": "source_01",
+            "record_id": "website",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-06-09T15:25:00",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_12",
+            "source_ref": "source_01",
+            "record_id": "network",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-09-16T10:21:00",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_13",
+            "source_ref": "source_01",
+            "record_id": "authentication_servi",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-09-01T11:00:00",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_14",
+            "source_ref": "source_01",
+            "record_id": "thinlinc",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-09-21T09:25:00",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_15",
+            "source_ref": "source_01",
+            "record_id": "helpportal",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-08-03T17:35:00",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_16",
+            "source_ref": "source_01",
+            "record_id": "iris",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-10-08T14:05:00",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_17",
+            "source_ref": "source_01",
+            "record_id": "archive",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-10-07T13:25:00",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_18",
+            "source_ref": "source_01",
+            "record_id": "container_runtimes",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-09-16T20:10:41",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_19",
+            "source_ref": "source_01",
+            "record_id": "regent",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-09-30T08:47:00",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_20",
+            "source_ref": "source_01",
+            "record_id": "container_runtimes@2026-10-21T06:00:00",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-10-21T06:00:00",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_21",
+            "source_ref": "source_01",
+            "record_id": "perlmutter@2026-10-21T06:00:00",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-10-21T06:00:00",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_22",
+            "source_ref": "source_01",
+            "record_id": "archive@2026-11-01T19:00:00",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-11-01T19:00:00",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_23",
+            "source_ref": "source_01",
+            "record_id": "container_runtimes@2026-11-11T06:00:00",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-11-11T06:00:00",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_24",
+            "source_ref": "source_01",
+            "record_id": "perlmutter@2026-11-11T06:00:00",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-11-11T06:00:00",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_25",
+            "source_ref": "source_01",
+            "record_id": "container_runtimes@2026-12-16T06:00:00",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-12-16T06:00:00",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_26",
+            "source_ref": "source_01",
+            "record_id": "perlmutter@2026-12-16T06:00:00",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-12-16T06:00:00",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "nersc-status"
+          ],
+          "known_limitations": [
+            "One facility. OLCF and ALCF were checked on 2026-09-08: ALCF's status application answers a scripted client with an HTTP 403 challenge and OLCF publishes no machine interface that could be found. Both are registered (alcf-status, olcf-status) as proposed. On 2026-10-20 ALCF's documented IRI Facility API answered a plain status read; it awaits a terms review (see alcf-status).",
+            "Planned outages only. The publisher's record of past outages is a separate route this tool does not read.",
+            "Status, not availability for any user. Nothing about a user's jobs, queue position or allocation is public, and this project asks for none of it.",
+            "Timestamps carry no UTC offset, and updated_at is when a row last changed, not when it was checked: a filesystem that has been fine for two months reads two months old."
+          ]
+        },
+        "warnings": [],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "compute.facility_status",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-10-20",
+          "request_id": "recorded-workflow"
+        }
+      }
+    }
+  ]
+}

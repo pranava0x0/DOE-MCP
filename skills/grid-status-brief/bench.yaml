@@ -69,3 +69,5 @@ evaluation:
 workflows:
 - task: 2
   case: grid
+- task: 5
+  case: outage-history

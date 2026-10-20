@@ -349,7 +349,8 @@ async def list_neighbors(ctx: RuntimeContext, capability: str = "") -> Envelope:
     rows = []
     for e in entries:
         row: dict[str, Any] = {
-            "id": e.id, "name": e.name, "maintainer": e.maintainer,
+            "id": e.id, "name": e.name, "kind": e.kind.value,
+            "maintainer": e.maintainer,
             "status": e.status.value, "compliance": e.compliance.value,
             "why_not_absorbed": " ".join(e.why_not_absorbed.split()),
         }
@@ -374,7 +375,9 @@ async def list_neighbors(ctx: RuntimeContext, capability: str = "") -> Envelope:
                  "links. Results from a server listed as 'opaque' are "
                  "unverified external evidence and should be labelled as "
                  "such — being official does not make a server's output "
-                 "carry provenance."},
+                 "carry provenance. A 'skill_pack' is agent instructions, "
+                 "not a server: there is nothing to call, and its skills "
+                 "can run commands, so read one before using it."},
         Coverage(registry=RegistryCoverage.covered,
                  execution=ExecutionCoverage.complete,
                  pagination=PaginationCoverage.complete,
@@ -435,8 +438,10 @@ REGISTRY_TOOLS.register(ToolSpec(
     description=(
         "Other MCP servers over DOE-adjacent data — PNNL's NEPA-MCP, the "
         "building-simulation servers, NASA's Earthdata server, the gated "
-        "Genesis-lane deployments — with an executable install command and a "
-        "stated reason DOE-MCP does not duplicate each one. Use when a "
+        "Genesis-lane deployments — and skill packs such as DOE's Genesis "
+        "Agent Skills, each with an install command, its kind (server or "
+        "skill_pack), and a stated reason DOE-MCP does not duplicate it. "
+        "Use when a "
         "question falls outside this project's coverage and a neighbouring "
         "server serves it."),
     toolset="discovery", contract_version="1", fn=list_neighbors))

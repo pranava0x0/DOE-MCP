@@ -109,6 +109,7 @@ async def search_rulemakings(ctx: RuntimeContext, query: str = "",
         b.add_evidence(source_ref=ref, record_id=document.document_number,
                        retrieved_at=fetched.retrieved_at,
                        effective_at=document.publication_date,
+                       locator=document.raw.get("html_url"),
                        transformations=[])
 
     data: dict[str, Any] = {
@@ -222,6 +223,7 @@ async def get_rulemaking(ctx: RuntimeContext,
     b.add_evidence(source_ref=ref, record_id=document.document_number,
                    retrieved_at=fetched.retrieved_at,
                    effective_at=document.publication_date,
+                   locator=document.raw.get("html_url"),
                    transformations=[])
     data = dict(_record(document))
     data["note"] = (

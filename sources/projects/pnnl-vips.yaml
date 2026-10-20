@@ -11,24 +11,22 @@ aliases:
   former_domains: []
 
 # Every site whose intellectual property this index carries, not just the
-# lab that runs it. VIPS is the one active source that answers "what has
+# lab that runs it. VIPS is the index that answers "what has
 # lab X patented or released" for all seventeen at once, which is what the
 # crosswalk field is for.
 labs: ['ames', 'anl', 'bnl', 'fnal', 'inl', 'lbnl', 'llnl', 'lanl', 'netl',
        'nlr', 'ornl', 'pnnl', 'pppl', 'snl', 'srnl', 'slac', 'jlab']
 
-capabilities:
-  - id: tech.licensable_ip
-    tool_hint: tech.find_licensable_ip
+capabilities: []
 
-planned_capabilities: []
+planned_capabilities: [tech.licensable_ip]
 
 adapter:
   type: vips
   base_url: https://vips.pnnl.gov/api
 
 access:
-  mode: anonymous
+  mode: api_key
   automation_status: public_api
   tier: thin_proxy
   terms_url: https://vips.pnnl.gov/
@@ -40,10 +38,16 @@ access:
     and answered a scripted client on 2026-09-08. It states no terms of
     use of its own; the records describe US Government-funded work and
     the patents themselves are public documents. Write routes exist
-    behind an admin portal and are never called.
+    behind an admin portal and are never called. As of 2026-10-20
+    the "no login" and "answered a scripted client" statements describe
+    the September review only; search now requires an API key (see
+    terms_gap and blocked_reason).
   terms_gap: >
+    Correction 2026-10-20: the search route returns HTTP 401 with
+    "Valid API key required". Anonymous access is no longer available.
+    Credential issuance, cost and permitted automation remain unverified.
     No terms-of-use or redistribution statement is published for the
-    API. The read routes are open and undocumented as to reuse, so
+    API. The read routes were open at the September review and undocumented as to reuse, so
     what is recorded here is that nobody has stated a rule, not that
     reuse is unrestricted.
   rate_limit_note: >
@@ -102,7 +106,11 @@ health:
     min_records: 15000
 
 lifecycle:
-  declared_state: active
+  declared_state: proposed
   added: "2026-09-02"
-  last_verified: "2026-09-08"
+  last_verified: "2026-10-20"
   verified_by: pranava0x0
+  blocked_reason: >
+    Search requires an API key as of 2026-10-20. Credential issuance,
+    publisher policy and cost need review before a supported credential
+    path can be added. Recorded responses are historical, not live access.

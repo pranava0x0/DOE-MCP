@@ -12,6 +12,37 @@ it needs. The body is the walk. The last section is bench tasks, and a skill
 without them does not ship (architecture Part 1 § 4.3) — a walk nobody grades
 is a walk nobody has checked.
 
+The file follows the [Agent Skills](https://agentskills.io) format, the one
+the MCP Skills extension delegates to and DOE's
+[Genesis Agent Skills](https://github.com/AI-ModCon/genesis-skills) catalog
+enforces. That format allows six top-level keys, so this project's three
+live under `metadata`, each as one line of space-separated ids with `none`
+for an empty list:
+
+```yaml
+---
+name: doe-literature-review
+description: >
+  What the skill answers. Use when someone asks ...
+compatibility: Needs the DOE-MCP server doe-research configured in an MCP client. Read-only over public data. No credentials.
+metadata:
+  doe-mcp-capabilities: literature.search literature.get_record
+  doe-mcp-servers: doe-research
+  doe-mcp-credentials: none
+---
+```
+
+One line per key is deliberate: the strictest reader in that ecosystem
+parses a metadata child as a single `key: value` line. `tests/test_skill_spec.py`
+holds the format, `src/doe_mcp/core/skills.py` is the only parser of it, and
+no skill here sets `allowed-tools`, because a skill should not pre-approve
+a tool call on a user's behalf.
+
+The frontmatter names capabilities; the walk may name the tools that serve
+them today, because an agent calls tools. A test holds every backticked
+name in a body to a real tool or a capability id, so a tool that is merged
+away cannot leave a walk pointing at nothing.
+
 The capability ids in the frontmatter are the controlled vocabulary in
 `sources/capabilities.yaml`, and a test fails on one that is not in it. That
 is what lets a skill route across built-in and plugged-in servers alike

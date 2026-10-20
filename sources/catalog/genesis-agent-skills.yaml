@@ -1,0 +1,39 @@
+# DOE's Genesis Agent Skills: the first skill pack in the catalog.
+#
+# Decision 0018's catalog was written for MCP servers. This entry is the
+# reason it gained `kind`: Genesis Agent Skills is a public catalog of agent
+# instructions, not a server, and listing it as a server would tell an agent
+# there is something to call. The pack maps to no capability, because a
+# capability id promises a tool that answers in an envelope.
+id: genesis-agent-skills
+name: Genesis Agent Skills (DOE ModCon)
+kind: skill_pack
+maintainer: ModCon BASE team, co-led by PNNL and Berkeley Lab
+maintainer_org: pnnl
+repository: https://github.com/AI-ModCon/genesis-skills
+status: listed
+compliance: opaque
+capabilities: []
+install:
+  method: source
+  command: git clone https://github.com/AI-ModCon/genesis-skills
+  notes: >
+    A clone to read before use, not the repository's own install script.
+    Several skills submit compute jobs, move data or call metered model
+    services, and those need facility accounts this project does not hold.
+terms_url: https://github.com/AI-ModCon/genesis-skills/blob/main/LICENSE
+terms_reviewed_at: "2026-10-20"
+why_not_absorbed: >
+  It is instructions rather than data or tools, so there is nothing for
+  DOE-MCP to wrap. Its subtrees carry different licenses and some carry
+  none, so nothing is copied here. DOE-MCP's own skills use the same Agent
+  Skills file format and pass the pack's own validator, which is the extent
+  of the integration.
+notes: >
+  Announced by the DOE Office of Science on 2026-10-15; developed on GitHub,
+  with a read-only mirror at gitlab.osti.gov/genesis. Domains include
+  literature search, HPC job scripts for NERSC, OLCF and ALCF systems,
+  American Science Cloud and IRI facility APIs, datacards, model evaluation
+  and AI safety. DOE-MCP has not verified the facility facts the HPC skills
+  state; check each facility's own documentation.
+last_checked: "2026-10-20"

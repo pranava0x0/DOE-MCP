@@ -87,16 +87,14 @@ SERVER_LINEUP: tuple[ServerSpec, ...] = (
         default_profile="research:default",
         description=("Literature, datasets, software, and discovery over "
                      "OSTI's four public APIs, DOE's rulemakings from the "
-                     "Federal Register, the laboratories' patents and "
-                     "released software, plus the source registry and a "
+                     "Federal Register, plus the source registry and a "
                      "cross-catalog fan-out."),
         instructions=(
             "DOE-MCP research server: DOE-funded literature, datasets, and "
             "software over OSTI's four public APIs, DOE's published "
-            "rulemakings from the Federal Register, the national "
-            "laboratories' patents and released software from PNNL's "
-            "technology-transfer index, plus DOE-MCP's own source registry "
+            "rulemakings from the Federal Register, plus DOE-MCP's own source registry "
             "and a cross-catalog discovery fan-out. "
+            "VIPS patent lookup is blocked pending API-key access review. "
             + COVERAGE_RULE +
             " Organization names in this ecosystem change and old domains "
             "do not redirect, so call registry.resolve_org whenever a user "
@@ -108,10 +106,12 @@ SERVER_LINEUP: tuple[ServerSpec, ...] = (
             "under DOE, and FERC is out of DOE-MCP's scope, so the docs "
             "tools drop them and say how many they dropped: a small "
             "rulemaking answer is often a scope filter rather than a quiet "
-            "period. tech.find_licensable_ip is the one tool here that "
-            "answers for a single laboratory; it resolves a renamed lab "
-            "before searching, because its upstream answers an old acronym "
-            "with zero results and no error. compute.facility_status, in "
+            "period. tech.find_licensable_ip refuses while VIPS is blocked; "
+            "report that reason rather than calling it repeatedly. When VIPS "
+            "access returns it is the one tool here that answers for a "
+            "single laboratory, and it resolves a renamed lab before "
+            "searching, because its upstream answers an old acronym with "
+            "zero results and no error. compute.facility_status, in "
             "the discovery and all profiles, reads NERSC's public status "
             "board; it is one facility, and the others it names as "
             "unreadable are not thereby up. "
@@ -243,9 +243,8 @@ SERVER_LINEUP: tuple[ServerSpec, ...] = (
     ServerSpec(
         name="doe-projects", key="projects", status="planned",
         description=("ARPA-E awards, the loan portfolio, the Lab Partnering "
-                     "Service. VIPS did not wait for it: the laboratories' "
-                     "patents and software ship in doe-research as "
-                     "tech.find_licensable_ip.")),
+                     "Service. The VIPS adapter is retained in doe-research, "
+                     "but its source is blocked pending API-key access review.")),
     ServerSpec(
         name="doe-docs", key="docs", status="planned",
         description=("NEPA documents and DOE directives — or a catalog entry "

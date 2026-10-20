@@ -1,13 +1,13 @@
 {
   "version": "0.1.0.dev0",
-  "registry_revision": "2026-10-08",
+  "registry_revision": "2026-10-20",
   "counts": {
     "sources": 83,
-    "active": 25,
+    "active": 24,
     "organizations": 54,
     "labs": 17,
     "capabilities": 53,
-    "capabilities_served": 38,
+    "capabilities_served": 37,
     "skills": 8,
     "program_offices": 19,
     "pmas": 4,
@@ -15,8 +15,9 @@
     "servers_planned": 4,
     "tools": 34,
     "adapters": 19,
-    "neighbors": 5,
-    "records_reachable": 20176556
+    "neighbors": 6,
+    "neighbors_phrase": "5 server entries and 1 skill pack in the plug-in catalog",
+    "records_reachable": 20153893
   },
   "questions": [
     {
@@ -156,12 +157,6 @@
       "tool": "docs.search_rulemakings",
       "server": "doe-research",
       "profile": null
-    },
-    {
-      "question": "What can I license from Oak Ridge?",
-      "tool": "tech.find_licensable_ip",
-      "server": "doe-research",
-      "profile": null
     }
   ],
   "servers": [
@@ -169,7 +164,7 @@
       "name": "doe-research",
       "profile": "research:default",
       "status": "shipping",
-      "description": "Literature, datasets, software, and discovery over OSTI's four public APIs, DOE's rulemakings from the Federal Register, the laboratories' patents and released software, plus the source registry and a cross-catalog fan-out.",
+      "description": "Literature, datasets, software, and discovery over OSTI's four public APIs, DOE's rulemakings from the Federal Register, plus the source registry and a cross-catalog fan-out.",
       "tools": [
         {
           "name": "research.search_literature",
@@ -224,7 +219,7 @@
         {
           "name": "tech.find_licensable_ip",
           "toolset": "default",
-          "description": "Patents held and software released by the US national laboratories, from PNNL's technology-transfer index \u2014 the one place a single laboratory's own output is searchable. Use for 'what has Idaho patented on X', 'what software has PNNL released', 'who invented this'. `lab` takes an acronym or a laboratory name and is resolved against the alias table first, because this service answers an unknown acronym with zero results and no error. `record_type` is Patent or Software; `query`, `inventor`, `taxonomy`, `since` and `until` narrow further. Pass `record_id` for one record whole, including the filed patent text a search page omits. Page with `cursor` ALONE \u2014 filters sent with a cursor are ignored by the service. Being listed is not an offer to license."
+          "description": "Currently unavailable: VIPS requires an API key; access support is pending. Patents held and software released by the US national laboratories, from PNNL's technology-transfer index \u2014 the one place a single laboratory's own output is searchable. Use for 'what has Idaho patented on X', 'what software has PNNL released', 'who invented this'. `lab` takes an acronym or a laboratory name and is resolved against the alias table first, because this service answers an unknown acronym with zero results and no error. `record_type` is Patent or Software; `query`, `inventor`, `taxonomy`, `since` and `until` narrow further. Pass `record_id` for one record whole, including the filed patent text a search page omits. Page with `cursor` ALONE \u2014 filters sent with a cursor are ignored by the service. Being listed is not an offer to license."
         }
       ],
       "tools_all": 15
@@ -440,7 +435,7 @@
       "name": "doe-projects",
       "profile": null,
       "status": "planned",
-      "description": "ARPA-E awards, the loan portfolio, the Lab Partnering Service. VIPS did not wait for it: the laboratories' patents and software ship in doe-research as tech.find_licensable_ip.",
+      "description": "ARPA-E awards, the loan portfolio, the Lab Partnering Service. The VIPS adapter is retained in doe-research, but its source is blocked pending API-key access review.",
       "tools": [],
       "tools_all": null
     },
@@ -478,7 +473,7 @@
     },
     {
       "name": "environmental-study-brief",
-      "summary": "Find environmental datasets and interpret a bounded Daymet weather window.",
+      "summary": "Find environmental datasets and read a bounded Daymet weather window for one point and date range.",
       "servers": [
         "doe-earth"
       ]
@@ -1150,47 +1145,6 @@
       "terms_url": "https://www.osti.gov/disclaim"
     },
     {
-      "id": "pnnl-vips",
-      "name": "VIPS (DOE patent and software database)",
-      "domain": "projects",
-      "state": "active",
-      "steward": "Pacific Northwest National Laboratory",
-      "funder": null,
-      "host": null,
-      "authority": "official_secondary",
-      "automation_status": "public_api",
-      "tier": "thin_proxy",
-      "adapter": "vips",
-      "fixture": true,
-      "scope": "Patents held and software released by the seventeen national laboratories and four NNSA production sites, for technology-transfer lookup: title, abstract, inventors, assignees, first claim, patent status and dates, software type, licences and repository, plus a subject taxonomy and a list of similar records. 15,179 patents and 7,484 software records at the 2026-09-08 count.",
-      "record_count": 22663,
-      "capabilities": [
-        "tech.licensable_ip"
-      ],
-      "planned_capabilities": [],
-      "blocked_reason": null,
-      "labs": [
-        "ames",
-        "anl",
-        "bnl",
-        "fnal",
-        "inl",
-        "lbnl",
-        "llnl",
-        "lanl",
-        "netl",
-        "nlr",
-        "ornl",
-        "pnnl",
-        "pppl",
-        "snl",
-        "srnl",
-        "slac",
-        "jlab"
-      ],
-      "terms_url": "https://vips.pnnl.gov/"
-    },
-    {
       "id": "usgs-uspvdb",
       "name": "US Large-Scale Solar Photovoltaic Database (USPVDB)",
       "domain": "energy",
@@ -1259,7 +1213,7 @@
       "planned_capabilities": [
         "compute.facility_status"
       ],
-      "blocked_reason": "Blocked probe. The status page is an Angular application and its data paths return HTTP 403 with a Cloudflare challenge to a scripted client, which under decision 0007 is blocked_probe and NOT gated: a WAF refusing this client shape says nothing about whether the data is public. One real-browser check, watching the application's own network calls, would settle both the endpoint and the posture. Joins the blocked-probe backlog.",
+      "blocked_reason": "Blocked probe. The status page is an Angular application and its data paths return HTTP 403 with a Cloudflare challenge to a scripted client, which under decision 0007 is blocked_probe and NOT gated: a WAF refusing this client shape says nothing about whether the data is public. One real-browser check, watching the application's own network calls, would settle both the endpoint and the posture. Joins the blocked-probe backlog. Note, 2026-10-20. One plain GET of the status page answered 200 with the application shell, so the 403 did not recur; one probe from one machine is not evidence that the posture changed. The page's own data path was found and is not a candidate: it is undocumented and carries queued and running job records, which this project does not read for any facility. ALCF documents a separate machine route, its implementation of the IRI Facility API at api.alcf.anl.gov, whose status reads answered a plain GET with JSON. Under decision 0025 that is a different source with its own terms, and it waits on a terms review before it is registered; this manifest stays proposed until then.",
       "labs": [
         "anl"
       ],
@@ -2417,6 +2371,47 @@
       "terms_url": "https://tethys.pnnl.gov/"
     },
     {
+      "id": "pnnl-vips",
+      "name": "VIPS (DOE patent and software database)",
+      "domain": "projects",
+      "state": "proposed",
+      "steward": "Pacific Northwest National Laboratory",
+      "funder": null,
+      "host": null,
+      "authority": "official_secondary",
+      "automation_status": "public_api",
+      "tier": "thin_proxy",
+      "adapter": "vips",
+      "fixture": true,
+      "scope": "Patents held and software released by the seventeen national laboratories and four NNSA production sites, for technology-transfer lookup: title, abstract, inventors, assignees, first claim, patent status and dates, software type, licences and repository, plus a subject taxonomy and a list of similar records. 15,179 patents and 7,484 software records at the 2026-09-08 count.",
+      "record_count": 22663,
+      "capabilities": [],
+      "planned_capabilities": [
+        "tech.licensable_ip"
+      ],
+      "blocked_reason": "Search requires an API key as of 2026-10-20. Credential issuance, publisher policy and cost need review before a supported credential path can be added. Recorded responses are historical, not live access.",
+      "labs": [
+        "ames",
+        "anl",
+        "bnl",
+        "fnal",
+        "inl",
+        "lbnl",
+        "llnl",
+        "lanl",
+        "netl",
+        "nlr",
+        "ornl",
+        "pnnl",
+        "pppl",
+        "snl",
+        "srnl",
+        "slac",
+        "jlab"
+      ],
+      "terms_url": "https://vips.pnnl.gov/"
+    },
+    {
       "id": "pnnl-wind-data-hub",
       "name": "Wind Data Hub (A2e DAP)",
       "domain": "earth",
@@ -2700,11 +2695,11 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         }
       ],
-      "active": 5
+      "active": 4
     },
     {
       "id": "anl",
@@ -2790,11 +2785,11 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         }
       ],
-      "active": 8
+      "active": 7
     },
     {
       "id": "bnl",
@@ -2862,11 +2857,11 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         }
       ],
-      "active": 6
+      "active": 5
     },
     {
       "id": "fnal",
@@ -2916,11 +2911,11 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         }
       ],
-      "active": 5
+      "active": 4
     },
     {
       "id": "inl",
@@ -2982,11 +2977,11 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         }
       ],
-      "active": 5
+      "active": 4
     },
     {
       "id": "jlab",
@@ -3036,11 +3031,11 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         }
       ],
-      "active": 5
+      "active": 4
     },
     {
       "id": "lanl",
@@ -3096,11 +3091,11 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         }
       ],
-      "active": 5
+      "active": 4
     },
     {
       "id": "lbnl",
@@ -3218,7 +3213,7 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         },
         {
@@ -3234,7 +3229,7 @@
           "domain": "energy"
         }
       ],
-      "active": 12
+      "active": 11
     },
     {
       "id": "llnl",
@@ -3290,11 +3285,11 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         }
       ],
-      "active": 6
+      "active": 5
     },
     {
       "id": "netl",
@@ -3344,11 +3339,11 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         }
       ],
-      "active": 5
+      "active": 4
     },
     {
       "id": "nlr",
@@ -3437,11 +3432,11 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         }
       ],
-      "active": 5
+      "active": 4
     },
     {
       "id": "ornl",
@@ -3587,11 +3582,11 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         }
       ],
-      "active": 12
+      "active": 11
     },
     {
       "id": "pnnl",
@@ -3683,7 +3678,7 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         },
         {
@@ -3693,7 +3688,7 @@
           "domain": "earth"
         }
       ],
-      "active": 7
+      "active": 6
     },
     {
       "id": "pppl",
@@ -3737,7 +3732,7 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         },
         {
@@ -3747,7 +3742,7 @@
           "domain": "research"
         }
       ],
-      "active": 5
+      "active": 4
     },
     {
       "id": "slac",
@@ -3793,7 +3788,7 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         },
         {
@@ -3803,7 +3798,7 @@
           "domain": "research"
         }
       ],
-      "active": 5
+      "active": 4
     },
     {
       "id": "snl",
@@ -3865,7 +3860,7 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         },
         {
@@ -3887,7 +3882,7 @@
           "domain": "energy-tech"
         }
       ],
-      "active": 5
+      "active": 4
     },
     {
       "id": "srnl",
@@ -3931,7 +3926,7 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         },
         {
@@ -3941,7 +3936,7 @@
           "domain": "research"
         }
       ],
-      "active": 5
+      "active": 4
     },
     {
       "id": "affo",
@@ -4469,6 +4464,7 @@
     {
       "id": "building-simulation-mcps",
       "name": "EnergyPlus-MCP and OpenStudio-MCP",
+      "kind": "server",
       "maintainer": "LBNL Energy Technologies Area; National Laboratory of the Rockies",
       "status": "listed",
       "compliance": "opaque",
@@ -4478,12 +4474,25 @@
       "tool_count": 185
     },
     {
+      "id": "genesis-agent-skills",
+      "name": "Genesis Agent Skills (DOE ModCon)",
+      "kind": "skill_pack",
+      "maintainer": "ModCon BASE team, co-led by PNNL and Berkeley Lab",
+      "status": "listed",
+      "compliance": "opaque",
+      "why_not_absorbed": "It is instructions rather than data or tools, so there is nothing for DOE-MCP to wrap. Its subtrees carry different licenses and some carry none, so nothing is copied here. DOE-MCP's own skills use the same Agent Skills file format and pass the pack's own validator, which is the extent of the integration.\n",
+      "install": "git clone https://github.com/AI-ModCon/genesis-skills",
+      "repository": "https://github.com/AI-ModCon/genesis-skills",
+      "tool_count": null
+    },
+    {
       "id": "genesis-lane-servers",
       "name": "DOE Genesis Mission MCP deployments (gated)",
+      "kind": "server",
       "maintainer": "Various DOE national laboratories",
       "status": "watch",
       "compliance": "opaque",
-      "why_not_absorbed": "Access-gated by design and pointed at internal instruments, facilities, and compute. Wrapping a gated server would produce a tool that fails for every public user, which is worse than not having it. The named watch items are BNL's PanDA MCP, Argonne's Globus-service MCPs, LBNL's CBorg, and the gated Genesis Skills repository on OSTI's GitLab.\n",
+      "why_not_absorbed": "Access-gated by design and pointed at internal instruments, facilities, and compute. Wrapping a gated server would produce a tool that fails for every public user, which is worse than not having it. The named watch items are BNL's PanDA MCP, Argonne's Globus-service MCPs and LBNL's CBorg.\n",
       "install": "unavailable \u2014 access is gated (OneID / RFA / SSO)",
       "repository": null,
       "tool_count": null
@@ -4491,6 +4500,7 @@
     {
       "id": "materials-project-mcp",
       "name": "Materials Project MCP (inside mp-api)",
+      "kind": "server",
       "maintainer": "Materials Project, Lawrence Berkeley National Laboratory",
       "status": "watch",
       "compliance": "full",
@@ -4502,6 +4512,7 @@
     {
       "id": "nasa-earthdata-mcp",
       "name": "NASA Earthdata (CMR) MCP",
+      "kind": "server",
       "maintainer": "NASA Earthdata",
       "status": "listed",
       "compliance": "opaque",
@@ -4513,6 +4524,7 @@
     {
       "id": "nepa-mcp",
       "name": "NEPA-MCP",
+      "kind": "server",
       "maintainer": "Pacific Northwest National Laboratory",
       "status": "listed",
       "compliance": "opaque",
@@ -4649,7 +4661,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0
           },
           {
@@ -4662,7 +4674,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -4672,7 +4684,7 @@
             "source_ref": "source_01",
             "record_id": "3484888",
             "locator": "https://www.osti.gov/biblio/3484888",
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2026-08-27T11:00:26Z",
             "transformations": [
               "normalize"
@@ -4685,7 +4697,7 @@
             "source_ref": "source_01",
             "record_id": "3625672",
             "locator": "https://www.osti.gov/biblio/3625672",
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2026-09-02T10:56:05Z",
             "transformations": [
               "normalize"
@@ -4698,7 +4710,7 @@
             "source_ref": "source_01",
             "record_id": "3409109",
             "locator": "https://www.osti.gov/biblio/3409109",
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2026-09-18T15:49:56Z",
             "transformations": [
               "normalize"
@@ -4711,7 +4723,7 @@
             "source_ref": "source_02",
             "record_id": "3409109",
             "locator": "https://www.osti.gov/biblio/3409109",
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2026-09-18T11:49:56Z",
             "transformations": [
               "normalize"
@@ -4724,7 +4736,7 @@
             "source_ref": "source_02",
             "record_id": "3818255",
             "locator": "https://www.osti.gov/biblio/3818255",
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2026-09-17T10:27:35Z",
             "transformations": [
               "normalize"
@@ -4737,7 +4749,7 @@
             "source_ref": "source_02",
             "record_id": "3818626",
             "locator": "https://www.osti.gov/biblio/3818626",
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2026-09-18T08:11:09Z",
             "transformations": [
               "normalize"
@@ -4783,7 +4795,7 @@
           {
             "kind": "doi",
             "uri": "https://doi.org/10.2172/3484888",
-            "label": "Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Plan",
+            "label": "Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based\u2026",
             "instructions": null,
             "requires_account": false,
             "approximate_size": null
@@ -4799,7 +4811,7 @@
           {
             "kind": "doi",
             "uri": "https://doi.org/10.66816/tp5080615",
-            "label": "Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative ",
+            "label": "Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module\u2026",
             "instructions": null,
             "requires_account": false,
             "approximate_size": null
@@ -4815,7 +4827,7 @@
           {
             "kind": "doi",
             "uri": "https://doi.org/10.1016/j.nanoen.2026.112209",
-            "label": "Reducing non-radiative recombination in perovskite solar cells with a SiO<sub>2<",
+            "label": "Reducing non-radiative recombination in perovskite solar cells with a\u2026",
             "instructions": null,
             "requires_account": false,
             "approximate_size": null
@@ -4831,7 +4843,7 @@
           {
             "kind": "doi",
             "uri": "https://doi.org/10.1021/acsenergylett.6c01751",
-            "label": "Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide Pero",
+            "label": "Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide\u2026",
             "instructions": null,
             "requires_account": false,
             "approximate_size": null
@@ -4847,7 +4859,7 @@
           {
             "kind": "doi",
             "uri": "https://doi.org/10.1021/jacs.6c05503",
-            "label": "Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of Pero",
+            "label": "Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of\u2026",
             "instructions": null,
             "requires_account": false,
             "approximate_size": null
@@ -4896,7 +4908,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-08",
+          "registry_revision": "2026-10-20",
           "request_id": "worked-example"
         }
       }
@@ -4956,11 +4968,11 @@
             "steward": "The DOE-MCP project",
             "system": "DOE-MCP source registry and organization table",
             "dataset": "DOE-MCP source registry and organization table",
-            "dataset_version": "2026-10-08",
+            "dataset_version": "2026-10-20",
             "authority_level": "unverified",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -4970,7 +4982,7 @@
             "source_ref": "source_01",
             "record_id": "nlr",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -5019,7 +5031,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-08",
+          "registry_revision": "2026-10-20",
           "request_id": "worked-example"
         }
       }
@@ -5125,7 +5137,7 @@
             "authority_level": "official_secondary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0
           },
           {
@@ -5138,7 +5150,7 @@
             "authority_level": "official_secondary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0
           },
           {
@@ -5151,7 +5163,7 @@
             "authority_level": "official_derived",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0
           },
           {
@@ -5164,7 +5176,7 @@
             "authority_level": "official_derived",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -5174,7 +5186,7 @@
             "source_ref": "source_01",
             "record_id": "1148737",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "normalize"
@@ -5187,7 +5199,7 @@
             "source_ref": "source_01",
             "record_id": "1542650",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "normalize"
@@ -5200,7 +5212,7 @@
             "source_ref": "source_02",
             "record_id": "glass-buttes-exploration-and-drilling-2010-geothermal-technologies-program-peer-",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "normalize"
@@ -5213,7 +5225,7 @@
             "source_ref": "source_02",
             "record_id": "investigation-of-stimulation-response-relationships-for-complex-fracture-systems",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "normalize"
@@ -5277,7 +5289,7 @@
           {
             "kind": "landing_page",
             "uri": "https://openenergyhub.ornl.gov/explore/dataset/glass-buttes-exploration-and-drilling-2010-geothermal-technologies-program-peer-/",
-            "label": "Glass Buttes Exploration and Drilling: 2010 Geothermal Technologies Program Peer",
+            "label": "Glass Buttes Exploration and Drilling: 2010 Geothermal Technologies Program\u2026",
             "instructions": "Catalog-supplied URL, never fetched by this server and not checked for liveness.",
             "requires_account": false,
             "approximate_size": null
@@ -5285,7 +5297,7 @@
           {
             "kind": "landing_page",
             "uri": "https://openenergyhub.ornl.gov/explore/dataset/investigation-of-stimulation-response-relationships-for-complex-fracture-systems/",
-            "label": "Investigation of Stimulation-Response Relationships for Complex Fracture Systems",
+            "label": "Investigation of Stimulation-Response Relationships for Complex Fracture\u2026",
             "instructions": "Catalog-supplied URL, never fetched by this server and not checked for liveness.",
             "requires_account": false,
             "approximate_size": null
@@ -5319,7 +5331,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-08",
+          "registry_revision": "2026-10-20",
           "request_id": "worked-example"
         }
       }
@@ -5537,7 +5549,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0,
             "citation": {
               "doi": "10.5066/F7TX3DN0",
@@ -5552,7 +5564,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3001502",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -5563,7 +5575,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3015899",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -5574,7 +5586,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3034241",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -5585,7 +5597,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3039300",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -5596,7 +5608,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3039301",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -5648,7 +5660,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-08",
+          "registry_revision": "2026-10-20",
           "request_id": "worked-example"
         }
       }
@@ -5754,7 +5766,7 @@
             "authority_level": "official_secondary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -5764,7 +5776,7 @@
             "source_ref": "source_01",
             "record_id": "tile:11208@35.9313,-84.3104",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2023-06-01",
             "transformations": [
               "day-of-year converted to calendar date"
@@ -5822,7 +5834,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-08",
+          "registry_revision": "2026-10-20",
           "request_id": "worked-example"
         }
       }
@@ -6056,7 +6068,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -6066,7 +6078,7 @@
             "source_ref": "source_01",
             "record_id": "mp-1244984",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2019-07-02T00:29:18.792000",
             "transformations": [],
             "payload_hash": null,
@@ -6077,7 +6089,7 @@
             "source_ref": "source_01",
             "record_id": "mp-1223660",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2022-06-10T06:23:20.905000",
             "transformations": [],
             "payload_hash": null,
@@ -6088,7 +6100,7 @@
             "source_ref": "source_01",
             "record_id": "mp-1199250",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2021-03-09T23:05:01.374000",
             "transformations": [],
             "payload_hash": null,
@@ -6099,7 +6111,7 @@
             "source_ref": "source_01",
             "record_id": "mp-1245997",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2021-02-04T20:40:18.753000",
             "transformations": [],
             "payload_hash": null,
@@ -6110,7 +6122,7 @@
             "source_ref": "source_01",
             "record_id": "mp-1198425",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2021-03-10T07:53:43.904000",
             "transformations": [],
             "payload_hash": null,
@@ -6168,7 +6180,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-08",
+          "registry_revision": "2026-10-20",
           "request_id": "worked-example"
         }
       }
@@ -6311,7 +6323,7 @@
             "authority_level": "official_secondary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -6321,7 +6333,7 @@
             "source_ref": "source_01",
             "record_id": "nmdc:bsm-13-mrzb2q96",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2014-04-01",
             "transformations": [
               "normalize"
@@ -6334,7 +6346,7 @@
             "source_ref": "source_01",
             "record_id": "nmdc:bsm-13-4aw9ra87",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2014-04-01",
             "transformations": [
               "normalize"
@@ -6347,7 +6359,7 @@
             "source_ref": "source_01",
             "record_id": "nmdc:bsm-13-z9wten89",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2014-04-01",
             "transformations": [
               "normalize"
@@ -6360,7 +6372,7 @@
             "source_ref": "source_01",
             "record_id": "nmdc:bsm-13-wktc3357",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2014-04-01",
             "transformations": [
               "normalize"
@@ -6373,7 +6385,7 @@
             "source_ref": "source_01",
             "record_id": "nmdc:bsm-13-ap544f22",
             "locator": null,
-            "retrieved_at": "2026-10-08T00:00:00Z",
+            "retrieved_at": "2026-10-20T00:00:00Z",
             "effective_at": "2014-04-01",
             "transformations": [
               "normalize"
@@ -6433,7 +6445,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-08",
+          "registry_revision": "2026-10-20",
           "request_id": "worked-example"
         }
       }

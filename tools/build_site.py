@@ -95,8 +95,6 @@ QUESTIONS = [
      "compute.facility_status", "doe-research"),
     ("What has DOE proposed on appliance standards this year?",
      "docs.search_rulemakings", "doe-research"),
-    ("What can I license from Oak Ridge?",
-     "tech.find_licensable_ip", "doe-research"),
 ]
 
 # (name, default profile, status, description), read from the one lineup
@@ -124,17 +122,14 @@ def skill_summaries() -> list[dict]:
     """Each skill's name, the first sentence of its description, and the
     servers it walks, read from the frontmatter so the page lists the
     skills that exist rather than the ones someone remembered to add."""
-    import yaml
+    from doe_mcp.core.skills import read_skills
 
     out = []
-    for path in sorted((ROOT / "skills").glob("*/SKILL.md")):
-        _, raw, _ = path.read_text(encoding="utf-8").split("---\n", 2)
-        front = yaml.safe_load(raw) or {}
-        description = " ".join(str(front.get("description", "")).split())
-        first = description.split(". ")[0].rstrip(".") + "."
-        out.append({"name": front.get("name", path.parent.name),
+    for skill in read_skills(ROOT / "skills"):
+        first = skill.description.split(". ")[0].rstrip(".") + "."
+        out.append({"name": skill.name or skill.path.parent.name,
                     "summary": first,
-                    "servers": list(front.get("servers") or [])})
+                    "servers": list(skill.servers)})
     return out
 
 
@@ -329,7 +324,8 @@ def build_data(with_fixtures: bool) -> dict:
             })
 
     neighbors = [{
-        "id": e.id, "name": e.name, "maintainer": e.maintainer,
+        "id": e.id, "name": e.name, "kind": e.kind.value,
+        "maintainer": e.maintainer,
         "status": e.status.value, "compliance": e.compliance.value,
         "why_not_absorbed": e.why_not_absorbed,
         "install": e.install.command if e.install else None,
@@ -364,6 +360,7 @@ def build_data(with_fixtures: bool) -> dict:
             "adapters": len({m.adapter.type for m in manifests}
                             - {"none"}),
             "neighbors": len(neighbors),
+            "neighbors_phrase": catalog.count_phrase(),
             "records_reachable": sum(m.coverage.record_count or 0
                                      for m in active),
         },
@@ -413,8 +410,7 @@ def render_readme_status(data: dict) -> str:
         ("Servers shipping", tools),
         ("Registry", f"{c['sources']} source manifests, {c['active']} active, "
                      f"{c['organizations']} organizations ({c['labs']} "
-                     f"national laboratories), {c['neighbors']} sub-MCP "
-                     "catalog entries"),
+                     f"national laboratories), {c['neighbors_phrase']}"),
         ("Capabilities", f"{c['capabilities_served']} of {c['capabilities']} "
                          "in the vocabulary served by an active source"),
         ("Adapters", adapters),

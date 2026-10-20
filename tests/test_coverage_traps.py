@@ -147,6 +147,9 @@ PAGING = [
 @pytest.mark.parametrize("name,keyed,call", PAGING, ids=[p[0] for p in PAGING])
 async def test_every_paging_tool_reports_a_page_as_a_page(name, keyed, call,
                                                           ctx, keyed_ctx):
+    if name == "tech.find_licensable_ip":
+        from tests.conftest import historical_vips
+        historical_vips(ctx)
     env = await call(keyed_ctx if keyed else ctx)
     assert env.coverage.pagination is PaginationCoverage.truncated, (
         f"{name} returned a page smaller than the publisher's count and "

@@ -27,7 +27,7 @@ and what it does not cover.
 ## Status
 
 Early. Five servers work against live endpoints: the research vertical
-(literature, datasets, software, rulemakings, patents, and NERSC's status
+(literature, datasets, software, rulemakings, and NERSC's status
 board behind its facilities toolset), the energy-data vertical (EIA, BPA,
 EAGLE-I's outage releases, the wind and solar inventories, fuel economy),
 the earth server (Daymet, ESS-DIVE, the ESGF index, the Sage node
@@ -43,13 +43,13 @@ evaluation limits.
 | | |
 |---|---|
 | Servers shipping | `doe-research` (11 tools, `research:default`), `doe-energy-data` (11 tools, `energy:default`), `doe-earth` (8 tools, `earth:default`), `doe-materials` (7 tools, `materials:default`), `doe-bio` (5 tools, `bio:default`) |
-| Registry | 83 source manifests, 25 active, 54 organizations (17 national laboratories), 5 sub-MCP catalog entries |
-| Capabilities | 38 of 53 in the vocabulary served by an active source |
+| Registry | 83 source manifests, 24 active, 54 organizations (17 national laboratories), 5 server entries and 1 skill pack in the plug-in catalog |
+| Capabilities | 37 of 53 in the vocabulary served by an active source |
 | Adapters | `basis_sets`, `curated`, `daymet`, `eia_v2`, `esgf`, `essdive`, `facility_status`, `federal_register`, `fueleconomy`, `json_document`, `nmdc`, `opendatasoft`, `optimade`, `osti_family`, `postgrest`, `sage`, `self_registry`, `text_feed`, `vips` |
-| Verified live | Sage / Waggle edge sensor network, Basis Set Exchange, BPA transmission operations feeds, EAGLE-I historical outage datasets, DOE Software Inventory (code.json), DOE Open Data Catalog (data.json), EIA API v2, ESGF search (CMIP6), ESS-DIVE (Environmental System Science Data Infrastructure), Federal Register API (Department of Energy documents), fueleconomy.gov web service, Materials Project OPTIMADE endpoint, NERSC Superfacility API (system status), National Microbiome Data Collaborative Runtime API, ORNL DAAC (Daymet, MODIS/VIIRS subsets), Open Energy Data Hub (ORNL), DOE Data Explorer, DOE CODE, DOE PAGES (Public Access Gateway for Energy and Science), OSTI.GOV Search API, VIPS (DOE patent and software database), US Large-Scale Solar Photovoltaic Database (USPVDB), US Wind Turbine Database (USWTDB) |
+| Verified live | Sage / Waggle edge sensor network, Basis Set Exchange, BPA transmission operations feeds, EAGLE-I historical outage datasets, DOE Software Inventory (code.json), DOE Open Data Catalog (data.json), EIA API v2, ESGF search (CMIP6), ESS-DIVE (Environmental System Science Data Infrastructure), Federal Register API (Department of Energy documents), fueleconomy.gov web service, Materials Project OPTIMADE endpoint, NERSC Superfacility API (system status), National Microbiome Data Collaborative Runtime API, ORNL DAAC (Daymet, MODIS/VIIRS subsets), Open Energy Data Hub (ORNL), DOE Data Explorer, DOE CODE, DOE PAGES (Public Access Gateway for Energy and Science), OSTI.GOV Search API, US Large-Scale Solar Photovoltaic Database (USPVDB), US Wind Turbine Database (USWTDB) |
 | Not verified | none |
-| Records reachable with no credential | 20,176,556 |
-| Registry revision | 2026-10-08 |
+| Records reachable with no credential | 20,153,893 |
+| Registry revision | 2026-10-20 |
 <!-- status:end -->
 
 ## Install
@@ -81,10 +81,14 @@ configure credentials`, never into a client config.
 
 [Inspect the demos](docs/demos.html): literature evidence, coverage gaps,
 grid series, facility coordinates, environmental data and materials.
-Run the same recorded workflows locally with no key:
+The geothermal dataset-card starter and microbiome sample finder include
+metadata, source evidence and explicit gaps. Run the recorded workflows
+locally with no key or model call:
 
 ```bash
 doe-mcp demo evidence --output ./evidence-run
+doe-mcp demo dataset-card --output ./dataset-draft
+doe-mcp demo microbiome --output ./microbiome-samples
 doe-mcp demo client
 doe-mcp skills
 ```
@@ -124,7 +128,7 @@ matches exist than the three returned. No credential is involved.
 | Which EAGLE-I release holds county outage history for 2021, and where is it? | `grid.find_outage_history` |
 | Which wind turbines and solar farms are inside this bounding box? | `facility.find_wind_turbines`, `facility.find_solar_facilities` |
 | What has DOE proposed or finalized on appliance standards this year? | `docs.search_rulemakings` |
-| What can I license from Oak Ridge? | `tech.find_licensable_ip` |
+| Why is the VIPS patent index unavailable? | `registry.describe_source` (`pnnl-vips`) |
 | What was the weather at these coordinates every day last summer? | `earth.get_daymet_point` |
 | What data exists from the NGEE Arctic campaign, and who produced it? | `earth.search_datasets`, `earth.get_dataset` |
 | Which climate models ran the historical experiment for surface temperature? | `climate.discover_facets`, `climate.search_cmip` |
@@ -144,7 +148,7 @@ graph TD
     Skills -.->|Composes Capabilities| Servers
 
     subgraph "Shipping MCP Servers (Profiles: 8-12 tools default, <=20 ceiling)"
-        S1["doe-research<br/>literature, datasets, software, rulemakings, patents"]
+        S1["doe-research<br/>literature, datasets, software, rulemakings"]
         S2["doe-energy-data<br/>EIA-930 grid, BPA operations, outage history, facilities"]
         S3["doe-earth<br/>Daymet weather, ESS-DIVE, ESGF, Sage"]
         S4["doe-materials<br/>Materials Project OPTIMADE, Basis Sets"]

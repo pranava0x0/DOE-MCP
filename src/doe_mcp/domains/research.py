@@ -84,6 +84,8 @@ def _record_summary(record: OstiRecord, *, detailed: bool) -> dict[str, Any]:
         out["report_number"] = record.report_number
     if record.research_orgs:
         out["research_orgs"] = record.research_orgs[:3]
+        if len(record.research_orgs) > 3:
+            out["research_orgs_truncated"] = len(record.research_orgs) - 3
     if record.repository_link:
         out["repository"] = record.repository_link
     if record.licenses:
@@ -97,6 +99,8 @@ def _record_summary(record: OstiRecord, *, detailed: bool) -> dict[str, Any]:
             out["description"] = record.description
         if record.subjects:
             out["subjects"] = record.subjects[:10]
+            if len(record.subjects) > 10:
+                out["subjects_truncated"] = len(record.subjects) - 10
         if record.sponsor_orgs:
             out["sponsor_orgs"] = record.sponsor_orgs
         if record.site_url:
@@ -117,7 +121,7 @@ def _add_records(b, ctx: RuntimeContext, manifest: SourceManifest,
         rows.append(_record_summary(record, detailed=detailed))
         if record.doi_url:
             b.add_recipe(RecipeKind.doi, record.doi_url,
-                         label=record.title[:80] or None)
+                         label=record.title or None)
         if record.fulltext_url:
             b.add_recipe(RecipeKind.fulltext_pdf, record.fulltext_url,
                          label="Full text (OSTI)")
@@ -458,7 +462,7 @@ async def get_record(ctx: RuntimeContext, record_id: str,
                    retrieved_at=now, effective_at=record.entry_date,
                    locator=record.biblio_url, transformations=["normalize"])
     if record.doi_url:
-        b.add_recipe(RecipeKind.doi, record.doi_url, label=record.title[:80])
+        b.add_recipe(RecipeKind.doi, record.doi_url, label=record.title)
     if record.fulltext_url:
         b.add_recipe(RecipeKind.fulltext_pdf, record.fulltext_url,
                      label="Full text (OSTI)")

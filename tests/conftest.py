@@ -131,3 +131,16 @@ def keyed_ctx(replay, tmp_path):
 @pytest.fixture
 def registry(ctx):
     return ctx.sources
+
+
+def historical_vips(ctx):
+    """Replay September VIPS contracts; never enable a live fetcher."""
+    from doe_mcp.core.registry import AccessMode, CapabilityDecl, DeclaredState
+    assert isinstance(ctx.vips._fetcher, ReplayFetcher)
+    manifest = ctx.sources.get("pnnl-vips")
+    manifest.lifecycle.declared_state = DeclaredState.active
+    manifest.access.mode = AccessMode.anonymous
+    manifest.capabilities = [CapabilityDecl(id="tech.licensable_ip",
+                                               tool_hint="tech.find_licensable_ip")]
+    manifest.planned_capabilities = []
+    return ctx

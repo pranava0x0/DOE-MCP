@@ -15,6 +15,8 @@ a contributor ever reads:
 """
 from __future__ import annotations
 
+import re
+
 import uuid
 
 from .envelope import (AccessPath, AccessRecipe, AuthorityLevel, Citation,
@@ -24,6 +26,29 @@ from .envelope import (AccessPath, AccessRecipe, AuthorityLevel, Citation,
                        ResultCoverage, SourceEntry, SourceFailure,
                        SourceGap, WarningCode, WarningNote)
 
+
+
+LABEL_LIMIT = 80
+_INLINE_TAG = re.compile(r"</?(?:sub|sup|i|em|b|strong|span)\b[^>]*>", re.IGNORECASE)
+
+
+def strip_inline_markup(text: str) -> str:
+    """A publisher title as words: inline tags dropped, spacing collapsed."""
+    return " ".join(_INLINE_TAG.sub("", text).split())
+
+
+def short_label(text: str | None, limit: int = LABEL_LIMIT) -> str | None:
+    """A recipe label is a publisher's title, often with inline markup
+    (`SiO<sub>2</sub>`) and often longer than a link should be. Cutting it
+    at a fixed index split words and tags in half, so it is cut at a word
+    with an ellipsis, after the inline tags are dropped."""
+    if not text:
+        return None
+    clean = strip_inline_markup(text)
+    if len(clean) <= limit:
+        return clean
+    cut = clean[:limit - 1].rsplit(" ", 1)[0].rstrip(" ,;:-")
+    return cut + "\u2026"
 
 class EnvelopeBuilder:
     def __init__(self, *, server: str, server_version: str, tool: str,
@@ -119,7 +144,8 @@ class EnvelopeBuilder:
         if any(r.kind == kind and r.uri == uri for r in self._recipes):
             return
         self._recipes.append(AccessRecipe(
-            kind=kind, uri=uri, label=label, instructions=instructions,
+            kind=kind, uri=uri, label=short_label(label),
+            instructions=instructions,
             requires_account=requires_account,
             approximate_size=approximate_size))
 

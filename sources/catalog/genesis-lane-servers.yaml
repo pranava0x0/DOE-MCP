@@ -27,8 +27,7 @@ why_not_absorbed: >
   Access-gated by design and pointed at internal instruments, facilities, and
   compute. Wrapping a gated server would produce a tool that fails for every
   public user, which is worse than not having it. The named watch items are
-  BNL's PanDA MCP, Argonne's Globus-service MCPs, LBNL's CBorg, and the
-  gated Genesis Skills repository on OSTI's GitLab.
+  BNL's PanDA MCP, Argonne's Globus-service MCPs and LBNL's CBorg.
 notes: >
   Positioning, stated plainly because getting it wrong would be both rude and
   inaccurate: DOE has not "failed to discover MCP". Anthropic's December 2025
@@ -38,4 +37,13 @@ notes: >
   NREL/NLR. That gap is what this project fills, and it stops being a gap the
   moment DOE fills it, at which point the right response is a catalog entry
   and not a rivalry.
-last_checked: "2026-09-01"
+
+  Genesis Agent Skills, which this entry named as gated until 2026-10-20,
+  is public: DOE announced it on 2026-10-15, development is at
+  github.com/AI-ModCon/genesis-skills, and gitlab.osti.gov/genesis is a
+  read-only mirror. It is a catalog of agent instructions, not a server or
+  a data source, so it maps to no capability here; its subtrees carry
+  different licenses, and DOE-MCP has vendored none of it. DOE-MCP's skills
+  follow the same Agent Skills file format. It has its own entry,
+  genesis-agent-skills, as a skill pack.
+last_checked: "2026-10-20"

@@ -1,18 +1,15 @@
 ---
 name: materials-structure-and-code
-description: >
+description: >-
   Find computed crystal structures and export the quantum-chemistry basis sets
   needed to model them. Use when someone asks "how do I model this material",
   "what computed structures exist for gallium nitride or lithium iron oxide",
   or wants basis set inputs for NWChem or Gaussian with publisher citations.
-capabilities:
-  - materials.search
-  - chemistry.basis_sets
-  - literature.search
-servers:
-  - doe-materials
-  - doe-research
-credentials: []
+compatibility: Needs the DOE-MCP servers doe-materials and doe-research configured in an MCP client. Read-only over public data. No credentials.
+metadata:
+  doe-mcp-capabilities: materials.search chemistry.basis_sets literature.search
+  doe-mcp-servers: doe-materials doe-research
+  doe-mcp-credentials: none
 ---
 
 # Materials structure and code

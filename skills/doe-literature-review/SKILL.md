@@ -1,20 +1,17 @@
 ---
 name: doe-literature-review
-description: >
+description: >-
   A short evidence table of DOE-funded publications on a topic: what was
   found in OSTI.GOV and DOE PAGES, which records were read in full, where
   each can be read, and how much of the result set the table covers. Use
   when someone asks "what has DOE published on X", wants the national-lab
   reports behind a claim, or needs citations with a stated coverage rather
   than a list of links.
-capabilities:
-  - literature.search
-  - literature.get_record
-  - literature.fulltext_link
-  - registry.resolve_org
-servers:
-  - doe-research
-credentials: []
+compatibility: Needs the DOE-MCP server doe-research configured in an MCP client. Read-only over public data. No credentials.
+metadata:
+  doe-mcp-capabilities: literature.search literature.get_record literature.fulltext_link registry.resolve_org
+  doe-mcp-servers: doe-research
+  doe-mcp-credentials: none
 ---
 
 # DOE literature review

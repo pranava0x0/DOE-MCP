@@ -25,7 +25,7 @@ error, and closes the process. Neither command needs an API key or a
 publisher connection.
 
 Available walkthroughs: `evidence`, `partial`, `blocked`, `grid`, `eia`,
-`site`, `earth`, and `materials`. The partial case explicitly simulates one
+`site`, `earth`, `materials`, `dataset-card`, `microbiome`, `rulemaking`, and `outage-history`. The partial case explicitly simulates one
 unavailable source in an isolated replay. The blocked case reads registry
 inventory; it does not query the proposed publisher.
 
@@ -63,11 +63,55 @@ Earth search results and Oak Ridge modelled weather are separate examples,
 not a claimed study-site match. The materials walkthrough likewise keeps
 the computed GaN structure separate from the H/C/O basis-set example.
 
-The outage-history, facility-status and microbiome tools have checked
+The facility-status tool has checked
 skill tasks but no walkthrough page yet; [the examples](../examples/README.md)
 show one call for each. Outage history returns the EAGLE-I release that
 covers a year and its DOI, not outage figures. The microbiome tools return
 study and sample metadata; sequence data stays behind each study's DOIs.
+
+## Genesis and no-cost demos
+
+DOE's [Genesis Agent Skills release](https://www.energy.gov/science/articles/genesis-agent-skills-release-support-innovation-across-genesis-mission)
+provides scientific workflow instructions. DOE-MCP's own skills now use the
+same Agent Skills format. This is format compatibility, not an installed
+connection to the upstream catalog or a claim of DOE endorsement.
+
+Try these local examples after installation:
+
+```bash
+doe-mcp demo dataset-card --output ./dataset-draft
+doe-mcp demo microbiome --output ./microbiome-samples
+```
+
+The dataset starter uses `find-doe-data`'s checked DOE-GDR search. Its JSON
+includes `drafts`: catalog metadata, evidence references, and fields that
+need owner review. No file is downloaded or inspected. It is neither a
+validated Genesis datacard nor a Croissant document; checksums, file
+formats, licensing, sensitivity and AI suitability remain unverified.
+
+The microbiome example follows `microbiome-data-finder`: search NMDC for
+shale studies, then use a returned study ID to request five biosamples.
+The page shows the sample's place, collection date and environment.
+Publisher access recipes retain the distinction between dataset and award
+DOIs. The workflow does not retrieve sequence data or infer biological
+function.
+
+Both default to recorded responses with no network or model calls. Add
+`--live` for public API reads without a key; availability and results can
+change. Downloading the underlying datasets may have separate conditions.
+An AI client chosen by the user may charge for inference, but these CLI
+examples and the static previews do not require one.
+
+To use the skills conversationally, give a compatible client the installed
+skill file and a bounded request: "Find two geothermal dataset records and
+list missing documentation fields" or "Find a shale study and five linked
+biosamples; state what was not retrieved." Model output still needs review;
+the deterministic demonstrations do not measure agent accuracy.
+
+The [upstream Genesis catalog](https://github.com/AI-ModCon/genesis-skills)
+also covers facility operations, data movement and model services. Public
+skill files do not grant an allocation, an account, free inference or
+permission to transfer data. These demos execute none of that upstream code.
 
 ## Connect a client and provide a skill
 
@@ -185,3 +229,23 @@ not a claim that the whole project is typed. Source liveness remains a
 separate scheduled check. Fixture recording rewrites a whole source file;
 use the existing recorder guards and run the full suite immediately after
 recording. A targeted recording uses `--source SOURCE_ID`.
+
+## Rulemaking brief
+
+`doe-mcp demo rulemaking --output ./rulemaking-brief` searches a recorded
+Federal Register page and follows one returned DOE document number.
+The table keeps the publisher action and publication, effective and
+comment-close dates separate. Unknown dates stay unknown. FERC documents
+are excluded, and the publisher total still includes those exclusions.
+This is document metadata, not a legal-status assessment or a full docket.
+Add `--live` for a current search; no key or model is required.
+
+## Historical outage-data finder
+
+`doe-mcp demo outage-history --output ./outage-history` finds the EAGLE-I
+release covering 2021 and presents its DOI, documentation and the separate
+customer-count dataset. This locates files; it does not download county
+measurements or compute an outage rate. The denominator's vintage is shown
+in its publisher title, because mixing years can mislead. Customers are
+not people, and publisher coverage is incomplete. Add `--live` to check
+the public catalog without a key or model.

@@ -1,0 +1,352 @@
+{
+  "format_version": "1",
+  "case": "outage-history",
+  "title": "Historical outage-data finder",
+  "question": "Which EAGLE-I release covers 2021, and what else is needed to calculate an outage rate?",
+  "mode": "recorded",
+  "simulation": false,
+  "registry_revision": "2026-10-20",
+  "generated_at": null,
+  "replay_clock": "2026-10-20T00:00:00Z",
+  "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
+  "fixtures": [
+    {
+      "file": "ceser-eagle-i-outages.json",
+      "sha256": "d3928d3e55187b8b5a951a6bbfffeb78d9faa00f645759c1845a98194e7a7685",
+      "captured_at": "2026-10-08T23:09:56.476179+00:00"
+    }
+  ],
+  "limitations": [
+    "Release metadata only. No county outage files were downloaded and no outage counts or rates were calculated.",
+    "Customers without power are not people without power; coverage is incomplete.",
+    "The customer-count dataset has its own vintage. Pairing it with another year's outages can produce a misleading rate."
+  ],
+  "steps": [
+    {
+      "tool": "grid.find_outage_history",
+      "args": {
+        "year": 2021
+      },
+      "envelope": {
+        "data": {
+          "releases": [
+            {
+              "title": "EAGLE-I Power Outage Data 2014 - 2022",
+              "kind": "outage_data",
+              "covers_years": {
+                "from": 2014,
+                "to": 2022
+              },
+              "doi": "10.13139/ORNLNCCS/1975202",
+              "doi_url": "https://doi.org/10.13139/ORNLNCCS/1975202",
+              "catalog_record": "https://www.osti.gov/dataexplorer/biblio/1975202",
+              "osti_ids": [
+                "1975202"
+              ],
+              "published": "2023-05-25"
+            },
+            {
+              "title": "EAGLE-I Power Outage Data 2023",
+              "kind": "outage_data",
+              "covers_years": {
+                "from": 2023,
+                "to": 2023
+              },
+              "doi": "10.13139/OLCF/2297398",
+              "doi_url": "https://doi.org/10.13139/OLCF/2297398",
+              "catalog_record": "https://www.osti.gov/dataexplorer/biblio/2297398",
+              "osti_ids": [
+                "2297398"
+              ],
+              "published": "2024-02-11"
+            },
+            {
+              "title": "EAGLE-I Power Outage Data 2024",
+              "kind": "outage_data",
+              "covers_years": {
+                "from": 2024,
+                "to": 2024
+              },
+              "doi": "10.13139/OLCF/2500278",
+              "doi_url": "https://doi.org/10.13139/OLCF/2500278",
+              "catalog_record": "https://www.osti.gov/dataexplorer/biblio/2500278",
+              "osti_ids": [
+                "2500278"
+              ],
+              "published": "2025-04-02"
+            },
+            {
+              "title": "EAGLE-I Power Outage Data 2025",
+              "kind": "outage_data",
+              "covers_years": {
+                "from": 2025,
+                "to": 2025
+              },
+              "doi": "10.13139/ORNLNCCS/3012826",
+              "doi_url": "https://doi.org/10.13139/ORNLNCCS/3012826",
+              "catalog_record": "https://www.osti.gov/dataexplorer/biblio/3012826",
+              "osti_ids": [
+                "3019924",
+                "3012826"
+              ],
+              "published": "2026-02-18"
+            }
+          ],
+          "documentation": [
+            {
+              "title": "EAGLE-I Power Outage Data Information",
+              "kind": "documentation",
+              "covers_years": null,
+              "doi": "10.13139/ORNLNCCS/1975203",
+              "doi_url": "https://doi.org/10.13139/ORNLNCCS/1975203",
+              "catalog_record": "https://www.osti.gov/dataexplorer/biblio/1975203",
+              "osti_ids": [
+                "1975203"
+              ],
+              "published": "2023-05-25"
+            }
+          ],
+          "customer_counts": [
+            {
+              "title": "EAGLE-I County Customer Dataset Fall 2025",
+              "kind": "customer_counts",
+              "covers_years": null,
+              "doi": "10.13139/ORNLNCCS/3022751",
+              "doi_url": "https://doi.org/10.13139/ORNLNCCS/3022751",
+              "catalog_record": "https://www.osti.gov/dataexplorer/biblio/3022751",
+              "osti_ids": [
+                "3022751"
+              ],
+              "published": "2026-05-05"
+            }
+          ],
+          "years_covered": {
+            "from": 2014,
+            "to": 2025
+          },
+          "missing_years": [],
+          "note": "Catalog records for EAGLE-I's annual releases, not outage numbers. Each release is a set of county-level files of customers without power at 15-minute intervals behind its DOI. Customers out is not people out, coverage is roughly 92% of US customers with small utilities and cooperatives missing, and the county customer-count dataset is the denominator for a share-of-customers figure. That dataset is a snapshot dated in its own title, so a share for a different year mixes vintages.",
+          "requested_year": 2021,
+          "releases_for_year": [
+            {
+              "title": "EAGLE-I Power Outage Data 2014 - 2022",
+              "kind": "outage_data",
+              "covers_years": {
+                "from": 2014,
+                "to": 2022
+              },
+              "doi": "10.13139/ORNLNCCS/1975202",
+              "doi_url": "https://doi.org/10.13139/ORNLNCCS/1975202",
+              "catalog_record": "https://www.osti.gov/dataexplorer/biblio/1975202",
+              "osti_ids": [
+                "1975202"
+              ],
+              "published": "2023-05-25"
+            }
+          ]
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "ceser-eagle-i-outages",
+            "steward": "Office of Cybersecurity, Energy Security, and Emergency Response",
+            "host": "Oak Ridge National Laboratory",
+            "system": "EAGLE-I historical outage datasets",
+            "dataset": "EAGLE-I historical outage datasets",
+            "dataset_version": "current",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "cache_age_seconds": 0
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "3022751",
+            "locator": "https://www.osti.gov/dataexplorer/biblio/3022751",
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-05-05T20:00:00Z",
+            "transformations": [
+              "normalize",
+              "dedupe_by_doi"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_02",
+            "source_ref": "source_01",
+            "record_id": "3019924",
+            "locator": "https://www.osti.gov/dataexplorer/biblio/3019924",
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-01-31T19:00:00Z",
+            "transformations": [
+              "normalize",
+              "dedupe_by_doi"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_03",
+            "source_ref": "source_01",
+            "record_id": "3012826",
+            "locator": "https://www.osti.gov/dataexplorer/biblio/3012826",
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-02-18T19:00:00Z",
+            "transformations": [
+              "normalize",
+              "dedupe_by_doi"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_04",
+            "source_ref": "source_01",
+            "record_id": "2500278",
+            "locator": "https://www.osti.gov/dataexplorer/biblio/2500278",
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2025-04-02T20:00:00Z",
+            "transformations": [
+              "normalize",
+              "dedupe_by_doi"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_05",
+            "source_ref": "source_01",
+            "record_id": "2297398",
+            "locator": "https://www.osti.gov/dataexplorer/biblio/2297398",
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2024-02-11T19:00:00Z",
+            "transformations": [
+              "normalize",
+              "dedupe_by_doi"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_06",
+            "source_ref": "source_01",
+            "record_id": "1975203",
+            "locator": "https://www.osti.gov/dataexplorer/biblio/1975203",
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2023-05-25T20:00:00Z",
+            "transformations": [
+              "normalize",
+              "dedupe_by_doi"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_07",
+            "source_ref": "source_01",
+            "record_id": "1975202",
+            "locator": "https://www.osti.gov/dataexplorer/biblio/1975202",
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2023-05-25T20:00:00Z",
+            "transformations": [
+              "normalize",
+              "dedupe_by_doi"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "ceser-eagle-i-outages"
+          ],
+          "time_range": {
+            "from": "2014",
+            "to": "2025"
+          },
+          "known_limitations": [
+            "Customers out is not people out, and an interval count is not an outage event. Turning the series into events or durations is a modelling choice the releases leave to the reader.",
+            "OSTI lists the 2025 release twice, under two record ids with one DOI. The tool reports the release once and names both records.",
+            "Pointers to the releases, not outage numbers. Each release is a set of files behind its DOI; this source says which release covers a year and where it is, and reading the files is a second step.",
+            "Roughly 92% of customers, not all. The gap is small utilities and cooperatives, and it is not randomly distributed: rural areas are underrepresented in exactly the analyses that most want them.",
+            "The live platform is not this. Anyone wanting current outage status needs the gated system or a utility's own feed; this is history, published a year at a time."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "terms_note",
+            "message": "No published rate limit, same as the rest of the OSTI family.",
+            "source_id": "ceser-eagle-i-outages"
+          }
+        ],
+        "access_recipes": [
+          {
+            "kind": "doi",
+            "uri": "https://doi.org/10.13139/ORNLNCCS/1975202",
+            "label": "EAGLE-I Power Outage Data 2014 - 2022",
+            "instructions": "The files are held at ORNL's repository behind this DOI; returned as data and never fetched here.",
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "doi",
+            "uri": "https://doi.org/10.13139/ORNLNCCS/3022751",
+            "label": "EAGLE-I County Customer Dataset Fall 2025",
+            "instructions": "The files are held at ORNL's repository behind this DOI; returned as data and never fetched here.",
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "doi",
+            "uri": "https://doi.org/10.13139/ORNLNCCS/1975203",
+            "label": "EAGLE-I Power Outage Data Information",
+            "instructions": "The files are held at ORNL's repository behind this DOI; returned as data and never fetched here.",
+            "requires_account": false,
+            "approximate_size": null
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "grid.find_outage_history",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-10-20",
+          "request_id": "recorded-workflow"
+        }
+      }
+    }
+  ]
+}

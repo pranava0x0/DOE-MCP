@@ -34,6 +34,7 @@ STATE_LABEL = {"active": "active", "proposed": "inventory",
 # directly rather than only its top.
 NAV = [
     ("overview", "Overview", [("overview-about", "About DOE-MCP"),
+                              ("overview-demos", "Free demos"),
                               ("overview-queries", "Sample queries")]),
     ("start", "Quick start", [("start-install", "Install"),
                               ("start-check", "Check it"),
@@ -79,6 +80,7 @@ def _style() -> str:
     # so the page is legible and correctly laid out before they arrive and
     # if they never do.
     return """
+.demo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:20px 0}.demo-link{display:flex;flex-direction:column;gap:12px;padding:20px;border:1px solid var(--line);border-radius:8px;background:var(--card);text-decoration:none;overflow-wrap:anywhere}.demo-link strong{font-size:1.12rem}.demo-link span{color:var(--ink)}.demo-link small{color:var(--muted);margin-top:auto}.demo-link:hover{border-color:var(--accent)}.demo-link:focus-visible{outline:3px solid var(--accent);outline-offset:3px}@media(max-width:900px){.demo-grid{grid-template-columns:1fr}}
 :root{
   /* DOE grey ramp */
   --paper:#f9faff; --ink:#232429; --muted:#55565b; --faint:#828388;
@@ -158,7 +160,8 @@ h1{font-family:var(--display);font-weight:600;font-size:2.3rem;
 .tagline{font-size:1.08rem;color:var(--muted);margin:0 0 1.6rem;max-width:44rem}
 .funnel{display:flex;flex-wrap:wrap;gap:.4rem;align-items:stretch;
   margin:0 0 .6rem}
-.funnel .step{background:var(--card);border:1px solid var(--line);
+.funnel .step{display:block;color:inherit;text-decoration:none;
+  background:var(--card);border:1px solid var(--line);
   border-radius:5px;padding:.5rem .8rem;min-width:7rem;
   transition:transform .3s cubic-bezier(.16,1,.3,1),
     box-shadow .3s cubic-bezier(.16,1,.3,1),border-color .3s}
@@ -315,6 +318,16 @@ a{color:var(--accent)}
   /* A wide table scrolls inside its own box rather than widening the
      page; the question and tool columns do not fit 375px side by side. */
   table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  /* The tiles wrap two to a row, which leaves an arrow pointing at the
+     next row's edge; the order is still left to right without it. */
+  .funnel .arrow{display:none}
+  .funnel{display:grid;grid-template-columns:1fr 1fr}
+  /* The section links scroll sideways with the scrollbar hidden; a fade
+     at the right edge says there is more than the three that fit. */
+  .toc-links{-webkit-mask-image:linear-gradient(to right,#000 82%,transparent);
+    mask-image:linear-gradient(to right,#000 82%,transparent)}
+  /* Inline links in the header get a 24px-plus touch target. */
+  header p a{display:inline-block;padding:.3rem 0}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -341,16 +354,19 @@ def _inventory(c: dict) -> str:
     was three things sharing one number; they get their own line below.
     """
     skills = c["skills"]
-    steps = [(c["active"], "live systems"),
-             (c["servers_shipping"], "domain servers"),
-             (c["tools"], "read-only tools"),
-             (skills, f"skill{'s' if skills != 1 else ''}")]
+    # Each number links to the list it counts, so the figure a reader is
+    # curious about is one tap from its detail rather than a scroll and a
+    # section to open.
+    steps = [(c["active"], "live systems", "#registry-sources"),
+             (c["servers_shipping"], "domain servers", "#servers-list"),
+             (c["tools"], "read-only tools", "reference.html"),
+             (skills, f"skill{'s' if skills != 1 else ''}", "#skills")]
     parts = []
-    for i, (big, small) in enumerate(steps):
+    for i, (big, small, href) in enumerate(steps):
         if i:
-            parts.append('<span class="arrow">\u2192</span>')
-        parts.append(f'<div class="step"><b>{big}</b>'
-                     f'<span>{e(small)}</span></div>')
+            parts.append('<span class="arrow" aria-hidden="true">\u2192</span>')
+        parts.append(f'<a class="step" href="{href}"><b>{big}</b>'
+                     f'<span>{e(small)}</span></a>')
     return (f'<div class="funnel">{"".join(parts)}</div>'
             f'<p class="inventory">Published by {c["labs"]} national '
             f'laboratories, {c["program_offices"]} program offices and '
@@ -468,8 +484,8 @@ def _arch_diagram(data: dict) -> str:
         <div class="arch-box-desc"><b>{e(count)}.</b> {e(sv['description'])}</div>
       </div>""")
     return f"""
-<div class="arch-flow" id="servers-arch">
-  <div class="arch-tier">
+<div class="arch-flow">
+  <div class="arch-tier" id="skills">
     <div class="arch-tier-title">Layer 1: Skills (task walks over the capability vocabulary)</div>
     <div class="arch-boxes">{skills}
     </div>
@@ -552,6 +568,15 @@ def _lab_cards(data: dict, kind: str = "") -> str:
     return f'<div class="grid">{"".join(cards)}</div>'
 
 
+def _registry_filter(data: dict) -> str:
+    """The filter sits outside the collapsed table, so it is visible where
+    the "live systems" link lands; typing opens the table (see _script)."""
+    return ('<input id="q" type="search" placeholder="Filter '
+            f'{len(data["sources"])} sources — try &quot;ornl&quot;, '
+            '&quot;nersc&quot;, &quot;grid&quot;, &quot;outreach&quot;" '
+            'aria-label="Filter sources">')
+
+
 def _registry(data: dict) -> str:
     rows = []
     for s in data["sources"]:
@@ -581,10 +606,6 @@ def _registry(data: dict) -> str:
             f"<td>{publisher}</td><td>{detail}</td>"
             f"<td class='mono' style='text-align:right'>{count}</td></tr>")
     return (
-        '<input id="q" type="search" placeholder="Filter '
-        f'{len(data["sources"])} sources — try &quot;ornl&quot;, '
-        '&quot;inventory&quot;, &quot;grid&quot;, &quot;outreach&quot;" '
-        'aria-label="Filter sources">'
         "<table><thead><tr><th>Source</th><th>Publisher</th>"
         "<th>What it holds / what is blocking it</th>"
         "<th style='text-align:right'>Records</th></tr></thead>"
@@ -660,7 +681,9 @@ def _provenance(data: dict) -> str:
 def _neighbours(data: dict) -> str:
     rows = "".join(
         f"<tr><td><b>{e(n['name'])}</b><br><span class='mono' "
-        f"style='color:var(--faint)'>{e(n['maintainer'])}</span></td>"
+        f"style='color:var(--faint)'>{e(n['maintainer'])}"
+        f"{' · skill pack' if n.get('kind') == 'skill_pack' else ''}"
+        f"</span></td>"
         f"<td><span class='pill "
         f"{'active' if n['status'] == 'listed' else 'proposed'}'>"
         f"{e(n['status'])}</span><br><span class='mono' "
@@ -668,7 +691,7 @@ def _neighbours(data: dict) -> str:
         f"<td>{e(n['why_not_absorbed'])}</td>"
         f"<td><code>{e(n['install'] or '—')}</code></td></tr>"
         for n in data["neighbors"])
-    return ("<table><thead><tr><th>Server</th><th>Status</th>"
+    return ("<table><thead><tr><th>Server or skill pack</th><th>Status</th>"
             "<th>Why DOE-MCP does not duplicate it</th><th>Install</th>"
             f"</tr></thead><tbody>{rows}</tbody></table>")
 
@@ -680,8 +703,12 @@ def _script() -> str:
   if(!q) return;
   var rows = Array.prototype.slice.call(
     document.querySelectorAll('#reg tr'));
+  var table = document.getElementById('reg');
+  var group = table ? table.closest('details') : null;
   q.addEventListener('input', function(){
     var terms = q.value.toLowerCase().split(/\\s+/).filter(Boolean);
+    // Rows filtered inside a closed group are invisible; open it.
+    if (group && terms.length) group.open = true;
     rows.forEach(function(r){
       var hay = r.getAttribute('data-s') || '';
       r.hidden = !terms.every(function(t){ return hay.indexOf(t) !== -1; });
@@ -722,9 +749,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
 
 <div class="util" id="top"><div class="util-inner">
   <p style="margin:0">
-    <span class="long"><b>Not affiliated with the US Department of
-    Energy.</b> An independent project. No answer it returns is an official
-    government statement.</span>
+    <span class="long">Independent project; not affiliated with the US Department of Energy.</span>
     <span class="short">⚠ Not affiliated with the US DOE</span></p>
   <a href="https://github.com/pranava0x0/DOE-MCP">View source ↗</a>
 </div></div>
@@ -736,10 +761,8 @@ family=Roboto+Mono:wght@400;500&display=swap">
 
 <header><div class="wrap">
   <h1>MCP servers over public DOE data</h1>
-  <p class="tagline">Public Department of Energy and national-laboratory
-  data, reachable by an agent. Every answer names the systems it came from,
-  when they were read, and what it did not cover.</p>
-  <p><a href="demos.html">Explore recorded evidence walkthroughs</a> · <a href="guide.md">Local workflow guide</a></p>
+  <p class="tagline">Search research, energy and environmental data from your AI client.</p>
+  <p><a href="demos.html">Browse demos</a> · <a href="guide.html">Local workflow guide</a></p>
   {_inventory(c)}
   <p class="works">Works with: {works}</p>
 </div></header>
@@ -750,9 +773,22 @@ family=Roboto+Mono:wght@400;500&display=swap">
 <details class="sect" open>
   <summary><h2><span class="num">01</span>Overview</h2></summary>
   <div class="sect-body">
-  <h3 id="overview-about">What this is</h3>
-  <p class="lede">The <b>Model Context Protocol (MCP)</b> is how an AI client such as Claude Code, Claude Desktop, Cursor or VS Code calls tools that run outside it.</p>
-  <p class="lede">DOE and its 17 national laboratories publish literature, grid readings, climate-model indexes, microbiome samples and materials data, each through its own portal or API. <b>DOE-MCP</b> is a set of read-only MCP servers over the public ones. Every answer names the publisher it came from, when it was read, and what the search did not cover.</p>
+  <p id="overview-about">DOE-MCP connects AI clients to public DOE and national-laboratory data through read-only tools. Results include sources, retrieval dates and coverage limits.</p>
+  <h3 id="overview-demos">Demos</h3>
+  <p>Use recorded data without an account, API key or paid model.</p>
+  <div class="demo-grid">
+    <a class="demo-link" href="demos.html#dataset-card"><strong>Start a geothermal dataset card</strong><span>Two DOE Data Explorer records, their evidence, and the fields a dataset owner still needs to supply.</span><small>Skill: find-doe-data · Recorded metadata</small></a>
+    <a class="demo-link" href="demos.html#microbiome"><strong>Find a microbiome study</strong><span>Follow an NMDC shale study to five biosamples. See collection dates, environments and publisher access recipes.</span><small>Skill: microbiome-data-finder · Recorded metadata</small></a>
+    <a class="demo-link" href="demos.html#evidence"><strong>Trace a research claim</strong><span>Search perovskite solar literature, follow a returned record, and see where the search is incomplete.</span><small>Skill: doe-literature-review · Recorded evidence</small></a>
+    <a class="demo-link" href="demos.html#rulemaking"><strong>Read a DOE rulemaking brief</strong><span>Follow a Federal Register record to its action, docket IDs and dates. See what the search excludes.</span><small>Skill: doe-rulemaking-brief · Recorded documents</small></a>
+    <a class="demo-link" href="demos.html#outage-history"><strong>Find historical outage data</strong><span>Locate the EAGLE-I release covering 2021, its documentation and the customer-count dataset needed to interpret rates.</span><small>Skill: grid-status-brief · Release metadata</small></a>
+    <a class="demo-link" href="demos.html#find-data"><strong>Find out whether DOE publishes it</strong><span>Resolve NREL to its new name, check the registry, and search four DOE catalogs, two of them old harvests.</span><small>Skill: find-doe-data · Recorded catalogs</small></a>
+    <a class="demo-link" href="demos.html#facility-status"><strong>Check NERSC system status</strong><span>Read NERSC's public status board: which systems are active, the next planned outage, and which facilities are not covered.</span><small>Tool: compute.facility_status · Recorded board</small></a>
+    <a class="demo-link" href="demos.html#materials"><strong>Inspect a computed material</strong><span>Look up a gallium nitride structure and a separate chemistry basis-set example, with their sources.</span><small>Skill: materials-structure-and-code · Recorded structures</small></a>
+  </div>
+  <details><summary>Genesis Skills compatibility</summary>
+  <p>DOE-MCP's skills use the same Agent Skills format as <a href="https://github.com/AI-ModCon/genesis-skills">Genesis Agent Skills</a>. The demos use DOE-MCP's own tools; no upstream skills or lab services run here. <a href="guide.html#genesis-and-no-cost-demos">Integration and cost details</a>.</p>
+  </details>
   <h3 id="overview-queries">Questions it answers</h3>
   <p class="lede">Each question below is answered by one tool on one server:</p>
   {_questions(data)}
@@ -801,6 +837,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
   <h3 id="registry-orgs">By organization</h3>
   {_crosswalk(data)}
   <h3 id="registry-sources">By source</h3>
+  {_registry_filter(data)}
   <details><summary>All {c['sources']} systems
     <span class="count">{c['active']} queryable</span></summary>
   {_registry(data)}</details>
@@ -850,12 +887,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
   {e(data['registry_revision'])} · {c['sources']} sources ·
   {c['organizations']} organizations · {c['adapters']} adapters ·
   {c['capabilities_served']}/{c['capabilities']} capabilities served.</p>
-  <p>Generated from the same source registry the servers run on. A CI test
-  fails the build when this page and the registry disagree.</p>
-  <p>Citing this: see <code>CITATION.cff</code>. If you use DATA reached
-  through it, cite that data's publisher — the string is in every answer's
-  provenance block, and for some sources citation is a condition of use
-  rather than a courtesy.</p>
+  <p>Cite DOE-MCP using <code>CITATION.cff</code>. Cite data using the publisher information in each response.</p>
   <p>Packaging shape borrowed with thanks from PNNL's NEPA-MCP. That project
   does not endorse this one.</p>
 </div></footer>
