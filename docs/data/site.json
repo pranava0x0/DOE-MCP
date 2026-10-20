@@ -478,7 +478,7 @@
     },
     {
       "name": "environmental-study-brief",
-      "summary": "Find environmental datasets and interpret a bounded Daymet weather window.",
+      "summary": "Find environmental datasets and read a bounded Daymet weather window for one point and date range.",
       "servers": [
         "doe-earth"
       ]
@@ -1259,7 +1259,7 @@
       "planned_capabilities": [
         "compute.facility_status"
       ],
-      "blocked_reason": "Blocked probe. The status page is an Angular application and its data paths return HTTP 403 with a Cloudflare challenge to a scripted client, which under decision 0007 is blocked_probe and NOT gated: a WAF refusing this client shape says nothing about whether the data is public. One real-browser check, watching the application's own network calls, would settle both the endpoint and the posture. Joins the blocked-probe backlog.",
+      "blocked_reason": "Blocked probe. The status page is an Angular application and its data paths return HTTP 403 with a Cloudflare challenge to a scripted client, which under decision 0007 is blocked_probe and NOT gated: a WAF refusing this client shape says nothing about whether the data is public. One real-browser check, watching the application's own network calls, would settle both the endpoint and the posture. Joins the blocked-probe backlog. Note, 2026-10-20. One plain GET of the status page answered 200 with the application shell, so the 403 did not recur; one probe from one machine is not evidence that the posture changed. The page's own data path was found and is not a candidate: it is undocumented and carries queued and running job records, which this project does not read for any facility. ALCF documents a separate machine route, its implementation of the IRI Facility API at api.alcf.anl.gov, whose status reads answered a plain GET with JSON. Under decision 0025 that is a different source with its own terms, and it waits on a terms review before it is registered; this manifest stays proposed until then.",
       "labs": [
         "anl"
       ],
@@ -4483,7 +4483,7 @@
       "maintainer": "Various DOE national laboratories",
       "status": "watch",
       "compliance": "opaque",
-      "why_not_absorbed": "Access-gated by design and pointed at internal instruments, facilities, and compute. Wrapping a gated server would produce a tool that fails for every public user, which is worse than not having it. The named watch items are BNL's PanDA MCP, Argonne's Globus-service MCPs, LBNL's CBorg, and the gated Genesis Skills repository on OSTI's GitLab.\n",
+      "why_not_absorbed": "Access-gated by design and pointed at internal instruments, facilities, and compute. Wrapping a gated server would produce a tool that fails for every public user, which is worse than not having it. The named watch items are BNL's PanDA MCP, Argonne's Globus-service MCPs and LBNL's CBorg.\n",
       "install": "unavailable \u2014 access is gated (OneID / RFA / SSO)",
       "repository": null,
       "tool_count": null
