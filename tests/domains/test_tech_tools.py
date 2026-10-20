@@ -121,3 +121,12 @@ async def test_it_points_at_uspto_for_the_authoritative_patent_text(ctx):
     the patent office's own record."""
     env = await tech.find_licensable_ip(ctx, lab="INL", rows=5)
     assert "USPTO" in env.data["note"]
+
+
+def test_the_research_instructions_do_not_promise_a_blocked_tool():
+    """While pnnl-vips is proposed the activation gate refuses every call,
+    so the server's instructions must not tell a model the tool answers."""
+    from doe_mcp.servers.lineup import SERVER_LINEUP
+    text = next(s.instructions for s in SERVER_LINEUP if s.name == "doe-research")
+    assert "refuses while VIPS is blocked" in text
+    assert "is the one tool here that answers" not in text.split("When VIPS")[0]
