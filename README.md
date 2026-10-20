@@ -81,10 +81,14 @@ configure credentials`, never into a client config.
 
 [Inspect the demos](docs/demos.html): literature evidence, coverage gaps,
 grid series, facility coordinates, environmental data and materials.
-Run the same recorded workflows locally with no key:
+The geothermal dataset-card starter and microbiome sample finder include
+metadata, source evidence and explicit gaps. Run the recorded workflows
+locally with no key or model call:
 
 ```bash
 doe-mcp demo evidence --output ./evidence-run
+doe-mcp demo dataset-card --output ./dataset-draft
+doe-mcp demo microbiome --output ./microbiome-samples
 doe-mcp demo client
 doe-mcp skills
 ```

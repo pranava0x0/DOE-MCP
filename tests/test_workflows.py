@@ -81,3 +81,55 @@ def test_each_workflow_annotation_names_an_existing_bench_task():
             assert workflow['case'] in CASES
             cases.add(workflow['case'])
     assert {'evidence', 'grid', 'site', 'earth', 'materials'} <= cases
+
+
+async def test_dataset_starters_preserve_metadata_evidence_and_unknowns(ctx):
+    report = await run_workflow(ctx, 'dataset-card')
+    envelope = report['steps'][0]['envelope']
+    assert len(report['drafts']) == len(envelope['data']['datasets']) == 2
+    for draft, record in zip(report['drafts'], envelope['data']['datasets'], strict=True):
+        assert draft['metadata'] == record
+        assert draft['status'] == 'draft_metadata_only'
+        assert draft['evidence']
+        assert all(e['record_id'] == record['id'] for e in draft['evidence'])
+        assert any('checksums' in field for field in draft['needs_owner_review'])
+        assert any('License' in field for field in draft['needs_owner_review'])
+    assert 'not a validated Genesis' in report['limitations'][0]
+    report['drafts'][0]['metadata']['title'] = '<img src=x onerror=alert(1)>'
+    page = render([report])
+    assert '<img src=x' not in page
+    assert '&lt;img src=x' in page
+
+
+async def test_microbiome_follows_search_id_and_keeps_sample_scope(ctx):
+    report = await run_workflow(ctx, 'microbiome')
+    search, samples = report['steps']
+    study = search['envelope']['data']['studies'][0]['study_id']
+    assert samples['args'] == {'study_id': study, 'rows': 5}
+    assert all(study in r['studies'] for r in samples['envelope']['data']['biosamples'])
+    assert samples['envelope']['coverage']['pagination'] == 'truncated'
+    page = render([report])
+    assert 'dataset_doi' in page and 'award_doi' in page
+    assert 'Sample metadata; no sequence data retrieved' in page
+
+
+@pytest.mark.parametrize('case,tool,key', [
+    ('dataset-card', 'research.search_datasets', 'datasets'),
+    ('microbiome', 'bio.search_studies', 'studies'),
+])
+async def test_new_workflows_refuse_empty_search_without_followup(ctx, monkeypatch, case, tool, key):
+    from types import SimpleNamespace
+    from doe_mcp import workflows
+    original = workflows.tool_spec
+    calls = []
+
+    async def empty(context, **args):
+        calls.append(tool)
+        env = await original(tool).fn(context, **args)
+        env.data[key] = []
+        return env
+
+    monkeypatch.setattr(workflows, 'tool_spec', lambda name: SimpleNamespace(fn=empty) if name == tool else pytest.fail('unexpected follow-up'))
+    with pytest.raises(SourceUnavailable, match='no '):
+        await run_workflow(ctx, case)
+    assert calls == [tool]

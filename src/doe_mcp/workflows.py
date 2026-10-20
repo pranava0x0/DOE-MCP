@@ -15,6 +15,8 @@ from .servers.build import registries
 
 CASES = {
     "evidence": ("DOE evidence finder", "Find perovskite solar research and inspect one returned record."),
+    "dataset-card": ("Geothermal dataset-card starter", "What can public catalog metadata fill in, and what still needs a dataset owner?"),
+    "microbiome": ("Microbiome study and sample finder", "Find a shale microbiome study and inspect a sample of its biosamples."),
     "partial": ("One collection unavailable", "What can the remaining literature collection answer?"),
     "blocked": ("A capability not yet served", "Can DOE-MCP return the solar resource at a candidate site?"),
     "grid": ("BPA grid briefing", "What do the recorded five-minute load readings show?"),
@@ -59,6 +61,7 @@ async def run_workflow(ctx: RuntimeContext, case: str, *, mode: str = "recorded"
         manifest.lifecycle.blocked_reason = "Simulated outage for this recorded demonstration"
     steps: list[dict] = []
     limits: list[str] = []
+    drafts: list[dict] = []
 
     async def call(tool_name: str, **args) -> Envelope:
         env = await tool_spec(tool_name).fn(ctx, **args)
@@ -81,6 +84,34 @@ async def run_workflow(ctx: RuntimeContext, case: str, *, mode: str = "recorded"
             raise SourceUnavailable("selected record is no longer available")
         limits += ["A sampled literature search is not a systematic review.",
                    "A common topic does not prove that a paper and dataset are linked."]
+    elif case == "dataset-card":
+        found = await call("research.search_datasets", site_code="DOE-GDR", rows=2)
+        for record in found.data["datasets"]:
+            refs = [{"source_ref": e.source_ref, "record_id": e.record_id,
+                     "locator": e.locator} for e in found.evidence
+                    if e.record_id == record["id"]]
+            drafts.append({"status": "draft_metadata_only", "metadata": record,
+                           "evidence": refs,
+                           "needs_owner_review": [
+                               "Downloadable files and access conditions",
+                               "File formats, sizes and checksums",
+                               "License and permitted reuse",
+                               "Sensitivity and governance review",
+                               "Data quality and suitability for AI use"]})
+        if not drafts:
+            raise SourceUnavailable("dataset search returned no metadata to draft")
+        limits += ["A documentation starter, not a validated Genesis datacard or Croissant record.",
+                   "Only catalog metadata was read; no dataset files were downloaded or inspected.",
+                   "A public metadata record does not establish that the underlying data is freely accessible or licensed for reuse."]
+    elif case == "microbiome":
+        found = await call("bio.search_studies", text="shale")
+        studies = found.data["studies"]
+        if not studies:
+            raise SourceUnavailable("no shale study returned to follow")
+        await call("bio.search_biosamples", study_id=studies[0]["study_id"], rows=5)
+        limits += ["Study and sample metadata only; no sequences, assemblies or annotations were downloaded.",
+                   "At most five samples are shown; they do not establish study completeness or biological function.",
+                   "The publisher's access recipes distinguish dataset DOIs from award DOIs; a DOI alone does not establish free access."]
     elif case == "blocked":
         await call("registry.search_sources", capability="solar.get_resource")
         limits += ["Registry inventory only. Proposed sources were not queried.",
@@ -128,6 +159,7 @@ async def run_workflow(ctx: RuntimeContext, case: str, *, mode: str = "recorded"
                      {source["source_id"] for step in steps for source in step["envelope"]["provenance"]}],
         "limitations": limits,
         "steps": freeze(steps, clock) if mode == "recorded" else steps,
+        **({"drafts": drafts} if drafts else {}),
     }
 
 

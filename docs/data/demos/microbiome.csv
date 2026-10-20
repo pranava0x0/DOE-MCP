@@ -1,0 +1,7 @@
+step,tool,source,record_id,locator,effective_at,mode
+1,bio.search_studies,nmdc-runtime,nmdc:sty-11-8fb6t785,,,recorded
+2,bio.search_biosamples,nmdc-runtime,nmdc:bsm-11-gvp5zp51,,2014-10-11,recorded
+2,bio.search_biosamples,nmdc-runtime,nmdc:bsm-11-yvzvbr38,,2014-10-10,recorded
+2,bio.search_biosamples,nmdc-runtime,nmdc:bsm-11-7b566r47,,2014-10-18,recorded
+2,bio.search_biosamples,nmdc-runtime,nmdc:bsm-11-byzpm179,,2014-10-16,recorded
+2,bio.search_biosamples,nmdc-runtime,nmdc:bsm-11-kmpwgz16,,2014-10-20,recorded

@@ -98,3 +98,5 @@ evaluation:
 workflows:
 - task: 4
   case: evidence
+- task: 2
+  case: dataset-card

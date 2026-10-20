@@ -37,7 +37,7 @@ async def build_report(args):
     if args.live:
         server = {"eia": "doe-energy-data", "grid": "doe-energy-data",
                   "site": "doe-energy-data", "earth": "doe-earth",
-                  "materials": "doe-materials"}.get(args.case, "doe-research")
+                  "materials": "doe-materials", "microbiome": "doe-bio"}.get(args.case, "doe-research")
         creds = Credentials.load().scoped_to(["EIA_API_KEY"]) if args.case == "eia" else Credentials(values={}, path=Path("/nonexistent"), file_exists=False)
         ctx = load_context(credentials=creds, server_name=server)
         manifests = []

@@ -1,7 +1,7 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DOE-MCP evidence walkthroughs</title><style>
 :root{color-scheme:light;font-family:system-ui,sans-serif;color:#1c302b;background:#f5f5ef}
 *{box-sizing:border-box}body{margin:0}main,header,footer{max-width:1120px;margin:auto;padding:24px}
-a{color:#145b4e;text-underline-offset:3px}h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.08}h1{margin:12px 0}h2{font-size:1.8rem}.answer{font-size:1.1rem;font-weight:600;border-bottom:1px solid #c5cec6;padding-bottom:16px}p,li{line-height:1.6}
+a{color:#145b4e;text-underline-offset:3px}h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.08}h1{margin:12px 0}h2{font-size:1.8rem}.answer{font-size:1.1rem;font-weight:600;border-bottom:1px solid #c5cec6;padding-bottom:16px}p,li{line-height:1.6}h1,h2,h3,p,li,td{overflow-wrap:anywhere}.draft{border-top:2px solid #176559;margin-top:24px}.downloads a{padding:10px 0}
 .kicker{font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#4b6158}header{border-bottom:2px solid #bbc6bd}
 select,button{font:inherit;padding:12px;background:white;border:1px solid #687e72;border-radius:4px;max-width:100%}
 label{display:block;font-weight:650;margin:10px 0}article{background:white;border:1px solid #c5cec6;border-radius:12px;padding:clamp(16px,4vw,36px);margin:20px 0}
@@ -12,8 +12,8 @@ pre{overflow:auto;max-height:420px;background:#f2f5ef;padding:14px;font-size:.8r
 summary{cursor:pointer;padding:12px 0;font-weight:650}.mono{font-family:monospace;overflow-wrap:anywhere;font-size:.85rem}.downloads{display:flex;gap:20px;flex-wrap:wrap}a:focus-visible,summary:focus-visible,select:focus-visible{outline:3px solid #b05c0e;outline-offset:4px}
 [hidden]{display:none!important}@media(max-width:600px){main,header,footer{padding:16px}td,th{padding:8px}article{padding:16px}}
 </style></head>
-<body><header><a href="index.html">DOE-MCP home</a><p class="kicker">Inspect the answer</p><h1>Public data. Visible evidence.</h1><p>Recorded examples across DOE research, energy, earth and materials. Inspect the returned records and what each search leaves unknown. No live requests run in this page.</p><p>Independent project. Not affiliated with the US Department of Energy.</p></header>
-<main><div id="picker" hidden><label for="workflow">Choose a walkthrough</label><select id="workflow"><option value="evidence">DOE evidence finder</option><option value="partial">One collection unavailable</option><option value="blocked">A capability not yet served</option><option value="grid">BPA grid briefing</option><option value="eia">CAISO demand briefing</option><option value="site">Rhode Island facility context</option><option value="earth">Environmental study brief</option><option value="materials">Materials evidence sheet</option></select></div><article id="evidence"><p class="kicker">recorded walkthrough</p><h2>DOE evidence finder</h2><p>Find perovskite solar research and inspect one returned record.</p><p class="answer">5 distinct records returned. Followed record 3484888: Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>A sampled literature search is not a systematic review.</li><li>A common topic does not prove that a paper and dataset are linked.</li></ul><p class="downloads"><a download href="data/demos/evidence.json">Download JSON evidence</a><a download href="data/demos/evidence.csv">Download CSV evidence index</a></p><section class="step"><h3>1. research.search_literature</h3><p class="mono">{&quot;query&quot;: &quot;perovskite solar&quot;, &quot;rows&quot;: 3}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>partial</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: osti-gov-records, osti-doe-pages</p><h4>Warnings</h4><ul><li>No published rate limit means none of us knows what the real one is. If OSTI ever publishes one, or answers an email about it, this field becomes a number and the politeness budget follows it.</li><li>No published rate limit, same as the rest of the OSTI family.</li></ul><div class="scroll"><table><caption>Counts reported by each collection; totals can overlap</caption><thead><tr><th scope="col">Collection</th><th scope="col">Matches</th><th scope="col">Returned</th></tr></thead><tbody><tr><td>OSTI.GOV Search API</td><td>8313</td><td>3</td></tr><tr><td>DOE PAGES (Public Access Gateway for Energy and Science)</td><td>5669</td><td>3</td></tr></tbody></table></div><ul class="evidence"><li><strong>Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells</strong><br>OSTI.GOV Search API · record 3484888<br><a href="https://www.osti.gov/biblio/3484888" rel="noreferrer">Publisher record</a><br>Record date: 2026-08-27T11:00:26Z</li><li><strong>Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative Research and Development Final Report, CRADA Number CRD-19-00810</strong><br>OSTI.GOV Search API · record 3625672<br><a href="https://www.osti.gov/biblio/3625672" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-02T10:56:05Z</li><li><strong>Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;/sub&gt;-graphene oxide buried interface layer</strong><br>OSTI.GOV Search API · record 3409109<br><a href="https://www.osti.gov/biblio/3409109" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T15:49:56Z</li><li><strong>Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;/sub&gt;-graphene oxide buried interface layer</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3409109<br><a href="https://www.osti.gov/biblio/3409109" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T11:49:56Z</li><li><strong>Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide Perovskites</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3818255<br><a href="https://www.osti.gov/biblio/3818255" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-17T10:27:35Z</li><li><strong>Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of Perovskite Photovoltaics</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3818626<br><a href="https://www.osti.gov/biblio/3818626" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T08:11:09Z</li></ul><details><summary>Full response and evidence</summary><pre>{
+<body><header><a href="index.html">DOE-MCP home</a><p class="kicker">Inspect the answer</p><h1>Public data. Visible evidence.</h1><p>Recorded examples across DOE research, energy, earth, materials and microbiome data. Inspect the returned records and what each search leaves unknown. No live requests run in this page. These examples require no account, API key or paid model.</p><p>Independent project. Not affiliated with the US Department of Energy.</p></header>
+<main><div id="picker" hidden><label for="workflow">Choose a walkthrough</label><select id="workflow"><option value="evidence">DOE evidence finder</option><option value="dataset-card">Geothermal dataset-card starter</option><option value="microbiome">Microbiome study and sample finder</option><option value="partial">One collection unavailable</option><option value="blocked">A capability not yet served</option><option value="grid">BPA grid briefing</option><option value="eia">CAISO demand briefing</option><option value="site">Rhode Island facility context</option><option value="earth">Environmental study brief</option><option value="materials">Materials evidence sheet</option></select></div><article id="evidence"><p class="kicker">recorded walkthrough</p><h2>DOE evidence finder</h2><p>Find perovskite solar research and inspect one returned record.</p><p class="answer">5 distinct records returned. Followed record 3484888: Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>A sampled literature search is not a systematic review.</li><li>A common topic does not prove that a paper and dataset are linked.</li></ul><p class="downloads"><a download href="data/demos/evidence.json">Download JSON evidence</a><a download href="data/demos/evidence.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo evidence --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="step"><h3>1. research.search_literature</h3><p class="mono">{&quot;query&quot;: &quot;perovskite solar&quot;, &quot;rows&quot;: 3}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>partial</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: osti-gov-records, osti-doe-pages</p><h4>Warnings</h4><ul><li>No published rate limit means none of us knows what the real one is. If OSTI ever publishes one, or answers an email about it, this field becomes a number and the politeness budget follows it.</li><li>No published rate limit, same as the rest of the OSTI family.</li></ul><div class="scroll"><table><caption>Counts reported by each collection; totals can overlap</caption><thead><tr><th scope="col">Collection</th><th scope="col">Matches</th><th scope="col">Returned</th></tr></thead><tbody><tr><td>OSTI.GOV Search API</td><td>8313</td><td>3</td></tr><tr><td>DOE PAGES (Public Access Gateway for Energy and Science)</td><td>5669</td><td>3</td></tr></tbody></table></div><h4>Publisher access recipes</h4><ul><li><a href="https://doi.org/10.2172/3484888" rel="noreferrer">Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Plan</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3484888" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.66816/tp5080615" rel="noreferrer">Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative </a> — </li><li><a href="https://www.osti.gov/servlets/purl/3625672" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.1016/j.nanoen.2026.112209" rel="noreferrer">Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3409109" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.1021/acsenergylett.6c01751" rel="noreferrer">Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide Pero</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3818255" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.1021/jacs.6c05503" rel="noreferrer">Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of Pero</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3818626" rel="noreferrer">Full text (OSTI)</a> — </li></ul><ul class="evidence"><li><strong>Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells</strong><br>OSTI.GOV Search API · record 3484888<br><a href="https://www.osti.gov/biblio/3484888" rel="noreferrer">Publisher record</a><br>Record date: 2026-08-27T11:00:26Z</li><li><strong>Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative Research and Development Final Report, CRADA Number CRD-19-00810</strong><br>OSTI.GOV Search API · record 3625672<br><a href="https://www.osti.gov/biblio/3625672" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-02T10:56:05Z</li><li><strong>Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;/sub&gt;-graphene oxide buried interface layer</strong><br>OSTI.GOV Search API · record 3409109<br><a href="https://www.osti.gov/biblio/3409109" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T15:49:56Z</li><li><strong>Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;/sub&gt;-graphene oxide buried interface layer</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3409109<br><a href="https://www.osti.gov/biblio/3409109" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T11:49:56Z</li><li><strong>Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide Perovskites</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3818255<br><a href="https://www.osti.gov/biblio/3818255" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-17T10:27:35Z</li><li><strong>Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of Perovskite Photovoltaics</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3818626<br><a href="https://www.osti.gov/biblio/3818626" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T08:11:09Z</li></ul><details><summary>Full response and evidence</summary><pre>{
   &quot;data&quot;: {
     &quot;records&quot;: [
       {
@@ -385,7 +385,7 @@ summary{cursor:pointer;padding:12px 0;font-weight:650}.mono{font-family:monospac
     &quot;registry_revision&quot;: &quot;2026-10-20&quot;,
     &quot;request_id&quot;: &quot;recorded-workflow&quot;
   }
-}</pre></details></section><section class="step"><h3>2. research.get_record</h3><p class="mono">{&quot;collection&quot;: &quot;literature&quot;, &quot;record_id&quot;: &quot;3484888&quot;}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>complete</td></tr><tr><td>source_claim</td><td>complete</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: osti-gov-records</p><h4>Warnings</h4><ul><li>No published rate limit means none of us knows what the real one is. If OSTI ever publishes one, or answers an email about it, this field becomes a number and the politeness budget follows it.</li></ul><ul class="evidence"><li><strong>Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells</strong><br>OSTI.GOV Search API · record 3484888<br><a href="https://www.osti.gov/biblio/3484888" rel="noreferrer">Publisher record</a><br>Record date: 2026-08-27T11:00:26Z</li></ul><details><summary>Full response and evidence</summary><pre>{
+}</pre></details></section><section class="step"><h3>2. research.get_record</h3><p class="mono">{&quot;collection&quot;: &quot;literature&quot;, &quot;record_id&quot;: &quot;3484888&quot;}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>complete</td></tr><tr><td>source_claim</td><td>complete</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: osti-gov-records</p><h4>Warnings</h4><ul><li>No published rate limit means none of us knows what the real one is. If OSTI ever publishes one, or answers an email about it, this field becomes a number and the politeness budget follows it.</li></ul><h4>Publisher access recipes</h4><ul><li><a href="https://doi.org/10.2172/3484888" rel="noreferrer">Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Plan</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3484888" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://www.osti.gov/biblio/3484888" rel="noreferrer">OSTI record page</a> — </li></ul><ul class="evidence"><li><strong>Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells</strong><br>OSTI.GOV Search API · record 3484888<br><a href="https://www.osti.gov/biblio/3484888" rel="noreferrer">Publisher record</a><br>Record date: 2026-08-27T11:00:26Z</li></ul><details><summary>Full response and evidence</summary><pre>{
   &quot;data&quot;: {
     &quot;record&quot;: {
       &quot;id&quot;: &quot;3484888&quot;,
@@ -528,7 +528,630 @@ summary{cursor:pointer;padding:12px 0;font-weight:650}.mono{font-family:monospac
     &quot;registry_revision&quot;: &quot;2026-10-20&quot;,
     &quot;request_id&quot;: &quot;recorded-workflow&quot;
   }
-}</pre></details></section><details><summary>Recording manifest and capture times</summary><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td>osti-doe-pages.json</td><td>2026-09-22T12:33:16.478603+00:00</td><td>d985dce1d781b9a7484437ab297f66f39c5d89febdf5acc3527d09b3316e19d8</td></tr><tr><td>osti-gov-records.json</td><td>2026-09-22T12:33:14.364511+00:00</td><td>c6fd5ded484f83064397a670a15639a4c3903b1add64a6ddcb849cf6da404d17</td></tr></tbody></table></div></details></article><article id="partial"><p class="kicker">recorded walkthrough</p><h2>One collection unavailable</h2><p>What can the remaining literature collection answer?</p><p class="answer">3 distinct records returned. Followed record 3484888: Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells.</p><p class="notice">Simulated source outage. The publisher status was changed only in this isolated replay.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>A sampled literature search is not a systematic review.</li><li>A common topic does not prove that a paper and dataset are linked.</li></ul><p class="downloads"><a download href="data/demos/partial.json">Download JSON evidence</a><a download href="data/demos/partial.csv">Download CSV evidence index</a></p><section class="step"><h3>1. research.search_literature</h3><p class="mono">{&quot;query&quot;: &quot;perovskite solar&quot;, &quot;rows&quot;: 3}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>partial</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: osti-gov-records</p><h4>Unavailable sources</h4><ul><li>osti-doe-pages: source_not_activated</li></ul><h4>Warnings</h4><ul><li>No published rate limit means none of us knows what the real one is. If OSTI ever publishes one, or answers an email about it, this field becomes a number and the politeness budget follows it.</li></ul><div class="scroll"><table><caption>Counts reported by each collection; totals can overlap</caption><thead><tr><th scope="col">Collection</th><th scope="col">Matches</th><th scope="col">Returned</th></tr></thead><tbody><tr><td>OSTI.GOV Search API</td><td>8313</td><td>3</td></tr></tbody></table></div><ul class="evidence"><li><strong>Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells</strong><br>OSTI.GOV Search API · record 3484888<br><a href="https://www.osti.gov/biblio/3484888" rel="noreferrer">Publisher record</a><br>Record date: 2026-08-27T11:00:26Z</li><li><strong>Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative Research and Development Final Report, CRADA Number CRD-19-00810</strong><br>OSTI.GOV Search API · record 3625672<br><a href="https://www.osti.gov/biblio/3625672" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-02T10:56:05Z</li><li><strong>Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;/sub&gt;-graphene oxide buried interface layer</strong><br>OSTI.GOV Search API · record 3409109<br><a href="https://www.osti.gov/biblio/3409109" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T15:49:56Z</li></ul><details><summary>Full response and evidence</summary><pre>{
+}</pre></details></section><details><summary>Recording manifest and capture times</summary><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td>osti-doe-pages.json</td><td>2026-09-22T12:33:16.478603+00:00</td><td>d985dce1d781b9a7484437ab297f66f39c5d89febdf5acc3527d09b3316e19d8</td></tr><tr><td>osti-gov-records.json</td><td>2026-09-22T12:33:14.364511+00:00</td><td>c6fd5ded484f83064397a670a15639a4c3903b1add64a6ddcb849cf6da404d17</td></tr></tbody></table></div></details></article><article id="dataset-card"><p class="kicker">recorded walkthrough</p><h2>Geothermal dataset-card starter</h2><p>What can public catalog metadata fill in, and what still needs a dataset owner?</p><p class="answer">2 metadata drafts from DOE Data Explorer. File checksums, reuse permissions and governance still need review.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>A documentation starter, not a validated Genesis datacard or Croissant record.</li><li>Only catalog metadata was read; no dataset files were downloaded or inspected.</li><li>A public metadata record does not establish that the underlying data is freely accessible or licensed for reuse.</li></ul><p class="downloads"><a download href="data/demos/dataset-card.json">Download JSON evidence</a><a download href="data/demos/dataset-card.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo dataset-card --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="draft"><h3>Utah FORGE: Seismic DAS and Geophone Borehole Data Processing and 3D Imaging of Vp/Vs Ratio in the 2024 Stimulated Reservoir</h3><div class="scroll"><table><caption>Draft metadata only — not schema validated</caption><thead><tr><th scope="col">Catalog field</th><th scope="col">Value</th></tr></thead><tbody><tr><td>id</td><td>2541598</td></tr><tr><td>title</td><td>Utah FORGE: Seismic DAS and Geophone Borehole Data Processing and 3D Imaging of Vp/Vs Ratio in the 2024 Stimulated Reservoir</td></tr><tr><td>authors</td><td>Gritto, Roland [EMR Solutions and Technology] (ORCID:0000000320927201), Jarpe, Steve P. (ORCID:0009000493428416)</td></tr><tr><td>publication_date</td><td>2025-03-16</td></tr><tr><td>product_type</td><td>Dataset</td></tr><tr><td>doi</td><td>10.15121/2541598</td></tr><tr><td>research_orgs</td><td>DOE Geothermal Data Repository, EMR Solutions and Technology</td></tr><tr><td>site_code</td><td>DOE-GDR</td></tr></tbody></table></div><h4>Still needs owner review</h4><ul><li>Downloadable files and access conditions</li><li>File formats, sizes and checksums</li><li>License and permitted reuse</li><li>Sensitivity and governance review</li><li>Data quality and suitability for AI use</li></ul></section><section class="draft"><h3>Utah FORGE: Well 16B(78)-32 DTS, RFS DSS Strain, and Absolute Strain Circulation Test Fiber Optic Data - August 2024</h3><div class="scroll"><table><caption>Draft metadata only — not schema validated</caption><thead><tr><th scope="col">Catalog field</th><th scope="col">Value</th></tr></thead><tbody><tr><td>id</td><td>2531108</td></tr><tr><td>title</td><td>Utah FORGE: Well 16B(78)-32 DTS, RFS DSS Strain, and Absolute Strain Circulation Test Fiber Optic Data - August 2024</td></tr><tr><td>authors</td><td>Jurick, Dana [Neubrex Energy Services (US), LLC], Khatara, Sajan, Guzik, Artur</td></tr><tr><td>publication_date</td><td>2024-08-29</td></tr><tr><td>product_type</td><td>Dataset</td></tr><tr><td>doi</td><td>10.15121/2531108</td></tr><tr><td>research_orgs</td><td>DOE Geothermal Data Repository, Neubrex Energy Services (US), LLC</td></tr><tr><td>site_code</td><td>DOE-GDR</td></tr></tbody></table></div><h4>Still needs owner review</h4><ul><li>Downloadable files and access conditions</li><li>File formats, sizes and checksums</li><li>License and permitted reuse</li><li>Sensitivity and governance review</li><li>Data quality and suitability for AI use</li></ul></section><section class="step"><h3>1. research.search_datasets</h3><p class="mono">{&quot;rows&quot;: 2, &quot;site_code&quot;: &quot;DOE-GDR&quot;}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>partial</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: osti-data-explorer</p><h4>Warnings</h4><ul><li>No published rate limit, same as the rest of the OSTI family.</li><li>Dataset discovery returns catalog metadata, not measurements. For user-facility raw data — beamlines, reactors, tokamaks — there is generally nothing to find: that data is proposal-gated by design and is not a coverage gap here.</li></ul><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Returned</th><th scope="col">Total matches</th></tr></thead><tbody><tr><td>2</td><td>1035</td></tr></tbody></table></div><h4>Publisher access recipes</h4><ul><li><a href="https://doi.org/10.15121/2541598" rel="noreferrer">Utah FORGE: Seismic DAS and Geophone Borehole Data Processing and 3D Imaging of </a> — </li><li><a href="https://www.osti.gov/dataexplorer/servlets/purl/2541598" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://gdr.openei.org/submissions/1723" rel="noreferrer">Dataset landing page</a> — The repository that actually holds this data. It may require an account the catalog record does not mention.</li><li><a href="https://doi.org/10.15121/2531108" rel="noreferrer">Utah FORGE: Well 16B(78)-32 DTS, RFS DSS Strain, and Absolute Strain Circulation</a> — </li><li><a href="https://www.osti.gov/dataexplorer/servlets/purl/2531108" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://gdr.openei.org/submissions/1721" rel="noreferrer">Dataset landing page</a> — The repository that actually holds this data. It may require an account the catalog record does not mention.</li></ul><ul class="evidence"><li><strong>Utah FORGE: Seismic DAS and Geophone Borehole Data Processing and 3D Imaging of Vp/Vs Ratio in the 2024 Stimulated Reservoir</strong><br>DOE Data Explorer · record 2541598<br><a href="https://www.osti.gov/dataexplorer/biblio/2541598" rel="noreferrer">Publisher record</a><br>Record date: 2025-03-31T19:08:19Z</li><li><strong>Utah FORGE: Well 16B(78)-32 DTS, RFS DSS Strain, and Absolute Strain Circulation Test Fiber Optic Data - August 2024</strong><br>DOE Data Explorer · record 2531108<br><a href="https://www.osti.gov/dataexplorer/biblio/2531108" rel="noreferrer">Publisher record</a><br>Record date: 2025-03-18T18:40:22Z</li></ul><details><summary>Full response and evidence</summary><pre>{
+  &quot;data&quot;: {
+    &quot;datasets&quot;: [
+      {
+        &quot;id&quot;: &quot;2541598&quot;,
+        &quot;title&quot;: &quot;Utah FORGE: Seismic DAS and Geophone Borehole Data Processing and 3D Imaging of Vp/Vs Ratio in the 2024 Stimulated Reservoir&quot;,
+        &quot;authors&quot;: [
+          &quot;Gritto, Roland [EMR Solutions and Technology] (ORCID:0000000320927201)&quot;,
+          &quot;Jarpe, Steve P. (ORCID:0009000493428416)&quot;
+        ],
+        &quot;publication_date&quot;: &quot;2025-03-16&quot;,
+        &quot;product_type&quot;: &quot;Dataset&quot;,
+        &quot;doi&quot;: &quot;10.15121/2541598&quot;,
+        &quot;research_orgs&quot;: [
+          &quot;DOE Geothermal Data Repository&quot;,
+          &quot;EMR Solutions and Technology&quot;
+        ],
+        &quot;site_code&quot;: &quot;DOE-GDR&quot;
+      },
+      {
+        &quot;id&quot;: &quot;2531108&quot;,
+        &quot;title&quot;: &quot;Utah FORGE: Well 16B(78)-32 DTS, RFS DSS Strain, and Absolute Strain Circulation Test Fiber Optic Data - August 2024&quot;,
+        &quot;authors&quot;: [
+          &quot;Jurick, Dana [Neubrex Energy Services (US), LLC]&quot;,
+          &quot;Khatara, Sajan&quot;,
+          &quot;Guzik, Artur&quot;
+        ],
+        &quot;publication_date&quot;: &quot;2024-08-29&quot;,
+        &quot;product_type&quot;: &quot;Dataset&quot;,
+        &quot;doi&quot;: &quot;10.15121/2531108&quot;,
+        &quot;research_orgs&quot;: [
+          &quot;DOE Geothermal Data Repository&quot;,
+          &quot;Neubrex Energy Services (US), LLC&quot;
+        ],
+        &quot;site_code&quot;: &quot;DOE-GDR&quot;
+      }
+    ],
+    &quot;record_count&quot;: 2,
+    &quot;total_matches&quot;: 1035,
+    &quot;note&quot;: &quot;These are metadata records pointing at data held elsewhere. DOE Data Explorer hosts nothing itself: use the DOI or landing page in access_recipes to reach the actual data, and expect some repositories to require an account this record does not mention.&quot;
+  },
+  &quot;provenance&quot;: [
+    {
+      &quot;id&quot;: &quot;source_01&quot;,
+      &quot;source_id&quot;: &quot;osti-data-explorer&quot;,
+      &quot;steward&quot;: &quot;Office of Scientific and Technical Information&quot;,
+      &quot;system&quot;: &quot;DOE Data Explorer&quot;,
+      &quot;dataset&quot;: &quot;DOE Data Explorer&quot;,
+      &quot;dataset_version&quot;: &quot;current&quot;,
+      &quot;authority_level&quot;: &quot;official_secondary&quot;,
+      &quot;access_path&quot;: &quot;live&quot;,
+      &quot;source_updated_at&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;cache_age_seconds&quot;: 0
+    }
+  ],
+  &quot;evidence&quot;: [
+    {
+      &quot;id&quot;: &quot;evidence_01&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;2541598&quot;,
+      &quot;locator&quot;: &quot;https://www.osti.gov/dataexplorer/biblio/2541598&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2025-03-31T19:08:19Z&quot;,
+      &quot;transformations&quot;: [
+        &quot;normalize&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_02&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;2531108&quot;,
+      &quot;locator&quot;: &quot;https://www.osti.gov/dataexplorer/biblio/2531108&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2025-03-18T18:40:22Z&quot;,
+      &quot;transformations&quot;: [
+        &quot;normalize&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    }
+  ],
+  &quot;coverage&quot;: {
+    &quot;registry&quot;: &quot;covered&quot;,
+    &quot;execution&quot;: &quot;complete&quot;,
+    &quot;pagination&quot;: &quot;truncated&quot;,
+    &quot;source_claim&quot;: &quot;partial&quot;,
+    &quot;result&quot;: &quot;hit&quot;,
+    &quot;sources_searched&quot;: [
+      &quot;osti-data-explorer&quot;
+    ],
+    &quot;known_limitations&quot;: [
+      &quot;A record&#x27;s `site_url` points wherever the submitting repository said, and that host is outside this source&#x27;s egress allowlist. The URL is returned as data and never fetched.&quot;,
+      &quot;Coverage depends on submission. A repository that never registered its datasets with OSTI is invisible here however public it is, so an empty result is a statement about registration, not about existence.&quot;,
+      &quot;Points at data, never holds it. A DDE record answers \&quot;where is this dataset and what is its DOI\&quot;; reaching the bytes is a second step, and one that may need an account the record does not mention.&quot;,
+      &quot;`site_ownership_code` is the field that makes single-repository views possible (DOE-GDR returns 1,035 records, checked live 2026-09-02) but its vocabulary is OSTI&#x27;s own and is not published as an enumerable list. Codes are discovered from returned records, not from a dictionary.&quot;
+    ]
+  },
+  &quot;warnings&quot;: [
+    {
+      &quot;code&quot;: &quot;terms_note&quot;,
+      &quot;message&quot;: &quot;No published rate limit, same as the rest of the OSTI family.&quot;,
+      &quot;source_id&quot;: &quot;osti-data-explorer&quot;
+    },
+    {
+      &quot;code&quot;: &quot;derived_layer&quot;,
+      &quot;message&quot;: &quot;Dataset discovery returns catalog metadata, not measurements. For user-facility raw data \u2014 beamlines, reactors, tokamaks \u2014 there is generally nothing to find: that data is proposal-gated by design and is not a coverage gap here.&quot;,
+      &quot;source_id&quot;: &quot;osti-data-explorer&quot;
+    }
+  ],
+  &quot;access_recipes&quot;: [
+    {
+      &quot;kind&quot;: &quot;doi&quot;,
+      &quot;uri&quot;: &quot;https://doi.org/10.15121/2541598&quot;,
+      &quot;label&quot;: &quot;Utah FORGE: Seismic DAS and Geophone Borehole Data Processing and 3D Imaging of &quot;,
+      &quot;instructions&quot;: null,
+      &quot;requires_account&quot;: false,
+      &quot;approximate_size&quot;: null
+    },
+    {
+      &quot;kind&quot;: &quot;fulltext_pdf&quot;,
+      &quot;uri&quot;: &quot;https://www.osti.gov/dataexplorer/servlets/purl/2541598&quot;,
+      &quot;label&quot;: &quot;Full text (OSTI)&quot;,
+      &quot;instructions&quot;: null,
+      &quot;requires_account&quot;: false,
+      &quot;approximate_size&quot;: null
+    },
+    {
+      &quot;kind&quot;: &quot;landing_page&quot;,
+      &quot;uri&quot;: &quot;https://gdr.openei.org/submissions/1723&quot;,
+      &quot;label&quot;: &quot;Dataset landing page&quot;,
+      &quot;instructions&quot;: &quot;The repository that actually holds this data. It may require an account the catalog record does not mention.&quot;,
+      &quot;requires_account&quot;: false,
+      &quot;approximate_size&quot;: null
+    },
+    {
+      &quot;kind&quot;: &quot;doi&quot;,
+      &quot;uri&quot;: &quot;https://doi.org/10.15121/2531108&quot;,
+      &quot;label&quot;: &quot;Utah FORGE: Well 16B(78)-32 DTS, RFS DSS Strain, and Absolute Strain Circulation&quot;,
+      &quot;instructions&quot;: null,
+      &quot;requires_account&quot;: false,
+      &quot;approximate_size&quot;: null
+    },
+    {
+      &quot;kind&quot;: &quot;fulltext_pdf&quot;,
+      &quot;uri&quot;: &quot;https://www.osti.gov/dataexplorer/servlets/purl/2531108&quot;,
+      &quot;label&quot;: &quot;Full text (OSTI)&quot;,
+      &quot;instructions&quot;: null,
+      &quot;requires_account&quot;: false,
+      &quot;approximate_size&quot;: null
+    },
+    {
+      &quot;kind&quot;: &quot;landing_page&quot;,
+      &quot;uri&quot;: &quot;https://gdr.openei.org/submissions/1721&quot;,
+      &quot;label&quot;: &quot;Dataset landing page&quot;,
+      &quot;instructions&quot;: &quot;The repository that actually holds this data. It may require an account the catalog record does not mention.&quot;,
+      &quot;requires_account&quot;: false,
+      &quot;approximate_size&quot;: null
+    }
+  ],
+  &quot;_execution&quot;: {
+    &quot;server&quot;: &quot;doe-mcp&quot;,
+    &quot;server_version&quot;: &quot;0.1.0.dev0&quot;,
+    &quot;tool&quot;: &quot;research.search_datasets&quot;,
+    &quot;tool_contract_version&quot;: &quot;1&quot;,
+    &quot;envelope_version&quot;: &quot;1&quot;,
+    &quot;adapters&quot;: {
+      &quot;osti_family&quot;: &quot;1&quot;,
+      &quot;opendatasoft&quot;: &quot;1&quot;,
+      &quot;json_document&quot;: &quot;1&quot;,
+      &quot;curated&quot;: &quot;1&quot;,
+      &quot;eia_v2&quot;: &quot;1&quot;,
+      &quot;fueleconomy&quot;: &quot;1&quot;,
+      &quot;text_feed&quot;: &quot;1&quot;,
+      &quot;postgrest&quot;: &quot;1&quot;,
+      &quot;federal_register&quot;: &quot;1&quot;,
+      &quot;vips&quot;: &quot;1&quot;,
+      &quot;daymet&quot;: &quot;1&quot;,
+      &quot;essdive&quot;: &quot;1&quot;,
+      &quot;esgf&quot;: &quot;1&quot;,
+      &quot;sage&quot;: &quot;1&quot;,
+      &quot;optimade&quot;: &quot;1&quot;,
+      &quot;basis_sets&quot;: &quot;1&quot;,
+      &quot;facility_status&quot;: &quot;1&quot;,
+      &quot;nmdc&quot;: &quot;1&quot;,
+      &quot;none&quot;: &quot;1&quot;,
+      &quot;self_registry&quot;: &quot;1&quot;
+    },
+    &quot;registry_revision&quot;: &quot;2026-10-20&quot;,
+    &quot;request_id&quot;: &quot;recorded-workflow&quot;
+  }
+}</pre></details></section><details><summary>Recording manifest and capture times</summary><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td>osti-data-explorer.json</td><td>Unknown; old recording</td><td>71a7e71e7056856c76fcebc8d0234e049c0109bd35e2b1777768e408072ad398</td></tr></tbody></table></div></details></article><article id="microbiome"><p class="kicker">recorded walkthrough</p><h2>Microbiome study and sample finder</h2><p>Find a shale microbiome study and inspect a sample of its biosamples.</p><p class="answer">Followed one returned study. Showing 5 biosamples out of 23 matches.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>Study and sample metadata only; no sequences, assemblies or annotations were downloaded.</li><li>At most five samples are shown; they do not establish study completeness or biological function.</li><li>The publisher&#x27;s access recipes distinguish dataset DOIs from award DOIs; a DOI alone does not establish free access.</li></ul><p class="downloads"><a download href="data/demos/microbiome.json">Download JSON evidence</a><a download href="data/demos/microbiome.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo microbiome --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="step"><h3>1. bio.search_studies</h3><p class="mono">{&quot;text&quot;: &quot;shale&quot;}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>complete</td></tr><tr><td>source_claim</td><td>complete</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: nmdc-runtime</p><h4>Warnings</h4><ul><li>No published rate limit and no data-use statement on the API itself; the data portal&#x27;s usage terms were not found in a scripted read.</li></ul><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Returned</th><th scope="col">Total matches</th></tr></thead><tbody><tr><td>1</td><td>1</td></tr></tbody></table></div><h4>Publisher access recipes</h4><ul><li><a href="https://doi.org/10.25585/1487763" rel="noreferrer">Deep subsurface shale carbon reservoir microbial communities (dataset_doi)</a> — Minted by jgi; returned as data and never fetched here.</li><li><a href="https://doi.org/10.46936/jejc.proj.2014.48483/60005501" rel="noreferrer">Deep subsurface shale carbon reservoir microbial communities (award_doi)</a> — Minted by emsl; returned as data and never fetched here.</li></ul><ul class="evidence"><li><strong>Deep subsurface shale carbon reservoir microbial communities from Ohio and West Virginia, USA</strong><br>National Microbiome Data Collaborative Runtime API · record nmdc:sty-11-8fb6t785<br>No publisher locator supplied<br>Record date: Unknown</li></ul><details><summary>Full response and evidence</summary><pre>{
+  &quot;data&quot;: {
+    &quot;studies&quot;: [
+      {
+        &quot;study_id&quot;: &quot;nmdc:sty-11-8fb6t785&quot;,
+        &quot;name&quot;: &quot;Deep subsurface shale carbon reservoir microbial communities from Ohio and West Virginia, USA&quot;,
+        &quot;title&quot;: &quot;Deep subsurface shale carbon reservoir microbial communities from Ohio and West Virginia, USA&quot;,
+        &quot;category&quot;: &quot;research_study&quot;,
+        &quot;ecosystem&quot;: [
+          &quot;Environmental&quot;,
+          &quot;Terrestrial&quot;,
+          &quot;Deep subsurface&quot;
+        ],
+        &quot;description&quot;: &quot;This project aims to improve the understanding of microbial diversity and metabolism in deep shale, with implications for novel enzyme discovery and energy development. This project was conducted along two Appalachian basin shales, the Marcellus and Utica/Point Pleasant formations in Pennsylvania and Ohio, respectively. Samples were collected from input and produced fluids up to a year after hydra\u2026&quot;,
+        &quot;investigators&quot;: [
+          {
+            &quot;name&quot;: &quot;Kelly Wrighton&quot;,
+            &quot;orcid&quot;: &quot;orcid:0000-0003-0434-4217&quot;
+          },
+          {
+            &quot;name&quot;: &quot;Rebecca Daly&quot;,
+            &quot;orcid&quot;: &quot;orcid:0000-0003-2223-7458&quot;
+          },
+          {
+            &quot;name&quot;: &quot;Mikayla Borton&quot;,
+            &quot;orcid&quot;: &quot;orcid:0000-0001-8037-4253&quot;
+          },
+          {
+            &quot;name&quot;: &quot;Michael Wilkins&quot;,
+            &quot;orcid&quot;: &quot;orcid:0000-0002-3595-0853&quot;
+          },
+          {
+            &quot;name&quot;: &quot;David Hoyt&quot;,
+            &quot;orcid&quot;: &quot;orcid:0000-0002-2857-719X&quot;
+          }
+        ],
+        &quot;dois&quot;: [
+          {
+            &quot;doi&quot;: &quot;10.25585/1487763&quot;,
+            &quot;category&quot;: &quot;dataset_doi&quot;,
+            &quot;provider&quot;: &quot;jgi&quot;
+          },
+          {
+            &quot;doi&quot;: &quot;10.46936/jejc.proj.2014.48483/60005501&quot;,
+            &quot;category&quot;: &quot;award_doi&quot;,
+            &quot;provider&quot;: &quot;emsl&quot;
+          }
+        ],
+        &quot;part_of&quot;: []
+      }
+    ],
+    &quot;record_count&quot;: 1,
+    &quot;total_matches&quot;: 1,
+    &quot;studies_in_collection&quot;: 85,
+    &quot;offset&quot;: 0,
+    &quot;note&quot;: &quot;Text matches every word in a study&#x27;s name, title or description, without regard to case. Metadata only. Reads, assemblies and annotations are held at JGI, EMSL and the sequence archives; a study&#x27;s DOIs in access_recipes lead to them and are never fetched here.&quot;
+  },
+  &quot;provenance&quot;: [
+    {
+      &quot;id&quot;: &quot;source_01&quot;,
+      &quot;source_id&quot;: &quot;nmdc-runtime&quot;,
+      &quot;steward&quot;: &quot;Lawrence Berkeley National Laboratory&quot;,
+      &quot;funder&quot;: &quot;Office of Science&quot;,
+      &quot;system&quot;: &quot;National Microbiome Data Collaborative Runtime API&quot;,
+      &quot;dataset&quot;: &quot;National Microbiome Data Collaborative Runtime API&quot;,
+      &quot;dataset_version&quot;: &quot;current&quot;,
+      &quot;authority_level&quot;: &quot;official_secondary&quot;,
+      &quot;access_path&quot;: &quot;live&quot;,
+      &quot;source_updated_at&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;cache_age_seconds&quot;: 0
+    }
+  ],
+  &quot;evidence&quot;: [
+    {
+      &quot;id&quot;: &quot;evidence_01&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;nmdc:sty-11-8fb6t785&quot;,
+      &quot;locator&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;normalize&quot;,
+        &quot;drop_contact_details&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    }
+  ],
+  &quot;coverage&quot;: {
+    &quot;registry&quot;: &quot;covered&quot;,
+    &quot;execution&quot;: &quot;complete&quot;,
+    &quot;pagination&quot;: &quot;complete&quot;,
+    &quot;source_claim&quot;: &quot;complete&quot;,
+    &quot;result&quot;: &quot;hit&quot;,
+    &quot;sources_searched&quot;: [
+      &quot;nmdc-runtime&quot;
+    ],
+    &quot;known_limitations&quot;: [
+      &quot;Metadata, not sequence data. Reads, assemblies and annotations live in the sequence archives and at JGI, and are reached through a study&#x27;s DOIs rather than through this source.&quot;,
+      &quot;Only 8 of 85 studies carry an ecosystem classification of their own; the rest are classified sample by sample. An ecosystem filter on studies therefore misses most of them, and the biosample filter is the one to use.&quot;,
+      &quot;Place is free text as submitted (&#x27;USA: Washington, Abby Road&#x27;), so a place search is a substring match and a state name may miss samples recorded only by site or coordinates.&quot;,
+      &quot;Studies NMDC has ingested, not every microbiome study. Most of the 85 are JGI or EMSL projects and a consortium study such as NEON&#x27;s appears once with thousands of samples, so counts describe NMDC&#x27;s holdings rather than the field.&quot;
+    ]
+  },
+  &quot;warnings&quot;: [
+    {
+      &quot;code&quot;: &quot;terms_note&quot;,
+      &quot;message&quot;: &quot;No published rate limit and no data-use statement on the API itself; the data portal&#x27;s usage terms were not found in a scripted read.&quot;,
+      &quot;source_id&quot;: &quot;nmdc-runtime&quot;
+    }
+  ],
+  &quot;access_recipes&quot;: [
+    {
+      &quot;kind&quot;: &quot;doi&quot;,
+      &quot;uri&quot;: &quot;https://doi.org/10.25585/1487763&quot;,
+      &quot;label&quot;: &quot;Deep subsurface shale carbon reservoir microbial communities (dataset_doi)&quot;,
+      &quot;instructions&quot;: &quot;Minted by jgi; returned as data and never fetched here.&quot;,
+      &quot;requires_account&quot;: false,
+      &quot;approximate_size&quot;: null
+    },
+    {
+      &quot;kind&quot;: &quot;doi&quot;,
+      &quot;uri&quot;: &quot;https://doi.org/10.46936/jejc.proj.2014.48483/60005501&quot;,
+      &quot;label&quot;: &quot;Deep subsurface shale carbon reservoir microbial communities (award_doi)&quot;,
+      &quot;instructions&quot;: &quot;Minted by emsl; returned as data and never fetched here.&quot;,
+      &quot;requires_account&quot;: false,
+      &quot;approximate_size&quot;: null
+    }
+  ],
+  &quot;_execution&quot;: {
+    &quot;server&quot;: &quot;doe-mcp&quot;,
+    &quot;server_version&quot;: &quot;0.1.0.dev0&quot;,
+    &quot;tool&quot;: &quot;bio.search_studies&quot;,
+    &quot;tool_contract_version&quot;: &quot;1&quot;,
+    &quot;envelope_version&quot;: &quot;1&quot;,
+    &quot;adapters&quot;: {
+      &quot;osti_family&quot;: &quot;1&quot;,
+      &quot;opendatasoft&quot;: &quot;1&quot;,
+      &quot;json_document&quot;: &quot;1&quot;,
+      &quot;curated&quot;: &quot;1&quot;,
+      &quot;eia_v2&quot;: &quot;1&quot;,
+      &quot;fueleconomy&quot;: &quot;1&quot;,
+      &quot;text_feed&quot;: &quot;1&quot;,
+      &quot;postgrest&quot;: &quot;1&quot;,
+      &quot;federal_register&quot;: &quot;1&quot;,
+      &quot;vips&quot;: &quot;1&quot;,
+      &quot;daymet&quot;: &quot;1&quot;,
+      &quot;essdive&quot;: &quot;1&quot;,
+      &quot;esgf&quot;: &quot;1&quot;,
+      &quot;sage&quot;: &quot;1&quot;,
+      &quot;optimade&quot;: &quot;1&quot;,
+      &quot;basis_sets&quot;: &quot;1&quot;,
+      &quot;facility_status&quot;: &quot;1&quot;,
+      &quot;nmdc&quot;: &quot;1&quot;,
+      &quot;none&quot;: &quot;1&quot;,
+      &quot;self_registry&quot;: &quot;1&quot;
+    },
+    &quot;registry_revision&quot;: &quot;2026-10-20&quot;,
+    &quot;request_id&quot;: &quot;recorded-workflow&quot;
+  }
+}</pre></details></section><section class="step"><h3>2. bio.search_biosamples</h3><p class="mono">{&quot;rows&quot;: 5, &quot;study_id&quot;: &quot;nmdc:sty-11-8fb6t785&quot;}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>complete</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: nmdc-runtime</p><h4>Warnings</h4><ul><li>No published rate limit and no data-use statement on the API itself; the data portal&#x27;s usage terms were not found in a scripted read.</li></ul><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Returned</th><th scope="col">Total matches</th></tr></thead><tbody><tr><td>5</td><td>23</td></tr></tbody></table></div><div class="scroll"><table><caption>Sample metadata; no sequence data retrieved</caption><thead><tr><th scope="col">Sample</th><th scope="col">Place</th><th scope="col">Collected</th><th scope="col">Environment</th></tr></thead><tbody><tr><td>nmdc:bsm-11-gvp5zp51</td><td>USA: Ohio</td><td>2014-10-11</td><td>Environmental, Terrestrial, Deep subsurface, Shale gas reservoir, Flow back/Produced fluids</td></tr><tr><td>nmdc:bsm-11-yvzvbr38</td><td>USA: Ohio</td><td>2014-10-10</td><td>Environmental, Terrestrial, Deep subsurface, Shale gas reservoir, Flow back/Produced fluids</td></tr><tr><td>nmdc:bsm-11-7b566r47</td><td>USA: Ohio</td><td>2014-10-18</td><td>Environmental, Terrestrial, Deep subsurface, Shale gas reservoir, Flow back/Produced fluids</td></tr><tr><td>nmdc:bsm-11-byzpm179</td><td>USA: Ohio</td><td>2014-10-16</td><td>Environmental, Terrestrial, Deep subsurface, Shale gas reservoir, Flow back/Produced fluids</td></tr><tr><td>nmdc:bsm-11-kmpwgz16</td><td>USA: Ohio</td><td>2014-10-20</td><td>Environmental, Terrestrial, Deep subsurface, Shale gas reservoir, Flow back/Produced fluids</td></tr></tbody></table></div><ul class="evidence"><li><strong>Deep subsurface shale carbon reservoir microbial communities from Ohio, USA - Utica-2 Time Series 2014_10_11</strong><br>National Microbiome Data Collaborative Runtime API · record nmdc:bsm-11-gvp5zp51<br>No publisher locator supplied<br>Record date: 2014-10-11</li><li><strong>Deep subsurface shale carbon reservoir microbial communities from Ohio, USA - Utica-2 Time Series 2014_10_10</strong><br>National Microbiome Data Collaborative Runtime API · record nmdc:bsm-11-yvzvbr38<br>No publisher locator supplied<br>Record date: 2014-10-10</li><li><strong>Deep subsurface shale carbon reservoir microbial communities from Ohio, USA - Utica-2 Time Series 2014_10_18</strong><br>National Microbiome Data Collaborative Runtime API · record nmdc:bsm-11-7b566r47<br>No publisher locator supplied<br>Record date: 2014-10-18</li><li><strong>Deep subsurface shale carbon reservoir microbial communities from Ohio, USA - Utica-2 Time Series 2014_10_16</strong><br>National Microbiome Data Collaborative Runtime API · record nmdc:bsm-11-byzpm179<br>No publisher locator supplied<br>Record date: 2014-10-16</li><li><strong>Deep subsurface shale carbon reservoir microbial communities from Ohio, USA - Utica-2 Time Series 2014_10_20</strong><br>National Microbiome Data Collaborative Runtime API · record nmdc:bsm-11-kmpwgz16<br>No publisher locator supplied<br>Record date: 2014-10-20</li></ul><details><summary>Full response and evidence</summary><pre>{
+  &quot;data&quot;: {
+    &quot;biosamples&quot;: [
+      {
+        &quot;sample_id&quot;: &quot;nmdc:bsm-11-gvp5zp51&quot;,
+        &quot;name&quot;: &quot;Deep subsurface shale carbon reservoir microbial communities from Ohio, USA - Utica-2 Time Series 2014_10_11&quot;,
+        &quot;studies&quot;: [
+          &quot;nmdc:sty-11-8fb6t785&quot;
+        ],
+        &quot;collected&quot;: &quot;2014-10-11&quot;,
+        &quot;latitude&quot;: 40.178,
+        &quot;longitude&quot;: -81.073,
+        &quot;place&quot;: &quot;USA: Ohio&quot;,
+        &quot;ecosystem&quot;: [
+          &quot;Environmental&quot;,
+          &quot;Terrestrial&quot;,
+          &quot;Deep subsurface&quot;,
+          &quot;Shale gas reservoir&quot;,
+          &quot;Flow back/Produced fluids&quot;
+        ],
+        &quot;env_broad_scale&quot;: &quot;ENVO:00000446&quot;,
+        &quot;env_local_scale&quot;: &quot;ENVO:01000941&quot;,
+        &quot;env_medium&quot;: &quot;ENVO:00002194&quot;,
+        &quot;depth_m&quot;: {
+          &quot;value&quot;: 2000.0
+        }
+      },
+      {
+        &quot;sample_id&quot;: &quot;nmdc:bsm-11-yvzvbr38&quot;,
+        &quot;name&quot;: &quot;Deep subsurface shale carbon reservoir microbial communities from Ohio, USA - Utica-2 Time Series 2014_10_10&quot;,
+        &quot;studies&quot;: [
+          &quot;nmdc:sty-11-8fb6t785&quot;
+        ],
+        &quot;collected&quot;: &quot;2014-10-10&quot;,
+        &quot;latitude&quot;: 40.178,
+        &quot;longitude&quot;: -81.073,
+        &quot;place&quot;: &quot;USA: Ohio&quot;,
+        &quot;ecosystem&quot;: [
+          &quot;Environmental&quot;,
+          &quot;Terrestrial&quot;,
+          &quot;Deep subsurface&quot;,
+          &quot;Shale gas reservoir&quot;,
+          &quot;Flow back/Produced fluids&quot;
+        ],
+        &quot;env_broad_scale&quot;: &quot;ENVO:00000446&quot;,
+        &quot;env_local_scale&quot;: &quot;ENVO:01000941&quot;,
+        &quot;env_medium&quot;: &quot;ENVO:00002194&quot;,
+        &quot;depth_m&quot;: {
+          &quot;value&quot;: 2000.0
+        }
+      },
+      {
+        &quot;sample_id&quot;: &quot;nmdc:bsm-11-7b566r47&quot;,
+        &quot;name&quot;: &quot;Deep subsurface shale carbon reservoir microbial communities from Ohio, USA - Utica-2 Time Series 2014_10_18&quot;,
+        &quot;studies&quot;: [
+          &quot;nmdc:sty-11-8fb6t785&quot;
+        ],
+        &quot;collected&quot;: &quot;2014-10-18&quot;,
+        &quot;latitude&quot;: 40.178,
+        &quot;longitude&quot;: -81.073,
+        &quot;place&quot;: &quot;USA: Ohio&quot;,
+        &quot;ecosystem&quot;: [
+          &quot;Environmental&quot;,
+          &quot;Terrestrial&quot;,
+          &quot;Deep subsurface&quot;,
+          &quot;Shale gas reservoir&quot;,
+          &quot;Flow back/Produced fluids&quot;
+        ],
+        &quot;env_broad_scale&quot;: &quot;ENVO:00000446&quot;,
+        &quot;env_local_scale&quot;: &quot;ENVO:01000941&quot;,
+        &quot;env_medium&quot;: &quot;ENVO:00002194&quot;,
+        &quot;depth_m&quot;: {
+          &quot;value&quot;: 2000.0
+        }
+      },
+      {
+        &quot;sample_id&quot;: &quot;nmdc:bsm-11-byzpm179&quot;,
+        &quot;name&quot;: &quot;Deep subsurface shale carbon reservoir microbial communities from Ohio, USA - Utica-2 Time Series 2014_10_16&quot;,
+        &quot;studies&quot;: [
+          &quot;nmdc:sty-11-8fb6t785&quot;
+        ],
+        &quot;collected&quot;: &quot;2014-10-16&quot;,
+        &quot;latitude&quot;: 40.178,
+        &quot;longitude&quot;: -81.073,
+        &quot;place&quot;: &quot;USA: Ohio&quot;,
+        &quot;ecosystem&quot;: [
+          &quot;Environmental&quot;,
+          &quot;Terrestrial&quot;,
+          &quot;Deep subsurface&quot;,
+          &quot;Shale gas reservoir&quot;,
+          &quot;Flow back/Produced fluids&quot;
+        ],
+        &quot;env_broad_scale&quot;: &quot;ENVO:00000446&quot;,
+        &quot;env_local_scale&quot;: &quot;ENVO:01000941&quot;,
+        &quot;env_medium&quot;: &quot;ENVO:00002194&quot;,
+        &quot;depth_m&quot;: {
+          &quot;value&quot;: 2000.0
+        }
+      },
+      {
+        &quot;sample_id&quot;: &quot;nmdc:bsm-11-kmpwgz16&quot;,
+        &quot;name&quot;: &quot;Deep subsurface shale carbon reservoir microbial communities from Ohio, USA - Utica-2 Time Series 2014_10_20&quot;,
+        &quot;studies&quot;: [
+          &quot;nmdc:sty-11-8fb6t785&quot;
+        ],
+        &quot;collected&quot;: &quot;2014-10-20&quot;,
+        &quot;latitude&quot;: 40.178,
+        &quot;longitude&quot;: -81.073,
+        &quot;place&quot;: &quot;USA: Ohio&quot;,
+        &quot;ecosystem&quot;: [
+          &quot;Environmental&quot;,
+          &quot;Terrestrial&quot;,
+          &quot;Deep subsurface&quot;,
+          &quot;Shale gas reservoir&quot;,
+          &quot;Flow back/Produced fluids&quot;
+        ],
+        &quot;env_broad_scale&quot;: &quot;ENVO:00000446&quot;,
+        &quot;env_local_scale&quot;: &quot;ENVO:01000941&quot;,
+        &quot;env_medium&quot;: &quot;ENVO:00002194&quot;,
+        &quot;depth_m&quot;: {
+          &quot;value&quot;: 2000.0
+        }
+      }
+    ],
+    &quot;record_count&quot;: 5,
+    &quot;total_matches&quot;: 23,
+    &quot;page&quot;: 1,
+    &quot;filter_applied&quot;: {
+      &quot;associated_studies&quot;: &quot;nmdc:sty-11-8fb6t785&quot;
+    },
+    &quot;note&quot;: &quot;Sample metadata as submitted. ecosystem_type matches NMDC&#x27;s whole value without regard to case (&#x27;soil&#x27;, &#x27;Freshwater&#x27;); env_medium and place match a substring without regard to case; collected matches the start of the date as written (&#x27;2017&#x27;, &#x27;2017-06&#x27;). Depth is reported only where it was stated in metres. Metadata only. Reads, assemblies and annotations are held at JGI, EMSL and the sequence archives; a study&#x27;s DOIs in access_recipes lead to them and are never fetched here.&quot;
+  },
+  &quot;provenance&quot;: [
+    {
+      &quot;id&quot;: &quot;source_01&quot;,
+      &quot;source_id&quot;: &quot;nmdc-runtime&quot;,
+      &quot;steward&quot;: &quot;Lawrence Berkeley National Laboratory&quot;,
+      &quot;funder&quot;: &quot;Office of Science&quot;,
+      &quot;system&quot;: &quot;National Microbiome Data Collaborative Runtime API&quot;,
+      &quot;dataset&quot;: &quot;National Microbiome Data Collaborative Runtime API&quot;,
+      &quot;dataset_version&quot;: &quot;current&quot;,
+      &quot;authority_level&quot;: &quot;official_secondary&quot;,
+      &quot;access_path&quot;: &quot;live&quot;,
+      &quot;source_updated_at&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;cache_age_seconds&quot;: 0
+    }
+  ],
+  &quot;evidence&quot;: [
+    {
+      &quot;id&quot;: &quot;evidence_01&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;nmdc:bsm-11-gvp5zp51&quot;,
+      &quot;locator&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2014-10-11&quot;,
+      &quot;transformations&quot;: [
+        &quot;normalize&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_02&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;nmdc:bsm-11-yvzvbr38&quot;,
+      &quot;locator&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2014-10-10&quot;,
+      &quot;transformations&quot;: [
+        &quot;normalize&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_03&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;nmdc:bsm-11-7b566r47&quot;,
+      &quot;locator&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2014-10-18&quot;,
+      &quot;transformations&quot;: [
+        &quot;normalize&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_04&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;nmdc:bsm-11-byzpm179&quot;,
+      &quot;locator&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2014-10-16&quot;,
+      &quot;transformations&quot;: [
+        &quot;normalize&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_05&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;nmdc:bsm-11-kmpwgz16&quot;,
+      &quot;locator&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2014-10-20&quot;,
+      &quot;transformations&quot;: [
+        &quot;normalize&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    }
+  ],
+  &quot;coverage&quot;: {
+    &quot;registry&quot;: &quot;covered&quot;,
+    &quot;execution&quot;: &quot;complete&quot;,
+    &quot;pagination&quot;: &quot;truncated&quot;,
+    &quot;source_claim&quot;: &quot;complete&quot;,
+    &quot;result&quot;: &quot;hit&quot;,
+    &quot;sources_searched&quot;: [
+      &quot;nmdc-runtime&quot;
+    ],
+    &quot;known_limitations&quot;: [
+      &quot;Metadata, not sequence data. Reads, assemblies and annotations live in the sequence archives and at JGI, and are reached through a study&#x27;s DOIs rather than through this source.&quot;,
+      &quot;Only 8 of 85 studies carry an ecosystem classification of their own; the rest are classified sample by sample. An ecosystem filter on studies therefore misses most of them, and the biosample filter is the one to use.&quot;,
+      &quot;Place is free text as submitted (&#x27;USA: Washington, Abby Road&#x27;), so a place search is a substring match and a state name may miss samples recorded only by site or coordinates.&quot;,
+      &quot;Studies NMDC has ingested, not every microbiome study. Most of the 85 are JGI or EMSL projects and a consortium study such as NEON&#x27;s appears once with thousands of samples, so counts describe NMDC&#x27;s holdings rather than the field.&quot;
+    ]
+  },
+  &quot;warnings&quot;: [
+    {
+      &quot;code&quot;: &quot;terms_note&quot;,
+      &quot;message&quot;: &quot;No published rate limit and no data-use statement on the API itself; the data portal&#x27;s usage terms were not found in a scripted read.&quot;,
+      &quot;source_id&quot;: &quot;nmdc-runtime&quot;
+    }
+  ],
+  &quot;_execution&quot;: {
+    &quot;server&quot;: &quot;doe-mcp&quot;,
+    &quot;server_version&quot;: &quot;0.1.0.dev0&quot;,
+    &quot;tool&quot;: &quot;bio.search_biosamples&quot;,
+    &quot;tool_contract_version&quot;: &quot;1&quot;,
+    &quot;envelope_version&quot;: &quot;1&quot;,
+    &quot;adapters&quot;: {
+      &quot;osti_family&quot;: &quot;1&quot;,
+      &quot;opendatasoft&quot;: &quot;1&quot;,
+      &quot;json_document&quot;: &quot;1&quot;,
+      &quot;curated&quot;: &quot;1&quot;,
+      &quot;eia_v2&quot;: &quot;1&quot;,
+      &quot;fueleconomy&quot;: &quot;1&quot;,
+      &quot;text_feed&quot;: &quot;1&quot;,
+      &quot;postgrest&quot;: &quot;1&quot;,
+      &quot;federal_register&quot;: &quot;1&quot;,
+      &quot;vips&quot;: &quot;1&quot;,
+      &quot;daymet&quot;: &quot;1&quot;,
+      &quot;essdive&quot;: &quot;1&quot;,
+      &quot;esgf&quot;: &quot;1&quot;,
+      &quot;sage&quot;: &quot;1&quot;,
+      &quot;optimade&quot;: &quot;1&quot;,
+      &quot;basis_sets&quot;: &quot;1&quot;,
+      &quot;facility_status&quot;: &quot;1&quot;,
+      &quot;nmdc&quot;: &quot;1&quot;,
+      &quot;none&quot;: &quot;1&quot;,
+      &quot;self_registry&quot;: &quot;1&quot;
+    },
+    &quot;registry_revision&quot;: &quot;2026-10-20&quot;,
+    &quot;request_id&quot;: &quot;recorded-workflow&quot;
+  }
+}</pre></details></section><details><summary>Recording manifest and capture times</summary><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td>nmdc-runtime.json</td><td>2026-10-08T23:37:56.653277+00:00</td><td>a47cb8d2a0a93dcec1b30c3de2eca0769c8e5fb4fe9eca8edda61eb580432b78</td></tr></tbody></table></div></details></article><article id="partial"><p class="kicker">recorded walkthrough</p><h2>One collection unavailable</h2><p>What can the remaining literature collection answer?</p><p class="answer">3 distinct records returned. Followed record 3484888: Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells.</p><p class="notice">Simulated source outage. The publisher status was changed only in this isolated replay.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>A sampled literature search is not a systematic review.</li><li>A common topic does not prove that a paper and dataset are linked.</li></ul><p class="downloads"><a download href="data/demos/partial.json">Download JSON evidence</a><a download href="data/demos/partial.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo partial --output ./demo-output</pre></details><section class="step"><h3>1. research.search_literature</h3><p class="mono">{&quot;query&quot;: &quot;perovskite solar&quot;, &quot;rows&quot;: 3}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>partial</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: osti-gov-records</p><h4>Unavailable sources</h4><ul><li>osti-doe-pages: source_not_activated</li></ul><h4>Warnings</h4><ul><li>No published rate limit means none of us knows what the real one is. If OSTI ever publishes one, or answers an email about it, this field becomes a number and the politeness budget follows it.</li></ul><div class="scroll"><table><caption>Counts reported by each collection; totals can overlap</caption><thead><tr><th scope="col">Collection</th><th scope="col">Matches</th><th scope="col">Returned</th></tr></thead><tbody><tr><td>OSTI.GOV Search API</td><td>8313</td><td>3</td></tr></tbody></table></div><h4>Publisher access recipes</h4><ul><li><a href="https://doi.org/10.2172/3484888" rel="noreferrer">Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Plan</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3484888" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.66816/tp5080615" rel="noreferrer">Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative </a> — </li><li><a href="https://www.osti.gov/servlets/purl/3625672" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.1016/j.nanoen.2026.112209" rel="noreferrer">Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3409109" rel="noreferrer">Full text (OSTI)</a> — </li></ul><ul class="evidence"><li><strong>Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells</strong><br>OSTI.GOV Search API · record 3484888<br><a href="https://www.osti.gov/biblio/3484888" rel="noreferrer">Publisher record</a><br>Record date: 2026-08-27T11:00:26Z</li><li><strong>Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative Research and Development Final Report, CRADA Number CRD-19-00810</strong><br>OSTI.GOV Search API · record 3625672<br><a href="https://www.osti.gov/biblio/3625672" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-02T10:56:05Z</li><li><strong>Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;/sub&gt;-graphene oxide buried interface layer</strong><br>OSTI.GOV Search API · record 3409109<br><a href="https://www.osti.gov/biblio/3409109" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T15:49:56Z</li></ul><details><summary>Full response and evidence</summary><pre>{
   &quot;data&quot;: {
     &quot;records&quot;: [
       {
@@ -768,7 +1391,7 @@ summary{cursor:pointer;padding:12px 0;font-weight:650}.mono{font-family:monospac
     &quot;registry_revision&quot;: &quot;2026-10-20&quot;,
     &quot;request_id&quot;: &quot;recorded-workflow&quot;
   }
-}</pre></details></section><section class="step"><h3>2. research.get_record</h3><p class="mono">{&quot;collection&quot;: &quot;literature&quot;, &quot;record_id&quot;: &quot;3484888&quot;}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>complete</td></tr><tr><td>source_claim</td><td>complete</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: osti-gov-records</p><h4>Warnings</h4><ul><li>No published rate limit means none of us knows what the real one is. If OSTI ever publishes one, or answers an email about it, this field becomes a number and the politeness budget follows it.</li></ul><ul class="evidence"><li><strong>Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells</strong><br>OSTI.GOV Search API · record 3484888<br><a href="https://www.osti.gov/biblio/3484888" rel="noreferrer">Publisher record</a><br>Record date: 2026-08-27T11:00:26Z</li></ul><details><summary>Full response and evidence</summary><pre>{
+}</pre></details></section><section class="step"><h3>2. research.get_record</h3><p class="mono">{&quot;collection&quot;: &quot;literature&quot;, &quot;record_id&quot;: &quot;3484888&quot;}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>complete</td></tr><tr><td>source_claim</td><td>complete</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: osti-gov-records</p><h4>Warnings</h4><ul><li>No published rate limit means none of us knows what the real one is. If OSTI ever publishes one, or answers an email about it, this field becomes a number and the politeness budget follows it.</li></ul><h4>Publisher access recipes</h4><ul><li><a href="https://doi.org/10.2172/3484888" rel="noreferrer">Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Plan</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3484888" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://www.osti.gov/biblio/3484888" rel="noreferrer">OSTI record page</a> — </li></ul><ul class="evidence"><li><strong>Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells</strong><br>OSTI.GOV Search API · record 3484888<br><a href="https://www.osti.gov/biblio/3484888" rel="noreferrer">Publisher record</a><br>Record date: 2026-08-27T11:00:26Z</li></ul><details><summary>Full response and evidence</summary><pre>{
   &quot;data&quot;: {
     &quot;record&quot;: {
       &quot;id&quot;: &quot;3484888&quot;,
@@ -911,7 +1534,7 @@ summary{cursor:pointer;padding:12px 0;font-weight:650}.mono{font-family:monospac
     &quot;registry_revision&quot;: &quot;2026-10-20&quot;,
     &quot;request_id&quot;: &quot;recorded-workflow&quot;
   }
-}</pre></details></section><details><summary>Recording manifest and capture times</summary><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td>osti-gov-records.json</td><td>2026-09-22T12:33:14.364511+00:00</td><td>c6fd5ded484f83064397a670a15639a4c3903b1add64a6ddcb849cf6da404d17</td></tr></tbody></table></div></details></article><article id="blocked"><p class="kicker">recorded walkthrough</p><h2>A capability not yet served</h2><p>Can DOE-MCP return the solar resource at a candidate site?</p><p class="answer">The registry names a proposed source for solar resource data. No solar-resource measurement was retrieved.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>Registry inventory only. Proposed sources were not queried.</li><li>Missing tool coverage does not mean the data does not exist.</li></ul><p class="downloads"><a download href="data/demos/blocked.json">Download JSON evidence</a><a download href="data/demos/blocked.csv">Download CSV evidence index</a></p><section class="step"><h3>1. registry.search_sources</h3><p class="mono">{&quot;capability&quot;: &quot;solar.get_resource&quot;}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>complete</td></tr><tr><td>source_claim</td><td>complete</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: Local registry only</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Returned</th><th scope="col">Total matches</th></tr></thead><tbody><tr><td>1</td><td>1</td></tr></tbody></table></div><ul class="evidence"><li><strong>nlr-developer-network</strong><br>DOE-MCP source registry and organization table · record nlr-developer-network<br>No publisher locator supplied<br>Record date: Unknown</li></ul><div class="scroll"><table><caption>Registry inventory; not a publisher query</caption><thead><tr><th scope="col">Source</th><th scope="col">State</th><th scope="col">Blocked reason</th></tr></thead><tbody><tr><td>NLR Developer Network</td><td>proposed</td><td>Phase 3. Needs the apidatagov_rest adapter and the credential UX proven out on EIA first (Phase 2), since this is the key whose shared budget is the more dangerous of the two.</td></tr></tbody></table></div><details><summary>Full response and evidence</summary><pre>{
+}</pre></details></section><details><summary>Recording manifest and capture times</summary><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td>osti-gov-records.json</td><td>2026-09-22T12:33:14.364511+00:00</td><td>c6fd5ded484f83064397a670a15639a4c3903b1add64a6ddcb849cf6da404d17</td></tr></tbody></table></div></details></article><article id="blocked"><p class="kicker">recorded walkthrough</p><h2>A capability not yet served</h2><p>Can DOE-MCP return the solar resource at a candidate site?</p><p class="answer">The registry names a proposed source for solar resource data. No solar-resource measurement was retrieved.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>Registry inventory only. Proposed sources were not queried.</li><li>Missing tool coverage does not mean the data does not exist.</li></ul><p class="downloads"><a download href="data/demos/blocked.json">Download JSON evidence</a><a download href="data/demos/blocked.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo blocked --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="step"><h3>1. registry.search_sources</h3><p class="mono">{&quot;capability&quot;: &quot;solar.get_resource&quot;}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>complete</td></tr><tr><td>source_claim</td><td>complete</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: Local registry only</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Returned</th><th scope="col">Total matches</th></tr></thead><tbody><tr><td>1</td><td>1</td></tr></tbody></table></div><ul class="evidence"><li><strong>nlr-developer-network</strong><br>DOE-MCP source registry and organization table · record nlr-developer-network<br>No publisher locator supplied<br>Record date: Unknown</li></ul><div class="scroll"><table><caption>Registry inventory; not a publisher query</caption><thead><tr><th scope="col">Source</th><th scope="col">State</th><th scope="col">Blocked reason</th></tr></thead><tbody><tr><td>NLR Developer Network</td><td>proposed</td><td>Phase 3. Needs the apidatagov_rest adapter and the credential UX proven out on EIA first (Phase 2), since this is the key whose shared budget is the more dangerous of the two.</td></tr></tbody></table></div><details><summary>Full response and evidence</summary><pre>{
   &quot;data&quot;: {
     &quot;sources&quot;: [
       {
@@ -1005,7 +1628,7 @@ summary{cursor:pointer;padding:12px 0;font-weight:650}.mono{font-family:monospac
     &quot;registry_revision&quot;: &quot;2026-10-20&quot;,
     &quot;request_id&quot;: &quot;recorded-workflow&quot;
   }
-}</pre></details></section><details><summary>Recording manifest and capture times</summary><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody></tbody></table></div></details></article><article id="grid"><p class="kicker">recorded walkthrough</p><h2>BPA grid briefing</h2><p>What do the recorded five-minute load readings show?</p><p class="answer">Latest recorded load: 5,728 MW at 09/03/2026 01:55 Pacific Time. This is a historical replay.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>BPA balancing-authority load is not local connection capacity.</li><li>Publisher timestamps are Pacific Time; no UTC offset is inferred.</li></ul><p class="downloads"><a download href="data/demos/grid.json">Download JSON evidence</a><a download href="data/demos/grid.csv">Download CSV evidence index</a></p><section class="step"><h3>1. grid.get_bpa_operations</h3><p class="mono">{&quot;intervals&quot;: 12}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>complete</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: bpa-operations</p><h4>Warnings</h4><ul><li>Operational SCADA readings published minutes after the fact. They are situational awareness, not settled, revision-controlled or billing-quality figures, and should not be used as a system-of-record number.</li></ul><svg viewBox="0 0 680 235" role="img" aria-label="BPA load · Pacific Time. Values in the table below."><title>BPA load · Pacific Time</title><path d="M65 25 V185 H640" fill="none" stroke="#6a7773"/><text x="5" y="42">5894</text><text x="5" y="180">5728</text><polyline points="65.00,40.00 116.82,92.29 168.64,109.16 220.45,99.88 272.27,54.34 324.09,56.87 375.91,63.61 427.73,54.34 479.55,86.39 531.36,97.35 583.18,118.43 635.00,180.00" fill="none" stroke="#176559" stroke-width="3"/><circle cx="65.00" cy="40.00" r="3" fill="#176559"/><circle cx="116.82" cy="92.29" r="3" fill="#176559"/><circle cx="168.64" cy="109.16" r="3" fill="#176559"/><circle cx="220.45" cy="99.88" r="3" fill="#176559"/><circle cx="272.27" cy="54.34" r="3" fill="#176559"/><circle cx="324.09" cy="56.87" r="3" fill="#176559"/><circle cx="375.91" cy="63.61" r="3" fill="#176559"/><circle cx="427.73" cy="54.34" r="3" fill="#176559"/><circle cx="479.55" cy="86.39" r="3" fill="#176559"/><circle cx="531.36" cy="97.35" r="3" fill="#176559"/><circle cx="583.18" cy="118.43" r="3" fill="#176559"/><circle cx="635.00" cy="180.00" r="3" fill="#176559"/><text x="65" y="220">09/03/2026 01:00</text><text x="635" y="220" text-anchor="end">09/03/2026 01:55</text></svg><div class="scroll"><table><caption>BPA load · Pacific Time</caption><thead><tr><th scope="col">Publisher time/date</th><th scope="col">MW</th></tr></thead><tbody><tr><td>09/03/2026 01:00</td><td>5894</td></tr><tr><td>09/03/2026 01:05</td><td>5832</td></tr><tr><td>09/03/2026 01:10</td><td>5812</td></tr><tr><td>09/03/2026 01:15</td><td>5823</td></tr><tr><td>09/03/2026 01:20</td><td>5877</td></tr><tr><td>09/03/2026 01:25</td><td>5874</td></tr><tr><td>09/03/2026 01:30</td><td>5866</td></tr><tr><td>09/03/2026 01:35</td><td>5877</td></tr><tr><td>09/03/2026 01:40</td><td>5839</td></tr><tr><td>09/03/2026 01:45</td><td>5826</td></tr><tr><td>09/03/2026 01:50</td><td>5801</td></tr><tr><td>09/03/2026 01:55</td><td>5728</td></tr></tbody></table></div><p>The file also listed 12 later interval(s) today with a timestamp and no values. Those have not happened yet; they are not zero generation and not an outage. They are excluded from every figure above.</p><ul class="evidence"><li><strong>balancing_authority_interchange#09/03/2026 01:00</strong><br>BPA transmission operations feeds · record balancing_authority_interchange#09/03/2026 01:00<br>No publisher locator supplied<br>Record date: 09/03/2026 01:00</li><li><strong>balancing_authority_interchange#09/03/2026 01:05</strong><br>BPA transmission operations feeds · record balancing_authority_interchange#09/03/2026 01:05<br>No publisher locator supplied<br>Record date: 09/03/2026 01:05</li><li><strong>balancing_authority_interchange#09/03/2026 01:10</strong><br>BPA transmission operations feeds · record balancing_authority_interchange#09/03/2026 01:10<br>No publisher locator supplied<br>Record date: 09/03/2026 01:10</li><li><strong>balancing_authority_interchange#09/03/2026 01:15</strong><br>BPA transmission operations feeds · record balancing_authority_interchange#09/03/2026 01:15<br>No publisher locator supplied<br>Record date: 09/03/2026 01:15</li><li><strong>balancing_authority_interchange#09/03/2026 01:20</strong><br>BPA transmission operations feeds · record balancing_authority_interchange#09/03/2026 01:20<br>No publisher locator supplied<br>Record date: 09/03/2026 01:20</li><li><strong>balancing_authority_interchange#09/03/2026 01:25</strong><br>BPA transmission operations feeds · record balancing_authority_interchange#09/03/2026 01:25<br>No publisher locator supplied<br>Record date: 09/03/2026 01:25</li><li><strong>balancing_authority_interchange#09/03/2026 01:30</strong><br>BPA transmission operations feeds · record balancing_authority_interchange#09/03/2026 01:30<br>No publisher locator supplied<br>Record date: 09/03/2026 01:30</li><li><strong>balancing_authority_interchange#09/03/2026 01:35</strong><br>BPA transmission operations feeds · record balancing_authority_interchange#09/03/2026 01:35<br>No publisher locator supplied<br>Record date: 09/03/2026 01:35</li><li><strong>balancing_authority_interchange#09/03/2026 01:40</strong><br>BPA transmission operations feeds · record balancing_authority_interchange#09/03/2026 01:40<br>No publisher locator supplied<br>Record date: 09/03/2026 01:40</li><li><strong>balancing_authority_interchange#09/03/2026 01:45</strong><br>BPA transmission operations feeds · record balancing_authority_interchange#09/03/2026 01:45<br>No publisher locator supplied<br>Record date: 09/03/2026 01:45</li><li><strong>balancing_authority_interchange#09/03/2026 01:50</strong><br>BPA transmission operations feeds · record balancing_authority_interchange#09/03/2026 01:50<br>No publisher locator supplied<br>Record date: 09/03/2026 01:50</li><li><strong>balancing_authority_interchange#09/03/2026 01:55</strong><br>BPA transmission operations feeds · record balancing_authority_interchange#09/03/2026 01:55<br>No publisher locator supplied<br>Record date: 09/03/2026 01:55</li></ul><details><summary>Full response and evidence</summary><pre>{
+}</pre></details></section><details><summary>Recording manifest and capture times</summary><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody></tbody></table></div></details></article><article id="grid"><p class="kicker">recorded walkthrough</p><h2>BPA grid briefing</h2><p>What do the recorded five-minute load readings show?</p><p class="answer">Latest recorded load: 5,728 MW at 09/03/2026 01:55 Pacific Time. This is a historical replay.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>BPA balancing-authority load is not local connection capacity.</li><li>Publisher timestamps are Pacific Time; no UTC offset is inferred.</li></ul><p class="downloads"><a download href="data/demos/grid.json">Download JSON evidence</a><a download href="data/demos/grid.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo grid --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="step"><h3>1. grid.get_bpa_operations</h3><p class="mono">{&quot;intervals&quot;: 12}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>complete</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: bpa-operations</p><h4>Warnings</h4><ul><li>Operational SCADA readings published minutes after the fact. They are situational awareness, not settled, revision-controlled or billing-quality figures, and should not be used as a system-of-record number.</li></ul><svg viewBox="0 0 680 235" role="img" aria-label="BPA load · Pacific Time. Values in the table below."><title>BPA load · Pacific Time</title><path d="M65 25 V185 H640" fill="none" stroke="#6a7773"/><text x="5" y="42">5894</text><text x="5" y="180">5728</text><polyline points="65.00,40.00 116.82,92.29 168.64,109.16 220.45,99.88 272.27,54.34 324.09,56.87 375.91,63.61 427.73,54.34 479.55,86.39 531.36,97.35 583.18,118.43 635.00,180.00" fill="none" stroke="#176559" stroke-width="3"/><circle cx="65.00" cy="40.00" r="3" fill="#176559"/><circle cx="116.82" cy="92.29" r="3" fill="#176559"/><circle cx="168.64" cy="109.16" r="3" fill="#176559"/><circle cx="220.45" cy="99.88" r="3" fill="#176559"/><circle cx="272.27" cy="54.34" r="3" fill="#176559"/><circle cx="324.09" cy="56.87" r="3" fill="#176559"/><circle cx="375.91" cy="63.61" r="3" fill="#176559"/><circle cx="427.73" cy="54.34" r="3" fill="#176559"/><circle cx="479.55" cy="86.39" r="3" fill="#176559"/><circle cx="531.36" cy="97.35" r="3" fill="#176559"/><circle cx="583.18" cy="118.43" r="3" fill="#176559"/><circle cx="635.00" cy="180.00" r="3" fill="#176559"/><text x="65" y="220">09/03/2026 01:00</text><text x="635" y="220" text-anchor="end">09/03/2026 01:55</text></svg><div class="scroll"><table><caption>BPA load · Pacific Time</caption><thead><tr><th scope="col">Publisher time/date</th><th scope="col">MW</th></tr></thead><tbody><tr><td>09/03/2026 01:00</td><td>5894</td></tr><tr><td>09/03/2026 01:05</td><td>5832</td></tr><tr><td>09/03/2026 01:10</td><td>5812</td></tr><tr><td>09/03/2026 01:15</td><td>5823</td></tr><tr><td>09/03/2026 01:20</td><td>5877</td></tr><tr><td>09/03/2026 01:25</td><td>5874</td></tr><tr><td>09/03/2026 01:30</td><td>5866</td></tr><tr><td>09/03/2026 01:35</td><td>5877</td></tr><tr><td>09/03/2026 01:40</td><td>5839</td></tr><tr><td>09/03/2026 01:45</td><td>5826</td></tr><tr><td>09/03/2026 01:50</td><td>5801</td></tr><tr><td>09/03/2026 01:55</td><td>5728</td></tr></tbody></table></div><p>The file also listed 12 later interval(s) today with a timestamp and no values. Those have not happened yet; they are not zero generation and not an outage. They are excluded from every figure above.</p><ul class="evidence"><li><strong>balancing_authority_interchange#09/03/2026 01:00</strong><br>BPA transmission operations feeds · record balancing_authority_interchange#09/03/2026 01:00<br>No publisher locator supplied<br>Record date: 09/03/2026 01:00</li><li><strong>balancing_authority_interchange#09/03/2026 01:05</strong><br>BPA transmission operations feeds · record balancing_authority_interchange#09/03/2026 01:05<br>No publisher locator supplied<br>Record date: 09/03/2026 01:05</li><li><strong>balancing_authority_interchange#09/03/2026 01:10</strong><br>BPA transmission operations feeds · record balancing_authority_interchange#09/03/2026 01:10<br>No publisher locator supplied<br>Record date: 09/03/2026 01:10</li><li><strong>balancing_authority_interchange#09/03/2026 01:15</strong><br>BPA transmission operations feeds · record balancing_authority_interchange#09/03/2026 01:15<br>No publisher locator supplied<br>Record date: 09/03/2026 01:15</li><li><strong>balancing_authority_interchange#09/03/2026 01:20</strong><br>BPA transmission operations feeds · record balancing_authority_interchange#09/03/2026 01:20<br>No publisher locator supplied<br>Record date: 09/03/2026 01:20</li><li><strong>balancing_authority_interchange#09/03/2026 01:25</strong><br>BPA transmission operations feeds · record balancing_authority_interchange#09/03/2026 01:25<br>No publisher locator supplied<br>Record date: 09/03/2026 01:25</li><li><strong>balancing_authority_interchange#09/03/2026 01:30</strong><br>BPA transmission operations feeds · record balancing_authority_interchange#09/03/2026 01:30<br>No publisher locator supplied<br>Record date: 09/03/2026 01:30</li><li><strong>balancing_authority_interchange#09/03/2026 01:35</strong><br>BPA transmission operations feeds · record balancing_authority_interchange#09/03/2026 01:35<br>No publisher locator supplied<br>Record date: 09/03/2026 01:35</li><li><strong>balancing_authority_interchange#09/03/2026 01:40</strong><br>BPA transmission operations feeds · record balancing_authority_interchange#09/03/2026 01:40<br>No publisher locator supplied<br>Record date: 09/03/2026 01:40</li><li><strong>balancing_authority_interchange#09/03/2026 01:45</strong><br>BPA transmission operations feeds · record balancing_authority_interchange#09/03/2026 01:45<br>No publisher locator supplied<br>Record date: 09/03/2026 01:45</li><li><strong>balancing_authority_interchange#09/03/2026 01:50</strong><br>BPA transmission operations feeds · record balancing_authority_interchange#09/03/2026 01:50<br>No publisher locator supplied<br>Record date: 09/03/2026 01:50</li><li><strong>balancing_authority_interchange#09/03/2026 01:55</strong><br>BPA transmission operations feeds · record balancing_authority_interchange#09/03/2026 01:55<br>No publisher locator supplied<br>Record date: 09/03/2026 01:55</li></ul><details><summary>Full response and evidence</summary><pre>{
   &quot;data&quot;: {
     &quot;feed&quot;: &quot;balancing_authority_interchange&quot;,
     &quot;title&quot;: &quot;BPA Balancing Authority Load &amp; Total VER&quot;,
@@ -1374,7 +1997,7 @@ summary{cursor:pointer;padding:12px 0;font-weight:650}.mono{font-family:monospac
     &quot;registry_revision&quot;: &quot;2026-10-20&quot;,
     &quot;request_id&quot;: &quot;recorded-workflow&quot;
   }
-}</pre></details></section><details><summary>Recording manifest and capture times</summary><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td>bpa-operations.json</td><td>Unknown; old recording</td><td>4d69703d9b889d9a1c13fb09ec2476a79e4c0977f5f2a2b79a1fc4fd0139e394</td></tr></tbody></table></div></details></article><article id="eia"><p class="kicker">recorded walkthrough</p><h2>CAISO demand briefing</h2><p>What are the latest three measured hourly demand values?</p><p class="answer">3 hourly observations of CISO demand, in MWh. These are recorded observations, not a current grid report.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>Measured hourly energy demand in MWh (D), not forecast (DF).</li><li>This regional series does not measure spare connection capacity.</li></ul><p class="downloads"><a download href="data/demos/eia.json">Download JSON evidence</a><a download href="data/demos/eia.csv">Download CSV evidence index</a></p><section class="step"><h3>1. energy.grid_status</h3><p class="mono">{&quot;balancing_authority&quot;: &quot;CISO&quot;, &quot;hours&quot;: 3, &quot;metric&quot;: &quot;demand&quot;}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>complete</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: eia-api-v2</p><h4>Warnings</h4><ul><li>Exact request-rate limits are not published in the v2 documentation this project has read. Treated as unknown, so the standard politeness budget applies.</li><li>EIA-930 publishes with a reporting lag and revises recent hours. The most recent observation here is not &#x27;now&#x27;.</li></ul><div class="scroll"><table><caption>CISO measured demand; publisher periods</caption><thead><tr><th scope="col">Period</th><th scope="col">Demand</th><th scope="col">Units</th></tr></thead><tbody><tr><td>2026-09-09T13</td><td>30013</td><td>megawatthours</td></tr><tr><td>2026-09-09T12</td><td>30450</td><td>megawatthours</td></tr><tr><td>2026-09-09T11</td><td>30569</td><td>megawatthours</td></tr></tbody></table></div><ul class="evidence"><li><strong>electricity/rto/region-data#0</strong><br>EIA API v2 · record electricity/rto/region-data#0<br>No publisher locator supplied<br>Record date: 2026-09-09T13</li><li><strong>electricity/rto/region-data#1</strong><br>EIA API v2 · record electricity/rto/region-data#1<br>No publisher locator supplied<br>Record date: 2026-09-09T12</li><li><strong>electricity/rto/region-data#2</strong><br>EIA API v2 · record electricity/rto/region-data#2<br>No publisher locator supplied<br>Record date: 2026-09-09T11</li></ul><details><summary>Full response and evidence</summary><pre>{
+}</pre></details></section><details><summary>Recording manifest and capture times</summary><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td>bpa-operations.json</td><td>Unknown; old recording</td><td>4d69703d9b889d9a1c13fb09ec2476a79e4c0977f5f2a2b79a1fc4fd0139e394</td></tr></tbody></table></div></details></article><article id="eia"><p class="kicker">recorded walkthrough</p><h2>CAISO demand briefing</h2><p>What are the latest three measured hourly demand values?</p><p class="answer">3 hourly observations of CISO demand, in MWh. These are recorded observations, not a current grid report.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>Measured hourly energy demand in MWh (D), not forecast (DF).</li><li>This regional series does not measure spare connection capacity.</li></ul><p class="downloads"><a download href="data/demos/eia.json">Download JSON evidence</a><a download href="data/demos/eia.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo eia --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. EIA requires your own key. Live results and availability can differ.</p></details><section class="step"><h3>1. energy.grid_status</h3><p class="mono">{&quot;balancing_authority&quot;: &quot;CISO&quot;, &quot;hours&quot;: 3, &quot;metric&quot;: &quot;demand&quot;}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>complete</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: eia-api-v2</p><h4>Warnings</h4><ul><li>Exact request-rate limits are not published in the v2 documentation this project has read. Treated as unknown, so the standard politeness budget applies.</li><li>EIA-930 publishes with a reporting lag and revises recent hours. The most recent observation here is not &#x27;now&#x27;.</li></ul><div class="scroll"><table><caption>CISO measured demand; publisher periods</caption><thead><tr><th scope="col">Period</th><th scope="col">Demand</th><th scope="col">Units</th></tr></thead><tbody><tr><td>2026-09-09T13</td><td>30013</td><td>megawatthours</td></tr><tr><td>2026-09-09T12</td><td>30450</td><td>megawatthours</td></tr><tr><td>2026-09-09T11</td><td>30569</td><td>megawatthours</td></tr></tbody></table></div><ul class="evidence"><li><strong>electricity/rto/region-data#0</strong><br>EIA API v2 · record electricity/rto/region-data#0<br>No publisher locator supplied<br>Record date: 2026-09-09T13</li><li><strong>electricity/rto/region-data#1</strong><br>EIA API v2 · record electricity/rto/region-data#1<br>No publisher locator supplied<br>Record date: 2026-09-09T12</li><li><strong>electricity/rto/region-data#2</strong><br>EIA API v2 · record electricity/rto/region-data#2<br>No publisher locator supplied<br>Record date: 2026-09-09T11</li></ul><details><summary>Full response and evidence</summary><pre>{
   &quot;data&quot;: {
     &quot;balancing_authority&quot;: &quot;CISO&quot;,
     &quot;metric&quot;: &quot;Demand&quot;,
@@ -1519,7 +2142,7 @@ summary{cursor:pointer;padding:12px 0;font-weight:650}.mono{font-family:monospac
     &quot;registry_revision&quot;: &quot;2026-10-20&quot;,
     &quot;request_id&quot;: &quot;recorded-workflow&quot;
   }
-}</pre></details></section><details><summary>Recording manifest and capture times</summary><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td>eia-api-v2.json</td><td>Unknown; old recording</td><td>339c0326900d553dd8146f9c5c379bdacde0bab625a34596f3dca670433ea48d</td></tr></tbody></table></div></details></article><article id="site"><p class="kicker">recorded walkthrough</p><h2>Rhode Island facility context</h2><p>Which sampled wind and solar facilities appear in this inventory?</p><p class="answer">Sample: 5 wind records of 35 matches; 5 solar records of 71 matches. Site suitability remains unassessed.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>First page only; map bounds describe returned points, not a complete site search.</li><li>Parcel ownership, queue position, available MW, tariffs and environmental clearance remain unknown.</li><li>NEPA-MCP is a separate installation and manual handoff. No external server was called.</li></ul><p class="downloads"><a download href="data/demos/site.json">Download JSON evidence</a><a download href="data/demos/site.csv">Download CSV evidence index</a></p><h3>Facility coordinate map</h3><p>Returned-point bounds: -71.7111, 41.5991 to -71.1539, 41.9861. Longitude/latitude plot; no parcel boundaries or base map. Green: wind. Amber: solar.</p><svg viewBox="0 0 680 270" role="img" aria-label="Sample facility coordinates, listed in the table below"><rect x="50" y="35" width="560" height="190" fill="#eef3ef" stroke="#6a7773"/><circle cx="311.25" cy="159.54" r="6" fill="#176559"><title>Wind: New England Tech</title></circle><circle cx="491.68" cy="220.00" r="6" fill="#176559"><title>Wind: Portsmouth Abbey School</title></circle><circle cx="605.00" cy="210.32" r="6" fill="#176559"><title>Wind: Sandywoods</title></circle><circle cx="372.15" cy="132.41" r="6" fill="#176559"><title>Wind: Field&#x27;s Point Wastewater Treatment Facility</title></circle><circle cx="374.62" cy="131.64" r="6" fill="#176559"><title>Wind: Field&#x27;s Point Wastewater Treatment Facility</title></circle><circle cx="55.00" cy="196.17" r="6" fill="#ae6410"><title>Solar: West Greenwich Solar</title></circle><circle cx="421.01" cy="141.00" r="6" fill="#ae6410"><title>Solar: Forbes Street Solar</title></circle><circle cx="205.63" cy="128.52" r="6" fill="#ae6410"><title>Solar: Johnston Solar</title></circle><circle cx="179.67" cy="45.00" r="6" fill="#ae6410"><title>Solar: Brookside</title></circle><circle cx="326.35" cy="129.60" r="6" fill="#ae6410"><title>Solar: Little Bay</title></circle><text x="50" y="252">West -71.7111</text><text x="610" y="252" text-anchor="end">East -71.1539</text><text x="615" y="45">North</text></svg><div class="scroll"><table><caption>Returned sample, not all Rhode Island facilities</caption><thead><tr><th scope="col">Type</th><th scope="col">Facility</th><th scope="col">Record</th><th scope="col">Longitude</th><th scope="col">Latitude</th></tr></thead><tbody><tr><td>Wind</td><td>New England Tech</td><td>3001502</td><td>-71.4515</td><td>41.73279</td></tr><tr><td>Wind</td><td>Portsmouth Abbey School</td><td>3015899</td><td>-71.2687</td><td>41.59909</td></tr><tr><td>Wind</td><td>Sandywoods</td><td>3034241</td><td>-71.1539</td><td>41.62049</td></tr><tr><td>Wind</td><td>Field&#x27;s Point Wastewater Treatment Facility</td><td>3039300</td><td>-71.3898</td><td>41.79279</td></tr><tr><td>Wind</td><td>Field&#x27;s Point Wastewater Treatment Facility</td><td>3039301</td><td>-71.3873</td><td>41.79449</td></tr><tr><td>Solar</td><td>West Greenwich Solar</td><td>400417</td><td>-71.7111</td><td>41.6518</td></tr><tr><td>Solar</td><td>Forbes Street Solar</td><td>400618</td><td>-71.3403</td><td>41.7738</td></tr><tr><td>Solar</td><td>Johnston Solar</td><td>401343</td><td>-71.5585</td><td>41.8014</td></tr><tr><td>Solar</td><td>Brookside</td><td>401715</td><td>-71.5848</td><td>41.9861</td></tr><tr><td>Solar</td><td>Little Bay</td><td>401746</td><td>-71.4362</td><td>41.799</td></tr></tbody></table></div><section class="step"><h3>1. facility.find_wind_turbines</h3><p class="mono">{&quot;rows&quot;: 5, &quot;state&quot;: &quot;RI&quot;}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>complete</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: usgs-uswtdb</p><h4>Warnings</h4><ul><li>1 of the 5 records returned carry a confidence code below the publisher&#x27;s top score, which means the compilers could not fully confirm the location or the attributes from imagery and records. Those rows are estimates and are marked as such in the data; reporting them beside the confirmed ones without the distinction turns an estimate into a survey. The codes are decoded in confidence_codes.</li></ul><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Returned</th><th scope="col">Total matches</th></tr></thead><tbody><tr><td>5</td><td>35</td></tr></tbody></table></div><ul class="evidence"><li><strong>turbines#3001502</strong><br>US Wind Turbine Database (USWTDB) · record turbines#3001502<br>No publisher locator supplied<br>Record date: Unknown</li><li><strong>turbines#3015899</strong><br>US Wind Turbine Database (USWTDB) · record turbines#3015899<br>No publisher locator supplied<br>Record date: Unknown</li><li><strong>turbines#3034241</strong><br>US Wind Turbine Database (USWTDB) · record turbines#3034241<br>No publisher locator supplied<br>Record date: Unknown</li><li><strong>turbines#3039300</strong><br>US Wind Turbine Database (USWTDB) · record turbines#3039300<br>No publisher locator supplied<br>Record date: Unknown</li><li><strong>turbines#3039301</strong><br>US Wind Turbine Database (USWTDB) · record turbines#3039301<br>No publisher locator supplied<br>Record date: Unknown</li></ul><details><summary>Full response and evidence</summary><pre>{
+}</pre></details></section><details><summary>Recording manifest and capture times</summary><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td>eia-api-v2.json</td><td>Unknown; old recording</td><td>339c0326900d553dd8146f9c5c379bdacde0bab625a34596f3dca670433ea48d</td></tr></tbody></table></div></details></article><article id="site"><p class="kicker">recorded walkthrough</p><h2>Rhode Island facility context</h2><p>Which sampled wind and solar facilities appear in this inventory?</p><p class="answer">Sample: 5 wind records of 35 matches; 5 solar records of 71 matches. Site suitability remains unassessed.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>First page only; map bounds describe returned points, not a complete site search.</li><li>Parcel ownership, queue position, available MW, tariffs and environmental clearance remain unknown.</li><li>NEPA-MCP is a separate installation and manual handoff. No external server was called.</li></ul><p class="downloads"><a download href="data/demos/site.json">Download JSON evidence</a><a download href="data/demos/site.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo site --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><h3>Facility coordinate map</h3><p>Returned-point bounds: -71.7111, 41.5991 to -71.1539, 41.9861. Longitude/latitude plot; no parcel boundaries or base map. Green: wind. Amber: solar.</p><svg viewBox="0 0 680 270" role="img" aria-label="Sample facility coordinates, listed in the table below"><rect x="50" y="35" width="560" height="190" fill="#eef3ef" stroke="#6a7773"/><circle cx="311.25" cy="159.54" r="6" fill="#176559"><title>Wind: New England Tech</title></circle><circle cx="491.68" cy="220.00" r="6" fill="#176559"><title>Wind: Portsmouth Abbey School</title></circle><circle cx="605.00" cy="210.32" r="6" fill="#176559"><title>Wind: Sandywoods</title></circle><circle cx="372.15" cy="132.41" r="6" fill="#176559"><title>Wind: Field&#x27;s Point Wastewater Treatment Facility</title></circle><circle cx="374.62" cy="131.64" r="6" fill="#176559"><title>Wind: Field&#x27;s Point Wastewater Treatment Facility</title></circle><circle cx="55.00" cy="196.17" r="6" fill="#ae6410"><title>Solar: West Greenwich Solar</title></circle><circle cx="421.01" cy="141.00" r="6" fill="#ae6410"><title>Solar: Forbes Street Solar</title></circle><circle cx="205.63" cy="128.52" r="6" fill="#ae6410"><title>Solar: Johnston Solar</title></circle><circle cx="179.67" cy="45.00" r="6" fill="#ae6410"><title>Solar: Brookside</title></circle><circle cx="326.35" cy="129.60" r="6" fill="#ae6410"><title>Solar: Little Bay</title></circle><text x="50" y="252">West -71.7111</text><text x="610" y="252" text-anchor="end">East -71.1539</text><text x="615" y="45">North</text></svg><div class="scroll"><table><caption>Returned sample, not all Rhode Island facilities</caption><thead><tr><th scope="col">Type</th><th scope="col">Facility</th><th scope="col">Record</th><th scope="col">Longitude</th><th scope="col">Latitude</th></tr></thead><tbody><tr><td>Wind</td><td>New England Tech</td><td>3001502</td><td>-71.4515</td><td>41.73279</td></tr><tr><td>Wind</td><td>Portsmouth Abbey School</td><td>3015899</td><td>-71.2687</td><td>41.59909</td></tr><tr><td>Wind</td><td>Sandywoods</td><td>3034241</td><td>-71.1539</td><td>41.62049</td></tr><tr><td>Wind</td><td>Field&#x27;s Point Wastewater Treatment Facility</td><td>3039300</td><td>-71.3898</td><td>41.79279</td></tr><tr><td>Wind</td><td>Field&#x27;s Point Wastewater Treatment Facility</td><td>3039301</td><td>-71.3873</td><td>41.79449</td></tr><tr><td>Solar</td><td>West Greenwich Solar</td><td>400417</td><td>-71.7111</td><td>41.6518</td></tr><tr><td>Solar</td><td>Forbes Street Solar</td><td>400618</td><td>-71.3403</td><td>41.7738</td></tr><tr><td>Solar</td><td>Johnston Solar</td><td>401343</td><td>-71.5585</td><td>41.8014</td></tr><tr><td>Solar</td><td>Brookside</td><td>401715</td><td>-71.5848</td><td>41.9861</td></tr><tr><td>Solar</td><td>Little Bay</td><td>401746</td><td>-71.4362</td><td>41.799</td></tr></tbody></table></div><section class="step"><h3>1. facility.find_wind_turbines</h3><p class="mono">{&quot;rows&quot;: 5, &quot;state&quot;: &quot;RI&quot;}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>complete</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: usgs-uswtdb</p><h4>Warnings</h4><ul><li>1 of the 5 records returned carry a confidence code below the publisher&#x27;s top score, which means the compilers could not fully confirm the location or the attributes from imagery and records. Those rows are estimates and are marked as such in the data; reporting them beside the confirmed ones without the distinction turns an estimate into a survey. The codes are decoded in confidence_codes.</li></ul><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Returned</th><th scope="col">Total matches</th></tr></thead><tbody><tr><td>5</td><td>35</td></tr></tbody></table></div><ul class="evidence"><li><strong>turbines#3001502</strong><br>US Wind Turbine Database (USWTDB) · record turbines#3001502<br>No publisher locator supplied<br>Record date: Unknown</li><li><strong>turbines#3015899</strong><br>US Wind Turbine Database (USWTDB) · record turbines#3015899<br>No publisher locator supplied<br>Record date: Unknown</li><li><strong>turbines#3034241</strong><br>US Wind Turbine Database (USWTDB) · record turbines#3034241<br>No publisher locator supplied<br>Record date: Unknown</li><li><strong>turbines#3039300</strong><br>US Wind Turbine Database (USWTDB) · record turbines#3039300<br>No publisher locator supplied<br>Record date: Unknown</li><li><strong>turbines#3039301</strong><br>US Wind Turbine Database (USWTDB) · record turbines#3039301<br>No publisher locator supplied<br>Record date: Unknown</li></ul><details><summary>Full response and evidence</summary><pre>{
   &quot;data&quot;: {
     &quot;records&quot;: [
       {
@@ -2429,7 +3052,7 @@ summary{cursor:pointer;padding:12px 0;font-weight:650}.mono{font-family:monospac
     &quot;registry_revision&quot;: &quot;2026-10-20&quot;,
     &quot;request_id&quot;: &quot;recorded-workflow&quot;
   }
-}</pre></details></section><details><summary>Recording manifest and capture times</summary><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td>usgs-uspvdb.json</td><td>Unknown; old recording</td><td>4d93ec19e3b23d1de9ad1a1d618cca40070ae455764062a91d8a19a4c975c24c</td></tr><tr><td>usgs-uswtdb.json</td><td>Unknown; old recording</td><td>717c92092351ab13cd9ad61bd10f8988c06748fe63201b872ef22d12fd23b70a</td></tr></tbody></table></div></details></article><article id="earth"><p class="kicker">recorded walkthrough</p><h2>Environmental study brief</h2><p>Find permafrost datasets and inspect modelled weather at Oak Ridge.</p><p class="answer">Permafrost dataset results and five days of modelled Oak Ridge weather are shown separately. No study-site match is established.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>The dataset search and Oak Ridge weather example are independent; no geographic or temporal relationship is asserted.</li><li>Daymet values are modelled grid-cell estimates, not station observations.</li></ul><p class="downloads"><a download href="data/demos/earth.json">Download JSON evidence</a><a download href="data/demos/earth.csv">Download CSV evidence index</a></p><section class="step"><h3>1. earth.search_datasets</h3><p class="mono">{&quot;rows&quot;: 5, &quot;text&quot;: &quot;permafrost&quot;}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>partial</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: ess-dive</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Returned</th><th scope="col">Total matches</th></tr></thead><tbody><tr><td>5</td><td>329</td></tr></tbody></table></div><ul class="evidence"><li><strong>ess-dive-3ae4bf47c8a5c01-20260821T191107282</strong><br>ESS-DIVE (Environmental System Science Data Infrastructure) · record ess-dive-3ae4bf47c8a5c01-20260821T191107282<br><a href="https://data.ess-dive.lbl.gov/view/doi:10.5440/1575068" rel="noreferrer">Publisher record</a><br>Record date: 2026-08-21T19:11:09.012Z</li><li><strong>ess-dive-59891b16a14f206-20260821T190846262</strong><br>ESS-DIVE (Environmental System Science Data Infrastructure) · record ess-dive-59891b16a14f206-20260821T190846262<br><a href="https://data.ess-dive.lbl.gov/view/doi:10.3334/CDIAC/SPRUCE.042" rel="noreferrer">Publisher record</a><br>Record date: 2026-08-21T19:08:47.405Z</li><li><strong>ess-dive-9b961ab3bdda867-20260817T151917925</strong><br>ESS-DIVE (Environmental System Science Data Infrastructure) · record ess-dive-9b961ab3bdda867-20260817T151917925<br><a href="https://data.ess-dive.lbl.gov/view/doi:10.15485/3023308" rel="noreferrer">Publisher record</a><br>Record date: 2026-08-17T15:19:19.031Z</li><li><strong>ess-dive-387aca9b8ac0fa9-20260717T202253310452</strong><br>ESS-DIVE (Environmental System Science Data Infrastructure) · record ess-dive-387aca9b8ac0fa9-20260717T202253310452<br><a href="https://data.ess-dive.lbl.gov/view/doi:10.5440/1832016" rel="noreferrer">Publisher record</a><br>Record date: 2026-07-17T20:22:54.969Z</li><li><strong>ess-dive-b92428d4a59674c-20260717T202221097472</strong><br>ESS-DIVE (Environmental System Science Data Infrastructure) · record ess-dive-b92428d4a59674c-20260717T202221097472<br><a href="https://data.ess-dive.lbl.gov/view/doi:10.5440/1778212" rel="noreferrer">Publisher record</a><br>Record date: 2026-07-17T20:22:24.225Z</li></ul><details><summary>Full response and evidence</summary><pre>{
+}</pre></details></section><details><summary>Recording manifest and capture times</summary><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td>usgs-uspvdb.json</td><td>Unknown; old recording</td><td>4d93ec19e3b23d1de9ad1a1d618cca40070ae455764062a91d8a19a4c975c24c</td></tr><tr><td>usgs-uswtdb.json</td><td>Unknown; old recording</td><td>717c92092351ab13cd9ad61bd10f8988c06748fe63201b872ef22d12fd23b70a</td></tr></tbody></table></div></details></article><article id="earth"><p class="kicker">recorded walkthrough</p><h2>Environmental study brief</h2><p>Find permafrost datasets and inspect modelled weather at Oak Ridge.</p><p class="answer">Permafrost dataset results and five days of modelled Oak Ridge weather are shown separately. No study-site match is established.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>The dataset search and Oak Ridge weather example are independent; no geographic or temporal relationship is asserted.</li><li>Daymet values are modelled grid-cell estimates, not station observations.</li></ul><p class="downloads"><a download href="data/demos/earth.json">Download JSON evidence</a><a download href="data/demos/earth.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo earth --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="step"><h3>1. earth.search_datasets</h3><p class="mono">{&quot;rows&quot;: 5, &quot;text&quot;: &quot;permafrost&quot;}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>partial</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: ess-dive</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Returned</th><th scope="col">Total matches</th></tr></thead><tbody><tr><td>5</td><td>329</td></tr></tbody></table></div><h4>Publisher access recipes</h4><ul><li><a href="https://data.ess-dive.lbl.gov/view/doi:10.5440/1575068" rel="noreferrer">Leaf Carbon and Nitrogen Content, Seward Peninsula, Alaska, 2014</a> — </li><li><a href="https://data.ess-dive.lbl.gov/view/doi:10.3334/CDIAC/SPRUCE.042" rel="noreferrer">SPRUCE Geochemical Changes in Porewater from Northern Peatlands at Multiple Depths in Field Samples and over Time in Peat Incubations</a> — </li><li><a href="https://data.ess-dive.lbl.gov/view/doi:10.15485/3023308" rel="noreferrer">Permafrost Thaw, Uneven Subsidence and Projected Drying of Ice-wedge Polygon Tundra: Modeling Archive</a> — </li><li><a href="https://data.ess-dive.lbl.gov/view/doi:10.5440/1832016" rel="noreferrer">National Center for Airborne Laser Mapping (NCALM) LiDAR, Imagery, and DEM data from five NGEE Arctic Sites, Seward Peninsula, Alaska, August 2021</a> — </li><li><a href="https://data.ess-dive.lbl.gov/view/doi:10.5440/1778212" rel="noreferrer">Landscape-scale Characterization of Arctic Tundra Vegetation Composition, Structure, and Function with a Multi-sensor Unoccupied Aerial System: Supporting Data.</a> — </li></ul><ul class="evidence"><li><strong>ess-dive-3ae4bf47c8a5c01-20260821T191107282</strong><br>ESS-DIVE (Environmental System Science Data Infrastructure) · record ess-dive-3ae4bf47c8a5c01-20260821T191107282<br><a href="https://data.ess-dive.lbl.gov/view/doi:10.5440/1575068" rel="noreferrer">Publisher record</a><br>Record date: 2026-08-21T19:11:09.012Z</li><li><strong>ess-dive-59891b16a14f206-20260821T190846262</strong><br>ESS-DIVE (Environmental System Science Data Infrastructure) · record ess-dive-59891b16a14f206-20260821T190846262<br><a href="https://data.ess-dive.lbl.gov/view/doi:10.3334/CDIAC/SPRUCE.042" rel="noreferrer">Publisher record</a><br>Record date: 2026-08-21T19:08:47.405Z</li><li><strong>ess-dive-9b961ab3bdda867-20260817T151917925</strong><br>ESS-DIVE (Environmental System Science Data Infrastructure) · record ess-dive-9b961ab3bdda867-20260817T151917925<br><a href="https://data.ess-dive.lbl.gov/view/doi:10.15485/3023308" rel="noreferrer">Publisher record</a><br>Record date: 2026-08-17T15:19:19.031Z</li><li><strong>ess-dive-387aca9b8ac0fa9-20260717T202253310452</strong><br>ESS-DIVE (Environmental System Science Data Infrastructure) · record ess-dive-387aca9b8ac0fa9-20260717T202253310452<br><a href="https://data.ess-dive.lbl.gov/view/doi:10.5440/1832016" rel="noreferrer">Publisher record</a><br>Record date: 2026-07-17T20:22:54.969Z</li><li><strong>ess-dive-b92428d4a59674c-20260717T202221097472</strong><br>ESS-DIVE (Environmental System Science Data Infrastructure) · record ess-dive-b92428d4a59674c-20260717T202221097472<br><a href="https://data.ess-dive.lbl.gov/view/doi:10.5440/1778212" rel="noreferrer">Publisher record</a><br>Record date: 2026-07-17T20:22:24.225Z</li></ul><details><summary>Full response and evidence</summary><pre>{
   &quot;data&quot;: {
     &quot;datasets&quot;: [
       {
@@ -2854,7 +3477,7 @@ summary{cursor:pointer;padding:12px 0;font-weight:650}.mono{font-family:monospac
     &quot;registry_revision&quot;: &quot;2026-10-20&quot;,
     &quot;request_id&quot;: &quot;recorded-workflow&quot;
   }
-}</pre></details></section><details><summary>Recording manifest and capture times</summary><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td>ess-dive.json</td><td>Unknown; old recording</td><td>28399526c4bbec1055c0740219c1bee5468f0ebf5b5662182f77fb88f28d827a</td></tr><tr><td>ornl-daac.json</td><td>Unknown; old recording</td><td>9fea63aa5e38eaa7fdf8d095bec8d6a70b291f4cc6a9751facf53548d565574a</td></tr></tbody></table></div></details></article><article id="materials"><p class="kicker">recorded walkthrough</p><h2>Materials evidence sheet</h2><p>Inspect a computed GaN structure and a separate basis-set example.</p><p class="answer">5 computed structures returned, with one full structure lookup and a separate H/C/O basis-set example.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>Computed structures are not experimental validation.</li><li>The H/C/O basis set is a separate chemistry example, not a recommendation for gallium nitride.</li></ul><p class="downloads"><a download href="data/demos/materials.json">Download JSON evidence</a><a download href="data/demos/materials.csv">Download CSV evidence index</a></p><section class="step"><h3>1. materials.search_structures</h3><p class="mono">{&quot;elements&quot;: &quot;Ga,N&quot;, &quot;rows&quot;: 5}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>partial</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: lbnl-mp-optimade</p><h4>Warnings</h4><ul><li>These are computed structures, not measured ones: each is a calculation&#x27;s output under a stated functional. Reporting one as an experimentally determined crystal structure is a category error.</li></ul><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Returned</th><th scope="col">Total matches</th></tr></thead><tbody><tr><td>5</td><td>264</td></tr></tbody></table></div><ul class="evidence"><li><strong>mp-1244984</strong><br>Materials Project OPTIMADE endpoint · record mp-1244984<br>No publisher locator supplied<br>Record date: 2019-07-02T00:29:18.792000</li><li><strong>mp-1223660</strong><br>Materials Project OPTIMADE endpoint · record mp-1223660<br>No publisher locator supplied<br>Record date: 2022-06-10T06:23:20.905000</li><li><strong>mp-1199250</strong><br>Materials Project OPTIMADE endpoint · record mp-1199250<br>No publisher locator supplied<br>Record date: 2021-03-09T23:05:01.374000</li><li><strong>mp-1245997</strong><br>Materials Project OPTIMADE endpoint · record mp-1245997<br>No publisher locator supplied<br>Record date: 2021-02-04T20:40:18.753000</li><li><strong>mp-1198425</strong><br>Materials Project OPTIMADE endpoint · record mp-1198425<br>No publisher locator supplied<br>Record date: 2021-03-10T07:53:43.904000</li></ul><details><summary>Full response and evidence</summary><pre>{
+}</pre></details></section><details><summary>Recording manifest and capture times</summary><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td>ess-dive.json</td><td>Unknown; old recording</td><td>28399526c4bbec1055c0740219c1bee5468f0ebf5b5662182f77fb88f28d827a</td></tr><tr><td>ornl-daac.json</td><td>Unknown; old recording</td><td>9fea63aa5e38eaa7fdf8d095bec8d6a70b291f4cc6a9751facf53548d565574a</td></tr></tbody></table></div></details></article><article id="materials"><p class="kicker">recorded walkthrough</p><h2>Materials evidence sheet</h2><p>Inspect a computed GaN structure and a separate basis-set example.</p><p class="answer">5 computed structures returned, with one full structure lookup and a separate H/C/O basis-set example.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>Computed structures are not experimental validation.</li><li>The H/C/O basis set is a separate chemistry example, not a recommendation for gallium nitride.</li></ul><p class="downloads"><a download href="data/demos/materials.json">Download JSON evidence</a><a download href="data/demos/materials.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo materials --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="step"><h3>1. materials.search_structures</h3><p class="mono">{&quot;elements&quot;: &quot;Ga,N&quot;, &quot;rows&quot;: 5}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>partial</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: lbnl-mp-optimade</p><h4>Warnings</h4><ul><li>These are computed structures, not measured ones: each is a calculation&#x27;s output under a stated functional. Reporting one as an experimentally determined crystal structure is a category error.</li></ul><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Returned</th><th scope="col">Total matches</th></tr></thead><tbody><tr><td>5</td><td>264</td></tr></tbody></table></div><ul class="evidence"><li><strong>mp-1244984</strong><br>Materials Project OPTIMADE endpoint · record mp-1244984<br>No publisher locator supplied<br>Record date: 2019-07-02T00:29:18.792000</li><li><strong>mp-1223660</strong><br>Materials Project OPTIMADE endpoint · record mp-1223660<br>No publisher locator supplied<br>Record date: 2022-06-10T06:23:20.905000</li><li><strong>mp-1199250</strong><br>Materials Project OPTIMADE endpoint · record mp-1199250<br>No publisher locator supplied<br>Record date: 2021-03-09T23:05:01.374000</li><li><strong>mp-1245997</strong><br>Materials Project OPTIMADE endpoint · record mp-1245997<br>No publisher locator supplied<br>Record date: 2021-02-04T20:40:18.753000</li><li><strong>mp-1198425</strong><br>Materials Project OPTIMADE endpoint · record mp-1198425<br>No publisher locator supplied<br>Record date: 2021-03-10T07:53:43.904000</li></ul><details><summary>Full response and evidence</summary><pre>{
   &quot;data&quot;: {
     &quot;structures&quot;: [
       {
@@ -3330,7 +3953,7 @@ summary{cursor:pointer;padding:12px 0;font-weight:650}.mono{font-family:monospac
     &quot;registry_revision&quot;: &quot;2026-10-20&quot;,
     &quot;request_id&quot;: &quot;recorded-workflow&quot;
   }
-}</pre></details></section><section class="step"><h3>3. chemistry.get_basis_set</h3><p class="mono">{&quot;elements&quot;: &quot;H,C,O&quot;, &quot;name&quot;: &quot;6-31g&quot;, &quot;output_format&quot;: &quot;nwchem&quot;}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>complete</td></tr><tr><td>source_claim</td><td>complete</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: basis-set-exchange</p><h4>Warnings</h4><ul><li>This publisher requires citation as a condition of use. Cite: Pritchard, B.P., Altarawy, D., Didier, B., Gibson, T.D., and Windus, T.L. 2019. New Basis Set Exchange: An Open, Up-to-Date Resource for the Molecular Sciences Community. Journal of Chemical Information and Modeling 59(11):4814-4820. https://doi.org/10.1021/acs.jcim.9b00725 — and, in addition, the references the service returns for the particular set used.</li></ul><ul class="evidence"><li><strong>6-31g</strong><br>Basis Set Exchange · record 6-31g<br>No publisher locator supplied<br>Record date: Unknown</li></ul><details><summary>Full response and evidence</summary><pre>{
+}</pre></details></section><section class="step"><h3>3. chemistry.get_basis_set</h3><p class="mono">{&quot;elements&quot;: &quot;H,C,O&quot;, &quot;name&quot;: &quot;6-31g&quot;, &quot;output_format&quot;: &quot;nwchem&quot;}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>complete</td></tr><tr><td>source_claim</td><td>complete</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: basis-set-exchange</p><h4>Warnings</h4><ul><li>This publisher requires citation as a condition of use. Cite: Pritchard, B.P., Altarawy, D., Didier, B., Gibson, T.D., and Windus, T.L. 2019. New Basis Set Exchange: An Open, Up-to-Date Resource for the Molecular Sciences Community. Journal of Chemical Information and Modeling 59(11):4814-4820. https://doi.org/10.1021/acs.jcim.9b00725 — and, in addition, the references the service returns for the particular set used.</li></ul><h4>Publisher access recipes</h4><ul><li><a href="https://www.basissetexchange.org/basis/6-31g/" rel="noreferrer">6-31G at the Basis Set Exchange</a> — </li></ul><ul class="evidence"><li><strong>6-31g</strong><br>Basis Set Exchange · record 6-31g<br>No publisher locator supplied<br>Record date: Unknown</li></ul><details><summary>Full response and evidence</summary><pre>{
   &quot;data&quot;: {
     &quot;key&quot;: &quot;6-31g&quot;,
     &quot;name&quot;: &quot;6-31G&quot;,

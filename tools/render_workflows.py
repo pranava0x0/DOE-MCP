@@ -93,6 +93,13 @@ def outcome(report) -> str:
     if case in {'evidence', 'partial'}:
         record = report['steps'][1]['envelope']['data']['record']
         return f"{data['record_count']} distinct records returned. Followed record {record['id']}: {record['title']}."
+    if case == 'dataset-card':
+        return f"{len(report['drafts'])} metadata drafts from DOE Data Explorer. File checksums, reuse permissions and governance still need review."
+    if case == 'microbiome':
+        samples = report['steps'][1]['envelope']['data']
+        total = samples.get("total_matches")
+        extent = f"{total} matches" if total is not None else "an unknown total"
+        return f"Followed one returned study. Showing {samples['record_count']} biosamples out of {extent}."
     if case == 'grid':
         latest = data['latest']
         return f"Latest recorded load: {latest['values']['Load']:,} MW at {latest['timestamp']} Pacific Time. This is a historical replay."
@@ -113,12 +120,12 @@ def step_view(step, number) -> str:
     data = env['data']
     coverage = env['coverage']
     sources={s['id']:s for s in env['provenance']}
-    records=data.get('records',data.get('datasets',data.get('structures',[])))
+    records=data.get('records',data.get('datasets',data.get('structures',data.get('studies',data.get('biosamples',[])))))
     if 'record' in data and isinstance(data['record'],dict):
         records=[data['record']]
     cards=[]
     for ev in env['evidence']:
-        record=next((r for r in records if str(r.get('id',r.get('case_id',''))) == ev['record_id']),{})
+        record=next((r for r in records if str(r.get('id',r.get('case_id',r.get('study_id',r.get('sample_id',''))))) == ev['record_id']),{})
         title=record.get('title',record.get('name',record.get('chemical_formula_reduced',ev['record_id'])))
         source=sources[ev['source_ref']]
         locator=link(ev['locator'],'Publisher record') if ev.get('locator') else 'No publisher locator supplied'
@@ -136,7 +143,10 @@ def step_view(step, number) -> str:
     handoff=''
     if step['tool']=='registry.list_neighbors':
         handoff='<ul>'+''.join(f'<li>{link(r.get("repository"),r.get("name",r["id"]))}</li>' for r in data.get('neighbors',[]) if r['id']=='nepa-mcp')+'</ul>'
+    recipes = ''.join(f'<li>{link(r.get("uri"),r.get("label") or "Publisher access recipe")} — {esc(r.get("instructions") or "")}</li>' for r in env.get('access_recipes',[]))
     extra=''
+    if step['tool']=='bio.search_biosamples':
+        extra=table(['Sample','Place','Collected','Environment'],[(r['sample_id'],r.get('place'),r.get('collected'),', '.join(r.get('ecosystem',[]))) for r in data['biosamples']], 'Sample metadata; no sequence data retrieved')
     if step['tool']=='grid.get_bpa_operations':
         extra=series_chart([(r['timestamp'],r['values'].get('Load')) for r in data['intervals']], 'BPA load · Pacific Time', 'MW')+f'<p>{esc(data.get("pending_note",""))}</p>'
     if step['tool']=='energy.grid_status':
@@ -149,14 +159,14 @@ def step_view(step, number) -> str:
             +f'<p>Searched: {esc(", ".join(coverage.get("sources_searched",[])) or "Local registry only")}</p>'
             +('<h4>Unavailable sources</h4><ul>'+gaps+'</ul>' if gaps else '')
             +('<h4>Warnings</h4><ul>'+warns+'</ul>' if warns else '')
-            +totals+extra+'<ul class="evidence">'+''.join(cards)+'</ul>'+proposed+handoff
+            +totals+extra+('<h4>Publisher access recipes</h4><ul>'+recipes+'</ul>' if recipes else '')+'<ul class="evidence">'+''.join(cards)+'</ul>'+proposed+handoff
             +f'<details><summary>Full response and evidence</summary><pre>{esc(json.dumps(env,indent=2))}</pre></details></section>')
 
 
 STYLE='''
 :root{color-scheme:light;font-family:system-ui,sans-serif;color:#1c302b;background:#f5f5ef}
 *{box-sizing:border-box}body{margin:0}main,header,footer{max-width:1120px;margin:auto;padding:24px}
-a{color:#145b4e;text-underline-offset:3px}h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.08}h1{margin:12px 0}h2{font-size:1.8rem}.answer{font-size:1.1rem;font-weight:600;border-bottom:1px solid #c5cec6;padding-bottom:16px}p,li{line-height:1.6}
+a{color:#145b4e;text-underline-offset:3px}h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.08}h1{margin:12px 0}h2{font-size:1.8rem}.answer{font-size:1.1rem;font-weight:600;border-bottom:1px solid #c5cec6;padding-bottom:16px}p,li{line-height:1.6}h1,h2,h3,p,li,td{overflow-wrap:anywhere}.draft{border-top:2px solid #176559;margin-top:24px}.downloads a{padding:10px 0}
 .kicker{font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#4b6158}header{border-bottom:2px solid #bbc6bd}
 select,button{font:inherit;padding:12px;background:white;border:1px solid #687e72;border-radius:4px;max-width:100%}
 label{display:block;font-weight:650;margin:10px 0}article{background:white;border:1px solid #c5cec6;border-radius:12px;padding:clamp(16px,4vw,36px);margin:20px 0}
@@ -172,6 +182,17 @@ summary{cursor:pointer;padding:12px 0;font-weight:650}.mono{font-family:monospac
 def render(reports: list[dict]) -> str:
     articles=[]
     for r in reports:
+        drafts = ''
+        for draft in r.get('drafts',[]):
+            metadata = draft['metadata']
+            drafts += '<section class="draft"><h3>'+esc(metadata['title'])+'</h3>'
+            drafts += table(['Catalog field','Value'],[(k, ', '.join(map(str,v)) if isinstance(v,list) else v) for k,v in metadata.items()], 'Draft metadata only — not schema validated')
+            drafts += '<h4>Still needs owner review</h4><ul>'+''.join('<li>'+esc(x)+'</li>' for x in draft['needs_owner_review'])+'</ul></section>'
+        command = 'doe-mcp demo '+r['case']+' --output ./demo-output'
+        reproduce = '<details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>'+esc(command)+'</pre>'
+        if r['case'] != 'partial':
+            reproduce += '<p>Add <code>--live</code> to query publishers. '+('EIA requires your own key.' if r['case']=='eia' else 'No model is called.')+' Live results and availability can differ.</p>'
+        reproduce += '</details>'
         captures=table(['Fixture','Capture time (UTC)','SHA-256'],[(f['file'],f.get('captured_at') or 'Unknown; old recording',f['sha256']) for f in r['fixtures']])
         articles.append(f'<article id="{esc(r["case"])}"><p class="kicker">{esc(r["mode"])} walkthrough</p>'
                         f'<h2>{esc(r["title"])}</h2><p>{esc(r["question"])}</p><p class="answer">{esc(outcome(r))}</p>'
@@ -179,11 +200,12 @@ def render(reports: list[dict]) -> str:
                         +f'<p class="notice">{esc(r["timestamp_note"])} Registry revision: {esc(r["registry_revision"])}.</p>'
                         +'<ul class="limits">'+''.join(f'<li>{esc(x)}</li>' for x in r['limitations'])+'</ul>'
                         +f'<p class="downloads"><a download href="data/demos/{esc(r["case"])}.json">Download JSON evidence</a><a download href="data/demos/{esc(r["case"])}.csv">Download CSV evidence index</a></p>'
+                        +reproduce+drafts
                         +(point_map(r['steps']) if r['case']=='site' else '')
                         +''.join(step_view(step,i) for i,step in enumerate(r['steps'],1))
                         +'<details><summary>Recording manifest and capture times</summary>'+captures+'</details></article>')
     options=''.join(f'<option value="{esc(r["case"])}">{esc(r["title"])}</option>' for r in reports)
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DOE-MCP evidence walkthroughs</title><style>{STYLE}</style></head>
-<body><header><a href="index.html">DOE-MCP home</a><p class="kicker">Inspect the answer</p><h1>Public data. Visible evidence.</h1><p>Recorded examples across DOE research, energy, earth and materials. Inspect the returned records and what each search leaves unknown. No live requests run in this page.</p><p>Independent project. Not affiliated with the US Department of Energy.</p></header>
+<body><header><a href="index.html">DOE-MCP home</a><p class="kicker">Inspect the answer</p><h1>Public data. Visible evidence.</h1><p>Recorded examples across DOE research, energy, earth, materials and microbiome data. Inspect the returned records and what each search leaves unknown. No live requests run in this page. These examples require no account, API key or paid model.</p><p>Independent project. Not affiliated with the US Department of Energy.</p></header>
 <main><div id="picker" hidden><label for="workflow">Choose a walkthrough</label><select id="workflow">{options}</select></div>{''.join(articles)}</main><footer><a href="guide.md">Run these workflows locally</a> · <a href="reference.md">Tool reference</a></footer>
 <script>const select=document.getElementById('workflow');const panels=[...document.querySelectorAll('article')];function show(id){{if(!panels.some(p=>p.id===id))id='evidence';select.value=id;panels.forEach(p=>p.hidden=p.id!==id);}}document.getElementById('picker').hidden=false;select.addEventListener('change',()=>{{history.replaceState(null,'','#'+select.value);show(select.value);}});window.addEventListener('hashchange',()=>show(location.hash.slice(1)));show(location.hash.slice(1));</script></body></html>'''

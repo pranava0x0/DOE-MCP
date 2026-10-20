@@ -1,0 +1,296 @@
+{
+  "format_version": "1",
+  "case": "dataset-card",
+  "title": "Geothermal dataset-card starter",
+  "question": "What can public catalog metadata fill in, and what still needs a dataset owner?",
+  "mode": "recorded",
+  "simulation": false,
+  "registry_revision": "2026-10-20",
+  "generated_at": null,
+  "replay_clock": "2026-10-20T00:00:00Z",
+  "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
+  "fixtures": [
+    {
+      "file": "osti-data-explorer.json",
+      "sha256": "71a7e71e7056856c76fcebc8d0234e049c0109bd35e2b1777768e408072ad398",
+      "captured_at": null
+    }
+  ],
+  "limitations": [
+    "A documentation starter, not a validated Genesis datacard or Croissant record.",
+    "Only catalog metadata was read; no dataset files were downloaded or inspected.",
+    "A public metadata record does not establish that the underlying data is freely accessible or licensed for reuse."
+  ],
+  "steps": [
+    {
+      "tool": "research.search_datasets",
+      "args": {
+        "site_code": "DOE-GDR",
+        "rows": 2
+      },
+      "envelope": {
+        "data": {
+          "datasets": [
+            {
+              "id": "2541598",
+              "title": "Utah FORGE: Seismic DAS and Geophone Borehole Data Processing and 3D Imaging of Vp/Vs Ratio in the 2024 Stimulated Reservoir",
+              "authors": [
+                "Gritto, Roland [EMR Solutions and Technology] (ORCID:0000000320927201)",
+                "Jarpe, Steve P. (ORCID:0009000493428416)"
+              ],
+              "publication_date": "2025-03-16",
+              "product_type": "Dataset",
+              "doi": "10.15121/2541598",
+              "research_orgs": [
+                "DOE Geothermal Data Repository",
+                "EMR Solutions and Technology"
+              ],
+              "site_code": "DOE-GDR"
+            },
+            {
+              "id": "2531108",
+              "title": "Utah FORGE: Well 16B(78)-32 DTS, RFS DSS Strain, and Absolute Strain Circulation Test Fiber Optic Data - August 2024",
+              "authors": [
+                "Jurick, Dana [Neubrex Energy Services (US), LLC]",
+                "Khatara, Sajan",
+                "Guzik, Artur"
+              ],
+              "publication_date": "2024-08-29",
+              "product_type": "Dataset",
+              "doi": "10.15121/2531108",
+              "research_orgs": [
+                "DOE Geothermal Data Repository",
+                "Neubrex Energy Services (US), LLC"
+              ],
+              "site_code": "DOE-GDR"
+            }
+          ],
+          "record_count": 2,
+          "total_matches": 1035,
+          "note": "These are metadata records pointing at data held elsewhere. DOE Data Explorer hosts nothing itself: use the DOI or landing page in access_recipes to reach the actual data, and expect some repositories to require an account this record does not mention."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "osti-data-explorer",
+            "steward": "Office of Scientific and Technical Information",
+            "system": "DOE Data Explorer",
+            "dataset": "DOE Data Explorer",
+            "dataset_version": "current",
+            "authority_level": "official_secondary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "cache_age_seconds": 0
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "2541598",
+            "locator": "https://www.osti.gov/dataexplorer/biblio/2541598",
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2025-03-31T19:08:19Z",
+            "transformations": [
+              "normalize"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_02",
+            "source_ref": "source_01",
+            "record_id": "2531108",
+            "locator": "https://www.osti.gov/dataexplorer/biblio/2531108",
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2025-03-18T18:40:22Z",
+            "transformations": [
+              "normalize"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "truncated",
+          "source_claim": "partial",
+          "result": "hit",
+          "sources_searched": [
+            "osti-data-explorer"
+          ],
+          "known_limitations": [
+            "A record's `site_url` points wherever the submitting repository said, and that host is outside this source's egress allowlist. The URL is returned as data and never fetched.",
+            "Coverage depends on submission. A repository that never registered its datasets with OSTI is invisible here however public it is, so an empty result is a statement about registration, not about existence.",
+            "Points at data, never holds it. A DDE record answers \"where is this dataset and what is its DOI\"; reaching the bytes is a second step, and one that may need an account the record does not mention.",
+            "`site_ownership_code` is the field that makes single-repository views possible (DOE-GDR returns 1,035 records, checked live 2026-09-02) but its vocabulary is OSTI's own and is not published as an enumerable list. Codes are discovered from returned records, not from a dictionary."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "terms_note",
+            "message": "No published rate limit, same as the rest of the OSTI family.",
+            "source_id": "osti-data-explorer"
+          },
+          {
+            "code": "derived_layer",
+            "message": "Dataset discovery returns catalog metadata, not measurements. For user-facility raw data \u2014 beamlines, reactors, tokamaks \u2014 there is generally nothing to find: that data is proposal-gated by design and is not a coverage gap here.",
+            "source_id": "osti-data-explorer"
+          }
+        ],
+        "access_recipes": [
+          {
+            "kind": "doi",
+            "uri": "https://doi.org/10.15121/2541598",
+            "label": "Utah FORGE: Seismic DAS and Geophone Borehole Data Processing and 3D Imaging of ",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "fulltext_pdf",
+            "uri": "https://www.osti.gov/dataexplorer/servlets/purl/2541598",
+            "label": "Full text (OSTI)",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "landing_page",
+            "uri": "https://gdr.openei.org/submissions/1723",
+            "label": "Dataset landing page",
+            "instructions": "The repository that actually holds this data. It may require an account the catalog record does not mention.",
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "doi",
+            "uri": "https://doi.org/10.15121/2531108",
+            "label": "Utah FORGE: Well 16B(78)-32 DTS, RFS DSS Strain, and Absolute Strain Circulation",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "fulltext_pdf",
+            "uri": "https://www.osti.gov/dataexplorer/servlets/purl/2531108",
+            "label": "Full text (OSTI)",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "landing_page",
+            "uri": "https://gdr.openei.org/submissions/1721",
+            "label": "Dataset landing page",
+            "instructions": "The repository that actually holds this data. It may require an account the catalog record does not mention.",
+            "requires_account": false,
+            "approximate_size": null
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "research.search_datasets",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-10-20",
+          "request_id": "recorded-workflow"
+        }
+      }
+    }
+  ],
+  "drafts": [
+    {
+      "status": "draft_metadata_only",
+      "metadata": {
+        "id": "2541598",
+        "title": "Utah FORGE: Seismic DAS and Geophone Borehole Data Processing and 3D Imaging of Vp/Vs Ratio in the 2024 Stimulated Reservoir",
+        "authors": [
+          "Gritto, Roland [EMR Solutions and Technology] (ORCID:0000000320927201)",
+          "Jarpe, Steve P. (ORCID:0009000493428416)"
+        ],
+        "publication_date": "2025-03-16",
+        "product_type": "Dataset",
+        "doi": "10.15121/2541598",
+        "research_orgs": [
+          "DOE Geothermal Data Repository",
+          "EMR Solutions and Technology"
+        ],
+        "site_code": "DOE-GDR"
+      },
+      "evidence": [
+        {
+          "source_ref": "source_01",
+          "record_id": "2541598",
+          "locator": "https://www.osti.gov/dataexplorer/biblio/2541598"
+        }
+      ],
+      "needs_owner_review": [
+        "Downloadable files and access conditions",
+        "File formats, sizes and checksums",
+        "License and permitted reuse",
+        "Sensitivity and governance review",
+        "Data quality and suitability for AI use"
+      ]
+    },
+    {
+      "status": "draft_metadata_only",
+      "metadata": {
+        "id": "2531108",
+        "title": "Utah FORGE: Well 16B(78)-32 DTS, RFS DSS Strain, and Absolute Strain Circulation Test Fiber Optic Data - August 2024",
+        "authors": [
+          "Jurick, Dana [Neubrex Energy Services (US), LLC]",
+          "Khatara, Sajan",
+          "Guzik, Artur"
+        ],
+        "publication_date": "2024-08-29",
+        "product_type": "Dataset",
+        "doi": "10.15121/2531108",
+        "research_orgs": [
+          "DOE Geothermal Data Repository",
+          "Neubrex Energy Services (US), LLC"
+        ],
+        "site_code": "DOE-GDR"
+      },
+      "evidence": [
+        {
+          "source_ref": "source_01",
+          "record_id": "2531108",
+          "locator": "https://www.osti.gov/dataexplorer/biblio/2531108"
+        }
+      ],
+      "needs_owner_review": [
+        "Downloadable files and access conditions",
+        "File formats, sizes and checksums",
+        "License and permitted reuse",
+        "Sensitivity and governance review",
+        "Data quality and suitability for AI use"
+      ]
+    }
+  ]
+}

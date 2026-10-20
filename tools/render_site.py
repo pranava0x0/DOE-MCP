@@ -34,6 +34,7 @@ STATE_LABEL = {"active": "active", "proposed": "inventory",
 # directly rather than only its top.
 NAV = [
     ("overview", "Overview", [("overview-about", "About DOE-MCP"),
+                              ("overview-demos", "Free demos"),
                               ("overview-queries", "Sample queries")]),
     ("start", "Quick start", [("start-install", "Install"),
                               ("start-check", "Check it"),
@@ -79,6 +80,7 @@ def _style() -> str:
     # so the page is legible and correctly laid out before they arrive and
     # if they never do.
     return """
+.demo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:20px 0}.demo-link{display:flex;flex-direction:column;gap:12px;padding:20px;border:1px solid var(--line);border-radius:8px;background:var(--card);text-decoration:none;overflow-wrap:anywhere}.demo-link strong{font-size:1.12rem}.demo-link span{color:var(--ink)}.demo-link small{color:var(--muted);margin-top:auto}.demo-link:hover{border-color:var(--accent)}.demo-link:focus-visible{outline:3px solid var(--accent);outline-offset:3px}@media(max-width:900px){.demo-grid{grid-template-columns:1fr}}
 :root{
   /* DOE grey ramp */
   --paper:#f9faff; --ink:#232429; --muted:#55565b; --faint:#828388;
@@ -753,6 +755,16 @@ family=Roboto+Mono:wght@400;500&display=swap">
   <h3 id="overview-about">What this is</h3>
   <p class="lede">The <b>Model Context Protocol (MCP)</b> is how an AI client such as Claude Code, Claude Desktop, Cursor or VS Code calls tools that run outside it.</p>
   <p class="lede">DOE and its 17 national laboratories publish literature, grid readings, climate-model indexes, microbiome samples and materials data, each through its own portal or API. <b>DOE-MCP</b> is a set of read-only MCP servers over the public ones. Every answer names the publisher it came from, when it was read, and what the search did not cover.</p>
+  <h3 id="overview-demos">Try it without an account</h3>
+  <p class="lede">Open a recorded result, inspect its sources, then run the same workflow locally. These demos make no model calls and need no API key or paid service. Optional live reads query public publisher APIs; a separately chosen AI client may have its own charges.</p>
+  <div class="demo-grid">
+    <a class="demo-link" href="demos.html#dataset-card"><strong>Start a geothermal dataset card</strong><span>Two DOE Data Explorer records, their evidence, and the fields a dataset owner still needs to supply.</span><small>Skill: find-doe-data · Recorded metadata</small></a>
+    <a class="demo-link" href="demos.html#microbiome"><strong>Find a microbiome study</strong><span>Follow an NMDC shale study to five biosamples. See collection dates, environments and publisher access recipes.</span><small>Skill: microbiome-data-finder · Recorded metadata</small></a>
+    <a class="demo-link" href="demos.html#evidence"><strong>Trace a research claim</strong><span>Search perovskite solar literature, follow a returned record, and see where the search is incomplete.</span><small>Skill: doe-literature-review · Recorded evidence</small></a>
+  </div>
+  <h3>How Genesis Skills fit</h3>
+  <p>DOE <a href="https://www.energy.gov/science/articles/genesis-agent-skills-release-support-innovation-across-genesis-mission">released Genesis Agent Skills on October 15, 2026</a>. Its public catalog provides scientific workflow instructions. DOE-MCP provides read-only data tools and its own skills in the same Agent Skills format. Format compatibility does not install Genesis skills, connect to a lab account, or validate a scientific result.</p>
+  <p>The dataset starter supplies evidence for a later documentation workflow; it is not a validated Genesis datacard. The microbiome and literature examples use DOE-MCP's own skills. <a href="https://github.com/AI-ModCon/genesis-skills">Explore the upstream catalog</a> or <a href="guide.md#genesis-and-no-cost-demos">read the integration and cost boundaries</a>.</p>
   <h3 id="overview-queries">Questions it answers</h3>
   <p class="lede">Each question below is answered by one tool on one server:</p>
   {_questions(data)}

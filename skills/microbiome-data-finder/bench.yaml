@@ -57,3 +57,6 @@ checked:
     expect:
       coverage.result: hit
 reader: []
+workflows:
+- task: 3
+  case: microbiome
