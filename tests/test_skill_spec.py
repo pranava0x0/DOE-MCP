@@ -46,7 +46,10 @@ NAME = re.compile(r"[a-z0-9]+(-[a-z0-9]+)*")
 USE_CUE = re.compile(r"\b(use|when)\b", re.IGNORECASE)
 CONTROL = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]")
 CLIENT_TOKENS = ("$ARGUMENTS", "${CLAUDE_", "!`")
-LINK = re.compile(r"\]\(([^)\s]+)\)|^\s{0,3}\[[^\]]+\]:\s*(\S+)", re.MULTILINE)
+LINK = re.compile(r"\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)"
+                  r"|^\s{0,3}\[(?!\^)[^\]]+\]:\s*(\S+)", re.MULTILINE)
+"""Inline links with an optional title, and reference definitions; a
+footnote definition (`[^1]: text`) is not a link."""
 SCHEME = re.compile(r"[a-z][a-z0-9+.-]*:", re.IGNORECASE)
 FENCE = re.compile(r"^(```|~~~).*?^\1", re.MULTILINE | re.DOTALL)
 MAX_LINES = 500
@@ -115,7 +118,7 @@ def spec_problems(text: str, dirname: str, skill_dir: Path | None = None) -> lis
 
     extra = set(front) - ALLOWED_KEYS
     if extra:
-        problems.append(f"keys outside the format: {sorted(extra)}")  # spec-keys-allowed-set
+        problems.append(f"keys outside the format: {sorted(extra, key=repr)}")  # spec-keys-allowed-set
     if "allowed-tools" in front:
         problems.append("allowed-tools pre-approves tools; skills here approve none")
 
@@ -231,6 +234,7 @@ def test_the_good_sample_passes():
      "compatibility: 3", "1 to 500"),
     ("compatibility: Needs", "compatibility: ! Needs", "explicit tag"),
     ("metadata:\n", "? [a]\n: b\nmetadata:\n", "not a plain value"),
+    ("metadata:\n", "yes: 1\nfoo: 2\nmetadata:\n", "keys outside the format"),
 ])
 def test_each_rule_fails_the_file_it_describes(old, new, expect):
     bad = GOOD.replace(old, new, 1)
@@ -249,8 +253,10 @@ def test_a_relative_link_must_stay_inside_the_skill(tmp_path):
                    "[web](HTTPS://example.org) and [here](#sample).\n"
                    "\n```\n[not a link](nowhere.md)\n```\n")
     assert spec_problems(fine, "sample-skill", skill) == []
+    titled = GOOD + '\nSee [notes](notes.md "Notes").\n\n[^1]: a footnote\n'
+    assert spec_problems(titled, "sample-skill", skill) == []
     for bad in ("See [readme](../README.md).", "See [gone](missing.md).",
-                "[ref]: ../README.md"):
+                "[ref]: ../README.md", 'See [gone](missing.md "Gone").'):
         problems = spec_problems(GOOD + "\n" + bad + "\n", "sample-skill", skill)
         assert any("leaves or misses" in p for p in problems), bad
 
