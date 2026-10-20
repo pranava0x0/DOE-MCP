@@ -7,17 +7,11 @@ description: >
   BPA. Use when someone asks "how is the grid doing", "what did CAISO or
   ERCOT or PJM demand last night", "how much wind is BPA getting right
   now", or wants a number they can quote with its source and its caveat.
-capabilities:
-  - energy.discover_routes
-  - energy.grid_status
-  - grid.operations_feed
-  - grid.outage_history
-  - registry.search_sources
-servers:
-  - doe-energy-data
-  - doe-research
-credentials:
-  - EIA_API_KEY
+compatibility: Needs the DOE-MCP servers doe-energy-data and doe-research configured in an MCP client. Read-only over public data. doe-energy-data needs an EIA API key held in the user's own credentials file; the skill never asks for it or repeats it.
+metadata:
+  doe-mcp-capabilities: energy.discover_routes energy.grid_status grid.operations_feed grid.outage_history registry.search_sources
+  doe-mcp-servers: doe-energy-data doe-research
+  doe-mcp-credentials: EIA_API_KEY
 ---
 
 # Grid status brief

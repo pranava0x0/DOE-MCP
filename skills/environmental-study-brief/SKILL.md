@@ -1,9 +1,15 @@
 ---
 name: environmental-study-brief
-description: Find environmental datasets and interpret a bounded Daymet weather window.
-capabilities: [earth.search_datasets, earth.point_weather]
-servers: [doe-earth]
-credentials: []
+description: >
+  Find environmental datasets and read a bounded Daymet weather window for
+  one point and date range. Use when someone asks for modelled daily
+  weather at a place, or which environmental datasets DOE holds for a
+  study area.
+compatibility: Needs the DOE-MCP server doe-earth configured in an MCP client. Read-only over public data. No credentials.
+metadata:
+  doe-mcp-capabilities: earth.search_datasets earth.point_weather
+  doe-mcp-servers: doe-earth
+  doe-mcp-credentials: none
 ---
 
 # Environmental study brief

@@ -7,15 +7,11 @@ description: >
   studies sampled hydraulic-fracturing fluids", or "how many samples does
   the NEON soil study have", or needs sample coordinates and dates before
   requesting sequence data.
-capabilities:
-  - bio.search_studies
-  - bio.get_study
-  - bio.biosamples
-  - earth.search_datasets
-servers:
-  - doe-bio
-  - doe-earth
-credentials: []
+compatibility: Needs the DOE-MCP servers doe-bio and doe-earth configured in an MCP client. Read-only over public data. No credentials.
+metadata:
+  doe-mcp-capabilities: bio.search_studies bio.get_study bio.biosamples earth.search_datasets
+  doe-mcp-servers: doe-bio doe-earth
+  doe-mcp-credentials: none
 ---
 
 # Microbiome data finder

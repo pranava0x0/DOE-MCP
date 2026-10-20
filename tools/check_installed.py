@@ -12,12 +12,14 @@ def main():
         os.chdir(directory)
         from doe_mcp.cli.workflows import asset_dir
         from doe_mcp.client_demo import round_trip
+        from doe_mcp.core.skills import read_skill
         from doe_mcp.replay import load_replay_context
         from doe_mcp.workflows import CASES, run_workflow
         assert asset_dir('skills').name == '_skills', 'using checkout skills'
         assert asset_dir('fixtures').name == '_fixtures', 'using checkout fixtures'
         skills=list(asset_dir('skills').glob('*/SKILL.md'))
         assert skills and all((p.parent/'bench.yaml').is_file() for p in skills)
+        assert all(read_skill(p).name==p.parent.name for p in skills), 'installed skill frontmatter'
         async def check():
             for case in CASES:
                 ctx=load_replay_context(asset_dir('fixtures'),keyed=case=='eia')

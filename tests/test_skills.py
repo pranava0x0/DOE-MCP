@@ -17,16 +17,11 @@ from pathlib import Path
 import pytest
 import yaml
 
+from doe_mcp.core.skills import read_skill
+
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS = sorted((ROOT / "skills").glob("*/SKILL.md"))
 MIN_BENCH_TASKS = 3
-
-
-def _frontmatter(path: Path) -> tuple[dict, str]:
-    text = path.read_text(encoding="utf-8")
-    assert text.startswith("---\n"), f"{path.name}: no YAML frontmatter"
-    _, raw, body = text.split("---\n", 2)
-    return yaml.safe_load(raw), body
 
 
 def _vocabulary() -> set[str]:
@@ -44,9 +39,8 @@ def test_there_is_at_least_one_skill():
 
 @pytest.mark.parametrize("path", SKILLS, ids=[p.parent.name for p in SKILLS])
 def test_a_skill_names_capabilities_that_exist(path):
-    front, _ = _frontmatter(path)
     vocabulary = _vocabulary()
-    declared = front.get("capabilities") or []
+    declared = read_skill(path).capabilities
     assert declared, f"{path.parent.name}: names no capabilities"
     unknown = [c for c in declared if c not in vocabulary]
     assert not unknown, (
@@ -57,15 +51,15 @@ def test_a_skill_names_capabilities_that_exist(path):
 
 @pytest.mark.parametrize("path", SKILLS, ids=[p.parent.name for p in SKILLS])
 def test_a_skill_names_the_directory_it_lives_in(path):
-    front, _ = _frontmatter(path)
-    assert front.get("name") == path.parent.name
-    assert front.get("description"), "a skill needs a description"
+    skill = read_skill(path)
+    assert skill.name == path.parent.name
+    assert skill.description, "a skill needs a description"
 
 
 @pytest.mark.parametrize("path", SKILLS, ids=[p.parent.name for p in SKILLS])
 def test_a_skill_without_bench_tasks_does_not_ship(path):
     """Architecture Part 1 § 4.3, enforced rather than stated."""
-    _, body = _frontmatter(path)
+    body = read_skill(path).body
     assert "## Bench tasks" in body, (
         f"{path.parent.name}: no bench tasks. A skill without them does not "
         "ship.")
@@ -81,9 +75,8 @@ def test_a_skill_without_bench_tasks_does_not_ship(path):
 @pytest.mark.parametrize("path", SKILLS, ids=[p.parent.name for p in SKILLS])
 def test_a_skill_names_servers_that_ship(path):
     from doe_mcp.servers.lineup import shipping
-    front, _ = _frontmatter(path)
     names = {s.name for s in shipping()}
-    for server in front.get("servers") or []:
+    for server in read_skill(path).servers:
         assert server in names, (
             f"{path.parent.name} names {server!r}, which is not a shipping "
             "server. A skill over a planned server is a plan, not a skill.")
@@ -94,3 +87,4 @@ def test_the_skills_index_lists_every_skill():
     for path in SKILLS:
         assert path.parent.name in index, (
             f"{path.parent.name} is not in skills/README.md")
+

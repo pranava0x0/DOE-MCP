@@ -124,17 +124,14 @@ def skill_summaries() -> list[dict]:
     """Each skill's name, the first sentence of its description, and the
     servers it walks, read from the frontmatter so the page lists the
     skills that exist rather than the ones someone remembered to add."""
-    import yaml
+    from doe_mcp.core.skills import read_skills
 
     out = []
-    for path in sorted((ROOT / "skills").glob("*/SKILL.md")):
-        _, raw, _ = path.read_text(encoding="utf-8").split("---\n", 2)
-        front = yaml.safe_load(raw) or {}
-        description = " ".join(str(front.get("description", "")).split())
-        first = description.split(". ")[0].rstrip(".") + "."
-        out.append({"name": front.get("name", path.parent.name),
+    for skill in read_skills(ROOT / "skills"):
+        first = skill.description.split(". ")[0].rstrip(".") + "."
+        out.append({"name": skill.name or skill.path.parent.name,
                     "summary": first,
-                    "servers": list(front.get("servers") or [])})
+                    "servers": list(skill.servers)})
     return out
 
 

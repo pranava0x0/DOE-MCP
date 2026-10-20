@@ -9,15 +9,11 @@ description: >
   review. Use when someone asks "what is already built near here", "is this
   a good place for a wind farm", or "what would I need to check before
   siting a project".
-capabilities:
-  - facility.locations
-  - energy.grid_status
-  - registry.search_sources
-servers:
-  - doe-energy-data
-  - doe-research
-credentials:
-  - EIA_API_KEY
+compatibility: Needs the DOE-MCP servers doe-energy-data and doe-research configured in an MCP client. Read-only over public data. doe-energy-data needs an EIA API key held in the user's own credentials file; the skill never asks for it or repeats it.
+metadata:
+  doe-mcp-capabilities: facility.locations energy.grid_status registry.search_sources
+  doe-mcp-servers: doe-energy-data doe-research
+  doe-mcp-credentials: EIA_API_KEY
 ---
 
 # Energy project site screen

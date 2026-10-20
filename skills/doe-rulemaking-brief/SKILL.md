@@ -7,13 +7,11 @@ description: >
   text. Use when someone asks "what has DOE proposed on appliance
   standards", "is this rule final", "when do comments close", or needs the
   docket number behind a regulatory claim.
-capabilities:
-  - docs.search_rulemakings
-  - docs.get_rulemaking
-  - registry.search_sources
-servers:
-  - doe-research
-credentials: []
+compatibility: Needs the DOE-MCP server doe-research configured in an MCP client. Read-only over public data. No credentials.
+metadata:
+  doe-mcp-capabilities: docs.search_rulemakings docs.get_rulemaking registry.search_sources
+  doe-mcp-servers: doe-research
+  doe-mcp-credentials: none
 ---
 
 # DOE rulemaking brief

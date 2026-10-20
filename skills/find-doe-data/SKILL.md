@@ -8,15 +8,11 @@ description: >
   "who publishes X", and when a first search comes back empty and the
   question is whether that means DOE holds nothing or that DOE-MCP cannot
   see it.
-capabilities:
-  - registry.resolve_org
-  - registry.search_sources
-  - discovery.search_catalogs
-  - dataset.search
-  - literature.search
-servers:
-  - doe-research
-credentials: []
+compatibility: Needs the DOE-MCP server doe-research configured in an MCP client. Read-only over public data. No credentials.
+metadata:
+  doe-mcp-capabilities: registry.resolve_org registry.search_sources discovery.search_catalogs dataset.search literature.search
+  doe-mcp-servers: doe-research
+  doe-mcp-credentials: none
 ---
 
 # Find DOE data
