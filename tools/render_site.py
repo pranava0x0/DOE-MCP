@@ -160,7 +160,8 @@ h1{font-family:var(--display);font-weight:600;font-size:2.3rem;
 .tagline{font-size:1.08rem;color:var(--muted);margin:0 0 1.6rem;max-width:44rem}
 .funnel{display:flex;flex-wrap:wrap;gap:.4rem;align-items:stretch;
   margin:0 0 .6rem}
-.funnel .step{background:var(--card);border:1px solid var(--line);
+.funnel .step{display:block;color:inherit;text-decoration:none;
+  background:var(--card);border:1px solid var(--line);
   border-radius:5px;padding:.5rem .8rem;min-width:7rem;
   transition:transform .3s cubic-bezier(.16,1,.3,1),
     box-shadow .3s cubic-bezier(.16,1,.3,1),border-color .3s}
@@ -317,6 +318,16 @@ a{color:var(--accent)}
   /* A wide table scrolls inside its own box rather than widening the
      page; the question and tool columns do not fit 375px side by side. */
   table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  /* The tiles wrap two to a row, which leaves an arrow pointing at the
+     next row's edge; the order is still left to right without it. */
+  .funnel .arrow{display:none}
+  .funnel{display:grid;grid-template-columns:1fr 1fr}
+  /* The section links scroll sideways with the scrollbar hidden; a fade
+     at the right edge says there is more than the three that fit. */
+  .toc-links{-webkit-mask-image:linear-gradient(to right,#000 82%,transparent);
+    mask-image:linear-gradient(to right,#000 82%,transparent)}
+  /* Inline links in the header get a 24px-plus touch target. */
+  header p a{display:inline-block;padding:.3rem 0}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -343,16 +354,19 @@ def _inventory(c: dict) -> str:
     was three things sharing one number; they get their own line below.
     """
     skills = c["skills"]
-    steps = [(c["active"], "live systems"),
-             (c["servers_shipping"], "domain servers"),
-             (c["tools"], "read-only tools"),
-             (skills, f"skill{'s' if skills != 1 else ''}")]
+    # Each number links to the list it counts, so the figure a reader is
+    # curious about is one tap from its detail rather than a scroll and a
+    # section to open.
+    steps = [(c["active"], "live systems", "#registry-sources"),
+             (c["servers_shipping"], "domain servers", "#servers-list"),
+             (c["tools"], "read-only tools", "reference.html"),
+             (skills, f"skill{'s' if skills != 1 else ''}", "#skills")]
     parts = []
-    for i, (big, small) in enumerate(steps):
+    for i, (big, small, href) in enumerate(steps):
         if i:
-            parts.append('<span class="arrow">\u2192</span>')
-        parts.append(f'<div class="step"><b>{big}</b>'
-                     f'<span>{e(small)}</span></div>')
+            parts.append('<span class="arrow" aria-hidden="true">\u2192</span>')
+        parts.append(f'<a class="step" href="{href}"><b>{big}</b>'
+                     f'<span>{e(small)}</span></a>')
     return (f'<div class="funnel">{"".join(parts)}</div>'
             f'<p class="inventory">Published by {c["labs"]} national '
             f'laboratories, {c["program_offices"]} program offices and '
@@ -470,8 +484,8 @@ def _arch_diagram(data: dict) -> str:
         <div class="arch-box-desc"><b>{e(count)}.</b> {e(sv['description'])}</div>
       </div>""")
     return f"""
-<div class="arch-flow" id="servers-arch">
-  <div class="arch-tier">
+<div class="arch-flow">
+  <div class="arch-tier" id="skills">
     <div class="arch-tier-title">Layer 1: Skills (task walks over the capability vocabulary)</div>
     <div class="arch-boxes">{skills}
     </div>
@@ -554,6 +568,15 @@ def _lab_cards(data: dict, kind: str = "") -> str:
     return f'<div class="grid">{"".join(cards)}</div>'
 
 
+def _registry_filter(data: dict) -> str:
+    """The filter sits outside the collapsed table, so it is visible where
+    the "live systems" link lands; typing opens the table (see _script)."""
+    return ('<input id="q" type="search" placeholder="Filter '
+            f'{len(data["sources"])} sources — try &quot;ornl&quot;, '
+            '&quot;nersc&quot;, &quot;grid&quot;, &quot;outreach&quot;" '
+            'aria-label="Filter sources">')
+
+
 def _registry(data: dict) -> str:
     rows = []
     for s in data["sources"]:
@@ -583,10 +606,6 @@ def _registry(data: dict) -> str:
             f"<td>{publisher}</td><td>{detail}</td>"
             f"<td class='mono' style='text-align:right'>{count}</td></tr>")
     return (
-        '<input id="q" type="search" placeholder="Filter '
-        f'{len(data["sources"])} sources — try &quot;ornl&quot;, '
-        '&quot;inventory&quot;, &quot;grid&quot;, &quot;outreach&quot;" '
-        'aria-label="Filter sources">'
         "<table><thead><tr><th>Source</th><th>Publisher</th>"
         "<th>What it holds / what is blocking it</th>"
         "<th style='text-align:right'>Records</th></tr></thead>"
@@ -684,8 +703,12 @@ def _script() -> str:
   if(!q) return;
   var rows = Array.prototype.slice.call(
     document.querySelectorAll('#reg tr'));
+  var table = document.getElementById('reg');
+  var group = table ? table.closest('details') : null;
   q.addEventListener('input', function(){
     var terms = q.value.toLowerCase().split(/\\s+/).filter(Boolean);
+    // Rows filtered inside a closed group are invisible; open it.
+    if (group && terms.length) group.open = true;
     rows.forEach(function(r){
       var hay = r.getAttribute('data-s') || '';
       r.hidden = !terms.every(function(t){ return hay.indexOf(t) !== -1; });
@@ -743,7 +766,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
   <p class="tagline">Public Department of Energy and national-laboratory
   data, reachable by an agent. Every answer names the systems it came from,
   when they were read, and what it did not cover.</p>
-  <p><a href="demos.html">Explore recorded evidence walkthroughs</a> · <a href="guide.md">Local workflow guide</a></p>
+  <p><a href="demos.html">Explore recorded evidence walkthroughs</a> · <a href="guide.html">Local workflow guide</a></p>
   {_inventory(c)}
   <p class="works">Works with: {works}</p>
 </div></header>
@@ -769,7 +792,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
   </div>
   <h3>How Genesis Skills fit</h3>
   <p>DOE <a href="https://www.energy.gov/science/articles/genesis-agent-skills-release-support-innovation-across-genesis-mission">released Genesis Agent Skills on October 15, 2026</a>. Its public catalog provides scientific workflow instructions. DOE-MCP provides read-only data tools and its own skills in the same Agent Skills format. Format compatibility does not install Genesis skills, connect to a lab account, or validate a scientific result.</p>
-  <p>The dataset starter supplies evidence for a later documentation workflow; it is not a validated Genesis datacard. The microbiome and literature examples use DOE-MCP's own skills. <a href="https://github.com/AI-ModCon/genesis-skills">Explore the upstream catalog</a> or <a href="guide.md#genesis-and-no-cost-demos">read the integration and cost boundaries</a>.</p>
+  <p>The dataset starter supplies evidence for a later documentation workflow; it is not a validated Genesis datacard. The microbiome and literature examples use DOE-MCP's own skills. <a href="https://github.com/AI-ModCon/genesis-skills">Explore the upstream catalog</a> or <a href="guide.html#genesis-and-no-cost-demos">read the integration and cost boundaries</a>.</p>
   <h3 id="overview-queries">Questions it answers</h3>
   <p class="lede">Each question below is answered by one tool on one server:</p>
   {_questions(data)}
@@ -818,6 +841,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
   <h3 id="registry-orgs">By organization</h3>
   {_crosswalk(data)}
   <h3 id="registry-sources">By source</h3>
+  {_registry_filter(data)}
   <details><summary>All {c['sources']} systems
     <span class="count">{c['active']} queryable</span></summary>
   {_registry(data)}</details>
