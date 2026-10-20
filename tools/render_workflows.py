@@ -154,10 +154,13 @@ def scope_line(report) -> str:
     "2 metadata drafts" with no sign that 1,035 records matched."""
     parts = []
     for step in report['steps']:
+        if step['tool'].startswith('registry.'):
+            continue  # the project's own inventory, not a publisher read
         data = step['envelope']['data']
-        if 'per_source' in data:
+        per = data.get('per_source') or data.get('per_catalog')
+        if per:
             parts += [f"{r['returned']} of {r['total_matches']:,} from {r['system']}" if isinstance(r.get('total_matches'), int)
-                      else f"{r['returned']} from {r['system']}, total unknown" for r in data['per_source']]
+                      else f"{r['returned']} from {r['system']}, total unknown" for r in per]
         elif isinstance(data.get('total_matches'), int) and 'record_count' in data:
             total = data['total_matches']
             parts.append(f"{data['record_count']} of {total:,} match{'es' if total != 1 else ''}")

@@ -237,6 +237,9 @@ async def test_find_data_names_the_rename_and_the_old_harvests(ctx):
     assert 'National Laboratory of the Rockies' in text and 'older harvests' in text
     page = render([report])
     assert 'A dated vintage is a harvested file' in page
+    import re
+    scope = re.search(r'<p class="scope">(.*?)</p>', page).group(1)
+    assert 'from DOE Data Explorer' in scope and 'of 2 matches' not in scope
 
 
 async def test_facility_status_keeps_the_zone_and_the_other_facilities_unknown(ctx):
