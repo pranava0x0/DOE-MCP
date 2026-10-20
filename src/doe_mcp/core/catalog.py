@@ -165,7 +165,9 @@ class SubMcpCatalog:
         servers = sum(1 for e in self.entries.values()
                       if e.kind == EntryKind.server)
         packs = len(self.entries) - servers
-        phrase = f"{servers} sub-MCP server{'s' if servers != 1 else ''}"
+        # Entries, not servers: one entry can stand for several servers
+        # (nepa-mcp is 23, building-simulation-mcps is two).
+        phrase = f"{servers} server entr{'ies' if servers != 1 else 'y'}"
         if packs:
             phrase += f" and {packs} skill pack{'s' if packs != 1 else ''}"
         return phrase + " in the plug-in catalog"

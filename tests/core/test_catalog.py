@@ -64,6 +64,6 @@ def test_the_catalog_counts_servers_and_skill_packs_apart():
         return CatalogEntry.model_validate({**PACK, "id": f"e{i}", "kind": kind})
     assert (SubMcpCatalog([entry(1, "server"), entry(2, "server"),
                            entry(3, "skill_pack")]).count_phrase()
-            == "2 sub-MCP servers and 1 skill pack in the plug-in catalog")
+            == "2 server entries and 1 skill pack in the plug-in catalog")
     assert (SubMcpCatalog([entry(1, "server")]).count_phrase()
-            == "1 sub-MCP server in the plug-in catalog")
+            == "1 server entry in the plug-in catalog")
