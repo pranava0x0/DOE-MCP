@@ -12,6 +12,7 @@ file also counts rows: a walk nobody grades is a walk nobody has checked.
 """
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 import pytest
@@ -88,3 +89,25 @@ def test_the_skills_index_lists_every_skill():
         assert path.parent.name in index, (
             f"{path.parent.name} is not in skills/README.md")
 
+
+DOTTED = re.compile(r"`([a-z_]+(?:\.[a-z_]+)+)`")
+NOT_A_TOOL = {"nrel.gov", "coverage.pagination"}
+"""Backticked dotted names that are prose: a dead domain the walk warns
+about and an envelope field it tells the reader to check."""
+
+
+@pytest.mark.parametrize("path", SKILLS, ids=[p.parent.name for p in SKILLS])
+def test_a_skill_body_names_tools_that_exist(path):
+    """The frontmatter names capabilities, so a skill routes across built-in
+    and plugged-in servers alike. The walk may name the tools that serve
+    them today, because an agent calls tools, but a name there has to be
+    real: `research.get_fulltext_link` was merged into `research.get_record`
+    on 2026-09-08 and a body still naming it would send an agent to a tool
+    that is not there."""
+    from doe_mcp.servers.build import registries
+    tools = {spec.name for reg in registries().values() for spec in reg.tools()}
+    known = tools | _vocabulary() | NOT_A_TOOL
+    unknown = sorted(set(DOTTED.findall(read_skill(path).body)) - known)
+    assert not unknown, (
+        f"{path.parent.name} names {unknown}, which is neither a tool nor a "
+        "capability id")
