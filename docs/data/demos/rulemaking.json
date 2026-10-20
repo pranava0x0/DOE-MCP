@@ -1,0 +1,361 @@
+{
+  "format_version": "1",
+  "case": "rulemaking",
+  "title": "DOE rulemaking brief",
+  "question": "What did DOE publish, which docket does it belong to, and what dates did the publisher supply?",
+  "mode": "recorded",
+  "simulation": false,
+  "registry_revision": "2026-10-20",
+  "generated_at": null,
+  "replay_clock": "2026-10-20T00:00:00Z",
+  "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
+  "fixtures": [
+    {
+      "file": "federal-register-doe.json",
+      "sha256": "f1b81fd332bdb47df868b0d419aef22e387c2d3fb8ffb2649375d459a1a56a3b",
+      "captured_at": null
+    }
+  ],
+  "limitations": [
+    "A sampled Federal Register search, not a complete docket or a determination of current legal effect.",
+    "Publication, effective and comment-close dates are separate publisher fields; missing dates remain unknown.",
+    "Search totals include excluded FERC documents. Docket comments and supporting materials were not retrieved."
+  ],
+  "steps": [
+    {
+      "tool": "docs.search_rulemakings",
+      "args": {
+        "document_type": "RULE",
+        "rows": 5
+      },
+      "envelope": {
+        "data": {
+          "documents": [
+            {
+              "document_number": "2026-17979",
+              "title": "Repeal of Fossil Fuel Restrictions for New Federal Buildings and Major Renovations of Federal Buildings",
+              "type": "Rule",
+              "action": "Notification of stay.",
+              "abstract": "The Department of Energy (DOE) is reviewing its recent guidance related to the implementation of newly adopted provisions regarding Clean Energy for New Federal Buildings and Major Renovations of Federal Buildings (CER). While DOE reviews the CER implementation guidance, DOE is staying the compliance date for the newly adopted provisions in the Code of Federal Regulations (CFR).",
+              "publication_date": "2026-09-02",
+              "effective_on": null,
+              "comments_close_on": null,
+              "agencies": [
+                "Energy Department"
+              ],
+              "docket_ids": [
+                "EERE-2026-FEMP-0067"
+              ],
+              "regulation_id_numbers": [
+                "1904-AG17"
+              ],
+              "cfr_references": [
+                "10 CFR 433",
+                "10 CFR 435"
+              ],
+              "html_url": "https://www.federalregister.gov/documents/2026/09/02/2026-17979/repeal-of-fossil-fuel-restrictions-for-new-federal-buildings-and-major-renovations-of-federal",
+              "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-02/pdf/2026-17979.pdf",
+              "full_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/02/2026-17979.txt"
+            },
+            {
+              "document_number": "2026-17872",
+              "title": "Rescission of Production Incentives for Cellulosic Biofuels",
+              "type": "Rule",
+              "action": "Final rule.",
+              "abstract": "The Office of Critical Minerals and Energy Innovation (formerly Office of Energy Efficiency and Renewable Energy) of the Department of Energy (DOE) is publishing a final rule to rescind the regulatory framework for production incentives for cellulosic biofuels, eliminating an inactive regulatory framework.",
+              "publication_date": "2026-09-01",
+              "effective_on": "2026-10-01",
+              "comments_close_on": null,
+              "agencies": [
+                "Energy Department"
+              ],
+              "docket_ids": [
+                "EERE-2025-OT-0031"
+              ],
+              "regulation_id_numbers": [
+                "1904-AG07"
+              ],
+              "cfr_references": [
+                "10 CFR 452"
+              ],
+              "html_url": "https://www.federalregister.gov/documents/2026/09/01/2026-17872/rescission-of-production-incentives-for-cellulosic-biofuels",
+              "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-01/pdf/2026-17872.pdf",
+              "full_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/01/2026-17872.txt"
+            },
+            {
+              "document_number": "2026-17381",
+              "title": "Rescinding Regulations for Loans for Minority Business Enterprises Seeking DOE Contracts and Assistance",
+              "type": "Rule",
+              "action": "Direct final rule; further delay of effective date.",
+              "abstract": "The U.S. Department of Energy (DOE) is further extending the effective date of the direct final rule \"Rescinding Regulations for Loans for Minority Business Enterprises Seeking DOE Contracts and Assistance,\" published on May 16, 2025.",
+              "publication_date": "2026-08-26",
+              "effective_on": "2025-05-16",
+              "comments_close_on": null,
+              "agencies": [
+                "Energy Department"
+              ],
+              "docket_ids": [
+                "DOE-HQ-2025-0014"
+              ],
+              "regulation_id_numbers": [
+                "1903-AA23"
+              ],
+              "cfr_references": [
+                "10 CFR 800"
+              ],
+              "html_url": "https://www.federalregister.gov/documents/2026/08/26/2026-17381/rescinding-regulations-for-loans-for-minority-business-enterprises-seeking-doe-contracts-and",
+              "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-08-26/pdf/2026-17381.pdf",
+              "full_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/08/26/2026-17381.txt"
+            },
+            {
+              "document_number": "2026-16425",
+              "title": "Rescission of DOE's Procedures for Traffic Control on the Nevada Test Site",
+              "type": "Rule",
+              "action": "Interim final rule; request for comments.",
+              "abstract": "This interim final rule rescinds DOE's regulations outlining the establishment of traffic control regulations on the Nevada National Security Site (NNSS), formerly known as the Nevada Test Site. This action is being taken to remove regulations that are obsolete because the NNSS uses Nevada traffic enforcement statutes. The effect of this action will be the removal of obsolete regulations.",
+              "publication_date": "2026-08-12",
+              "effective_on": "2026-08-12",
+              "comments_close_on": "2026-09-11",
+              "agencies": [
+                "Energy Department"
+              ],
+              "docket_ids": [
+                "DOE-HQ-2026-0529"
+              ],
+              "regulation_id_numbers": [
+                "1992-AA65"
+              ],
+              "cfr_references": [
+                "10 CFR 861"
+              ],
+              "html_url": "https://www.federalregister.gov/documents/2026/08/12/2026-16425/rescission-of-does-procedures-for-traffic-control-on-the-nevada-test-site",
+              "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-08-12/pdf/2026-16425.pdf",
+              "full_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/08/12/2026-16425.txt"
+            }
+          ],
+          "record_count": 4,
+          "page": 1,
+          "page_size": 5,
+          "total_matches": 1690,
+          "pages_reachable": 50,
+          "note": "The published text of DOE's rules, proposed rules, and notices, from the Federal Register itself. Each record carries its docket id, the CFR parts it touches, its regulatory identifier, and a link to the full text. The docket's comments and supporting material are not here \u2014 those live in regulations.gov, which DOE-MCP does not yet serve.",
+          "excluded_documents": 1,
+          "exclusion_reason": "The Federal Register files FERC's documents under the Department of Energy's agency tree, and FERC's daily combined filing notices are most of what that tree publishes: of the documents tagged Department of Energy since 2024, FERC is 20% of rules and 26% of proposed rules but 87% of notices, 4,268 of 4,915. DOE-MCP's scope stops at DOE (decision 0001), so those documents are dropped and counted rather than served. FERC's own record is in its eLibrary system.",
+          "total_matches_is_unfiltered": "total_matches is the Federal Register's own count for this query and includes the documents dropped above. 1 of the 5 on this page were dropped, so the number of DOE documents matching is lower than total_matches and this tool cannot say by how much without reading every page."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "federal-register-doe",
+            "steward": "Office of the Federal Register (National Archives)",
+            "system": "Federal Register API (Department of Energy documents)",
+            "dataset": "Federal Register API (Department of Energy documents)",
+            "dataset_version": "current",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "cache_age_seconds": 0
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "2026-17979",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-09-02",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_02",
+            "source_ref": "source_01",
+            "record_id": "2026-17872",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-09-01",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_03",
+            "source_ref": "source_01",
+            "record_id": "2026-17381",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-08-26",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_04",
+            "source_ref": "source_01",
+            "record_id": "2026-16425",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-08-12",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "partial",
+          "execution": "complete",
+          "pagination": "truncated",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "federal-register-doe"
+          ],
+          "time_range": {
+            "from": "2026-08-12",
+            "to": "2026-09-02"
+          }
+        },
+        "warnings": [],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "docs.search_rulemakings",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-10-20",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "docs.get_rulemaking",
+      "args": {
+        "document_number": "2026-17979"
+      },
+      "envelope": {
+        "data": {
+          "document_number": "2026-17979",
+          "title": "Repeal of Fossil Fuel Restrictions for New Federal Buildings and Major Renovations of Federal Buildings",
+          "type": "Rule",
+          "action": "Notification of stay.",
+          "abstract": "The Department of Energy (DOE) is reviewing its recent guidance related to the implementation of newly adopted provisions regarding Clean Energy for New Federal Buildings and Major Renovations of Federal Buildings (CER). While DOE reviews the CER implementation guidance, DOE is staying the compliance date for the newly adopted provisions in the Code of Federal Regulations (CFR).",
+          "publication_date": "2026-09-02",
+          "effective_on": null,
+          "comments_close_on": null,
+          "agencies": [
+            "Energy Department"
+          ],
+          "docket_ids": [
+            "EERE-2026-FEMP-0067"
+          ],
+          "regulation_id_numbers": [
+            "1904-AG17"
+          ],
+          "cfr_references": [
+            "10 CFR 433",
+            "10 CFR 435"
+          ],
+          "html_url": "https://www.federalregister.gov/documents/2026/09/02/2026-17979/repeal-of-fossil-fuel-restrictions-for-new-federal-buildings-and-major-renovations-of-federal",
+          "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-02/pdf/2026-17979.pdf",
+          "full_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/02/2026-17979.txt",
+          "note": "One published document, as the Federal Register printed it. `full_text_url` is the plain text of the whole document; `docket_ids` is how it joins to the rest of its rulemaking, which lives in regulations.gov."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "federal-register-doe",
+            "steward": "Office of the Federal Register (National Archives)",
+            "system": "Federal Register API (Department of Energy documents)",
+            "dataset": "Repeal of Fossil Fuel Restrictions for New Federal Buildings and Major Renovations of Federal Buildings",
+            "dataset_version": "current",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "cache_age_seconds": 0
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "2026-17979",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2026-09-02",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "federal-register-doe"
+          ]
+        },
+        "warnings": [],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "docs.get_rulemaking",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-10-20",
+          "request_id": "recorded-workflow"
+        }
+      }
+    }
+  ]
+}

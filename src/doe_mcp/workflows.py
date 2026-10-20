@@ -17,6 +17,7 @@ CASES = {
     "evidence": ("DOE evidence finder", "Find perovskite solar research and inspect one returned record."),
     "dataset-card": ("Geothermal dataset-card starter", "What can public catalog metadata fill in, and what still needs a dataset owner?"),
     "microbiome": ("Microbiome study and sample finder", "Find a shale microbiome study and inspect a sample of its biosamples."),
+    "rulemaking": ("DOE rulemaking brief", "What did DOE publish, which docket does it belong to, and what dates did the publisher supply?"),
     "partial": ("One collection unavailable", "What can the remaining literature collection answer?"),
     "blocked": ("A capability not yet served", "Can DOE-MCP return the solar resource at a candidate site?"),
     "grid": ("BPA grid briefing", "What do the recorded five-minute load readings show?"),
@@ -119,6 +120,17 @@ async def run_workflow(ctx: RuntimeContext, case: str, *, mode: str = "recorded"
         limits += ["Study and sample metadata only; no sequences, assemblies or annotations were downloaded.",
                    "At most five samples are shown; they do not establish study completeness or biological function.",
                    "The publisher's access recipes distinguish dataset DOIs from award DOIs; a DOI alone does not establish free access."]
+    elif case == "rulemaking":
+        found = await call("docs.search_rulemakings", document_type="RULE", rows=5)
+        documents = found.data["documents"]
+        if not documents:
+            raise SourceUnavailable("no DOE rulemaking returned to follow")
+        detail = await call("docs.get_rulemaking", document_number=documents[0]["document_number"])
+        if detail.coverage.result.value != "hit":
+            raise SourceUnavailable("selected DOE rulemaking is no longer available")
+        limits += ["A sampled Federal Register search, not a complete docket or a determination of current legal effect.",
+                   "Publication, effective and comment-close dates are separate publisher fields; missing dates remain unknown.",
+                   "Search totals include excluded FERC documents. Docket comments and supporting materials were not retrieved."]
     elif case == "blocked":
         await call("registry.search_sources", capability="solar.get_resource")
         limits += ["Registry inventory only. Proposed sources were not queried.",

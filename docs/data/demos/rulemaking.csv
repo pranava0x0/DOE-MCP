@@ -1,0 +1,6 @@
+step,tool,source,record_id,locator,effective_at,mode
+1,docs.search_rulemakings,federal-register-doe,2026-17979,,2026-09-02,recorded
+1,docs.search_rulemakings,federal-register-doe,2026-17872,,2026-09-01,recorded
+1,docs.search_rulemakings,federal-register-doe,2026-17381,,2026-08-26,recorded
+1,docs.search_rulemakings,federal-register-doe,2026-16425,,2026-08-12,recorded
+2,docs.get_rulemaking,federal-register-doe,2026-17979,,2026-09-02,recorded

@@ -114,6 +114,7 @@ async def test_microbiome_follows_search_id_and_keeps_sample_scope(ctx):
 
 
 @pytest.mark.parametrize('case,tool,key', [
+    ('rulemaking', 'docs.search_rulemakings', 'documents'),
     ('dataset-card', 'research.search_datasets', 'datasets'),
     ('microbiome', 'bio.search_studies', 'studies'),
 ])
@@ -170,3 +171,17 @@ async def test_microbiome_outcome_reads_the_attempt_that_listed_samples(ctx):
     assert 'Tried 2 returned studies' in text
     assert f"Showing {samples['envelope']['data']['record_count']} biosamples" in text
     assert 'Showing 0' not in text
+
+
+async def test_rulemaking_follows_returned_document_and_preserves_unknown_date(ctx):
+    report = await run_workflow(ctx, 'rulemaking')
+    search, detail = report['steps']
+    doc = detail['envelope']['data']
+    assert detail['args']['document_number'] == search['envelope']['data']['documents'][0]['document_number']
+    assert doc['effective_on'] is None
+    assert doc['action'] == 'Notification of stay.'
+    page = render([report])
+    assert 'Unknown' in page
+    assert 'includes the documents dropped' in page
+    doc['action'] = '<script>alert(1)</script>'
+    assert '<script>alert(1)</script>' not in render([report])

@@ -104,6 +104,9 @@ def outcome(report) -> str:
         followed = ("Followed one returned study." if len(tries) == 1 else
                     f"Tried {len(tries)} returned studies; only the last listed samples.")
         return f"{followed} Showing {samples['record_count']} biosamples out of {extent}."
+    if case == 'rulemaking':
+        document = report['steps'][1]['envelope']['data']
+        return f"Followed document {document['document_number']}. Publisher action: {(document.get('action') or 'Unknown').rstrip('.')}. Excluded from this page: {data.get('excluded_documents',0)} out-of-scope records from the search page."
     if case == 'grid':
         latest = data['latest']
         return f"Latest recorded load: {latest['values']['Load']:,} MW at {latest['timestamp']} Pacific Time. This is a historical replay."
@@ -127,9 +130,13 @@ def step_view(step, number) -> str:
     records=data.get('records',data.get('datasets',data.get('structures',data.get('studies',data.get('biosamples',[])))))
     if 'record' in data and isinstance(data['record'],dict):
         records=[data['record']]
+    if step['tool']=='docs.search_rulemakings':
+        records=data['documents']
+    elif step['tool']=='docs.get_rulemaking':
+        records=[data]
     cards=[]
     for ev in env['evidence']:
-        record=next((r for r in records if str(r.get('id',r.get('case_id',r.get('study_id',r.get('sample_id',''))))) == ev['record_id']),{})
+        record=next((r for r in records if str(r.get('id',r.get('case_id',r.get('study_id',r.get('sample_id',r.get('document_number','')))))) == ev['record_id']),{})
         title=record.get('title',record.get('name',record.get('chemical_formula_reduced',ev['record_id'])))
         source=sources[ev['source_ref']]
         locator=link(ev['locator'],'Publisher record') if ev.get('locator') else 'No publisher locator supplied'
@@ -149,6 +156,9 @@ def step_view(step, number) -> str:
         handoff='<ul>'+''.join(f'<li>{link(r.get("repository"),r.get("name",r["id"]))}</li>' for r in data.get('neighbors',[]) if r['id']=='nepa-mcp')+'</ul>'
     recipes = ''.join(f'<li>{link(r.get("uri"),r.get("label") or "Publisher access recipe")} — {esc(r.get("instructions") or "")}</li>' for r in env.get('access_recipes',[]))
     extra=''
+    if step['tool'] in {'docs.search_rulemakings','docs.get_rulemaking'}:
+        extra=table(['Document','Action','Published','Effective','Comments close','Dockets'],[(r['document_number'],r.get('action'),r.get('publication_date'),r.get('effective_on'),r.get('comments_close_on'),', '.join(r.get('docket_ids',[]))) for r in records], 'Publisher metadata; dates do not establish current legal effect')
+        extra += '<p>'+esc(data.get('total_matches_is_unfiltered',''))+'</p>'
     if step['tool']=='bio.search_biosamples':
         extra=table(['Sample','Place','Collected','Environment'],[(r['sample_id'],r.get('place'),r.get('collected'),', '.join(r.get('ecosystem',[]))) for r in data['biosamples']], 'Sample metadata; no sequence data retrieved')
     if step['tool']=='grid.get_bpa_operations':

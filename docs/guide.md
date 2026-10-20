@@ -25,7 +25,7 @@ error, and closes the process. Neither command needs an API key or a
 publisher connection.
 
 Available walkthroughs: `evidence`, `partial`, `blocked`, `grid`, `eia`,
-`site`, `earth`, `materials`, `dataset-card`, and `microbiome`. The partial case explicitly simulates one
+`site`, `earth`, `materials`, `dataset-card`, `microbiome`, and `rulemaking`. The partial case explicitly simulates one
 unavailable source in an isolated replay. The blocked case reads registry
 inventory; it does not query the proposed publisher.
 
@@ -229,3 +229,13 @@ not a claim that the whole project is typed. Source liveness remains a
 separate scheduled check. Fixture recording rewrites a whole source file;
 use the existing recorder guards and run the full suite immediately after
 recording. A targeted recording uses `--source SOURCE_ID`.
+
+## Rulemaking brief
+
+`doe-mcp demo rulemaking --output ./rulemaking-brief` searches a recorded
+Federal Register page and follows one returned DOE document number.
+The table keeps the publisher action and publication, effective and
+comment-close dates separate. Unknown dates stay unknown. FERC documents
+are excluded, and the publisher total still includes those exclusions.
+This is document metadata, not a legal-status assessment or a full docket.
+Add `--live` for a current search; no key or model is required.

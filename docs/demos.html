@@ -13,7 +13,7 @@ summary{cursor:pointer;padding:12px 0;font-weight:650}.mono{font-family:monospac
 [hidden]{display:none!important}@media(max-width:600px){main,header,footer{padding:16px}td,th{padding:8px}article{padding:16px}}
 </style></head>
 <body><header><a href="index.html">DOE-MCP home</a><p class="kicker">Inspect the answer</p><h1>Public data. Visible evidence.</h1><p>Recorded examples across DOE research, energy, earth, materials and microbiome data. Inspect the returned records and what each search leaves unknown. No live requests run in this page. These examples require no account, API key or paid model.</p><p>Independent project. Not affiliated with the US Department of Energy.</p></header>
-<main><div id="picker" hidden><label for="workflow">Choose a walkthrough</label><select id="workflow"><option value="evidence">DOE evidence finder</option><option value="dataset-card">Geothermal dataset-card starter</option><option value="microbiome">Microbiome study and sample finder</option><option value="partial">One collection unavailable</option><option value="blocked">A capability not yet served</option><option value="grid">BPA grid briefing</option><option value="eia">CAISO demand briefing</option><option value="site">Rhode Island facility context</option><option value="earth">Environmental study brief</option><option value="materials">Materials evidence sheet</option></select></div><article id="evidence"><p class="kicker">recorded walkthrough</p><h2>DOE evidence finder</h2><p>Find perovskite solar research and inspect one returned record.</p><p class="answer">5 distinct records returned. Followed record 3484888: Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>A sampled literature search is not a systematic review.</li><li>A common topic does not prove that a paper and dataset are linked.</li></ul><p class="downloads"><a download href="data/demos/evidence.json">Download JSON evidence</a><a download href="data/demos/evidence.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo evidence --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="step"><h3>1. research.search_literature</h3><p class="mono">{&quot;query&quot;: &quot;perovskite solar&quot;, &quot;rows&quot;: 3}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>partial</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: osti-gov-records, osti-doe-pages</p><h4>Warnings</h4><ul><li>No published rate limit means none of us knows what the real one is. If OSTI ever publishes one, or answers an email about it, this field becomes a number and the politeness budget follows it.</li><li>No published rate limit, same as the rest of the OSTI family.</li></ul><div class="scroll"><table><caption>Counts reported by each collection; totals can overlap</caption><thead><tr><th scope="col">Collection</th><th scope="col">Matches</th><th scope="col">Returned</th></tr></thead><tbody><tr><td>OSTI.GOV Search API</td><td>8313</td><td>3</td></tr><tr><td>DOE PAGES (Public Access Gateway for Energy and Science)</td><td>5669</td><td>3</td></tr></tbody></table></div><h4>Publisher access recipes</h4><ul><li><a href="https://doi.org/10.2172/3484888" rel="noreferrer">Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Plan</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3484888" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.66816/tp5080615" rel="noreferrer">Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative </a> — </li><li><a href="https://www.osti.gov/servlets/purl/3625672" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.1016/j.nanoen.2026.112209" rel="noreferrer">Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3409109" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.1021/acsenergylett.6c01751" rel="noreferrer">Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide Pero</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3818255" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.1021/jacs.6c05503" rel="noreferrer">Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of Pero</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3818626" rel="noreferrer">Full text (OSTI)</a> — </li></ul><ul class="evidence"><li><strong>Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells</strong><br>OSTI.GOV Search API · record 3484888<br><a href="https://www.osti.gov/biblio/3484888" rel="noreferrer">Publisher record</a><br>Record date: 2026-08-27T11:00:26Z</li><li><strong>Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative Research and Development Final Report, CRADA Number CRD-19-00810</strong><br>OSTI.GOV Search API · record 3625672<br><a href="https://www.osti.gov/biblio/3625672" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-02T10:56:05Z</li><li><strong>Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;/sub&gt;-graphene oxide buried interface layer</strong><br>OSTI.GOV Search API · record 3409109<br><a href="https://www.osti.gov/biblio/3409109" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T15:49:56Z</li><li><strong>Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;/sub&gt;-graphene oxide buried interface layer</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3409109<br><a href="https://www.osti.gov/biblio/3409109" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T11:49:56Z</li><li><strong>Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide Perovskites</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3818255<br><a href="https://www.osti.gov/biblio/3818255" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-17T10:27:35Z</li><li><strong>Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of Perovskite Photovoltaics</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3818626<br><a href="https://www.osti.gov/biblio/3818626" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T08:11:09Z</li></ul><details><summary>Full response and evidence</summary><pre>{
+<main><div id="picker" hidden><label for="workflow">Choose a walkthrough</label><select id="workflow"><option value="evidence">DOE evidence finder</option><option value="dataset-card">Geothermal dataset-card starter</option><option value="microbiome">Microbiome study and sample finder</option><option value="rulemaking">DOE rulemaking brief</option><option value="partial">One collection unavailable</option><option value="blocked">A capability not yet served</option><option value="grid">BPA grid briefing</option><option value="eia">CAISO demand briefing</option><option value="site">Rhode Island facility context</option><option value="earth">Environmental study brief</option><option value="materials">Materials evidence sheet</option></select></div><article id="evidence"><p class="kicker">recorded walkthrough</p><h2>DOE evidence finder</h2><p>Find perovskite solar research and inspect one returned record.</p><p class="answer">5 distinct records returned. Followed record 3484888: Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>A sampled literature search is not a systematic review.</li><li>A common topic does not prove that a paper and dataset are linked.</li></ul><p class="downloads"><a download href="data/demos/evidence.json">Download JSON evidence</a><a download href="data/demos/evidence.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo evidence --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="step"><h3>1. research.search_literature</h3><p class="mono">{&quot;query&quot;: &quot;perovskite solar&quot;, &quot;rows&quot;: 3}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>partial</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: osti-gov-records, osti-doe-pages</p><h4>Warnings</h4><ul><li>No published rate limit means none of us knows what the real one is. If OSTI ever publishes one, or answers an email about it, this field becomes a number and the politeness budget follows it.</li><li>No published rate limit, same as the rest of the OSTI family.</li></ul><div class="scroll"><table><caption>Counts reported by each collection; totals can overlap</caption><thead><tr><th scope="col">Collection</th><th scope="col">Matches</th><th scope="col">Returned</th></tr></thead><tbody><tr><td>OSTI.GOV Search API</td><td>8313</td><td>3</td></tr><tr><td>DOE PAGES (Public Access Gateway for Energy and Science)</td><td>5669</td><td>3</td></tr></tbody></table></div><h4>Publisher access recipes</h4><ul><li><a href="https://doi.org/10.2172/3484888" rel="noreferrer">Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Plan</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3484888" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.66816/tp5080615" rel="noreferrer">Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative </a> — </li><li><a href="https://www.osti.gov/servlets/purl/3625672" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.1016/j.nanoen.2026.112209" rel="noreferrer">Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3409109" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.1021/acsenergylett.6c01751" rel="noreferrer">Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide Pero</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3818255" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.1021/jacs.6c05503" rel="noreferrer">Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of Pero</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3818626" rel="noreferrer">Full text (OSTI)</a> — </li></ul><ul class="evidence"><li><strong>Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells</strong><br>OSTI.GOV Search API · record 3484888<br><a href="https://www.osti.gov/biblio/3484888" rel="noreferrer">Publisher record</a><br>Record date: 2026-08-27T11:00:26Z</li><li><strong>Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative Research and Development Final Report, CRADA Number CRD-19-00810</strong><br>OSTI.GOV Search API · record 3625672<br><a href="https://www.osti.gov/biblio/3625672" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-02T10:56:05Z</li><li><strong>Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;/sub&gt;-graphene oxide buried interface layer</strong><br>OSTI.GOV Search API · record 3409109<br><a href="https://www.osti.gov/biblio/3409109" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T15:49:56Z</li><li><strong>Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;/sub&gt;-graphene oxide buried interface layer</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3409109<br><a href="https://www.osti.gov/biblio/3409109" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T11:49:56Z</li><li><strong>Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide Perovskites</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3818255<br><a href="https://www.osti.gov/biblio/3818255" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-17T10:27:35Z</li><li><strong>Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of Perovskite Photovoltaics</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3818626<br><a href="https://www.osti.gov/biblio/3818626" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T08:11:09Z</li></ul><details><summary>Full response and evidence</summary><pre>{
   &quot;data&quot;: {
     &quot;records&quot;: [
       {
@@ -1151,7 +1151,327 @@ summary{cursor:pointer;padding:12px 0;font-weight:650}.mono{font-family:monospac
     &quot;registry_revision&quot;: &quot;2026-10-20&quot;,
     &quot;request_id&quot;: &quot;recorded-workflow&quot;
   }
-}</pre></details></section><details><summary>Recording manifest and capture times</summary><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td>nmdc-runtime.json</td><td>2026-10-08T23:37:56.653277+00:00</td><td>a47cb8d2a0a93dcec1b30c3de2eca0769c8e5fb4fe9eca8edda61eb580432b78</td></tr></tbody></table></div></details></article><article id="partial"><p class="kicker">recorded walkthrough</p><h2>One collection unavailable</h2><p>What can the remaining literature collection answer?</p><p class="answer">3 distinct records returned. Followed record 3484888: Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells.</p><p class="notice">Simulated source outage. The publisher status was changed only in this isolated replay.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>A sampled literature search is not a systematic review.</li><li>A common topic does not prove that a paper and dataset are linked.</li></ul><p class="downloads"><a download href="data/demos/partial.json">Download JSON evidence</a><a download href="data/demos/partial.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo partial --output ./demo-output</pre></details><section class="step"><h3>1. research.search_literature</h3><p class="mono">{&quot;query&quot;: &quot;perovskite solar&quot;, &quot;rows&quot;: 3}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>partial</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: osti-gov-records</p><h4>Unavailable sources</h4><ul><li>osti-doe-pages: source_not_activated</li></ul><h4>Warnings</h4><ul><li>No published rate limit means none of us knows what the real one is. If OSTI ever publishes one, or answers an email about it, this field becomes a number and the politeness budget follows it.</li></ul><div class="scroll"><table><caption>Counts reported by each collection; totals can overlap</caption><thead><tr><th scope="col">Collection</th><th scope="col">Matches</th><th scope="col">Returned</th></tr></thead><tbody><tr><td>OSTI.GOV Search API</td><td>8313</td><td>3</td></tr></tbody></table></div><h4>Publisher access recipes</h4><ul><li><a href="https://doi.org/10.2172/3484888" rel="noreferrer">Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Plan</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3484888" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.66816/tp5080615" rel="noreferrer">Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative </a> — </li><li><a href="https://www.osti.gov/servlets/purl/3625672" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.1016/j.nanoen.2026.112209" rel="noreferrer">Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3409109" rel="noreferrer">Full text (OSTI)</a> — </li></ul><ul class="evidence"><li><strong>Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells</strong><br>OSTI.GOV Search API · record 3484888<br><a href="https://www.osti.gov/biblio/3484888" rel="noreferrer">Publisher record</a><br>Record date: 2026-08-27T11:00:26Z</li><li><strong>Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative Research and Development Final Report, CRADA Number CRD-19-00810</strong><br>OSTI.GOV Search API · record 3625672<br><a href="https://www.osti.gov/biblio/3625672" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-02T10:56:05Z</li><li><strong>Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;/sub&gt;-graphene oxide buried interface layer</strong><br>OSTI.GOV Search API · record 3409109<br><a href="https://www.osti.gov/biblio/3409109" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T15:49:56Z</li></ul><details><summary>Full response and evidence</summary><pre>{
+}</pre></details></section><details><summary>Recording manifest and capture times</summary><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td>nmdc-runtime.json</td><td>2026-10-08T23:37:56.653277+00:00</td><td>a47cb8d2a0a93dcec1b30c3de2eca0769c8e5fb4fe9eca8edda61eb580432b78</td></tr></tbody></table></div></details></article><article id="rulemaking"><p class="kicker">recorded walkthrough</p><h2>DOE rulemaking brief</h2><p>What did DOE publish, which docket does it belong to, and what dates did the publisher supply?</p><p class="answer">Followed document 2026-17979. Publisher action: Notification of stay. Excluded from this page: 1 out-of-scope records from the search page.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>A sampled Federal Register search, not a complete docket or a determination of current legal effect.</li><li>Publication, effective and comment-close dates are separate publisher fields; missing dates remain unknown.</li><li>Search totals include excluded FERC documents. Docket comments and supporting materials were not retrieved.</li></ul><p class="downloads"><a download href="data/demos/rulemaking.json">Download JSON evidence</a><a download href="data/demos/rulemaking.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo rulemaking --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="step"><h3>1. docs.search_rulemakings</h3><p class="mono">{&quot;document_type&quot;: &quot;RULE&quot;, &quot;rows&quot;: 5}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>partial</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>complete</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: federal-register-doe</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Returned</th><th scope="col">Total matches</th></tr></thead><tbody><tr><td>4</td><td>1690</td></tr></tbody></table></div><div class="scroll"><table><caption>Publisher metadata; dates do not establish current legal effect</caption><thead><tr><th scope="col">Document</th><th scope="col">Action</th><th scope="col">Published</th><th scope="col">Effective</th><th scope="col">Comments close</th><th scope="col">Dockets</th></tr></thead><tbody><tr><td>2026-17979</td><td>Notification of stay.</td><td>2026-09-02</td><td>Unknown</td><td>Unknown</td><td>EERE-2026-FEMP-0067</td></tr><tr><td>2026-17872</td><td>Final rule.</td><td>2026-09-01</td><td>2026-10-01</td><td>Unknown</td><td>EERE-2025-OT-0031</td></tr><tr><td>2026-17381</td><td>Direct final rule; further delay of effective date.</td><td>2026-08-26</td><td>2025-05-16</td><td>Unknown</td><td>DOE-HQ-2025-0014</td></tr><tr><td>2026-16425</td><td>Interim final rule; request for comments.</td><td>2026-08-12</td><td>2026-08-12</td><td>2026-09-11</td><td>DOE-HQ-2026-0529</td></tr></tbody></table></div><p>total_matches is the Federal Register&#x27;s own count for this query and includes the documents dropped above. 1 of the 5 on this page were dropped, so the number of DOE documents matching is lower than total_matches and this tool cannot say by how much without reading every page.</p><ul class="evidence"><li><strong>Repeal of Fossil Fuel Restrictions for New Federal Buildings and Major Renovations of Federal Buildings</strong><br>Federal Register API (Department of Energy documents) · record 2026-17979<br>No publisher locator supplied<br>Record date: 2026-09-02</li><li><strong>Rescission of Production Incentives for Cellulosic Biofuels</strong><br>Federal Register API (Department of Energy documents) · record 2026-17872<br>No publisher locator supplied<br>Record date: 2026-09-01</li><li><strong>Rescinding Regulations for Loans for Minority Business Enterprises Seeking DOE Contracts and Assistance</strong><br>Federal Register API (Department of Energy documents) · record 2026-17381<br>No publisher locator supplied<br>Record date: 2026-08-26</li><li><strong>Rescission of DOE&#x27;s Procedures for Traffic Control on the Nevada Test Site</strong><br>Federal Register API (Department of Energy documents) · record 2026-16425<br>No publisher locator supplied<br>Record date: 2026-08-12</li></ul><details><summary>Full response and evidence</summary><pre>{
+  &quot;data&quot;: {
+    &quot;documents&quot;: [
+      {
+        &quot;document_number&quot;: &quot;2026-17979&quot;,
+        &quot;title&quot;: &quot;Repeal of Fossil Fuel Restrictions for New Federal Buildings and Major Renovations of Federal Buildings&quot;,
+        &quot;type&quot;: &quot;Rule&quot;,
+        &quot;action&quot;: &quot;Notification of stay.&quot;,
+        &quot;abstract&quot;: &quot;The Department of Energy (DOE) is reviewing its recent guidance related to the implementation of newly adopted provisions regarding Clean Energy for New Federal Buildings and Major Renovations of Federal Buildings (CER). While DOE reviews the CER implementation guidance, DOE is staying the compliance date for the newly adopted provisions in the Code of Federal Regulations (CFR).&quot;,
+        &quot;publication_date&quot;: &quot;2026-09-02&quot;,
+        &quot;effective_on&quot;: null,
+        &quot;comments_close_on&quot;: null,
+        &quot;agencies&quot;: [
+          &quot;Energy Department&quot;
+        ],
+        &quot;docket_ids&quot;: [
+          &quot;EERE-2026-FEMP-0067&quot;
+        ],
+        &quot;regulation_id_numbers&quot;: [
+          &quot;1904-AG17&quot;
+        ],
+        &quot;cfr_references&quot;: [
+          &quot;10 CFR 433&quot;,
+          &quot;10 CFR 435&quot;
+        ],
+        &quot;html_url&quot;: &quot;https://www.federalregister.gov/documents/2026/09/02/2026-17979/repeal-of-fossil-fuel-restrictions-for-new-federal-buildings-and-major-renovations-of-federal&quot;,
+        &quot;pdf_url&quot;: &quot;https://www.govinfo.gov/content/pkg/FR-2026-09-02/pdf/2026-17979.pdf&quot;,
+        &quot;full_text_url&quot;: &quot;https://www.federalregister.gov/documents/full_text/text/2026/09/02/2026-17979.txt&quot;
+      },
+      {
+        &quot;document_number&quot;: &quot;2026-17872&quot;,
+        &quot;title&quot;: &quot;Rescission of Production Incentives for Cellulosic Biofuels&quot;,
+        &quot;type&quot;: &quot;Rule&quot;,
+        &quot;action&quot;: &quot;Final rule.&quot;,
+        &quot;abstract&quot;: &quot;The Office of Critical Minerals and Energy Innovation (formerly Office of Energy Efficiency and Renewable Energy) of the Department of Energy (DOE) is publishing a final rule to rescind the regulatory framework for production incentives for cellulosic biofuels, eliminating an inactive regulatory framework.&quot;,
+        &quot;publication_date&quot;: &quot;2026-09-01&quot;,
+        &quot;effective_on&quot;: &quot;2026-10-01&quot;,
+        &quot;comments_close_on&quot;: null,
+        &quot;agencies&quot;: [
+          &quot;Energy Department&quot;
+        ],
+        &quot;docket_ids&quot;: [
+          &quot;EERE-2025-OT-0031&quot;
+        ],
+        &quot;regulation_id_numbers&quot;: [
+          &quot;1904-AG07&quot;
+        ],
+        &quot;cfr_references&quot;: [
+          &quot;10 CFR 452&quot;
+        ],
+        &quot;html_url&quot;: &quot;https://www.federalregister.gov/documents/2026/09/01/2026-17872/rescission-of-production-incentives-for-cellulosic-biofuels&quot;,
+        &quot;pdf_url&quot;: &quot;https://www.govinfo.gov/content/pkg/FR-2026-09-01/pdf/2026-17872.pdf&quot;,
+        &quot;full_text_url&quot;: &quot;https://www.federalregister.gov/documents/full_text/text/2026/09/01/2026-17872.txt&quot;
+      },
+      {
+        &quot;document_number&quot;: &quot;2026-17381&quot;,
+        &quot;title&quot;: &quot;Rescinding Regulations for Loans for Minority Business Enterprises Seeking DOE Contracts and Assistance&quot;,
+        &quot;type&quot;: &quot;Rule&quot;,
+        &quot;action&quot;: &quot;Direct final rule; further delay of effective date.&quot;,
+        &quot;abstract&quot;: &quot;The U.S. Department of Energy (DOE) is further extending the effective date of the direct final rule \&quot;Rescinding Regulations for Loans for Minority Business Enterprises Seeking DOE Contracts and Assistance,\&quot; published on May 16, 2025.&quot;,
+        &quot;publication_date&quot;: &quot;2026-08-26&quot;,
+        &quot;effective_on&quot;: &quot;2025-05-16&quot;,
+        &quot;comments_close_on&quot;: null,
+        &quot;agencies&quot;: [
+          &quot;Energy Department&quot;
+        ],
+        &quot;docket_ids&quot;: [
+          &quot;DOE-HQ-2025-0014&quot;
+        ],
+        &quot;regulation_id_numbers&quot;: [
+          &quot;1903-AA23&quot;
+        ],
+        &quot;cfr_references&quot;: [
+          &quot;10 CFR 800&quot;
+        ],
+        &quot;html_url&quot;: &quot;https://www.federalregister.gov/documents/2026/08/26/2026-17381/rescinding-regulations-for-loans-for-minority-business-enterprises-seeking-doe-contracts-and&quot;,
+        &quot;pdf_url&quot;: &quot;https://www.govinfo.gov/content/pkg/FR-2026-08-26/pdf/2026-17381.pdf&quot;,
+        &quot;full_text_url&quot;: &quot;https://www.federalregister.gov/documents/full_text/text/2026/08/26/2026-17381.txt&quot;
+      },
+      {
+        &quot;document_number&quot;: &quot;2026-16425&quot;,
+        &quot;title&quot;: &quot;Rescission of DOE&#x27;s Procedures for Traffic Control on the Nevada Test Site&quot;,
+        &quot;type&quot;: &quot;Rule&quot;,
+        &quot;action&quot;: &quot;Interim final rule; request for comments.&quot;,
+        &quot;abstract&quot;: &quot;This interim final rule rescinds DOE&#x27;s regulations outlining the establishment of traffic control regulations on the Nevada National Security Site (NNSS), formerly known as the Nevada Test Site. This action is being taken to remove regulations that are obsolete because the NNSS uses Nevada traffic enforcement statutes. The effect of this action will be the removal of obsolete regulations.&quot;,
+        &quot;publication_date&quot;: &quot;2026-08-12&quot;,
+        &quot;effective_on&quot;: &quot;2026-08-12&quot;,
+        &quot;comments_close_on&quot;: &quot;2026-09-11&quot;,
+        &quot;agencies&quot;: [
+          &quot;Energy Department&quot;
+        ],
+        &quot;docket_ids&quot;: [
+          &quot;DOE-HQ-2026-0529&quot;
+        ],
+        &quot;regulation_id_numbers&quot;: [
+          &quot;1992-AA65&quot;
+        ],
+        &quot;cfr_references&quot;: [
+          &quot;10 CFR 861&quot;
+        ],
+        &quot;html_url&quot;: &quot;https://www.federalregister.gov/documents/2026/08/12/2026-16425/rescission-of-does-procedures-for-traffic-control-on-the-nevada-test-site&quot;,
+        &quot;pdf_url&quot;: &quot;https://www.govinfo.gov/content/pkg/FR-2026-08-12/pdf/2026-16425.pdf&quot;,
+        &quot;full_text_url&quot;: &quot;https://www.federalregister.gov/documents/full_text/text/2026/08/12/2026-16425.txt&quot;
+      }
+    ],
+    &quot;record_count&quot;: 4,
+    &quot;page&quot;: 1,
+    &quot;page_size&quot;: 5,
+    &quot;total_matches&quot;: 1690,
+    &quot;pages_reachable&quot;: 50,
+    &quot;note&quot;: &quot;The published text of DOE&#x27;s rules, proposed rules, and notices, from the Federal Register itself. Each record carries its docket id, the CFR parts it touches, its regulatory identifier, and a link to the full text. The docket&#x27;s comments and supporting material are not here \u2014 those live in regulations.gov, which DOE-MCP does not yet serve.&quot;,
+    &quot;excluded_documents&quot;: 1,
+    &quot;exclusion_reason&quot;: &quot;The Federal Register files FERC&#x27;s documents under the Department of Energy&#x27;s agency tree, and FERC&#x27;s daily combined filing notices are most of what that tree publishes: of the documents tagged Department of Energy since 2024, FERC is 20% of rules and 26% of proposed rules but 87% of notices, 4,268 of 4,915. DOE-MCP&#x27;s scope stops at DOE (decision 0001), so those documents are dropped and counted rather than served. FERC&#x27;s own record is in its eLibrary system.&quot;,
+    &quot;total_matches_is_unfiltered&quot;: &quot;total_matches is the Federal Register&#x27;s own count for this query and includes the documents dropped above. 1 of the 5 on this page were dropped, so the number of DOE documents matching is lower than total_matches and this tool cannot say by how much without reading every page.&quot;
+  },
+  &quot;provenance&quot;: [
+    {
+      &quot;id&quot;: &quot;source_01&quot;,
+      &quot;source_id&quot;: &quot;federal-register-doe&quot;,
+      &quot;steward&quot;: &quot;Office of the Federal Register (National Archives)&quot;,
+      &quot;system&quot;: &quot;Federal Register API (Department of Energy documents)&quot;,
+      &quot;dataset&quot;: &quot;Federal Register API (Department of Energy documents)&quot;,
+      &quot;dataset_version&quot;: &quot;current&quot;,
+      &quot;authority_level&quot;: &quot;primary&quot;,
+      &quot;access_path&quot;: &quot;live&quot;,
+      &quot;source_updated_at&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;cache_age_seconds&quot;: 0
+    }
+  ],
+  &quot;evidence&quot;: [
+    {
+      &quot;id&quot;: &quot;evidence_01&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;2026-17979&quot;,
+      &quot;locator&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2026-09-02&quot;,
+      &quot;transformations&quot;: [],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_02&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;2026-17872&quot;,
+      &quot;locator&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2026-09-01&quot;,
+      &quot;transformations&quot;: [],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_03&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;2026-17381&quot;,
+      &quot;locator&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2026-08-26&quot;,
+      &quot;transformations&quot;: [],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_04&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;2026-16425&quot;,
+      &quot;locator&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2026-08-12&quot;,
+      &quot;transformations&quot;: [],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    }
+  ],
+  &quot;coverage&quot;: {
+    &quot;registry&quot;: &quot;partial&quot;,
+    &quot;execution&quot;: &quot;complete&quot;,
+    &quot;pagination&quot;: &quot;truncated&quot;,
+    &quot;source_claim&quot;: &quot;complete&quot;,
+    &quot;result&quot;: &quot;hit&quot;,
+    &quot;sources_searched&quot;: [
+      &quot;federal-register-doe&quot;
+    ],
+    &quot;time_range&quot;: {
+      &quot;from&quot;: &quot;2026-08-12&quot;,
+      &quot;to&quot;: &quot;2026-09-02&quot;
+    }
+  },
+  &quot;warnings&quot;: [],
+  &quot;_execution&quot;: {
+    &quot;server&quot;: &quot;doe-mcp&quot;,
+    &quot;server_version&quot;: &quot;0.1.0.dev0&quot;,
+    &quot;tool&quot;: &quot;docs.search_rulemakings&quot;,
+    &quot;tool_contract_version&quot;: &quot;1&quot;,
+    &quot;envelope_version&quot;: &quot;1&quot;,
+    &quot;adapters&quot;: {
+      &quot;osti_family&quot;: &quot;1&quot;,
+      &quot;opendatasoft&quot;: &quot;1&quot;,
+      &quot;json_document&quot;: &quot;1&quot;,
+      &quot;curated&quot;: &quot;1&quot;,
+      &quot;eia_v2&quot;: &quot;1&quot;,
+      &quot;fueleconomy&quot;: &quot;1&quot;,
+      &quot;text_feed&quot;: &quot;1&quot;,
+      &quot;postgrest&quot;: &quot;1&quot;,
+      &quot;federal_register&quot;: &quot;1&quot;,
+      &quot;vips&quot;: &quot;1&quot;,
+      &quot;daymet&quot;: &quot;1&quot;,
+      &quot;essdive&quot;: &quot;1&quot;,
+      &quot;esgf&quot;: &quot;1&quot;,
+      &quot;sage&quot;: &quot;1&quot;,
+      &quot;optimade&quot;: &quot;1&quot;,
+      &quot;basis_sets&quot;: &quot;1&quot;,
+      &quot;facility_status&quot;: &quot;1&quot;,
+      &quot;nmdc&quot;: &quot;1&quot;,
+      &quot;none&quot;: &quot;1&quot;,
+      &quot;self_registry&quot;: &quot;1&quot;
+    },
+    &quot;registry_revision&quot;: &quot;2026-10-20&quot;,
+    &quot;request_id&quot;: &quot;recorded-workflow&quot;
+  }
+}</pre></details></section><section class="step"><h3>2. docs.get_rulemaking</h3><p class="mono">{&quot;document_number&quot;: &quot;2026-17979&quot;}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>complete</td></tr><tr><td>source_claim</td><td>complete</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: federal-register-doe</p><div class="scroll"><table><caption>Publisher metadata; dates do not establish current legal effect</caption><thead><tr><th scope="col">Document</th><th scope="col">Action</th><th scope="col">Published</th><th scope="col">Effective</th><th scope="col">Comments close</th><th scope="col">Dockets</th></tr></thead><tbody><tr><td>2026-17979</td><td>Notification of stay.</td><td>2026-09-02</td><td>Unknown</td><td>Unknown</td><td>EERE-2026-FEMP-0067</td></tr></tbody></table></div><p></p><ul class="evidence"><li><strong>Repeal of Fossil Fuel Restrictions for New Federal Buildings and Major Renovations of Federal Buildings</strong><br>Federal Register API (Department of Energy documents) · record 2026-17979<br>No publisher locator supplied<br>Record date: 2026-09-02</li></ul><details><summary>Full response and evidence</summary><pre>{
+  &quot;data&quot;: {
+    &quot;document_number&quot;: &quot;2026-17979&quot;,
+    &quot;title&quot;: &quot;Repeal of Fossil Fuel Restrictions for New Federal Buildings and Major Renovations of Federal Buildings&quot;,
+    &quot;type&quot;: &quot;Rule&quot;,
+    &quot;action&quot;: &quot;Notification of stay.&quot;,
+    &quot;abstract&quot;: &quot;The Department of Energy (DOE) is reviewing its recent guidance related to the implementation of newly adopted provisions regarding Clean Energy for New Federal Buildings and Major Renovations of Federal Buildings (CER). While DOE reviews the CER implementation guidance, DOE is staying the compliance date for the newly adopted provisions in the Code of Federal Regulations (CFR).&quot;,
+    &quot;publication_date&quot;: &quot;2026-09-02&quot;,
+    &quot;effective_on&quot;: null,
+    &quot;comments_close_on&quot;: null,
+    &quot;agencies&quot;: [
+      &quot;Energy Department&quot;
+    ],
+    &quot;docket_ids&quot;: [
+      &quot;EERE-2026-FEMP-0067&quot;
+    ],
+    &quot;regulation_id_numbers&quot;: [
+      &quot;1904-AG17&quot;
+    ],
+    &quot;cfr_references&quot;: [
+      &quot;10 CFR 433&quot;,
+      &quot;10 CFR 435&quot;
+    ],
+    &quot;html_url&quot;: &quot;https://www.federalregister.gov/documents/2026/09/02/2026-17979/repeal-of-fossil-fuel-restrictions-for-new-federal-buildings-and-major-renovations-of-federal&quot;,
+    &quot;pdf_url&quot;: &quot;https://www.govinfo.gov/content/pkg/FR-2026-09-02/pdf/2026-17979.pdf&quot;,
+    &quot;full_text_url&quot;: &quot;https://www.federalregister.gov/documents/full_text/text/2026/09/02/2026-17979.txt&quot;,
+    &quot;note&quot;: &quot;One published document, as the Federal Register printed it. `full_text_url` is the plain text of the whole document; `docket_ids` is how it joins to the rest of its rulemaking, which lives in regulations.gov.&quot;
+  },
+  &quot;provenance&quot;: [
+    {
+      &quot;id&quot;: &quot;source_01&quot;,
+      &quot;source_id&quot;: &quot;federal-register-doe&quot;,
+      &quot;steward&quot;: &quot;Office of the Federal Register (National Archives)&quot;,
+      &quot;system&quot;: &quot;Federal Register API (Department of Energy documents)&quot;,
+      &quot;dataset&quot;: &quot;Repeal of Fossil Fuel Restrictions for New Federal Buildings and Major Renovations of Federal Buildings&quot;,
+      &quot;dataset_version&quot;: &quot;current&quot;,
+      &quot;authority_level&quot;: &quot;primary&quot;,
+      &quot;access_path&quot;: &quot;live&quot;,
+      &quot;source_updated_at&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;cache_age_seconds&quot;: 0
+    }
+  ],
+  &quot;evidence&quot;: [
+    {
+      &quot;id&quot;: &quot;evidence_01&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;2026-17979&quot;,
+      &quot;locator&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2026-09-02&quot;,
+      &quot;transformations&quot;: [],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    }
+  ],
+  &quot;coverage&quot;: {
+    &quot;registry&quot;: &quot;covered&quot;,
+    &quot;execution&quot;: &quot;complete&quot;,
+    &quot;pagination&quot;: &quot;complete&quot;,
+    &quot;source_claim&quot;: &quot;complete&quot;,
+    &quot;result&quot;: &quot;hit&quot;,
+    &quot;sources_searched&quot;: [
+      &quot;federal-register-doe&quot;
+    ]
+  },
+  &quot;warnings&quot;: [],
+  &quot;_execution&quot;: {
+    &quot;server&quot;: &quot;doe-mcp&quot;,
+    &quot;server_version&quot;: &quot;0.1.0.dev0&quot;,
+    &quot;tool&quot;: &quot;docs.get_rulemaking&quot;,
+    &quot;tool_contract_version&quot;: &quot;1&quot;,
+    &quot;envelope_version&quot;: &quot;1&quot;,
+    &quot;adapters&quot;: {
+      &quot;osti_family&quot;: &quot;1&quot;,
+      &quot;opendatasoft&quot;: &quot;1&quot;,
+      &quot;json_document&quot;: &quot;1&quot;,
+      &quot;curated&quot;: &quot;1&quot;,
+      &quot;eia_v2&quot;: &quot;1&quot;,
+      &quot;fueleconomy&quot;: &quot;1&quot;,
+      &quot;text_feed&quot;: &quot;1&quot;,
+      &quot;postgrest&quot;: &quot;1&quot;,
+      &quot;federal_register&quot;: &quot;1&quot;,
+      &quot;vips&quot;: &quot;1&quot;,
+      &quot;daymet&quot;: &quot;1&quot;,
+      &quot;essdive&quot;: &quot;1&quot;,
+      &quot;esgf&quot;: &quot;1&quot;,
+      &quot;sage&quot;: &quot;1&quot;,
+      &quot;optimade&quot;: &quot;1&quot;,
+      &quot;basis_sets&quot;: &quot;1&quot;,
+      &quot;facility_status&quot;: &quot;1&quot;,
+      &quot;nmdc&quot;: &quot;1&quot;,
+      &quot;none&quot;: &quot;1&quot;,
+      &quot;self_registry&quot;: &quot;1&quot;
+    },
+    &quot;registry_revision&quot;: &quot;2026-10-20&quot;,
+    &quot;request_id&quot;: &quot;recorded-workflow&quot;
+  }
+}</pre></details></section><details><summary>Recording manifest and capture times</summary><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td>federal-register-doe.json</td><td>Unknown; old recording</td><td>f1b81fd332bdb47df868b0d419aef22e387c2d3fb8ffb2649375d459a1a56a3b</td></tr></tbody></table></div></details></article><article id="partial"><p class="kicker">recorded walkthrough</p><h2>One collection unavailable</h2><p>What can the remaining literature collection answer?</p><p class="answer">3 distinct records returned. Followed record 3484888: Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells.</p><p class="notice">Simulated source outage. The publisher status was changed only in this isolated replay.</p><p class="notice">Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><ul class="limits"><li>A sampled literature search is not a systematic review.</li><li>A common topic does not prove that a paper and dataset are linked.</li></ul><p class="downloads"><a download href="data/demos/partial.json">Download JSON evidence</a><a download href="data/demos/partial.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo partial --output ./demo-output</pre></details><section class="step"><h3>1. research.search_literature</h3><p class="mono">{&quot;query&quot;: &quot;perovskite solar&quot;, &quot;rows&quot;: 3}</p><div class="scroll"><table><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td>registry</td><td>covered</td></tr><tr><td>execution</td><td>complete</td></tr><tr><td>pagination</td><td>truncated</td></tr><tr><td>source_claim</td><td>partial</td></tr><tr><td>result</td><td>hit</td></tr></tbody></table></div><p>Searched: osti-gov-records</p><h4>Unavailable sources</h4><ul><li>osti-doe-pages: source_not_activated</li></ul><h4>Warnings</h4><ul><li>No published rate limit means none of us knows what the real one is. If OSTI ever publishes one, or answers an email about it, this field becomes a number and the politeness budget follows it.</li></ul><div class="scroll"><table><caption>Counts reported by each collection; totals can overlap</caption><thead><tr><th scope="col">Collection</th><th scope="col">Matches</th><th scope="col">Returned</th></tr></thead><tbody><tr><td>OSTI.GOV Search API</td><td>8313</td><td>3</td></tr></tbody></table></div><h4>Publisher access recipes</h4><ul><li><a href="https://doi.org/10.2172/3484888" rel="noreferrer">Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Plan</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3484888" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.66816/tp5080615" rel="noreferrer">Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative </a> — </li><li><a href="https://www.osti.gov/servlets/purl/3625672" rel="noreferrer">Full text (OSTI)</a> — </li><li><a href="https://doi.org/10.1016/j.nanoen.2026.112209" rel="noreferrer">Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;</a> — </li><li><a href="https://www.osti.gov/servlets/purl/3409109" rel="noreferrer">Full text (OSTI)</a> — </li></ul><ul class="evidence"><li><strong>Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells</strong><br>OSTI.GOV Search API · record 3484888<br><a href="https://www.osti.gov/biblio/3484888" rel="noreferrer">Publisher record</a><br>Record date: 2026-08-27T11:00:26Z</li><li><strong>Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative Research and Development Final Report, CRADA Number CRD-19-00810</strong><br>OSTI.GOV Search API · record 3625672<br><a href="https://www.osti.gov/biblio/3625672" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-02T10:56:05Z</li><li><strong>Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;/sub&gt;-graphene oxide buried interface layer</strong><br>OSTI.GOV Search API · record 3409109<br><a href="https://www.osti.gov/biblio/3409109" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T15:49:56Z</li></ul><details><summary>Full response and evidence</summary><pre>{
   &quot;data&quot;: {
     &quot;records&quot;: [
       {
