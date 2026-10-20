@@ -157,3 +157,15 @@ class SubMcpCatalog:
 
     def all(self) -> list[CatalogEntry]:
         return sorted(self.entries.values(), key=lambda e: e.id)
+
+    def count_phrase(self) -> str:
+        """The catalog's size by kind, for the README, the site and
+        `doctor`: a skill pack is not a server, so one number for both
+        would overstate the servers."""
+        servers = sum(1 for e in self.entries.values()
+                      if e.kind == EntryKind.server)
+        packs = len(self.entries) - servers
+        phrase = f"{servers} sub-MCP server{'s' if servers != 1 else ''}"
+        if packs:
+            phrase += f" and {packs} skill pack{'s' if packs != 1 else ''}"
+        return phrase + " in the plug-in catalog"

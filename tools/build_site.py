@@ -362,6 +362,7 @@ def build_data(with_fixtures: bool) -> dict:
             "adapters": len({m.adapter.type for m in manifests}
                             - {"none"}),
             "neighbors": len(neighbors),
+            "neighbors_phrase": catalog.count_phrase(),
             "records_reachable": sum(m.coverage.record_count or 0
                                      for m in active),
         },
@@ -411,8 +412,7 @@ def render_readme_status(data: dict) -> str:
         ("Servers shipping", tools),
         ("Registry", f"{c['sources']} source manifests, {c['active']} active, "
                      f"{c['organizations']} organizations ({c['labs']} "
-                     f"national laboratories), {c['neighbors']} sub-MCP "
-                     "catalog entries"),
+                     f"national laboratories), {c['neighbors_phrase']}"),
         ("Capabilities", f"{c['capabilities_served']} of {c['capabilities']} "
                          "in the vocabulary served by an active source"),
         ("Adapters", adapters),

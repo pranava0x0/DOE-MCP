@@ -55,3 +55,15 @@ async def test_list_neighbors_says_which_kind_each_entry_is(ctx):
     assert kinds["genesis-agent-skills"] == "skill_pack"
     assert kinds["nepa-mcp"] == "server"
     assert "skill_pack" in env.data["note"]
+
+
+def test_the_catalog_counts_servers_and_skill_packs_apart():
+    """The README, the site and `doctor` print this phrase; one number for
+    both kinds would count a skill pack as a server."""
+    def entry(i, kind):
+        return CatalogEntry.model_validate({**PACK, "id": f"e{i}", "kind": kind})
+    assert (SubMcpCatalog([entry(1, "server"), entry(2, "server"),
+                           entry(3, "skill_pack")]).count_phrase()
+            == "2 sub-MCP servers and 1 skill pack in the plug-in catalog")
+    assert (SubMcpCatalog([entry(1, "server")]).count_phrase()
+            == "1 sub-MCP server in the plug-in catalog")

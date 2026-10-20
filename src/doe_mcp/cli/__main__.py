@@ -76,7 +76,7 @@ def cmd_doctor(args: argparse.Namespace) -> int:
     print(f"[{OK}] {len(manifests)} source manifests, {len(active)} active")
     print(f"[{OK}] {len(ctx.organizations.orgs)} organizations, "
           f"{len(ctx.organizations.labs())} national laboratories")
-    print(f"[{OK}] {len(ctx.catalog.all())} sub-MCP catalog entries")
+    print(f"[{OK}] {ctx.catalog.count_phrase()}")
     print(f"[{OK}] registry revision {ctx.sources.revision}")
     if len(ctx.organizations.labs()) != 17:
         print(f"[{WARN}] expected 17 national laboratories, found "
