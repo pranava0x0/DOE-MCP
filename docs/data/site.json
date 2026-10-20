@@ -3,11 +3,11 @@
   "registry_revision": "2026-10-20",
   "counts": {
     "sources": 83,
-    "active": 25,
+    "active": 24,
     "organizations": 54,
     "labs": 17,
     "capabilities": 53,
-    "capabilities_served": 38,
+    "capabilities_served": 37,
     "skills": 8,
     "program_offices": 19,
     "pmas": 4,
@@ -17,7 +17,7 @@
     "adapters": 19,
     "neighbors": 6,
     "neighbors_phrase": "5 sub-MCP servers and 1 skill pack in the plug-in catalog",
-    "records_reachable": 20176556
+    "records_reachable": 20153893
   },
   "questions": [
     {
@@ -157,12 +157,6 @@
       "tool": "docs.search_rulemakings",
       "server": "doe-research",
       "profile": null
-    },
-    {
-      "question": "What can I license from Oak Ridge?",
-      "tool": "tech.find_licensable_ip",
-      "server": "doe-research",
-      "profile": null
     }
   ],
   "servers": [
@@ -170,7 +164,7 @@
       "name": "doe-research",
       "profile": "research:default",
       "status": "shipping",
-      "description": "Literature, datasets, software, and discovery over OSTI's four public APIs, DOE's rulemakings from the Federal Register, the laboratories' patents and released software, plus the source registry and a cross-catalog fan-out.",
+      "description": "Literature, datasets, software, and discovery over OSTI's four public APIs, DOE's rulemakings from the Federal Register, plus the source registry and a cross-catalog fan-out.",
       "tools": [
         {
           "name": "research.search_literature",
@@ -225,7 +219,7 @@
         {
           "name": "tech.find_licensable_ip",
           "toolset": "default",
-          "description": "Patents held and software released by the US national laboratories, from PNNL's technology-transfer index \u2014 the one place a single laboratory's own output is searchable. Use for 'what has Idaho patented on X', 'what software has PNNL released', 'who invented this'. `lab` takes an acronym or a laboratory name and is resolved against the alias table first, because this service answers an unknown acronym with zero results and no error. `record_type` is Patent or Software; `query`, `inventor`, `taxonomy`, `since` and `until` narrow further. Pass `record_id` for one record whole, including the filed patent text a search page omits. Page with `cursor` ALONE \u2014 filters sent with a cursor are ignored by the service. Being listed is not an offer to license."
+          "description": "Currently unavailable: VIPS requires an API key; access support is pending. Patents held and software released by the US national laboratories, from PNNL's technology-transfer index \u2014 the one place a single laboratory's own output is searchable. Use for 'what has Idaho patented on X', 'what software has PNNL released', 'who invented this'. `lab` takes an acronym or a laboratory name and is resolved against the alias table first, because this service answers an unknown acronym with zero results and no error. `record_type` is Patent or Software; `query`, `inventor`, `taxonomy`, `since` and `until` narrow further. Pass `record_id` for one record whole, including the filed patent text a search page omits. Page with `cursor` ALONE \u2014 filters sent with a cursor are ignored by the service. Being listed is not an offer to license."
         }
       ],
       "tools_all": 15
@@ -441,7 +435,7 @@
       "name": "doe-projects",
       "profile": null,
       "status": "planned",
-      "description": "ARPA-E awards, the loan portfolio, the Lab Partnering Service. VIPS did not wait for it: the laboratories' patents and software ship in doe-research as tech.find_licensable_ip.",
+      "description": "ARPA-E awards, the loan portfolio, the Lab Partnering Service. The VIPS adapter is retained in doe-research, but its source is blocked pending API-key access review.",
       "tools": [],
       "tools_all": null
     },
@@ -1149,47 +1143,6 @@
         "jlab"
       ],
       "terms_url": "https://www.osti.gov/disclaim"
-    },
-    {
-      "id": "pnnl-vips",
-      "name": "VIPS (DOE patent and software database)",
-      "domain": "projects",
-      "state": "active",
-      "steward": "Pacific Northwest National Laboratory",
-      "funder": null,
-      "host": null,
-      "authority": "official_secondary",
-      "automation_status": "public_api",
-      "tier": "thin_proxy",
-      "adapter": "vips",
-      "fixture": true,
-      "scope": "Patents held and software released by the seventeen national laboratories and four NNSA production sites, for technology-transfer lookup: title, abstract, inventors, assignees, first claim, patent status and dates, software type, licences and repository, plus a subject taxonomy and a list of similar records. 15,179 patents and 7,484 software records at the 2026-09-08 count.",
-      "record_count": 22663,
-      "capabilities": [
-        "tech.licensable_ip"
-      ],
-      "planned_capabilities": [],
-      "blocked_reason": null,
-      "labs": [
-        "ames",
-        "anl",
-        "bnl",
-        "fnal",
-        "inl",
-        "lbnl",
-        "llnl",
-        "lanl",
-        "netl",
-        "nlr",
-        "ornl",
-        "pnnl",
-        "pppl",
-        "snl",
-        "srnl",
-        "slac",
-        "jlab"
-      ],
-      "terms_url": "https://vips.pnnl.gov/"
     },
     {
       "id": "usgs-uspvdb",
@@ -2418,6 +2371,47 @@
       "terms_url": "https://tethys.pnnl.gov/"
     },
     {
+      "id": "pnnl-vips",
+      "name": "VIPS (DOE patent and software database)",
+      "domain": "projects",
+      "state": "proposed",
+      "steward": "Pacific Northwest National Laboratory",
+      "funder": null,
+      "host": null,
+      "authority": "official_secondary",
+      "automation_status": "public_api",
+      "tier": "thin_proxy",
+      "adapter": "vips",
+      "fixture": true,
+      "scope": "Patents held and software released by the seventeen national laboratories and four NNSA production sites, for technology-transfer lookup: title, abstract, inventors, assignees, first claim, patent status and dates, software type, licences and repository, plus a subject taxonomy and a list of similar records. 15,179 patents and 7,484 software records at the 2026-09-08 count.",
+      "record_count": 22663,
+      "capabilities": [],
+      "planned_capabilities": [
+        "tech.licensable_ip"
+      ],
+      "blocked_reason": "Search requires an API key as of 2026-10-20. Credential issuance, publisher policy and cost need review before a supported credential path can be added. Recorded responses are historical, not live access.",
+      "labs": [
+        "ames",
+        "anl",
+        "bnl",
+        "fnal",
+        "inl",
+        "lbnl",
+        "llnl",
+        "lanl",
+        "netl",
+        "nlr",
+        "ornl",
+        "pnnl",
+        "pppl",
+        "snl",
+        "srnl",
+        "slac",
+        "jlab"
+      ],
+      "terms_url": "https://vips.pnnl.gov/"
+    },
+    {
       "id": "pnnl-wind-data-hub",
       "name": "Wind Data Hub (A2e DAP)",
       "domain": "earth",
@@ -2701,11 +2695,11 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         }
       ],
-      "active": 5
+      "active": 4
     },
     {
       "id": "anl",
@@ -2791,11 +2785,11 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         }
       ],
-      "active": 8
+      "active": 7
     },
     {
       "id": "bnl",
@@ -2863,11 +2857,11 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         }
       ],
-      "active": 6
+      "active": 5
     },
     {
       "id": "fnal",
@@ -2917,11 +2911,11 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         }
       ],
-      "active": 5
+      "active": 4
     },
     {
       "id": "inl",
@@ -2983,11 +2977,11 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         }
       ],
-      "active": 5
+      "active": 4
     },
     {
       "id": "jlab",
@@ -3037,11 +3031,11 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         }
       ],
-      "active": 5
+      "active": 4
     },
     {
       "id": "lanl",
@@ -3097,11 +3091,11 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         }
       ],
-      "active": 5
+      "active": 4
     },
     {
       "id": "lbnl",
@@ -3219,7 +3213,7 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         },
         {
@@ -3235,7 +3229,7 @@
           "domain": "energy"
         }
       ],
-      "active": 12
+      "active": 11
     },
     {
       "id": "llnl",
@@ -3291,11 +3285,11 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         }
       ],
-      "active": 6
+      "active": 5
     },
     {
       "id": "netl",
@@ -3345,11 +3339,11 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         }
       ],
-      "active": 5
+      "active": 4
     },
     {
       "id": "nlr",
@@ -3438,11 +3432,11 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         }
       ],
-      "active": 5
+      "active": 4
     },
     {
       "id": "ornl",
@@ -3588,11 +3582,11 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         }
       ],
-      "active": 12
+      "active": 11
     },
     {
       "id": "pnnl",
@@ -3684,7 +3678,7 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         },
         {
@@ -3694,7 +3688,7 @@
           "domain": "earth"
         }
       ],
-      "active": 7
+      "active": 6
     },
     {
       "id": "pppl",
@@ -3738,7 +3732,7 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         },
         {
@@ -3748,7 +3742,7 @@
           "domain": "research"
         }
       ],
-      "active": 5
+      "active": 4
     },
     {
       "id": "slac",
@@ -3794,7 +3788,7 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         },
         {
@@ -3804,7 +3798,7 @@
           "domain": "research"
         }
       ],
-      "active": 5
+      "active": 4
     },
     {
       "id": "snl",
@@ -3866,7 +3860,7 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         },
         {
@@ -3888,7 +3882,7 @@
           "domain": "energy-tech"
         }
       ],
-      "active": 5
+      "active": 4
     },
     {
       "id": "srnl",
@@ -3932,7 +3926,7 @@
         {
           "id": "pnnl-vips",
           "name": "VIPS (DOE patent and software database)",
-          "state": "active",
+          "state": "proposed",
           "domain": "projects"
         },
         {
@@ -3942,7 +3936,7 @@
           "domain": "research"
         }
       ],
-      "active": 5
+      "active": 4
     },
     {
       "id": "affo",

@@ -221,3 +221,13 @@ async def test_search_sources_finds_a_proposed_source_by_planned_capability(ctx)
     assert row["declared_state"] == "proposed"
     assert row["blocked_reason"]
     assert "dataset.search" in row["planned_capabilities"]
+
+
+async def test_vips_key_gate_refuses_before_fetch(ctx, replay):
+    from doe_mcp.core.errors import SourceNotActivated
+    manifest = ctx.sources.get("pnnl-vips")
+    assert manifest.access.mode.value == "api_key"
+    assert "tech.licensable_ip" in manifest.planned_capabilities
+    with pytest.raises(SourceNotActivated, match="API key"):
+        await tech.find_licensable_ip(ctx, lab="PNNL", rows=5)
+    assert not replay.calls

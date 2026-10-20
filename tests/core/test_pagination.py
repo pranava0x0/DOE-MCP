@@ -20,7 +20,7 @@ from doe_mcp.core.assemble import pagination_coverage
 from doe_mcp.core.credentials import Credentials
 from doe_mcp.core.envelope import PaginationCoverage
 from doe_mcp.domains import docs, earth, energy, materials, research, tech
-from tests.conftest import _context, merged_replay
+from tests.conftest import _context, merged_replay, historical_vips
 
 P = PaginationCoverage
 
@@ -126,6 +126,8 @@ async def test_a_missing_total_is_unknown_never_complete(
         adapter, url_part, paths, header, keyed, call, tmp_path):
     replay = _without(merged_replay(), url_part, *paths, header=header)
     ctx = _context(replay, _credentials(tmp_path, keyed))
+    if adapter == "vips":
+        historical_vips(ctx)
     env = await call(ctx)
     assert env.coverage.pagination is P.unknown, (
         f"{adapter}: with the publisher's total stripped from its recorded "
@@ -143,5 +145,7 @@ async def test_the_recorded_total_is_still_read(adapter, url_part, paths,
     """The control: the same call over the untouched recording reports a
     definite state, so the sweep above is stripping something real."""
     ctx = _context(merged_replay(), _credentials(tmp_path, keyed))
+    if adapter == "vips":
+        historical_vips(ctx)
     env = await call(ctx)
     assert env.coverage.pagination is not P.unknown

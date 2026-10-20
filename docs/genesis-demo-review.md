@@ -75,3 +75,17 @@ unknown-date preservation, denominator-vintage visibility and safe links.
 Ruff and registry validation pass. Schema and site regenerated. Tablet,
 phone and desktop browser checks cover the new picker entries and links.
 No new dependency, paid service or upstream code was introduced.
+
+## Follow-up review, 2026-10-20
+
+The latest Claude parent-session notes and PR review threads were checked.
+The catalog-kind count and microbiome follow-up findings were already fixed.
+The deployed guide and reference HTML pages both returned HTTP 200; the
+static local preview does not run the GitHub Pages Markdown renderer.
+
+VIPS search returned HTTP 401, "Valid API key required". Its manifest now
+records API-key access and proposed status with a named blocker; live tool
+calls refuse before fetching. The site no longer advertises VIPS as an
+active source. September adapter recordings remain covered by explicit
+historical replay tests, with no change to the default runtime gate.
+No credentials, paid services or new dependencies were added.

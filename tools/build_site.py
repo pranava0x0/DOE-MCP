@@ -95,8 +95,6 @@ QUESTIONS = [
      "compute.facility_status", "doe-research"),
     ("What has DOE proposed on appliance standards this year?",
      "docs.search_rulemakings", "doe-research"),
-    ("What can I license from Oak Ridge?",
-     "tech.find_licensable_ip", "doe-research"),
 ]
 
 # (name, default profile, status, description), read from the one lineup

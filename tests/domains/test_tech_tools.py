@@ -14,6 +14,12 @@ from doe_mcp.core.envelope import (AccessPath, PaginationCoverage,
                                    WarningCode)
 from doe_mcp.core.errors import InvalidQuery
 from doe_mcp.domains import tech
+from tests.conftest import historical_vips
+
+
+@pytest.fixture
+def ctx(ctx):
+    return historical_vips(ctx)
 
 
 async def test_it_answers_for_each_laboratory_asked(ctx):

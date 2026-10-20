@@ -1,6 +1,6 @@
 """Technology transfer: what a national laboratory has patented or released.
 
-One tool over PNNL's VIPS index, which is the only active source that
+One tool over PNNL's VIPS index, currently blocked pending API-key access review, that
 answers "what has laboratory X produced" for all seventeen laboratories at
 once — every other lab-specific holding in the registry is still inventory.
 It ships in `doe-research` rather than in the `doe-projects` server
@@ -187,6 +187,7 @@ def _resolve_lab(ctx: RuntimeContext, b, index, requested: str,
 TECH_TOOLS.register(ToolSpec(
     name="tech.find_licensable_ip",
     description=(
+        "Currently unavailable: VIPS requires an API key; access support is pending. "
         "Patents held and software released by the US national laboratories, "
         "from PNNL's technology-transfer index — the one place a single "
         "laboratory's own output is searchable. Use for 'what has Idaho "
