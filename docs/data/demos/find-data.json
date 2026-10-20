@@ -1,0 +1,592 @@
+{
+  "format_version": "1",
+  "case": "find-data",
+  "title": "Does DOE publish this?",
+  "question": "Where would I find geothermal data from NREL, and what does an empty catalog mean?",
+  "mode": "recorded",
+  "simulation": false,
+  "registry_revision": "2026-10-20",
+  "generated_at": null,
+  "replay_clock": "2026-10-20T00:00:00Z",
+  "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
+  "fixtures": [
+    {
+      "file": "doe-code-json.json",
+      "sha256": "09a02ccb524f4c2f7757929d119742484fa7e44a720395a4d95eba9caa418047",
+      "captured_at": null
+    },
+    {
+      "file": "doe-open-data-catalog.json",
+      "sha256": "e4153a473c6afd89401ea09a16617ba16736056f6b9bf524c4276d94c40728a6",
+      "captured_at": null
+    },
+    {
+      "file": "ornl-openenergyhub.json",
+      "sha256": "b475b04ed1b8c1a58a08b110c277e087c0b3f9dcf0dbbe8a9ec41bed289cd6aa",
+      "captured_at": null
+    },
+    {
+      "file": "osti-data-explorer.json",
+      "sha256": "71a7e71e7056856c76fcebc8d0234e049c0109bd35e2b1777768e408072ad398",
+      "captured_at": null
+    }
+  ],
+  "limitations": [
+    "NREL is now the National Laboratory of the Rockies; nrel.gov has no DNS, so an old link or acronym can return nothing without an error.",
+    "Two of the four catalogs are harvested files with an old newest entry; zero matches there is not evidence that DOE holds nothing.",
+    "Registry sources marked proposed were named, not queried."
+  ],
+  "steps": [
+    {
+      "tool": "registry.resolve_org",
+      "args": {
+        "query": "NREL"
+      },
+      "envelope": {
+        "data": {
+          "resolved": {
+            "id": "nlr",
+            "name": "National Laboratory of the Rockies",
+            "kind": "national_lab",
+            "parent": "doe",
+            "domains": [
+              "nlr.gov",
+              "developer.nlr.gov",
+              "data.nlr.gov"
+            ],
+            "abbreviations": [
+              "NLR"
+            ],
+            "former_names": [
+              "National Renewable Energy Laboratory",
+              "NREL"
+            ],
+            "former_domains": [
+              "nrel.gov",
+              "developer.nrel.gov",
+              "data.nrel.gov",
+              "maps.nrel.gov",
+              "atb.nrel.gov",
+              "datahub.h2awsm.org"
+            ],
+            "github_orgs": [
+              "NatLabRockies",
+              "NREL"
+            ],
+            "renamed_on": "2025-12-01",
+            "note": "Renamed 2025-12-01. Every *.nrel.gov domain is dead with NO redirects, which makes this the ecosystem's sharpest alias case: a caller with an old URL gets nothing at all, not a redirect, so a tool that cannot resolve the old name gives them no way to find out why. The developer network survived intact at developer.nlr.gov on GSA's api.data.gov infrastructure. The H2 DataHub followed later: datahub.h2awsm.org now redirects to datahub-h2awsm.nlr.gov."
+          },
+          "basis": "former_name",
+          "candidates": [],
+          "source_count": 13,
+          "historical_name": {
+            "queried": "NREL",
+            "resolved_to": "nlr",
+            "renamed_on": "2025-12-01",
+            "note": "'NREL' is a former name or domain. The current organization is National Laboratory of the Rockies, as of 2025-12-01. Tell the user the name they used is historical."
+          }
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "doe-mcp-registry",
+            "steward": "The DOE-MCP project",
+            "system": "DOE-MCP source registry and organization table",
+            "dataset": "DOE-MCP source registry and organization table",
+            "dataset_version": "2026-10-20",
+            "authority_level": "unverified",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "cache_age_seconds": 0
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "nlr",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": null,
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit"
+        },
+        "warnings": [
+          {
+            "code": "alias_match",
+            "message": "Resolved 'NREL' to nlr by former name, not by a current one. A record or document using the old name predates the change; check its date before treating it as current.",
+            "source_id": null
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "registry.resolve_org",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-10-20",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "registry.search_sources",
+      "args": {
+        "text": "geothermal"
+      },
+      "envelope": {
+        "data": {
+          "sources": [
+            {
+              "id": "nlr-geothermal-data-repository",
+              "name": "Geothermal Data Repository (GDR)",
+              "domain": "energy-tech",
+              "steward": "nlr",
+              "authority_level": "official_secondary",
+              "declared_state": "proposed",
+              "operational_state": "unknown",
+              "automation_status": "public_download",
+              "tier": "catalog_pointer",
+              "planned_capabilities": [
+                "dataset.search"
+              ],
+              "record_count": 1451,
+              "blocked_reason": "No API exists. 71% is reachable now through DOE Data Explorer; the remaining 29% needs a sitemap harvest and Gate E review for retaining harvested content."
+            },
+            {
+              "id": "oedi-data-lake",
+              "name": "Open Energy Data Initiative data lake",
+              "domain": "discovery",
+              "steward": "nlr",
+              "authority_level": "official_secondary",
+              "declared_state": "proposed",
+              "operational_state": "unknown",
+              "automation_status": "public_download",
+              "tier": "catalog_pointer",
+              "planned_capabilities": [
+                "discovery.search_catalogs"
+              ],
+              "record_count": 2825,
+              "blocked_reason": "The catalog's machine interface is unidentified \u2014 the documented API path returns a help stub. Next step is a browser-grade look at what the catalog UI itself calls."
+            }
+          ],
+          "record_count": 2,
+          "total_matches": 2,
+          "note": "Active sources can be queried now. Proposed ones are inventory: DOE-MCP knows they exist and each carries a blocked_reason saying what stands in the way. That is a different answer from 'we have never heard of it'."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "doe-mcp-registry",
+            "steward": "The DOE-MCP project",
+            "system": "DOE-MCP source registry and organization table",
+            "dataset": "DOE-MCP source registry and organization table",
+            "dataset_version": "2026-10-20",
+            "authority_level": "unverified",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "cache_age_seconds": 0
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "nlr-geothermal-data-repository",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": null,
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_02",
+            "source_ref": "source_01",
+            "record_id": "oedi-data-lake",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": null,
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit"
+        },
+        "warnings": [],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "registry.search_sources",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-10-20",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "discovery.search_all_catalogs",
+      "args": {
+        "query": "geothermal",
+        "per_catalog": 2
+      },
+      "envelope": {
+        "data": {
+          "results": [
+            {
+              "id": "1148737",
+              "title": "Structural Orientations Adjacent to Some Colorado Geothermal Systems",
+              "doi": "10.15121/1148737",
+              "landing_page": "https://gdr.openei.org/submissions/317",
+              "date": "2012-01-31",
+              "orgs": [
+                "DOE Geothermal Data Repository",
+                "Flint Geothermal, LLC"
+              ],
+              "catalog": "osti-data-explorer",
+              "catalog_vintage": "live"
+            },
+            {
+              "id": "1542650",
+              "title": "Utah FORGE: Well 58-32 Stimulation Data",
+              "doi": "10.15121/1542650",
+              "landing_page": "https://gdr.openei.org/submissions/1149",
+              "date": "2019-04-19",
+              "orgs": [
+                "DOE Geothermal Data Repository",
+                "Geothermal Resource Group"
+              ],
+              "catalog": "osti-data-explorer",
+              "catalog_vintage": "live"
+            },
+            {
+              "id": "glass-buttes-exploration-and-drilling-2010-geothermal-technologies-program-peer-",
+              "title": "Glass Buttes Exploration and Drilling: 2010 Geothermal Technologies Program Peer Review Presentation",
+              "landing_page": "https://openenergyhub.ornl.gov/explore/dataset/glass-buttes-exploration-and-drilling-2010-geothermal-technologies-program-peer-/",
+              "date": "2020-08-14",
+              "themes": [
+                "Energy",
+                "Mining"
+              ],
+              "catalog": "ornl-openenergyhub",
+              "catalog_vintage": "live"
+            },
+            {
+              "id": "investigation-of-stimulation-response-relationships-for-complex-fracture-systems",
+              "title": "Investigation of Stimulation-Response Relationships for Complex Fracture Systems in Enhanced Geothermal Reservoirs",
+              "landing_page": "https://openenergyhub.ornl.gov/explore/dataset/investigation-of-stimulation-response-relationships-for-complex-fracture-systems/",
+              "date": "2017-05-23",
+              "themes": [
+                "Geothermal Energy"
+              ],
+              "catalog": "ornl-openenergyhub",
+              "catalog_vintage": "live"
+            }
+          ],
+          "record_count": 4,
+          "per_catalog": [
+            {
+              "catalog": "osti-data-explorer",
+              "system": "DOE Data Explorer",
+              "vintage": "live",
+              "total_matches": 1062,
+              "returned": 2
+            },
+            {
+              "catalog": "ornl-openenergyhub",
+              "system": "Open Energy Data Hub (ORNL)",
+              "vintage": "live",
+              "total_matches": 17,
+              "returned": 2
+            },
+            {
+              "catalog": "doe-open-data-catalog",
+              "system": "DOE Open Data Catalog (data.json)",
+              "vintage": "2022-09-26",
+              "total_matches": 0,
+              "returned": 0
+            },
+            {
+              "catalog": "doe-code-json",
+              "system": "DOE Software Inventory (code.json)",
+              "vintage": "2024-09-12",
+              "total_matches": 0,
+              "returned": 0
+            }
+          ],
+          "note": "Four DOE catalogs overlap and disagree; none is a superset. Each result names its catalog and that catalog's vintage so you can weigh them. Catalog-supplied links are returned unverified \u2014 a dead link in a catalog is common and is not evidence the dataset is gone."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "osti-data-explorer",
+            "steward": "Office of Scientific and Technical Information",
+            "system": "DOE Data Explorer",
+            "dataset": "DOE Data Explorer",
+            "dataset_version": "current",
+            "authority_level": "official_secondary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "cache_age_seconds": 0
+          },
+          {
+            "id": "source_02",
+            "source_id": "ornl-openenergyhub",
+            "steward": "Oak Ridge National Laboratory",
+            "system": "Open Energy Data Hub (ORNL)",
+            "dataset": "Open Energy Data Hub (ORNL)",
+            "dataset_version": "current",
+            "authority_level": "official_secondary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "cache_age_seconds": 0
+          },
+          {
+            "id": "source_03",
+            "source_id": "doe-open-data-catalog",
+            "steward": "Office of the Chief Information Officer",
+            "system": "DOE Open Data Catalog (data.json)",
+            "dataset": "DOE Open Data Catalog (data.json)",
+            "dataset_version": "current",
+            "authority_level": "official_derived",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "cache_age_seconds": 0
+          },
+          {
+            "id": "source_04",
+            "source_id": "doe-code-json",
+            "steward": "Office of the Chief Information Officer",
+            "system": "DOE Software Inventory (code.json)",
+            "dataset": "DOE Software Inventory (code.json)",
+            "dataset_version": "code-05-01-2025",
+            "authority_level": "official_derived",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "cache_age_seconds": 0
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "1148737",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "normalize"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_02",
+            "source_ref": "source_01",
+            "record_id": "1542650",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "normalize"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_03",
+            "source_ref": "source_02",
+            "record_id": "glass-buttes-exploration-and-drilling-2010-geothermal-technologies-program-peer-",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "normalize"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_04",
+            "source_ref": "source_02",
+            "record_id": "investigation-of-stimulation-response-relationships-for-complex-fracture-systems",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "normalize"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "truncated",
+          "source_claim": "partial",
+          "result": "hit",
+          "sources_searched": [
+            "osti-data-explorer",
+            "ornl-openenergyhub",
+            "doe-open-data-catalog",
+            "doe-code-json"
+          ]
+        },
+        "warnings": [
+          {
+            "code": "terms_note",
+            "message": "No published rate limit, same as the rest of the OSTI family.",
+            "source_id": "osti-data-explorer"
+          },
+          {
+            "code": "terms_note",
+            "message": "The portal states no site-wide licence, so per-dataset licence metadata is the only rights signal available and it is not populated on every dataset.",
+            "source_id": "ornl-openenergyhub"
+          },
+          {
+            "code": "catalog_vintage",
+            "message": "DOE Open Data Catalog (data.json) answered from a harvested catalog whose newest entry is dated 2022-09-26. Entries in it may name program offices that have since been renamed or dismantled, and its links may be dead.",
+            "source_id": "doe-open-data-catalog"
+          },
+          {
+            "code": "catalog_vintage",
+            "message": "DOE Software Inventory (code.json) answered from a harvested catalog whose newest entry is dated 2024-09-12. Entries in it may name program offices that have since been renamed or dismantled, and its links may be dead.",
+            "source_id": "doe-code-json"
+          }
+        ],
+        "access_recipes": [
+          {
+            "kind": "landing_page",
+            "uri": "https://gdr.openei.org/submissions/317",
+            "label": "Structural Orientations Adjacent to Some Colorado Geothermal Systems",
+            "instructions": "Catalog-supplied URL, never fetched by this server and not checked for liveness.",
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "landing_page",
+            "uri": "https://gdr.openei.org/submissions/1149",
+            "label": "Utah FORGE: Well 58-32 Stimulation Data",
+            "instructions": "Catalog-supplied URL, never fetched by this server and not checked for liveness.",
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "landing_page",
+            "uri": "https://openenergyhub.ornl.gov/explore/dataset/glass-buttes-exploration-and-drilling-2010-geothermal-technologies-program-peer-/",
+            "label": "Glass Buttes Exploration and Drilling: 2010 Geothermal Technologies Program\u2026",
+            "instructions": "Catalog-supplied URL, never fetched by this server and not checked for liveness.",
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "landing_page",
+            "uri": "https://openenergyhub.ornl.gov/explore/dataset/investigation-of-stimulation-response-relationships-for-complex-fracture-systems/",
+            "label": "Investigation of Stimulation-Response Relationships for Complex Fracture\u2026",
+            "instructions": "Catalog-supplied URL, never fetched by this server and not checked for liveness.",
+            "requires_account": false,
+            "approximate_size": null
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "discovery.search_all_catalogs",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-10-20",
+          "request_id": "recorded-workflow"
+        }
+      }
+    }
+  ]
+}

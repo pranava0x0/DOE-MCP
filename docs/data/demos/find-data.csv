@@ -1,0 +1,8 @@
+step,tool,source,record_id,locator,effective_at,mode
+1,registry.resolve_org,doe-mcp-registry,nlr,,,recorded
+2,registry.search_sources,doe-mcp-registry,nlr-geothermal-data-repository,,,recorded
+2,registry.search_sources,doe-mcp-registry,oedi-data-lake,,,recorded
+3,discovery.search_all_catalogs,osti-data-explorer,1148737,,,recorded
+3,discovery.search_all_catalogs,osti-data-explorer,1542650,,,recorded
+3,discovery.search_all_catalogs,ornl-openenergyhub,glass-buttes-exploration-and-drilling-2010-geothermal-technologies-program-peer-,,,recorded
+3,discovery.search_all_catalogs,ornl-openenergyhub,investigation-of-stimulation-response-relationships-for-complex-fracture-systems,,,recorded

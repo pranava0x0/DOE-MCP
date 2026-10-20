@@ -198,3 +198,80 @@ async def test_outage_demo_separates_release_and_denominator(ctx):
     assert 'no outage rate is calculated' in page
     data['customer_counts'][0]['doi_url'] = 'javascript:alert(1)'
     assert 'href="javascript:' not in render([report])
+
+
+def test_recipe_labels_break_at_words_and_drop_inline_markup():
+    """Labels were cut at a fixed 80 characters, which split words and
+    left `SiO<sub>2<` on the page."""
+    from doe_mcp.core.assemble import short_label
+    title = ("Reducing non-radiative recombination in perovskite solar cells "
+             "with a SiO<sub>2</sub>-graphene oxide buried interface layer")
+    label = short_label(title)
+    assert len(label) <= 80 and label.endswith("…")
+    assert "<" not in label and not label[:-1].endswith(" ")
+    assert title.startswith(label[:-1])
+    assert short_label("SiO<sub>2</sub> film") == "SiO2 film"
+    assert short_label("") is None
+
+
+async def test_rendered_walkthroughs_show_no_raw_markup_or_dangling_dash(ctx):
+    import re
+    page = render([await run_workflow(ctx, 'evidence')])
+    # The raw response dump keeps the publisher's bytes; the prose does not.
+    prose = re.sub(r'<pre\b.*?</pre>', '', page, flags=re.S)
+    assert '&lt;sub&gt;' not in prose
+    assert '</a> — </li>' not in page
+
+
+async def test_find_data_names_the_rename_and_the_old_harvests(ctx):
+    """The walk exists for the two kinds of nothing: a dead acronym and a
+    catalog harvested years ago. Both have to be visible in the result."""
+    report = await run_workflow(ctx, 'find-data')
+    org, sources, catalogs = (s['envelope'] for s in report['steps'])
+    assert org['data']['resolved']['id'] == 'nlr'
+    assert any(w['code'] == 'alias_match' for w in org['warnings'])
+    vintages = {c['vintage'] for c in catalogs['data']['per_catalog']}
+    assert 'live' in vintages and any(v != 'live' for v in vintages)
+    assert any(w['code'] == 'catalog_vintage' for w in catalogs['warnings'])
+    text = outcome(report)
+    assert 'National Laboratory of the Rockies' in text and 'older harvests' in text
+    page = render([report])
+    assert 'A dated vintage is a harvested file' in page
+
+
+async def test_facility_status_keeps_the_zone_and_the_other_facilities_unknown(ctx):
+    report = await run_workflow(ctx, 'facility-status')
+    data = report['steps'][0]['envelope']['data']
+    text = outcome(report)
+    assert f"of {data['record_count']} NERSC systems" in text
+    assert 'zone not stated' in text or 'No planned outage' in text
+    assert any('ALCF and OLCF' in limit for limit in report['limitations'])
+    page = render([report])
+    assert 'Last changed (zone not stated)' in page
+    assert data['other_facilities_note'] in page
+
+
+async def test_every_walkthrough_says_how_much_it_read_and_that_it_is_a_recording(ctx):
+    """The sample size and the replay caveat sat in closed disclosures; a
+    reader saw "2 metadata drafts" with no sign 1,035 records matched."""
+    import re
+    report = await run_workflow(ctx, 'dataset-card')
+    page = render([report])
+    scope = re.search(r'<p class="scope">(.*?)</p>', page).group(1)
+    total = report['steps'][0]['envelope']['data']['total_matches']
+    assert f"of {total:,} matches" in scope and 'recorded replay' in scope
+
+
+async def test_rulemaking_evidence_carries_the_publisher_link(ctx):
+    """The Federal Register supplies html_url; the evidence carried none and
+    every card said no locator was supplied."""
+    report = await run_workflow(ctx, 'rulemaking')
+    detail = report['steps'][-1]['envelope']
+    assert detail['evidence'][0]['locator'] == detail['data']['html_url']
+    assert detail['data']['html_url'].startswith('https://www.federalregister.gov/')
+
+
+async def test_outage_evidence_cards_name_each_release_and_its_role(ctx):
+    page = render([await run_workflow(ctx, 'outage-history')])
+    assert '(release covering 2021)' in page
+    assert "(another year's release)" in page or '(another year&#x27;s release)' in page

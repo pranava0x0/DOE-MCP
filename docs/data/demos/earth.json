@@ -228,7 +228,7 @@
           {
             "kind": "landing_page",
             "uri": "https://data.ess-dive.lbl.gov/view/doi:10.3334/CDIAC/SPRUCE.042",
-            "label": "SPRUCE Geochemical Changes in Porewater from Northern Peatlands at Multiple Depths in Field Samples and over Time in Peat Incubations",
+            "label": "SPRUCE Geochemical Changes in Porewater from Northern Peatlands at Multiple\u2026",
             "instructions": null,
             "requires_account": false,
             "approximate_size": null
@@ -236,7 +236,7 @@
           {
             "kind": "landing_page",
             "uri": "https://data.ess-dive.lbl.gov/view/doi:10.15485/3023308",
-            "label": "Permafrost Thaw, Uneven Subsidence and Projected Drying of Ice-wedge Polygon Tundra: Modeling Archive",
+            "label": "Permafrost Thaw, Uneven Subsidence and Projected Drying of Ice-wedge Polygon\u2026",
             "instructions": null,
             "requires_account": false,
             "approximate_size": null
@@ -244,7 +244,7 @@
           {
             "kind": "landing_page",
             "uri": "https://data.ess-dive.lbl.gov/view/doi:10.5440/1832016",
-            "label": "National Center for Airborne Laser Mapping (NCALM) LiDAR, Imagery, and DEM data from five NGEE Arctic Sites, Seward Peninsula, Alaska, August 2021",
+            "label": "National Center for Airborne Laser Mapping (NCALM) LiDAR, Imagery, and DEM\u2026",
             "instructions": null,
             "requires_account": false,
             "approximate_size": null
@@ -252,7 +252,7 @@
           {
             "kind": "landing_page",
             "uri": "https://data.ess-dive.lbl.gov/view/doi:10.5440/1778212",
-            "label": "Landscape-scale Characterization of Arctic Tundra Vegetation Composition, Structure, and Function with a Multi-sensor Unoccupied Aerial System: Supporting Data.",
+            "label": "Landscape-scale Characterization of Arctic Tundra Vegetation Composition\u2026",
             "instructions": null,
             "requires_account": false,
             "approximate_size": null

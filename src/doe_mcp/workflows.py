@@ -19,6 +19,8 @@ CASES = {
     "microbiome": ("Microbiome study and sample finder", "Find a shale microbiome study and inspect a sample of its biosamples."),
     "rulemaking": ("DOE rulemaking brief", "What did DOE publish, which docket does it belong to, and what dates did the publisher supply?"),
     "outage-history": ("Historical outage-data finder", "Which EAGLE-I release covers 2021, and what else is needed to calculate an outage rate?"),
+    "find-data": ("Does DOE publish this?", "Where would I find geothermal data from NREL, and what does an empty catalog mean?"),
+    "facility-status": ("NERSC facility status", "Is Perlmutter up on the recorded board, and is maintenance scheduled?"),
     "partial": ("One collection unavailable", "What can the remaining literature collection answer?"),
     "blocked": ("A capability not yet served", "Can DOE-MCP return the solar resource at a candidate site?"),
     "grid": ("BPA grid briefing", "What do the recorded five-minute load readings show?"),
@@ -139,6 +141,24 @@ async def run_workflow(ctx: RuntimeContext, case: str, *, mode: str = "recorded"
         limits += ["Release metadata only. No county outage files were downloaded and no outage counts or rates were calculated.",
                    "Customers without power are not people without power; coverage is incomplete.",
                    "The customer-count dataset has its own vintage. Pairing it with another year's outages can produce a misleading rate."]
+    elif case == "find-data":
+        org = await call("registry.resolve_org", query="NREL")
+        if not org.data.get("resolved"):
+            raise SourceUnavailable("the organization did not resolve")
+        await call("registry.search_sources", text="geothermal")
+        found = await call("discovery.search_all_catalogs", query="geothermal", per_catalog=2)
+        if not found.data["results"]:
+            raise SourceUnavailable("no catalog returned a geothermal record")
+        limits += ["NREL is now the National Laboratory of the Rockies; nrel.gov has no DNS, so an old link or acronym can return nothing without an error.",
+                   "Two of the four catalogs are harvested files with an old newest entry; zero matches there is not evidence that DOE holds nothing.",
+                   "Registry sources marked proposed were named, not queried."]
+    elif case == "facility-status":
+        board = await call("compute.facility_status")
+        if not board.data["systems"]:
+            raise SourceUnavailable("the status board returned no systems")
+        limits += ["One facility. ALCF and OLCF are registered and not read here; their absence says nothing about whether they are up.",
+                   "Status is not queue position, allocation or permission to run a job.",
+                   "The board's timestamps carry no time zone, and updated_at is the last change, not the last check. This is a recorded board, not current status."]
     elif case == "blocked":
         await call("registry.search_sources", capability="solar.get_resource")
         limits += ["Registry inventory only. Proposed sources were not queried.",

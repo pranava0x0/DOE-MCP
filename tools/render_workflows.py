@@ -6,6 +6,8 @@ import json
 import math
 from urllib.parse import urlsplit
 
+from doe_mcp.core.assemble import strip_inline_markup
+
 
 def esc(value) -> str:
     return html.escape(str(value), quote=True)
@@ -19,6 +21,15 @@ def link(url, label) -> str:
     if parsed.scheme not in {"https", "http"} or not parsed.netloc or parsed.username:
         return esc(label)
     return f'<a href="{esc(url)}" rel="noreferrer">{esc(label)}</a>'
+
+
+def board_time(value):
+    """NERSC's `2026-10-21T06:00:00` as `2026-10-21 06:00`: the same
+    publisher value, readable in a narrow column, still with no zone."""
+    if not value:
+        return None
+    text = str(value).replace("T", " ")
+    return text[:-3] if text.endswith(":00") and text.count(":") == 2 else text
 
 
 def table(headers, rows, caption="") -> str:
@@ -92,7 +103,7 @@ def outcome(report) -> str:
     data = report['steps'][0]['envelope']['data']
     if case in {'evidence', 'partial'}:
         record = report['steps'][1]['envelope']['data']['record']
-        return f"{data['record_count']} distinct records returned. Followed record {record['id']}: {record['title']}."
+        return f"{data['record_count']} distinct records returned. Followed record {record['id']}: {strip_inline_markup(record['title'])}."
     if case == 'dataset-card':
         return f"{len(report['drafts'])} metadata drafts from DOE Data Explorer. File checksums, reuse permissions and governance still need review."
     if case == 'microbiome':
@@ -118,11 +129,44 @@ def outcome(report) -> str:
     if case == 'site':
         solar = report['steps'][1]['envelope']['data']
         return f"Sample: {data['record_count']} wind records of {data['total_matches']} matches; {solar['record_count']} solar records of {solar['total_matches']} matches. Site suitability remains unassessed."
+    if case == 'find-data':
+        org = data['resolved']
+        catalogs = report['steps'][2]['envelope']['data']['per_catalog']
+        hits = sum(1 for c in catalogs if c['returned'])
+        return (f"NREL resolves to {org['name']}, renamed {org.get('renamed_on') or 'on an unstated date'}. "
+                f"{hits} of {len(catalogs)} DOE catalogs returned geothermal records; the empty ones are older harvests.")
+    if case == 'facility-status':
+        active = sum(1 for s in data['systems'] if s['status'] == 'active')
+        outages = data.get('planned_outages') or []
+        nxt = (f" Next planned outage: {outages[0]['description']}, starting {outages[0]['start_at']} (zone not stated)."
+               if outages else " No planned outage on the board.")
+        return f"{active} of {data['record_count']} NERSC systems active on the recorded board.{nxt}"
     if case == 'blocked':
         return "The registry names a proposed source for solar resource data. No solar-resource measurement was retrieved."
     if case == 'earth':
         return "Permafrost dataset results and five days of modelled Oak Ridge weather are shown separately. No study-site match is established."
     return f"{data['record_count']} computed structures returned, with one full structure lookup and a separate H/C/O basis-set example."
+
+
+def scope_line(report) -> str:
+    """Always visible: how much of the result set was read, and that this
+    is a recording. Both used to sit in closed disclosures, so a reader saw
+    "2 metadata drafts" with no sign that 1,035 records matched."""
+    parts = []
+    for step in report['steps']:
+        data = step['envelope']['data']
+        if 'per_source' in data:
+            parts += [f"{r['returned']} of {r['total_matches']:,} from {r['system']}" if isinstance(r.get('total_matches'), int)
+                      else f"{r['returned']} from {r['system']}, total unknown" for r in data['per_source']]
+        elif isinstance(data.get('total_matches'), int) and 'record_count' in data:
+            total = data['total_matches']
+            parts.append(f"{data['record_count']} of {total:,} match{'es' if total != 1 else ''}")
+        if parts:
+            break
+    read = ("Read " + "; ".join(parts) + ". ") if parts else ""
+    if report['mode'] == 'recorded':
+        return f"{read}A recorded replay at registry revision {report['registry_revision']}, not current data."
+    return f"{read}A live run; publishers can change between runs."
 
 
 def step_view(step, number) -> str:
@@ -137,13 +181,20 @@ def step_view(step, number) -> str:
         records=data['documents']
     elif step['tool']=='docs.get_rulemaking':
         records=[data]
+    if step['tool']=='grid.find_outage_history':
+        roles={}
+        for key,role in [('releases_for_year',f"release covering {data.get('requested_year')}"),('documentation','documentation'),('customer_counts','customer-count denominator'),('releases','another year\'s release')]:
+            for r in data.get(key,[]):
+                for oid in r.get('osti_ids',[]):
+                    roles.setdefault(str(oid),{'id':str(oid),'title':f"{r['title']} ({role})"})
+        records=list(roles.values())
     cards=[]
     for ev in env['evidence']:
         record=next((r for r in records if str(r.get('id',r.get('case_id',r.get('study_id',r.get('sample_id',r.get('document_number','')))))) == ev['record_id']),{})
         title=record.get('title',record.get('name',record.get('chemical_formula_reduced',ev['record_id'])))
         source=sources[ev['source_ref']]
         locator=link(ev['locator'],'Publisher record') if ev.get('locator') else 'No publisher locator supplied'
-        cards.append(f'<li><strong>{esc(title)}</strong><br>{esc(source["system"])} · record {esc(ev["record_id"])}<br>{locator}<br>Record date: {esc(ev.get("effective_at") or record.get("publication_date") or "Unknown")}</li>')
+        cards.append(f'<li><strong>{esc(strip_inline_markup(str(title)))}</strong><br>{esc(source["system"])} · record {esc(ev["record_id"])}<br>{locator}<br>Record date: {esc(ev.get("effective_at") or record.get("publication_date") or "Unknown")}</li>')
     gaps=''.join(f'<li>{esc(g["source_id"])}: {esc(g["reason"])}</li>' for g in coverage.get('sources_unavailable',[]))
     warns=''.join(f'<li>{esc(w["message"])}</li>' for w in env['warnings'])
     totals = ''
@@ -157,7 +208,7 @@ def step_view(step, number) -> str:
     handoff=''
     if step['tool']=='registry.list_neighbors':
         handoff='<ul>'+''.join(f'<li>{link(r.get("repository"),r.get("name",r["id"]))}</li>' for r in data.get('neighbors',[]) if r['id']=='nepa-mcp')+'</ul>'
-    recipes = ''.join(f'<li>{link(r.get("uri"),r.get("label") or "Publisher access recipe")} — {esc(r.get("instructions") or "")}</li>' for r in env.get('access_recipes',[]))
+    recipes = ''.join(f'<li>{link(r.get("uri"),r.get("label") or "Publisher access recipe")}{" — "+esc(r["instructions"]) if r.get("instructions") else ""}</li>' for r in env.get('access_recipes',[]))
     extra=''
     if step['tool'] in {'docs.search_rulemakings','docs.get_rulemaking'}:
         extra=table(['Document','Action','Published','Effective','Comments close','Dockets'],[(r['document_number'],r.get('action'),r.get('publication_date'),r.get('effective_on'),r.get('comments_close_on'),', '.join(r.get('docket_ids',[]))) for r in records], 'Publisher metadata; dates do not establish current legal effect')
@@ -166,6 +217,16 @@ def step_view(step, number) -> str:
         for key,label in [('releases_for_year','Releases covering the requested year'),('documentation','How to interpret the data'),('customer_counts','Customer denominator — check its vintage')]:
             extra += '<h4>'+esc(label)+'</h4><ul>'+''.join('<li>'+link(r.get('doi_url'),r['title'])+'<br>Published: '+esc(r.get('published') or 'Unknown')+'</li>' for r in data.get(key,[]))+'</ul>'
         extra += '<p>'+esc(data.get('note',''))+'</p>'
+    if step['tool']=='registry.resolve_org' and data.get('resolved'):
+        org=data['resolved']
+        extra=table(['Asked for','Resolved to','Renamed','Former names'],[(step['args'].get('query'),org.get('name'),org.get('renamed_on') or 'Not renamed',', '.join(org.get('former_names',[])))])
+    if step['tool']=='discovery.search_all_catalogs':
+        extra=table(['Catalog','Vintage','Matches','Returned'],[(c['system'],c['vintage'],c.get('total_matches'),c['returned']) for c in data['per_catalog']],'A dated vintage is a harvested file; live means the catalog was queried')
+        extra+=table(['Catalog','Title','Date'],[(r['catalog'],strip_inline_markup(r['title']),r.get('date') or 'Unknown') for r in data['results']])
+    if step['tool']=='compute.facility_status':
+        extra=table(['System','Type','Status','Last changed (zone not stated)'],[(s.get('full_name') or s['name'],s.get('type'),s['status'],board_time(s.get('updated_at'))) for s in data['systems']],'NERSC public status board, recorded')
+        extra+=table(['System','Planned outage','Starts','Ends'],[(o['system'],o.get('description'),board_time(o.get('start_at')),board_time(o.get('end_at'))) for o in data.get('planned_outages') or []],'Planned outages as NERSC wrote them; times in an unstated zone')
+        extra+='<p>'+esc(data.get('other_facilities_note',''))+'</p>'
     if step['tool']=='bio.search_biosamples':
         extra=table(['Sample','Place','Collected','Environment'],[(r['sample_id'],r.get('place'),r.get('collected'),', '.join(r.get('ecosystem',[]))) for r in data['biosamples']], 'Sample metadata; no sequence data retrieved')
     if step['tool']=='grid.get_bpa_operations':
@@ -187,7 +248,7 @@ def step_view(step, number) -> str:
 STYLE='''
 :root{color-scheme:light;font-family:system-ui,sans-serif;color:#1c302b;background:#f5f5ef}
 *{box-sizing:border-box}body{margin:0}main,header,footer{max-width:1120px;margin:auto;padding:24px}
-a{color:#145b4e;text-underline-offset:3px}h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.08}h1{margin:12px 0}h2{font-size:1.8rem}.answer{font-size:1.1rem;font-weight:600;border-bottom:1px solid #c5cec6;padding-bottom:16px}p,li{line-height:1.6}h1,h2,h3,p,li,td{overflow-wrap:anywhere}.draft{border-top:2px solid #176559;margin-top:24px}.downloads a{padding:10px 0}
+a{color:#145b4e;text-underline-offset:3px}h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.08}h1{margin:12px 0}h2{font-size:1.8rem}.answer{font-size:1.1rem;font-weight:600;border-bottom:1px solid #c5cec6;padding-bottom:16px}p,li{line-height:1.6}h1,h2,h3,p,li,td{overflow-wrap:break-word}.draft{border-top:2px solid #176559;margin-top:24px}.downloads a{padding:10px 0}.scope{color:#46564f;font-size:.95rem;margin-top:-4px}
 header{border-bottom:2px solid #bbc6bd}
 select,button{font:inherit;padding:12px;background:white;border:1px solid #687e72;border-radius:4px;max-width:100%}
 label{display:block;font-weight:650;margin:10px 0}article{background:white;border:1px solid #c5cec6;border-radius:12px;padding:clamp(16px,4vw,36px);margin:20px 0}
@@ -217,6 +278,7 @@ def render(reports: list[dict]) -> str:
         captures=table(['Fixture','Capture time (UTC)','SHA-256'],[(f['file'],f.get('captured_at') or 'Unknown; old recording',f['sha256']) for f in r['fixtures']])
         articles.append(f'<article id="{esc(r["case"])}">'
                         f'<h2>{esc(r["title"])}</h2><p class="answer">{esc(outcome(r))}</p>'
+                        f'<p class="scope">{esc(scope_line(r))}</p>'
                         +('<p class="notice">Simulated source outage. The publisher status was changed only in this isolated replay.</p>' if r['simulation'] else '')
                         +'<details><summary>Limits of this example</summary><ul>'+''.join(f'<li>{esc(x)}</li>' for x in r['limitations'])+'</ul></details>'
                         +f'<p class="downloads"><a download href="data/demos/{esc(r["case"])}.json">Download JSON evidence</a><a download href="data/demos/{esc(r["case"])}.csv">Download CSV evidence index</a></p>'

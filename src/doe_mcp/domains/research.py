@@ -121,7 +121,7 @@ def _add_records(b, ctx: RuntimeContext, manifest: SourceManifest,
         rows.append(_record_summary(record, detailed=detailed))
         if record.doi_url:
             b.add_recipe(RecipeKind.doi, record.doi_url,
-                         label=record.title[:80] or None)
+                         label=record.title or None)
         if record.fulltext_url:
             b.add_recipe(RecipeKind.fulltext_pdf, record.fulltext_url,
                          label="Full text (OSTI)")
@@ -462,7 +462,7 @@ async def get_record(ctx: RuntimeContext, record_id: str,
                    retrieved_at=now, effective_at=record.entry_date,
                    locator=record.biblio_url, transformations=["normalize"])
     if record.doi_url:
-        b.add_recipe(RecipeKind.doi, record.doi_url, label=record.title[:80])
+        b.add_recipe(RecipeKind.doi, record.doi_url, label=record.title)
     if record.fulltext_url:
         b.add_recipe(RecipeKind.fulltext_pdf, record.fulltext_url,
                      label="Full text (OSTI)")

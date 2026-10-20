@@ -119,7 +119,7 @@ async def search_all_catalogs(ctx: RuntimeContext, query: str,
                            retrieved_at=retrieved, transformations=["normalize"])
             if row.get("landing_page"):
                 b.add_recipe(RecipeKind.landing_page, row["landing_page"],
-                             label=(row.get("title") or "")[:80] or None,
+                             label=row.get("title") or None,
                              instructions="Catalog-supplied URL, never "
                                           "fetched by this server and not "
                                           "checked for liveness.")

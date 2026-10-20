@@ -96,6 +96,8 @@ evaluation:
     locator as evidence.
   mutation: none
 workflows:
+- task: 1
+  case: find-data
 - task: 4
   case: evidence
 - task: 2
