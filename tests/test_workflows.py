@@ -133,3 +133,25 @@ async def test_new_workflows_refuse_empty_search_without_followup(ctx, monkeypat
     with pytest.raises(SourceUnavailable, match='no '):
         await run_workflow(ctx, case)
     assert calls == [tool]
+
+
+async def test_microbiome_refuses_when_no_study_lists_samples(ctx, monkeypatch):
+    """A parent study can carry no samples of its own. An empty follow-up
+    for every returned study is not a biosample walkthrough, so the demo
+    refuses rather than reporting success with nothing to inspect."""
+    from types import SimpleNamespace
+    from doe_mcp import workflows
+    original = workflows.tool_spec
+    tried = []
+
+    async def no_samples(context, **args):
+        tried.append(args['study_id'])
+        env = await original('bio.search_biosamples').fn(context, **args)
+        env.data['biosamples'] = []
+        return env
+
+    monkeypatch.setattr(workflows, 'tool_spec', lambda name: SimpleNamespace(fn=no_samples)
+                        if name == 'bio.search_biosamples' else original(name))
+    with pytest.raises(SourceUnavailable, match='listed biosamples'):
+        await run_workflow(ctx, 'microbiome')
+    assert tried and len(tried) == len(set(tried))

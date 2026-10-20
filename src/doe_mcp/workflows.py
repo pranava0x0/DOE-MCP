@@ -108,7 +108,14 @@ async def run_workflow(ctx: RuntimeContext, case: str, *, mode: str = "recorded"
         studies = found.data["studies"]
         if not studies:
             raise SourceUnavailable("no shale study returned to follow")
-        await call("bio.search_biosamples", study_id=studies[0]["study_id"], rows=5)
+        # A parent study can list no samples of its own; an empty follow-up is
+        # not a biosample walkthrough, so try the next returned study.
+        for study in studies[:3]:
+            samples = await call("bio.search_biosamples", study_id=study["study_id"], rows=5)
+            if samples.data.get("biosamples"):
+                break
+        else:
+            raise SourceUnavailable("no returned shale study listed biosamples to follow")
         limits += ["Study and sample metadata only; no sequences, assemblies or annotations were downloaded.",
                    "At most five samples are shown; they do not establish study completeness or biological function.",
                    "The publisher's access recipes distinguish dataset DOIs from award DOIs; a DOI alone does not establish free access."]
