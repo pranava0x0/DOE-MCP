@@ -34,6 +34,9 @@ RENDERED = AUTHORED + ["docs/index.html", "docs/demos.html"]
 # (phrase, surfaces, why it is out). Matched case-insensitively as a
 # substring, so keep each one specific enough not to catch a legitimate use.
 BANNED = [
+    ("public data. visible evidence.", RENDERED,
+     "User rejected paired slogan fragments; use a descriptive title."),
+    ('class="kicker"', RENDERED, "User requested no eyebrow labels."),
     ("what it answers", RENDERED,
      "a brochure heading with a vague subject. Every other heading here is "
      "a concrete noun; this one asked the reader to guess what 'it' is."),

@@ -749,9 +749,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
 
 <div class="util" id="top"><div class="util-inner">
   <p style="margin:0">
-    <span class="long"><b>Not affiliated with the US Department of
-    Energy.</b> An independent project. No answer it returns is an official
-    government statement.</span>
+    <span class="long">Independent project; not affiliated with the US Department of Energy.</span>
     <span class="short">⚠ Not affiliated with the US DOE</span></p>
   <a href="https://github.com/pranava0x0/DOE-MCP">View source ↗</a>
 </div></div>
@@ -763,10 +761,8 @@ family=Roboto+Mono:wght@400;500&display=swap">
 
 <header><div class="wrap">
   <h1>MCP servers over public DOE data</h1>
-  <p class="tagline">Public Department of Energy and national-laboratory
-  data, reachable by an agent. Every answer names the systems it came from,
-  when they were read, and what it did not cover.</p>
-  <p><a href="demos.html">Explore recorded evidence walkthroughs</a> · <a href="guide.html">Local workflow guide</a></p>
+  <p class="tagline">Search research, energy and environmental data from your AI client.</p>
+  <p><a href="demos.html">Browse demos</a> · <a href="guide.html">Local workflow guide</a></p>
   {_inventory(c)}
   <p class="works">Works with: {works}</p>
 </div></header>
@@ -777,11 +773,9 @@ family=Roboto+Mono:wght@400;500&display=swap">
 <details class="sect" open>
   <summary><h2><span class="num">01</span>Overview</h2></summary>
   <div class="sect-body">
-  <h3 id="overview-about">What this is</h3>
-  <p class="lede">The <b>Model Context Protocol (MCP)</b> is how an AI client such as Claude Code, Claude Desktop, Cursor or VS Code calls tools that run outside it.</p>
-  <p class="lede">DOE and its 17 national laboratories publish literature, grid readings, climate-model indexes, microbiome samples and materials data, each through its own portal or API. <b>DOE-MCP</b> is a set of read-only MCP servers over the public ones. Every answer names the publisher it came from, when it was read, and what the search did not cover.</p>
-  <h3 id="overview-demos">Try it without an account</h3>
-  <p class="lede">Open a recorded result, inspect its sources, then run the same workflow locally. These demos make no model calls and need no API key or paid service. Optional live reads query public publisher APIs; a separately chosen AI client may have its own charges.</p>
+  <p id="overview-about">DOE-MCP connects AI clients to public DOE and national-laboratory data through read-only tools. Results include sources, retrieval dates and coverage limits.</p>
+  <h3 id="overview-demos">Demos</h3>
+  <p>Use recorded data without an account, API key or paid model.</p>
   <div class="demo-grid">
     <a class="demo-link" href="demos.html#dataset-card"><strong>Start a geothermal dataset card</strong><span>Two DOE Data Explorer records, their evidence, and the fields a dataset owner still needs to supply.</span><small>Skill: find-doe-data · Recorded metadata</small></a>
     <a class="demo-link" href="demos.html#microbiome"><strong>Find a microbiome study</strong><span>Follow an NMDC shale study to five biosamples. See collection dates, environments and publisher access recipes.</span><small>Skill: microbiome-data-finder · Recorded metadata</small></a>
@@ -790,9 +784,9 @@ family=Roboto+Mono:wght@400;500&display=swap">
     <a class="demo-link" href="demos.html#outage-history"><strong>Find historical outage data</strong><span>Locate the EAGLE-I release covering 2021, its documentation and the customer-count dataset needed to interpret rates.</span><small>Skill: grid-status-brief · Release metadata</small></a>
     <a class="demo-link" href="demos.html#materials"><strong>Inspect a computed material</strong><span>Look up a gallium nitride structure and a separate chemistry basis-set example, with their sources.</span><small>Skill: materials-structure-and-code · Recorded structures</small></a>
   </div>
-  <h3>How Genesis Skills fit</h3>
-  <p>DOE <a href="https://www.energy.gov/science/articles/genesis-agent-skills-release-support-innovation-across-genesis-mission">released Genesis Agent Skills on October 15, 2026</a>. Its public catalog provides scientific workflow instructions. DOE-MCP provides read-only data tools and its own skills in the same Agent Skills format. Format compatibility does not install Genesis skills, connect to a lab account, or validate a scientific result.</p>
-  <p>The dataset starter supplies evidence for a later documentation workflow; it is not a validated Genesis datacard. The microbiome and literature examples use DOE-MCP's own skills. <a href="https://github.com/AI-ModCon/genesis-skills">Explore the upstream catalog</a> or <a href="guide.html#genesis-and-no-cost-demos">read the integration and cost boundaries</a>.</p>
+  <details><summary>Genesis Skills compatibility</summary>
+  <p>DOE-MCP's skills use the same Agent Skills format as <a href="https://github.com/AI-ModCon/genesis-skills">Genesis Agent Skills</a>. The demos use DOE-MCP's own tools; no upstream skills or lab services run here. <a href="guide.html#genesis-and-no-cost-demos">Integration and cost details</a>.</p>
+  </details>
   <h3 id="overview-queries">Questions it answers</h3>
   <p class="lede">Each question below is answered by one tool on one server:</p>
   {_questions(data)}
@@ -891,12 +885,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
   {e(data['registry_revision'])} · {c['sources']} sources ·
   {c['organizations']} organizations · {c['adapters']} adapters ·
   {c['capabilities_served']}/{c['capabilities']} capabilities served.</p>
-  <p>Generated from the same source registry the servers run on. A CI test
-  fails the build when this page and the registry disagree.</p>
-  <p>Citing this: see <code>CITATION.cff</code>. If you use DATA reached
-  through it, cite that data's publisher — the string is in every answer's
-  provenance block, and for some sources citation is a condition of use
-  rather than a courtesy.</p>
+  <p>Cite DOE-MCP using <code>CITATION.cff</code>. Cite data using the publisher information in each response.</p>
   <p>Packaging shape borrowed with thanks from PNNL's NEPA-MCP. That project
   does not endorse this one.</p>
 </div></footer>

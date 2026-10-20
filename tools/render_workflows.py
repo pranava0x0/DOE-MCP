@@ -106,7 +106,7 @@ def outcome(report) -> str:
         return f"{followed} Showing {samples['record_count']} biosamples out of {extent}."
     if case == 'rulemaking':
         document = report['steps'][1]['envelope']['data']
-        return f"Followed document {document['document_number']}. Publisher action: {(document.get('action') or 'Unknown').rstrip('.')}. Excluded from this page: {data.get('excluded_documents',0)} out-of-scope records."
+        return f"Followed document {document['document_number']}. Publisher action: {(document.get('action') or 'Unknown').rstrip('.')}. Out-of-scope records excluded: {data.get('excluded_documents',0)}."
     if case == 'outage-history':
         count = len(data["releases_for_year"])
         return f"Found {count} {'release' if count == 1 else 'releases'} covering {data['requested_year']}. Documentation and customer-count metadata are shown separately; no outage rate is calculated."
@@ -176,10 +176,10 @@ def step_view(step, number) -> str:
         extra=series_chart([(r['date'],r['values'].get('tmax')) for r in data['days']],'Oak Ridge · modelled daily maximum temperature','°C')
     return (f'<section class="step"><h3>{number}. {esc(step["tool"])}</h3>'
             f'<p class="mono">{esc(json.dumps(step["args"],sort_keys=True))}</p>'
-            +table(['Coverage dimension','Value'],[(k,coverage[k]) for k in ['registry','execution','pagination','source_claim','result']])
+            +'<details><summary>Coverage and source notes</summary>'+table(['Coverage dimension','Value'],[(k,coverage[k]) for k in ['registry','execution','pagination','source_claim','result']])
             +f'<p>Searched: {esc(", ".join(coverage.get("sources_searched",[])) or "Local registry only")}</p>'
             +('<h4>Unavailable sources</h4><ul>'+gaps+'</ul>' if gaps else '')
-            +('<h4>Warnings</h4><ul>'+warns+'</ul>' if warns else '')
+            +('<ul>'+warns+'</ul>' if warns else '')+'</details>'
             +totals+extra+('<h4>Publisher access recipes</h4><ul>'+recipes+'</ul>' if recipes else '')+'<ul class="evidence">'+''.join(cards)+'</ul>'+proposed+handoff
             +f'<details><summary>Full response and evidence</summary><pre>{esc(json.dumps(env,indent=2))}</pre></details></section>')
 
@@ -188,7 +188,7 @@ STYLE='''
 :root{color-scheme:light;font-family:system-ui,sans-serif;color:#1c302b;background:#f5f5ef}
 *{box-sizing:border-box}body{margin:0}main,header,footer{max-width:1120px;margin:auto;padding:24px}
 a{color:#145b4e;text-underline-offset:3px}h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.08}h1{margin:12px 0}h2{font-size:1.8rem}.answer{font-size:1.1rem;font-weight:600;border-bottom:1px solid #c5cec6;padding-bottom:16px}p,li{line-height:1.6}h1,h2,h3,p,li,td{overflow-wrap:anywhere}.draft{border-top:2px solid #176559;margin-top:24px}.downloads a{padding:10px 0}
-.kicker{font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#4b6158}header{border-bottom:2px solid #bbc6bd}
+header{border-bottom:2px solid #bbc6bd}
 select,button{font:inherit;padding:12px;background:white;border:1px solid #687e72;border-radius:4px;max-width:100%}
 label{display:block;font-weight:650;margin:10px 0}article{background:white;border:1px solid #c5cec6;border-radius:12px;padding:clamp(16px,4vw,36px);margin:20px 0}
 .notice{background:#edf3eb;padding:16px;border-left:4px solid #176559}.limits{background:#fff5df;padding:16px 24px;border-left:4px solid #99600e}.step{border-top:1px solid #c5cec6;margin-top:28px;padding-top:16px}
@@ -215,18 +215,17 @@ def render(reports: list[dict]) -> str:
             reproduce += '<p>Add <code>--live</code> to query publishers. '+('EIA requires your own key.' if r['case']=='eia' else 'No model is called.')+' Live results and availability can differ.</p>'
         reproduce += '</details>'
         captures=table(['Fixture','Capture time (UTC)','SHA-256'],[(f['file'],f.get('captured_at') or 'Unknown; old recording',f['sha256']) for f in r['fixtures']])
-        articles.append(f'<article id="{esc(r["case"])}"><p class="kicker">{esc(r["mode"])} walkthrough</p>'
-                        f'<h2>{esc(r["title"])}</h2><p>{esc(r["question"])}</p><p class="answer">{esc(outcome(r))}</p>'
+        articles.append(f'<article id="{esc(r["case"])}">'
+                        f'<h2>{esc(r["title"])}</h2><p class="answer">{esc(outcome(r))}</p>'
                         +('<p class="notice">Simulated source outage. The publisher status was changed only in this isolated replay.</p>' if r['simulation'] else '')
-                        +f'<p class="notice">{esc(r["timestamp_note"])} Registry revision: {esc(r["registry_revision"])}.</p>'
-                        +'<ul class="limits">'+''.join(f'<li>{esc(x)}</li>' for x in r['limitations'])+'</ul>'
+                        +'<details><summary>Limits of this example</summary><ul>'+''.join(f'<li>{esc(x)}</li>' for x in r['limitations'])+'</ul></details>'
                         +f'<p class="downloads"><a download href="data/demos/{esc(r["case"])}.json">Download JSON evidence</a><a download href="data/demos/{esc(r["case"])}.csv">Download CSV evidence index</a></p>'
                         +reproduce+drafts
                         +(point_map(r['steps']) if r['case']=='site' else '')
                         +''.join(step_view(step,i) for i,step in enumerate(r['steps'],1))
-                        +'<details><summary>Recording manifest and capture times</summary>'+captures+'</details></article>')
+                        +'<details><summary>Recording manifest and capture times</summary>'+f'<p>{esc(r["timestamp_note"])} Registry revision: {esc(r["registry_revision"])}.</p>'+captures+'</details></article>')
     options=''.join(f'<option value="{esc(r["case"])}">{esc(r["title"])}</option>' for r in reports)
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DOE-MCP evidence walkthroughs</title><style>{STYLE}</style></head>
-<body><header><a href="index.html">DOE-MCP home</a><p class="kicker">Inspect the answer</p><h1>Public data. Visible evidence.</h1><p>Recorded examples across DOE research, energy, earth, materials and microbiome data. Inspect the returned records and what each search leaves unknown. No live requests run in this page. These examples require no account, API key or paid model.</p><p>Independent project. Not affiliated with the US Department of Energy.</p></header>
-<main><div id="picker" hidden><label for="workflow">Choose a walkthrough</label><select id="workflow">{options}</select></div>{''.join(articles)}</main><footer><a href="guide.html">Run these workflows locally</a> · <a href="reference.html">Tool reference</a></footer>
+<body><header><a href="index.html">DOE-MCP home</a><h1>DOE-MCP demos</h1><p>Explore recorded results for free, without an account or API key.</p></header>
+<main><div id="picker" hidden><label for="workflow">Choose a walkthrough</label><select id="workflow">{options}</select></div>{''.join(articles)}</main><footer><p>Independent project; not affiliated with the US Department of Energy.</p><a href="guide.html">Run these workflows locally</a> · <a href="reference.html">Tool reference</a></footer>
 <script>const select=document.getElementById('workflow');const panels=[...document.querySelectorAll('article')];function show(id){{if(!panels.some(p=>p.id===id))id='evidence';select.value=id;panels.forEach(p=>p.hidden=p.id!==id);}}document.getElementById('picker').hidden=false;select.addEventListener('change',()=>{{history.replaceState(null,'','#'+select.value);show(select.value);}});window.addEventListener('hashchange',()=>show(location.hash.slice(1)));show(location.hash.slice(1));</script></body></html>'''
