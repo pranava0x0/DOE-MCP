@@ -146,5 +146,7 @@ def test_the_reference_shows_why_a_listed_tool_cannot_answer():
     spec = next(t for t in TECH_TOOLS.tools() if t.name == "tech.find_licensable_ip")
     assert spec.description.startswith("Currently unavailable:")
     reference = (ROOT / "docs" / "reference.md").read_text(encoding="utf-8")
-    table = reference.split("### Profile `research:default`", 1)[1].split("####", 1)[0]
+    after = reference.split("### Profile `research:default`", 1)[1]
+    # Stop at whichever comes first: the next profile table or the tool details.
+    table = min(after.split("### Profile", 1)[0], after.split("####", 1)[0], key=len)
     assert "**Unavailable now:** `tech.find_licensable_ip` — VIPS requires an API key" in table
