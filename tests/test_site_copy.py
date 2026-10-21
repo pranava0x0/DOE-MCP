@@ -136,3 +136,15 @@ def test_every_id_on_a_page_is_unique(name):
     page = (ROOT / name).read_text(encoding="utf-8")
     dupes = [i for i, n in Counter(re.findall(r'\bid="([^"]+)"', page)).items() if n > 1]
     assert not dupes, dupes
+
+
+def test_the_reference_shows_why_a_listed_tool_cannot_answer():
+    """VIPS began requiring an API key on 2026-10-20. The tool stays in the
+    default profile by choice, so the profile table has to say it is
+    unavailable and why, where a reader scanning the table will see it."""
+    from doe_mcp.domains.tech import TECH_TOOLS
+    spec = next(t for t in TECH_TOOLS.tools() if t.name == "tech.find_licensable_ip")
+    assert spec.description.startswith("Currently unavailable:")
+    reference = (ROOT / "docs" / "reference.md").read_text(encoding="utf-8")
+    table = reference.split("### Profile `research:default`", 1)[1].split("####", 1)[0]
+    assert "**Unavailable now:** `tech.find_licensable_ip` — VIPS requires an API key" in table

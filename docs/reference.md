@@ -28,6 +28,8 @@ Profiles: `research:all`, `research:default` (default), `research:discovery`
 | `docs.get_rulemaking` | `document_number` |
 | `tech.find_licensable_ip` | `query`?, `lab`?, `record_type`?, `inventor`?, `taxonomy`?, `since`?, `until`?, `record_id`?, `rows`?, `cursor`? |
 
+**Unavailable now:** `tech.find_licensable_ip` — VIPS requires an API key; access support is pending. It stays listed and answers every call with that reason.
+
 ### Profile `research:default` — 11 tools
 
 | Tool | Arguments |
@@ -43,6 +45,8 @@ Profiles: `research:all`, `research:default` (default), `research:discovery`
 | `docs.search_rulemakings` | `query`?, `document_type`?, `agency`?, `docket`?, `since`?, `until`?, `rows`?, `page`? |
 | `docs.get_rulemaking` | `document_number` |
 | `tech.find_licensable_ip` | `query`?, `lab`?, `record_type`?, `inventor`?, `taxonomy`?, `since`?, `until`?, `record_id`?, `rows`?, `cursor`? |
+
+**Unavailable now:** `tech.find_licensable_ip` — VIPS requires an API key; access support is pending. It stays listed and answers every call with that reason.
 
 ### Profile `research:discovery` — 15 tools
 
@@ -63,6 +67,8 @@ Profiles: `research:all`, `research:default` (default), `research:discovery`
 | `registry.describe_source` | `source_id` |
 | `registry.list_neighbors` | `capability`? |
 | `compute.facility_status` | `system`?, `include_planned`? |
+
+**Unavailable now:** `tech.find_licensable_ip` — VIPS requires an API key; access support is pending. It stays listed and answers every call with that reason.
 
 #### `research.search_literature`
 

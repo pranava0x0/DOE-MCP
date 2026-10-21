@@ -469,6 +469,11 @@ async def _tool_rows(ctx) -> dict[str, list[dict]]:
     return out
 
 
+UNAVAILABLE = "Currently unavailable:"
+"""The prefix a tool's description carries while every source it reads is
+blocked; the reference lifts the reason into the profile tables."""
+
+
 def render_reference(tools_by_profile: dict[str, list[dict]]) -> str:
     lines = [
         "# Tool reference",
@@ -500,6 +505,13 @@ def render_reference(tools_by_profile: dict[str, list[dict]]) -> str:
                     for a in row["args"]) or "none"
                 lines.append(f"| `{row['name']}` | {args} |")
             lines.append("")
+            # A tool kept in a profile while its source is blocked says so
+            # where people scan, not only in its long description.
+            for row in rows:
+                if row["description"].startswith(UNAVAILABLE):
+                    reason = row["description"][len(UNAVAILABLE):].split(". ")[0].strip()
+                    lines += [f"**Unavailable now:** `{row['name']}` — {reason}. "
+                              "It stays listed and answers every call with that reason.", ""]
         seen: set[str] = set()
         for profile in profiles:
             for row in tools_by_profile[profile]:
