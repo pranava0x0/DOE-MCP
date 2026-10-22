@@ -30,6 +30,19 @@ CASES = {
     "materials": ("Materials evidence sheet", "Inspect a computed GaN structure and a separate basis-set example."),
 }
 
+CASE_SKILLS = {
+    "evidence": "doe-literature-review", "partial": "doe-literature-review",
+    "dataset-card": "find-doe-data", "find-data": "find-doe-data",
+    "microbiome": "microbiome-data-finder", "rulemaking": "doe-rulemaking-brief",
+    "outage-history": "grid-status-brief", "grid": "grid-status-brief",
+    "eia": "grid-status-brief", "site": "energy-project-site-screen",
+    "blocked": "energy-project-site-screen", "earth": "environmental-study-brief",
+    "materials": "materials-structure-and-code", "facility-status": None,
+}
+"""The skill each walkthrough exercises; None for a tool-only demo. The
+landing page and the demos page both read it, and a test holds it to
+CASES and to the skills directory."""
+
 
 def tool_spec(name: str):
     for registry in registries().values():
