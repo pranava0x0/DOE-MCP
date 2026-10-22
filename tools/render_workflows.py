@@ -7,6 +7,7 @@ import math
 from urllib.parse import urlsplit
 
 from doe_mcp.core.assemble import strip_inline_markup
+from doe_mcp.workflows import CASE_SKILLS
 
 
 def esc(value) -> str:
@@ -251,7 +252,7 @@ def step_view(step, number) -> str:
 STYLE='''
 :root{color-scheme:light;font-family:system-ui,sans-serif;color:#1c302b;background:#f5f5ef}
 *{box-sizing:border-box}body{margin:0}main,header,footer{max-width:1120px;margin:auto;padding:24px}
-a{color:#145b4e;text-underline-offset:3px}h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.08}h1{margin:12px 0}h2{font-size:1.8rem}.answer{font-size:1.1rem;font-weight:600;border-bottom:1px solid #c5cec6;padding-bottom:16px}p,li{line-height:1.6}h1,h2,h3,p,li,td{overflow-wrap:break-word}.draft{border-top:2px solid #176559;margin-top:24px}.downloads a{padding:10px 0}.scope{color:#46564f;font-size:.95rem;margin-top:-4px}
+a{color:#145b4e;text-underline-offset:3px}h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.08}h1{margin:12px 0}h2{font-size:1.8rem}.answer{font-size:1.1rem;font-weight:600;border-bottom:1px solid #c5cec6;padding-bottom:16px}p,li{line-height:1.6}h1,h2,h3,p,li,td{overflow-wrap:break-word}.draft{border-top:2px solid #176559;margin-top:24px}.downloads a{padding:10px 0}.scope{color:#46564f;font-size:.95rem;margin-top:-4px}.skill{margin:0 0 8px;color:#46564f;font-size:.9rem}
 header{border-bottom:2px solid #bbc6bd}
 select,button{font:inherit;padding:12px;background:white;border:1px solid #687e72;border-radius:4px;max-width:100%}
 label{display:block;font-weight:650;margin:10px 0}article{background:white;border:1px solid #c5cec6;border-radius:12px;padding:clamp(16px,4vw,36px);margin:20px 0}
@@ -280,10 +281,12 @@ def render(reports: list[dict]) -> str:
         reproduce += '</details>'
         captures=table(['Fixture','Capture time (UTC)','SHA-256'],[(f['file'],f.get('captured_at') or 'Unknown; old recording',f['sha256']) for f in r['fixtures']])
         articles.append(f'<article id="{esc(r["case"])}">'
-                        f'<h2>{esc(r["title"])}</h2><p class="answer">{esc(outcome(r))}</p>'
+                        f'<h2>{esc(r["title"])}</h2>'
+                        + (f'<p class="skill">Skill: <code>{esc(CASE_SKILLS[r["case"]])}</code></p>' if CASE_SKILLS.get(r["case"]) else '')
+                        + f'<p class="answer">{esc(outcome(r))}</p>'
                         f'<p class="scope">{esc(scope_line(r))}</p>'
                         +('<p class="notice">Simulated source outage. The publisher status was changed only in this isolated replay.</p>' if r['simulation'] else '')
-                        +'<details><summary>Limits of this example</summary><ul>'+''.join(f'<li>{esc(x)}</li>' for x in r['limitations'])+'</ul></details>'
+                        +'<details open><summary>Limits of this example</summary><ul>'+''.join(f'<li>{esc(x)}</li>' for x in r['limitations'])+'</ul></details>'
                         +f'<p class="downloads"><a download href="data/demos/{esc(r["case"])}.json">Download JSON evidence</a><a download href="data/demos/{esc(r["case"])}.csv">Download CSV evidence index</a></p>'
                         +reproduce+drafts
                         +(point_map(r['steps']) if r['case']=='site' else '')

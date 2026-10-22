@@ -509,7 +509,7 @@ def render_reference(tools_by_profile: dict[str, list[dict]]) -> str:
             # where people scan, not only in its long description.
             for row in rows:
                 if row["description"].startswith(UNAVAILABLE):
-                    reason = row["description"][len(UNAVAILABLE):].split(". ")[0].strip()
+                    reason = row["description"][len(UNAVAILABLE):].split(". ")[0].strip().rstrip(".")
                     lines += [f"**Unavailable now:** `{row['name']}` — {reason}. "
                               "It stays listed and answers every call with that reason.", ""]
         seen: set[str] = set()

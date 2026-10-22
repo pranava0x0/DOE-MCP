@@ -80,7 +80,7 @@ def _style() -> str:
     # so the page is legible and correctly laid out before they arrive and
     # if they never do.
     return """
-.demo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:20px 0}.demo-link{display:flex;flex-direction:column;gap:12px;padding:20px;border:1px solid var(--line);border-radius:8px;background:var(--card);text-decoration:none;overflow-wrap:anywhere}.demo-link strong{font-size:1.12rem}.demo-link span{color:var(--ink)}.demo-link small{color:var(--muted);margin-top:auto}.demo-link:hover{border-color:var(--accent)}.demo-link:focus-visible{outline:3px solid var(--accent);outline-offset:3px}@media(max-width:900px){.demo-grid{grid-template-columns:1fr}}
+.demo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:20px 0}.demo-link{display:flex;flex-direction:column;gap:12px;padding:20px;border:1px solid var(--line);border-radius:8px;background:var(--card);text-decoration:none;overflow-wrap:anywhere}.demo-link strong{font-size:1.12rem}.demo-link span{color:var(--ink)}.demo-link small{color:var(--muted);margin-top:auto}.demo-link:hover{border-color:var(--accent)}.demo-link:focus-visible{outline:3px solid var(--accent);outline-offset:3px}@media(max-width:900px){.demo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.demo-grid{grid-template-columns:1fr;gap:8px;margin:12px 0}.demo-link{padding:12px 14px;gap:4px}.demo-link span{display:none}}
 :root{
   /* DOE grey ramp */
   --paper:#f9faff; --ink:#232429; --muted:#55565b; --faint:#828388;
@@ -157,7 +157,8 @@ header{padding:3rem 0 2.25rem;border-bottom:1px solid var(--line);
     var(--accent-soft) 130%)}
 h1{font-family:var(--display);font-weight:600;font-size:2.3rem;
    margin:0 0 .6rem;letter-spacing:-.01em;line-height:1.2}
-.tagline{font-size:1.08rem;color:var(--muted);margin:0 0 1.6rem;max-width:44rem}
+.tagline{font-size:1.08rem;color:var(--muted);margin:0 0 .5rem;max-width:44rem}
+.free{font-size:.92rem;color:var(--ink);margin:0 0 1.2rem;max-width:44rem}
 .funnel{display:flex;flex-wrap:wrap;gap:.4rem;align-items:stretch;
   margin:0 0 .6rem}
 .funnel .step{display:block;color:inherit;text-decoration:none;
@@ -321,6 +322,8 @@ a{color:var(--accent)}
   /* The tiles wrap two to a row, which leaves an arrow pointing at the
      next row's edge; the order is still left to right without it. */
   .funnel .arrow{display:none}
+  /* Hover submenus cannot open from a sideways-scrolling strip on touch. */
+  .toc-sub{display:none!important}
   .funnel{display:grid;grid-template-columns:1fr 1fr}
   /* The section links scroll sideways with the scrollbar hidden; a fade
      at the right edge says there is more than the three that fit. */
@@ -459,15 +462,53 @@ reachable keyless.</p>
 """
 
 
+DEMO_CARDS = [
+    ("evidence", "Trace a research claim", "Search perovskite solar literature, follow a returned record, and see where the search is incomplete.", "Recorded evidence"),
+    ("microbiome", "Find a microbiome study", "Follow an NMDC shale study to five biosamples, with collection dates, environments and access recipes.", "Recorded metadata"),
+    ("rulemaking", "Read a DOE rulemaking brief", "Follow a Federal Register record to its action, docket IDs and dates, and see what the search excludes.", "Recorded documents"),
+    ("find-data", "Find out whether DOE publishes it", "Resolve NREL to its new name, check the registry, and search four DOE catalogs, two of them old harvests.", "Recorded catalogs"),
+    ("dataset-card", "Start a geothermal dataset card", "Two DOE Data Explorer records, their evidence, and the fields a dataset owner still needs to supply.", "Recorded metadata"),
+    ("outage-history", "Find historical outage data", "Locate the EAGLE-I release covering 2021, its documentation and the customer counts needed for rates.", "Release metadata"),
+    ("grid", "Read BPA's five-minute grid feed", "Recorded load for the Bonneville Power Administration area, charted in Pacific Time.", "Recorded feed"),
+    ("eia", "Read CAISO demand from EIA-930", "Three measured hourly demand values for California's grid operator, kept apart from the forecast.", "Recorded; live needs an EIA key"),
+    ("site", "Map facilities near a site", "Sample wind turbines and utility solar in Rhode Island, and the inputs a full screen still needs.", "Recorded inventory"),
+    ("earth", "Pair datasets with modelled weather", "Find permafrost datasets and five days of Daymet weather at Oak Ridge, without claiming they match.", "Recorded data"),
+    ("materials", "Inspect a computed material", "A gallium nitride structure and a separate chemistry basis-set example, with their sources.", "Recorded structures"),
+    ("facility-status", "Check NERSC system status", "Which NERSC systems are active, the next planned outage, and which facilities are not covered.", "Recorded board"),
+    ("partial", "See an answer with a source down", "The literature search replayed with DOE PAGES unavailable, and how the answer reports the gap.", "Simulated outage"),
+    ("blocked", "Ask for data DOE-MCP cannot serve", "Ask for a site's solar resource and get the registry's named reason instead of an empty answer.", "Registry inventory"),
+]
+"""One card per walkthrough, in reading order: answers first, limits last.
+A test holds the case list to workflows.CASES, so a new walkthrough
+without a card fails the build."""
+
+
+def _demo_cards() -> str:
+    from doe_mcp.workflows import CASE_SKILLS
+    out = []
+    for case, title, blurb, kind in DEMO_CARDS:
+        skill = CASE_SKILLS.get(case)
+        label = f"Skill: {skill}" if skill else "Tool: compute.facility_status"
+        out.append(f'<a class="demo-link" href="demos.html#{e(case)}"><strong>{e(title)}</strong>'
+                   f'<span>{e(blurb)}</span><small>{e(label)} \u00b7 {e(kind)}</small></a>')
+    return '<div class="demo-grid">' + "".join(out) + "</div>"
+
+
 def _arch_diagram(data: dict) -> str:
     """The three layers, drawn from the generated data: the skills in the
     tree, the shipping servers with their tool counts, and the registry's
     own numbers. It was hand-written once and was a server and four skills
     behind within a month."""
     c = data["counts"]
+    from doe_mcp.workflows import CASE_SKILLS
+    first_case = {}
+    for case, *_ in DEMO_CARDS:
+        first_case.setdefault(CASE_SKILLS.get(case), case)
     skills = "".join(f"""
       <div class="arch-box">
-        <div class="arch-box-title">{e(sk['name'])}</div>
+        <div class="arch-box-title">{e(sk['name'])}"""
+        + (f' · <a href="demos.html#{e(first_case[sk["name"]])}">demo</a>' if sk['name'] in first_case else "")
+        + f"""</div>
         <div class="arch-box-desc">{e(sk['summary'])}</div>
       </div>""" for sk in data.get("skills") or [])
     servers = []
@@ -527,7 +568,10 @@ def _server_cards(data: dict) -> str:
     for s in data["servers"]:
         tools = s["tools"]
         back = ("<ul>" + "".join(
-            f"<li><code>{e(t['name'])}</code></li>" for t in tools)
+            f"<li><code>{e(t['name'])}</code>"
+            + (" <span class='pill proposed' title='" + e(t['description'].split('. ')[0]) + "'>unavailable</span>"
+               if t.get('description', '').startswith('Currently unavailable:') else "")
+            + "</li>" for t in tools)
             + "</ul>") if tools else (
             "<p class='more'>Not built. The sources it would serve are in "
             "the registry, each with what is blocking it.</p>")
@@ -762,6 +806,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
 <header><div class="wrap">
   <h1>MCP servers over public DOE data</h1>
   <p class="tagline">Search research, energy and environmental data from your AI client.</p>
+  <p class="free">Free and open source (Apache-2.0). Most tools need no account or API key, and every demo runs on recorded data.</p>
   <p><a href="demos.html">Browse demos</a> · <a href="guide.html">Local workflow guide</a></p>
   {_inventory(c)}
   <p class="works">Works with: {works}</p>
@@ -775,17 +820,8 @@ family=Roboto+Mono:wght@400;500&display=swap">
   <div class="sect-body">
   <p id="overview-about">DOE-MCP connects AI clients to public DOE and national-laboratory data through read-only tools. Results include sources, retrieval dates and coverage limits.</p>
   <h3 id="overview-demos">Demos</h3>
-  <p>Use recorded data without an account, API key or paid model.</p>
-  <div class="demo-grid">
-    <a class="demo-link" href="demos.html#dataset-card"><strong>Start a geothermal dataset card</strong><span>Two DOE Data Explorer records, their evidence, and the fields a dataset owner still needs to supply.</span><small>Skill: find-doe-data · Recorded metadata</small></a>
-    <a class="demo-link" href="demos.html#microbiome"><strong>Find a microbiome study</strong><span>Follow an NMDC shale study to five biosamples. See collection dates, environments and publisher access recipes.</span><small>Skill: microbiome-data-finder · Recorded metadata</small></a>
-    <a class="demo-link" href="demos.html#evidence"><strong>Trace a research claim</strong><span>Search perovskite solar literature, follow a returned record, and see where the search is incomplete.</span><small>Skill: doe-literature-review · Recorded evidence</small></a>
-    <a class="demo-link" href="demos.html#rulemaking"><strong>Read a DOE rulemaking brief</strong><span>Follow a Federal Register record to its action, docket IDs and dates. See what the search excludes.</span><small>Skill: doe-rulemaking-brief · Recorded documents</small></a>
-    <a class="demo-link" href="demos.html#outage-history"><strong>Find historical outage data</strong><span>Locate the EAGLE-I release covering 2021, its documentation and the customer-count dataset needed to interpret rates.</span><small>Skill: grid-status-brief · Release metadata</small></a>
-    <a class="demo-link" href="demos.html#find-data"><strong>Find out whether DOE publishes it</strong><span>Resolve NREL to its new name, check the registry, and search four DOE catalogs, two of them old harvests.</span><small>Skill: find-doe-data · Recorded catalogs</small></a>
-    <a class="demo-link" href="demos.html#facility-status"><strong>Check NERSC system status</strong><span>Read NERSC's public status board: which systems are active, the next planned outage, and which facilities are not covered.</span><small>Tool: compute.facility_status · Recorded board</small></a>
-    <a class="demo-link" href="demos.html#materials"><strong>Inspect a computed material</strong><span>Look up a gallium nitride structure and a separate chemistry basis-set example, with their sources.</span><small>Skill: materials-structure-and-code · Recorded structures</small></a>
-  </div>
+  <p>All {len(DEMO_CARDS)} walkthroughs use recorded data: no account, API key or paid model.</p>
+  {_demo_cards()}
   <details><summary>Genesis Skills compatibility</summary>
   <p>DOE-MCP's skills use the same Agent Skills format as <a href="https://github.com/AI-ModCon/genesis-skills">Genesis Agent Skills</a>. The demos use DOE-MCP's own tools; no upstream skills or lab services run here. <a href="guide.html#genesis-and-no-cost-demos">Integration and cost details</a>.</p>
   </details>
@@ -918,6 +954,11 @@ family=Roboto+Mono:wght@400;500&display=swap">
     // never reaches it, which left every top-level link doing nothing.
     var own = el.querySelector ? el.querySelector("details.sect") : null;
     if (own) own.open = true;
+    // A heading that introduces a collapsed group opens it, so a link to
+    // "By source" shows the table rather than its closed summary.
+    for (var sib = el.nextElementSibling; sib && !/^H[1-4]$/.test(sib.tagName); sib = sib.nextElementSibling) {{
+      if (sib.tagName === "DETAILS") {{ sib.open = true; break; }}
+    }}
     el.scrollIntoView({{block: "start", behavior: "smooth"}});
     return true;
   }}

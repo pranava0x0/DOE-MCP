@@ -146,7 +146,33 @@ def test_the_reference_shows_why_a_listed_tool_cannot_answer():
     spec = next(t for t in TECH_TOOLS.tools() if t.name == "tech.find_licensable_ip")
     assert spec.description.startswith("Currently unavailable:")
     reference = (ROOT / "docs" / "reference.md").read_text(encoding="utf-8")
-    after = reference.split("### Profile `research:default`", 1)[1]
-    # Stop at whichever comes first: the next profile table or the tool details.
-    table = min(after.split("### Profile", 1)[0], after.split("####", 1)[0], key=len)
-    assert "**Unavailable now:** `tech.find_licensable_ip` — VIPS requires an API key" in table
+    for profile in ("research:default", "research:discovery", "research:all"):
+        after = reference.split(f"### Profile `{profile}`", 1)[1]
+        # Stop at whichever comes first: the next profile table or the tool details.
+        table = min(after.split("### Profile", 1)[0], after.split("####", 1)[0], key=len)
+        assert "**Unavailable now:** `tech.find_licensable_ip` — VIPS requires an API key" in table, profile
+    page = (ROOT / "docs" / "index.html").read_text(encoding="utf-8")
+    assert "<code>tech.find_licensable_ip</code> <span class='pill proposed'" in page
+
+
+def test_every_walkthrough_and_every_skill_is_one_tap_from_the_landing_page():
+    """The landing page linked 8 of 14 walkthroughs and 6 of 8 skills. Each
+    walkthrough gets a card, and each skill appears on at least one."""
+    import re
+    from doe_mcp.workflows import CASE_SKILLS, CASES
+    page = (ROOT / "docs" / "index.html").read_text(encoding="utf-8")
+    linked = re.findall(r'class="demo-link" href="demos.html#([\w-]+)"', page)
+    assert sorted(linked) == sorted(CASES), set(CASES) ^ set(linked)
+    assert set(CASE_SKILLS) == set(CASES)
+    skills = {p.parent.name for p in (ROOT / "skills").glob("*/SKILL.md")}
+    assert skills <= set(CASE_SKILLS.values()), skills - set(CASE_SKILLS.values())
+    for skill in skills:
+        assert f"Skill: {skill}" in page, skill
+
+
+def test_the_top_of_the_page_says_it_is_free_and_demos_show_limits_open():
+    page = (ROOT / "docs" / "index.html").read_text(encoding="utf-8")
+    hero = page.split("<header>", 1)[1].split("</header>", 1)[0]
+    assert "Free and open source" in hero and "no account or API key" in hero
+    demos = (ROOT / "docs" / "demos.html").read_text(encoding="utf-8")
+    assert demos.count("<details open><summary>Limits of this example") == demos.count("<article ")

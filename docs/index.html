@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Crimson+Pro:wght@400;600&family=Roboto+Mono:wght@400;500&display=swap">
 <style>
-.demo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:20px 0}.demo-link{display:flex;flex-direction:column;gap:12px;padding:20px;border:1px solid var(--line);border-radius:8px;background:var(--card);text-decoration:none;overflow-wrap:anywhere}.demo-link strong{font-size:1.12rem}.demo-link span{color:var(--ink)}.demo-link small{color:var(--muted);margin-top:auto}.demo-link:hover{border-color:var(--accent)}.demo-link:focus-visible{outline:3px solid var(--accent);outline-offset:3px}@media(max-width:900px){.demo-grid{grid-template-columns:1fr}}
+.demo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:20px 0}.demo-link{display:flex;flex-direction:column;gap:12px;padding:20px;border:1px solid var(--line);border-radius:8px;background:var(--card);text-decoration:none;overflow-wrap:anywhere}.demo-link strong{font-size:1.12rem}.demo-link span{color:var(--ink)}.demo-link small{color:var(--muted);margin-top:auto}.demo-link:hover{border-color:var(--accent)}.demo-link:focus-visible{outline:3px solid var(--accent);outline-offset:3px}@media(max-width:900px){.demo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.demo-grid{grid-template-columns:1fr;gap:8px;margin:12px 0}.demo-link{padding:12px 14px;gap:4px}.demo-link span{display:none}}
 :root{
   /* DOE grey ramp */
   --paper:#f9faff; --ink:#232429; --muted:#55565b; --faint:#828388;
@@ -89,7 +89,8 @@ header{padding:3rem 0 2.25rem;border-bottom:1px solid var(--line);
     var(--accent-soft) 130%)}
 h1{font-family:var(--display);font-weight:600;font-size:2.3rem;
    margin:0 0 .6rem;letter-spacing:-.01em;line-height:1.2}
-.tagline{font-size:1.08rem;color:var(--muted);margin:0 0 1.6rem;max-width:44rem}
+.tagline{font-size:1.08rem;color:var(--muted);margin:0 0 .5rem;max-width:44rem}
+.free{font-size:.92rem;color:var(--ink);margin:0 0 1.2rem;max-width:44rem}
 .funnel{display:flex;flex-wrap:wrap;gap:.4rem;align-items:stretch;
   margin:0 0 .6rem}
 .funnel .step{display:block;color:inherit;text-decoration:none;
@@ -253,6 +254,8 @@ a{color:var(--accent)}
   /* The tiles wrap two to a row, which leaves an arrow pointing at the
      next row's edge; the order is still left to right without it. */
   .funnel .arrow{display:none}
+  /* Hover submenus cannot open from a sideways-scrolling strip on touch. */
+  .toc-sub{display:none!important}
   .funnel{display:grid;grid-template-columns:1fr 1fr}
   /* The section links scroll sideways with the scrollbar hidden; a fade
      at the right edge says there is more than the three that fit. */
@@ -285,6 +288,7 @@ a{color:var(--accent)}
 <header><div class="wrap">
   <h1>MCP servers over public DOE data</h1>
   <p class="tagline">Search research, energy and environmental data from your AI client.</p>
+  <p class="free">Free and open source (Apache-2.0). Most tools need no account or API key, and every demo runs on recorded data.</p>
   <p><a href="demos.html">Browse demos</a> · <a href="guide.html">Local workflow guide</a></p>
   <div class="funnel"><a class="step" href="#registry-sources"><b>24</b><span>live systems</span></a><span class="arrow" aria-hidden="true">→</span><a class="step" href="#servers-list"><b>5</b><span>domain servers</span></a><span class="arrow" aria-hidden="true">→</span><a class="step" href="reference.html"><b>34</b><span>read-only tools</span></a><span class="arrow" aria-hidden="true">→</span><a class="step" href="#skills"><b>8</b><span>skills</span></a></div><p class="inventory">Published by 17 national laboratories, 19 program offices and 4 power marketing administrations.</p>
   <p class="works">Works with: <b>CLAUDE CODE</b> · <b>CLAUDE DESKTOP</b> · <b>VS CODE</b> · <b>CURSOR</b></p>
@@ -298,17 +302,8 @@ a{color:var(--accent)}
   <div class="sect-body">
   <p id="overview-about">DOE-MCP connects AI clients to public DOE and national-laboratory data through read-only tools. Results include sources, retrieval dates and coverage limits.</p>
   <h3 id="overview-demos">Demos</h3>
-  <p>Use recorded data without an account, API key or paid model.</p>
-  <div class="demo-grid">
-    <a class="demo-link" href="demos.html#dataset-card"><strong>Start a geothermal dataset card</strong><span>Two DOE Data Explorer records, their evidence, and the fields a dataset owner still needs to supply.</span><small>Skill: find-doe-data · Recorded metadata</small></a>
-    <a class="demo-link" href="demos.html#microbiome"><strong>Find a microbiome study</strong><span>Follow an NMDC shale study to five biosamples. See collection dates, environments and publisher access recipes.</span><small>Skill: microbiome-data-finder · Recorded metadata</small></a>
-    <a class="demo-link" href="demos.html#evidence"><strong>Trace a research claim</strong><span>Search perovskite solar literature, follow a returned record, and see where the search is incomplete.</span><small>Skill: doe-literature-review · Recorded evidence</small></a>
-    <a class="demo-link" href="demos.html#rulemaking"><strong>Read a DOE rulemaking brief</strong><span>Follow a Federal Register record to its action, docket IDs and dates. See what the search excludes.</span><small>Skill: doe-rulemaking-brief · Recorded documents</small></a>
-    <a class="demo-link" href="demos.html#outage-history"><strong>Find historical outage data</strong><span>Locate the EAGLE-I release covering 2021, its documentation and the customer-count dataset needed to interpret rates.</span><small>Skill: grid-status-brief · Release metadata</small></a>
-    <a class="demo-link" href="demos.html#find-data"><strong>Find out whether DOE publishes it</strong><span>Resolve NREL to its new name, check the registry, and search four DOE catalogs, two of them old harvests.</span><small>Skill: find-doe-data · Recorded catalogs</small></a>
-    <a class="demo-link" href="demos.html#facility-status"><strong>Check NERSC system status</strong><span>Read NERSC's public status board: which systems are active, the next planned outage, and which facilities are not covered.</span><small>Tool: compute.facility_status · Recorded board</small></a>
-    <a class="demo-link" href="demos.html#materials"><strong>Inspect a computed material</strong><span>Look up a gallium nitride structure and a separate chemistry basis-set example, with their sources.</span><small>Skill: materials-structure-and-code · Recorded structures</small></a>
-  </div>
+  <p>All 14 walkthroughs use recorded data: no account, API key or paid model.</p>
+  <div class="demo-grid"><a class="demo-link" href="demos.html#evidence"><strong>Trace a research claim</strong><span>Search perovskite solar literature, follow a returned record, and see where the search is incomplete.</span><small>Skill: doe-literature-review · Recorded evidence</small></a><a class="demo-link" href="demos.html#microbiome"><strong>Find a microbiome study</strong><span>Follow an NMDC shale study to five biosamples, with collection dates, environments and access recipes.</span><small>Skill: microbiome-data-finder · Recorded metadata</small></a><a class="demo-link" href="demos.html#rulemaking"><strong>Read a DOE rulemaking brief</strong><span>Follow a Federal Register record to its action, docket IDs and dates, and see what the search excludes.</span><small>Skill: doe-rulemaking-brief · Recorded documents</small></a><a class="demo-link" href="demos.html#find-data"><strong>Find out whether DOE publishes it</strong><span>Resolve NREL to its new name, check the registry, and search four DOE catalogs, two of them old harvests.</span><small>Skill: find-doe-data · Recorded catalogs</small></a><a class="demo-link" href="demos.html#dataset-card"><strong>Start a geothermal dataset card</strong><span>Two DOE Data Explorer records, their evidence, and the fields a dataset owner still needs to supply.</span><small>Skill: find-doe-data · Recorded metadata</small></a><a class="demo-link" href="demos.html#outage-history"><strong>Find historical outage data</strong><span>Locate the EAGLE-I release covering 2021, its documentation and the customer counts needed for rates.</span><small>Skill: grid-status-brief · Release metadata</small></a><a class="demo-link" href="demos.html#grid"><strong>Read BPA&#x27;s five-minute grid feed</strong><span>Recorded load for the Bonneville Power Administration area, charted in Pacific Time.</span><small>Skill: grid-status-brief · Recorded feed</small></a><a class="demo-link" href="demos.html#eia"><strong>Read CAISO demand from EIA-930</strong><span>Three measured hourly demand values for California&#x27;s grid operator, kept apart from the forecast.</span><small>Skill: grid-status-brief · Recorded; live needs an EIA key</small></a><a class="demo-link" href="demos.html#site"><strong>Map facilities near a site</strong><span>Sample wind turbines and utility solar in Rhode Island, and the inputs a full screen still needs.</span><small>Skill: energy-project-site-screen · Recorded inventory</small></a><a class="demo-link" href="demos.html#earth"><strong>Pair datasets with modelled weather</strong><span>Find permafrost datasets and five days of Daymet weather at Oak Ridge, without claiming they match.</span><small>Skill: environmental-study-brief · Recorded data</small></a><a class="demo-link" href="demos.html#materials"><strong>Inspect a computed material</strong><span>A gallium nitride structure and a separate chemistry basis-set example, with their sources.</span><small>Skill: materials-structure-and-code · Recorded structures</small></a><a class="demo-link" href="demos.html#facility-status"><strong>Check NERSC system status</strong><span>Which NERSC systems are active, the next planned outage, and which facilities are not covered.</span><small>Tool: compute.facility_status · Recorded board</small></a><a class="demo-link" href="demos.html#partial"><strong>See an answer with a source down</strong><span>The literature search replayed with DOE PAGES unavailable, and how the answer reports the gap.</span><small>Skill: doe-literature-review · Simulated outage</small></a><a class="demo-link" href="demos.html#blocked"><strong>Ask for data DOE-MCP cannot serve</strong><span>Ask for a site&#x27;s solar resource and get the registry&#x27;s named reason instead of an empty answer.</span><small>Skill: energy-project-site-screen · Registry inventory</small></a></div>
   <details><summary>Genesis Skills compatibility</summary>
   <p>DOE-MCP's skills use the same Agent Skills format as <a href="https://github.com/AI-ModCon/genesis-skills">Genesis Agent Skills</a>. The demos use DOE-MCP's own tools; no upstream skills or lab services run here. <a href="guide.html#genesis-and-no-cost-demos">Integration and cost details</a>.</p>
   </details>
@@ -388,35 +383,35 @@ reachable keyless.</p>
     <div class="arch-tier-title">Layer 1: Skills (task walks over the capability vocabulary)</div>
     <div class="arch-boxes">
       <div class="arch-box">
-        <div class="arch-box-title">doe-literature-review</div>
+        <div class="arch-box-title">doe-literature-review · <a href="demos.html#evidence">demo</a></div>
         <div class="arch-box-desc">A short evidence table of DOE-funded publications on a topic: what was found in OSTI.GOV and DOE PAGES, which records were read in full, where each can be read, and how much of the result set the table covers.</div>
       </div>
       <div class="arch-box">
-        <div class="arch-box-title">doe-rulemaking-brief</div>
+        <div class="arch-box-title">doe-rulemaking-brief · <a href="demos.html#rulemaking">demo</a></div>
         <div class="arch-box-desc">A sourced brief on what DOE has published in the Federal Register on a topic: final rules, proposed rules and notices, each with its docket, regulation identifier, CFR parts, dates and a link to the published text.</div>
       </div>
       <div class="arch-box">
-        <div class="arch-box-title">energy-project-site-screen</div>
+        <div class="arch-box-title">energy-project-site-screen · <a href="demos.html#site">demo</a></div>
         <div class="arch-box-desc">A first-pass screen of a candidate site for a wind or solar project from what DOE-MCP can see today: the turbines and utility-scale solar already built in the area, the balancing authority&#x27;s recent demand, and a named list of what a full screen needs that DOE-MCP does not serve yet, each with its reason, plus the hand-off to NEPA-MCP for the environmental review.</div>
       </div>
       <div class="arch-box">
-        <div class="arch-box-title">environmental-study-brief</div>
+        <div class="arch-box-title">environmental-study-brief · <a href="demos.html#earth">demo</a></div>
         <div class="arch-box-desc">Find environmental datasets and read a bounded Daymet weather window for one point and date range.</div>
       </div>
       <div class="arch-box">
-        <div class="arch-box-title">find-doe-data</div>
+        <div class="arch-box-title">find-doe-data · <a href="demos.html#find-data">demo</a></div>
         <div class="arch-box-desc">Find whether the US Department of Energy publishes a given kind of data, where it lives, and how to actually get at it — ending in a real locator or in a named reason there is not one.</div>
       </div>
       <div class="arch-box">
-        <div class="arch-box-title">grid-status-brief</div>
+        <div class="arch-box-title">grid-status-brief · <a href="demos.html#outage-history">demo</a></div>
         <div class="arch-box-desc">A short, sourced brief on what a US balancing authority&#x27;s grid did over the last day or the last hour: demand, generation and interchange from EIA-930, and for the Pacific Northwest the five-minute load and wind from BPA.</div>
       </div>
       <div class="arch-box">
-        <div class="arch-box-title">materials-structure-and-code</div>
+        <div class="arch-box-title">materials-structure-and-code · <a href="demos.html#materials">demo</a></div>
         <div class="arch-box-desc">Find computed crystal structures and export the quantum-chemistry basis sets needed to model them.</div>
       </div>
       <div class="arch-box">
-        <div class="arch-box-title">microbiome-data-finder</div>
+        <div class="arch-box-title">microbiome-data-finder · <a href="demos.html#microbiome">demo</a></div>
         <div class="arch-box-desc">Find DOE-linked microbiome studies and samples for a kind of environment or a place, and say where the sequence data behind them is held.</div>
       </div>
     </div>
@@ -478,7 +473,7 @@ reachable keyless.</p>
   <p class="sub">Literature, datasets, software, and discovery over OSTI&#x27;s four public APIs, DOE&#x27;s rulemakings from the Federal Register, plus the source registry and a cross-catalog fan-out.</p>
   <div class="foot"><span class="pill shipping">shipping</span>
     &nbsp;11 tools</div>
-  <ul><li><code>research.search_literature</code></li><li><code>research.search_datasets</code></li><li><code>research.search_software</code></li><li><code>research.get_record</code></li><li><code>registry.resolve_org</code></li><li><code>registry.lab_crosswalk</code></li><li><code>discovery.search_all_catalogs</code></li><li><code>discovery.list_pure_resources</code></li><li><code>docs.search_rulemakings</code></li><li><code>docs.get_rulemaking</code></li><li><code>tech.find_licensable_ip</code></li></ul>
+  <ul><li><code>research.search_literature</code></li><li><code>research.search_datasets</code></li><li><code>research.search_software</code></li><li><code>research.get_record</code></li><li><code>registry.resolve_org</code></li><li><code>registry.lab_crosswalk</code></li><li><code>discovery.search_all_catalogs</code></li><li><code>discovery.list_pure_resources</code></li><li><code>docs.search_rulemakings</code></li><li><code>docs.get_rulemaking</code></li><li><code>tech.find_licensable_ip</code> <span class='pill proposed' title='Currently unavailable: VIPS requires an API key; access support is pending'>unavailable</span></li></ul>
 </div>
 <div class="card">
   <h4><code>doe-energy-data</code></h4>
@@ -1546,6 +1541,11 @@ reachable keyless.</p>
     // never reaches it, which left every top-level link doing nothing.
     var own = el.querySelector ? el.querySelector("details.sect") : null;
     if (own) own.open = true;
+    // A heading that introduces a collapsed group opens it, so a link to
+    // "By source" shows the table rather than its closed summary.
+    for (var sib = el.nextElementSibling; sib && !/^H[1-4]$/.test(sib.tagName); sib = sib.nextElementSibling) {
+      if (sib.tagName === "DETAILS") { sib.open = true; break; }
+    }
     el.scrollIntoView({block: "start", behavior: "smooth"});
     return true;
   }
