@@ -29,3 +29,6 @@ __pycache__/
 # Dependabot is permanently disabled
 .github/dependabot.yml
 .github/dependabot.yaml
+
+# Local browser UAT captures
+uat-screenshots/
