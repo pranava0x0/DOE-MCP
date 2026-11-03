@@ -7,8 +7,11 @@ around it.
 """
 from __future__ import annotations
 
+from dataclasses import replace
+
 import pytest
 
+from doe_mcp.cli.__main__ import _probe
 from doe_mcp.core.envelope import (AccessPath, PaginationCoverage,
                                    RegistryCoverage, ResultCoverage,
                                    WarningCode)
@@ -32,9 +35,38 @@ async def test_the_unpopulated_intervals_are_disclosed_rather_than_returned(ctx)
     env = await energy.get_bpa_operations(ctx, intervals=200)
     assert env.data["pending_intervals"] > 0
     assert "pending_note" in env.data
-    assert "have not happened yet" in env.data["pending_note"]
+    assert str(env.data["pending_intervals"]) in env.data["pending_note"]
     for interval in env.data["intervals"]:
         assert any(v is not None for v in interval["values"].values())
+
+
+async def test_probe_counts_measurements_while_pagination_counts_slots(ctx, monkeypatch):
+    fetch = ctx.text_feed._fetcher.fetch_text
+
+    async def with_gap(*args, **kwargs):
+        result = await fetch(*args, **kwargs)
+        lines = result.text.splitlines()
+        # Empty one interior row in the recording, keeping its timestamp.
+        for i, line in enumerate(lines):
+            if line.startswith("09/03/2026 01:50"):
+                lines[i] = line.split("\t")[0] + "\t" * line.count("\t")
+                break
+        else:
+            pytest.fail("the recorded row to blank is absent")
+        return replace(result, text="\n".join(lines))
+
+    monkeypatch.setattr(ctx.text_feed._fetcher, "fetch_text", with_gap)
+    whole = await energy.get_bpa_operations(ctx, intervals=2028)
+    rows = whole.data["intervals"]
+    populated = sum(any(v is not None for v in r["values"].values()) for r in rows)
+    assert whole.coverage.pagination == PaginationCoverage.complete
+    assert whole.data["window_intervals"] == len(rows) > populated
+    assert await _probe(ctx, "bpa-operations") == populated
+    tail = await energy.get_bpa_operations(ctx, intervals=2)
+    assert tail.data["gap_intervals"] == len(rows) - populated
+    assert tail.data["populated_intervals"] == populated
+    assert tail.coverage.pagination == PaginationCoverage.truncated
+    assert all(v is None for v in tail.data["intervals"][0]["values"].values())
 
 
 async def test_every_answer_says_the_readings_are_not_settled(ctx):
@@ -85,7 +117,7 @@ async def test_evidence_points_at_the_registered_source(ctx):
 
 
 async def test_an_out_of_range_interval_count_is_refused(ctx):
-    for bad in (0, 2017):
+    for bad in (0, 2029):
         with pytest.raises(InvalidQuery, match="intervals must be"):
             await energy.get_bpa_operations(ctx, intervals=bad)
 

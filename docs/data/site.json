@@ -248,7 +248,7 @@
         {
           "name": "grid.get_bpa_operations",
           "toolset": "default",
-          "description": "Near-live load and generation inside the Bonneville Power Administration balancing authority, at five-minute resolution over a rolling seven-day window: load, VER (wind and solar), hydro, fossil/biomass, nuclear, and net interchange. `intervals` is how many of the most recent five-minute readings to return; 12 is the last hour. This is the Pacific Northwest at five-minute resolution \u2014 for any other balancing authority, or for hourly history, use energy.grid_status."
+          "description": "Near-live load and generation inside the Bonneville Power Administration balancing authority, at five-minute resolution over a rolling seven-day window: load, VER (wind and solar), hydro, fossil/biomass, nuclear, and net interchange. `intervals` is how many five-minute slots to return, ending at the latest measurement. The whole file can contain 2,028 slots when Pacific clocks go back. A slot with no values inside the window stays visible as a gap. This is the Pacific Northwest at five-minute resolution \u2014 for any other balancing authority, or for hourly history, use energy.grid_status."
         },
         {
           "name": "fuel.find_vehicle",
@@ -4480,7 +4480,7 @@
       "maintainer": "ModCon BASE team, co-led by PNNL and Berkeley Lab",
       "status": "listed",
       "compliance": "opaque",
-      "why_not_absorbed": "It is instructions rather than data or tools, so there is nothing for DOE-MCP to wrap. Its subtrees carry different licenses and some carry none, so nothing is copied here. DOE-MCP's own skills use the same Agent Skills file format and pass the pack's own validator, which is the extent of the integration.\n",
+      "why_not_absorbed": "It is instructions rather than data or tools, so there is nothing for DOE-MCP to wrap. Its subtrees carry different licenses and some carry none, so nothing is copied here. DOE-MCP's own skills use the same Agent Skills file format. The October review checked them with the upstream validator. Since then, local demos have applied selected Genesis methods to DOE records without running the upstream scripts.\n",
       "install": "git clone https://github.com/AI-ModCon/genesis-skills",
       "repository": "https://github.com/AI-ModCon/genesis-skills",
       "tool_count": null

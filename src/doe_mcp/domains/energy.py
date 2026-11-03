@@ -424,9 +424,10 @@ async def get_bpa_operations(ctx: RuntimeContext, feed: str = "",
     registry_dim, gaps = selection_coverage(ctx.sources,
                                             "grid.operations_feed",
                                             [manifest])
-    if intervals < 1 or intervals > 2016:
+    # Seven Pacific calendar days can include the repeated November hour.
+    if intervals < 1 or intervals > 2028:
         raise InvalidQuery(
-            "intervals must be between 1 and 2016 (the seven-day window at "
+            "intervals must be between 1 and 2028 (including the repeated Pacific hour at "
             "five-minute resolution). 12 is the last hour.")
 
     fetched = await ctx.text_feed.read_feed(manifest, feed,
@@ -457,6 +458,8 @@ async def get_bpa_operations(ctx: RuntimeContext, feed: str = "",
         "reported_through": table.reported_through,
         "window": table.window,
         "window_intervals": table.available_intervals,
+        "populated_intervals": table.populated_intervals,
+        "gap_intervals": table.available_intervals - table.populated_intervals,
         "pending_intervals": table.pending_intervals,
         "publisher_last_updated": table.published_note,
         "timestamps": params.timezone_note,
@@ -471,15 +474,11 @@ async def get_bpa_operations(ctx: RuntimeContext, feed: str = "",
     }
     if table.pending_intervals:
         data["pending_note"] = (
-            f"The file also listed {table.pending_intervals} later interval(s) "
-            "today with a timestamp and no values. Those have not happened "
-            "yet; they are not zero generation and not an outage. They are "
-            "excluded from every figure above.")
+            f"The file ends with {table.pending_intervals} timestamps without "
+            "measurements. These trailing slots are excluded from the returned intervals.")
     if not table.rows:
         data["note"] = (
-            "The feed parsed but carried no populated intervals, which means "
-            "BPA published the file without data rather than that the grid "
-            "was idle. Outage on the publisher's side, not an empty result.")
+            "The file contains no measurements. It cannot establish load, generation or outage status.")
 
     b.warn(WarningCode.screening_only,
            "Operational SCADA readings published minutes after the fact. "
@@ -906,8 +905,10 @@ ENERGY_TOOLS.register(ToolSpec(
         "Administration balancing authority, at five-minute resolution over "
         "a rolling seven-day window: load, VER (wind and solar), hydro, "
         "fossil/biomass, nuclear, and net interchange. `intervals` is how "
-        "many of the most recent five-minute readings to return; 12 is the "
-        "last hour. This is the Pacific Northwest at five-minute "
+        "many five-minute slots to return, ending at the latest measurement. "
+        "The whole file can contain 2,028 slots when Pacific clocks go back. "
+        "A slot with no values inside the window stays visible as a gap. "
+        "This is the Pacific Northwest at five-minute "
         "resolution — for any other balancing authority, or for hourly "
         "history, use energy.grid_status."),
     toolset="default", contract_version="1", fn=get_bpa_operations))

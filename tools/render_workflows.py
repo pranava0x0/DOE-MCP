@@ -258,6 +258,8 @@ def step_view(step, number, case="demo") -> str:
         extra=table(['Sample','Place','Collected','Environment'],[(r['sample_id'],r.get('place'),r.get('collected'),', '.join(r.get('ecosystem',[]))) for r in data['biosamples']], 'Sample metadata; no sequence data retrieved')
     if step['tool']=='grid.get_bpa_operations':
         extra=series_chart([(r['timestamp'],r['values'].get('Load')) for r in data['intervals']], 'BPA load · Pacific Time', 'MW')+f'<p>{esc(data.get("pending_note",""))}</p>'
+        extra += (f"<p>Across the file through the latest measurement, {data['populated_intervals']} of "
+                  f"{data['window_intervals']} slots contain readings. Empty slots: {data['gap_intervals']}.</p>")
     if step['tool']=='energy.grid_status':
         extra=table(['Period','Demand','Units'],[(r.get('period'),r.get('value'),r.get('value-units',r.get('units',data.get('units','Unknown')))) for r in data.get('observations',[])], 'CISO measured demand; publisher periods')
     if step['tool']=='earth.get_daymet_point':

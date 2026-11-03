@@ -316,7 +316,7 @@ Recent hourly electricity data for a US balancing authority from EIA-930 (CISO, 
 
 #### `grid.get_bpa_operations`
 
-Near-live load and generation inside the Bonneville Power Administration balancing authority, at five-minute resolution over a rolling seven-day window: load, VER (wind and solar), hydro, fossil/biomass, nuclear, and net interchange. `intervals` is how many of the most recent five-minute readings to return; 12 is the last hour. This is the Pacific Northwest at five-minute resolution — for any other balancing authority, or for hourly history, use energy.grid_status.
+Near-live load and generation inside the Bonneville Power Administration balancing authority, at five-minute resolution over a rolling seven-day window: load, VER (wind and solar), hydro, fossil/biomass, nuclear, and net interchange. `intervals` is how many five-minute slots to return, ending at the latest measurement. The whole file can contain 2,028 slots when Pacific clocks go back. A slot with no values inside the window stays visible as a gap. This is the Pacific Northwest at five-minute resolution — for any other balancing authority, or for hourly history, use energy.grid_status.
 
 | Argument | Type | Required | Default |
 |---|---|---|---|

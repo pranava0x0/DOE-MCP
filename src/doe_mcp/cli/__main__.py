@@ -206,11 +206,7 @@ async def _probe(ctx: RuntimeContext, source_id: str) -> int | None:
     if kind == "fueleconomy":
         return len((await ctx.fueleconomy.menu(manifest, "year")).value)
     if kind == "text_feed":
-        # Intervals that actually carry values. The trailing run of empty
-        # ones is the rest of today, so counting rows in the file would make
-        # the feed look healthy at 03:00 on a morning it had stopped
-        # publishing.
-        return len((await ctx.text_feed.read_feed(manifest)).value.rows)
+        return (await ctx.text_feed.read_feed(manifest)).value.populated_intervals
     if kind == "vips":
         page = (await ctx.vips.search(manifest, rows=1)).value
         return page.total
