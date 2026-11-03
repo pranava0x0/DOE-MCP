@@ -1,0 +1,129 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "sc": "https://schema.org/",
+    "cr": "http://mlcommons.org/croissant/",
+    "dct": "http://purl.org/dc/terms/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "conformsTo": "dct:conformsTo",
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "equivalentProperty": "cr:equivalentProperty",
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileObject": "cr:fileObject",
+    "fileProperty": "cr:fileProperty",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "samplingRate": "cr:samplingRate",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform"
+  },
+  "@type": "sc:Dataset",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "name": "daymet-calendar",
+  "description": "Recorded Daymet temperatures for the 1 km cell at 35.9313, -84.3104. Requested 2024-12-26 through 2024-12-31. Daymet omits December 31 in leap years.",
+  "version": "1.0",
+  "url": "https://pranava0x0.github.io/DOE-MCP/demos.html#daymet-calendar",
+  "creator": {
+    "@type": "Organization",
+    "name": "DOE-MCP"
+  },
+  "datePublished": "2026-11-03",
+  "license": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
+  "citation": "Thornton; M.M.; R. Shrestha; Y. Wei; P.E. Thornton; S-C. Kao; and B.E. Wilson. 2022. Daymet: Daily Surface Weather Data on a 1-km Grid for North America; Version 4 R1. ORNL DAAC; Oak Ridge; Tennessee; USA. https://doi.org/10.3334/ORNLDAAC/2129",
+  "citeAs": "DOE-MCP. The missing Daymet date: recorded Oak Ridge temperature extract. 2026.",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "temperatures",
+      "name": "daymet-calendar-temperatures.csv",
+      "contentUrl": "daymet-calendar-temperatures.csv",
+      "encodingFormat": "text/csv",
+      "contentSize": "131",
+      "sha256": "b6165a99743cce7dedf4bb0244dc4de4b133f5691d2d41bedb02103fa7adcebd"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "days",
+      "name": "days",
+      "description": "Recorded Daymet temperatures for the 1 km cell at 35.9313, -84.3104. Requested 2024-12-26 through 2024-12-31. Daymet omits December 31 in leap years.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "days/date",
+          "name": "date",
+          "description": "Calendar date derived from Daymet's year and day number.",
+          "dataType": "sc:Date",
+          "source": {
+            "fileObject": {
+              "@id": "temperatures"
+            },
+            "extract": {
+              "column": "date"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "days/yday",
+          "name": "yday",
+          "description": "Day number in the publisher's 365-day calendar.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "temperatures"
+            },
+            "extract": {
+              "column": "yday"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "days/tmax_deg_c",
+          "name": "tmax_deg_c",
+          "description": "Modelled daily maximum air temperature in degrees Celsius.",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "temperatures"
+            },
+            "extract": {
+              "column": "tmax_deg_c"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+step,tool,source,record_id,locator,effective_at,mode
+1,earth.get_daymet_point,ornl-daac,"tile:11208@35.9313,-84.3104",,2024-12-26,recorded

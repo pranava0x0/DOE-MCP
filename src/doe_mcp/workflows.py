@@ -10,6 +10,7 @@ from typing import Any
 from .core.envelope import Envelope
 from .core.errors import SourceUnavailable
 from .core.registry import DeclaredState
+from . import daymet_package
 from .demo_worksheets import bibliography, csv_text, soil_metadata
 from .runtime import RuntimeContext
 from .servers.build import registries
@@ -17,6 +18,7 @@ from .servers.build import registries
 CASES = {
     "evidence": ("DOE evidence finder", "Find perovskite solar research and inspect one returned record."),
     "bibliography": ("Perovskite bibliography worksheet", "Which citation fields did DOE PAGES supply for this page of results?"),
+    daymet_package.CASE: ("The missing Daymet date", "Why does a six-day request return five daily maximum temperatures?"),
     "soil-metadata": ("Soil sample field check", "Which returned NMDC soil samples have a collection date, coordinates and depth in metres?"),
     "dataset-card": ("Geothermal dataset-card starter", "What can public catalog metadata fill in, and what still needs a dataset owner?"),
     "microbiome": ("Microbiome study and sample finder", "Find a shale microbiome study and inspect a sample of its biosamples."),
@@ -34,6 +36,7 @@ CASES = {
 }
 
 CASE_SKILLS = {
+    daymet_package.CASE: "environmental-study-brief",
     "bibliography": "doe-literature-review", "soil-metadata": "microbiome-data-finder",
     "evidence": "doe-literature-review", "partial": "doe-literature-review",
     "dataset-card": "find-doe-data", "find-data": "find-doe-data",
@@ -72,6 +75,8 @@ async def run_workflow(ctx: RuntimeContext, case: str, *, mode: str = "recorded"
                        fixtures: list[dict] | None = None) -> dict:
     if case not in CASES or mode not in {"recorded", "live"}:
         raise ValueError("unknown workflow or mode")
+    if case == daymet_package.CASE and mode == "live":
+        raise ValueError("the published Daymet data package is available only in recorded mode")
     if case == "partial" and mode == "live":
         raise ValueError("the simulated outage is available only in recorded mode")
     if case == "partial":
@@ -207,6 +212,13 @@ async def run_workflow(ctx: RuntimeContext, case: str, *, mode: str = "recorded"
         limits += ["First page only; map bounds describe returned points, not a complete site search.",
                    "Parcel ownership, queue position, available MW, tariffs and environmental clearance remain unknown.",
                    "NEPA-MCP is a separate installation and manual handoff. No external server was called."]
+    elif case == daymet_package.CASE:
+        weather = await call("earth.get_daymet_point", latitude=35.9313, longitude=-84.3104,
+                             start="2024-12-26", end="2024-12-31", variables="tmax")
+        if not weather.data["days"]:
+            raise SourceUnavailable("no daily temperatures returned for the Daymet package")
+        limits += ["Daymet models the 1 km grid cell around the requested point. These are not station readings.",
+                   "The CSV contains only the returned dates. A missing date has no temperature value."]
     elif case == "earth":
         await call("earth.search_datasets", text="permafrost", rows=5)
         await call("earth.get_daymet_point", latitude=35.9313, longitude=-84.3104,
@@ -256,6 +268,10 @@ def write_report(directory: Path, report: dict) -> None:
     case = report["case"]
     (directory / f"{case}.json").write_bytes((json.dumps(report, indent=2) + "\n").encode())
     (directory / f"{case}.csv").write_bytes(evidence_csv(report).encode())
+    if case == daymet_package.CASE:
+        payload, metadata = daymet_package.package(report["steps"][0]["envelope"]["data"])
+        (directory / daymet_package.CSV_NAME).write_bytes(payload)
+        (directory / daymet_package.METADATA_NAME).write_bytes((json.dumps(metadata, indent=2) + "\n").encode())
     if sheet := report.get("worksheet"):
         headers = ["Run mode", "Registry revision", *sheet["columns"]]
         rows = ([report["mode"], report["registry_revision"], *row] for row in sheet["rows"])
