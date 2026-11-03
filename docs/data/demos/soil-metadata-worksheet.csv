@@ -1,6 +1,6 @@
-Sample ID,Place,Collected,Latitude,Longitude,Depth (m),Minimum depth (m),Maximum depth (m),Step 1 evidence ID
-nmdc:bsm-13-mrzb2q96,"USA: Columbia River, Washington",2014-04-01,46.372,-119.272,,,,evidence_01
-nmdc:bsm-13-4aw9ra87,"USA: Columbia River, Washington",2014-04-01,46.372,-119.272,,,,evidence_02
-nmdc:bsm-13-z9wten89,"USA: Columbia River, Washington",2014-04-01,46.372,-119.272,,,,evidence_03
-nmdc:bsm-13-wktc3357,"USA: Columbia River, Washington",2014-04-01,46.372,-119.272,,,,evidence_04
-nmdc:bsm-13-ap544f22,"USA: Columbia River, Washington",2014-04-01,46.372,-119.272,,,,evidence_05
+Run mode,Registry revision,Sample ID,Place,Collected,Latitude,Longitude,Depth (m),Minimum depth (m),Maximum depth (m),Step 1 evidence ID
+recorded,2026-10-20,nmdc:bsm-13-mrzb2q96,"USA: Columbia River, Washington",2014-04-01,46.372,-119.272,,,,evidence_01
+recorded,2026-10-20,nmdc:bsm-13-4aw9ra87,"USA: Columbia River, Washington",2014-04-01,46.372,-119.272,,,,evidence_02
+recorded,2026-10-20,nmdc:bsm-13-z9wten89,"USA: Columbia River, Washington",2014-04-01,46.372,-119.272,,,,evidence_03
+recorded,2026-10-20,nmdc:bsm-13-wktc3357,"USA: Columbia River, Washington",2014-04-01,46.372,-119.272,,,,evidence_04
+recorded,2026-10-20,nmdc:bsm-13-ap544f22,"USA: Columbia River, Washington",2014-04-01,46.372,-119.272,,,,evidence_05

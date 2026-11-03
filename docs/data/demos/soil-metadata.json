@@ -18,7 +18,7 @@
   ],
   "limitations": [
     "The place filter matches text containing Washington; it does not test state boundaries.",
-    "Counts describe this page only. A blank depth means the response supplied no numeric depth in metres."
+    "Counts describe this page only. Depth counts as present if the response gives a value or a range bound in metres."
   ],
   "steps": [
     {

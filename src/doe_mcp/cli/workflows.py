@@ -57,13 +57,12 @@ def cmd_demo(args) -> int:
         print(json.dumps(asyncio.run(round_trip()), indent=2))
         return 0
     report = asyncio.run(build_report(args))
-    output = json.dumps(report, indent=2) + "\n"
     if args.output:
         args.output.mkdir(parents=True, exist_ok=True)
         write_report(args.output, report)
         print(args.output / f"{args.case}.json")
     else:
-        print(output, end="")
+        print(json.dumps(report, indent=2))
     return 0
 
 

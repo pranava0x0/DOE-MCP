@@ -1,5 +1,6 @@
 const {chromium}=require('playwright');
 const fs=require('fs');
+const path=require('path');
 const base=process.env.UAT_URL||'http://localhost:4192';
 fs.mkdirSync('uat-screenshots',{recursive:true});
 (async()=>{
@@ -34,6 +35,19 @@ if(!await page.locator('#microbiome .step').last().locator('.evidence').isVisibl
 await page.locator('#step-nav button').first().click();
 const dl=page.waitForEvent('download');await page.locator('#microbiome a[download]').first().click();const download=await dl;await download.saveAs('/tmp/doe-uat-download.json');JSON.parse(fs.readFileSync('/tmp/doe-uat-download.json'));
 report.download=true;
+report.worksheets=[];
+for(const id of ['bibliography','soil-metadata']){
+ await page.goto(base+'/index.html');
+ await page.locator('a.demo-link[href="demos.html#'+id+'"]').click();
+ if(await page.locator('#workflow').inputValue()!==id)throw Error('landing link '+id);
+ await page.getByRole('button',{name:'Worksheet',exact:true}).click();
+ if(await page.evaluate(()=>document.activeElement.id)!==id+'-worksheet')throw Error('worksheet focus '+id);
+ const [file]=await Promise.all([page.waitForEvent('download'),page.locator('#'+id).getByText('Download worksheet CSV',{exact:true}).click()]);
+ const name=id+'-worksheet.csv';
+ if(file.suggestedFilename()!==name || !fs.readFileSync(await file.path()).equals(fs.readFileSync(path.join(__dirname,'../docs/data/demos',name))))throw Error('worksheet download '+id);
+ report.worksheets.push(id);
+}
+await page.goto(base+'/demos.html#microbiome');
 await page.locator('#workflow').focus();await page.keyboard.press('Tab');await page.keyboard.press('Tab');await page.keyboard.press('Enter');
 report.keyboard=await page.evaluate(()=>document.activeElement.id==='microbiome-step-1');
 if(!report.keyboard)throw Error('keyboard jump');

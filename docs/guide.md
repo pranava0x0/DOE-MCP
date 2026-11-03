@@ -100,8 +100,7 @@ For a citation list, run `doe-mcp demo bibliography --output ./citations`.
 Open `bibliography-worksheet.csv` to check dates, DOIs and omitted authors.
 For a count of missing soil sample measurements, run
 `doe-mcp demo soil-metadata --output ./soil`. In
-`soil-metadata-worksheet.csv`, a blank depth means no numeric depth in
-metres was returned. The last column of each worksheet identifies the
+`soil-metadata-worksheet.csv`, the depth check counts a value or either end of a range in metres. The last column of each worksheet identifies the
 evidence entry in step 1 of its JSON report. See the
 [comparison with other government-data MCPs](genesis-demo-review.html#november-3-what-to-take-from-other-government-data-mcps)
 for the reasons behind these checks.

@@ -3,8 +3,8 @@ from __future__ import annotations
 
 import copy
 import json
-from pathlib import Path
 from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any
 
 from .core.envelope import Envelope
@@ -116,7 +116,7 @@ async def run_workflow(ctx: RuntimeContext, case: str, *, mode: str = "recorded"
         samples = await call("bio.search_biosamples", ecosystem_type="Soil", place="washington", rows=5)
         worksheet = soil_metadata(samples)
         limits += ["The place filter matches text containing Washington; it does not test state boundaries.",
-                   "Counts describe this page only. A blank depth means the response supplied no numeric depth in metres."]
+                   "Counts describe this page only. Depth counts as present if the response gives a value or a range bound in metres."]
     elif case == "dataset-card":
         found = await call("research.search_datasets", site_code="DOE-GDR", rows=2)
         for record in found.data["datasets"]:
@@ -254,7 +254,9 @@ def evidence_csv(report: dict) -> str:
 
 def write_report(directory: Path, report: dict) -> None:
     case = report["case"]
-    (directory / f"{case}.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    (directory / f"{case}.json").write_bytes((json.dumps(report, indent=2) + "\n").encode())
     (directory / f"{case}.csv").write_bytes(evidence_csv(report).encode())
     if sheet := report.get("worksheet"):
-        (directory / f"{case}-worksheet.csv").write_bytes(csv_text(sheet["columns"], sheet["rows"]).encode())
+        headers = ["Run mode", "Registry revision", *sheet["columns"]]
+        rows = ([report["mode"], report["registry_revision"], *row] for row in sheet["rows"])
+        (directory / f"{case}-worksheet.csv").write_bytes(csv_text(headers, rows).encode())

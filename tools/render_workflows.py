@@ -172,6 +172,8 @@ def scope_line(report) -> str:
         elif isinstance(data.get('total_matches'), int) and 'record_count' in data:
             total = data['total_matches']
             parts.append(f"{data['record_count']} of {total:,} match{'es' if total != 1 else ''}")
+        elif 'total_matches' in data and 'record_count' in data:
+            parts.append(f"{data['record_count']} returned, total unknown")
         if parts:
             break
     read = ("Read " + "; ".join(parts) + ". ") if parts else ""
@@ -309,7 +311,7 @@ def render(reports: list[dict]) -> str:
         if sheet := r.get('worksheet'):
             skill, path = GENESIS_SKILLS[r['case']]
             upstream = link(GENESIS_TREE + path + '/SKILL.md', skill)
-            sheet_view = ('<section><h3>'+esc(sheet['caption'])+'</h3>'
+            sheet_view = (f'<section class="step worksheet" id="{esc(r["case"])}-worksheet" tabindex="-1"><h3>'+esc(sheet['caption'])+'</h3>'
                           +f'<p>Based on the Genesis {upstream} skill. DOE-MCP builds this worksheet locally.</p>'
                           +table(sheet['columns'], sheet['rows'], 'Each evidence ID refers to step 1 in the JSON download.')
                           +'</section>')
@@ -340,7 +342,7 @@ function show(id){{
   select.value=id; panels.forEach(p=>p.hidden=p.id!==id);
   nav.replaceChildren();
   const panel=document.getElementById(id);
-  const targets=[{{el:panel,label:'Overview'}},...Array.from(panel.querySelectorAll('.step'),(el,i)=>({{el,label:(i+1)+'. '+el.dataset.label}}))];
+  const targets=[{{el:panel,label:'Overview'}},...Array.from(panel.querySelectorAll('.worksheet'),el=>({{el,label:'Worksheet'}})),...Array.from(panel.querySelectorAll('.step[data-label]'),(el,i)=>({{el,label:(i+1)+'. '+el.dataset.label}}))];
   for(const target of targets){{
     const button=document.createElement('button');
     button.type='button';button.textContent=target.label;

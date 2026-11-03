@@ -59,3 +59,38 @@ async def test_soil_audit_handles_zero_missing_and_ranged_measurements(ctx):
     report["worksheet"] = sheet
     page = render([report])
     assert '<img src=x>' not in page and '&lt;img src=x&gt;' in page
+
+
+@pytest.mark.parametrize("bad", [False, float("nan"), float("inf"), 10**400])
+def test_nmdc_does_not_count_a_malformed_number_as_a_measurement(bad):
+    import json
+
+    from doe_mcp.adapters.nmdc import parse_biosample
+    from pathlib import Path
+
+    recording = json.loads((Path(__file__).parent / "fixtures/nmdc-runtime.json").read_text())
+    entry = next(e for e in recording["interactions"] if "washington" in e["params"].get("filter", ""))
+    raw = entry["body"]["results"][0]
+    raw["lat_lon"] = {"latitude": bad, "longitude": 0}
+    raw["depth"] = {"has_unit": "m", "has_numeric_value": bad}
+    sample = parse_biosample(raw, "nmdc-runtime")
+    assert sample.latitude is None and sample.longitude == 0
+    assert sample.depth_m is None
+
+
+async def test_downloaded_worksheet_identifies_run_outside_the_page(ctx, tmp_path):
+    from doe_mcp.workflows import write_report
+    report = await run_workflow(ctx, "bibliography")
+    write_report(tmp_path, report)
+    with (tmp_path / "bibliography-worksheet.csv").open(newline="") as stream:
+        rows = list(csv.DictReader(stream))
+    assert {r["Run mode"] for r in rows} == {"recorded"}
+    assert {r["Registry revision"] for r in rows} == {report["registry_revision"]}
+    assert rows[0]["Step 1 evidence ID"] == report["steps"][0]["envelope"]["evidence"][0]["id"]
+
+
+async def test_soil_page_shows_unknown_total_beside_the_sample(ctx):
+    from tools.render_workflows import scope_line
+    report = await run_workflow(ctx, "soil-metadata")
+    report["steps"][0]["envelope"]["data"]["total_matches"] = None
+    assert "5 returned, total unknown" in scope_line(report)
