@@ -170,5 +170,5 @@ def test_tools_call_auto_detects_profile(ctx, capsys, monkeypatch):
                                      "grid.get_bpa_operations", "--args", '{"intervals": 2}'])
     assert main() == 0
     response = json.loads(capsys.readouterr().out)
-    assert response["tool"] == "grid.get_bpa_operations"
+    assert response["_execution"]["tool"] == "grid.get_bpa_operations"
     assert response["data"]["record_count"] == 2
