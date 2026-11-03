@@ -1,0 +1,13 @@
+step,tool,source,record_id,locator,effective_at,mode
+1,grid.get_bpa_operations,bpa-operations,balancing_authority_interchange#09/03/2026 01:00,,09/03/2026 01:00,recorded
+1,grid.get_bpa_operations,bpa-operations,balancing_authority_interchange#09/03/2026 01:05,,09/03/2026 01:05,recorded
+1,grid.get_bpa_operations,bpa-operations,balancing_authority_interchange#09/03/2026 01:10,,09/03/2026 01:10,recorded
+1,grid.get_bpa_operations,bpa-operations,balancing_authority_interchange#09/03/2026 01:15,,09/03/2026 01:15,recorded
+1,grid.get_bpa_operations,bpa-operations,balancing_authority_interchange#09/03/2026 01:20,,09/03/2026 01:20,recorded
+1,grid.get_bpa_operations,bpa-operations,balancing_authority_interchange#09/03/2026 01:25,,09/03/2026 01:25,recorded
+1,grid.get_bpa_operations,bpa-operations,balancing_authority_interchange#09/03/2026 01:30,,09/03/2026 01:30,recorded
+1,grid.get_bpa_operations,bpa-operations,balancing_authority_interchange#09/03/2026 01:35,,09/03/2026 01:35,recorded
+1,grid.get_bpa_operations,bpa-operations,balancing_authority_interchange#09/03/2026 01:40,,09/03/2026 01:40,recorded
+1,grid.get_bpa_operations,bpa-operations,balancing_authority_interchange#09/03/2026 01:45,,09/03/2026 01:45,recorded
+1,grid.get_bpa_operations,bpa-operations,balancing_authority_interchange#09/03/2026 01:50,,09/03/2026 01:50,recorded
+1,grid.get_bpa_operations,bpa-operations,balancing_authority_interchange#09/03/2026 01:55,,09/03/2026 01:55,recorded

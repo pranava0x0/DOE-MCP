@@ -113,6 +113,15 @@ def outcome(report) -> str:
         return (f"Requested {data['requested_range']['from']} through {data['requested_range']['to']}. "
                 f"Daymet returned {data['record_count']} daily maxima, ending {data['returned_range']['to']}. "
                 "Its leap-year calendar ends on December 30.")
+    if case == 'load-baseline':
+        sheet = report['worksheet']
+        scores, skipped = sheet['scores'], sheet['excluded_pairs']
+        result = (f"Each prediction uses the preceding load reading. Across {scores['pairs']} five-minute comparisons, "
+                  f"the mean absolute error was {scores['mae_mw']:.2f} MW "
+                  f"and the root mean squared error was {scores['rmse_mw']:.2f} MW.")
+        if any(skipped.values()):
+            result += f" Pairs excluded for time gaps: {skipped['time_gap']}; for missing load: {skipped['missing_load']}."
+        return result
     if case == 'soil-metadata':
         sheet = report['worksheet']
         counts = "; ".join(f"{field}: {n}" for field, n in sheet["missing"].items())

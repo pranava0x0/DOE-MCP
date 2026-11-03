@@ -34,9 +34,8 @@ adapter:
     balancing_authority_interchange: baltwg3.txt
   default_feed: balancing_authority_interchange
   timezone_note: >
-    Pacific Time, stated in the file's own header and never as a UTC offset.
-    The HTTP Last-Modified header is the unambiguous version and is what
-    reaches the envelope.
+    The file uses Pacific Time. Rows may carry PDT or PST; keep the label
+    when supplied. Last-Modified dates the file, not an individual reading.
   units: MW
 
 access:
@@ -94,9 +93,9 @@ coverage:
       Interchange, baltwg.txt does not. The adapter reads the header row of
       whichever file it fetched rather than assuming a column set.
     - >
-      Timestamps are Pacific local time with no offset in the file, so they
-      cross a daylight-saving boundary twice a year with nothing in the data
-      to mark it.
+      September rows carried no zone suffix. On 2026-11-03 the feed marked
+      the repeated hour on November 1 with PDT and PST. An unlabelled
+      repeated time cannot identify a unique instant.
     - >
       This is BPA's balancing authority, which includes loads and resources
       that are not BPA's own and excludes BPA loads served by transfer or

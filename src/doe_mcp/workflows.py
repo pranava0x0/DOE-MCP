@@ -12,6 +12,7 @@ from .core.errors import SourceUnavailable
 from .core.registry import DeclaredState
 from . import daymet_package
 from .demo_worksheets import bibliography, csv_text, soil_metadata
+from .load_baseline import CASE as LOAD_BASELINE, score_load
 from .runtime import RuntimeContext
 from .servers.build import registries
 
@@ -19,6 +20,7 @@ CASES = {
     "evidence": ("DOE evidence finder", "Find perovskite solar research and inspect one returned record."),
     "bibliography": ("Perovskite bibliography worksheet", "Which citation fields did DOE PAGES supply for this page of results?"),
     daymet_package.CASE: ("The missing Daymet date", "Why does a six-day request return five daily maximum temperatures?"),
+    LOAD_BASELINE: ("Five-minute BPA load prediction", "How far off is the last load reading as a prediction for the next five minutes?"),
     "soil-metadata": ("Soil sample field check", "Which returned NMDC soil samples have a collection date, coordinates and depth in metres?"),
     "dataset-card": ("Geothermal dataset-card starter", "What can public catalog metadata fill in, and what still needs a dataset owner?"),
     "microbiome": ("Microbiome study and sample finder", "Find a shale microbiome study and inspect a sample of its biosamples."),
@@ -41,6 +43,7 @@ RECORDED_ONLY = {
 }
 
 CASE_SKILLS = {
+    LOAD_BASELINE: "grid-status-brief",
     daymet_package.CASE: "environmental-study-brief",
     "bibliography": "doe-literature-review", "soil-metadata": "microbiome-data-finder",
     "evidence": "doe-literature-review", "partial": "doe-literature-review",
@@ -200,6 +203,12 @@ async def run_workflow(ctx: RuntimeContext, case: str, *, mode: str = "recorded"
         await call("registry.search_sources", capability="solar.get_resource")
         limits += ["Registry inventory only. Proposed sources were not queried.",
                    "Missing tool coverage does not mean the data does not exist."]
+    elif case == LOAD_BASELINE:
+        found = await call("grid.get_bpa_operations", intervals=12)
+        worksheet = score_load(found)
+        limits += ["The prediction repeats the prior reading. BPA supplied the load measurements, not these predictions.",
+                   "The scores describe this window alone. No model was trained and no prediction interval was estimated.",
+                   "Pairs must be five minutes apart on the publisher’s Pacific clock. Blank load values do not count as zero."]
     elif case == "grid":
         await call("grid.get_bpa_operations", intervals=12)
         limits += ["BPA balancing-authority load is not local connection capacity.",

@@ -36,7 +36,7 @@ await page.locator('#step-nav button').first().click();
 const dl=page.waitForEvent('download');await page.locator('#microbiome a[download]').first().click();const download=await dl;await download.saveAs('/tmp/doe-uat-download.json');JSON.parse(fs.readFileSync('/tmp/doe-uat-download.json'));
 report.download=true;
 report.worksheets=[];
-for(const id of ['bibliography','soil-metadata']){
+for(const id of ['bibliography','soil-metadata','load-baseline']){
  await page.goto(base+'/index.html');
  await page.locator('a.demo-link[href="demos.html#'+id+'"]').click();
  if(await page.locator('#workflow').inputValue()!==id)throw Error('landing link '+id);

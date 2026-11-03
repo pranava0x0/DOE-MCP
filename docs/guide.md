@@ -282,3 +282,18 @@ days = Dataset("daymet/daymet-calendar-croissant.json").records("days")
 for day in days:
     print(day["days/date"], day["days/tmax_deg_c"])
 ```
+
+## Score a five-minute BPA load prediction
+
+[The BPA load worksheet](demos.html#load-baseline) uses the last reported
+load as a prediction for the next five minutes. For example, the recording
+starts at 5,894 MW. Five minutes later BPA reported 5,832 MW, so the first
+prediction was 62 MW high.
+
+Run `doe-mcp demo load-baseline --output ./bpa`. The worksheet CSV shows
+each prediction beside the later reading and identifies both pieces of
+evidence in the JSON. The mean absolute error gives each miss its size in
+megawatts. The root mean squared error gives larger misses more weight.
+Both scores use only pairs five minutes apart with load at both ends.
+These are retrospective scores for this sample. BPA did not issue the
+predictions. Add `--live` to score a new window from the public feed.

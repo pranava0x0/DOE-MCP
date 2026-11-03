@@ -42,6 +42,15 @@ checked:
           doi: 10.13139/ORNLNCCS/1975202
       data.customer_counts:
         nonempty: true
+- task: 6
+  steps:
+  - tool: grid.get_bpa_operations
+    args:
+      intervals: 12
+    expect:
+      data.units: MW
+      data.record_count: 12
+      data.columns: [Load, VER, Hydro, Fossil/Biomass, Interchange, Nuclear]
 reader:
 - 3
 evaluation:
@@ -71,3 +80,5 @@ workflows:
   case: grid
 - task: 5
   case: outage-history
+- task: 6
+  case: load-baseline

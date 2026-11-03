@@ -466,6 +466,7 @@ DEMO_CARDS = [
     ("evidence", "Trace a research claim", "Search perovskite solar literature, follow a returned record, and see where the search is incomplete.", "Recorded evidence"),
     ("bibliography", "Prepare a perovskite bibliography", "Download a DOE PAGES citation worksheet. See which author lists were shortened before you cite a paper.", "Genesis: literature-search"),
     ("daymet-calendar", "Inspect the missing Daymet date", "Download daily maximum temperatures near Oak Ridge and the Croissant file describing their dates, units and checksum.", "Genesis: croissant-validator"),
+    ("load-baseline", "Score a five-minute load prediction", "Use the last BPA load reading to predict the next one. Inspect each error and the two readings behind it.", "Genesis: uq-metrics-evaluator"),
     ("soil-metadata", "Check soil sample metadata", "Inspect dates, coordinate pairs and depths for NMDC records whose place contains Washington.", "Genesis: data-exploration"),
     ("microbiome", "Find a microbiome study", "Follow an NMDC shale study to five biosamples, with collection dates, environments and access recipes.", "Recorded metadata"),
     ("rulemaking", "Read a DOE rulemaking brief", "Follow a Federal Register record to its action, docket IDs and dates, and see what the search excludes.", "Recorded documents"),

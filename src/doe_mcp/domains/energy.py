@@ -496,8 +496,8 @@ async def get_bpa_operations(ctx: RuntimeContext, feed: str = "",
         source_claim=SourceClaimCoverage.complete,
         result=result_dim(len(table.rows)), sources_searched=[manifest.id],
         sources_unavailable=gaps,
-        time_range=(TimeRange(**{"from": min(timestamps),
-                                 "to": max(timestamps)})
+        time_range=(TimeRange(**{"from": timestamps[0],
+                                 "to": timestamps[-1]})
                     if timestamps else None)))
 
 

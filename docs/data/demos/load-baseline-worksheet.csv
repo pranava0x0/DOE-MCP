@@ -1,0 +1,12 @@
+Run mode,Registry revision,Prior reading (Pacific Time),Target reading (Pacific Time),Prediction (MW),Reported load (MW),Prediction minus reported (MW),Prior evidence ID,Target evidence ID
+recorded,2026-10-20,09/03/2026 01:00,09/03/2026 01:05,5894,5832,62,evidence_01,evidence_02
+recorded,2026-10-20,09/03/2026 01:05,09/03/2026 01:10,5832,5812,20,evidence_02,evidence_03
+recorded,2026-10-20,09/03/2026 01:10,09/03/2026 01:15,5812,5823,-11,evidence_03,evidence_04
+recorded,2026-10-20,09/03/2026 01:15,09/03/2026 01:20,5823,5877,-54,evidence_04,evidence_05
+recorded,2026-10-20,09/03/2026 01:20,09/03/2026 01:25,5877,5874,3,evidence_05,evidence_06
+recorded,2026-10-20,09/03/2026 01:25,09/03/2026 01:30,5874,5866,8,evidence_06,evidence_07
+recorded,2026-10-20,09/03/2026 01:30,09/03/2026 01:35,5866,5877,-11,evidence_07,evidence_08
+recorded,2026-10-20,09/03/2026 01:35,09/03/2026 01:40,5877,5839,38,evidence_08,evidence_09
+recorded,2026-10-20,09/03/2026 01:40,09/03/2026 01:45,5839,5826,13,evidence_09,evidence_10
+recorded,2026-10-20,09/03/2026 01:45,09/03/2026 01:50,5826,5801,25,evidence_10,evidence_11
+recorded,2026-10-20,09/03/2026 01:50,09/03/2026 01:55,5801,5728,73,evidence_11,evidence_12
