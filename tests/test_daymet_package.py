@@ -32,3 +32,26 @@ async def test_temperature_download_covers_only_returned_dates(ctx, tmp_path):
 async def test_recorded_package_rejects_live_mode(ctx):
     with pytest.raises(ValueError, match="recorded mode"):
         await run_workflow(ctx, daymet_package.CASE, mode="live")
+
+
+@pytest.mark.parametrize("defect", ["gap", "missing_temperature", "units"])
+async def test_failed_export_preserves_existing_files(ctx, tmp_path, defect):
+    report = await run_workflow(ctx, daymet_package.CASE)
+    write_report(tmp_path, report)
+    before = {p.name: p.read_bytes() for p in tmp_path.iterdir()}
+    data = report["steps"][0]["envelope"]["data"]
+    if defect == "gap":
+        data["days"].pop(2)
+    elif defect == "missing_temperature":
+        data["days"][0]["values"]["tmax"] = None
+    else:
+        data["columns"][0]["units"] = "K"
+    with pytest.raises(SourceSchemaChanged):
+        write_report(tmp_path, report)
+    assert {p.name: p.read_bytes() for p in tmp_path.iterdir()} == before
+
+
+async def test_evidence_uses_echoed_precision(ctx):
+    from doe_mcp.domains.earth import get_daymet_point
+    env = await get_daymet_point(ctx, 35.931301, -84.310399, "2024-12-26", "2024-12-31", "tmax")
+    assert env.evidence[0].record_id == f"tile:{env.data['tile']}@35.9313,-84.3104"

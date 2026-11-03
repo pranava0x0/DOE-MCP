@@ -229,6 +229,8 @@ def parse_series(text: str, source_id: str, *, requested_start: str,
             date = (dt.date(year, 1, 1) + dt.timedelta(days=yday - 1)).isoformat()
         except ValueError as err:
             raise SourceSchemaChanged(f"{source_id}: invalid Daymet year or day number") from err
+        if not requested_start <= date <= requested_end:
+            raise SourceSchemaChanged(f"{source_id}: Daymet returned a date outside the requested range")
         if rows and date <= rows[-1].date:
             raise SourceSchemaChanged(f"{source_id}: Daymet dates repeat or run backwards")
         rows.append(DayRow(

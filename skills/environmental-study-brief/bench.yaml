@@ -19,6 +19,23 @@ checked:
       rows: 5
     expect:
       coverage.result: hit
+- task: 4
+  steps:
+  - tool: earth.get_daymet_point
+    args:
+      latitude: 35.9313
+      longitude: -84.3104
+      start: '2024-12-26'
+      end: '2024-12-31'
+      variables: tmax
+    expect:
+      data.record_count: 5
+      data.returned_range.to: '2024-12-30'
+      data.dates_absent: ['2024-12-31']
+      data.columns:
+        any:
+          name: tmax
+          units: deg c
 reader:
 - 3
 evaluation:
@@ -32,3 +49,5 @@ evaluation:
 workflows:
 - task: 2
   case: earth
+- task: 4
+  case: daymet-calendar

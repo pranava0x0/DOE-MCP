@@ -9,7 +9,7 @@ from urllib.parse import urlsplit
 from doe_mcp.core.assemble import strip_inline_markup
 from doe_mcp import daymet_package
 from doe_mcp.demo_worksheets import GENESIS_SKILLS, GENESIS_TREE
-from doe_mcp.workflows import CASE_SKILLS
+from doe_mcp.workflows import CASE_SKILLS, RECORDED_ONLY
 
 
 def esc(value) -> str:
@@ -308,7 +308,7 @@ def render(reports: list[dict]) -> str:
             drafts += '<h4>Still needs owner review</h4><ul>'+''.join('<li>'+esc(x)+'</li>' for x in draft['needs_owner_review'])+'</ul></section>'
         command = 'doe-mcp demo '+r['case']+' --output ./demo-output'
         reproduce = '<details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>'+esc(command)+'</pre>'
-        if r['case'] not in {'partial', daymet_package.CASE}:
+        if r['case'] not in RECORDED_ONLY:
             reproduce += '<p>Add <code>--live</code> to query publishers. '+('EIA requires your own key.' if r['case']=='eia' else 'No model is called.')+' Live results and availability can differ.</p>'
         reproduce += '</details>'
         sheet_view = ''

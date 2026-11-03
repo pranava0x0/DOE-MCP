@@ -47,6 +47,19 @@ for(const id of ['bibliography','soil-metadata']){
  if(file.suggestedFilename()!==name || !fs.readFileSync(await file.path()).equals(fs.readFileSync(path.join(__dirname,'../docs/data/demos',name))))throw Error('worksheet download '+id);
  report.worksheets.push(id);
 }
+await page.goto(base+'/index.html');
+await page.locator('a.demo-link[href="demos.html#daymet-calendar"]').click();
+const daymet=page.locator('#daymet-calendar');
+if(!await daymet.isVisible())throw Error('Daymet landing link');
+const files={};
+for(const label of ['Download temperatures CSV','Download Croissant metadata']){
+ const [download]=await Promise.all([page.waitForEvent('download'),daymet.getByText(label,{exact:true}).click()]);
+ files[label]={name:download.suggestedFilename(),bytes:fs.readFileSync(await download.path())};
+}
+const csv=files['Download temperatures CSV'], metadata=JSON.parse(files['Download Croissant metadata'].bytes);
+const resource=metadata.distribution[0];
+if(resource.contentUrl!==csv.name || resource.sha256!==require('crypto').createHash('sha256').update(csv.bytes).digest('hex'))throw Error('Daymet download checksum');
+report.daymetPackage=true;
 await page.goto(base+'/demos.html#microbiome');
 await page.locator('#workflow').focus();await page.keyboard.press('Tab');await page.keyboard.press('Tab');await page.keyboard.press('Enter');
 report.keyboard=await page.evaluate(()=>document.activeElement.id==='microbiome-step-1');

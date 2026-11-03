@@ -327,7 +327,7 @@ async def test_deployment_phase_is_reported_rather_than_assumed(ctx):
 @pytest.mark.parametrize("before,after", [
     ("35.9313", "35.9314"), ("tmax (deg c)", "prcp (mm/day)"),
     ("2024,361", "2024,366"), ("2024,362", "2024,361"),
-    ("2024,362", "2024,360"), ("14.51", "NaN"), ("14.51", "oops"),
+    ("2024,361", "2024,360"), ("2024,363", "2024,361"), ("14.51", "NaN"), ("14.51", "oops"),
 ])
 async def test_daymet_refuses_a_corrupted_reply(ctx, before, after):
     # Work on a copy of the recording, never the shared replay table.

@@ -35,6 +35,11 @@ CASES = {
     "materials": ("Materials evidence sheet", "Inspect a computed GaN structure and a separate basis-set example."),
 }
 
+RECORDED_ONLY = {
+    "partial": "the simulated outage is available only in recorded mode",
+    daymet_package.CASE: "the published Daymet data package is available only in recorded mode",
+}
+
 CASE_SKILLS = {
     daymet_package.CASE: "environmental-study-brief",
     "bibliography": "doe-literature-review", "soil-metadata": "microbiome-data-finder",
@@ -75,10 +80,8 @@ async def run_workflow(ctx: RuntimeContext, case: str, *, mode: str = "recorded"
                        fixtures: list[dict] | None = None) -> dict:
     if case not in CASES or mode not in {"recorded", "live"}:
         raise ValueError("unknown workflow or mode")
-    if case == daymet_package.CASE and mode == "live":
-        raise ValueError("the published Daymet data package is available only in recorded mode")
-    if case == "partial" and mode == "live":
-        raise ValueError("the simulated outage is available only in recorded mode")
+    if mode == "live" and case in RECORDED_ONLY:
+        raise ValueError(RECORDED_ONLY[case])
     if case == "partial":
         ctx = copy.copy(ctx)
         ctx.sources = copy.deepcopy(ctx.sources)
@@ -217,6 +220,7 @@ async def run_workflow(ctx: RuntimeContext, case: str, *, mode: str = "recorded"
                              start="2024-12-26", end="2024-12-31", variables="tmax")
         if not weather.data["days"]:
             raise SourceUnavailable("no daily temperatures returned for the Daymet package")
+        daymet_package.validate_extract(weather.data)
         limits += ["Daymet models the 1 km grid cell around the requested point. These are not station readings.",
                    "The CSV contains only the returned dates. A missing date has no temperature value."]
     elif case == "earth":
@@ -266,13 +270,15 @@ def evidence_csv(report: dict) -> str:
 
 def write_report(directory: Path, report: dict) -> None:
     case = report["case"]
-    (directory / f"{case}.json").write_bytes((json.dumps(report, indent=2) + "\n").encode())
-    (directory / f"{case}.csv").write_bytes(evidence_csv(report).encode())
+    files = {f"{case}.json": (json.dumps(report, indent=2) + "\n").encode(),
+             f"{case}.csv": evidence_csv(report).encode()}
     if case == daymet_package.CASE:
         payload, metadata = daymet_package.package(report["steps"][0]["envelope"]["data"])
-        (directory / daymet_package.CSV_NAME).write_bytes(payload)
-        (directory / daymet_package.METADATA_NAME).write_bytes((json.dumps(metadata, indent=2) + "\n").encode())
+        files[daymet_package.CSV_NAME] = payload
+        files[daymet_package.METADATA_NAME] = (json.dumps(metadata, indent=2) + "\n").encode()
     if sheet := report.get("worksheet"):
         headers = ["Run mode", "Registry revision", *sheet["columns"]]
         rows = ([report["mode"], report["registry_revision"], *row] for row in sheet["rows"])
-        (directory / f"{case}-worksheet.csv").write_bytes(csv_text(headers, rows).encode())
+        files[f"{case}-worksheet.csv"] = csv_text(headers, rows).encode()
+    for name, content in files.items():
+        (directory / name).write_bytes(content)

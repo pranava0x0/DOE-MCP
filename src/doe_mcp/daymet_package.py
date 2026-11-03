@@ -1,6 +1,7 @@
 """Describe the recorded Daymet CSV that DOE-MCP distributes."""
 from __future__ import annotations
 
+from datetime import date, timedelta
 import hashlib
 
 from .core.errors import SourceSchemaChanged
@@ -12,13 +13,26 @@ METADATA_NAME = CASE + "-croissant.json"
 DATA_USE = "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
 
 
-def package(data: dict) -> tuple[bytes, dict]:
-    """Serialize first: the checksum describes this CSV, not the ORNL archive."""
+def validate_extract(data: dict) -> None:
+    """A missing observation must not masquerade as the documented calendar gap."""
+    start = date.fromisoformat(data["requested_range"]["from"])
+    end = date.fromisoformat(data["requested_range"]["to"])
+    requested = [start + timedelta(days=i) for i in range((end - start).days + 1)]
+    expected = [d.isoformat() for d in requested if d.timetuple().tm_yday != 366]
+    if [r["date"] for r in data["days"]] != expected:
+        raise SourceSchemaChanged("Daymet dates differ from the requested 365-day calendar")
+    if any(r["values"].get("tmax") is None for r in data["days"]):
+        raise SourceSchemaChanged("Daymet returned a date without its maximum temperature")
     columns = data["columns"]
     if len(columns) != 1 or (columns[0]["name"], columns[0]["units"]) != ("tmax", "deg c"):
         raise SourceSchemaChanged("Daymet did not return daily maximum temperature in degrees Celsius")
     if not data["publisher_citation"]:
         raise SourceSchemaChanged("Daymet returned no citation for the temperature extract")
+
+
+def package(data: dict) -> tuple[bytes, dict]:
+    """Serialize first: the checksum describes this CSV, not the ORNL archive."""
+    validate_extract(data)
     fields = [
         ("date", "Date", "Calendar date derived from Daymet's year and day number."),
         ("yday", "Integer", "Day number in the publisher's 365-day calendar."),

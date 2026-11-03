@@ -70,7 +70,7 @@ async def get_daymet_point(ctx: RuntimeContext, latitude: float,
                               from_cache=fetched.from_cache,
                               dataset="Daymet single-pixel extraction")
     b.add_evidence(source_ref=ref,
-                   record_id=f"tile:{series.tile}@{latitude},{longitude}",
+                   record_id=f"tile:{series.tile}@{series.latitude},{series.longitude}",
                    retrieved_at=fetched.retrieved_at,
                    effective_at=series.returned_start,
                    transformations=["day-of-year converted to calendar date"])
