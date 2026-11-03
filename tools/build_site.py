@@ -539,7 +539,7 @@ def render_reference(tools_by_profile: dict[str, list[dict]]) -> str:
 
 async def write_workflows():
     from doe_mcp.replay import fixture_manifest, load_replay_context
-    from doe_mcp.workflows import CASES, evidence_csv, run_workflow
+    from doe_mcp.workflows import CASES, run_workflow, write_report
     from render_workflows import render as render_workflows
     output = DOCS / "data" / "demos"
     output.mkdir(parents=True, exist_ok=True)
@@ -549,8 +549,7 @@ async def write_workflows():
         ctx = load_replay_context(FIXTURES, SOURCES, keyed=case == "eia")
         report = await run_workflow(ctx, case, fixtures=manifest)
         reports.append(report)
-        (output / f"{case}.json").write_text(json.dumps(report, indent=2) + "\n")
-        (output / f"{case}.csv").write_text(evidence_csv(report))
+        write_report(output, report)
     (DOCS / "demos.html").write_text(render_workflows(reports))
     print("wrote recorded workflow pages and evidence exports")
 

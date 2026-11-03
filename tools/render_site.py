@@ -464,6 +464,8 @@ reachable keyless.</p>
 
 DEMO_CARDS = [
     ("evidence", "Trace a research claim", "Search perovskite solar literature, follow a returned record, and see where the search is incomplete.", "Recorded evidence"),
+    ("bibliography", "Prepare a perovskite bibliography", "Download a DOE PAGES citation worksheet. See which author lists were shortened before you cite a paper.", "Genesis: literature-search"),
+    ("soil-metadata", "Check soil sample metadata", "Inspect dates, coordinate pairs and depths for NMDC records whose place contains Washington.", "Genesis: data-exploration"),
     ("microbiome", "Find a microbiome study", "Follow an NMDC shale study to five biosamples, with collection dates, environments and access recipes.", "Recorded metadata"),
     ("rulemaking", "Read a DOE rulemaking brief", "Follow a Federal Register record to its action, docket IDs and dates, and see what the search excludes.", "Recorded documents"),
     ("find-data", "Find out whether DOE publishes it", "Resolve NREL to its new name, check the registry, and search four DOE catalogs, two of them old harvests.", "Recorded catalogs"),

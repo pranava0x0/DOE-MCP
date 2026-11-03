@@ -27,7 +27,7 @@ header{padding:12px 16px}header h1{font-size:1.6rem}header p{margin:8px 0}
 [hidden]{display:none!important}@media(max-width:600px){main,header,footer{padding:16px}td,th{padding:8px}article{padding:16px}}
 </style></head>
 <body><header><a href="index.html">DOE-MCP home</a><h1>DOE-MCP demos</h1><p>Explore recorded results for free, without an account or API key.</p></header>
-<main><div id="picker" hidden><label for="workflow">Choose a walkthrough</label><select id="workflow"><option value="evidence">DOE evidence finder</option><option value="dataset-card">Geothermal dataset-card starter</option><option value="microbiome">Microbiome study and sample finder</option><option value="rulemaking">DOE rulemaking brief</option><option value="outage-history">Historical outage-data finder</option><option value="find-data">Does DOE publish this?</option><option value="facility-status">NERSC facility status</option><option value="partial">One collection unavailable</option><option value="blocked">A capability not yet served</option><option value="grid">BPA grid briefing</option><option value="eia">CAISO demand briefing</option><option value="site">Rhode Island facility context</option><option value="earth">Environmental study brief</option><option value="materials">Materials evidence sheet</option></select><nav id="step-nav" aria-label="Jump to result"></nav></div><article id="evidence" tabindex="-1"><h2>DOE evidence finder</h2><p class="skill">Skill: <code>doe-literature-review</code></p><p class="answer">5 distinct records returned. Followed record 3484888: Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells.</p><p class="scope">Read 3 of 8,313 from OSTI.GOV Search API; 3 of 5,669 from DOE PAGES (Public Access Gateway for Energy and Science). A recorded replay at registry revision 2026-10-20, not current data.</p><details open><summary>Limits of this example</summary><ul><li>A sampled literature search is not a systematic review.</li><li>A common topic does not prove that a paper and dataset are linked.</li></ul></details><p class="downloads"><a download href="data/demos/evidence.json">Download JSON evidence</a><a download href="data/demos/evidence.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo evidence --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="step" id="evidence-step-1" tabindex="-1" data-label="Search literature"><h3>1. Search literature</h3><details><summary>Coverage and source notes</summary><p class="mono">research.search_literature {&quot;query&quot;: &quot;perovskite solar&quot;, &quot;rows&quot;: 3}</p><div class="scroll"><table class="compact"><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td data-label="Coverage dimension">registry</td><td data-label="Value">covered</td></tr><tr><td data-label="Coverage dimension">execution</td><td data-label="Value">complete</td></tr><tr><td data-label="Coverage dimension">pagination</td><td data-label="Value">truncated</td></tr><tr><td data-label="Coverage dimension">source_claim</td><td data-label="Value">partial</td></tr><tr><td data-label="Coverage dimension">result</td><td data-label="Value">hit</td></tr></tbody></table></div><p>Searched: osti-gov-records, osti-doe-pages</p><ul><li>No published rate limit means none of us knows what the real one is. If OSTI ever publishes one, or answers an email about it, this field becomes a number and the politeness budget follows it.</li><li>No published rate limit, same as the rest of the OSTI family.</li></ul></details><div class="scroll"><table class="stackable"><caption>Counts reported by each collection; totals can overlap</caption><thead><tr><th scope="col">Collection</th><th scope="col">Matches</th><th scope="col">Returned</th></tr></thead><tbody><tr><td data-label="Collection">OSTI.GOV Search API</td><td data-label="Matches">8313</td><td data-label="Returned">3</td></tr><tr><td data-label="Collection">DOE PAGES (Public Access Gateway for Energy and Science)</td><td data-label="Matches">5669</td><td data-label="Returned">3</td></tr></tbody></table></div><h4>Publisher access recipes</h4><ul><li><a href="https://doi.org/10.2172/3484888" rel="noreferrer">Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based…</a></li><li><a href="https://www.osti.gov/servlets/purl/3484888" rel="noreferrer">Full text (OSTI)</a></li><li><a href="https://doi.org/10.66816/tp5080615" rel="noreferrer">Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module…</a></li><li><a href="https://www.osti.gov/servlets/purl/3625672" rel="noreferrer">Full text (OSTI)</a></li><li><a href="https://doi.org/10.1016/j.nanoen.2026.112209" rel="noreferrer">Reducing non-radiative recombination in perovskite solar cells with a…</a></li><li><a href="https://www.osti.gov/servlets/purl/3409109" rel="noreferrer">Full text (OSTI)</a></li><li><a href="https://doi.org/10.1021/acsenergylett.6c01751" rel="noreferrer">Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide…</a></li><li><a href="https://www.osti.gov/servlets/purl/3818255" rel="noreferrer">Full text (OSTI)</a></li><li><a href="https://doi.org/10.1021/jacs.6c05503" rel="noreferrer">Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of…</a></li><li><a href="https://www.osti.gov/servlets/purl/3818626" rel="noreferrer">Full text (OSTI)</a></li></ul><ul class="evidence"><li><strong>Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells</strong><br>OSTI.GOV Search API · record 3484888<br><a href="https://www.osti.gov/biblio/3484888" rel="noreferrer">Publisher record</a><br>Record date: 2026-08-27T11:00:26Z</li><li><strong>Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative Research and Development Final Report, CRADA Number CRD-19-00810</strong><br>OSTI.GOV Search API · record 3625672<br><a href="https://www.osti.gov/biblio/3625672" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-02T10:56:05Z</li><li><strong>Reducing non-radiative recombination in perovskite solar cells with a SiO2-graphene oxide buried interface layer</strong><br>OSTI.GOV Search API · record 3409109<br><a href="https://www.osti.gov/biblio/3409109" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T15:49:56Z</li><li><strong>Reducing non-radiative recombination in perovskite solar cells with a SiO2-graphene oxide buried interface layer</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3409109<br><a href="https://www.osti.gov/biblio/3409109" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T11:49:56Z</li><li><strong>Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide Perovskites</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3818255<br><a href="https://www.osti.gov/biblio/3818255" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-17T10:27:35Z</li><li><strong>Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of Perovskite Photovoltaics</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3818626<br><a href="https://www.osti.gov/biblio/3818626" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T08:11:09Z</li></ul><details><summary>Full response and evidence</summary><pre>{
+<main><div id="picker" hidden><label for="workflow">Choose a walkthrough</label><select id="workflow"><option value="evidence">DOE evidence finder</option><option value="bibliography">Perovskite bibliography worksheet</option><option value="soil-metadata">Soil sample field check</option><option value="dataset-card">Geothermal dataset-card starter</option><option value="microbiome">Microbiome study and sample finder</option><option value="rulemaking">DOE rulemaking brief</option><option value="outage-history">Historical outage-data finder</option><option value="find-data">Does DOE publish this?</option><option value="facility-status">NERSC facility status</option><option value="partial">One collection unavailable</option><option value="blocked">A capability not yet served</option><option value="grid">BPA grid briefing</option><option value="eia">CAISO demand briefing</option><option value="site">Rhode Island facility context</option><option value="earth">Environmental study brief</option><option value="materials">Materials evidence sheet</option></select><nav id="step-nav" aria-label="Jump to result"></nav></div><article id="evidence" tabindex="-1"><h2>DOE evidence finder</h2><p class="skill">Skill: <code>doe-literature-review</code></p><p class="answer">5 distinct records returned. Followed record 3484888: Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells.</p><p class="scope">Read 3 of 8,313 from OSTI.GOV Search API; 3 of 5,669 from DOE PAGES (Public Access Gateway for Energy and Science). A recorded replay at registry revision 2026-10-20, not current data.</p><details open><summary>Limits of this example</summary><ul><li>A sampled literature search is not a systematic review.</li><li>A common topic does not prove that a paper and dataset are linked.</li></ul></details><p class="downloads"><a download href="data/demos/evidence.json">Download JSON evidence</a><a download href="data/demos/evidence.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo evidence --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="step" id="evidence-step-1" tabindex="-1" data-label="Search literature"><h3>1. Search literature</h3><details><summary>Coverage and source notes</summary><p class="mono">research.search_literature {&quot;query&quot;: &quot;perovskite solar&quot;, &quot;rows&quot;: 3}</p><div class="scroll"><table class="compact"><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td data-label="Coverage dimension">registry</td><td data-label="Value">covered</td></tr><tr><td data-label="Coverage dimension">execution</td><td data-label="Value">complete</td></tr><tr><td data-label="Coverage dimension">pagination</td><td data-label="Value">truncated</td></tr><tr><td data-label="Coverage dimension">source_claim</td><td data-label="Value">partial</td></tr><tr><td data-label="Coverage dimension">result</td><td data-label="Value">hit</td></tr></tbody></table></div><p>Searched: osti-gov-records, osti-doe-pages</p><ul><li>No published rate limit means none of us knows what the real one is. If OSTI ever publishes one, or answers an email about it, this field becomes a number and the politeness budget follows it.</li><li>No published rate limit, same as the rest of the OSTI family.</li></ul></details><div class="scroll"><table class="stackable"><caption>Counts reported by each collection; totals can overlap</caption><thead><tr><th scope="col">Collection</th><th scope="col">Matches</th><th scope="col">Returned</th></tr></thead><tbody><tr><td data-label="Collection">OSTI.GOV Search API</td><td data-label="Matches">8313</td><td data-label="Returned">3</td></tr><tr><td data-label="Collection">DOE PAGES (Public Access Gateway for Energy and Science)</td><td data-label="Matches">5669</td><td data-label="Returned">3</td></tr></tbody></table></div><h4>Publisher access recipes</h4><ul><li><a href="https://doi.org/10.2172/3484888" rel="noreferrer">Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based…</a></li><li><a href="https://www.osti.gov/servlets/purl/3484888" rel="noreferrer">Full text (OSTI)</a></li><li><a href="https://doi.org/10.66816/tp5080615" rel="noreferrer">Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module…</a></li><li><a href="https://www.osti.gov/servlets/purl/3625672" rel="noreferrer">Full text (OSTI)</a></li><li><a href="https://doi.org/10.1016/j.nanoen.2026.112209" rel="noreferrer">Reducing non-radiative recombination in perovskite solar cells with a…</a></li><li><a href="https://www.osti.gov/servlets/purl/3409109" rel="noreferrer">Full text (OSTI)</a></li><li><a href="https://doi.org/10.1021/acsenergylett.6c01751" rel="noreferrer">Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide…</a></li><li><a href="https://www.osti.gov/servlets/purl/3818255" rel="noreferrer">Full text (OSTI)</a></li><li><a href="https://doi.org/10.1021/jacs.6c05503" rel="noreferrer">Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of…</a></li><li><a href="https://www.osti.gov/servlets/purl/3818626" rel="noreferrer">Full text (OSTI)</a></li></ul><ul class="evidence"><li><strong>Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells</strong><br>OSTI.GOV Search API · record 3484888<br><a href="https://www.osti.gov/biblio/3484888" rel="noreferrer">Publisher record</a><br>Record date: 2026-08-27T11:00:26Z</li><li><strong>Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative Research and Development Final Report, CRADA Number CRD-19-00810</strong><br>OSTI.GOV Search API · record 3625672<br><a href="https://www.osti.gov/biblio/3625672" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-02T10:56:05Z</li><li><strong>Reducing non-radiative recombination in perovskite solar cells with a SiO2-graphene oxide buried interface layer</strong><br>OSTI.GOV Search API · record 3409109<br><a href="https://www.osti.gov/biblio/3409109" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T15:49:56Z</li><li><strong>Reducing non-radiative recombination in perovskite solar cells with a SiO2-graphene oxide buried interface layer</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3409109<br><a href="https://www.osti.gov/biblio/3409109" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T11:49:56Z</li><li><strong>Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide Perovskites</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3818255<br><a href="https://www.osti.gov/biblio/3818255" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-17T10:27:35Z</li><li><strong>Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of Perovskite Photovoltaics</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3818626<br><a href="https://www.osti.gov/biblio/3818626" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T08:11:09Z</li></ul><details><summary>Full response and evidence</summary><pre>{
   &quot;data&quot;: {
     &quot;records&quot;: [
       {
@@ -542,7 +542,509 @@ header{padding:12px 16px}header h1{font-size:1.6rem}header p{margin:8px 0}
     &quot;registry_revision&quot;: &quot;2026-10-20&quot;,
     &quot;request_id&quot;: &quot;recorded-workflow&quot;
   }
-}</pre></details></section><details><summary>Recording manifest and capture times</summary><p>Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><div class="scroll"><table class="stackable"><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td data-label="Fixture">osti-doe-pages.json</td><td data-label="Capture time (UTC)">2026-09-22T12:33:16.478603+00:00</td><td data-label="SHA-256">d985dce1d781b9a7484437ab297f66f39c5d89febdf5acc3527d09b3316e19d8</td></tr><tr><td data-label="Fixture">osti-gov-records.json</td><td data-label="Capture time (UTC)">2026-09-22T12:33:14.364511+00:00</td><td data-label="SHA-256">c6fd5ded484f83064397a670a15639a4c3903b1add64a6ddcb849cf6da404d17</td></tr></tbody></table></div></details></article><article id="dataset-card" tabindex="-1"><h2>Geothermal dataset-card starter</h2><p class="skill">Skill: <code>find-doe-data</code></p><p class="answer">2 metadata drafts from DOE Data Explorer. File checksums, reuse permissions and governance still need review.</p><p class="scope">Read 2 of 1,035 matches. A recorded replay at registry revision 2026-10-20, not current data.</p><details open><summary>Limits of this example</summary><ul><li>A documentation starter, not a validated Genesis datacard or Croissant record.</li><li>Only catalog metadata was read; no dataset files were downloaded or inspected.</li><li>A public metadata record does not establish that the underlying data is freely accessible or licensed for reuse.</li></ul></details><p class="downloads"><a download href="data/demos/dataset-card.json">Download JSON evidence</a><a download href="data/demos/dataset-card.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo dataset-card --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="draft"><h3>Utah FORGE: Seismic DAS and Geophone Borehole Data Processing and 3D Imaging of Vp/Vs Ratio in the 2024 Stimulated Reservoir</h3><div class="scroll"><table class="compact"><caption>Draft metadata only — not schema validated</caption><thead><tr><th scope="col">Catalog field</th><th scope="col">Value</th></tr></thead><tbody><tr><td data-label="Catalog field">id</td><td data-label="Value">2541598</td></tr><tr><td data-label="Catalog field">title</td><td data-label="Value">Utah FORGE: Seismic DAS and Geophone Borehole Data Processing and 3D Imaging of Vp/Vs Ratio in the 2024 Stimulated Reservoir</td></tr><tr><td data-label="Catalog field">authors</td><td data-label="Value">Gritto, Roland [EMR Solutions and Technology] (ORCID:0000000320927201), Jarpe, Steve P. (ORCID:0009000493428416)</td></tr><tr><td data-label="Catalog field">publication_date</td><td data-label="Value">2025-03-16</td></tr><tr><td data-label="Catalog field">product_type</td><td data-label="Value">Dataset</td></tr><tr><td data-label="Catalog field">doi</td><td data-label="Value">10.15121/2541598</td></tr><tr><td data-label="Catalog field">research_orgs</td><td data-label="Value">DOE Geothermal Data Repository, EMR Solutions and Technology</td></tr><tr><td data-label="Catalog field">site_code</td><td data-label="Value">DOE-GDR</td></tr></tbody></table></div><h4>Still needs owner review</h4><ul><li>Downloadable files and access conditions</li><li>File formats, sizes and checksums</li><li>License and permitted reuse</li><li>Sensitivity and governance review</li><li>Data quality and suitability for AI use</li></ul></section><section class="draft"><h3>Utah FORGE: Well 16B(78)-32 DTS, RFS DSS Strain, and Absolute Strain Circulation Test Fiber Optic Data - August 2024</h3><div class="scroll"><table class="compact"><caption>Draft metadata only — not schema validated</caption><thead><tr><th scope="col">Catalog field</th><th scope="col">Value</th></tr></thead><tbody><tr><td data-label="Catalog field">id</td><td data-label="Value">2531108</td></tr><tr><td data-label="Catalog field">title</td><td data-label="Value">Utah FORGE: Well 16B(78)-32 DTS, RFS DSS Strain, and Absolute Strain Circulation Test Fiber Optic Data - August 2024</td></tr><tr><td data-label="Catalog field">authors</td><td data-label="Value">Jurick, Dana [Neubrex Energy Services (US), LLC], Khatara, Sajan, Guzik, Artur</td></tr><tr><td data-label="Catalog field">publication_date</td><td data-label="Value">2024-08-29</td></tr><tr><td data-label="Catalog field">product_type</td><td data-label="Value">Dataset</td></tr><tr><td data-label="Catalog field">doi</td><td data-label="Value">10.15121/2531108</td></tr><tr><td data-label="Catalog field">research_orgs</td><td data-label="Value">DOE Geothermal Data Repository, Neubrex Energy Services (US), LLC</td></tr><tr><td data-label="Catalog field">site_code</td><td data-label="Value">DOE-GDR</td></tr></tbody></table></div><h4>Still needs owner review</h4><ul><li>Downloadable files and access conditions</li><li>File formats, sizes and checksums</li><li>License and permitted reuse</li><li>Sensitivity and governance review</li><li>Data quality and suitability for AI use</li></ul></section><section class="step" id="dataset-card-step-1" tabindex="-1" data-label="Search datasets"><h3>1. Search datasets</h3><details><summary>Coverage and source notes</summary><p class="mono">research.search_datasets {&quot;rows&quot;: 2, &quot;site_code&quot;: &quot;DOE-GDR&quot;}</p><div class="scroll"><table class="compact"><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td data-label="Coverage dimension">registry</td><td data-label="Value">covered</td></tr><tr><td data-label="Coverage dimension">execution</td><td data-label="Value">complete</td></tr><tr><td data-label="Coverage dimension">pagination</td><td data-label="Value">truncated</td></tr><tr><td data-label="Coverage dimension">source_claim</td><td data-label="Value">partial</td></tr><tr><td data-label="Coverage dimension">result</td><td data-label="Value">hit</td></tr></tbody></table></div><p>Searched: osti-data-explorer</p><ul><li>No published rate limit, same as the rest of the OSTI family.</li><li>Dataset discovery returns catalog metadata, not measurements. For user-facility raw data — beamlines, reactors, tokamaks — there is generally nothing to find: that data is proposal-gated by design and is not a coverage gap here.</li></ul></details><div class="scroll"><table class="compact"><caption></caption><thead><tr><th scope="col">Returned</th><th scope="col">Total matches</th></tr></thead><tbody><tr><td data-label="Returned">2</td><td data-label="Total matches">1035</td></tr></tbody></table></div><h4>Publisher access recipes</h4><ul><li><a href="https://doi.org/10.15121/2541598" rel="noreferrer">Utah FORGE: Seismic DAS and Geophone Borehole Data Processing and 3D Imaging…</a></li><li><a href="https://www.osti.gov/dataexplorer/servlets/purl/2541598" rel="noreferrer">Full text (OSTI)</a></li><li><a href="https://gdr.openei.org/submissions/1723" rel="noreferrer">Dataset landing page</a> — The repository that actually holds this data. It may require an account the catalog record does not mention.</li><li><a href="https://doi.org/10.15121/2531108" rel="noreferrer">Utah FORGE: Well 16B(78)-32 DTS, RFS DSS Strain, and Absolute Strain…</a></li><li><a href="https://www.osti.gov/dataexplorer/servlets/purl/2531108" rel="noreferrer">Full text (OSTI)</a></li><li><a href="https://gdr.openei.org/submissions/1721" rel="noreferrer">Dataset landing page</a> — The repository that actually holds this data. It may require an account the catalog record does not mention.</li></ul><ul class="evidence"><li><strong>Utah FORGE: Seismic DAS and Geophone Borehole Data Processing and 3D Imaging of Vp/Vs Ratio in the 2024 Stimulated Reservoir</strong><br>DOE Data Explorer · record 2541598<br><a href="https://www.osti.gov/dataexplorer/biblio/2541598" rel="noreferrer">Publisher record</a><br>Record date: 2025-03-31T19:08:19Z</li><li><strong>Utah FORGE: Well 16B(78)-32 DTS, RFS DSS Strain, and Absolute Strain Circulation Test Fiber Optic Data - August 2024</strong><br>DOE Data Explorer · record 2531108<br><a href="https://www.osti.gov/dataexplorer/biblio/2531108" rel="noreferrer">Publisher record</a><br>Record date: 2025-03-18T18:40:22Z</li></ul><details><summary>Full response and evidence</summary><pre>{
+}</pre></details></section><details><summary>Recording manifest and capture times</summary><p>Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><div class="scroll"><table class="stackable"><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td data-label="Fixture">osti-doe-pages.json</td><td data-label="Capture time (UTC)">2026-09-22T12:33:16.478603+00:00</td><td data-label="SHA-256">d985dce1d781b9a7484437ab297f66f39c5d89febdf5acc3527d09b3316e19d8</td></tr><tr><td data-label="Fixture">osti-gov-records.json</td><td data-label="Capture time (UTC)">2026-09-22T12:33:14.364511+00:00</td><td data-label="SHA-256">c6fd5ded484f83064397a670a15639a4c3903b1add64a6ddcb849cf6da404d17</td></tr></tbody></table></div></details></article><article id="bibliography" tabindex="-1"><h2>Perovskite bibliography worksheet</h2><p class="skill">Skill: <code>doe-literature-review</code></p><p class="answer">3 DOE PAGES records for a bibliography. The worksheet marks how many authors each catalog summary omitted.</p><p class="scope">Read 3 of 5,669 from DOE PAGES (Public Access Gateway for Energy and Science). A recorded replay at registry revision 2026-10-20, not current data.</p><details open><summary>Limits of this example</summary><ul><li>Only the first DOE PAGES results page was read. No full text or citation counts were retrieved.</li><li>Author strings come from the catalog. Check omitted authors against the publisher before citing.</li></ul></details><p class="downloads"><a download href="data/demos/bibliography.json">Download JSON evidence</a><a download href="data/demos/bibliography.csv">Download CSV evidence index</a><a download href="data/demos/bibliography-worksheet.csv">Download worksheet CSV</a></p><section class="step worksheet" id="bibliography-worksheet" tabindex="-1"><h3>Bibliography worksheet</h3><p>Based on the Genesis <a href="https://github.com/AI-ModCon/genesis-skills/blob/70dce5aca946e2804f9b8579da01910cd2861858/skills/literature-search/SKILL.md" rel="noreferrer">literature-search</a> skill. DOE-MCP builds this worksheet locally.</p><div class="scroll"><table class="stackable"><caption>Each evidence ID refers to step 1 in the JSON download.</caption><thead><tr><th scope="col">Record ID</th><th scope="col">Title</th><th scope="col">Listed authors</th><th scope="col">Authors omitted by DOE-MCP</th><th scope="col">Publication date</th><th scope="col">Journal</th><th scope="col">DOI</th><th scope="col">Step 1 evidence ID</th></tr></thead><tbody><tr><td data-label="Record ID">3409109</td><td data-label="Title">Reducing non-radiative recombination in perovskite solar cells with a SiO2-graphene oxide buried interface layer</td><td data-label="Listed authors">Cao, Zikun [Univ. of Texas, Arlington, TX (United States); Univ. of Miami, FL (United States)]; You, Shuai [National Laboratory of the Rockies (NLR), Golden, CO (United States)]; Zhang, Xiyao [Univ. of Texas, Arlington, TX (United States); Univ. of Akron, OH (United States)]; Liu, Lei [Univ. of Akron, OH (United States)]; Zhang, Haixing [Univ. of Miami, FL (United States)]</td><td data-label="Authors omitted by DOE-MCP">4</td><td data-label="Publication date">2026-08-31</td><td data-label="Journal">Nano Energy</td><td data-label="DOI">10.1016/j.nanoen.2026.112209</td><td data-label="Step 1 evidence ID">evidence_01</td></tr><tr><td data-label="Record ID">3818255</td><td data-label="Title">Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide Perovskites</td><td data-label="Listed authors">Westbrook, Robert J. E. [University of Washington, Seattle, WA (United States)] (ORCID:0000000212030712); Taddei, Margherita [University of Washington, Seattle, WA (United States)] (ORCID:0000000341228418); Sanchez-Diaz, Jesús [Universitat Jaume, Castellón (Spain)]; Mushtaq, Tehmina [Universitat Jaume, Castellón (Spain)]; Sánchez, Rafael S [Universitat Jaume, Castellón (Spain)] (ORCID:0000000189486120)</td><td data-label="Authors omitted by DOE-MCP">4</td><td data-label="Publication date">2026-08-26</td><td data-label="Journal">ACS Energy Letters</td><td data-label="DOI">10.1021/acsenergylett.6c01751</td><td data-label="Step 1 evidence ID">evidence_02</td></tr><tr><td data-label="Record ID">3818626</td><td data-label="Title">Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of Perovskite Photovoltaics</td><td data-label="Listed authors">Shih, Meng-Chen; Tan, Shaun; Lu, Yongli; Kodalle, Tim; Terlier, Tanguy</td><td data-label="Authors omitted by DOE-MCP">10</td><td data-label="Publication date">2026-08-11</td><td data-label="Journal">Journal of the American Chemical Society</td><td data-label="DOI">10.1021/jacs.6c05503</td><td data-label="Step 1 evidence ID">evidence_03</td></tr></tbody></table></div></section><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo bibliography --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="step" id="bibliography-step-1" tabindex="-1" data-label="Search literature"><h3>1. Search literature</h3><details><summary>Coverage and source notes</summary><p class="mono">research.search_literature {&quot;public_access_only&quot;: true, &quot;query&quot;: &quot;perovskite solar&quot;, &quot;rows&quot;: 3}</p><div class="scroll"><table class="compact"><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td data-label="Coverage dimension">registry</td><td data-label="Value">covered</td></tr><tr><td data-label="Coverage dimension">execution</td><td data-label="Value">complete</td></tr><tr><td data-label="Coverage dimension">pagination</td><td data-label="Value">truncated</td></tr><tr><td data-label="Coverage dimension">source_claim</td><td data-label="Value">partial</td></tr><tr><td data-label="Coverage dimension">result</td><td data-label="Value">hit</td></tr></tbody></table></div><p>Searched: osti-doe-pages</p><ul><li>No published rate limit, same as the rest of the OSTI family.</li><li>Restricted to DOE PAGES, which holds public-access literature after a 12-month administrative embargo. Recent work is systematically absent; search without public_access_only to see the wider index.</li></ul></details><div class="scroll"><table class="stackable"><caption>Counts reported by each collection; totals can overlap</caption><thead><tr><th scope="col">Collection</th><th scope="col">Matches</th><th scope="col">Returned</th></tr></thead><tbody><tr><td data-label="Collection">DOE PAGES (Public Access Gateway for Energy and Science)</td><td data-label="Matches">5669</td><td data-label="Returned">3</td></tr></tbody></table></div><h4>Publisher access recipes</h4><ul><li><a href="https://doi.org/10.1016/j.nanoen.2026.112209" rel="noreferrer">Reducing non-radiative recombination in perovskite solar cells with a…</a></li><li><a href="https://www.osti.gov/servlets/purl/3409109" rel="noreferrer">Full text (OSTI)</a></li><li><a href="https://doi.org/10.1021/acsenergylett.6c01751" rel="noreferrer">Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide…</a></li><li><a href="https://www.osti.gov/servlets/purl/3818255" rel="noreferrer">Full text (OSTI)</a></li><li><a href="https://doi.org/10.1021/jacs.6c05503" rel="noreferrer">Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of…</a></li><li><a href="https://www.osti.gov/servlets/purl/3818626" rel="noreferrer">Full text (OSTI)</a></li></ul><ul class="evidence"><li><strong>Reducing non-radiative recombination in perovskite solar cells with a SiO2-graphene oxide buried interface layer</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3409109<br><a href="https://www.osti.gov/biblio/3409109" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T11:49:56Z</li><li><strong>Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide Perovskites</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3818255<br><a href="https://www.osti.gov/biblio/3818255" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-17T10:27:35Z</li><li><strong>Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of Perovskite Photovoltaics</strong><br>DOE PAGES (Public Access Gateway for Energy and Science) · record 3818626<br><a href="https://www.osti.gov/biblio/3818626" rel="noreferrer">Publisher record</a><br>Record date: 2026-09-18T08:11:09Z</li></ul><details><summary>Full response and evidence</summary><pre>{
+  &quot;data&quot;: {
+    &quot;records&quot;: [
+      {
+        &quot;id&quot;: &quot;3409109&quot;,
+        &quot;title&quot;: &quot;Reducing non-radiative recombination in perovskite solar cells with a SiO&lt;sub&gt;2&lt;/sub&gt;-graphene oxide buried interface layer&quot;,
+        &quot;authors&quot;: [
+          &quot;Cao, Zikun [Univ. of Texas, Arlington, TX (United States); Univ. of Miami, FL (United States)]&quot;,
+          &quot;You, Shuai [National Laboratory of the Rockies (NLR), Golden, CO (United States)]&quot;,
+          &quot;Zhang, Xiyao [Univ. of Texas, Arlington, TX (United States); Univ. of Akron, OH (United States)]&quot;,
+          &quot;Liu, Lei [Univ. of Akron, OH (United States)]&quot;,
+          &quot;Zhang, Haixing [Univ. of Miami, FL (United States)]&quot;
+        ],
+        &quot;publication_date&quot;: &quot;2026-08-31&quot;,
+        &quot;product_type&quot;: &quot;Journal Article&quot;,
+        &quot;authors_truncated&quot;: 4,
+        &quot;doi&quot;: &quot;10.1016/j.nanoen.2026.112209&quot;,
+        &quot;journal&quot;: &quot;Nano Energy&quot;,
+        &quot;report_number&quot;: &quot;NLR/JA-5900-101333&quot;,
+        &quot;research_orgs&quot;: [
+          &quot;National Laboratory of the Rockies (NLR), Golden, CO (United States)&quot;
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;3818255&quot;,
+        &quot;title&quot;: &quot;Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide Perovskites&quot;,
+        &quot;authors&quot;: [
+          &quot;Westbrook, Robert J. E. [University of Washington, Seattle, WA (United States)] (ORCID:0000000212030712)&quot;,
+          &quot;Taddei, Margherita [University of Washington, Seattle, WA (United States)] (ORCID:0000000341228418)&quot;,
+          &quot;Sanchez-Diaz, Jes\u00fas [Universitat Jaume, Castell\u00f3n (Spain)]&quot;,
+          &quot;Mushtaq, Tehmina [Universitat Jaume, Castell\u00f3n (Spain)]&quot;,
+          &quot;S\u00e1nchez, Rafael S [Universitat Jaume, Castell\u00f3n (Spain)] (ORCID:0000000189486120)&quot;
+        ],
+        &quot;publication_date&quot;: &quot;2026-08-26&quot;,
+        &quot;product_type&quot;: &quot;Journal Article&quot;,
+        &quot;authors_truncated&quot;: 4,
+        &quot;doi&quot;: &quot;10.1021/acsenergylett.6c01751&quot;,
+        &quot;journal&quot;: &quot;ACS Energy Letters&quot;,
+        &quot;research_orgs&quot;: [
+          &quot;University of Washington, Seattle, WA (United States)&quot;
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;3818626&quot;,
+        &quot;title&quot;: &quot;Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of Perovskite Photovoltaics&quot;,
+        &quot;authors&quot;: [
+          &quot;Shih, Meng-Chen&quot;,
+          &quot;Tan, Shaun&quot;,
+          &quot;Lu, Yongli&quot;,
+          &quot;Kodalle, Tim&quot;,
+          &quot;Terlier, Tanguy&quot;
+        ],
+        &quot;publication_date&quot;: &quot;2026-08-11&quot;,
+        &quot;product_type&quot;: &quot;Journal Article&quot;,
+        &quot;authors_truncated&quot;: 10,
+        &quot;doi&quot;: &quot;10.1021/jacs.6c05503&quot;,
+        &quot;journal&quot;: &quot;Journal of the American Chemical Society&quot;,
+        &quot;research_orgs&quot;: [
+          &quot;Lawrence Berkeley National Laboratory (LBNL), Berkeley, CA (United States)&quot;
+        ]
+      }
+    ],
+    &quot;record_count&quot;: 3,
+    &quot;per_source&quot;: [
+      {
+        &quot;source_id&quot;: &quot;osti-doe-pages&quot;,
+        &quot;system&quot;: &quot;DOE PAGES (Public Access Gateway for Energy and Science)&quot;,
+        &quot;total_matches&quot;: 5669,
+        &quot;returned&quot;: 3
+      }
+    ]
+  },
+  &quot;provenance&quot;: [
+    {
+      &quot;id&quot;: &quot;source_01&quot;,
+      &quot;source_id&quot;: &quot;osti-doe-pages&quot;,
+      &quot;steward&quot;: &quot;Office of Scientific and Technical Information&quot;,
+      &quot;system&quot;: &quot;DOE PAGES (Public Access Gateway for Energy and Science)&quot;,
+      &quot;dataset&quot;: &quot;DOE PAGES (Public Access Gateway for Energy and Science)&quot;,
+      &quot;dataset_version&quot;: &quot;current&quot;,
+      &quot;authority_level&quot;: &quot;primary&quot;,
+      &quot;access_path&quot;: &quot;live&quot;,
+      &quot;source_updated_at&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;cache_age_seconds&quot;: 0
+    }
+  ],
+  &quot;evidence&quot;: [
+    {
+      &quot;id&quot;: &quot;evidence_01&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;3409109&quot;,
+      &quot;locator&quot;: &quot;https://www.osti.gov/biblio/3409109&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2026-09-18T11:49:56Z&quot;,
+      &quot;transformations&quot;: [
+        &quot;normalize&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_02&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;3818255&quot;,
+      &quot;locator&quot;: &quot;https://www.osti.gov/biblio/3818255&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2026-09-17T10:27:35Z&quot;,
+      &quot;transformations&quot;: [
+        &quot;normalize&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_03&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;3818626&quot;,
+      &quot;locator&quot;: &quot;https://www.osti.gov/biblio/3818626&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2026-09-18T08:11:09Z&quot;,
+      &quot;transformations&quot;: [
+        &quot;normalize&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    }
+  ],
+  &quot;coverage&quot;: {
+    &quot;registry&quot;: &quot;covered&quot;,
+    &quot;execution&quot;: &quot;complete&quot;,
+    &quot;pagination&quot;: &quot;truncated&quot;,
+    &quot;source_claim&quot;: &quot;partial&quot;,
+    &quot;result&quot;: &quot;hit&quot;,
+    &quot;sources_searched&quot;: [
+      &quot;osti-doe-pages&quot;
+    ],
+    &quot;known_limitations&quot;: [
+      &quot;A 12-month administrative embargo interval applies before an accepted manuscript appears. Recent DOE-funded work is therefore systematically absent, and an empty result for a 2026 paper means \&quot;not yet released\&quot;, not \&quot;does not exist\&quot;.&quot;,
+      &quot;DOIs arrive as full https://doi.org/ URLs rather than bare DOIs, which breaks naive deduplication against OSTI.GOV records of the same work. The adapter normalizes both to a bare DOI and keeps the URL form as the locator.&quot;,
+      &quot;Sixteen times smaller than OSTI.GOV (260K against 4.38M) by design, not by omission. A literature search that finds nothing here should try OSTI.GOV before concluding anything.&quot;
+    ]
+  },
+  &quot;warnings&quot;: [
+    {
+      &quot;code&quot;: &quot;terms_note&quot;,
+      &quot;message&quot;: &quot;No published rate limit, same as the rest of the OSTI family.&quot;,
+      &quot;source_id&quot;: &quot;osti-doe-pages&quot;
+    },
+    {
+      &quot;code&quot;: &quot;terms_note&quot;,
+      &quot;message&quot;: &quot;Restricted to DOE PAGES, which holds public-access literature after a 12-month administrative embargo. Recent work is systematically absent; search without public_access_only to see the wider index.&quot;,
+      &quot;source_id&quot;: &quot;osti-doe-pages&quot;
+    }
+  ],
+  &quot;access_recipes&quot;: [
+    {
+      &quot;kind&quot;: &quot;doi&quot;,
+      &quot;uri&quot;: &quot;https://doi.org/10.1016/j.nanoen.2026.112209&quot;,
+      &quot;label&quot;: &quot;Reducing non-radiative recombination in perovskite solar cells with a\u2026&quot;,
+      &quot;instructions&quot;: null,
+      &quot;requires_account&quot;: false,
+      &quot;approximate_size&quot;: null
+    },
+    {
+      &quot;kind&quot;: &quot;fulltext_pdf&quot;,
+      &quot;uri&quot;: &quot;https://www.osti.gov/servlets/purl/3409109&quot;,
+      &quot;label&quot;: &quot;Full text (OSTI)&quot;,
+      &quot;instructions&quot;: null,
+      &quot;requires_account&quot;: false,
+      &quot;approximate_size&quot;: null
+    },
+    {
+      &quot;kind&quot;: &quot;doi&quot;,
+      &quot;uri&quot;: &quot;https://doi.org/10.1021/acsenergylett.6c01751&quot;,
+      &quot;label&quot;: &quot;Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide\u2026&quot;,
+      &quot;instructions&quot;: null,
+      &quot;requires_account&quot;: false,
+      &quot;approximate_size&quot;: null
+    },
+    {
+      &quot;kind&quot;: &quot;fulltext_pdf&quot;,
+      &quot;uri&quot;: &quot;https://www.osti.gov/servlets/purl/3818255&quot;,
+      &quot;label&quot;: &quot;Full text (OSTI)&quot;,
+      &quot;instructions&quot;: null,
+      &quot;requires_account&quot;: false,
+      &quot;approximate_size&quot;: null
+    },
+    {
+      &quot;kind&quot;: &quot;doi&quot;,
+      &quot;uri&quot;: &quot;https://doi.org/10.1021/jacs.6c05503&quot;,
+      &quot;label&quot;: &quot;Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of\u2026&quot;,
+      &quot;instructions&quot;: null,
+      &quot;requires_account&quot;: false,
+      &quot;approximate_size&quot;: null
+    },
+    {
+      &quot;kind&quot;: &quot;fulltext_pdf&quot;,
+      &quot;uri&quot;: &quot;https://www.osti.gov/servlets/purl/3818626&quot;,
+      &quot;label&quot;: &quot;Full text (OSTI)&quot;,
+      &quot;instructions&quot;: null,
+      &quot;requires_account&quot;: false,
+      &quot;approximate_size&quot;: null
+    }
+  ],
+  &quot;next_actions&quot;: [
+    {
+      &quot;finding&quot;: &quot;More matches exist than the 3 returned.&quot;,
+      &quot;suggested_capability&quot;: &quot;literature.search&quot;,
+      &quot;reason&quot;: &quot;Call again with a higher page number, or narrow the filters. Do not describe these as all the results.&quot;
+    }
+  ],
+  &quot;_execution&quot;: {
+    &quot;server&quot;: &quot;doe-mcp&quot;,
+    &quot;server_version&quot;: &quot;0.1.0.dev0&quot;,
+    &quot;tool&quot;: &quot;research.search_literature&quot;,
+    &quot;tool_contract_version&quot;: &quot;1&quot;,
+    &quot;envelope_version&quot;: &quot;1&quot;,
+    &quot;adapters&quot;: {
+      &quot;osti_family&quot;: &quot;1&quot;,
+      &quot;opendatasoft&quot;: &quot;1&quot;,
+      &quot;json_document&quot;: &quot;1&quot;,
+      &quot;curated&quot;: &quot;1&quot;,
+      &quot;eia_v2&quot;: &quot;1&quot;,
+      &quot;fueleconomy&quot;: &quot;1&quot;,
+      &quot;text_feed&quot;: &quot;1&quot;,
+      &quot;postgrest&quot;: &quot;1&quot;,
+      &quot;federal_register&quot;: &quot;1&quot;,
+      &quot;vips&quot;: &quot;1&quot;,
+      &quot;daymet&quot;: &quot;1&quot;,
+      &quot;essdive&quot;: &quot;1&quot;,
+      &quot;esgf&quot;: &quot;1&quot;,
+      &quot;sage&quot;: &quot;1&quot;,
+      &quot;optimade&quot;: &quot;1&quot;,
+      &quot;basis_sets&quot;: &quot;1&quot;,
+      &quot;facility_status&quot;: &quot;1&quot;,
+      &quot;nmdc&quot;: &quot;1&quot;,
+      &quot;none&quot;: &quot;1&quot;,
+      &quot;self_registry&quot;: &quot;1&quot;
+    },
+    &quot;registry_revision&quot;: &quot;2026-10-20&quot;,
+    &quot;request_id&quot;: &quot;recorded-workflow&quot;
+  }
+}</pre></details></section><details><summary>Recording manifest and capture times</summary><p>Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><div class="scroll"><table class="stackable"><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td data-label="Fixture">osti-doe-pages.json</td><td data-label="Capture time (UTC)">2026-09-22T12:33:16.478603+00:00</td><td data-label="SHA-256">d985dce1d781b9a7484437ab297f66f39c5d89febdf5acc3527d09b3316e19d8</td></tr></tbody></table></div></details></article><article id="soil-metadata" tabindex="-1"><h2>Soil sample field check</h2><p class="skill">Skill: <code>microbiome-data-finder</code></p><p class="answer">Missing fields among 5 returned samples — collection date: 0; coordinate pair: 0; depth in metres: 5.</p><p class="scope">Read 5 of 188 matches. A recorded replay at registry revision 2026-10-20, not current data.</p><details open><summary>Limits of this example</summary><ul><li>The place filter matches text containing Washington; it does not test state boundaries.</li><li>Counts describe this page only. Depth counts as present if the response gives a value or a range bound in metres.</li></ul></details><p class="downloads"><a download href="data/demos/soil-metadata.json">Download JSON evidence</a><a download href="data/demos/soil-metadata.csv">Download CSV evidence index</a><a download href="data/demos/soil-metadata-worksheet.csv">Download worksheet CSV</a></p><section class="step worksheet" id="soil-metadata-worksheet" tabindex="-1"><h3>Soil sample field check</h3><p>Based on the Genesis <a href="https://github.com/AI-ModCon/genesis-skills/blob/70dce5aca946e2804f9b8579da01910cd2861858/skills/baseeval-skills/lm-eval-harness-skills/data-exploration/SKILL.md" rel="noreferrer">data-exploration</a> skill. DOE-MCP builds this worksheet locally.</p><div class="scroll"><table class="stackable"><caption>Each evidence ID refers to step 1 in the JSON download.</caption><thead><tr><th scope="col">Sample ID</th><th scope="col">Place</th><th scope="col">Collected</th><th scope="col">Latitude</th><th scope="col">Longitude</th><th scope="col">Depth (m)</th><th scope="col">Minimum depth (m)</th><th scope="col">Maximum depth (m)</th><th scope="col">Step 1 evidence ID</th></tr></thead><tbody><tr><td data-label="Sample ID">nmdc:bsm-13-mrzb2q96</td><td data-label="Place">USA: Columbia River, Washington</td><td data-label="Collected">2014-04-01</td><td data-label="Latitude">46.372</td><td data-label="Longitude">-119.272</td><td data-label="Depth (m)">Unknown</td><td data-label="Minimum depth (m)">Unknown</td><td data-label="Maximum depth (m)">Unknown</td><td data-label="Step 1 evidence ID">evidence_01</td></tr><tr><td data-label="Sample ID">nmdc:bsm-13-4aw9ra87</td><td data-label="Place">USA: Columbia River, Washington</td><td data-label="Collected">2014-04-01</td><td data-label="Latitude">46.372</td><td data-label="Longitude">-119.272</td><td data-label="Depth (m)">Unknown</td><td data-label="Minimum depth (m)">Unknown</td><td data-label="Maximum depth (m)">Unknown</td><td data-label="Step 1 evidence ID">evidence_02</td></tr><tr><td data-label="Sample ID">nmdc:bsm-13-z9wten89</td><td data-label="Place">USA: Columbia River, Washington</td><td data-label="Collected">2014-04-01</td><td data-label="Latitude">46.372</td><td data-label="Longitude">-119.272</td><td data-label="Depth (m)">Unknown</td><td data-label="Minimum depth (m)">Unknown</td><td data-label="Maximum depth (m)">Unknown</td><td data-label="Step 1 evidence ID">evidence_03</td></tr><tr><td data-label="Sample ID">nmdc:bsm-13-wktc3357</td><td data-label="Place">USA: Columbia River, Washington</td><td data-label="Collected">2014-04-01</td><td data-label="Latitude">46.372</td><td data-label="Longitude">-119.272</td><td data-label="Depth (m)">Unknown</td><td data-label="Minimum depth (m)">Unknown</td><td data-label="Maximum depth (m)">Unknown</td><td data-label="Step 1 evidence ID">evidence_04</td></tr><tr><td data-label="Sample ID">nmdc:bsm-13-ap544f22</td><td data-label="Place">USA: Columbia River, Washington</td><td data-label="Collected">2014-04-01</td><td data-label="Latitude">46.372</td><td data-label="Longitude">-119.272</td><td data-label="Depth (m)">Unknown</td><td data-label="Minimum depth (m)">Unknown</td><td data-label="Maximum depth (m)">Unknown</td><td data-label="Step 1 evidence ID">evidence_05</td></tr></tbody></table></div></section><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo soil-metadata --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="step" id="soil-metadata-step-1" tabindex="-1" data-label="Samples"><h3>1. Samples</h3><details><summary>Coverage and source notes</summary><p class="mono">bio.search_biosamples {&quot;ecosystem_type&quot;: &quot;Soil&quot;, &quot;place&quot;: &quot;washington&quot;, &quot;rows&quot;: 5}</p><div class="scroll"><table class="compact"><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td data-label="Coverage dimension">registry</td><td data-label="Value">covered</td></tr><tr><td data-label="Coverage dimension">execution</td><td data-label="Value">complete</td></tr><tr><td data-label="Coverage dimension">pagination</td><td data-label="Value">truncated</td></tr><tr><td data-label="Coverage dimension">source_claim</td><td data-label="Value">complete</td></tr><tr><td data-label="Coverage dimension">result</td><td data-label="Value">hit</td></tr></tbody></table></div><p>Searched: nmdc-runtime</p><ul><li>No published rate limit and no data-use statement on the API itself; the data portal&#x27;s usage terms were not found in a scripted read.</li></ul></details><div class="scroll"><table class="compact"><caption></caption><thead><tr><th scope="col">Returned</th><th scope="col">Total matches</th></tr></thead><tbody><tr><td data-label="Returned">5</td><td data-label="Total matches">188</td></tr></tbody></table></div><div class="scroll"><table class="stackable"><caption>Sample metadata; no sequence data retrieved</caption><thead><tr><th scope="col">Sample</th><th scope="col">Place</th><th scope="col">Collected</th><th scope="col">Environment</th></tr></thead><tbody><tr><td data-label="Sample">nmdc:bsm-13-mrzb2q96</td><td data-label="Place">USA: Columbia River, Washington</td><td data-label="Collected">2014-04-01</td><td data-label="Environment">Environmental, Terrestrial, Soil, Sand</td></tr><tr><td data-label="Sample">nmdc:bsm-13-4aw9ra87</td><td data-label="Place">USA: Columbia River, Washington</td><td data-label="Collected">2014-04-01</td><td data-label="Environment">Environmental, Terrestrial, Soil, Sand</td></tr><tr><td data-label="Sample">nmdc:bsm-13-z9wten89</td><td data-label="Place">USA: Columbia River, Washington</td><td data-label="Collected">2014-04-01</td><td data-label="Environment">Environmental, Terrestrial, Soil, Sand</td></tr><tr><td data-label="Sample">nmdc:bsm-13-wktc3357</td><td data-label="Place">USA: Columbia River, Washington</td><td data-label="Collected">2014-04-01</td><td data-label="Environment">Environmental, Terrestrial, Soil, Sand</td></tr><tr><td data-label="Sample">nmdc:bsm-13-ap544f22</td><td data-label="Place">USA: Columbia River, Washington</td><td data-label="Collected">2014-04-01</td><td data-label="Environment">Environmental, Terrestrial, Soil, Sand</td></tr></tbody></table></div><details><summary>Record sources</summary><ul class="evidence"><li><strong>Groundwater microbial communities from the Columbia River, Washington, USA - GW-RW N1_20_30</strong><br>National Microbiome Data Collaborative Runtime API · record nmdc:bsm-13-mrzb2q96<br>No publisher locator supplied<br>Record date: 2014-04-01</li><li><strong>Groundwater microbial communities from the Columbia River, Washington, USA - GW-RW N1_30_40</strong><br>National Microbiome Data Collaborative Runtime API · record nmdc:bsm-13-4aw9ra87<br>No publisher locator supplied<br>Record date: 2014-04-01</li><li><strong>Groundwater microbial communities from the Columbia River, Washington, USA - GW-RW N1_00_10</strong><br>National Microbiome Data Collaborative Runtime API · record nmdc:bsm-13-z9wten89<br>No publisher locator supplied<br>Record date: 2014-04-01</li><li><strong>Groundwater microbial communities from the Columbia River, Washington, USA - GW-RW N1_40_50</strong><br>National Microbiome Data Collaborative Runtime API · record nmdc:bsm-13-wktc3357<br>No publisher locator supplied<br>Record date: 2014-04-01</li><li><strong>Groundwater microbial communities from the Columbia River, Washington, USA - GW-RW N2_00_30</strong><br>National Microbiome Data Collaborative Runtime API · record nmdc:bsm-13-ap544f22<br>No publisher locator supplied<br>Record date: 2014-04-01</li></ul></details><details><summary>Full response and evidence</summary><pre>{
+  &quot;data&quot;: {
+    &quot;biosamples&quot;: [
+      {
+        &quot;sample_id&quot;: &quot;nmdc:bsm-13-mrzb2q96&quot;,
+        &quot;name&quot;: &quot;Groundwater microbial communities from the Columbia River, Washington, USA - GW-RW N1_20_30&quot;,
+        &quot;studies&quot;: [
+          &quot;nmdc:sty-11-aygzgv51&quot;
+        ],
+        &quot;collected&quot;: &quot;2014-04-01&quot;,
+        &quot;latitude&quot;: 46.372,
+        &quot;longitude&quot;: -119.272,
+        &quot;place&quot;: &quot;USA: Columbia River, Washington&quot;,
+        &quot;ecosystem&quot;: [
+          &quot;Environmental&quot;,
+          &quot;Terrestrial&quot;,
+          &quot;Soil&quot;,
+          &quot;Sand&quot;
+        ],
+        &quot;env_broad_scale&quot;: &quot;ENVO:00000873&quot;,
+        &quot;env_local_scale&quot;: &quot;ENVO:00000022&quot;,
+        &quot;env_medium&quot;: &quot;ENVO:01000017&quot;,
+        &quot;depth_m&quot;: null
+      },
+      {
+        &quot;sample_id&quot;: &quot;nmdc:bsm-13-4aw9ra87&quot;,
+        &quot;name&quot;: &quot;Groundwater microbial communities from the Columbia River, Washington, USA - GW-RW N1_30_40&quot;,
+        &quot;studies&quot;: [
+          &quot;nmdc:sty-11-aygzgv51&quot;
+        ],
+        &quot;collected&quot;: &quot;2014-04-01&quot;,
+        &quot;latitude&quot;: 46.372,
+        &quot;longitude&quot;: -119.272,
+        &quot;place&quot;: &quot;USA: Columbia River, Washington&quot;,
+        &quot;ecosystem&quot;: [
+          &quot;Environmental&quot;,
+          &quot;Terrestrial&quot;,
+          &quot;Soil&quot;,
+          &quot;Sand&quot;
+        ],
+        &quot;env_broad_scale&quot;: &quot;ENVO:00000873&quot;,
+        &quot;env_local_scale&quot;: &quot;ENVO:00000022&quot;,
+        &quot;env_medium&quot;: &quot;ENVO:01000017&quot;,
+        &quot;depth_m&quot;: null
+      },
+      {
+        &quot;sample_id&quot;: &quot;nmdc:bsm-13-z9wten89&quot;,
+        &quot;name&quot;: &quot;Groundwater microbial communities from the Columbia River, Washington, USA - GW-RW N1_00_10&quot;,
+        &quot;studies&quot;: [
+          &quot;nmdc:sty-11-aygzgv51&quot;
+        ],
+        &quot;collected&quot;: &quot;2014-04-01&quot;,
+        &quot;latitude&quot;: 46.372,
+        &quot;longitude&quot;: -119.272,
+        &quot;place&quot;: &quot;USA: Columbia River, Washington&quot;,
+        &quot;ecosystem&quot;: [
+          &quot;Environmental&quot;,
+          &quot;Terrestrial&quot;,
+          &quot;Soil&quot;,
+          &quot;Sand&quot;
+        ],
+        &quot;env_broad_scale&quot;: &quot;ENVO:00000873&quot;,
+        &quot;env_local_scale&quot;: &quot;ENVO:00000022&quot;,
+        &quot;env_medium&quot;: &quot;ENVO:01000017&quot;,
+        &quot;depth_m&quot;: null
+      },
+      {
+        &quot;sample_id&quot;: &quot;nmdc:bsm-13-wktc3357&quot;,
+        &quot;name&quot;: &quot;Groundwater microbial communities from the Columbia River, Washington, USA - GW-RW N1_40_50&quot;,
+        &quot;studies&quot;: [
+          &quot;nmdc:sty-11-aygzgv51&quot;
+        ],
+        &quot;collected&quot;: &quot;2014-04-01&quot;,
+        &quot;latitude&quot;: 46.372,
+        &quot;longitude&quot;: -119.272,
+        &quot;place&quot;: &quot;USA: Columbia River, Washington&quot;,
+        &quot;ecosystem&quot;: [
+          &quot;Environmental&quot;,
+          &quot;Terrestrial&quot;,
+          &quot;Soil&quot;,
+          &quot;Sand&quot;
+        ],
+        &quot;env_broad_scale&quot;: &quot;ENVO:00000873&quot;,
+        &quot;env_local_scale&quot;: &quot;ENVO:00000022&quot;,
+        &quot;env_medium&quot;: &quot;ENVO:01000017&quot;,
+        &quot;depth_m&quot;: null
+      },
+      {
+        &quot;sample_id&quot;: &quot;nmdc:bsm-13-ap544f22&quot;,
+        &quot;name&quot;: &quot;Groundwater microbial communities from the Columbia River, Washington, USA - GW-RW N2_00_30&quot;,
+        &quot;studies&quot;: [
+          &quot;nmdc:sty-11-aygzgv51&quot;
+        ],
+        &quot;collected&quot;: &quot;2014-04-01&quot;,
+        &quot;latitude&quot;: 46.372,
+        &quot;longitude&quot;: -119.272,
+        &quot;place&quot;: &quot;USA: Columbia River, Washington&quot;,
+        &quot;ecosystem&quot;: [
+          &quot;Environmental&quot;,
+          &quot;Terrestrial&quot;,
+          &quot;Soil&quot;,
+          &quot;Sand&quot;
+        ],
+        &quot;env_broad_scale&quot;: &quot;ENVO:00000873&quot;,
+        &quot;env_local_scale&quot;: &quot;ENVO:00000022&quot;,
+        &quot;env_medium&quot;: &quot;ENVO:01000017&quot;,
+        &quot;depth_m&quot;: null
+      }
+    ],
+    &quot;record_count&quot;: 5,
+    &quot;total_matches&quot;: 188,
+    &quot;page&quot;: 1,
+    &quot;filter_applied&quot;: {
+      &quot;ecosystem_type&quot;: {
+        &quot;$regex&quot;: &quot;(?i)^Soil$&quot;
+      },
+      &quot;geo_loc_name.has_raw_value&quot;: {
+        &quot;$regex&quot;: &quot;(?i)washington&quot;
+      }
+    },
+    &quot;note&quot;: &quot;Sample metadata as submitted. ecosystem_type matches NMDC&#x27;s whole value without regard to case (&#x27;soil&#x27;, &#x27;Freshwater&#x27;); env_medium and place match a substring without regard to case; collected matches the start of the date as written (&#x27;2017&#x27;, &#x27;2017-06&#x27;). Depth is reported only where it was stated in metres. Metadata only. Reads, assemblies and annotations are held at JGI, EMSL and the sequence archives; a study&#x27;s DOIs in access_recipes lead to them and are never fetched here.&quot;
+  },
+  &quot;provenance&quot;: [
+    {
+      &quot;id&quot;: &quot;source_01&quot;,
+      &quot;source_id&quot;: &quot;nmdc-runtime&quot;,
+      &quot;steward&quot;: &quot;Lawrence Berkeley National Laboratory&quot;,
+      &quot;funder&quot;: &quot;Office of Science&quot;,
+      &quot;system&quot;: &quot;National Microbiome Data Collaborative Runtime API&quot;,
+      &quot;dataset&quot;: &quot;National Microbiome Data Collaborative Runtime API&quot;,
+      &quot;dataset_version&quot;: &quot;current&quot;,
+      &quot;authority_level&quot;: &quot;official_secondary&quot;,
+      &quot;access_path&quot;: &quot;live&quot;,
+      &quot;source_updated_at&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;cache_age_seconds&quot;: 0
+    }
+  ],
+  &quot;evidence&quot;: [
+    {
+      &quot;id&quot;: &quot;evidence_01&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;nmdc:bsm-13-mrzb2q96&quot;,
+      &quot;locator&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2014-04-01&quot;,
+      &quot;transformations&quot;: [
+        &quot;normalize&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_02&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;nmdc:bsm-13-4aw9ra87&quot;,
+      &quot;locator&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2014-04-01&quot;,
+      &quot;transformations&quot;: [
+        &quot;normalize&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_03&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;nmdc:bsm-13-z9wten89&quot;,
+      &quot;locator&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2014-04-01&quot;,
+      &quot;transformations&quot;: [
+        &quot;normalize&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_04&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;nmdc:bsm-13-wktc3357&quot;,
+      &quot;locator&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2014-04-01&quot;,
+      &quot;transformations&quot;: [
+        &quot;normalize&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_05&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;nmdc:bsm-13-ap544f22&quot;,
+      &quot;locator&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-10-20T00:00:00Z&quot;,
+      &quot;effective_at&quot;: &quot;2014-04-01&quot;,
+      &quot;transformations&quot;: [
+        &quot;normalize&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    }
+  ],
+  &quot;coverage&quot;: {
+    &quot;registry&quot;: &quot;covered&quot;,
+    &quot;execution&quot;: &quot;complete&quot;,
+    &quot;pagination&quot;: &quot;truncated&quot;,
+    &quot;source_claim&quot;: &quot;complete&quot;,
+    &quot;result&quot;: &quot;hit&quot;,
+    &quot;sources_searched&quot;: [
+      &quot;nmdc-runtime&quot;
+    ],
+    &quot;known_limitations&quot;: [
+      &quot;Metadata, not sequence data. Reads, assemblies and annotations live in the sequence archives and at JGI, and are reached through a study&#x27;s DOIs rather than through this source.&quot;,
+      &quot;Only 8 of 85 studies carry an ecosystem classification of their own; the rest are classified sample by sample. An ecosystem filter on studies therefore misses most of them, and the biosample filter is the one to use.&quot;,
+      &quot;Place is free text as submitted (&#x27;USA: Washington, Abby Road&#x27;), so a place search is a substring match and a state name may miss samples recorded only by site or coordinates.&quot;,
+      &quot;Studies NMDC has ingested, not every microbiome study. Most of the 85 are JGI or EMSL projects and a consortium study such as NEON&#x27;s appears once with thousands of samples, so counts describe NMDC&#x27;s holdings rather than the field.&quot;
+    ]
+  },
+  &quot;warnings&quot;: [
+    {
+      &quot;code&quot;: &quot;terms_note&quot;,
+      &quot;message&quot;: &quot;No published rate limit and no data-use statement on the API itself; the data portal&#x27;s usage terms were not found in a scripted read.&quot;,
+      &quot;source_id&quot;: &quot;nmdc-runtime&quot;
+    }
+  ],
+  &quot;_execution&quot;: {
+    &quot;server&quot;: &quot;doe-mcp&quot;,
+    &quot;server_version&quot;: &quot;0.1.0.dev0&quot;,
+    &quot;tool&quot;: &quot;bio.search_biosamples&quot;,
+    &quot;tool_contract_version&quot;: &quot;1&quot;,
+    &quot;envelope_version&quot;: &quot;1&quot;,
+    &quot;adapters&quot;: {
+      &quot;osti_family&quot;: &quot;1&quot;,
+      &quot;opendatasoft&quot;: &quot;1&quot;,
+      &quot;json_document&quot;: &quot;1&quot;,
+      &quot;curated&quot;: &quot;1&quot;,
+      &quot;eia_v2&quot;: &quot;1&quot;,
+      &quot;fueleconomy&quot;: &quot;1&quot;,
+      &quot;text_feed&quot;: &quot;1&quot;,
+      &quot;postgrest&quot;: &quot;1&quot;,
+      &quot;federal_register&quot;: &quot;1&quot;,
+      &quot;vips&quot;: &quot;1&quot;,
+      &quot;daymet&quot;: &quot;1&quot;,
+      &quot;essdive&quot;: &quot;1&quot;,
+      &quot;esgf&quot;: &quot;1&quot;,
+      &quot;sage&quot;: &quot;1&quot;,
+      &quot;optimade&quot;: &quot;1&quot;,
+      &quot;basis_sets&quot;: &quot;1&quot;,
+      &quot;facility_status&quot;: &quot;1&quot;,
+      &quot;nmdc&quot;: &quot;1&quot;,
+      &quot;none&quot;: &quot;1&quot;,
+      &quot;self_registry&quot;: &quot;1&quot;
+    },
+    &quot;registry_revision&quot;: &quot;2026-10-20&quot;,
+    &quot;request_id&quot;: &quot;recorded-workflow&quot;
+  }
+}</pre></details></section><details><summary>Recording manifest and capture times</summary><p>Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-10-20.</p><div class="scroll"><table class="stackable"><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td data-label="Fixture">nmdc-runtime.json</td><td data-label="Capture time (UTC)">2026-10-08T23:37:56.653277+00:00</td><td data-label="SHA-256">a47cb8d2a0a93dcec1b30c3de2eca0769c8e5fb4fe9eca8edda61eb580432b78</td></tr></tbody></table></div></details></article><article id="dataset-card" tabindex="-1"><h2>Geothermal dataset-card starter</h2><p class="skill">Skill: <code>find-doe-data</code></p><p class="answer">2 metadata drafts from DOE Data Explorer. File checksums, reuse permissions and governance still need review.</p><p class="scope">Read 2 of 1,035 matches. A recorded replay at registry revision 2026-10-20, not current data.</p><details open><summary>Limits of this example</summary><ul><li>A documentation starter, not a validated Genesis datacard or Croissant record.</li><li>Only catalog metadata was read; no dataset files were downloaded or inspected.</li><li>A public metadata record does not establish that the underlying data is freely accessible or licensed for reuse.</li></ul></details><p class="downloads"><a download href="data/demos/dataset-card.json">Download JSON evidence</a><a download href="data/demos/dataset-card.csv">Download CSV evidence index</a></p><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo dataset-card --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="draft"><h3>Utah FORGE: Seismic DAS and Geophone Borehole Data Processing and 3D Imaging of Vp/Vs Ratio in the 2024 Stimulated Reservoir</h3><div class="scroll"><table class="compact"><caption>Draft metadata only — not schema validated</caption><thead><tr><th scope="col">Catalog field</th><th scope="col">Value</th></tr></thead><tbody><tr><td data-label="Catalog field">id</td><td data-label="Value">2541598</td></tr><tr><td data-label="Catalog field">title</td><td data-label="Value">Utah FORGE: Seismic DAS and Geophone Borehole Data Processing and 3D Imaging of Vp/Vs Ratio in the 2024 Stimulated Reservoir</td></tr><tr><td data-label="Catalog field">authors</td><td data-label="Value">Gritto, Roland [EMR Solutions and Technology] (ORCID:0000000320927201), Jarpe, Steve P. (ORCID:0009000493428416)</td></tr><tr><td data-label="Catalog field">publication_date</td><td data-label="Value">2025-03-16</td></tr><tr><td data-label="Catalog field">product_type</td><td data-label="Value">Dataset</td></tr><tr><td data-label="Catalog field">doi</td><td data-label="Value">10.15121/2541598</td></tr><tr><td data-label="Catalog field">research_orgs</td><td data-label="Value">DOE Geothermal Data Repository, EMR Solutions and Technology</td></tr><tr><td data-label="Catalog field">site_code</td><td data-label="Value">DOE-GDR</td></tr></tbody></table></div><h4>Still needs owner review</h4><ul><li>Downloadable files and access conditions</li><li>File formats, sizes and checksums</li><li>License and permitted reuse</li><li>Sensitivity and governance review</li><li>Data quality and suitability for AI use</li></ul></section><section class="draft"><h3>Utah FORGE: Well 16B(78)-32 DTS, RFS DSS Strain, and Absolute Strain Circulation Test Fiber Optic Data - August 2024</h3><div class="scroll"><table class="compact"><caption>Draft metadata only — not schema validated</caption><thead><tr><th scope="col">Catalog field</th><th scope="col">Value</th></tr></thead><tbody><tr><td data-label="Catalog field">id</td><td data-label="Value">2531108</td></tr><tr><td data-label="Catalog field">title</td><td data-label="Value">Utah FORGE: Well 16B(78)-32 DTS, RFS DSS Strain, and Absolute Strain Circulation Test Fiber Optic Data - August 2024</td></tr><tr><td data-label="Catalog field">authors</td><td data-label="Value">Jurick, Dana [Neubrex Energy Services (US), LLC], Khatara, Sajan, Guzik, Artur</td></tr><tr><td data-label="Catalog field">publication_date</td><td data-label="Value">2024-08-29</td></tr><tr><td data-label="Catalog field">product_type</td><td data-label="Value">Dataset</td></tr><tr><td data-label="Catalog field">doi</td><td data-label="Value">10.15121/2531108</td></tr><tr><td data-label="Catalog field">research_orgs</td><td data-label="Value">DOE Geothermal Data Repository, Neubrex Energy Services (US), LLC</td></tr><tr><td data-label="Catalog field">site_code</td><td data-label="Value">DOE-GDR</td></tr></tbody></table></div><h4>Still needs owner review</h4><ul><li>Downloadable files and access conditions</li><li>File formats, sizes and checksums</li><li>License and permitted reuse</li><li>Sensitivity and governance review</li><li>Data quality and suitability for AI use</li></ul></section><section class="step" id="dataset-card-step-1" tabindex="-1" data-label="Search datasets"><h3>1. Search datasets</h3><details><summary>Coverage and source notes</summary><p class="mono">research.search_datasets {&quot;rows&quot;: 2, &quot;site_code&quot;: &quot;DOE-GDR&quot;}</p><div class="scroll"><table class="compact"><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td data-label="Coverage dimension">registry</td><td data-label="Value">covered</td></tr><tr><td data-label="Coverage dimension">execution</td><td data-label="Value">complete</td></tr><tr><td data-label="Coverage dimension">pagination</td><td data-label="Value">truncated</td></tr><tr><td data-label="Coverage dimension">source_claim</td><td data-label="Value">partial</td></tr><tr><td data-label="Coverage dimension">result</td><td data-label="Value">hit</td></tr></tbody></table></div><p>Searched: osti-data-explorer</p><ul><li>No published rate limit, same as the rest of the OSTI family.</li><li>Dataset discovery returns catalog metadata, not measurements. For user-facility raw data — beamlines, reactors, tokamaks — there is generally nothing to find: that data is proposal-gated by design and is not a coverage gap here.</li></ul></details><div class="scroll"><table class="compact"><caption></caption><thead><tr><th scope="col">Returned</th><th scope="col">Total matches</th></tr></thead><tbody><tr><td data-label="Returned">2</td><td data-label="Total matches">1035</td></tr></tbody></table></div><h4>Publisher access recipes</h4><ul><li><a href="https://doi.org/10.15121/2541598" rel="noreferrer">Utah FORGE: Seismic DAS and Geophone Borehole Data Processing and 3D Imaging…</a></li><li><a href="https://www.osti.gov/dataexplorer/servlets/purl/2541598" rel="noreferrer">Full text (OSTI)</a></li><li><a href="https://gdr.openei.org/submissions/1723" rel="noreferrer">Dataset landing page</a> — The repository that actually holds this data. It may require an account the catalog record does not mention.</li><li><a href="https://doi.org/10.15121/2531108" rel="noreferrer">Utah FORGE: Well 16B(78)-32 DTS, RFS DSS Strain, and Absolute Strain…</a></li><li><a href="https://www.osti.gov/dataexplorer/servlets/purl/2531108" rel="noreferrer">Full text (OSTI)</a></li><li><a href="https://gdr.openei.org/submissions/1721" rel="noreferrer">Dataset landing page</a> — The repository that actually holds this data. It may require an account the catalog record does not mention.</li></ul><ul class="evidence"><li><strong>Utah FORGE: Seismic DAS and Geophone Borehole Data Processing and 3D Imaging of Vp/Vs Ratio in the 2024 Stimulated Reservoir</strong><br>DOE Data Explorer · record 2541598<br><a href="https://www.osti.gov/dataexplorer/biblio/2541598" rel="noreferrer">Publisher record</a><br>Record date: 2025-03-31T19:08:19Z</li><li><strong>Utah FORGE: Well 16B(78)-32 DTS, RFS DSS Strain, and Absolute Strain Circulation Test Fiber Optic Data - August 2024</strong><br>DOE Data Explorer · record 2531108<br><a href="https://www.osti.gov/dataexplorer/biblio/2531108" rel="noreferrer">Publisher record</a><br>Record date: 2025-03-18T18:40:22Z</li></ul><details><summary>Full response and evidence</summary><pre>{
   &quot;data&quot;: {
     &quot;datasets&quot;: [
       {
@@ -5930,7 +6432,7 @@ function show(id){
   select.value=id; panels.forEach(p=>p.hidden=p.id!==id);
   nav.replaceChildren();
   const panel=document.getElementById(id);
-  const targets=[{el:panel,label:'Overview'},...Array.from(panel.querySelectorAll('.step'),(el,i)=>({el,label:(i+1)+'. '+el.dataset.label}))];
+  const targets=[{el:panel,label:'Overview'},...Array.from(panel.querySelectorAll('.worksheet'),el=>({el,label:'Worksheet'})),...Array.from(panel.querySelectorAll('.step[data-label]'),(el,i)=>({el,label:(i+1)+'. '+el.dataset.label}))];
   for(const target of targets){
     const button=document.createElement('button');
     button.type='button';button.textContent=target.label;

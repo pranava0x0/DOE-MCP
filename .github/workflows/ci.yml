@@ -51,6 +51,9 @@ jobs:
         # publisher responses, so a failure is this project's fault.
         run: python -m pytest
 
+      - name: Compare published demo downloads with recorded CLI exports
+        run: python tools/check_demo_exports.py
+
       - name: The envelope schema matches the models
         run: |
           python tools/build_schema.py

@@ -89,3 +89,28 @@ calls refuse before fetching. The site no longer advertises VIPS as an
 active source. September adapter recordings remain covered by explicit
 historical replay tests, with no change to the default runtime gate.
 No credentials, paid services or new dependencies were added.
+
+## November 3: what to take from other government-data MCPs
+
+PR #6 added outage releases, NERSC status and microbiome records. PR #7
+added recorded walks across those sources and the research catalogs.
+PR #8 put the walks on the landing page and marked the VIPS key requirement
+in the reference. A reader could already trace a record. Preparing a
+citation list or counting missing measurements still meant working through
+the JSON.
+
+| Server | What its maintainers document | Choice for DOE-MCP |
+| --- | --- | --- |
+| [US Census Bureau](https://github.com/uscensusbureau/us-census-bureau-data-api-mcp/blob/5dcaa637871b9ded5dab415118f9008c06d13f2a/README.md) | Its geography tool resolves names to candidate FIPS codes. Aggregate queries specify a dataset and vintage. | Say exactly what a place filter selected. The NMDC query matches text containing “Washington”; it cannot establish a state boundary. |
+| [NASA Earthdata](https://github.com/nasa/earthdata-mcp/blob/1c3809a70ee67b93f9ccb7fe326ee7f36f8cc95a/README.md) | Separate tools find collections, check for granules and look up citations. | Give readers citation fields they can take away. A catalog hit by itself says nothing about whether anyone read the paper. |
+| [cyanheads EIA server](https://github.com/cyanheads/eia-energy-mcp-server/blob/36e5ac081e6f44c525eda7a578806ad454f0f3b9/README.md) (community project) | Its query results carry units and match totals. Its guide distinguishes null from zero. | Keep numeric zero in the soil worksheet. Leave unreported values blank, name the unit and count missing fields only on the returned page. |
+
+This comparison covers documented workflows. It does not measure server
+uptime, response times or the accuracy of a model using them.
+
+The [bibliography worksheet](demos.html#bibliography) applies the Genesis
+literature-search skill's bibliography step to DOE PAGES. The
+[soil sample field check](demos.html#soil-metadata) applies the
+data-exploration skill's missing-value check to NMDC. Neither runs the
+upstream scripts. Each worksheet row points to an evidence ID in the
+downloadable JSON. Both examples run from recordings without a model or key.

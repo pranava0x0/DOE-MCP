@@ -33,6 +33,7 @@ the ESS-DIVE adapter drops creator emails.
 """
 from __future__ import annotations
 
+import math
 import re
 from dataclasses import dataclass, field
 from typing import Any
@@ -232,16 +233,22 @@ def _depth_in_metres(depth: Any) -> dict[str, float] | None:
     guess."""
     if not isinstance(depth, dict) or depth.get("has_unit") != "m":
         return None
-    out = {name: float(depth[key]) for name, key in (
+    out = {name: value for name, key in (
         ("min", "has_minimum_numeric_value"),
         ("max", "has_maximum_numeric_value"),
         ("value", "has_numeric_value"))
-        if isinstance(depth.get(key), (int, float))}
+        if (value := _number(depth.get(key))) is not None}
     return out or None
 
 
 def _number(value: Any) -> float | None:
-    return float(value) if isinstance(value, (int, float)) else None
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        return None
+    try:
+        number = float(value)
+    except OverflowError:
+        return None
+    return number if math.isfinite(number) else None
 
 
 def check_id(identifier: str, kind: str) -> str:
