@@ -43,6 +43,7 @@ reaches the envelope.
 """
 from __future__ import annotations
 
+import math
 import re
 from dataclasses import dataclass, field
 
@@ -135,14 +136,25 @@ class FeedTable:
         return self.total_intervals - self.pending_intervals
 
 
-def _number(text: str) -> Number | None:
-    cleaned = text.strip().replace(",", "")
-    if not cleaned:
+_DECIMAL = re.compile(r"[+-]?(?:[0-9]+|[0-9]{1,3}(?:,[0-9]{3})+)(?:\.[0-9]+)?")
+
+
+def _number(text: str, source_id: str) -> Number | None:
+    cell = text.strip()
+    if not cell:
         return None
+    if not _DECIMAL.fullmatch(cell):
+        raise SourceSchemaChanged(f"{source_id}: a populated feed cell is not a decimal number")
+    cleaned = cell.replace(",", "")
+    # Keep integer readings as integers. An unrepresentable cell cannot be
+    # scored or serialized to a portable JSON number.
     try:
-        return float(cleaned) if "." in cleaned else int(cleaned)
-    except ValueError:
-        return None
+        value = float(cleaned) if "." in cleaned else int(cleaned)
+        if math.isfinite(value):
+            return value
+    except (ValueError, OverflowError):
+        pass
+    raise SourceSchemaChanged(f"{source_id}: feed number is outside the supported range")
 
 
 def _split_table(text: str, params: TextFeedParams,
@@ -169,6 +181,8 @@ def parse_feed(text: str, feed: str, params: TextFeedParams,
             f"{source_id}: the header row has {len(header)} column(s); a "
             "timestamp and at least one value column are expected.")
     columns = header[1:]
+    if not all(columns) or len(set(columns)) != len(columns):
+        raise SourceSchemaChanged(f"{source_id}: blank or repeated feed column name")
 
     rows: list[FeedRow] = []
     for line in body:
@@ -179,7 +193,7 @@ def parse_feed(text: str, feed: str, params: TextFeedParams,
                 f"{len(header)} header column(s). The feed's column set has "
                 "changed mid-file, which no column mapping can survive.")
         rows.append(FeedRow(timestamp=cells[0].strip(),
-                            values={name: _number(cell)
+                            values={name: _number(cell, source_id)
                                     for name, cell in zip(columns,
                                                           cells[1:],
                                                           strict=True)}))

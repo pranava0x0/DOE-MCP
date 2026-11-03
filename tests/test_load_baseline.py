@@ -1,4 +1,5 @@
 import csv
+from dataclasses import replace
 from math import sqrt
 
 import pytest
@@ -56,7 +57,7 @@ async def test_no_bridging_missing_load_or_clock_gaps(ctx):
     env = await _readings(ctx, stamps, [0, 3, None, 200, 100, 96])
     sheet = score_load(env)
     assert sheet["excluded_pairs"] == {"time_gap": 1, "missing_load": 2}
-    assert sheet["scores"] == {"pairs": 2, "mae_mw": 3.5, "rmse_mw": sqrt(12.5)}
+    assert sheet["scores"] == pytest.approx({"pairs": 2, "mae_mw": 3.5, "rmse_mw": sqrt(12.5)})
     env.evidence.pop()
     with pytest.raises(SourceSchemaChanged, match="no BPA evidence"):
         score_load(env)
@@ -66,3 +67,17 @@ async def test_no_score_without_a_usable_pair(ctx):
     env = await _readings(ctx, ["09/03/2026 01:00", "09/03/2026 01:05"], [0, None])
     with pytest.raises(SourceUnavailable, match="no adjacent"):
         score_load(env)
+
+
+async def test_source_time_range_follows_published_order_at_clock_rollback(ctx, monkeypatch):
+    fetch = ctx.text_feed._fetcher.fetch_text
+    first, last = "11/01/2026 01:55 PDT", "11/01/2026 01:00 PST"
+
+    async def rollback(*args, **kwargs):
+        original = await fetch(*args, **kwargs)
+        text = original.text.replace("09/03/2026 01:50", first).replace("09/03/2026 01:55", last)
+        return replace(original, text=text)
+
+    monkeypatch.setattr(ctx.text_feed._fetcher, "fetch_text", rollback)
+    env = await get_bpa_operations(ctx, intervals=2)
+    assert (env.coverage.time_range.from_, env.coverage.time_range.to) == (first, last)

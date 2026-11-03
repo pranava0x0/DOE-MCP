@@ -165,3 +165,23 @@ def test_folded_scalar_prose_in_the_params_block_is_collapsed():
         default_feed="a",
         timezone_note="Pacific Time, stated in the file's\nown header.\n")
     assert params.timezone_note == "Pacific Time, stated in the file's own header."
+
+
+@pytest.mark.parametrize("bad", ["1,2", "N/A", "NaN", "--3"])
+def test_corrupt_feed_cells_are_not_treated_as_missing_or_pending(bad):
+    text = _synthetic([f"01/01/2026 00:00\t{bad}\t"])
+    with pytest.raises(SourceSchemaChanged, match="populated feed cell"):
+        parse_feed(text, "only", PARAMS, SOURCE)
+
+
+def test_grouped_numbers_are_distinct_from_blank_measurements():
+    text = _synthetic(["01/01/2026 00:00\t1,234.5\t", "01/01/2026 00:05\t0\t0"])
+    table = parse_feed(text, "only", PARAMS, SOURCE)
+    assert table.rows[0].values == {"Load": 1234.5, "Hydro": None}
+    assert table.rows[1].values == {"Load": 0, "Hydro": 0}
+
+
+def test_duplicate_columns_cannot_overwrite_a_reading():
+    text = _synthetic(["01/01/2026 00:00\t100\t900"], header="Date/Time\tLoad\tLoad")
+    with pytest.raises(SourceSchemaChanged, match="column name"):
+        parse_feed(text, "only", PARAMS, SOURCE)

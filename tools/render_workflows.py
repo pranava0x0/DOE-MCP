@@ -116,9 +116,12 @@ def outcome(report) -> str:
     if case == 'load-baseline':
         sheet = report['worksheet']
         scores, skipped = sheet['scores'], sheet['excluded_pairs']
-        return (f"Across {scores['pairs']} five-minute pairs, the mean absolute error was {scores['mae_mw']:.2f} MW "
-                f"and the root mean squared error was {scores['rmse_mw']:.2f} MW. "
-                f"Pairs excluded for time gaps: {skipped['time_gap']}; for missing load: {skipped['missing_load']}.")
+        result = (f"Each prediction uses the preceding load reading. Across {scores['pairs']} five-minute comparisons, "
+                  f"the mean absolute error was {scores['mae_mw']:.2f} MW "
+                  f"and the root mean squared error was {scores['rmse_mw']:.2f} MW.")
+        if any(skipped.values()):
+            result += f" Pairs excluded for time gaps: {skipped['time_gap']}; for missing load: {skipped['missing_load']}."
+        return result
     if case == 'soil-metadata':
         sheet = report['worksheet']
         counts = "; ".join(f"{field}: {n}" for field, n in sheet["missing"].items())
