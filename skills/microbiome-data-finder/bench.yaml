@@ -60,3 +60,5 @@ reader: []
 workflows:
 - task: 3
   case: microbiome
+- task: 1
+  case: soil-metadata

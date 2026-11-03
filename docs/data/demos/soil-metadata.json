@@ -1,0 +1,369 @@
+{
+  "format_version": "1",
+  "case": "soil-metadata",
+  "title": "Soil sample field check",
+  "question": "Which returned NMDC soil samples have a collection date, coordinates and depth in metres?",
+  "mode": "recorded",
+  "simulation": false,
+  "registry_revision": "2026-10-20",
+  "generated_at": null,
+  "replay_clock": "2026-10-20T00:00:00Z",
+  "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
+  "fixtures": [
+    {
+      "file": "nmdc-runtime.json",
+      "sha256": "a47cb8d2a0a93dcec1b30c3de2eca0769c8e5fb4fe9eca8edda61eb580432b78",
+      "captured_at": "2026-10-08T23:37:56.653277+00:00"
+    }
+  ],
+  "limitations": [
+    "The place filter matches text containing Washington; it does not test state boundaries.",
+    "Counts describe this page only. A blank depth means the response supplied no numeric depth in metres."
+  ],
+  "steps": [
+    {
+      "tool": "bio.search_biosamples",
+      "args": {
+        "ecosystem_type": "Soil",
+        "place": "washington",
+        "rows": 5
+      },
+      "envelope": {
+        "data": {
+          "biosamples": [
+            {
+              "sample_id": "nmdc:bsm-13-mrzb2q96",
+              "name": "Groundwater microbial communities from the Columbia River, Washington, USA - GW-RW N1_20_30",
+              "studies": [
+                "nmdc:sty-11-aygzgv51"
+              ],
+              "collected": "2014-04-01",
+              "latitude": 46.372,
+              "longitude": -119.272,
+              "place": "USA: Columbia River, Washington",
+              "ecosystem": [
+                "Environmental",
+                "Terrestrial",
+                "Soil",
+                "Sand"
+              ],
+              "env_broad_scale": "ENVO:00000873",
+              "env_local_scale": "ENVO:00000022",
+              "env_medium": "ENVO:01000017",
+              "depth_m": null
+            },
+            {
+              "sample_id": "nmdc:bsm-13-4aw9ra87",
+              "name": "Groundwater microbial communities from the Columbia River, Washington, USA - GW-RW N1_30_40",
+              "studies": [
+                "nmdc:sty-11-aygzgv51"
+              ],
+              "collected": "2014-04-01",
+              "latitude": 46.372,
+              "longitude": -119.272,
+              "place": "USA: Columbia River, Washington",
+              "ecosystem": [
+                "Environmental",
+                "Terrestrial",
+                "Soil",
+                "Sand"
+              ],
+              "env_broad_scale": "ENVO:00000873",
+              "env_local_scale": "ENVO:00000022",
+              "env_medium": "ENVO:01000017",
+              "depth_m": null
+            },
+            {
+              "sample_id": "nmdc:bsm-13-z9wten89",
+              "name": "Groundwater microbial communities from the Columbia River, Washington, USA - GW-RW N1_00_10",
+              "studies": [
+                "nmdc:sty-11-aygzgv51"
+              ],
+              "collected": "2014-04-01",
+              "latitude": 46.372,
+              "longitude": -119.272,
+              "place": "USA: Columbia River, Washington",
+              "ecosystem": [
+                "Environmental",
+                "Terrestrial",
+                "Soil",
+                "Sand"
+              ],
+              "env_broad_scale": "ENVO:00000873",
+              "env_local_scale": "ENVO:00000022",
+              "env_medium": "ENVO:01000017",
+              "depth_m": null
+            },
+            {
+              "sample_id": "nmdc:bsm-13-wktc3357",
+              "name": "Groundwater microbial communities from the Columbia River, Washington, USA - GW-RW N1_40_50",
+              "studies": [
+                "nmdc:sty-11-aygzgv51"
+              ],
+              "collected": "2014-04-01",
+              "latitude": 46.372,
+              "longitude": -119.272,
+              "place": "USA: Columbia River, Washington",
+              "ecosystem": [
+                "Environmental",
+                "Terrestrial",
+                "Soil",
+                "Sand"
+              ],
+              "env_broad_scale": "ENVO:00000873",
+              "env_local_scale": "ENVO:00000022",
+              "env_medium": "ENVO:01000017",
+              "depth_m": null
+            },
+            {
+              "sample_id": "nmdc:bsm-13-ap544f22",
+              "name": "Groundwater microbial communities from the Columbia River, Washington, USA - GW-RW N2_00_30",
+              "studies": [
+                "nmdc:sty-11-aygzgv51"
+              ],
+              "collected": "2014-04-01",
+              "latitude": 46.372,
+              "longitude": -119.272,
+              "place": "USA: Columbia River, Washington",
+              "ecosystem": [
+                "Environmental",
+                "Terrestrial",
+                "Soil",
+                "Sand"
+              ],
+              "env_broad_scale": "ENVO:00000873",
+              "env_local_scale": "ENVO:00000022",
+              "env_medium": "ENVO:01000017",
+              "depth_m": null
+            }
+          ],
+          "record_count": 5,
+          "total_matches": 188,
+          "page": 1,
+          "filter_applied": {
+            "ecosystem_type": {
+              "$regex": "(?i)^Soil$"
+            },
+            "geo_loc_name.has_raw_value": {
+              "$regex": "(?i)washington"
+            }
+          },
+          "note": "Sample metadata as submitted. ecosystem_type matches NMDC's whole value without regard to case ('soil', 'Freshwater'); env_medium and place match a substring without regard to case; collected matches the start of the date as written ('2017', '2017-06'). Depth is reported only where it was stated in metres. Metadata only. Reads, assemblies and annotations are held at JGI, EMSL and the sequence archives; a study's DOIs in access_recipes lead to them and are never fetched here."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "nmdc-runtime",
+            "steward": "Lawrence Berkeley National Laboratory",
+            "funder": "Office of Science",
+            "system": "National Microbiome Data Collaborative Runtime API",
+            "dataset": "National Microbiome Data Collaborative Runtime API",
+            "dataset_version": "current",
+            "authority_level": "official_secondary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "cache_age_seconds": 0
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "nmdc:bsm-13-mrzb2q96",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2014-04-01",
+            "transformations": [
+              "normalize"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_02",
+            "source_ref": "source_01",
+            "record_id": "nmdc:bsm-13-4aw9ra87",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2014-04-01",
+            "transformations": [
+              "normalize"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_03",
+            "source_ref": "source_01",
+            "record_id": "nmdc:bsm-13-z9wten89",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2014-04-01",
+            "transformations": [
+              "normalize"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_04",
+            "source_ref": "source_01",
+            "record_id": "nmdc:bsm-13-wktc3357",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2014-04-01",
+            "transformations": [
+              "normalize"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_05",
+            "source_ref": "source_01",
+            "record_id": "nmdc:bsm-13-ap544f22",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2014-04-01",
+            "transformations": [
+              "normalize"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "truncated",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "nmdc-runtime"
+          ],
+          "known_limitations": [
+            "Metadata, not sequence data. Reads, assemblies and annotations live in the sequence archives and at JGI, and are reached through a study's DOIs rather than through this source.",
+            "Only 8 of 85 studies carry an ecosystem classification of their own; the rest are classified sample by sample. An ecosystem filter on studies therefore misses most of them, and the biosample filter is the one to use.",
+            "Place is free text as submitted ('USA: Washington, Abby Road'), so a place search is a substring match and a state name may miss samples recorded only by site or coordinates.",
+            "Studies NMDC has ingested, not every microbiome study. Most of the 85 are JGI or EMSL projects and a consortium study such as NEON's appears once with thousands of samples, so counts describe NMDC's holdings rather than the field."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "terms_note",
+            "message": "No published rate limit and no data-use statement on the API itself; the data portal's usage terms were not found in a scripted read.",
+            "source_id": "nmdc-runtime"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "bio.search_biosamples",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-10-20",
+          "request_id": "recorded-workflow"
+        }
+      }
+    }
+  ],
+  "worksheet": {
+    "caption": "Soil sample field check",
+    "columns": [
+      "Sample ID",
+      "Place",
+      "Collected",
+      "Latitude",
+      "Longitude",
+      "Depth (m)",
+      "Minimum depth (m)",
+      "Maximum depth (m)",
+      "Step 1 evidence ID"
+    ],
+    "rows": [
+      [
+        "nmdc:bsm-13-mrzb2q96",
+        "USA: Columbia River, Washington",
+        "2014-04-01",
+        46.372,
+        -119.272,
+        null,
+        null,
+        null,
+        "evidence_01"
+      ],
+      [
+        "nmdc:bsm-13-4aw9ra87",
+        "USA: Columbia River, Washington",
+        "2014-04-01",
+        46.372,
+        -119.272,
+        null,
+        null,
+        null,
+        "evidence_02"
+      ],
+      [
+        "nmdc:bsm-13-z9wten89",
+        "USA: Columbia River, Washington",
+        "2014-04-01",
+        46.372,
+        -119.272,
+        null,
+        null,
+        null,
+        "evidence_03"
+      ],
+      [
+        "nmdc:bsm-13-wktc3357",
+        "USA: Columbia River, Washington",
+        "2014-04-01",
+        46.372,
+        -119.272,
+        null,
+        null,
+        null,
+        "evidence_04"
+      ],
+      [
+        "nmdc:bsm-13-ap544f22",
+        "USA: Columbia River, Washington",
+        "2014-04-01",
+        46.372,
+        -119.272,
+        null,
+        null,
+        null,
+        "evidence_05"
+      ]
+    ],
+    "missing": {
+      "collection date": 0,
+      "coordinate pair": 0,
+      "depth in metres": 5
+    }
+  }
+}

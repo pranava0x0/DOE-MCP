@@ -2,19 +2,22 @@
 from __future__ import annotations
 
 import copy
-import csv
-import io
+import json
+from pathlib import Path
 from datetime import datetime, timezone
 from typing import Any
 
 from .core.envelope import Envelope
 from .core.errors import SourceUnavailable
 from .core.registry import DeclaredState
+from .demo_worksheets import bibliography, csv_text, soil_metadata
 from .runtime import RuntimeContext
 from .servers.build import registries
 
 CASES = {
     "evidence": ("DOE evidence finder", "Find perovskite solar research and inspect one returned record."),
+    "bibliography": ("Perovskite bibliography worksheet", "Which citation fields did DOE PAGES supply for this page of results?"),
+    "soil-metadata": ("Soil sample field check", "Which returned NMDC soil samples have a collection date, coordinates and depth in metres?"),
     "dataset-card": ("Geothermal dataset-card starter", "What can public catalog metadata fill in, and what still needs a dataset owner?"),
     "microbiome": ("Microbiome study and sample finder", "Find a shale microbiome study and inspect a sample of its biosamples."),
     "rulemaking": ("DOE rulemaking brief", "What did DOE publish, which docket does it belong to, and what dates did the publisher supply?"),
@@ -31,6 +34,7 @@ CASES = {
 }
 
 CASE_SKILLS = {
+    "bibliography": "doe-literature-review", "soil-metadata": "microbiome-data-finder",
     "evidence": "doe-literature-review", "partial": "doe-literature-review",
     "dataset-card": "find-doe-data", "find-data": "find-doe-data",
     "microbiome": "microbiome-data-finder", "rulemaking": "doe-rulemaking-brief",
@@ -79,6 +83,7 @@ async def run_workflow(ctx: RuntimeContext, case: str, *, mode: str = "recorded"
     steps: list[dict] = []
     limits: list[str] = []
     drafts: list[dict] = []
+    worksheet = None
 
     async def call(tool_name: str, **args) -> Envelope:
         env = await tool_spec(tool_name).fn(ctx, **args)
@@ -101,6 +106,17 @@ async def run_workflow(ctx: RuntimeContext, case: str, *, mode: str = "recorded"
             raise SourceUnavailable("selected record is no longer available")
         limits += ["A sampled literature search is not a systematic review.",
                    "A common topic does not prove that a paper and dataset are linked."]
+    elif case == "bibliography":
+        found = await call("research.search_literature", query="perovskite solar", rows=3,
+                           public_access_only=True)
+        worksheet = bibliography(found)
+        limits += ["Only the first DOE PAGES results page was read. No full text or citation counts were retrieved.",
+                   "Author strings come from the catalog. Check omitted authors against the publisher before citing."]
+    elif case == "soil-metadata":
+        samples = await call("bio.search_biosamples", ecosystem_type="Soil", place="washington", rows=5)
+        worksheet = soil_metadata(samples)
+        limits += ["The place filter matches text containing Washington; it does not test state boundaries.",
+                   "Counts describe this page only. A blank depth means the response supplied no numeric depth in metres."]
     elif case == "dataset-card":
         found = await call("research.search_datasets", site_code="DOE-GDR", rows=2)
         for record in found.data["datasets"]:
@@ -219,22 +235,26 @@ async def run_workflow(ctx: RuntimeContext, case: str, *, mode: str = "recorded"
                      {source["source_id"] for step in steps for source in step["envelope"]["provenance"]}],
         "limitations": limits,
         "steps": freeze(steps, clock) if mode == "recorded" else steps,
+        **({"worksheet": worksheet} if worksheet else {}),
         **({"drafts": drafts} if drafts else {}),
     }
 
 
 def evidence_csv(report: dict) -> str:
-    output = io.StringIO(newline="")
-    writer = csv.writer(output)
-    writer.writerow(["step", "tool", "source", "record_id", "locator", "effective_at", "mode"])
-    def cell(value):
-        text = str(value or "")
-        return "'" + text if text.lstrip().startswith(("=", "+", "-", "@")) else text
+    rows = []
     for i, step in enumerate(report["steps"], 1):
         env = step["envelope"]
         sources = {s["id"]: s["source_id"] for s in env["provenance"]}
         for evidence in env["evidence"]:
-            writer.writerow([cell(v) for v in [i, step["tool"], sources[evidence["source_ref"]],
+            rows.append([i, step["tool"], sources[evidence["source_ref"]],
                              evidence["record_id"], evidence.get("locator"),
-                             evidence.get("effective_at"), report["mode"]]])
-    return output.getvalue()
+                             evidence.get("effective_at"), report["mode"]])
+    return csv_text(["step", "tool", "source", "record_id", "locator", "effective_at", "mode"], rows)
+
+
+def write_report(directory: Path, report: dict) -> None:
+    case = report["case"]
+    (directory / f"{case}.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    (directory / f"{case}.csv").write_bytes(evidence_csv(report).encode())
+    if sheet := report.get("worksheet"):
+        (directory / f"{case}-worksheet.csv").write_bytes(csv_text(sheet["columns"], sheet["rows"]).encode())

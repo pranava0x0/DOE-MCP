@@ -9,7 +9,7 @@ from ..adapters.base import close_shared_client
 from ..core.credentials import Credentials
 from ..replay import fixture_manifest, load_replay_context
 from ..runtime import load_context
-from ..workflows import CASES, evidence_csv, run_workflow
+from ..workflows import CASES, run_workflow, write_report
 
 
 def asset_dir(name: str) -> Path:
@@ -37,7 +37,7 @@ async def build_report(args):
     if args.live:
         server = {"outage-history": "doe-energy-data", "eia": "doe-energy-data", "grid": "doe-energy-data",
                   "site": "doe-energy-data", "earth": "doe-earth",
-                  "materials": "doe-materials", "microbiome": "doe-bio"}.get(args.case, "doe-research")
+                  "materials": "doe-materials", "microbiome": "doe-bio", "soil-metadata": "doe-bio"}.get(args.case, "doe-research")
         creds = Credentials.load().scoped_to(["EIA_API_KEY"]) if args.case == "eia" else Credentials(values={}, path=Path("/nonexistent"), file_exists=False)
         ctx = load_context(credentials=creds, server_name=server)
         manifests = []
@@ -60,8 +60,7 @@ def cmd_demo(args) -> int:
     output = json.dumps(report, indent=2) + "\n"
     if args.output:
         args.output.mkdir(parents=True, exist_ok=True)
-        (args.output / f"{args.case}.json").write_text(output)
-        (args.output / f"{args.case}.csv").write_text(evidence_csv(report))
+        write_report(args.output, report)
         print(args.output / f"{args.case}.json")
     else:
         print(output, end="")

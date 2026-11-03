@@ -7,6 +7,7 @@ import math
 from urllib.parse import urlsplit
 
 from doe_mcp.core.assemble import strip_inline_markup
+from doe_mcp.demo_worksheets import GENESIS_SKILLS, GENESIS_TREE
 from doe_mcp.workflows import CASE_SKILLS
 
 
@@ -105,6 +106,12 @@ def outcome(report) -> str:
     if case in {'evidence', 'partial'}:
         record = report['steps'][1]['envelope']['data']['record']
         return f"{data['record_count']} distinct records returned. Followed record {record['id']}: {strip_inline_markup(record['title'])}."
+    if case == 'bibliography':
+        return f"{data['record_count']} DOE PAGES records for a bibliography. The worksheet marks how many authors each catalog summary omitted."
+    if case == 'soil-metadata':
+        sheet = report['worksheet']
+        counts = "; ".join(f"{field}: {n}" for field, n in sheet["missing"].items())
+        return f"Missing fields among {len(sheet['rows'])} returned samples — {counts}."
     if case == 'dataset-card':
         return f"{len(report['drafts'])} metadata drafts from DOE Data Explorer. File checksums, reuse permissions and governance still need review."
     if case == 'microbiome':
@@ -297,6 +304,16 @@ def render(reports: list[dict]) -> str:
         if r['case'] != 'partial':
             reproduce += '<p>Add <code>--live</code> to query publishers. '+('EIA requires your own key.' if r['case']=='eia' else 'No model is called.')+' Live results and availability can differ.</p>'
         reproduce += '</details>'
+        sheet_view = ''
+        sheet_download = ''
+        if sheet := r.get('worksheet'):
+            skill, path = GENESIS_SKILLS[r['case']]
+            upstream = link(GENESIS_TREE + path + '/SKILL.md', skill)
+            sheet_view = ('<section><h3>'+esc(sheet['caption'])+'</h3>'
+                          +f'<p>Based on the Genesis {upstream} skill. DOE-MCP builds this worksheet locally.</p>'
+                          +table(sheet['columns'], sheet['rows'], 'Each evidence ID refers to step 1 in the JSON download.')
+                          +'</section>')
+            sheet_download = f'<a download href="data/demos/{esc(r["case"])}-worksheet.csv">Download worksheet CSV</a>'
         captures=table(['Fixture','Capture time (UTC)','SHA-256'],[(f['file'],f.get('captured_at') or 'Unknown; old recording',f['sha256']) for f in r['fixtures']])
         articles.append(f'<article id="{esc(r["case"])}" tabindex="-1">'
                         f'<h2>{esc(r["title"])}</h2>'
@@ -305,8 +322,8 @@ def render(reports: list[dict]) -> str:
                         f'<p class="scope">{esc(scope_line(r))}</p>'
                         +('<p class="notice">Simulated source outage. The publisher status was changed only in this isolated replay.</p>' if r['simulation'] else '')
                         +'<details open><summary>Limits of this example</summary><ul>'+''.join(f'<li>{esc(x)}</li>' for x in r['limitations'])+'</ul></details>'
-                        +f'<p class="downloads"><a download href="data/demos/{esc(r["case"])}.json">Download JSON evidence</a><a download href="data/demos/{esc(r["case"])}.csv">Download CSV evidence index</a></p>'
-                        +reproduce+drafts
+                        +f'<p class="downloads"><a download href="data/demos/{esc(r["case"])}.json">Download JSON evidence</a><a download href="data/demos/{esc(r["case"])}.csv">Download CSV evidence index</a>{sheet_download}</p>'
+                        +sheet_view+reproduce+drafts
                         +(point_map(r['steps']) if r['case']=='site' else '')
                         +''.join(step_view(step,i,r['case']) for i,step in enumerate(r['steps'],1))
                         +'<details><summary>Recording manifest and capture times</summary>'+f'<p>{esc(r["timestamp_note"])} Registry revision: {esc(r["registry_revision"])}.</p>'+captures+'</details></article>')
