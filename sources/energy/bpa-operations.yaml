@@ -84,10 +84,10 @@ coverage:
     - >
       The file is padded to the end of the current day with intervals that
       have a timestamp and no values — 171 of 2,016 at the 2026-09-02 read.
-      They are intervals that have not happened yet, not an outage and not
-      zero generation. The adapter drops the trailing run and reports how
-      many it dropped, so the padding cannot be read as a grid that stopped
-      generating at midday.
+      Correction, 2026-11-03: the November file also contained blank slots
+      before its latest measurement. Only trailing blanks are dropped.
+      The tool counts interior blanks separately and leaves their values
+      missing. A blank does not establish zero generation or an outage.
     - >
       The two feeds do not carry the same columns: baltwg3.txt adds
       Interchange, baltwg.txt does not. The adapter reads the header row of

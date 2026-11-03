@@ -122,6 +122,8 @@ class FeedTable:
     published_note: str | None
     """The publisher's own last-updated stamp, in its local zone."""
     total_intervals: int
+    populated_intervals: int
+    """Slots with at least one measurement in the whole file, before slicing."""
     preamble: list[str] = field(default_factory=list)
 
     @property
@@ -130,7 +132,7 @@ class FeedTable:
 
     @property
     def available_intervals(self) -> int:
-        """Valued intervals in the fetched window, before any `intervals`
+        """Slots through the last populated row, including gaps, before any `intervals`
         trim. Kept separate from `len(rows)` so a caller who asked for the
         last hour can still be told how much the window held."""
         return self.total_intervals - self.pending_intervals
@@ -214,7 +216,8 @@ def parse_feed(text: str, feed: str, params: TextFeedParams,
         rows=rows, reported_through=rows[-1].timestamp if rows else None,
         window=window, pending_intervals=pending,
         published_note=updated.group(1).strip() if updated else None,
-        total_intervals=len(rows) + pending, preamble=preamble)
+        total_intervals=len(rows) + pending,
+        populated_intervals=sum(not row.is_empty() for row in rows), preamble=preamble)
 
 
 class TextFeedAdapter:

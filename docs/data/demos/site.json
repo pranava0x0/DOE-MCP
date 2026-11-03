@@ -798,7 +798,7 @@
               "maintainer": "ModCon BASE team, co-led by PNNL and Berkeley Lab",
               "status": "listed",
               "compliance": "opaque",
-              "why_not_absorbed": "It is instructions rather than data or tools, so there is nothing for DOE-MCP to wrap. Its subtrees carry different licenses and some carry none, so nothing is copied here. DOE-MCP's own skills use the same Agent Skills file format and pass the pack's own validator, which is the extent of the integration.",
+              "why_not_absorbed": "It is instructions rather than data or tools, so there is nothing for DOE-MCP to wrap. Its subtrees carry different licenses and some carry none, so nothing is copied here. DOE-MCP's own skills use the same Agent Skills file format. The October review checked them with the upstream validator. Since then, local demos have applied selected Genesis methods to DOE records without running the upstream scripts.",
               "install": {
                 "method": "source",
                 "command": "git clone https://github.com/AI-ModCon/genesis-skills"

@@ -189,11 +189,13 @@
           "reported_through": "09/03/2026 01:55",
           "window": "Dates: 03Sep2026 - 10Sep2026 (last updated 9Sep2026 07:26:18) Pacific Time",
           "window_intervals": 24,
+          "populated_intervals": 24,
+          "gap_intervals": 0,
           "pending_intervals": 12,
           "publisher_last_updated": "9Sep2026 07:26:18",
           "timestamps": "The file uses Pacific Time. Rows may carry PDT or PST; keep the label when supplied. Last-Modified dates the file, not an individual reading.",
           "note": "Five-minute SCADA readings from BPA's balancing authority, in megawatts. VER is variable energy resources \u2014 wind and solar together. The balancing authority includes loads and resources that are not BPA's own and excludes BPA loads served by transfer, so this is not a figure for 'BPA the utility'. For hourly history, or for any other balancing authority, use energy.grid_status; BPA's EIA-930 respondent code is BPAT.",
-          "pending_note": "The file also listed 12 later interval(s) today with a timestamp and no values. Those have not happened yet; they are not zero generation and not an outage. They are excluded from every figure above."
+          "pending_note": "The file ends with 12 timestamps without measurements. These trailing slots are excluded from the returned intervals."
         },
         "provenance": [
           {

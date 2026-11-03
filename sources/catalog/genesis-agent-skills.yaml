@@ -27,8 +27,9 @@ why_not_absorbed: >
   It is instructions rather than data or tools, so there is nothing for
   DOE-MCP to wrap. Its subtrees carry different licenses and some carry
   none, so nothing is copied here. DOE-MCP's own skills use the same Agent
-  Skills file format and pass the pack's own validator, which is the extent
-  of the integration.
+  Skills file format. The October review checked them with the upstream
+  validator. Since then, local demos have applied selected Genesis methods
+  to DOE records without running the upstream scripts.
 notes: >
   Announced by the DOE Office of Science on 2026-10-15; developed on GitHub,
   with a read-only mirror at gitlab.osti.gov/genesis. Domains include

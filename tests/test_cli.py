@@ -160,17 +160,15 @@ def test_a_credential_can_come_from_an_environment_variable(tmp_path,
     assert "EIA_API_KEY=env-value" in (tmp_path / "credentials.env").read_text()
 
 
-def test_tools_call_auto_detects_profile(capsys, monkeypatch):
-    """When --profile is omitted, tools call auto-locates the tool's profile."""
+def test_tools_call_auto_detects_profile(ctx, capsys, monkeypatch):
+    """Resolve a tool outside research, then call it on a recorded feed."""
+    import json
     import sys
     from doe_mcp.cli.__main__ import main
-    # Call a tool that lives in energy (not research), without --profile
-    monkeypatch.setattr(
-        sys, "argv",
-        ["doe-mcp", "tools", "call", "facility.find_wind_turbines",
-         "--args", '{"state": "RI", "rows": 1}'])
+    monkeypatch.setattr("doe_mcp.cli.__main__._load_ctx", lambda: ctx)
+    monkeypatch.setattr(sys, "argv", ["doe-mcp", "tools", "call",
+                                     "grid.get_bpa_operations", "--args", '{"intervals": 2}'])
     assert main() == 0
-    out = capsys.readouterr().out
-    assert '"tool": "facility.find_wind_turbines"' in out
-    assert '"data":' in out
-
+    response = json.loads(capsys.readouterr().out)
+    assert response["_execution"]["tool"] == "grid.get_bpa_operations"
+    assert response["data"]["record_count"] == 2

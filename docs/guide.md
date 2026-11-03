@@ -24,8 +24,7 @@ local registry tool, validates its structured response, checks a typed
 error, and closes the process. Neither command needs an API key or a
 publisher connection.
 
-Available walkthroughs: `evidence`, `partial`, `blocked`, `grid`, `eia`,
-`site`, `earth`, `materials`, `dataset-card`, `microbiome`, `rulemaking`, and `outage-history`. The partial case explicitly simulates one
+Run `doe-mcp demo --help` for the list of walkthroughs. The partial case explicitly simulates one
 unavailable source in an isolated replay. The blocked case reads registry
 inventory; it does not query the proposed publisher.
 
@@ -75,6 +74,16 @@ DOE's [Genesis Agent Skills release](https://www.energy.gov/science/articles/gen
 provides scientific workflow instructions. DOE-MCP's own skills now use the
 same Agent Skills format. This is format compatibility, not an installed
 connection to the upstream catalog or a claim of DOE endorsement.
+
+Four demos implement steps described in the released skills. The calculations
+run in DOE-MCP and each download can be reproduced from recorded responses.
+
+| Genesis skill | DOE-MCP demo | What you get |
+| --- | --- | --- |
+| `literature-search` | [Bibliography](demos.html#bibliography) | A DOE PAGES citation worksheet that flags omitted authors. |
+| `data-exploration` | [Soil samples](demos.html#soil-metadata) | Counts of missing dates, coordinates and depths on the returned NMDC page. |
+| `croissant-validator` | [Daymet calendar](demos.html#daymet-calendar) | A temperature CSV and Croissant metadata with its checksum. CI loads the records with the MLCommons reader. |
+| `uq-metrics-evaluator` | [BPA load](demos.html#load-baseline) | Mean absolute and root mean squared error when the last load reading predicts the next five minutes. |
 
 Try these local examples after installation:
 
