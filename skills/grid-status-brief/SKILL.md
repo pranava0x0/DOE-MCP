@@ -75,3 +75,4 @@ status.
 | 3 | "Compare PJM and ERCOT demand yesterday." | Two calls with the same metric and window; each authority's own period range is stated; no forecast row is mixed in. |
 | 4 | "Is the grid in trouble right now?" | Answers with what the two feeds measure, says DOE-MCP has no live outage source, and names the newest EAGLE-I release as history rather than inferring an outage. |
 | 5 | "Where can I get county outage data for 2021?" | Names the EAGLE-I release covering 2014 to 2022 with its DOI, and the county customer-count dataset as the denominator. Fails if it reports an outage figure it did not read. |
+| 6 | How well did the last BPA load reading predict the next five minutes? | Pairs adjacent load readings in MW, excludes missing values and time gaps, and labels the prediction as a local baseline. |
