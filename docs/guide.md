@@ -258,3 +258,27 @@ measurements or compute an outage rate. The denominator's vintage is shown
 in its publisher title, because mixing years can mislead. Customers are
 not people, and publisher coverage is incomplete. Add `--live` to check
 the public catalog without a key or model.
+
+## Load a Daymet temperature extract
+
+[The missing Daymet date](demos.html#daymet-calendar) follows one grid
+cell near Oak Ridge from December 26 through December 31, 2024. The
+temperature CSV ends on December 30. Daymet's calendar has 365 days,
+including in leap years. The download contains no row for December 31.
+
+Run `doe-mcp demo daymet-calendar --output ./daymet` or download the
+temperatures CSV and Croissant metadata into the same directory.
+The metadata describes this recorded extract, gives the source citation
+and maps each field to a CSV column. Its SHA-256 digest covers the
+downloaded CSV. The underlying Daymet archive has its own
+[data use guidance](https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance).
+
+With the optional MLCommons reader installed, read the five rows:
+
+```python
+from mlcroissant import Dataset
+
+days = Dataset("daymet/daymet-calendar-croissant.json").records("days")
+for day in days:
+    print(day["days/date"], day["days/tmax_deg_c"])
+```

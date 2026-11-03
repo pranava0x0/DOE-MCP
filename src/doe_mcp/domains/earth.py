@@ -70,7 +70,7 @@ async def get_daymet_point(ctx: RuntimeContext, latitude: float,
                               from_cache=fetched.from_cache,
                               dataset="Daymet single-pixel extraction")
     b.add_evidence(source_ref=ref,
-                   record_id=f"tile:{series.tile}@{latitude},{longitude}",
+                   record_id=f"tile:{series.tile}@{series.latitude},{series.longitude}",
                    retrieved_at=fetched.retrieved_at,
                    effective_at=series.returned_start,
                    transformations=["day-of-year converted to calendar date"])
@@ -108,7 +108,7 @@ async def get_daymet_point(ctx: RuntimeContext, latitude: float,
         data["dates_absent_note"] = (
             "Daymet's year is 365 days long: 29 February is present and 31 "
             "December is dropped. The date(s) above are inside the range "
-            "returned and are absent from the dataset rather than missing "
+            "requested and are absent from the dataset rather than missing "
             "from this answer. An annual total for such a year is a 365-day "
             "total.")
     if series.rows and series.returned_start != series.requested_start:

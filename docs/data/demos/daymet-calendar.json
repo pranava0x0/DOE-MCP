@@ -1,0 +1,188 @@
+{
+  "format_version": "1",
+  "case": "daymet-calendar",
+  "title": "The missing Daymet date",
+  "question": "Why does a six-day request return five daily maximum temperatures?",
+  "mode": "recorded",
+  "simulation": false,
+  "registry_revision": "2026-10-20",
+  "generated_at": null,
+  "replay_clock": "2026-10-20T00:00:00Z",
+  "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
+  "fixtures": [
+    {
+      "file": "ornl-daac.json",
+      "sha256": "9fea63aa5e38eaa7fdf8d095bec8d6a70b291f4cc6a9751facf53548d565574a",
+      "captured_at": null
+    }
+  ],
+  "limitations": [
+    "Daymet models the 1 km grid cell around the requested point. These are not station readings.",
+    "The CSV contains only the returned dates. A missing date has no temperature value."
+  ],
+  "steps": [
+    {
+      "tool": "earth.get_daymet_point",
+      "args": {
+        "latitude": 35.9313,
+        "longitude": -84.3104,
+        "start": "2024-12-26",
+        "end": "2024-12-31",
+        "variables": "tmax"
+      },
+      "envelope": {
+        "data": {
+          "latitude": 35.9313,
+          "longitude": -84.3104,
+          "elevation_meters": 261.0,
+          "tile": "11208",
+          "projected_coordinates": "1352953.24 -569846.6",
+          "software_version": "All years; all variables; Daymet Software Version 4.0",
+          "publisher_citation": "Thornton; M.M.; R. Shrestha; Y. Wei; P.E. Thornton; S-C. Kao; and B.E. Wilson. 2022. Daymet: Daily Surface Weather Data on a 1-km Grid for North America; Version 4 R1. ORNL DAAC; Oak Ridge; Tennessee; USA. https://doi.org/10.3334/ORNLDAAC/2129",
+          "columns": [
+            {
+              "name": "tmax",
+              "units": "deg c",
+              "description": "Daily maximum 2-metre air temperature, degrees Celsius"
+            }
+          ],
+          "days": [
+            {
+              "date": "2024-12-26",
+              "yday": 361,
+              "values": {
+                "tmax": 14.51
+              }
+            },
+            {
+              "date": "2024-12-27",
+              "yday": 362,
+              "values": {
+                "tmax": 12.72
+              }
+            },
+            {
+              "date": "2024-12-28",
+              "yday": 363,
+              "values": {
+                "tmax": 14.22
+              }
+            },
+            {
+              "date": "2024-12-29",
+              "yday": 364,
+              "values": {
+                "tmax": 15.9
+              }
+            },
+            {
+              "date": "2024-12-30",
+              "yday": 365,
+              "values": {
+                "tmax": 16.43
+              }
+            }
+          ],
+          "record_count": 5,
+          "requested_range": {
+            "from": "2024-12-26",
+            "to": "2024-12-31"
+          },
+          "returned_range": {
+            "from": "2024-12-26",
+            "to": "2024-12-30"
+          },
+          "calendar": "Daymet's year is always 365 days. 29 February is present and 31 December is dropped in leap years, so an annual total from a leap year is a 365-day total and the missing date is named on any answer whose range covers it.",
+          "note": "Daily modelled surface weather for the 1 km cell holding this point. Precipitation is a daily total; tmax and tmin are daily extremes, so a daily mean has to be computed and is not published. For observations at a station rather than a modelled grid cell, this is the wrong source.",
+          "dates_absent": [
+            "2024-12-31"
+          ],
+          "dates_absent_note": "Daymet's year is 365 days long: 29 February is present and 31 December is dropped. The date(s) above are inside the range requested and are absent from the dataset rather than missing from this answer. An annual total for such a year is a 365-day total."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "ornl-daac",
+            "steward": "Oak Ridge National Laboratory",
+            "funder": "National Aeronautics and Space Administration",
+            "system": "ORNL DAAC (Daymet, MODIS/VIIRS subsets)",
+            "dataset": "Daymet single-pixel extraction",
+            "dataset_version": "Daymet V4 R1",
+            "authority_level": "official_secondary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "cache_age_seconds": 0
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "tile:11208@35.9313,-84.3104",
+            "locator": null,
+            "retrieved_at": "2026-10-20T00:00:00Z",
+            "effective_at": "2024-12-26",
+            "transformations": [
+              "day-of-year converted to calendar date"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "ornl-daac"
+          ],
+          "time_range": {
+            "from": "2024-12-26",
+            "to": "2024-12-30"
+          }
+        },
+        "warnings": [
+          {
+            "code": "derived_layer",
+            "message": "Values are modelled estimates for the 1 km cell containing the point, interpolated from ground stations. They are not a station observation and the service reports no cell centre, so a value here is the model's account of that kilometre rather than a measurement at the coordinates given.",
+            "source_id": "ornl-daac"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "earth.get_daymet_point",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-10-20",
+          "request_id": "recorded-workflow"
+        }
+      }
+    }
+  ]
+}

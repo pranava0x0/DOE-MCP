@@ -9,7 +9,7 @@ from ..adapters.base import close_shared_client
 from ..core.credentials import Credentials
 from ..replay import fixture_manifest, load_replay_context
 from ..runtime import load_context
-from ..workflows import CASES, run_workflow, write_report
+from ..workflows import CASES, RECORDED_ONLY, run_workflow, write_report
 
 
 def asset_dir(name: str) -> Path:
@@ -56,6 +56,8 @@ def cmd_demo(args) -> int:
         from ..client_demo import round_trip
         print(json.dumps(asyncio.run(round_trip()), indent=2))
         return 0
+    if args.live and args.case in RECORDED_ONLY:
+        raise SystemExit(RECORDED_ONLY[args.case] + "; omit --live to replay it")
     report = asyncio.run(build_report(args))
     if args.output:
         args.output.mkdir(parents=True, exist_ok=True)

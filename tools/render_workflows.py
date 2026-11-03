@@ -7,8 +7,9 @@ import math
 from urllib.parse import urlsplit
 
 from doe_mcp.core.assemble import strip_inline_markup
+from doe_mcp import daymet_package
 from doe_mcp.demo_worksheets import GENESIS_SKILLS, GENESIS_TREE
-from doe_mcp.workflows import CASE_SKILLS
+from doe_mcp.workflows import CASE_SKILLS, RECORDED_ONLY
 
 
 def esc(value) -> str:
@@ -108,6 +109,10 @@ def outcome(report) -> str:
         return f"{data['record_count']} distinct records returned. Followed record {record['id']}: {strip_inline_markup(record['title'])}."
     if case == 'bibliography':
         return f"{data['record_count']} DOE PAGES records for a bibliography. The worksheet marks how many authors each catalog summary omitted."
+    if case == daymet_package.CASE:
+        return (f"Requested {data['requested_range']['from']} through {data['requested_range']['to']}. "
+                f"Daymet returned {data['record_count']} daily maxima, ending {data['returned_range']['to']}. "
+                "Its leap-year calendar ends on December 30.")
     if case == 'soil-metadata':
         sheet = report['worksheet']
         counts = "; ".join(f"{field}: {n}" for field, n in sheet["missing"].items())
@@ -303,11 +308,17 @@ def render(reports: list[dict]) -> str:
             drafts += '<h4>Still needs owner review</h4><ul>'+''.join('<li>'+esc(x)+'</li>' for x in draft['needs_owner_review'])+'</ul></section>'
         command = 'doe-mcp demo '+r['case']+' --output ./demo-output'
         reproduce = '<details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>'+esc(command)+'</pre>'
-        if r['case'] != 'partial':
+        if r['case'] not in RECORDED_ONLY:
             reproduce += '<p>Add <code>--live</code> to query publishers. '+('EIA requires your own key.' if r['case']=='eia' else 'No model is called.')+' Live results and availability can differ.</p>'
         reproduce += '</details>'
         sheet_view = ''
         sheet_download = ''
+        if r['case'] == daymet_package.CASE:
+            upstream = link(GENESIS_TREE + 'skills/basedata-skills/croissant-validator/SKILL.md', 'Genesis Croissant skill')
+            sheet_view = (f'<p>The {upstream} describes how to document a CSV. Download both files into one directory. '
+                          'The Croissant file names each column and gives the SHA-256 checksum of the temperature CSV.</p>')
+            sheet_download = (f'<a download href="data/demos/{daymet_package.CSV_NAME}">Download temperatures CSV</a>'
+                              f'<a download href="data/demos/{daymet_package.METADATA_NAME}">Download Croissant metadata</a>')
         if sheet := r.get('worksheet'):
             skill, path = GENESIS_SKILLS[r['case']]
             upstream = link(GENESIS_TREE + path + '/SKILL.md', skill)

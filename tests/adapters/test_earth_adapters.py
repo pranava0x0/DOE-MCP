@@ -322,3 +322,24 @@ async def test_deployment_phase_is_reported_rather_than_assumed(ctx):
     """A node in the manifest is not necessarily a node that is running."""
     page = await _nodes(ctx)
     assert {n.deployed for n in page.nodes} == {True, False}
+
+
+@pytest.mark.parametrize("before,after", [
+    ("35.9313", "35.9314"), ("tmax (deg c)", "prcp (mm/day)"),
+    ("2024,361", "2024,366"), ("2024,362", "2024,361"),
+    ("2024,361", "2024,360"), ("2024,363", "2024,361"), ("14.51", "NaN"), ("14.51", "oops"),
+])
+async def test_daymet_refuses_a_corrupted_reply(ctx, before, after):
+    # Work on a copy of the recording, never the shared replay table.
+    from dataclasses import replace
+    fetcher = ctx.daymet._fetcher
+    fetch = fetcher.fetch_text
+
+    async def changed(url, params):
+        result = await fetch(url, params)
+        assert before in result.text
+        return replace(result, text=result.text.replace(before, after))
+
+    fetcher.fetch_text = changed
+    with pytest.raises(SourceSchemaChanged):
+        await _daymet(ctx, variables=["tmax"], start="2024-12-26", end="2024-12-31")

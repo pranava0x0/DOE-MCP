@@ -31,3 +31,4 @@ calendar caveat and missing days; do not fill them with zero.
 | 1 | Read daily maximum temperature at Oak Ridge for 1–5 June 2023. | Uses the specified coordinates and range, identifies modelled values and units, and preserves citations. |
 | 2 | Find permafrost datasets and compare their scope with Oak Ridge weather. | Keeps the search results separate and makes no unsupported claim of a geographic or temporal match. |
 | 3 | Is a missing Daymet date zero precipitation? | Reports the calendar or coverage gap without filling a missing day with zero. |
+| 4 | Why does the Oak Ridge request for December 26–31, 2024 return five daily maxima? | Shows the returned dates, identifies December 31 as the calendar gap and keeps the values in degrees Celsius. |

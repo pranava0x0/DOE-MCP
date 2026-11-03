@@ -54,6 +54,9 @@ jobs:
       - name: Compare published demo downloads with recorded CLI exports
         run: python tools/check_demo_exports.py
 
+      - name: Read the Daymet download with MLCommons Croissant
+        run: uv run --python 3.12 --no-project --isolated --with mlcroissant==1.1.1 python tools/check_daymet_package.py
+
       - name: The envelope schema matches the models
         run: |
           python tools/build_schema.py

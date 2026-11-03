@@ -54,6 +54,7 @@ said on the result instead.
 from __future__ import annotations
 
 import datetime as dt
+import math
 import re
 from dataclasses import dataclass, field
 
@@ -175,14 +176,17 @@ def _is_leap(year: int) -> bool:
     return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
 
 
-def _number(cell: str) -> float | None:
+def _number(cell: str, source_id: str) -> float | None:
     text = cell.strip()
     if not text:
         return None
     try:
-        return float(text)
-    except ValueError:
-        return None
+        number = float(text)
+    except ValueError as err:
+        raise SourceSchemaChanged(f"{source_id}: non-numeric Daymet measurement") from err
+    if not math.isfinite(number):
+        raise SourceSchemaChanged(f"{source_id}: non-finite Daymet measurement")
+    return number
 
 
 def _parse_date(iso: str, label: str) -> dt.date:
@@ -218,12 +222,21 @@ def parse_series(text: str, source_id: str, *, requested_start: str,
                 f"{source_id}: a data row has {len(cells)} field(s) against "
                 f"{len(header)} header column(s). The column set changed "
                 "mid-response, which no column mapping can survive.")
-        year, yday = int(cells[0]), int(cells[1])
+        try:
+            year, yday = int(cells[0]), int(cells[1])
+            if not 1 <= yday <= 365:
+                raise ValueError
+            date = (dt.date(year, 1, 1) + dt.timedelta(days=yday - 1)).isoformat()
+        except ValueError as err:
+            raise SourceSchemaChanged(f"{source_id}: invalid Daymet year or day number") from err
+        if not requested_start <= date <= requested_end:
+            raise SourceSchemaChanged(f"{source_id}: Daymet returned a date outside the requested range")
+        if rows and date <= rows[-1].date:
+            raise SourceSchemaChanged(f"{source_id}: Daymet dates repeat or run backwards")
         rows.append(DayRow(
-            date=(dt.date(year, 1, 1)
-                  + dt.timedelta(days=yday - 1)).isoformat(),
+            date=date,
             year=year, yday=yday,
-            values={col.name: _number(cell)
+            values={col.name: _number(cell, source_id)
                     for col, cell in zip(columns, cells[2:],
                                          strict=True)}))
 
@@ -231,7 +244,7 @@ def parse_series(text: str, source_id: str, *, requested_start: str,
     lat, lon = _coordinates(fields.get("Latitude:"), source_id)
     return PointSeries(
         latitude=lat, longitude=lon,
-        elevation_meters=_elevation(fields.get("Elevation:")),
+        elevation_meters=_elevation(fields.get("Elevation:"), source_id),
         tile=fields.get("Tile:"), projected_xy=fields.get("X & Y"),
         software_version=fields.get("version"),
         citation=fields.get("How to cite:"), columns=columns, rows=rows,
@@ -298,10 +311,10 @@ def _coordinates(value: str | None, source_id: str) -> tuple[float, float]:
             f"of the preamble line {value!r}.") from err
 
 
-def _elevation(value: str | None) -> float | None:
+def _elevation(value: str | None, source_id: str) -> float | None:
     if not value:
         return None
-    return _number(value.split()[0])
+    return _number(value.split()[0], source_id)
 
 
 class DaymetAdapter:
@@ -340,6 +353,10 @@ class DaymetAdapter:
         series = parse_series(result.payload, manifest.id,
                               requested_start=first.isoformat(),
                               requested_end=last.isoformat())
+        if (series.latitude, series.longitude) != (float(query["lat"]), float(query["lon"])):
+            raise SourceSchemaChanged(f"{manifest.id}: Daymet echoed different coordinates")
+        if sorted(c.name for c in series.columns) != sorted(names):
+            raise SourceSchemaChanged(f"{manifest.id}: Daymet returned a different variable selection")
         log_source_call(manifest, "point_series", query, len(series.rows))
         return Fetched.of(result, series)
 
