@@ -45,7 +45,11 @@ THIRD_PARTY = ROOT / "THIRD_PARTY_DATA.yml"
 
 # (source_id, description, request spec). Each entry is one interaction a
 # contract test replays.
+from doe_mcp.gcam_catalog import TABLES  # noqa: E402
+
 PLANS: dict[str, list[tuple[str, str]]] = {
+    **{"gcam-" + domain: [(name, "gcam:" + name) for name in tables]
+       for domain, tables in TABLES.items()},
     "osti-gov-records": [
         ("unfiltered head", "search:rows=1"),
         ("topic search", "search:q=perovskite solar,rows=3"),
@@ -437,6 +441,8 @@ async def run(source_id: str, plan: list[tuple[str, str]]) -> None:
                                  else RECORDED_CMIP),
                         rows=RECORDED_ROWS,
                         latest=None if rest == "superseded" else True)
+            elif kind == "gcam":
+                await ctx.gcam.read(manifest, rest)
             elif kind == "nmdc":
                 if rest == "studies":
                     await ctx.nmdc.studies(manifest)

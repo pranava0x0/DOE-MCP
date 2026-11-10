@@ -390,6 +390,51 @@ redistributed:
       answer, and no sequence data is recorded.
     attribution_required: false
 
+  - source_id: gcam-water
+    publisher: PNNL Joint Global Change Research Institute
+    system: 'GCAM: Water use'
+    url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A23.CoolingSystemCosts.csv
+    retrieved: '2026-11-09'
+    content: Recorded GCAM v9.1 input CSV files with publisher comments, wrapped in replay JSON.
+    rights: Copyright 2019 Battelle Memorial Institute. ECL-2.0; see licenses/GCAM-ECL-2.0.txt.
+    attribution_required: true
+
+  - source_id: gcam-land
+    publisher: PNNL Joint Global Change Research Institute
+    system: 'GCAM: Land and agriculture'
+    url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_demand_food_staples.csv
+    retrieved: '2026-11-09'
+    content: Recorded GCAM v9.1 input CSV files with publisher comments, wrapped in replay JSON.
+    rights: Copyright 2019 Battelle Memorial Institute. ECL-2.0; see licenses/GCAM-ECL-2.0.txt.
+    attribution_required: true
+
+  - source_id: gcam-emissions
+    publisher: PNNL Joint Global Change Research Institute
+    system: 'GCAM: Emissions'
+    url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/emissions/A41.GWP.csv
+    retrieved: '2026-11-09'
+    content: Recorded GCAM v9.1 input CSV files with publisher comments, wrapped in replay JSON.
+    rights: Copyright 2019 Battelle Memorial Institute. ECL-2.0; see licenses/GCAM-ECL-2.0.txt.
+    attribution_required: true
+
+  - source_id: gcam-power
+    publisher: PNNL Joint Global Change Research Institute
+    system: 'GCAM: Power technology'
+    url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A20.wind_class_CFs.csv
+    retrieved: '2026-11-09'
+    content: Recorded GCAM v9.1 input CSV files with publisher comments, wrapped in replay JSON.
+    rights: Copyright 2019 Battelle Memorial Institute. ECL-2.0; see licenses/GCAM-ECL-2.0.txt.
+    attribution_required: true
+
+  - source_id: gcam-economy
+    publisher: PNNL Joint Global Change Research Institute
+    system: 'GCAM: Regional economics'
+    url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv
+    retrieved: '2026-11-09'
+    content: Recorded GCAM v9.1 input CSV files with publisher comments, wrapped in replay JSON.
+    rights: Copyright 2019 Battelle Memorial Institute. ECL-2.0; see licenses/GCAM-ECL-2.0.txt.
+    attribution_required: true
+
 citation_required_when_integrated:
   - source_id: arm-data-center
     publisher: ARM Data Center (ORNL)

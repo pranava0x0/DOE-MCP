@@ -1,0 +1,3 @@
+step,tool,source,record_id,locator,effective_at,mode
+1,economy.country_regions,gcam-economy,data row 58,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv,,recorded
+2,water.cooling_shares,gcam-water,data row 57,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A23.CoolingSystemShares_RG3.csv,,recorded

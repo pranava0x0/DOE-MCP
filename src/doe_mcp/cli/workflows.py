@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 
 from ..adapters.base import close_shared_client
+from ..gcam_examples import EXAMPLES
 from ..core.credentials import Credentials
 from ..replay import fixture_manifest, load_replay_context
 from ..runtime import load_context
@@ -39,6 +40,10 @@ async def build_report(args):
                   "load-baseline": "doe-energy-data",
                   "site": "doe-energy-data", "earth": "doe-earth",
                   "materials": "doe-materials", "microbiome": "doe-bio", "soil-metadata": "doe-bio"}.get(args.case, "doe-research")
+        if args.case in EXAMPLES:
+            server = "doe-mcp"  # CLI walk; some examples span two domain servers.
+        elif args.case == "global-climate-archive":
+            server = "doe-earth"
         creds = Credentials.load().scoped_to(["EIA_API_KEY"]) if args.case == "eia" else Credentials(values={}, path=Path("/nonexistent"), file_exists=False)
         ctx = load_context(credentials=creds, server_name=server)
         manifests = []

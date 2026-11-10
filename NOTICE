@@ -30,7 +30,12 @@ building a different thing, including DOE itself.
 
 REDISTRIBUTED CONTENT
 ------------------------------------------------------------------------
-Recorded API responses under tests/fixtures/ are government-published
+The GCAM recordings and their demo extracts contain input tables from the
+Joint Global Change Research Institute. Copyright 2019 Battelle Memorial
+Institute. The cells and source notes appear in replay JSON or extracted
+rows. The license is in licenses/GCAM-ECL-2.0.txt.
+
+Recorded API responses under tests/fixtures/ are publisher
 content retrieved from the endpoints named in THIRD_PARTY_DATA.yml. Each
 entry there records the publisher, the retrieval date, the rights the
 publisher asserts, and any attribution the publisher requires. Most US

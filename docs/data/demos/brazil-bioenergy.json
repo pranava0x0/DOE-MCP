@@ -1,0 +1,307 @@
+{
+  "format_version": "1",
+  "case": "brazil-bioenergy",
+  "title": "Brazil's bioenergy preference",
+  "question": "Which supply preference does the model apply in Brazil?",
+  "mode": "recorded",
+  "simulation": false,
+  "registry_revision": "2026-11-09",
+  "generated_at": null,
+  "replay_clock": "2026-11-09T00:00:00Z",
+  "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
+  "fixtures": [
+    {
+      "file": "gcam-economy.json",
+      "sha256": "e51120caad276d93a52d9dbf50ea2faa5c298c9ac88f17c3e5f1869be685bb78",
+      "captured_at": "2026-11-10T04:46:58.414403+00:00"
+    },
+    {
+      "file": "gcam-land.json",
+      "sha256": "d77c9781b292feb3265cabc2ffa484c7ef27dd7fe27f93f95a29115e2c693e65",
+      "captured_at": "2026-11-10T04:46:57.498065+00:00"
+    }
+  ],
+  "answer": "GCAM assigns Brazil the bioenergy supply preference \u201cHigh\u201d.",
+  "limitations": [
+    "The table adjusts model share weights. Its category does not identify a subsidy or its size."
+  ],
+  "steps": [
+    {
+      "tool": "economy.country_regions",
+      "args": {
+        "filters": {
+          "iso": "bra"
+        },
+        "rows": 2
+      },
+      "envelope": {
+        "data": {
+          "table": "country_regions",
+          "columns": [
+            "iso",
+            "country_name",
+            "region_GCAM3",
+            "GCAM_region_ID"
+          ],
+          "records": [
+            {
+              "row_number": 31,
+              "values": {
+                "iso": "bra",
+                "country_name": "Brazil",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "7"
+              },
+              "evidence_ref": "evidence_01"
+            }
+          ],
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+          "source_notes": [
+            "File: iso_GCAM_regID.csv",
+            "Title: ISO to GCAM region mapping",
+            "Units: NA",
+            "Description: Maps iso codes to GCAM regions (including composites as necessary)",
+            "Column types: ccci",
+            "----------"
+          ],
+          "filters": {
+            "iso": "bra"
+          },
+          "offset": 0,
+          "record_count": 1,
+          "total_matches": 1,
+          "table_rows": 248,
+          "release": "GCAM v9.1"
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "gcam-economy",
+            "steward": "Pacific Northwest National Laboratory",
+            "system": "GCAM: Regional economics",
+            "dataset": "iso_GCAM_regID.csv",
+            "dataset_version": "GCAM v9.1",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "data row 31",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "gcam-economy"
+          ],
+          "known_limitations": [
+            "Rows are model inputs, not scenario outputs or measurements of current conditions.",
+            "GCAM3 region labels and numeric GCAM region IDs use different groupings."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+            "source_id": "gcam-economy"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "economy.country_regions",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-09",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "land.bioenergy_preferences",
+      "args": {
+        "filters": {
+          "GCAM_region_ID": "7"
+        },
+        "rows": 2
+      },
+      "envelope": {
+        "data": {
+          "table": "bioenergy_preferences",
+          "columns": [
+            "GCAM_region_ID",
+            "region",
+            "preference",
+            "preference_alternative"
+          ],
+          "records": [
+            {
+              "row_number": 7,
+              "values": {
+                "GCAM_region_ID": "7",
+                "region": "Brazil",
+                "preference": "High",
+                "preference_alternative": "High"
+              },
+              "evidence_ref": "evidence_01"
+            }
+          ],
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_biomassSupplyShare_R.csv",
+          "source_notes": [
+            "File: A_biomassSupplyShare_R.csv",
+            "Title: Whether a region currently has bioenergy supports",
+            "Units: NA",
+            "Comments: These data include preference assumptions to adjust supply side share weights, possibly by region. Regions not included here are set to USA's value. Only the preference column is used",
+            "Source: NA",
+            "Column types: iccc",
+            "----------"
+          ],
+          "filters": {
+            "GCAM_region_ID": "7"
+          },
+          "offset": 0,
+          "record_count": 1,
+          "total_matches": 1,
+          "table_rows": 32,
+          "release": "GCAM v9.1"
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "gcam-land",
+            "steward": "Pacific Northwest National Laboratory",
+            "system": "GCAM: Land and agriculture",
+            "dataset": "A_biomassSupplyShare_R.csv",
+            "dataset_version": "GCAM v9.1",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "data row 7",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_biomassSupplyShare_R.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "gcam-land"
+          ],
+          "known_limitations": [
+            "Rows are model inputs, not scenario outputs or measurements of current conditions.",
+            "GCAM3 region labels and numeric GCAM region IDs use different groupings."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+            "source_id": "gcam-land"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "land.bioenergy_preferences",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-09",
+          "request_id": "recorded-workflow"
+        }
+      }
+    }
+  ]
+}

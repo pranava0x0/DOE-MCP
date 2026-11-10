@@ -5,9 +5,9 @@
   "question": "What did DOE publish, which docket does it belong to, and what dates did the publisher supply?",
   "mode": "recorded",
   "simulation": false,
-  "registry_revision": "2026-10-20",
+  "registry_revision": "2026-11-09",
   "generated_at": null,
-  "replay_clock": "2026-10-20T00:00:00Z",
+  "replay_clock": "2026-11-09T00:00:00Z",
   "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
   "fixtures": [
     {
@@ -154,7 +154,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -164,7 +164,7 @@
             "source_ref": "source_01",
             "record_id": "2026-17979",
             "locator": "https://www.federalregister.gov/documents/2026/09/02/2026-17979/repeal-of-fossil-fuel-restrictions-for-new-federal-buildings-and-major-renovations-of-federal",
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2026-09-02",
             "transformations": [],
             "payload_hash": null,
@@ -175,7 +175,7 @@
             "source_ref": "source_01",
             "record_id": "2026-17872",
             "locator": "https://www.federalregister.gov/documents/2026/09/01/2026-17872/rescission-of-production-incentives-for-cellulosic-biofuels",
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2026-09-01",
             "transformations": [],
             "payload_hash": null,
@@ -186,7 +186,7 @@
             "source_ref": "source_01",
             "record_id": "2026-17381",
             "locator": "https://www.federalregister.gov/documents/2026/08/26/2026-17381/rescinding-regulations-for-loans-for-minority-business-enterprises-seeking-doe-contracts-and",
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2026-08-26",
             "transformations": [],
             "payload_hash": null,
@@ -197,7 +197,7 @@
             "source_ref": "source_01",
             "record_id": "2026-16425",
             "locator": "https://www.federalregister.gov/documents/2026/08/12/2026-16425/rescission-of-does-procedures-for-traffic-control-on-the-nevada-test-site",
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2026-08-12",
             "transformations": [],
             "payload_hash": null,
@@ -243,11 +243,12 @@
             "optimade": "1",
             "basis_sets": "1",
             "facility_status": "1",
+            "gcam_csv": "1",
             "nmdc": "1",
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-20",
+          "registry_revision": "2026-11-09",
           "request_id": "recorded-workflow"
         }
       }
@@ -296,7 +297,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -306,7 +307,7 @@
             "source_ref": "source_01",
             "record_id": "2026-17979",
             "locator": "https://www.federalregister.gov/documents/2026/09/02/2026-17979/repeal-of-fossil-fuel-restrictions-for-new-federal-buildings-and-major-renovations-of-federal",
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2026-09-02",
             "transformations": [],
             "payload_hash": null,
@@ -348,11 +349,12 @@
             "optimade": "1",
             "basis_sets": "1",
             "facility_status": "1",
+            "gcam_csv": "1",
             "nmdc": "1",
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-20",
+          "registry_revision": "2026-11-09",
           "request_id": "recorded-workflow"
         }
       }

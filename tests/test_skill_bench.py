@@ -79,7 +79,15 @@ def _tool(name: str):
 
 
 def _walk(node, dotted: str):
-    for part in dotted.split("."):
+    # Input CSV headers can contain dots. Prefer an exact remaining key
+    # before descending, e.g. records.0.values.logit.exponent.
+    parts = dotted.split(".")
+    for i, part in enumerate(parts):
+        if isinstance(node, dict) and ".".join(parts[i:]) in node:
+            return node[".".join(parts[i:])]
+        if isinstance(node, list):
+            node = node[int(part)]
+            continue
         node = node[part] if isinstance(node, dict) else getattr(node, part)
     return node
 

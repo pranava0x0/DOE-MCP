@@ -1,0 +1,126 @@
+id: gcam-land
+name: 'GCAM: Land and agriculture'
+domain: land
+publisher:
+  steward: pnnl
+  authority_level: primary
+aliases:
+  former_names: []
+  former_domains: []
+labs:
+- pnnl
+capabilities:
+- id: model.land_inputs
+  tool_hint: land.food_staples
+adapter:
+  type: gcam_csv
+  base_url: https://raw.githubusercontent.com
+  tables:
+    food_staples:
+      url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_demand_food_staples.csv
+      columns:
+      - gcam.consumer
+      - nodeInput
+      - prodDmdFnType
+      - staples.food.demand.input
+      - scale.param
+      - self.price.elasticity
+      - cross.price.elasticity
+      - income.elasticity
+      - income.max.term
+      - price.received
+    food_nonstaples:
+      url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_demand_food_nonstaples.csv
+      columns:
+      - gcam.consumer
+      - nodeInput
+      - non.staples.food.demand.input
+      - scale.param
+      - self.price.elasticity
+      - income.elasticity
+    soil_timescales:
+      url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_soil_time_scale_R.csv
+      columns:
+      - GCAM_region_ID
+      - soilTimeScale
+    forest_types:
+      url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_forest_mapping.csv
+      columns:
+      - item
+      - GCAM_commodity
+      - GCAM_supplysector
+      - tonnes_to_m3
+    crop_yield_growth:
+      url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv
+      columns:
+      - GCAM_commodity
+      - '2005'
+      - '2010'
+      - '2011'
+      - '2015'
+      - '2020'
+      - '2035'
+      - '2050'
+      - '2065'
+      - '2080'
+      - '2095'
+      - '2110'
+      - '2125'
+      - '2140'
+      - '2155'
+      - '2170'
+      - '2185'
+      - '2200'
+    oilseed_products:
+      url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_OilSeed_SecOut.csv
+      columns:
+      - Crop
+      - IOcoef
+      - SecOutRatio
+    irrigated_land_nests:
+      url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_LandNode_logit_irr.csv
+      columns:
+      - LandNode
+      - logit.exponent
+      - logit.type
+    bioenergy_preferences:
+      url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_biomassSupplyShare_R.csv
+      columns:
+      - GCAM_region_ID
+      - region
+      - preference
+      - preference_alternative
+access:
+  mode: anonymous
+  automation_status: public_download
+  tier: thin_proxy
+  terms_url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/LICENSE
+  terms_reviewed_at: '2026-11-09'
+  terms_notes: The GCAM data system distributes these model configuration tables under the Educational
+    Community License 2.0. Keep the publisher's source notes with the values.
+  citation_required: true
+  citation_text: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1,
+    gcamdata. Cite the specific input file and retain its source notes.
+  rate_limit_note: One small file per read; cached for one day.
+freshness:
+  expected_cadence: per release
+  cadence_source: Git commit pinned to the published gcam-v9.1 tag.
+  ttl_hint_seconds: 86400
+coverage:
+  scope: Land and agriculture input tables from the Global Change Analysis Model.
+  temporal: Years and currency bases vary by table.
+  dataset_version: GCAM v9.1
+  known_limitations:
+  - Rows are model inputs, not scenario outputs or measurements of current conditions.
+  - GCAM3 region labels and numeric GCAM region IDs use different groupings.
+authority_notes: JGCRI publishes these files as GCAM inputs. Citations in each file identify the sources
+  used to construct them.
+health:
+  probe: gcam_table_rows
+  expect:
+    min_records: 1
+lifecycle:
+  declared_state: active
+  added: '2026-11-09'
+  last_verified: '2026-11-09'
+  verified_by: Codex

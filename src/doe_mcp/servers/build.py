@@ -28,6 +28,7 @@ from ..domains.discovery import DISCOVERY_TOOLS
 from ..domains.docs import DOCS_TOOLS
 from ..domains.earth import EARTH_TOOLS
 from ..domains.energy import ENERGY_TOOLS
+from ..domains.gcam import GCAM_TOOLS
 from ..domains.materials import MATERIALS_TOOLS
 from ..domains.registry_tools import REGISTRY_TOOLS
 from ..domains.research import RESEARCH_TOOLS
@@ -50,7 +51,7 @@ def registries():
             "discovery": DISCOVERY_TOOLS, "energy": ENERGY_TOOLS,
             "docs": DOCS_TOOLS, "tech": TECH_TOOLS,
             "earth": EARTH_TOOLS, "materials": MATERIALS_TOOLS,
-            "bio": BIO_TOOLS}
+            "bio": BIO_TOOLS, **GCAM_TOOLS}
 
 
 def _bind(spec: ToolSpec, ctx: RuntimeContext):

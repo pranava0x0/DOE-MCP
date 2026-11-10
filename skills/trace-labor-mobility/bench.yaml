@@ -1,0 +1,49 @@
+checked:
+- task: 1
+  steps:
+  - tool: economy.country_regions
+    args:
+      filters:
+        iso: pak
+      rows: 2
+    expect:
+      data.total_matches: 1
+      data.records.0.values.GCAM_region_ID: '22'
+      evidence:
+        locators: some
+  - tool: economy.labor_sectors
+    args:
+      filters:
+        GCAM_region_ID: '22'
+      rows: 2
+    expect:
+      data.total_matches: 1
+      data.records.0.values.logit.exponent: '2'
+      evidence:
+        locators: some
+- task: 2
+  steps:
+  - tool: economy.labor_sectors
+    args:
+      filters:
+        region: Brazil
+      rows: 2
+    expect:
+      data.total_matches: 1
+      data.records.0.values.region_AgProdGrowth: Med
+      evidence:
+        locators: some
+- task: 3
+  steps:
+  - tool: economy.labor_sectors
+    args:
+      filters:
+        GCAM_region_ID: no-such-class
+    expect:
+      coverage.result: empty
+      coverage.registry: covered
+      data.total_matches: 0
+reader: []
+workflows:
+- task: 1
+  case: pakistan-labor

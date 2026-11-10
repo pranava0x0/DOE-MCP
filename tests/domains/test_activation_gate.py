@@ -24,7 +24,11 @@ from doe_mcp.core.registry import (AutomationStatus, DeclaredState,
 from doe_mcp.domains import (bio, discovery, docs, earth, energy,
                              materials, registry_tools, research, tech)
 
+from doe_mcp.domains.gcam import GCAM_TOOLS
+
 FIXED_SOURCE_TOOLS = [
+    *(("gcam-" + domain, spec.name, spec.fn) for domain, reg in GCAM_TOOLS.items()
+      for spec in reg.tools()),
     ("osti-data-explorer", "research.search_datasets",
      lambda ctx: research.search_datasets(ctx, site_code="DOE-GDR", rows=2)),
     ("osti-doe-code", "research.search_software",

@@ -1,0 +1,3 @@
+step,tool,source,record_id,locator,effective_at,mode
+1,water.desalination_inputs,gcam-water,data row 1,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A71.globaltech_coef.csv,,recorded
+2,water.desalination_costs,gcam-water,data row 1,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A71.globaltech_cost.csv,,recorded

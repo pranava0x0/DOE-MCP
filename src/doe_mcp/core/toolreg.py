@@ -21,6 +21,8 @@ from collections.abc import Awaitable, Callable
 from dataclasses import dataclass, field
 from typing import Any
 
+from ..gcam_catalog import TABLES
+
 log = logging.getLogger("doe_mcp.toolreg")
 
 # old-name -> current-name. Empty until the first rename; never delete rows.
@@ -98,6 +100,10 @@ PROFILES: dict[str, list[tuple[str, str]]] = {
     "bio:default": [("bio", "default"), ("registry", "discovery-min")],
     "bio:all": [("bio", "*"), ("registry", "*")],
 }
+
+for _domain in TABLES:
+    PROFILES[_domain + ":default"] = [(_domain, "default"), ("registry", "discovery-min")]
+    PROFILES[_domain + ":all"] = [(_domain, "*"), ("registry", "*")]
 
 PROFILE_FLOOR = 8
 PROFILE_DEFAULT_CEILING = 12

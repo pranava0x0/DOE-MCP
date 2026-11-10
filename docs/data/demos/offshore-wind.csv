@@ -1,0 +1,3 @@
+step,tool,source,record_id,locator,effective_at,mode
+1,power.wind_capacity_factors,gcam-power,data row 7,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A20.wind_class_CFs.csv,,recorded
+2,power.offshore_depth_costs,gcam-power,data row 3,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A20.offshore_wind_depth_cap_cost.csv,,recorded

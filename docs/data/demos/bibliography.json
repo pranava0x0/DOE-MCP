@@ -5,9 +5,9 @@
   "question": "Which citation fields did DOE PAGES supply for this page of results?",
   "mode": "recorded",
   "simulation": false,
-  "registry_revision": "2026-10-20",
+  "registry_revision": "2026-11-09",
   "generated_at": null,
-  "replay_clock": "2026-10-20T00:00:00Z",
+  "replay_clock": "2026-11-09T00:00:00Z",
   "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
   "fixtures": [
     {
@@ -111,7 +111,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -121,7 +121,7 @@
             "source_ref": "source_01",
             "record_id": "3409109",
             "locator": "https://www.osti.gov/biblio/3409109",
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2026-09-18T11:49:56Z",
             "transformations": [
               "normalize"
@@ -134,7 +134,7 @@
             "source_ref": "source_01",
             "record_id": "3818255",
             "locator": "https://www.osti.gov/biblio/3818255",
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2026-09-17T10:27:35Z",
             "transformations": [
               "normalize"
@@ -147,7 +147,7 @@
             "source_ref": "source_01",
             "record_id": "3818626",
             "locator": "https://www.osti.gov/biblio/3818626",
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2026-09-18T08:11:09Z",
             "transformations": [
               "normalize"
@@ -264,11 +264,12 @@
             "optimade": "1",
             "basis_sets": "1",
             "facility_status": "1",
+            "gcam_csv": "1",
             "nmdc": "1",
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-20",
+          "registry_revision": "2026-11-09",
           "request_id": "recorded-workflow"
         }
       }

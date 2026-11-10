@@ -5,9 +5,9 @@
   "question": "Which EAGLE-I release covers 2021, and what else is needed to calculate an outage rate?",
   "mode": "recorded",
   "simulation": false,
-  "registry_revision": "2026-10-20",
+  "registry_revision": "2026-11-09",
   "generated_at": null,
-  "replay_clock": "2026-10-20T00:00:00Z",
+  "replay_clock": "2026-11-09T00:00:00Z",
   "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
   "fixtures": [
     {
@@ -157,7 +157,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -167,7 +167,7 @@
             "source_ref": "source_01",
             "record_id": "3022751",
             "locator": "https://www.osti.gov/dataexplorer/biblio/3022751",
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2026-05-05T20:00:00Z",
             "transformations": [
               "normalize",
@@ -181,7 +181,7 @@
             "source_ref": "source_01",
             "record_id": "3019924",
             "locator": "https://www.osti.gov/dataexplorer/biblio/3019924",
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2026-01-31T19:00:00Z",
             "transformations": [
               "normalize",
@@ -195,7 +195,7 @@
             "source_ref": "source_01",
             "record_id": "3012826",
             "locator": "https://www.osti.gov/dataexplorer/biblio/3012826",
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2026-02-18T19:00:00Z",
             "transformations": [
               "normalize",
@@ -209,7 +209,7 @@
             "source_ref": "source_01",
             "record_id": "2500278",
             "locator": "https://www.osti.gov/dataexplorer/biblio/2500278",
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2025-04-02T20:00:00Z",
             "transformations": [
               "normalize",
@@ -223,7 +223,7 @@
             "source_ref": "source_01",
             "record_id": "2297398",
             "locator": "https://www.osti.gov/dataexplorer/biblio/2297398",
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2024-02-11T19:00:00Z",
             "transformations": [
               "normalize",
@@ -237,7 +237,7 @@
             "source_ref": "source_01",
             "record_id": "1975203",
             "locator": "https://www.osti.gov/dataexplorer/biblio/1975203",
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2023-05-25T20:00:00Z",
             "transformations": [
               "normalize",
@@ -251,7 +251,7 @@
             "source_ref": "source_01",
             "record_id": "1975202",
             "locator": "https://www.osti.gov/dataexplorer/biblio/1975202",
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2023-05-25T20:00:00Z",
             "transformations": [
               "normalize",
@@ -339,11 +339,12 @@
             "optimade": "1",
             "basis_sets": "1",
             "facility_status": "1",
+            "gcam_csv": "1",
             "nmdc": "1",
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-20",
+          "registry_revision": "2026-11-09",
           "request_id": "recorded-workflow"
         }
       }

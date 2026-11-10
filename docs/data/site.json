@@ -1,20 +1,20 @@
 {
   "version": "0.1.0.dev0",
-  "registry_revision": "2026-10-20",
+  "registry_revision": "2026-11-09",
   "counts": {
-    "sources": 83,
-    "active": 24,
+    "sources": 88,
+    "active": 29,
     "organizations": 54,
     "labs": 17,
-    "capabilities": 53,
-    "capabilities_served": 37,
-    "skills": 8,
+    "capabilities": 58,
+    "capabilities_served": 42,
+    "skills": 16,
     "program_offices": 19,
     "pmas": 4,
-    "servers_shipping": 5,
+    "servers_shipping": 10,
     "servers_planned": 4,
-    "tools": 34,
-    "adapters": 19,
+    "tools": 76,
+    "adapters": 20,
     "neighbors": 6,
     "neighbors_phrase": "5 server entries and 1 skill pack in the plug-in catalog",
     "records_reachable": 20153893
@@ -446,9 +446,301 @@
       "description": "NEPA documents and DOE directives \u2014 or a catalog entry pointing at PNNL's NEPA-MCP, which already serves them. The Federal Register slice did not wait for it: it needs no crawler and ships in doe-research as docs.search_rulemakings and docs.get_rulemaking.",
       "tools": [],
       "tools_all": null
+    },
+    {
+      "name": "doe-water",
+      "profile": "water:default",
+      "status": "shipping",
+      "description": "GCAM water inputs for power plant cooling, irrigation and desalination.",
+      "tools": [
+        {
+          "name": "water.cooling_costs",
+          "toolset": "default",
+          "description": "Capital cost assumptions by plant cooling system in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "water.cooling_shares",
+          "toolset": "default",
+          "description": "Plant cooling shares by legacy GCAM region, plant, cooling system and water type in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "water.resource_water_map",
+          "toolset": "default",
+          "description": "Primary fuel sectors mapped to water demand inputs in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "water.desalination_costs",
+          "toolset": "default",
+          "description": "Non-energy costs for desalination technologies in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "water.desalination_inputs",
+          "toolset": "default",
+          "description": "Energy and seawater inputs to desalination technologies in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "water.water_distribution",
+          "toolset": "default",
+          "description": "Water distribution sectors and whether they take desalinated water in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "water.irrigation_inputs",
+          "toolset": "default",
+          "description": "Energy inputs for irrigation water abstraction in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "water.industrial_water_inputs",
+          "toolset": "default",
+          "description": "Energy inputs for industrial water abstraction and treatment in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "registry.resolve_org",
+          "toolset": "discovery-min",
+          "description": "Resolve a DOE organization from a name, abbreviation, FORMER name, or domain \u2014 including dead ones. Use FIRST whenever a user names a lab or office, because this ecosystem renames things and the old URLs do not redirect. 'NREL' resolves to the National Laboratory of the Rockies and warns that the name is historical; a *.nrel.gov domain resolves the same way and warns that the URL is dead with no forwarding. Same for EERE (now CMEI), FECM (now HGEO), LPO (now EDF), HFTO and BETO (merged into AFFO), IEDO (now ITO), and the dismantled Grid Deployment Office."
+        },
+        {
+          "name": "registry.lab_crosswalk",
+          "toolset": "discovery-min",
+          "description": "What a DOE national laboratory publishes, across every platform carrying its data. Call with no argument for all seventeen labs and their source counts. Servers here are organized by data domain, not by laboratory, so this is how a lab-oriented question gets answered \u2014 and it is the honest way, since several labs' flagship data lives on shared cross-lab platforms rather than their own domains. A lab with zero sources is a gap in this project, not a claim that the lab publishes nothing."
+        }
+      ],
+      "tools_all": 13
+    },
+    {
+      "name": "doe-land",
+      "profile": "land:default",
+      "status": "shipping",
+      "description": "GCAM land inputs for crop yields, soil carbon and food demand.",
+      "tools": [
+        {
+          "name": "land.food_staples",
+          "toolset": "default",
+          "description": "Staple-food demand function and elasticity parameters in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "land.food_nonstaples",
+          "toolset": "default",
+          "description": "Non-staple food demand and elasticity parameters in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "land.soil_timescales",
+          "toolset": "default",
+          "description": "Soil carbon recovery times after land-use change by numeric region ID in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "land.forest_types",
+          "toolset": "default",
+          "description": "Forest products mapped to GCAM commodities and supply sectors in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "land.crop_yield_growth",
+          "toolset": "default",
+          "description": "Fallback crop yield growth assumptions by commodity and year in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "land.oilseed_products",
+          "toolset": "default",
+          "description": "Oilseed crushing coefficients and secondary feedcake output in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "land.irrigated_land_nests",
+          "toolset": "default",
+          "description": "Irrigated land allocation nodes and their logit parameters in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "land.bioenergy_preferences",
+          "toolset": "default",
+          "description": "Regional bioenergy supply preference assumptions in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "registry.resolve_org",
+          "toolset": "discovery-min",
+          "description": "Resolve a DOE organization from a name, abbreviation, FORMER name, or domain \u2014 including dead ones. Use FIRST whenever a user names a lab or office, because this ecosystem renames things and the old URLs do not redirect. 'NREL' resolves to the National Laboratory of the Rockies and warns that the name is historical; a *.nrel.gov domain resolves the same way and warns that the URL is dead with no forwarding. Same for EERE (now CMEI), FECM (now HGEO), LPO (now EDF), HFTO and BETO (merged into AFFO), IEDO (now ITO), and the dismantled Grid Deployment Office."
+        },
+        {
+          "name": "registry.lab_crosswalk",
+          "toolset": "discovery-min",
+          "description": "What a DOE national laboratory publishes, across every platform carrying its data. Call with no argument for all seventeen labs and their source counts. Servers here are organized by data domain, not by laboratory, so this is how a lab-oriented question gets answered \u2014 and it is the honest way, since several labs' flagship data lives on shared cross-lab platforms rather than their own domains. A lab with zero sources is a gap in this project, not a claim that the lab publishes nothing."
+        }
+      ],
+      "tools_all": 13
+    },
+    {
+      "name": "doe-emissions",
+      "profile": "emissions:default",
+      "status": "shipping",
+      "description": "GCAM emissions inputs for fluorinated gases, pollution control and scenario comparisons.",
+      "tools": [
+        {
+          "name": "emissions.warming_potentials",
+          "toolset": "default",
+          "description": "Fluorinated gas groups and the warming potentials used in this model in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "emissions.hydrogen_drivers",
+          "toolset": "default",
+          "description": "Industrial hydrogen combustion inputs used to drive non-CO2 emissions in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "emissions.technology_coefficients",
+          "toolset": "default",
+          "description": "Technology emissions coefficients by pollutant, including blanks in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "emissions.farm_reductions",
+          "toolset": "default",
+          "description": "Maximum agricultural emissions reductions by supply sector in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "emissions.waste_reductions",
+          "toolset": "default",
+          "description": "Maximum energy and waste emissions reductions by technology and pollutant in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "emissions.pollutant_reductions",
+          "toolset": "default",
+          "description": "Technology-specific maximum reductions for non-greenhouse pollutants in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "emissions.pollutant_floors",
+          "toolset": "default",
+          "description": "Minimum controlled emissions coefficients by technology and species in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "emissions.scenario_factors",
+          "toolset": "default",
+          "description": "Emissions factor assignment rules by scenario group, year and region group in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "registry.resolve_org",
+          "toolset": "discovery-min",
+          "description": "Resolve a DOE organization from a name, abbreviation, FORMER name, or domain \u2014 including dead ones. Use FIRST whenever a user names a lab or office, because this ecosystem renames things and the old URLs do not redirect. 'NREL' resolves to the National Laboratory of the Rockies and warns that the name is historical; a *.nrel.gov domain resolves the same way and warns that the URL is dead with no forwarding. Same for EERE (now CMEI), FECM (now HGEO), LPO (now EDF), HFTO and BETO (merged into AFFO), IEDO (now ITO), and the dismantled Grid Deployment Office."
+        },
+        {
+          "name": "registry.lab_crosswalk",
+          "toolset": "discovery-min",
+          "description": "What a DOE national laboratory publishes, across every platform carrying its data. Call with no argument for all seventeen labs and their source counts. Servers here are organized by data domain, not by laboratory, so this is how a lab-oriented question gets answered \u2014 and it is the honest way, since several labs' flagship data lives on shared cross-lab platforms rather than their own domains. A lab with zero sources is a gap in this project, not a claim that the lab publishes nothing."
+        }
+      ],
+      "tools_all": 13
+    },
+    {
+      "name": "doe-power",
+      "profile": "power:default",
+      "status": "shipping",
+      "description": "GCAM generation inputs for offshore wind, geothermal resources and power plants.",
+      "tools": [
+        {
+          "name": "power.wind_capacity_factors",
+          "toolset": "default",
+          "description": "Offshore wind capacity factor assumptions by wind class in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "power.offshore_depth_costs",
+          "toolset": "default",
+          "description": "Offshore wind capital costs by depth class in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "power.generation_efficiency",
+          "toolset": "default",
+          "description": "Electricity generation efficiencies by fuel and technology in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "power.carbon_capture",
+          "toolset": "default",
+          "description": "Carbon capture fractions for electricity technologies in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "power.generator_retirement",
+          "toolset": "default",
+          "description": "Electricity generator lifetimes and retirement parameters in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "power.geothermal_curves",
+          "toolset": "default",
+          "description": "Hydrothermal geothermal resource grades and extraction costs by legacy region in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "power.power_financing",
+          "toolset": "default",
+          "description": "Capital interest rates and payback years by generating technology in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "registry.resolve_org",
+          "toolset": "discovery-min",
+          "description": "Resolve a DOE organization from a name, abbreviation, FORMER name, or domain \u2014 including dead ones. Use FIRST whenever a user names a lab or office, because this ecosystem renames things and the old URLs do not redirect. 'NREL' resolves to the National Laboratory of the Rockies and warns that the name is historical; a *.nrel.gov domain resolves the same way and warns that the URL is dead with no forwarding. Same for EERE (now CMEI), FECM (now HGEO), LPO (now EDF), HFTO and BETO (merged into AFFO), IEDO (now ITO), and the dismantled Grid Deployment Office."
+        },
+        {
+          "name": "registry.lab_crosswalk",
+          "toolset": "discovery-min",
+          "description": "What a DOE national laboratory publishes, across every platform carrying its data. Call with no argument for all seventeen labs and their source counts. Servers here are organized by data domain, not by laboratory, so this is how a lab-oriented question gets answered \u2014 and it is the honest way, since several labs' flagship data lives on shared cross-lab platforms rather than their own domains. A lab with zero sources is a gap in this project, not a claim that the lab publishes nothing."
+        }
+      ],
+      "tools_all": 12
+    },
+    {
+      "name": "doe-economy",
+      "profile": "economy:default",
+      "status": "shipping",
+      "description": "GCAM country and region mappings, demand elasticities and labor assumptions.",
+      "tools": [
+        {
+          "name": "economy.country_regions",
+          "toolset": "default",
+          "description": "Country codes and names mapped to legacy regions and numeric region IDs in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "economy.region_names",
+          "toolset": "default",
+          "description": "Numeric GCAM region identifiers mapped to model region names in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "economy.industrial_elasticity",
+          "toolset": "default",
+          "description": "Industrial demand income elasticity by per-capita industrial output in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "economy.building_elasticity",
+          "toolset": "default",
+          "description": "Building service income elasticity by per-capita GDP in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "economy.transport_elasticity",
+          "toolset": "default",
+          "description": "Transport demand income elasticity by per-capita GDP in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "economy.factor_productivity",
+          "toolset": "default",
+          "description": "Annual factor productivity change assumptions in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "economy.labor_sectors",
+          "toolset": "default",
+          "description": "Regional labor mobility and agricultural productivity assumptions in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null."
+        },
+        {
+          "name": "registry.resolve_org",
+          "toolset": "discovery-min",
+          "description": "Resolve a DOE organization from a name, abbreviation, FORMER name, or domain \u2014 including dead ones. Use FIRST whenever a user names a lab or office, because this ecosystem renames things and the old URLs do not redirect. 'NREL' resolves to the National Laboratory of the Rockies and warns that the name is historical; a *.nrel.gov domain resolves the same way and warns that the URL is dead with no forwarding. Same for EERE (now CMEI), FECM (now HGEO), LPO (now EDF), HFTO and BETO (merged into AFFO), IEDO (now ITO), and the dismantled Grid Deployment Office."
+        },
+        {
+          "name": "registry.lab_crosswalk",
+          "toolset": "discovery-min",
+          "description": "What a DOE national laboratory publishes, across every platform carrying its data. Call with no argument for all seventeen labs and their source counts. Servers here are organized by data domain, not by laboratory, so this is how a lab-oriented question gets answered \u2014 and it is the honest way, since several labs' flagship data lives on shared cross-lab platforms rather than their own domains. A lab with zero sources is a gap in this project, not a claim that the lab publishes nothing."
+        }
+      ],
+      "tools_all": 12
     }
   ],
   "skills": [
+    {
+      "name": "compare-model-warming-potentials",
+      "summary": "Use when working with GCAM inputs on this question: Which 100-year warming potentials did this release use for HFC134a and CF4?.",
+      "servers": [
+        "doe-emissions"
+      ]
+    },
     {
       "name": "doe-literature-review",
       "summary": "A short evidence table of DOE-funded publications on a topic: what was found in OSTI.GOV and DOE PAGES, which records were read in full, where each can be read, and how much of the result set the table covers.",
@@ -507,6 +799,59 @@
       "servers": [
         "doe-bio",
         "doe-earth"
+      ]
+    },
+    {
+      "name": "read-geothermal-grades",
+      "summary": "Use when working with GCAM inputs on this question: How much heat input does the model assign to Japan's second hydrothermal grade?.",
+      "servers": [
+        "doe-economy",
+        "doe-power"
+      ]
+    },
+    {
+      "name": "separate-desalination-inputs",
+      "summary": "Use when working with GCAM inputs on this question: Which electricity input and non-energy cost does GCAM use for reverse osmosis?.",
+      "servers": [
+        "doe-water"
+      ]
+    },
+    {
+      "name": "separate-offshore-wind-classes",
+      "summary": "Use when working with GCAM inputs on this question: What does GCAM assume for wind class c7 and, separately, for deep-water capital cost?.",
+      "servers": [
+        "doe-power"
+      ]
+    },
+    {
+      "name": "trace-bioenergy-support",
+      "summary": "Use when working with GCAM inputs on this question: Which supply preference does the model apply in Brazil?.",
+      "servers": [
+        "doe-economy",
+        "doe-land"
+      ]
+    },
+    {
+      "name": "trace-labor-mobility",
+      "summary": "Use when working with GCAM inputs on this question: How does GCAM parameterize movement of labor between sectors in Pakistan?.",
+      "servers": [
+        "doe-economy"
+      ]
+    },
+    {
+      "name": "trace-plant-cooling",
+      "summary": "Use when working with GCAM inputs on this question: Which fresh-water cooling share applies to coal in Germany's legacy model region?.",
+      "servers": [
+        "doe-economy",
+        "doe-water"
+      ]
+    },
+    {
+      "name": "trace-soil-carbon",
+      "summary": "Use when working with GCAM inputs on this question: Which recovery time does GCAM assign to Kenya's model region?.",
+      "servers": [
+        "doe-economy",
+        "doe-land"
       ]
     }
   ],
@@ -838,6 +1183,131 @@
         "ornl"
       ],
       "terms_url": "https://www.fueleconomy.gov/feg/info.shtml"
+    },
+    {
+      "id": "gcam-economy",
+      "name": "GCAM: Regional economics",
+      "domain": "economy",
+      "state": "active",
+      "steward": "Pacific Northwest National Laboratory",
+      "funder": null,
+      "host": null,
+      "authority": "primary",
+      "automation_status": "public_download",
+      "tier": "thin_proxy",
+      "adapter": "gcam_csv",
+      "fixture": true,
+      "scope": "Regional economics input tables from the Global Change Analysis Model.",
+      "record_count": null,
+      "capabilities": [
+        "model.economy_inputs"
+      ],
+      "planned_capabilities": [],
+      "blocked_reason": null,
+      "labs": [
+        "pnnl"
+      ],
+      "terms_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/LICENSE"
+    },
+    {
+      "id": "gcam-emissions",
+      "name": "GCAM: Emissions",
+      "domain": "emissions",
+      "state": "active",
+      "steward": "Pacific Northwest National Laboratory",
+      "funder": null,
+      "host": null,
+      "authority": "primary",
+      "automation_status": "public_download",
+      "tier": "thin_proxy",
+      "adapter": "gcam_csv",
+      "fixture": true,
+      "scope": "Emissions input tables from the Global Change Analysis Model.",
+      "record_count": null,
+      "capabilities": [
+        "model.emissions_inputs"
+      ],
+      "planned_capabilities": [],
+      "blocked_reason": null,
+      "labs": [
+        "pnnl"
+      ],
+      "terms_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/LICENSE"
+    },
+    {
+      "id": "gcam-land",
+      "name": "GCAM: Land and agriculture",
+      "domain": "land",
+      "state": "active",
+      "steward": "Pacific Northwest National Laboratory",
+      "funder": null,
+      "host": null,
+      "authority": "primary",
+      "automation_status": "public_download",
+      "tier": "thin_proxy",
+      "adapter": "gcam_csv",
+      "fixture": true,
+      "scope": "Land and agriculture input tables from the Global Change Analysis Model.",
+      "record_count": null,
+      "capabilities": [
+        "model.land_inputs"
+      ],
+      "planned_capabilities": [],
+      "blocked_reason": null,
+      "labs": [
+        "pnnl"
+      ],
+      "terms_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/LICENSE"
+    },
+    {
+      "id": "gcam-power",
+      "name": "GCAM: Power technology",
+      "domain": "power",
+      "state": "active",
+      "steward": "Pacific Northwest National Laboratory",
+      "funder": null,
+      "host": null,
+      "authority": "primary",
+      "automation_status": "public_download",
+      "tier": "thin_proxy",
+      "adapter": "gcam_csv",
+      "fixture": true,
+      "scope": "Power technology input tables from the Global Change Analysis Model.",
+      "record_count": null,
+      "capabilities": [
+        "model.power_inputs"
+      ],
+      "planned_capabilities": [],
+      "blocked_reason": null,
+      "labs": [
+        "pnnl"
+      ],
+      "terms_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/LICENSE"
+    },
+    {
+      "id": "gcam-water",
+      "name": "GCAM: Water use",
+      "domain": "water",
+      "state": "active",
+      "steward": "Pacific Northwest National Laboratory",
+      "funder": null,
+      "host": null,
+      "authority": "primary",
+      "automation_status": "public_download",
+      "tier": "thin_proxy",
+      "adapter": "gcam_csv",
+      "fixture": true,
+      "scope": "Water use input tables from the Global Change Analysis Model.",
+      "record_count": null,
+      "capabilities": [
+        "model.water_inputs"
+      ],
+      "planned_capabilities": [],
+      "blocked_reason": null,
+      "labs": [
+        "pnnl"
+      ],
+      "terms_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/LICENSE"
     },
     {
       "id": "lbnl-mp-optimade",
@@ -3610,6 +4080,36 @@
           "domain": "materials"
         },
         {
+          "id": "gcam-economy",
+          "name": "GCAM: Regional economics",
+          "state": "active",
+          "domain": "economy"
+        },
+        {
+          "id": "gcam-emissions",
+          "name": "GCAM: Emissions",
+          "state": "active",
+          "domain": "emissions"
+        },
+        {
+          "id": "gcam-land",
+          "name": "GCAM: Land and agriculture",
+          "state": "active",
+          "domain": "land"
+        },
+        {
+          "id": "gcam-power",
+          "name": "GCAM: Power technology",
+          "state": "active",
+          "domain": "power"
+        },
+        {
+          "id": "gcam-water",
+          "name": "GCAM: Water use",
+          "state": "active",
+          "domain": "water"
+        },
+        {
           "id": "nlr-lab-partnering-service",
           "name": "Lab Partnering Service API",
           "state": "proposed",
@@ -3688,7 +4188,7 @@
           "domain": "earth"
         }
       ],
-      "active": 6
+      "active": 11
     },
     {
       "id": "pppl",
@@ -4661,7 +5161,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "cache_age_seconds": 0
           },
           {
@@ -4674,7 +5174,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -4684,7 +5184,7 @@
             "source_ref": "source_01",
             "record_id": "3484888",
             "locator": "https://www.osti.gov/biblio/3484888",
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2026-08-27T11:00:26Z",
             "transformations": [
               "normalize"
@@ -4697,7 +5197,7 @@
             "source_ref": "source_01",
             "record_id": "3625672",
             "locator": "https://www.osti.gov/biblio/3625672",
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2026-09-02T10:56:05Z",
             "transformations": [
               "normalize"
@@ -4710,7 +5210,7 @@
             "source_ref": "source_01",
             "record_id": "3409109",
             "locator": "https://www.osti.gov/biblio/3409109",
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2026-09-18T15:49:56Z",
             "transformations": [
               "normalize"
@@ -4723,7 +5223,7 @@
             "source_ref": "source_02",
             "record_id": "3409109",
             "locator": "https://www.osti.gov/biblio/3409109",
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2026-09-18T11:49:56Z",
             "transformations": [
               "normalize"
@@ -4736,7 +5236,7 @@
             "source_ref": "source_02",
             "record_id": "3818255",
             "locator": "https://www.osti.gov/biblio/3818255",
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2026-09-17T10:27:35Z",
             "transformations": [
               "normalize"
@@ -4749,7 +5249,7 @@
             "source_ref": "source_02",
             "record_id": "3818626",
             "locator": "https://www.osti.gov/biblio/3818626",
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2026-09-18T08:11:09Z",
             "transformations": [
               "normalize"
@@ -4904,11 +5404,12 @@
             "optimade": "1",
             "basis_sets": "1",
             "facility_status": "1",
+            "gcam_csv": "1",
             "nmdc": "1",
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-20",
+          "registry_revision": "2026-11-09",
           "request_id": "worked-example"
         }
       }
@@ -4968,11 +5469,11 @@
             "steward": "The DOE-MCP project",
             "system": "DOE-MCP source registry and organization table",
             "dataset": "DOE-MCP source registry and organization table",
-            "dataset_version": "2026-10-20",
+            "dataset_version": "2026-11-09",
             "authority_level": "unverified",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -4982,7 +5483,7 @@
             "source_ref": "source_01",
             "record_id": "nlr",
             "locator": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -5027,11 +5528,12 @@
             "optimade": "1",
             "basis_sets": "1",
             "facility_status": "1",
+            "gcam_csv": "1",
             "nmdc": "1",
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-20",
+          "registry_revision": "2026-11-09",
           "request_id": "worked-example"
         }
       }
@@ -5137,7 +5639,7 @@
             "authority_level": "official_secondary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "cache_age_seconds": 0
           },
           {
@@ -5150,7 +5652,7 @@
             "authority_level": "official_secondary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "cache_age_seconds": 0
           },
           {
@@ -5163,7 +5665,7 @@
             "authority_level": "official_derived",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "cache_age_seconds": 0
           },
           {
@@ -5176,7 +5678,7 @@
             "authority_level": "official_derived",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -5186,7 +5688,7 @@
             "source_ref": "source_01",
             "record_id": "1148737",
             "locator": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "normalize"
@@ -5199,7 +5701,7 @@
             "source_ref": "source_01",
             "record_id": "1542650",
             "locator": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "normalize"
@@ -5212,7 +5714,7 @@
             "source_ref": "source_02",
             "record_id": "glass-buttes-exploration-and-drilling-2010-geothermal-technologies-program-peer-",
             "locator": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "normalize"
@@ -5225,7 +5727,7 @@
             "source_ref": "source_02",
             "record_id": "investigation-of-stimulation-response-relationships-for-complex-fracture-systems",
             "locator": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "normalize"
@@ -5327,11 +5829,12 @@
             "optimade": "1",
             "basis_sets": "1",
             "facility_status": "1",
+            "gcam_csv": "1",
             "nmdc": "1",
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-20",
+          "registry_revision": "2026-11-09",
           "request_id": "worked-example"
         }
       }
@@ -5549,7 +6052,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "cache_age_seconds": 0,
             "citation": {
               "doi": "10.5066/F7TX3DN0",
@@ -5564,7 +6067,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3001502",
             "locator": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -5575,7 +6078,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3015899",
             "locator": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -5586,7 +6089,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3034241",
             "locator": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -5597,7 +6100,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3039300",
             "locator": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -5608,7 +6111,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3039301",
             "locator": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -5656,11 +6159,12 @@
             "optimade": "1",
             "basis_sets": "1",
             "facility_status": "1",
+            "gcam_csv": "1",
             "nmdc": "1",
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-20",
+          "registry_revision": "2026-11-09",
           "request_id": "worked-example"
         }
       }
@@ -5766,7 +6270,7 @@
             "authority_level": "official_secondary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -5776,7 +6280,7 @@
             "source_ref": "source_01",
             "record_id": "tile:11208@35.9313,-84.3104",
             "locator": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2023-06-01",
             "transformations": [
               "day-of-year converted to calendar date"
@@ -5830,11 +6334,12 @@
             "optimade": "1",
             "basis_sets": "1",
             "facility_status": "1",
+            "gcam_csv": "1",
             "nmdc": "1",
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-20",
+          "registry_revision": "2026-11-09",
           "request_id": "worked-example"
         }
       }
@@ -6068,7 +6573,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -6078,7 +6583,7 @@
             "source_ref": "source_01",
             "record_id": "mp-1244984",
             "locator": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2019-07-02T00:29:18.792000",
             "transformations": [],
             "payload_hash": null,
@@ -6089,7 +6594,7 @@
             "source_ref": "source_01",
             "record_id": "mp-1223660",
             "locator": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2022-06-10T06:23:20.905000",
             "transformations": [],
             "payload_hash": null,
@@ -6100,7 +6605,7 @@
             "source_ref": "source_01",
             "record_id": "mp-1199250",
             "locator": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2021-03-09T23:05:01.374000",
             "transformations": [],
             "payload_hash": null,
@@ -6111,7 +6616,7 @@
             "source_ref": "source_01",
             "record_id": "mp-1245997",
             "locator": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2021-02-04T20:40:18.753000",
             "transformations": [],
             "payload_hash": null,
@@ -6122,7 +6627,7 @@
             "source_ref": "source_01",
             "record_id": "mp-1198425",
             "locator": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2021-03-10T07:53:43.904000",
             "transformations": [],
             "payload_hash": null,
@@ -6176,11 +6681,12 @@
             "optimade": "1",
             "basis_sets": "1",
             "facility_status": "1",
+            "gcam_csv": "1",
             "nmdc": "1",
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-20",
+          "registry_revision": "2026-11-09",
           "request_id": "worked-example"
         }
       }
@@ -6323,7 +6829,7 @@
             "authority_level": "official_secondary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -6333,7 +6839,7 @@
             "source_ref": "source_01",
             "record_id": "nmdc:bsm-13-mrzb2q96",
             "locator": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2014-04-01",
             "transformations": [
               "normalize"
@@ -6346,7 +6852,7 @@
             "source_ref": "source_01",
             "record_id": "nmdc:bsm-13-4aw9ra87",
             "locator": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2014-04-01",
             "transformations": [
               "normalize"
@@ -6359,7 +6865,7 @@
             "source_ref": "source_01",
             "record_id": "nmdc:bsm-13-z9wten89",
             "locator": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2014-04-01",
             "transformations": [
               "normalize"
@@ -6372,7 +6878,7 @@
             "source_ref": "source_01",
             "record_id": "nmdc:bsm-13-wktc3357",
             "locator": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2014-04-01",
             "transformations": [
               "normalize"
@@ -6385,7 +6891,7 @@
             "source_ref": "source_01",
             "record_id": "nmdc:bsm-13-ap544f22",
             "locator": null,
-            "retrieved_at": "2026-10-20T00:00:00Z",
+            "retrieved_at": "2026-11-09T00:00:00Z",
             "effective_at": "2014-04-01",
             "transformations": [
               "normalize"
@@ -6441,11 +6947,691 @@
             "optimade": "1",
             "basis_sets": "1",
             "facility_status": "1",
+            "gcam_csv": "1",
             "nmdc": "1",
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-10-20",
+          "registry_revision": "2026-11-09",
+          "request_id": "worked-example"
+        }
+      }
+    },
+    {
+      "tool": "economy.country_regions",
+      "server": "doe-economy",
+      "why": "Which GCAM region contains Kenya?",
+      "envelope": {
+        "data": {
+          "table": "country_regions",
+          "columns": [
+            "iso",
+            "country_name",
+            "region_GCAM3",
+            "GCAM_region_ID"
+          ],
+          "records": [
+            {
+              "row_number": 114,
+              "values": {
+                "iso": "ken",
+                "country_name": "Kenya",
+                "region_GCAM3": "Africa",
+                "GCAM_region_ID": "2"
+              },
+              "evidence_ref": "evidence_01"
+            }
+          ],
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+          "source_notes": [
+            "File: iso_GCAM_regID.csv",
+            "Title: ISO to GCAM region mapping",
+            "Units: NA",
+            "Description: Maps iso codes to GCAM regions (including composites as necessary)",
+            "Column types: ccci",
+            "----------"
+          ],
+          "filters": {
+            "iso": "ken"
+          },
+          "offset": 0,
+          "record_count": 1,
+          "total_matches": 1,
+          "table_rows": 248,
+          "release": "GCAM v9.1"
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "gcam-economy",
+            "steward": "Pacific Northwest National Laboratory",
+            "system": "GCAM: Regional economics",
+            "dataset": "iso_GCAM_regID.csv",
+            "dataset_version": "GCAM v9.1",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "data row 114",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "gcam-economy"
+          ],
+          "known_limitations": [
+            "Rows are model inputs, not scenario outputs or measurements of current conditions.",
+            "GCAM3 region labels and numeric GCAM region IDs use different groupings."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+            "source_id": "gcam-economy"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "economy.country_regions",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-09",
+          "request_id": "worked-example"
+        }
+      }
+    },
+    {
+      "tool": "power.geothermal_curves",
+      "server": "doe-power",
+      "why": "How much heat input does the model assign to Japan's second hydrothermal grade?",
+      "envelope": {
+        "data": {
+          "table": "geothermal_curves",
+          "columns": [
+            "region_GCAM3",
+            "resource",
+            "subresource",
+            "grade",
+            "available",
+            "extractioncost"
+          ],
+          "records": [
+            {
+              "row_number": 18,
+              "values": {
+                "region_GCAM3": "Japan",
+                "resource": "geothermal",
+                "subresource": "hydrothermal",
+                "grade": "grade 2",
+                "available": "0.56582",
+                "extractioncost": "0.569"
+              },
+              "evidence_ref": "evidence_01"
+            }
+          ],
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A16.geo_curves.csv",
+          "source_notes": [
+            "File: A16.geo_curves.csv",
+            "Title: Supply curves of hydrothermal geothermal resources, inherited from GCAM 3.0",
+            "Units: available in Thermal EJ/yr (i.e. heat input to geothermal power plants); extractioncost in 1975$/GJ",
+            "Description: available: quantity available; extractioncost: costs of production",
+            "Reference: Hannam, P., P. Kyle, and S.J. Smith. 2009. Global Deployment of Geothermal Energy Using a New Characterization in GCAM 1.0. PNNL-19231, Pacitic Northwest National Laboratory. http://www.pnl.gov/main/publications/external/technical_reports/PNNL-19231.pdf",
+            "Column types: ccccnn",
+            "----------"
+          ],
+          "filters": {
+            "region_GCAM3": "Japan",
+            "grade": "grade 2"
+          },
+          "offset": 0,
+          "record_count": 1,
+          "total_matches": 1,
+          "table_rows": 28,
+          "release": "GCAM v9.1"
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "gcam-power",
+            "steward": "Pacific Northwest National Laboratory",
+            "system": "GCAM: Power technology",
+            "dataset": "A16.geo_curves.csv",
+            "dataset_version": "GCAM v9.1",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "data row 18",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A16.geo_curves.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "gcam-power"
+          ],
+          "known_limitations": [
+            "Rows are model inputs, not scenario outputs or measurements of current conditions.",
+            "GCAM3 region labels and numeric GCAM region IDs use different groupings."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+            "source_id": "gcam-power"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "power.geothermal_curves",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-09",
+          "request_id": "worked-example"
+        }
+      }
+    },
+    {
+      "tool": "water.desalination_costs",
+      "server": "doe-water",
+      "why": "Read the non-energy cost of reverse osmosis.",
+      "envelope": {
+        "data": {
+          "table": "desalination_costs",
+          "columns": [
+            "supplysector",
+            "subsector",
+            "technology",
+            "minicam.non.energy.input",
+            "1971",
+            "2100"
+          ],
+          "records": [
+            {
+              "row_number": 1,
+              "values": {
+                "supplysector": "desalinated water",
+                "subsector": "electricity",
+                "technology": "reverse osmosis",
+                "minicam.non.energy.input": "non-energy",
+                "1971": "0.38",
+                "2100": "0.38"
+              },
+              "evidence_ref": "evidence_01"
+            }
+          ],
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A71.globaltech_cost.csv",
+          "source_notes": [
+            "File: A71.globaltech_cost.csv",
+            "Title: Desalination non-energy costs",
+            "Units: 1975$ per cubic meter of desalinated water (1975$/m3)",
+            "Source: RO tech cost estimated as total costs (about $2400/acre-foot, in 2016 dollars) minus fuel costs (36%), from CA Dept of Water Resources 2016. https://water.ca.gov/-/media/DWR-Website/Web-Pages/Programs/California-Water-Plan/Docs/RMS/2016/09_Desalination_July2016.pdf",
+            "Column types: ccccnn"
+          ],
+          "filters": {
+            "technology": "reverse osmosis"
+          },
+          "offset": 0,
+          "record_count": 1,
+          "total_matches": 1,
+          "table_rows": 3,
+          "release": "GCAM v9.1"
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "gcam-water",
+            "steward": "Pacific Northwest National Laboratory",
+            "system": "GCAM: Water use",
+            "dataset": "A71.globaltech_cost.csv",
+            "dataset_version": "GCAM v9.1",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "data row 1",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A71.globaltech_cost.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "gcam-water"
+          ],
+          "known_limitations": [
+            "Rows are model inputs, not scenario outputs or measurements of current conditions.",
+            "GCAM3 region labels and numeric GCAM region IDs use different groupings."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+            "source_id": "gcam-water"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "water.desalination_costs",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-09",
+          "request_id": "worked-example"
+        }
+      }
+    },
+    {
+      "tool": "land.bioenergy_preferences",
+      "server": "doe-land",
+      "why": "Which supply preference does the model apply in Brazil?",
+      "envelope": {
+        "data": {
+          "table": "bioenergy_preferences",
+          "columns": [
+            "GCAM_region_ID",
+            "region",
+            "preference",
+            "preference_alternative"
+          ],
+          "records": [
+            {
+              "row_number": 7,
+              "values": {
+                "GCAM_region_ID": "7",
+                "region": "Brazil",
+                "preference": "High",
+                "preference_alternative": "High"
+              },
+              "evidence_ref": "evidence_01"
+            }
+          ],
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_biomassSupplyShare_R.csv",
+          "source_notes": [
+            "File: A_biomassSupplyShare_R.csv",
+            "Title: Whether a region currently has bioenergy supports",
+            "Units: NA",
+            "Comments: These data include preference assumptions to adjust supply side share weights, possibly by region. Regions not included here are set to USA's value. Only the preference column is used",
+            "Source: NA",
+            "Column types: iccc",
+            "----------"
+          ],
+          "filters": {
+            "region": "Brazil"
+          },
+          "offset": 0,
+          "record_count": 1,
+          "total_matches": 1,
+          "table_rows": 32,
+          "release": "GCAM v9.1"
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "gcam-land",
+            "steward": "Pacific Northwest National Laboratory",
+            "system": "GCAM: Land and agriculture",
+            "dataset": "A_biomassSupplyShare_R.csv",
+            "dataset_version": "GCAM v9.1",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "data row 7",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_biomassSupplyShare_R.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "gcam-land"
+          ],
+          "known_limitations": [
+            "Rows are model inputs, not scenario outputs or measurements of current conditions.",
+            "GCAM3 region labels and numeric GCAM region IDs use different groupings."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+            "source_id": "gcam-land"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "land.bioenergy_preferences",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-09",
+          "request_id": "worked-example"
+        }
+      }
+    },
+    {
+      "tool": "emissions.warming_potentials",
+      "server": "doe-emissions",
+      "why": "Which warming potential does GCAM use for CF4?",
+      "envelope": {
+        "data": {
+          "table": "warming_potentials",
+          "columns": [
+            "Gas",
+            "HFC_PFC",
+            "GWP"
+          ],
+          "records": [
+            {
+              "row_number": 2,
+              "values": {
+                "Gas": "CF4",
+                "HFC_PFC": "PFC",
+                "GWP": "7390"
+              },
+              "evidence_ref": "evidence_01"
+            }
+          ],
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/emissions/A41.GWP.csv",
+          "source_notes": [
+            "File: A41.GWP.csv",
+            "Title: Global warming potential values for fgases",
+            "Units: tonnes",
+            "Source: 2007 IPCC AR4 p212",
+            "Description: The global warming potential of Fgases over a 100-year time horizon",
+            "Column types: cci",
+            "----------"
+          ],
+          "filters": {
+            "Gas": "CF4"
+          },
+          "offset": 0,
+          "record_count": 1,
+          "total_matches": 1,
+          "table_rows": 14,
+          "release": "GCAM v9.1"
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "gcam-emissions",
+            "steward": "Pacific Northwest National Laboratory",
+            "system": "GCAM: Emissions",
+            "dataset": "A41.GWP.csv",
+            "dataset_version": "GCAM v9.1",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "data row 2",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/emissions/A41.GWP.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "gcam-emissions"
+          ],
+          "known_limitations": [
+            "Rows are model inputs, not scenario outputs or measurements of current conditions.",
+            "GCAM3 region labels and numeric GCAM region IDs use different groupings."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+            "source_id": "gcam-emissions"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "emissions.warming_potentials",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-09",
           "request_id": "worked-example"
         }
       }

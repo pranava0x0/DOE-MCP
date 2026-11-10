@@ -1,0 +1,443 @@
+{
+  "format_version": "1",
+  "case": "global-climate-archive",
+  "title": "Find Canadian climate simulations",
+  "question": "What historical near-surface air temperature output does ORNL index for CanESM5?",
+  "mode": "recorded",
+  "simulation": false,
+  "registry_revision": "2026-11-09",
+  "generated_at": null,
+  "replay_clock": "2026-11-09T00:00:00Z",
+  "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
+  "fixtures": [
+    {
+      "file": "esgf-search.json",
+      "sha256": "b48a40f84f831197b5621eeb120b6e8dac79c724b53ac5c3d6cebdfc6b2b8ce4",
+      "captured_at": null
+    }
+  ],
+  "answer": "The first returned CanESM5 dataset lists variant r12i1p2f1 and file version 20190429.",
+  "limitations": [
+    "ORNL indexes model output from multiple institutions. The rows describe files; they contain no temperature readings."
+  ],
+  "steps": [
+    {
+      "tool": "climate.search_cmip",
+      "args": {
+        "model": "CanESM5",
+        "experiment": "historical",
+        "variable": "tas",
+        "rows": 5
+      },
+      "envelope": {
+        "data": {
+          "datasets": [
+            {
+              "dataset_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.Amon.tas.gn.v20190429",
+              "project": "CMIP6",
+              "model": "CanESM5",
+              "institution": "CCCma",
+              "experiment": "historical",
+              "experiment_title": "all-forcing simulation of the recent past",
+              "variables": [
+                "tas"
+              ],
+              "variable_long_names": [
+                "Near-Surface Air Temperature"
+              ],
+              "variable_units": [
+                "K"
+              ],
+              "frequency": "mon",
+              "realm": "atmos",
+              "nominal_resolution": "500 km",
+              "grid_label": "gn",
+              "variant_label": "r12i1p2f1",
+              "version": "20190429",
+              "covers": {
+                "from": "1850-01-16T12:00:00Z",
+                "to": "2014-12-16T12:00:00Z"
+              },
+              "files": 1,
+              "size_bytes": 52456974,
+              "data_node": "esgf-node.ornl.gov",
+              "access_methods": [
+                "HTTPServer",
+                "GridFTP",
+                "OPENDAP",
+                "Globus",
+                "LAS"
+              ],
+              "latest": true,
+              "retracted": false,
+              "replica": true
+            },
+            {
+              "dataset_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.day.tas.gn.v20190429",
+              "project": "CMIP6",
+              "model": "CanESM5",
+              "institution": "CCCma",
+              "experiment": "historical",
+              "experiment_title": "all-forcing simulation of the recent past",
+              "variables": [
+                "tas"
+              ],
+              "variable_long_names": [
+                "Near-Surface Air Temperature"
+              ],
+              "variable_units": [
+                "K"
+              ],
+              "frequency": "day",
+              "realm": "atmos",
+              "nominal_resolution": "500 km",
+              "grid_label": "gn",
+              "variant_label": "r12i1p2f1",
+              "version": "20190429",
+              "covers": {
+                "from": "1850-01-01T12:00:00Z",
+                "to": "2014-12-31T12:00:00Z"
+              },
+              "files": 1,
+              "size_bytes": 1600967425,
+              "data_node": "crd-esgf-drc.ec.gc.ca",
+              "access_methods": [
+                "HTTPServer",
+                "GridFTP",
+                "OPENDAP",
+                "LAS"
+              ],
+              "latest": true,
+              "retracted": false,
+              "replica": false
+            },
+            {
+              "dataset_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r13i1p2f1.day.tas.gn.v20190429",
+              "project": "CMIP6",
+              "model": "CanESM5",
+              "institution": "CCCma",
+              "experiment": "historical",
+              "experiment_title": "all-forcing simulation of the recent past",
+              "variables": [
+                "tas"
+              ],
+              "variable_long_names": [
+                "Near-Surface Air Temperature"
+              ],
+              "variable_units": [
+                "K"
+              ],
+              "frequency": "day",
+              "realm": "atmos",
+              "nominal_resolution": "500 km",
+              "grid_label": "gn",
+              "variant_label": "r13i1p2f1",
+              "version": "20190429",
+              "covers": {
+                "from": "1850-01-01T12:00:00Z",
+                "to": "2014-11-21T12:00:00Z"
+              },
+              "files": 1,
+              "size_bytes": 1601062361,
+              "data_node": "eagle.alcf.anl.gov",
+              "access_methods": [
+                "HTTPServer",
+                "Globus"
+              ],
+              "latest": true,
+              "retracted": false,
+              "replica": true
+            },
+            {
+              "dataset_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r14i1p1f1.Amon.tas.gn.v20190429",
+              "project": "CMIP6",
+              "model": "CanESM5",
+              "institution": "CCCma",
+              "experiment": "historical",
+              "experiment_title": "all-forcing simulation of the recent past",
+              "variables": [
+                "tas"
+              ],
+              "variable_long_names": [
+                "Near-Surface Air Temperature"
+              ],
+              "variable_units": [
+                "K"
+              ],
+              "frequency": "mon",
+              "realm": "atmos",
+              "nominal_resolution": "500 km",
+              "grid_label": "gn",
+              "variant_label": "r14i1p1f1",
+              "version": "20190429",
+              "covers": {
+                "from": "1850-01-16T12:00:00Z",
+                "to": "2014-11-06T12:00:00Z"
+              },
+              "files": 1,
+              "size_bytes": 52453272,
+              "data_node": "eagle.alcf.anl.gov",
+              "access_methods": [
+                "HTTPServer",
+                "Globus"
+              ],
+              "latest": true,
+              "retracted": false,
+              "replica": true
+            },
+            {
+              "dataset_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r19i1p1f1.day.tas.gn.v20190429",
+              "project": "CMIP6",
+              "model": "CanESM5",
+              "institution": "CCCma",
+              "experiment": "historical",
+              "experiment_title": "all-forcing simulation of the recent past",
+              "variables": [
+                "tas"
+              ],
+              "variable_long_names": [
+                "Near-Surface Air Temperature"
+              ],
+              "variable_units": [
+                "K"
+              ],
+              "frequency": "day",
+              "realm": "atmos",
+              "nominal_resolution": "500 km",
+              "grid_label": "gn",
+              "variant_label": "r19i1p1f1",
+              "version": "20190429",
+              "covers": {
+                "from": "1850-01-01T12:00:00Z",
+                "to": "2014-12-31T12:00:00Z"
+              },
+              "files": 1,
+              "size_bytes": 1600914528,
+              "data_node": "esgf-node.ornl.gov",
+              "access_methods": [
+                "HTTPServer",
+                "GridFTP",
+                "OPENDAP",
+                "Globus",
+                "LAS"
+              ],
+              "latest": true,
+              "retracted": false,
+              "replica": true
+            }
+          ],
+          "record_count": 5,
+          "total_matches": 366,
+          "offset": 0,
+          "applied_filters": [
+            "type:Dataset",
+            "experiment_id:\"historical\"",
+            "project:\"CMIP6\"",
+            "source_id:\"CanESM5\"",
+            "variable_id:\"tas\"",
+            "latest:True"
+          ],
+          "latest_only": true,
+          "note": "Metadata for climate-model output, not the output itself: each record names the data node holding its files and the methods that node serves them by. Restricted to the latest version of each dataset unless include_superseded is set \u2014 the index holds retracted and superseded output and sorts it first otherwise. Walk climate.discover_facets for valid model, experiment, and variable names; a near-miss returns nothing rather than a suggestion."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "esgf-search",
+            "steward": "Oak Ridge National Laboratory",
+            "funder": "Office of Science",
+            "system": "ESGF search (CMIP6)",
+            "dataset": "ESGF search (CMIP6)",
+            "dataset_version": "CMIP6",
+            "authority_level": "official_secondary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "cache_age_seconds": 0
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.Amon.tas.gn.v20190429",
+            "locator": "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.Amon.tas.gn.v20190429.json",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": "1850-01-16T12:00:00Z",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_02",
+            "source_ref": "source_01",
+            "record_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.day.tas.gn.v20190429",
+            "locator": "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.day.tas.gn.v20190429.json",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": "1850-01-01T12:00:00Z",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_03",
+            "source_ref": "source_01",
+            "record_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r13i1p2f1.day.tas.gn.v20190429",
+            "locator": "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r13i1p2f1.day.tas.gn.v20190429.json",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": "1850-01-01T12:00:00Z",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_04",
+            "source_ref": "source_01",
+            "record_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r14i1p1f1.Amon.tas.gn.v20190429",
+            "locator": "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r14i1p1f1.Amon.tas.gn.v20190429.json",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": "1850-01-16T12:00:00Z",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_05",
+            "source_ref": "source_01",
+            "record_id": "CMIP6.CMIP.CCCma.CanESM5.historical.r19i1p1f1.day.tas.gn.v20190429",
+            "locator": "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r19i1p1f1.day.tas.gn.v20190429.json",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": "1850-01-01T12:00:00Z",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "truncated",
+          "source_claim": "partial",
+          "result": "hit",
+          "sources_searched": [
+            "esgf-search"
+          ],
+          "known_limitations": [
+            "A catalog of metadata, not the model output. The files live on federated data nodes and are reached by the access methods each record names; several nodes require a federation account.",
+            "Retracted and superseded datasets are in the index and sort first without the publisher's `latest` flag. A retraction is a modelling centre withdrawing output, often for a science error, so the flag is on by default here and both flags ride on every row.",
+            "Paging stops at offset 9,999 against 14.7 million records. This archive is searched by narrowing facets, not by walking pages.",
+            "Vintage identity is the whole game: CMIP5, CMIP6 and CMIP7 are different archives, and a comparison across them without saying so is the mixed-vintage error the envelope exists to catch.",
+            "The index names one fact two ways. A dataset's last covered timestamp is datetime_stop on some records and datetime_end on others, in the same index on the same day. Both are read; a client reading one would report the end of the covered period as unknown for a large share of the archive."
+          ]
+        },
+        "warnings": [],
+        "access_recipes": [
+          {
+            "kind": "landing_page",
+            "uri": "https://furtherinfo.es-doc.org/CMIP6.CCCma.CanESM5.historical.none.r12i1p2f1",
+            "label": "CanESM5 historical documentation",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "doi",
+            "uri": "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.Amon.tas.gn.v20190429.json",
+            "label": "Citation record for\u2026",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "doi",
+            "uri": "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.day.tas.gn.v20190429.json",
+            "label": "Citation record for\u2026",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "landing_page",
+            "uri": "https://furtherinfo.es-doc.org/CMIP6.CCCma.CanESM5.historical.none.r13i1p2f1",
+            "label": "CanESM5 historical documentation",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "doi",
+            "uri": "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r13i1p2f1.day.tas.gn.v20190429.json",
+            "label": "Citation record for\u2026",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "landing_page",
+            "uri": "https://furtherinfo.es-doc.org/CMIP6.CCCma.CanESM5.historical.none.r14i1p1f1",
+            "label": "CanESM5 historical documentation",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "doi",
+            "uri": "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r14i1p1f1.Amon.tas.gn.v20190429.json",
+            "label": "Citation record for\u2026",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "landing_page",
+            "uri": "https://furtherinfo.es-doc.org/CMIP6.CCCma.CanESM5.historical.none.r19i1p1f1",
+            "label": "CanESM5 historical documentation",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "doi",
+            "uri": "http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r19i1p1f1.day.tas.gn.v20190429.json",
+            "label": "Citation record for\u2026",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "climate.search_cmip",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-09",
+          "request_id": "recorded-workflow"
+        }
+      }
+    }
+  ]
+}

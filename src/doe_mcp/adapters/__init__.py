@@ -24,6 +24,7 @@ from .facility_status import FacilityStatusAdapter
 from .federal_register import FederalRegisterAdapter
 from .fueleconomy import FuelEconomyAdapter
 from .json_document import JsonDocumentAdapter
+from .gcam import GcamAdapter
 from .nmdc import NmdcAdapter
 from .opendatasoft import OpenDataSoftAdapter
 from .optimade import OptimadeAdapter
@@ -59,6 +60,7 @@ ADAPTER_CLASSES: dict[str, tuple[str, type]] = {
     "optimade": ("optimade", OptimadeAdapter),
     "basis_sets": ("basis_sets", BasisSetExchangeAdapter),
     "facility_status": ("facility_status", FacilityStatusAdapter),
+    "gcam_csv": ("gcam", GcamAdapter),
     "nmdc": ("nmdc", NmdcAdapter),
 }
 
@@ -80,6 +82,7 @@ ADAPTER_VERSIONS = {
     "optimade": OptimadeAdapter.version,
     "basis_sets": BasisSetExchangeAdapter.version,
     "facility_status": FacilityStatusAdapter.version,
+    "gcam_csv": GcamAdapter.version,
     "nmdc": NmdcAdapter.version,
     "none": "1",
     "self_registry": "1",

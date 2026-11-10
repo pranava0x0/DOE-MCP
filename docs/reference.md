@@ -806,4 +806,795 @@ Other MCP servers over DOE-adjacent data — PNNL's NEPA-MCP, the building-simul
 |---|---|---|---|
 | `capability` | string | no | `""` |
 
+## doe-water
+
+GCAM water inputs for power plant cooling, irrigation and desalination.
+
+Profiles: `water:all`, `water:default` (default)
+
+### Profile `water:all` — 13 tools
+
+| Tool | Arguments |
+|---|---|
+| `water.cooling_costs` | `filters`?, `rows`?, `offset`? |
+| `water.cooling_shares` | `filters`?, `rows`?, `offset`? |
+| `water.resource_water_map` | `filters`?, `rows`?, `offset`? |
+| `water.desalination_costs` | `filters`?, `rows`?, `offset`? |
+| `water.desalination_inputs` | `filters`?, `rows`?, `offset`? |
+| `water.water_distribution` | `filters`?, `rows`?, `offset`? |
+| `water.irrigation_inputs` | `filters`?, `rows`?, `offset`? |
+| `water.industrial_water_inputs` | `filters`?, `rows`?, `offset`? |
+| `registry.resolve_org` | `query` |
+| `registry.lab_crosswalk` | `lab`? |
+| `registry.search_sources` | `text`?, `domain`?, `capability`?, `state`?, `limit`? |
+| `registry.describe_source` | `source_id` |
+| `registry.list_neighbors` | `capability`? |
+
+### Profile `water:default` — 10 tools
+
+| Tool | Arguments |
+|---|---|
+| `water.cooling_costs` | `filters`?, `rows`?, `offset`? |
+| `water.cooling_shares` | `filters`?, `rows`?, `offset`? |
+| `water.resource_water_map` | `filters`?, `rows`?, `offset`? |
+| `water.desalination_costs` | `filters`?, `rows`?, `offset`? |
+| `water.desalination_inputs` | `filters`?, `rows`?, `offset`? |
+| `water.water_distribution` | `filters`?, `rows`?, `offset`? |
+| `water.irrigation_inputs` | `filters`?, `rows`?, `offset`? |
+| `water.industrial_water_inputs` | `filters`?, `rows`?, `offset`? |
+| `registry.resolve_org` | `query` |
+| `registry.lab_crosswalk` | `lab`? |
+
+#### `water.cooling_costs`
+
+Capital cost assumptions by plant cooling system in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `water.cooling_shares`
+
+Plant cooling shares by legacy GCAM region, plant, cooling system and water type in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `water.resource_water_map`
+
+Primary fuel sectors mapped to water demand inputs in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `water.desalination_costs`
+
+Non-energy costs for desalination technologies in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `water.desalination_inputs`
+
+Energy and seawater inputs to desalination technologies in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `water.water_distribution`
+
+Water distribution sectors and whether they take desalinated water in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `water.irrigation_inputs`
+
+Energy inputs for irrigation water abstraction in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `water.industrial_water_inputs`
+
+Energy inputs for industrial water abstraction and treatment in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `registry.resolve_org`
+
+Resolve a DOE organization from a name, abbreviation, FORMER name, or domain — including dead ones. Use FIRST whenever a user names a lab or office, because this ecosystem renames things and the old URLs do not redirect. 'NREL' resolves to the National Laboratory of the Rockies and warns that the name is historical; a *.nrel.gov domain resolves the same way and warns that the URL is dead with no forwarding. Same for EERE (now CMEI), FECM (now HGEO), LPO (now EDF), HFTO and BETO (merged into AFFO), IEDO (now ITO), and the dismantled Grid Deployment Office.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `query` | string | yes |  |
+
+#### `registry.lab_crosswalk`
+
+What a DOE national laboratory publishes, across every platform carrying its data. Call with no argument for all seventeen labs and their source counts. Servers here are organized by data domain, not by laboratory, so this is how a lab-oriented question gets answered — and it is the honest way, since several labs' flagship data lives on shared cross-lab platforms rather than their own domains. A lab with zero sources is a gap in this project, not a claim that the lab publishes nothing.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `lab` | string | no | `""` |
+
+#### `registry.search_sources`
+
+Search DOE-MCP's own source registry: which public DOE systems this project knows about, active or not. Use to answer 'what does DOE-MCP cover?' BEFORE assuming coverage, and to explain a gap — every non-active source carries a blocked_reason naming what stands in the way, which is a real answer where an empty result is not. Not a data-query tool: use the research.* tools for records.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `text` | string | no | `""` |
+| `domain` | string | no | `""` |
+| `capability` | string | no | `""` |
+| `state` | string | no | `""` |
+| `limit` | integer | no | `25` |
+
+#### `registry.describe_source`
+
+The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `source_id` | string | yes |  |
+
+#### `registry.list_neighbors`
+
+Other MCP servers over DOE-adjacent data — PNNL's NEPA-MCP, the building-simulation servers, NASA's Earthdata server, the gated Genesis-lane deployments — and skill packs such as DOE's Genesis Agent Skills, each with an install command, its kind (server or skill_pack), and a stated reason DOE-MCP does not duplicate it. Use when a question falls outside this project's coverage and a neighbouring server serves it.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `capability` | string | no | `""` |
+
+## doe-land
+
+GCAM land inputs for crop yields, soil carbon and food demand.
+
+Profiles: `land:all`, `land:default` (default)
+
+### Profile `land:all` — 13 tools
+
+| Tool | Arguments |
+|---|---|
+| `land.food_staples` | `filters`?, `rows`?, `offset`? |
+| `land.food_nonstaples` | `filters`?, `rows`?, `offset`? |
+| `land.soil_timescales` | `filters`?, `rows`?, `offset`? |
+| `land.forest_types` | `filters`?, `rows`?, `offset`? |
+| `land.crop_yield_growth` | `filters`?, `rows`?, `offset`? |
+| `land.oilseed_products` | `filters`?, `rows`?, `offset`? |
+| `land.irrigated_land_nests` | `filters`?, `rows`?, `offset`? |
+| `land.bioenergy_preferences` | `filters`?, `rows`?, `offset`? |
+| `registry.resolve_org` | `query` |
+| `registry.lab_crosswalk` | `lab`? |
+| `registry.search_sources` | `text`?, `domain`?, `capability`?, `state`?, `limit`? |
+| `registry.describe_source` | `source_id` |
+| `registry.list_neighbors` | `capability`? |
+
+### Profile `land:default` — 10 tools
+
+| Tool | Arguments |
+|---|---|
+| `land.food_staples` | `filters`?, `rows`?, `offset`? |
+| `land.food_nonstaples` | `filters`?, `rows`?, `offset`? |
+| `land.soil_timescales` | `filters`?, `rows`?, `offset`? |
+| `land.forest_types` | `filters`?, `rows`?, `offset`? |
+| `land.crop_yield_growth` | `filters`?, `rows`?, `offset`? |
+| `land.oilseed_products` | `filters`?, `rows`?, `offset`? |
+| `land.irrigated_land_nests` | `filters`?, `rows`?, `offset`? |
+| `land.bioenergy_preferences` | `filters`?, `rows`?, `offset`? |
+| `registry.resolve_org` | `query` |
+| `registry.lab_crosswalk` | `lab`? |
+
+#### `land.food_staples`
+
+Staple-food demand function and elasticity parameters in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `land.food_nonstaples`
+
+Non-staple food demand and elasticity parameters in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `land.soil_timescales`
+
+Soil carbon recovery times after land-use change by numeric region ID in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `land.forest_types`
+
+Forest products mapped to GCAM commodities and supply sectors in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `land.crop_yield_growth`
+
+Fallback crop yield growth assumptions by commodity and year in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `land.oilseed_products`
+
+Oilseed crushing coefficients and secondary feedcake output in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `land.irrigated_land_nests`
+
+Irrigated land allocation nodes and their logit parameters in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `land.bioenergy_preferences`
+
+Regional bioenergy supply preference assumptions in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `registry.resolve_org`
+
+Resolve a DOE organization from a name, abbreviation, FORMER name, or domain — including dead ones. Use FIRST whenever a user names a lab or office, because this ecosystem renames things and the old URLs do not redirect. 'NREL' resolves to the National Laboratory of the Rockies and warns that the name is historical; a *.nrel.gov domain resolves the same way and warns that the URL is dead with no forwarding. Same for EERE (now CMEI), FECM (now HGEO), LPO (now EDF), HFTO and BETO (merged into AFFO), IEDO (now ITO), and the dismantled Grid Deployment Office.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `query` | string | yes |  |
+
+#### `registry.lab_crosswalk`
+
+What a DOE national laboratory publishes, across every platform carrying its data. Call with no argument for all seventeen labs and their source counts. Servers here are organized by data domain, not by laboratory, so this is how a lab-oriented question gets answered — and it is the honest way, since several labs' flagship data lives on shared cross-lab platforms rather than their own domains. A lab with zero sources is a gap in this project, not a claim that the lab publishes nothing.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `lab` | string | no | `""` |
+
+#### `registry.search_sources`
+
+Search DOE-MCP's own source registry: which public DOE systems this project knows about, active or not. Use to answer 'what does DOE-MCP cover?' BEFORE assuming coverage, and to explain a gap — every non-active source carries a blocked_reason naming what stands in the way, which is a real answer where an empty result is not. Not a data-query tool: use the research.* tools for records.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `text` | string | no | `""` |
+| `domain` | string | no | `""` |
+| `capability` | string | no | `""` |
+| `state` | string | no | `""` |
+| `limit` | integer | no | `25` |
+
+#### `registry.describe_source`
+
+The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `source_id` | string | yes |  |
+
+#### `registry.list_neighbors`
+
+Other MCP servers over DOE-adjacent data — PNNL's NEPA-MCP, the building-simulation servers, NASA's Earthdata server, the gated Genesis-lane deployments — and skill packs such as DOE's Genesis Agent Skills, each with an install command, its kind (server or skill_pack), and a stated reason DOE-MCP does not duplicate it. Use when a question falls outside this project's coverage and a neighbouring server serves it.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `capability` | string | no | `""` |
+
+## doe-emissions
+
+GCAM emissions inputs for fluorinated gases, pollution control and scenario comparisons.
+
+Profiles: `emissions:all`, `emissions:default` (default)
+
+### Profile `emissions:all` — 13 tools
+
+| Tool | Arguments |
+|---|---|
+| `emissions.warming_potentials` | `filters`?, `rows`?, `offset`? |
+| `emissions.hydrogen_drivers` | `filters`?, `rows`?, `offset`? |
+| `emissions.technology_coefficients` | `filters`?, `rows`?, `offset`? |
+| `emissions.farm_reductions` | `filters`?, `rows`?, `offset`? |
+| `emissions.waste_reductions` | `filters`?, `rows`?, `offset`? |
+| `emissions.pollutant_reductions` | `filters`?, `rows`?, `offset`? |
+| `emissions.pollutant_floors` | `filters`?, `rows`?, `offset`? |
+| `emissions.scenario_factors` | `filters`?, `rows`?, `offset`? |
+| `registry.resolve_org` | `query` |
+| `registry.lab_crosswalk` | `lab`? |
+| `registry.search_sources` | `text`?, `domain`?, `capability`?, `state`?, `limit`? |
+| `registry.describe_source` | `source_id` |
+| `registry.list_neighbors` | `capability`? |
+
+### Profile `emissions:default` — 10 tools
+
+| Tool | Arguments |
+|---|---|
+| `emissions.warming_potentials` | `filters`?, `rows`?, `offset`? |
+| `emissions.hydrogen_drivers` | `filters`?, `rows`?, `offset`? |
+| `emissions.technology_coefficients` | `filters`?, `rows`?, `offset`? |
+| `emissions.farm_reductions` | `filters`?, `rows`?, `offset`? |
+| `emissions.waste_reductions` | `filters`?, `rows`?, `offset`? |
+| `emissions.pollutant_reductions` | `filters`?, `rows`?, `offset`? |
+| `emissions.pollutant_floors` | `filters`?, `rows`?, `offset`? |
+| `emissions.scenario_factors` | `filters`?, `rows`?, `offset`? |
+| `registry.resolve_org` | `query` |
+| `registry.lab_crosswalk` | `lab`? |
+
+#### `emissions.warming_potentials`
+
+Fluorinated gas groups and the warming potentials used in this model in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `emissions.hydrogen_drivers`
+
+Industrial hydrogen combustion inputs used to drive non-CO2 emissions in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `emissions.technology_coefficients`
+
+Technology emissions coefficients by pollutant, including blanks in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `emissions.farm_reductions`
+
+Maximum agricultural emissions reductions by supply sector in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `emissions.waste_reductions`
+
+Maximum energy and waste emissions reductions by technology and pollutant in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `emissions.pollutant_reductions`
+
+Technology-specific maximum reductions for non-greenhouse pollutants in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `emissions.pollutant_floors`
+
+Minimum controlled emissions coefficients by technology and species in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `emissions.scenario_factors`
+
+Emissions factor assignment rules by scenario group, year and region group in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `registry.resolve_org`
+
+Resolve a DOE organization from a name, abbreviation, FORMER name, or domain — including dead ones. Use FIRST whenever a user names a lab or office, because this ecosystem renames things and the old URLs do not redirect. 'NREL' resolves to the National Laboratory of the Rockies and warns that the name is historical; a *.nrel.gov domain resolves the same way and warns that the URL is dead with no forwarding. Same for EERE (now CMEI), FECM (now HGEO), LPO (now EDF), HFTO and BETO (merged into AFFO), IEDO (now ITO), and the dismantled Grid Deployment Office.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `query` | string | yes |  |
+
+#### `registry.lab_crosswalk`
+
+What a DOE national laboratory publishes, across every platform carrying its data. Call with no argument for all seventeen labs and their source counts. Servers here are organized by data domain, not by laboratory, so this is how a lab-oriented question gets answered — and it is the honest way, since several labs' flagship data lives on shared cross-lab platforms rather than their own domains. A lab with zero sources is a gap in this project, not a claim that the lab publishes nothing.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `lab` | string | no | `""` |
+
+#### `registry.search_sources`
+
+Search DOE-MCP's own source registry: which public DOE systems this project knows about, active or not. Use to answer 'what does DOE-MCP cover?' BEFORE assuming coverage, and to explain a gap — every non-active source carries a blocked_reason naming what stands in the way, which is a real answer where an empty result is not. Not a data-query tool: use the research.* tools for records.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `text` | string | no | `""` |
+| `domain` | string | no | `""` |
+| `capability` | string | no | `""` |
+| `state` | string | no | `""` |
+| `limit` | integer | no | `25` |
+
+#### `registry.describe_source`
+
+The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `source_id` | string | yes |  |
+
+#### `registry.list_neighbors`
+
+Other MCP servers over DOE-adjacent data — PNNL's NEPA-MCP, the building-simulation servers, NASA's Earthdata server, the gated Genesis-lane deployments — and skill packs such as DOE's Genesis Agent Skills, each with an install command, its kind (server or skill_pack), and a stated reason DOE-MCP does not duplicate it. Use when a question falls outside this project's coverage and a neighbouring server serves it.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `capability` | string | no | `""` |
+
+## doe-power
+
+GCAM generation inputs for offshore wind, geothermal resources and power plants.
+
+Profiles: `power:all`, `power:default` (default)
+
+### Profile `power:all` — 12 tools
+
+| Tool | Arguments |
+|---|---|
+| `power.wind_capacity_factors` | `filters`?, `rows`?, `offset`? |
+| `power.offshore_depth_costs` | `filters`?, `rows`?, `offset`? |
+| `power.generation_efficiency` | `filters`?, `rows`?, `offset`? |
+| `power.carbon_capture` | `filters`?, `rows`?, `offset`? |
+| `power.generator_retirement` | `filters`?, `rows`?, `offset`? |
+| `power.geothermal_curves` | `filters`?, `rows`?, `offset`? |
+| `power.power_financing` | `filters`?, `rows`?, `offset`? |
+| `registry.resolve_org` | `query` |
+| `registry.lab_crosswalk` | `lab`? |
+| `registry.search_sources` | `text`?, `domain`?, `capability`?, `state`?, `limit`? |
+| `registry.describe_source` | `source_id` |
+| `registry.list_neighbors` | `capability`? |
+
+### Profile `power:default` — 9 tools
+
+| Tool | Arguments |
+|---|---|
+| `power.wind_capacity_factors` | `filters`?, `rows`?, `offset`? |
+| `power.offshore_depth_costs` | `filters`?, `rows`?, `offset`? |
+| `power.generation_efficiency` | `filters`?, `rows`?, `offset`? |
+| `power.carbon_capture` | `filters`?, `rows`?, `offset`? |
+| `power.generator_retirement` | `filters`?, `rows`?, `offset`? |
+| `power.geothermal_curves` | `filters`?, `rows`?, `offset`? |
+| `power.power_financing` | `filters`?, `rows`?, `offset`? |
+| `registry.resolve_org` | `query` |
+| `registry.lab_crosswalk` | `lab`? |
+
+#### `power.wind_capacity_factors`
+
+Offshore wind capacity factor assumptions by wind class in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `power.offshore_depth_costs`
+
+Offshore wind capital costs by depth class in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `power.generation_efficiency`
+
+Electricity generation efficiencies by fuel and technology in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `power.carbon_capture`
+
+Carbon capture fractions for electricity technologies in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `power.generator_retirement`
+
+Electricity generator lifetimes and retirement parameters in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `power.geothermal_curves`
+
+Hydrothermal geothermal resource grades and extraction costs by legacy region in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `power.power_financing`
+
+Capital interest rates and payback years by generating technology in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `registry.resolve_org`
+
+Resolve a DOE organization from a name, abbreviation, FORMER name, or domain — including dead ones. Use FIRST whenever a user names a lab or office, because this ecosystem renames things and the old URLs do not redirect. 'NREL' resolves to the National Laboratory of the Rockies and warns that the name is historical; a *.nrel.gov domain resolves the same way and warns that the URL is dead with no forwarding. Same for EERE (now CMEI), FECM (now HGEO), LPO (now EDF), HFTO and BETO (merged into AFFO), IEDO (now ITO), and the dismantled Grid Deployment Office.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `query` | string | yes |  |
+
+#### `registry.lab_crosswalk`
+
+What a DOE national laboratory publishes, across every platform carrying its data. Call with no argument for all seventeen labs and their source counts. Servers here are organized by data domain, not by laboratory, so this is how a lab-oriented question gets answered — and it is the honest way, since several labs' flagship data lives on shared cross-lab platforms rather than their own domains. A lab with zero sources is a gap in this project, not a claim that the lab publishes nothing.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `lab` | string | no | `""` |
+
+#### `registry.search_sources`
+
+Search DOE-MCP's own source registry: which public DOE systems this project knows about, active or not. Use to answer 'what does DOE-MCP cover?' BEFORE assuming coverage, and to explain a gap — every non-active source carries a blocked_reason naming what stands in the way, which is a real answer where an empty result is not. Not a data-query tool: use the research.* tools for records.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `text` | string | no | `""` |
+| `domain` | string | no | `""` |
+| `capability` | string | no | `""` |
+| `state` | string | no | `""` |
+| `limit` | integer | no | `25` |
+
+#### `registry.describe_source`
+
+The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `source_id` | string | yes |  |
+
+#### `registry.list_neighbors`
+
+Other MCP servers over DOE-adjacent data — PNNL's NEPA-MCP, the building-simulation servers, NASA's Earthdata server, the gated Genesis-lane deployments — and skill packs such as DOE's Genesis Agent Skills, each with an install command, its kind (server or skill_pack), and a stated reason DOE-MCP does not duplicate it. Use when a question falls outside this project's coverage and a neighbouring server serves it.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `capability` | string | no | `""` |
+
+## doe-economy
+
+GCAM country and region mappings, demand elasticities and labor assumptions.
+
+Profiles: `economy:all`, `economy:default` (default)
+
+### Profile `economy:all` — 12 tools
+
+| Tool | Arguments |
+|---|---|
+| `economy.country_regions` | `filters`?, `rows`?, `offset`? |
+| `economy.region_names` | `filters`?, `rows`?, `offset`? |
+| `economy.industrial_elasticity` | `filters`?, `rows`?, `offset`? |
+| `economy.building_elasticity` | `filters`?, `rows`?, `offset`? |
+| `economy.transport_elasticity` | `filters`?, `rows`?, `offset`? |
+| `economy.factor_productivity` | `filters`?, `rows`?, `offset`? |
+| `economy.labor_sectors` | `filters`?, `rows`?, `offset`? |
+| `registry.resolve_org` | `query` |
+| `registry.lab_crosswalk` | `lab`? |
+| `registry.search_sources` | `text`?, `domain`?, `capability`?, `state`?, `limit`? |
+| `registry.describe_source` | `source_id` |
+| `registry.list_neighbors` | `capability`? |
+
+### Profile `economy:default` — 9 tools
+
+| Tool | Arguments |
+|---|---|
+| `economy.country_regions` | `filters`?, `rows`?, `offset`? |
+| `economy.region_names` | `filters`?, `rows`?, `offset`? |
+| `economy.industrial_elasticity` | `filters`?, `rows`?, `offset`? |
+| `economy.building_elasticity` | `filters`?, `rows`?, `offset`? |
+| `economy.transport_elasticity` | `filters`?, `rows`?, `offset`? |
+| `economy.factor_productivity` | `filters`?, `rows`?, `offset`? |
+| `economy.labor_sectors` | `filters`?, `rows`?, `offset`? |
+| `registry.resolve_org` | `query` |
+| `registry.lab_crosswalk` | `lab`? |
+
+#### `economy.country_regions`
+
+Country codes and names mapped to legacy regions and numeric region IDs in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `economy.region_names`
+
+Numeric GCAM region identifiers mapped to model region names in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `economy.industrial_elasticity`
+
+Industrial demand income elasticity by per-capita industrial output in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `economy.building_elasticity`
+
+Building service income elasticity by per-capita GDP in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `economy.transport_elasticity`
+
+Transport demand income elasticity by per-capita GDP in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `economy.factor_productivity`
+
+Annual factor productivity change assumptions in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `economy.labor_sectors`
+
+Regional labor mobility and agricultural productivity assumptions in GCAM. Omit filters to see columns; match column names and text values exactly. Blank cells return null.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `registry.resolve_org`
+
+Resolve a DOE organization from a name, abbreviation, FORMER name, or domain — including dead ones. Use FIRST whenever a user names a lab or office, because this ecosystem renames things and the old URLs do not redirect. 'NREL' resolves to the National Laboratory of the Rockies and warns that the name is historical; a *.nrel.gov domain resolves the same way and warns that the URL is dead with no forwarding. Same for EERE (now CMEI), FECM (now HGEO), LPO (now EDF), HFTO and BETO (merged into AFFO), IEDO (now ITO), and the dismantled Grid Deployment Office.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `query` | string | yes |  |
+
+#### `registry.lab_crosswalk`
+
+What a DOE national laboratory publishes, across every platform carrying its data. Call with no argument for all seventeen labs and their source counts. Servers here are organized by data domain, not by laboratory, so this is how a lab-oriented question gets answered — and it is the honest way, since several labs' flagship data lives on shared cross-lab platforms rather than their own domains. A lab with zero sources is a gap in this project, not a claim that the lab publishes nothing.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `lab` | string | no | `""` |
+
+#### `registry.search_sources`
+
+Search DOE-MCP's own source registry: which public DOE systems this project knows about, active or not. Use to answer 'what does DOE-MCP cover?' BEFORE assuming coverage, and to explain a gap — every non-active source carries a blocked_reason naming what stands in the way, which is a real answer where an empty result is not. Not a data-query tool: use the research.* tools for records.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `text` | string | no | `""` |
+| `domain` | string | no | `""` |
+| `capability` | string | no | `""` |
+| `state` | string | no | `""` |
+| `limit` | integer | no | `25` |
+
+#### `registry.describe_source`
+
+The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `source_id` | string | yes |  |
+
+#### `registry.list_neighbors`
+
+Other MCP servers over DOE-adjacent data — PNNL's NEPA-MCP, the building-simulation servers, NASA's Earthdata server, the gated Genesis-lane deployments — and skill packs such as DOE's Genesis Agent Skills, each with an install command, its kind (server or skill_pack), and a stated reason DOE-MCP does not duplicate it. Use when a question falls outside this project's coverage and a neighbouring server serves it.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `capability` | string | no | `""` |
+
 A `?` after an argument in the profile tables marks it optional. Every tool is read-only and returns the provenance envelope described in [the workflow guide](guide.md).

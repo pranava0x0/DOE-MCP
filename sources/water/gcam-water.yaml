@@ -1,0 +1,127 @@
+id: gcam-water
+name: 'GCAM: Water use'
+domain: water
+publisher:
+  steward: pnnl
+  authority_level: primary
+aliases:
+  former_names: []
+  former_domains: []
+labs:
+- pnnl
+capabilities:
+- id: model.water_inputs
+  tool_hint: water.cooling_costs
+adapter:
+  type: gcam_csv
+  base_url: https://raw.githubusercontent.com
+  tables:
+    cooling_costs:
+      url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A23.CoolingSystemCosts.csv
+      columns:
+      - cooling_system
+      - input.capital
+      - '1971'
+      - '2100'
+    cooling_shares:
+      url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A23.CoolingSystemShares_RG3.csv
+      columns:
+      - region_GCAM3
+      - plant_type
+      - cooling_system
+      - water_type
+      - '1971'
+      - '2005'
+      - '2010'
+      - '2015'
+      - '2017'
+      - '2020'
+      - '2100'
+    resource_water_map:
+      url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A227.resource_water_coef_mapping.csv
+      columns:
+      - fuel
+      - supplysector
+      - subsector
+      - technology
+      - minicam.energy.input
+    desalination_costs:
+      url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A71.globaltech_cost.csv
+      columns:
+      - supplysector
+      - subsector
+      - technology
+      - minicam.non.energy.input
+      - '1971'
+      - '2100'
+    desalination_inputs:
+      url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A71.globaltech_coef.csv
+      columns:
+      - supplysector
+      - subsector
+      - technology
+      - minicam.energy.input
+      - '1971'
+      - '2015'
+      - '2017'
+      - '2100'
+    water_distribution:
+      url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/water_td_sectors.csv
+      columns:
+      - water.sector
+      - supplysector
+      - has.desal.input
+    irrigation_inputs:
+      url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A72.globaltech_coef.csv
+      columns:
+      - supplysector
+      - subsector
+      - technology
+      - minicam.energy.input
+      - '1971'
+      - '2015'
+      - '2100'
+    industrial_water_inputs:
+      url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A73.globaltech_coef.csv
+      columns:
+      - supplysector
+      - subsector
+      - technology
+      - minicam.energy.input
+      - '1971'
+      - '2015'
+      - '2100'
+access:
+  mode: anonymous
+  automation_status: public_download
+  tier: thin_proxy
+  terms_url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/LICENSE
+  terms_reviewed_at: '2026-11-09'
+  terms_notes: The GCAM data system distributes these model configuration tables under the Educational
+    Community License 2.0. Keep the publisher's source notes with the values.
+  citation_required: true
+  citation_text: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1,
+    gcamdata. Cite the specific input file and retain its source notes.
+  rate_limit_note: One small file per read; cached for one day.
+freshness:
+  expected_cadence: per release
+  cadence_source: Git commit pinned to the published gcam-v9.1 tag.
+  ttl_hint_seconds: 86400
+coverage:
+  scope: Water use input tables from the Global Change Analysis Model.
+  temporal: Years and currency bases vary by table.
+  dataset_version: GCAM v9.1
+  known_limitations:
+  - Rows are model inputs, not scenario outputs or measurements of current conditions.
+  - GCAM3 region labels and numeric GCAM region IDs use different groupings.
+authority_notes: JGCRI publishes these files as GCAM inputs. Citations in each file identify the sources
+  used to construct them.
+health:
+  probe: gcam_table_rows
+  expect:
+    min_records: 1
+lifecycle:
+  declared_state: active
+  added: '2026-11-09'
+  last_verified: '2026-11-09'
+  verified_by: Codex

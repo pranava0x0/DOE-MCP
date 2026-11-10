@@ -66,3 +66,11 @@ least one is checked; the suite holds both rules.
 | [doe-literature-review](doe-literature-review/SKILL.md) | What DOE has published on a topic, as an evidence table that says how much of the result set it covers and where each record can be read | `doe-research` |
 | [doe-rulemaking-brief](doe-rulemaking-brief/SKILL.md) | DOE's final rules, proposed rules and notices on a topic, with dockets, dates and the FERC documents dropped by scope | `doe-research` |
 | [microbiome-data-finder](microbiome-data-finder/SKILL.md) | Microbiome studies and samples for an environment or a place, and the DOIs that lead to their sequence data | `doe-bio`, `doe-earth` |
+| [trace-soil-carbon](trace-soil-carbon/SKILL.md) | Which recovery time does GCAM assign to Kenya's model region? | `doe-economy`, `doe-land` |
+| [read-geothermal-grades](read-geothermal-grades/SKILL.md) | How much heat input does the model assign to Japan's second hydrothermal grade? | `doe-economy`, `doe-power` |
+| [trace-plant-cooling](trace-plant-cooling/SKILL.md) | Which fresh-water cooling share applies to coal in Germany's legacy model region? | `doe-economy`, `doe-water` |
+| [trace-bioenergy-support](trace-bioenergy-support/SKILL.md) | Which supply preference does the model apply in Brazil? | `doe-economy`, `doe-land` |
+| [trace-labor-mobility](trace-labor-mobility/SKILL.md) | How does GCAM parameterize movement of labor between sectors in Pakistan? | `doe-economy` |
+| [separate-desalination-inputs](separate-desalination-inputs/SKILL.md) | Which electricity input and non-energy cost does GCAM use for reverse osmosis? | `doe-water` |
+| [compare-model-warming-potentials](compare-model-warming-potentials/SKILL.md) | Which 100-year warming potentials did this release use for HFC134a and CF4? | `doe-emissions` |
+| [separate-offshore-wind-classes](separate-offshore-wind-classes/SKILL.md) | What does GCAM assume for wind class c7 and, separately, for deep-water capital cost? | `doe-power` |

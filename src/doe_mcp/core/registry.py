@@ -250,7 +250,8 @@ class Lifecycle(_Strict):
 # in the wrong directory.
 DOMAINS: tuple[str, ...] = ("research", "discovery", "docs", "energy",
                             "energy-tech", "earth", "materials", "nuclear",
-                            "bio", "projects")
+                            "bio", "projects", "water", "land", "emissions",
+                            "power", "economy")
 
 
 class SourceManifest(_Strict):

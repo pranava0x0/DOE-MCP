@@ -1,0 +1,51 @@
+checked:
+- task: 1
+  steps:
+  - tool: economy.country_regions
+    args:
+      filters:
+        iso: jpn
+      rows: 2
+    expect:
+      data.total_matches: 1
+      data.records.0.values.region_GCAM3: Japan
+      evidence:
+        locators: some
+  - tool: power.geothermal_curves
+    args:
+      filters:
+        grade: grade 2
+        region_GCAM3: Japan
+      rows: 2
+    expect:
+      data.total_matches: 1
+      data.records.0.values.available: '0.56582'
+      evidence:
+        locators: some
+- task: 2
+  steps:
+  - tool: power.geothermal_curves
+    args:
+      filters:
+        region_GCAM3: Japan
+        grade: grade 1
+      rows: 2
+    expect:
+      data.total_matches: 1
+      data.records.0.values.available: '0'
+      evidence:
+        locators: some
+- task: 3
+  steps:
+  - tool: power.geothermal_curves
+    args:
+      filters:
+        grade: no-such-class
+    expect:
+      coverage.result: empty
+      coverage.registry: covered
+      data.total_matches: 0
+reader: []
+workflows:
+- task: 1
+  case: japan-geothermal

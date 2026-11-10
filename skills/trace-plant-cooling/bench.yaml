@@ -1,0 +1,55 @@
+checked:
+- task: 1
+  steps:
+  - tool: economy.country_regions
+    args:
+      filters:
+        iso: deu
+      rows: 2
+    expect:
+      data.total_matches: 1
+      data.records.0.values.region_GCAM3: Western Europe
+      evidence:
+        locators: some
+  - tool: water.cooling_shares
+    args:
+      filters:
+        plant_type: coal
+        cooling_system: recirculating
+        water_type: fresh
+        region_GCAM3: Western Europe
+      rows: 2
+    expect:
+      data.total_matches: 1
+      data.records.0.values.2020: '0.64'
+      evidence:
+        locators: some
+- task: 2
+  steps:
+  - tool: water.cooling_shares
+    args:
+      filters:
+        region_GCAM3: Western Europe
+        plant_type: coal
+        cooling_system: once through
+        water_type: fresh
+      rows: 2
+    expect:
+      data.total_matches: 1
+      data.records.0.values.2020: '0.1'
+      evidence:
+        locators: some
+- task: 3
+  steps:
+  - tool: water.cooling_shares
+    args:
+      filters:
+        plant_type: no-such-class
+    expect:
+      coverage.result: empty
+      coverage.registry: covered
+      data.total_matches: 0
+reader: []
+workflows:
+- task: 1
+  case: germany-cooling

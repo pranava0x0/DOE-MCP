@@ -1,0 +1,49 @@
+checked:
+- task: 1
+  steps:
+  - tool: economy.country_regions
+    args:
+      filters:
+        iso: bra
+      rows: 2
+    expect:
+      data.total_matches: 1
+      data.records.0.values.GCAM_region_ID: '7'
+      evidence:
+        locators: some
+  - tool: land.bioenergy_preferences
+    args:
+      filters:
+        GCAM_region_ID: '7'
+      rows: 2
+    expect:
+      data.total_matches: 1
+      data.records.0.values.preference: High
+      evidence:
+        locators: some
+- task: 2
+  steps:
+  - tool: land.bioenergy_preferences
+    args:
+      filters:
+        region: Pakistan
+      rows: 2
+    expect:
+      data.total_matches: 1
+      data.records.0.values.preference: Low
+      evidence:
+        locators: some
+- task: 3
+  steps:
+  - tool: land.bioenergy_preferences
+    args:
+      filters:
+        GCAM_region_ID: no-such-class
+    expect:
+      coverage.result: empty
+      coverage.registry: covered
+      data.total_matches: 0
+reader: []
+workflows:
+- task: 1
+  case: brazil-bioenergy
