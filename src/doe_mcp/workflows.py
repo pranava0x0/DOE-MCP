@@ -12,11 +12,13 @@ from .core.errors import SourceUnavailable
 from .core.registry import DeclaredState
 from . import daymet_package
 from .demo_worksheets import bibliography, csv_text, soil_metadata
+from .gcam_examples import EXAMPLES, run_example
 from .load_baseline import CASE as LOAD_BASELINE, score_load
 from .runtime import RuntimeContext
 from .servers.build import registries
 
 CASES = {
+    **{k: (v.title, v.question) for k, v in EXAMPLES.items()},
     "evidence": ("DOE evidence finder", "Find perovskite solar research and inspect one returned record."),
     "bibliography": ("Perovskite bibliography worksheet", "Which citation fields did DOE PAGES supply for this page of results?"),
     daymet_package.CASE: ("The missing Daymet date", "Why does a six-day request return five daily maximum temperatures?"),
@@ -34,6 +36,7 @@ CASES = {
     "eia": ("CAISO demand briefing", "What are the latest three measured hourly demand values?"),
     "site": ("Rhode Island facility context", "Which sampled wind and solar facilities appear in this inventory?"),
     "earth": ("Environmental study brief", "Find permafrost datasets and inspect modelled weather at Oak Ridge."),
+    "global-climate-archive": ("Find Canadian climate simulations", "What historical near-surface air temperature output does ORNL index for CanESM5?"),
     "materials": ("Materials evidence sheet", "Inspect a computed GaN structure and a separate basis-set example."),
 }
 
@@ -43,6 +46,8 @@ RECORDED_ONLY = {
 }
 
 CASE_SKILLS = {
+    **{k: v.skill for k, v in EXAMPLES.items()},
+    "global-climate-archive": "environmental-study-brief",
     LOAD_BASELINE: "grid-status-brief",
     daymet_package.CASE: "environmental-study-brief",
     "bibliography": "doe-literature-review", "soil-metadata": "microbiome-data-finder",
@@ -105,7 +110,12 @@ async def run_workflow(ctx: RuntimeContext, case: str, *, mode: str = "recorded"
                       "envelope": env.model_dump(mode="json", by_alias=True)})
         return env
 
-    if case in {"evidence", "partial"}:
+    answer = None
+    if case in EXAMPLES:
+        example = EXAMPLES[case]
+        answer = await run_example(example, call)
+        limits.append(example.limit)
+    elif case in {"evidence", "partial"}:
         found = await call("research.search_literature", query="perovskite solar", rows=3)
         sources = {s.id: s.source_id for s in found.provenance}
         evidence = next((e for e in found.evidence
@@ -232,6 +242,15 @@ async def run_workflow(ctx: RuntimeContext, case: str, *, mode: str = "recorded"
         daymet_package.validate_extract(weather.data)
         limits += ["Daymet models the 1 km grid cell around the requested point. These are not station readings.",
                    "The CSV contains only the returned dates. A missing date has no temperature value."]
+    elif case == "global-climate-archive":
+        found = await call("climate.search_cmip", model="CanESM5", experiment="historical",
+                           variable="tas", rows=5)
+        if not found.data["datasets"]:
+            raise SourceUnavailable("No matching CanESM5 metadata to inspect.")
+        first = found.data["datasets"][0]
+        answer = (f"The first returned CanESM5 dataset lists variant {first['variant_label']} "
+                  f"and file version {first['version']}.")
+        limits.append("ORNL indexes model output from multiple institutions. The rows describe files; they contain no temperature readings.")
     elif case == "earth":
         await call("earth.search_datasets", text="permafrost", rows=5)
         await call("earth.get_daymet_point", latitude=35.9313, longitude=-84.3104,
@@ -258,6 +277,7 @@ async def run_workflow(ctx: RuntimeContext, case: str, *, mode: str = "recorded"
                            if mode == "recorded" else "Retrieval timestamps come from the fetch; cached results retain their original time."),
         "fixtures": [f for f in (fixtures or []) if f["file"].removesuffix(".json") in
                      {source["source_id"] for step in steps for source in step["envelope"]["provenance"]}],
+        **({"answer": answer} if answer is not None else {}),
         "limitations": limits,
         "steps": freeze(steps, clock) if mode == "recorded" else steps,
         **({"worksheet": worksheet} if worksheet else {}),

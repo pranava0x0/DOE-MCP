@@ -1,11 +1,36 @@
 # DOE-MCP Examples
 
-Command and tool call examples across DOE-MCP's five shipping servers:
-`doe-research`, `doe-energy-data`, `doe-earth`, `doe-materials` and
-`doe-bio`.
-
 Every tool returns a structured provenance envelope with data, publisher
 citations, coverage metrics, and caveats.
+
+## Global mission examples
+
+| Question | Recorded command | What the answer establishes |
+|---|---|---|
+| Which soil carbon recovery period applies to Kenya? | `doe-mcp demo kenya-soil` | The period assigned to Kenya’s GCAM region. |
+| How much geothermal heat falls in Japan’s second grade? | `doe-mcp demo japan-geothermal` | Modelled heat input in thermal EJ per year. |
+| What cooling share does the model assign to German coal plants? | `doe-mcp demo germany-cooling` | A Western European regional share; the table cannot isolate Germany. |
+| How does the model represent Brazil’s bioenergy support? | `doe-mcp demo brazil-bioenergy` | A preference used to weight supply. |
+| How does labor respond to wages in the Pakistan region? | `doe-mcp demo pakistan-labor` | A mobility parameter, distinct from a count of workers. |
+| What goes into a cubic metre of desalinated water? | `doe-mcp demo desalination-inputs` | Electricity and non-energy cost in separate units. |
+| How do two refrigerant and industrial gas factors compare? | `doe-mcp demo fluorinated-gases` | The warming potentials used in this release and their assessment vintage. |
+| Which wind and depth classes describe an offshore site? | `doe-mcp demo offshore-wind` | Separate assumptions. The tables do not locate a site. |
+| What Canadian climate output can Oak Ridge help locate? | `doe-mcp demo global-climate-archive` | CanESM5 dataset metadata, including ensemble member and file version. |
+
+Each command replays the publisher response without a key. Add `--live`
+to fetch it again or `--output ./evidence` to keep the JSON and evidence CSV.
+For example, to apply the soil walk to another country, first request its
+mapping and then pass the returned numeric region ID to the land server:
+
+```bash
+doe-mcp tools call economy.country_regions --args '{"filters":{"iso":"ind"}}'
+doe-mcp tools call land.soil_timescales --args '{"filters":{"GCAM_region_ID":"17"}}'
+```
+
+The GCAM examples read model inputs. For Genesis Mission methods applied
+to other DOE data, see the [worked examples](../docs/genesis-demo-review.md):
+a BPA load prediction, an NMDC soil metadata check, a Daymet data package
+and an OSTI bibliography. Each has a separate evidence trail.
 
 ---
 

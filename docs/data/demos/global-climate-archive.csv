@@ -1,0 +1,6 @@
+step,tool,source,record_id,locator,effective_at,mode
+1,climate.search_cmip,esgf-search,CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.Amon.tas.gn.v20190429,http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.Amon.tas.gn.v20190429.json,1850-01-16T12:00:00Z,recorded
+1,climate.search_cmip,esgf-search,CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.day.tas.gn.v20190429,http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r12i1p2f1.day.tas.gn.v20190429.json,1850-01-01T12:00:00Z,recorded
+1,climate.search_cmip,esgf-search,CMIP6.CMIP.CCCma.CanESM5.historical.r13i1p2f1.day.tas.gn.v20190429,http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r13i1p2f1.day.tas.gn.v20190429.json,1850-01-01T12:00:00Z,recorded
+1,climate.search_cmip,esgf-search,CMIP6.CMIP.CCCma.CanESM5.historical.r14i1p1f1.Amon.tas.gn.v20190429,http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r14i1p1f1.Amon.tas.gn.v20190429.json,1850-01-16T12:00:00Z,recorded
+1,climate.search_cmip,esgf-search,CMIP6.CMIP.CCCma.CanESM5.historical.r19i1p1f1.day.tas.gn.v20190429,http://cera-www.dkrz.de/WDCC/meta/CMIP6/CMIP6.CMIP.CCCma.CanESM5.historical.r19i1p1f1.day.tas.gn.v20190429.json,1850-01-01T12:00:00Z,recorded

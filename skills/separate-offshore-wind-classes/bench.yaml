@@ -1,0 +1,49 @@
+checked:
+- task: 1
+  steps:
+  - tool: power.wind_capacity_factors
+    args:
+      filters:
+        wind_class: c7
+      rows: 2
+    expect:
+      data.total_matches: 1
+      data.records.0.values.CF: '0.4'
+      evidence:
+        locators: some
+  - tool: power.offshore_depth_costs
+    args:
+      filters:
+        depth_class: deep
+      rows: 2
+    expect:
+      data.total_matches: 1
+      data.records.0.values.capital.overnight: '1370'
+      evidence:
+        locators: some
+- task: 2
+  steps:
+  - tool: power.offshore_depth_costs
+    args:
+      filters:
+        depth_class: shallow
+      rows: 2
+    expect:
+      data.total_matches: 1
+      data.records.0.values.capital.overnight: '1039'
+      evidence:
+        locators: some
+- task: 3
+  steps:
+  - tool: power.wind_capacity_factors
+    args:
+      filters:
+        wind_class: no-such-class
+    expect:
+      coverage.result: empty
+      coverage.registry: covered
+      data.total_matches: 0
+reader: []
+workflows:
+- task: 1
+  case: offshore-wind

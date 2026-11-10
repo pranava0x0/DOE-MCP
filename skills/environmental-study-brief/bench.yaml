@@ -36,6 +36,15 @@ checked:
         any:
           name: tmax
           units: deg c
+- task: 5
+  steps:
+  - tool: climate.search_cmip
+    args: {model: CanESM5, experiment: historical, variable: tas, rows: 5}
+    expect:
+      data.datasets.0.model: CanESM5
+      data.datasets.0.variant_label: r12i1p2f1
+      data.datasets.0.version: '20190429'
+      coverage.pagination: truncated
 reader:
 - 3
 evaluation:
@@ -51,3 +60,5 @@ workflows:
   case: earth
 - task: 4
   case: daymet-calendar
+- task: 5
+  case: global-climate-archive

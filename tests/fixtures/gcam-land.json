@@ -1,0 +1,79 @@
+{
+  "note": "Recorded live from GCAM: Land and agriculture (https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/LICENSE) by tools/record_fixtures.py. Publisher content redistributed under the terms recorded in THIRD_PARTY_DATA.yml.",
+  "recorded_at": "2026-11-10T04:46:57.498065+00:00",
+  "redaction": "Email addresses replaced with redacted@example.invalid and credential values with 'redacted' at record time. Field shapes and lengths are otherwise the publisher's.",
+  "interactions": [
+    {
+      "url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_demand_food_staples.csv",
+      "params": {},
+      "headers": {
+        "content-type": "text/plain; charset=utf-8",
+        "etag": "W/\"f7b0ecf265cf68449567c42b180a757898ce8ada1564eb95b70e1862a120d1be\""
+      },
+      "body": "# File: A_demand_food_staples.csv\n# Title: Final demand (gcam-consumer) info\n# Units: Various\n# Description: Info related to gcam-consumer objects\n# Source: RYC STW and RPL analysis\n# Column types: ccccnnnnnn\n# ----------\ngcam.consumer,nodeInput,prodDmdFnType,staples.food.demand.input,scale.param,self.price.elasticity,cross.price.elasticity,income.elasticity,income.max.term,price.received\nFoodDemand,FoodDemand,food-demand-function,FoodDemand_Staples,1.123707314,-0.000067,-0.003825168,0.067210179,2.773,5.068607742\n"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_demand_food_nonstaples.csv",
+      "params": {},
+      "headers": {
+        "content-type": "text/plain; charset=utf-8",
+        "etag": "W/\"928717f490bf2696e1b3498262b323ca8244a8c2cb317982a6b351c80d041312\""
+      },
+      "body": "# File: A_demand_food_nonstaples.csv\n# Title: Final demand (gcam-consumer) info\n# Units: Various\n# Description: Info related to gcam-consumer objects\n# Source: RYC STW and RPL analysis\n# Column types: cccnnn\n# ----------\ngcam.consumer,nodeInput,non.staples.food.demand.input,scale.param,self.price.elasticity,income.elasticity\nFoodDemand,FoodDemand,FoodDemand_NonStaples,1.297285033,-0.080569246,0.886000498\n"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_soil_time_scale_R.csv",
+      "params": {},
+      "headers": {
+        "content-type": "text/plain; charset=utf-8",
+        "etag": "W/\"af06a6fbb73094cdb21f08523b93f7d7fb8f7a2b8affda6826128b557787f408\""
+      },
+      "body": "# File: A_soil_time_scale_R.csv\n# Title: A_soil_tim_scale_R\n# Units: NA\n# Description: sets the number of years for soil carbon recovery following LUC\n# Original source: NA\n# Column types: ii \n# ----------\nGCAM_region_ID,soilTimeScale\n1,50\n2,25\n3,25\n4,25\n5,25\n6,50\n7,25\n8,75\n9,25\n10,75\n11,50\n12,50\n13,50\n14,50\n15,50\n16,50\n17,25\n18,25\n19,50\n20,25\n21,50\n22,25\n23,200\n24,50\n25,25\n26,25\n27,25\n28,50\n29,25\n30,50\n31,50\n32,25\n"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_forest_mapping.csv",
+      "params": {},
+      "headers": {
+        "content-type": "text/plain; charset=utf-8",
+        "etag": "W/\"f9312b819835b6d02c63508d62b7875b9f7371567d516e84ed907e519079dddd\""
+      },
+      "body": "# File: A_forest_mapping.csv\n# Title: Maps FAO forest products to GCAM commoditties\n# Units: NA\n# Source: Defined by authors\n# Column types: cccn\n# ----------\nitem,GCAM_commodity,GCAM_supplysector,tonnes_to_m3\nSawnwood,sawnwood,sawnwood,1\nVeneer sheets,sawnwood,sawnwood,1\nWood pulp,woodpulp,woodpulp,1\nWood-based panels,sawnwood,sawnwood,1\nIndustrial roundwood,Forest,Forest,1\n"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv",
+      "params": {},
+      "headers": {
+        "content-type": "text/plain; charset=utf-8",
+        "etag": "W/\"b4a61ec46172d8ed75b8a67371ccd5e8db619cd2027f8bb234743defacabc4b3\""
+      },
+      "body": "# File: A_defaultYieldRate.csv\n# Title: Reference improvement rates of each crop's maximum yield trajectory\n# Unit: NA\n# Description: Conservative yield change rates assumptions for crops if FAO estimates are not available for ceratin region-crop and beyond 2050\n# Source: GCAM team assumptions\n# Column types: ciinnnnnnnnnnnnnnn \n# ----------\nGCAM_commodity,2005,2010,2011,2015,2020,2035,2050,2065,2080,2095,2110,2125,2140,2155,2170,2185,2200\nCorn,0,0,0,0,0.0025,0.0025,0.0025,0.0025,0.002,0.0015,0.001,0.001,0.001,0.001,0.001,0.001,0.001\nFiberCrop,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0\nFodderGrass,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0\nFodderHerb,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0\nFruits,0,0,0,0,0.003,0.003,0.003,0.003,0.0025,0.002,0.0015,0.001,0.001,0.001,0.001,0.001,0.001\nLegumes,0,0,0,0,0.003,0.003,0.003,0.003,0.0025,0.002,0.0015,0.001,0.001,0.001,0.001,0.001,0.001\nMiscCrop,0,0,0,0,0.003,0.003,0.003,0.003,0.0025,0.002,0.0015,0.001,0.001,0.001,0.001,0.001,0.001\nNutsSeeds,0,0,0,0,0.003,0.003,0.003,0.003,0.0025,0.002,0.0015,0.001,0.001,0.001,0.001,0.001,0.001\nOilCrop,0,0,0,0,0.005,0.005,0.005,0.005,0.003,0.002,0.001,0.001,0.001,0.001,0.001,0.001,0.001\nOtherGrain,0,0,0,0,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001\nOilPalm,0,0,0,0,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001\nRice,0,0,0,0,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001\nRootTuber,0,0,0,0,0.002,0.002,0.002,0.002,0.0015,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001\nSoybean,0,0,0,0,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001\nSugarCrop,0,0,0,0,0.002,0.002,0.002,0.002,0.0015,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001\nVegetables,0,0,0,0,0.002,0.002,0.002,0.002,0.0015,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001\nWheat,0,0,0,0,0.0015,0.0015,0.0015,0.0015,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001\nbiomass,0,0,0,0,0.002,0.002,0.002,0.002,0.0015,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001\n"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_OilSeed_SecOut.csv",
+      "params": {},
+      "headers": {
+        "content-type": "text/plain; charset=utf-8",
+        "etag": "W/\"44a40cef6119f9ba161a26e718ea744bddcb791ef824144c86c94042b2c75ec2\""
+      },
+      "body": "# File: A_OilSeed_SecOut.csv\n# Title: Oilseed crushing input-output coefficients (kg crop / GJ oil) and secondary output ratios (kg feedcakes / GJ oil)\n# Units: kg / GJ\n# Comments: IOcoef: 1 / OilContent * 25.6 kg / GJ. OilContent = 43.4% for Rapeseed, Sunflower, and 18% for Soybean. SecOutRatio = (IOcoef - 25.6 kg/GJ oil) * (1 - losses). Losses = 4% for soybean, 16% for sunflower, 3% for Rapeseed.\n# Source: Fine et al. 2015, Food losses and waste in the French oilcrops sector. DOI: 10.1051/ocl/2015012\n# Column types: cnn\n# ----------\nCrop,IOcoef,SecOutRatio\nRapeseed,59,32\nSoybean,142.57,112\nSunflower,59,28"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_LandNode_logit_irr.csv",
+      "params": {},
+      "headers": {
+        "content-type": "text/plain; charset=utf-8",
+        "etag": "W/\"9451b7cc3ede81b8e027c6493f09946cbd67a872274a8792f00a160a7dc3194a\""
+      },
+      "body": "# File: A_LandNode_logit_irr.csv\n# Title: A_LandNode_logit_irr\n# Units: NA\n# Description: Logit exponents of land nodes\n# Column types: cnc \n# ----------\nLandNode,logit.exponent,logit.type\nTundra,0,\nRockIceDesert,0,\nUrbanLand,0,\nAgroForestLand,1.75,\nAllPastureLand,2,\nAgroForest_NonPasture,0.75,\nAllForestLand,1.25,\nGrassShrubLand,0.05,\nCropLand,1.75,\nCornC4,0.875,\nFiberCrop,0.875,\nFodderGrass,0.875,\nFodderHerb,0.875,\nFodderHerbC4,0.875,\nFruits,0.875,\nFruitsTree,0.875,\nLegumes,0.875,\nMiscCrop,0.875,\nMiscCropTree,0.875,\nNutsSeeds,0.875,\nNutsSeedsTree,0.875,\nOilCrop,0.875,\nOilCropTree,0.875,\nOtherGrain,0.875,\nOtherGrainC4,0.875,\nOilPalmTree,0.875,\nRice,0.875,\nRootTuber,0.875,\nSoybean,0.875,\nSugarCrop,0.875,\nSugarCropC4,0.875,\nVegetables,0.875,\nWheat,0.875,\nbiomassGrass,0.875,\nbiomassTree,0.875,\n"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_biomassSupplyShare_R.csv",
+      "params": {},
+      "headers": {
+        "content-type": "text/plain; charset=utf-8",
+        "etag": "W/\"dc22cb17f20bccdab87b935f0b9fa6c340499caa96bf4ddb27093783d20e0ca5\""
+      },
+      "body": "# File: A_biomassSupplyShare_R.csv\n# Title: Whether a region currently has bioenergy supports\n# Units: NA\n# Comments: These data include preference assumptions to adjust supply side share weights, possibly by region. Regions not included here are set to USA's value. Only the preference column is used\n# Source: NA\n# Column types: iccc\n# ----------\nGCAM_region_ID,region,preference,preference_alternative\n1,USA,High,High\n2,Africa_Eastern,Low,Low\n3,Africa_Northern,Low,Low\n4,Africa_Southern,Low,Low\n5,Africa_Western,Low,Low\n6,Australia_NZ,High,High\n7,Brazil,High,High\n8,Canada,Low,High\n9,Central America and Caribbean,Low,Low\n10,Central Asia,Low,Low\n11,China,High,High\n12,EU-12,High,High\n13,EU-15,Low,High\n14,Ukraine,Low,High\n15,Europe_Non_EU,High,High\n16,European Free Trade Association,Low,High\n17,India,Low,Low\n18,Indonesia,Low,Low\n19,Japan,Low,Low\n20,Mexico,Low,Low\n21,Middle East,Low,Low\n22,Pakistan,Low,Low\n23,Russia,Low,Low\n24,South Africa,Low,Low\n25,South America_Northern,Low,Low\n26,South America_Southern,Low,Low\n27,South Asia,Low,Low\n28,South Korea,Low,Low\n29,Southeast Asia,Low,Low\n30,Taiwan,Low,Low\n31,Argentina,High,High\n32,Colombia,Low,Low\n"
+    }
+  ]
+}

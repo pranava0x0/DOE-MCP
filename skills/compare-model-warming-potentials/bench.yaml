@@ -1,0 +1,49 @@
+checked:
+- task: 1
+  steps:
+  - tool: emissions.warming_potentials
+    args:
+      filters:
+        Gas: HFC134a
+      rows: 2
+    expect:
+      data.total_matches: 1
+      data.records.0.values.GWP: '1430'
+      evidence:
+        locators: some
+  - tool: emissions.warming_potentials
+    args:
+      filters:
+        Gas: CF4
+      rows: 2
+    expect:
+      data.total_matches: 1
+      data.records.0.values.GWP: '7390'
+      evidence:
+        locators: some
+- task: 2
+  steps:
+  - tool: emissions.warming_potentials
+    args:
+      filters:
+        Gas: HFC32
+      rows: 2
+    expect:
+      data.total_matches: 1
+      data.records.0.values.GWP: '675'
+      evidence:
+        locators: some
+- task: 3
+  steps:
+  - tool: emissions.warming_potentials
+    args:
+      filters:
+        Gas: no-such-class
+    expect:
+      coverage.result: empty
+      coverage.registry: covered
+      data.total_matches: 0
+reader: []
+workflows:
+- task: 1
+  case: fluorinated-gases

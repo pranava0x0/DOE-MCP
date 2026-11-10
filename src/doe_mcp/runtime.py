@@ -19,6 +19,7 @@ from .adapters.facility_status import FacilityStatusAdapter
 from .adapters.federal_register import FederalRegisterAdapter
 from .adapters.fueleconomy import FuelEconomyAdapter
 from .adapters.json_document import JsonDocumentAdapter
+from .adapters.gcam import GcamAdapter
 from .adapters.nmdc import NmdcAdapter
 from .adapters.opendatasoft import OpenDataSoftAdapter
 from .adapters.optimade import OptimadeAdapter
@@ -83,6 +84,7 @@ class RuntimeContext:
     optimade: OptimadeAdapter
     basis_sets: BasisSetExchangeAdapter
     facility_status: FacilityStatusAdapter
+    gcam: GcamAdapter
     nmdc: NmdcAdapter
     server_name: str = "doe-mcp"
     server_version: str = __version__

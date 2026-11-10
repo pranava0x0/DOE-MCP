@@ -1,0 +1,299 @@
+{
+  "format_version": "1",
+  "case": "fluorinated-gases",
+  "title": "Compare two fluorinated gases",
+  "question": "Which 100-year warming potentials did this release use for HFC134a and CF4?",
+  "mode": "recorded",
+  "simulation": false,
+  "registry_revision": "2026-11-09",
+  "generated_at": null,
+  "replay_clock": "2026-11-09T00:00:00Z",
+  "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
+  "fixtures": [
+    {
+      "file": "gcam-emissions.json",
+      "sha256": "7f582259a874c533a6fe55f65d0c2e0936e84ea1c500e9f9b7b186868315bacd",
+      "captured_at": "2026-11-10T04:46:57.828491+00:00"
+    }
+  ],
+  "answer": "GCAM uses 100-year warming potentials of 1430 for HFC134a and 7390 for CF4.",
+  "limitations": [
+    "The source identifies the 2007 IPCC assessment. These factors alone do not quantify emissions."
+  ],
+  "steps": [
+    {
+      "tool": "emissions.warming_potentials",
+      "args": {
+        "filters": {
+          "Gas": "HFC134a"
+        },
+        "rows": 2
+      },
+      "envelope": {
+        "data": {
+          "table": "warming_potentials",
+          "columns": [
+            "Gas",
+            "HFC_PFC",
+            "GWP"
+          ],
+          "records": [
+            {
+              "row_number": 4,
+              "values": {
+                "Gas": "HFC134a",
+                "HFC_PFC": "HFC",
+                "GWP": "1430"
+              },
+              "evidence_ref": "evidence_01"
+            }
+          ],
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/emissions/A41.GWP.csv",
+          "source_notes": [
+            "File: A41.GWP.csv",
+            "Title: Global warming potential values for fgases",
+            "Units: tonnes",
+            "Source: 2007 IPCC AR4 p212",
+            "Description: The global warming potential of Fgases over a 100-year time horizon",
+            "Column types: cci",
+            "----------"
+          ],
+          "filters": {
+            "Gas": "HFC134a"
+          },
+          "offset": 0,
+          "record_count": 1,
+          "total_matches": 1,
+          "table_rows": 14,
+          "release": "GCAM v9.1"
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "gcam-emissions",
+            "steward": "Pacific Northwest National Laboratory",
+            "system": "GCAM: Emissions",
+            "dataset": "A41.GWP.csv",
+            "dataset_version": "GCAM v9.1",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "data row 4",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/emissions/A41.GWP.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "gcam-emissions"
+          ],
+          "known_limitations": [
+            "Rows are model inputs, not scenario outputs or measurements of current conditions.",
+            "GCAM3 region labels and numeric GCAM region IDs use different groupings."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+            "source_id": "gcam-emissions"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "emissions.warming_potentials",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-09",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "emissions.warming_potentials",
+      "args": {
+        "filters": {
+          "Gas": "CF4"
+        },
+        "rows": 2
+      },
+      "envelope": {
+        "data": {
+          "table": "warming_potentials",
+          "columns": [
+            "Gas",
+            "HFC_PFC",
+            "GWP"
+          ],
+          "records": [
+            {
+              "row_number": 2,
+              "values": {
+                "Gas": "CF4",
+                "HFC_PFC": "PFC",
+                "GWP": "7390"
+              },
+              "evidence_ref": "evidence_01"
+            }
+          ],
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/emissions/A41.GWP.csv",
+          "source_notes": [
+            "File: A41.GWP.csv",
+            "Title: Global warming potential values for fgases",
+            "Units: tonnes",
+            "Source: 2007 IPCC AR4 p212",
+            "Description: The global warming potential of Fgases over a 100-year time horizon",
+            "Column types: cci",
+            "----------"
+          ],
+          "filters": {
+            "Gas": "CF4"
+          },
+          "offset": 0,
+          "record_count": 1,
+          "total_matches": 1,
+          "table_rows": 14,
+          "release": "GCAM v9.1"
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "gcam-emissions",
+            "steward": "Pacific Northwest National Laboratory",
+            "system": "GCAM: Emissions",
+            "dataset": "A41.GWP.csv",
+            "dataset_version": "GCAM v9.1",
+            "authority_level": "primary",
+            "access_path": "cache",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "data row 2",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/emissions/A41.GWP.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "gcam-emissions"
+          ],
+          "known_limitations": [
+            "Rows are model inputs, not scenario outputs or measurements of current conditions.",
+            "GCAM3 region labels and numeric GCAM region IDs use different groupings."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+            "source_id": "gcam-emissions"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "emissions.warming_potentials",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-09",
+          "request_id": "recorded-workflow"
+        }
+      }
+    }
+  ]
+}

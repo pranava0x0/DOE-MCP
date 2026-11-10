@@ -1,0 +1,3 @@
+step,tool,source,record_id,locator,effective_at,mode
+1,emissions.warming_potentials,gcam-emissions,data row 4,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/emissions/A41.GWP.csv,,recorded
+2,emissions.warming_potentials,gcam-emissions,data row 2,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/emissions/A41.GWP.csv,,recorded

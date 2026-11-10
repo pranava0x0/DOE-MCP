@@ -70,6 +70,11 @@ doe-energy-data = "doe_mcp.servers.energy_data:main"
 doe-earth = "doe_mcp.servers.earth:main"
 doe-materials = "doe_mcp.servers.materials:main"
 doe-bio = "doe_mcp.servers.bio:main"
+doe-water = "doe_mcp.servers.water:main"
+doe-land = "doe_mcp.servers.land:main"
+doe-emissions = "doe_mcp.servers.emissions:main"
+doe-power = "doe_mcp.servers.power:main"
+doe-economy = "doe_mcp.servers.economy:main"
 
 [build-system]
 requires = ["hatchling"]
@@ -83,6 +88,7 @@ packages = ["src/doe_mcp"]
 "schemas" = "doe_mcp/_schemas"
 "skills" = "doe_mcp/_skills"
 "tests/fixtures" = "doe_mcp/_fixtures"
+"licenses" = "doe_mcp/licenses"
 "THIRD_PARTY_DATA.yml" = "doe_mcp/THIRD_PARTY_DATA.yml"
 
 [tool.pytest.ini_options]

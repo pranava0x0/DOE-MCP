@@ -104,6 +104,8 @@ def point_map(steps) -> str:
 def outcome(report) -> str:
     case = report['case']
     data = report['steps'][0]['envelope']['data']
+    if 'answer' in report:
+        return report['answer']
     if case in {'evidence', 'partial'}:
         record = report['steps'][1]['envelope']['data']['record']
         return f"{data['record_count']} distinct records returned. Followed record {record['id']}: {strip_inline_markup(record['title'])}."
@@ -260,6 +262,17 @@ def step_view(step, number, case="demo") -> str:
         extra=series_chart([(r['timestamp'],r['values'].get('Load')) for r in data['intervals']], 'BPA load · Pacific Time', 'MW')+f'<p>{esc(data.get("pending_note",""))}</p>'
         extra += (f"<p>Across the file through the latest measurement, {data['populated_intervals']} of "
                   f"{data['window_intervals']} slots contain readings. Empty slots: {data['gap_intervals']}.</p>")
+    if step['tool'] == 'climate.search_cmip':
+        extra = table(['Model', 'Experiment', 'Variant', 'Version', 'File units', 'Data node'],
+                      [(r['model'], r['experiment'], r['variant_label'], r['version'],
+                        ', '.join(r['variable_units']), r['data_node']) for r in data['datasets']],
+                      'CMIP6 metadata from the ORNL index')
+    if 'source_notes' in data and 'columns' in data:
+        cols = data['columns']
+        extra = table(cols, [[r['values'][c] for c in cols] for r in records], data['release'])
+        extra += '<p>GCAM data system, Copyright 2019 Battelle Memorial Institute. <a href="GCAM-ECL-2.0.txt">Educational Community License 2.0</a>.</p>'
+        extra += '<details><summary>Publisher table notes and units</summary><ul>' + ''.join(
+            '<li>'+esc(note)+'</li>' for note in data['source_notes'] if note.strip('- ')) + '</ul></details>'
     if step['tool']=='energy.grid_status':
         extra=table(['Period','Demand','Units'],[(r.get('period'),r.get('value'),r.get('value-units',r.get('units',data.get('units','Unknown')))) for r in data.get('observations',[])], 'CISO measured demand; publisher periods')
     if step['tool']=='earth.get_daymet_point':

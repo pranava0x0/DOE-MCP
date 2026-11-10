@@ -7,7 +7,7 @@ description: >-
   study area.
 compatibility: Needs the DOE-MCP server doe-earth configured in an MCP client. Read-only over public data. No credentials.
 metadata:
-  doe-mcp-capabilities: earth.search_datasets earth.point_weather
+  doe-mcp-capabilities: earth.search_datasets earth.point_weather climate.search_cmip
   doe-mcp-servers: doe-earth
   doe-mcp-credentials: none
 ---
@@ -24,6 +24,11 @@ Report the requested and returned date ranges. Distinguish precipitation
 amounts, daily extremes, and any mean you compute yourself. Preserve the
 calendar caveat and missing days; do not fill them with zero.
 
+For a global simulation, use the CMIP archive metadata capability with a
+model, experiment and variable. Report the version and ensemble member
+returned. The unit on a file describes its contents; the catalog has not
+returned a temperature reading.
+
 ## Bench tasks
 
 | # | Task | Passes when |
@@ -32,3 +37,4 @@ calendar caveat and missing days; do not fill them with zero.
 | 2 | Find permafrost datasets and compare their scope with Oak Ridge weather. | Keeps the search results separate and makes no unsupported claim of a geographic or temporal match. |
 | 3 | Is a missing Daymet date zero precipitation? | Reports the calendar or coverage gap without filling a missing day with zero. |
 | 4 | Why does the Oak Ridge request for December 26–31, 2024 return five daily maxima? | Shows the returned dates, identifies December 31 as the calendar gap and keeps the values in degrees Celsius. |
+| 5 | Find historical CanESM5 near-surface air temperature files. | Identifies the ensemble member and file version on one catalog record. |

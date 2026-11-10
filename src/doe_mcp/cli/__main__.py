@@ -261,6 +261,10 @@ async def _probe(ctx: RuntimeContext, source_id: str) -> int | None:
         return page.data_available
     if kind == "basis_sets":
         return (await ctx.basis_sets.catalog(manifest)).value.total
+    if kind == "gcam_csv":
+        manifest = ctx.sources.require_active(source_id)
+        name = next(iter(ctx.gcam.params_for(manifest).tables))
+        return len((await ctx.gcam.read(manifest, name)).value.rows)
     if kind == "nmdc":
         # The collection is read whole, so the count is the collection's
         # size and the manifest's floor is checked against all of it.
@@ -534,8 +538,7 @@ def cmd_tools_call(args: argparse.Namespace) -> int:
 
     if target_profile is None:
         # Auto-detect profile: first check research:all, then check each server's :all profile.
-        candidate_profiles = ["research:all", "energy:all", "earth:all",
-                              "materials:all", "bio:all"]
+        candidate_profiles = [p for p in PROFILES if p.endswith(":all")]
         for cand in candidate_profiles:
             specs = {s.name: s for s in expand_profile(cand, all_regs)}
             if args.tool in specs:

@@ -180,6 +180,17 @@ async def worked_examples(ctx) -> list[dict]:
          bio.search_biosamples(ctx, ecosystem_type="Soil",
                                place="washington", rows=5)),
     ]
+    from doe_mcp.gcam_examples import EXAMPLES
+    from doe_mcp.workflows import tool_spec
+    for tool, filters, why in [
+        ("economy.country_regions", {"iso": "ken"}, "Which GCAM region contains Kenya?"),
+        ("power.geothermal_curves", {"region_GCAM3": "Japan", "grade": "grade 2"}, EXAMPLES["japan-geothermal"].question),
+        ("water.desalination_costs", {"technology": "reverse osmosis"}, "Read the non-energy cost of reverse osmosis."),
+        ("land.bioenergy_preferences", {"region": "Brazil"}, EXAMPLES["brazil-bioenergy"].question),
+        ("emissions.warming_potentials", {"Gas": "CF4"}, "Which warming potential does GCAM use for CF4?"),
+    ]:
+        domain = tool.split(".")[0]
+        plans.append((tool, "doe-" + domain, why, tool_spec(tool).fn(ctx, filters=filters)))
     for tool, server, why, coro in plans:
         try:
             env = await coro
@@ -332,8 +343,8 @@ def build_data(with_fixtures: bool) -> dict:
         "repository": e.repository, "tool_count": e.tool_count,
     } for e in catalog.all()]
 
-    total_tools = len({t["name"] for tools in tools_by_server.values()
-                       for t in tools})
+    total_tools = len({spec.name for profile in PROFILES
+                       for spec in expand_profile(profile, registries())})
     data = {
         "version": __version__,
         "registry_revision": registry.revision,
@@ -408,6 +419,8 @@ def render_readme_status(data: dict) -> str:
         for src in queried if not src["fixture"])
     rows = [
         ("Servers shipping", tools),
+        ("Distinct tools across shipping profiles", c["tools"]),
+        ("Skills with bench tasks", len(data["skills"])),
         ("Registry", f"{c['sources']} source manifests, {c['active']} active, "
                      f"{c['organizations']} organizations ({c['labs']} "
                      f"national laboratories), {c['neighbors_phrase']}"),
@@ -541,6 +554,8 @@ async def write_workflows():
     from doe_mcp.replay import fixture_manifest, load_replay_context
     from doe_mcp.workflows import CASES, run_workflow, write_report
     from render_workflows import render as render_workflows
+    from shutil import copyfile
+    copyfile(ROOT / "licenses" / "GCAM-ECL-2.0.txt", DOCS / "GCAM-ECL-2.0.txt")
     output = DOCS / "data" / "demos"
     output.mkdir(parents=True, exist_ok=True)
     reports = []

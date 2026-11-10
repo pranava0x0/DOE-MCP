@@ -1,0 +1,50 @@
+checked:
+- task: 1
+  steps:
+  - tool: water.desalination_inputs
+    args:
+      filters:
+        technology: reverse osmosis
+        minicam.energy.input: elect_td_ind
+      rows: 2
+    expect:
+      data.total_matches: 1
+      data.records.0.values.2100: '0.0063'
+      evidence:
+        locators: some
+  - tool: water.desalination_costs
+    args:
+      filters:
+        technology: reverse osmosis
+      rows: 2
+    expect:
+      data.total_matches: 1
+      data.records.0.values.2100: '0.38'
+      evidence:
+        locators: some
+- task: 2
+  steps:
+  - tool: water.irrigation_inputs
+    args:
+      filters:
+        technology: electricity
+      rows: 2
+    expect:
+      data.total_matches: 1
+      data.records.0.values.2100: '0.00028'
+      evidence:
+        locators: some
+- task: 3
+  steps:
+  - tool: water.desalination_inputs
+    args:
+      filters:
+        technology: no-such-class
+    expect:
+      coverage.result: empty
+      coverage.registry: covered
+      data.total_matches: 0
+reader: []
+workflows:
+- task: 1
+  case: desalination-inputs

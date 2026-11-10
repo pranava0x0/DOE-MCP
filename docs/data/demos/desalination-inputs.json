@@ -1,0 +1,313 @@
+{
+  "format_version": "1",
+  "case": "desalination-inputs",
+  "title": "The energy cost of reverse osmosis",
+  "question": "Which electricity input and non-energy cost does GCAM use for reverse osmosis?",
+  "mode": "recorded",
+  "simulation": false,
+  "registry_revision": "2026-11-09",
+  "generated_at": null,
+  "replay_clock": "2026-11-09T00:00:00Z",
+  "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
+  "fixtures": [
+    {
+      "file": "gcam-water.json",
+      "sha256": "ecd273d3b6eeea1cd569b2b70ef51ca0ef203bb2233d4c32f4eebab9c2947869",
+      "captured_at": "2026-11-10T04:46:57.016956+00:00"
+    }
+  ],
+  "answer": "For 2100 the reverse osmosis inputs are 0.0063 GJ of electricity and 0.38 in 1975 US dollars per cubic metre.",
+  "limitations": [
+    "These inputs have different units. Converting them to a total cost requires an electricity price."
+  ],
+  "steps": [
+    {
+      "tool": "water.desalination_inputs",
+      "args": {
+        "filters": {
+          "technology": "reverse osmosis",
+          "minicam.energy.input": "elect_td_ind"
+        },
+        "rows": 2
+      },
+      "envelope": {
+        "data": {
+          "table": "desalination_inputs",
+          "columns": [
+            "supplysector",
+            "subsector",
+            "technology",
+            "minicam.energy.input",
+            "1971",
+            "2015",
+            "2017",
+            "2100"
+          ],
+          "records": [
+            {
+              "row_number": 1,
+              "values": {
+                "supplysector": "desalinated water",
+                "subsector": "electricity",
+                "technology": "reverse osmosis",
+                "minicam.energy.input": "elect_td_ind",
+                "1971": "0.0432",
+                "2015": "0.0099",
+                "2017": "0.0099",
+                "2100": "0.0063"
+              },
+              "evidence_ref": "evidence_01"
+            }
+          ],
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A71.globaltech_coef.csv",
+          "source_notes": [
+            "File: A71.globaltech_coef.csv",
+            "Title: Desalination energy-for-water coefficients",
+            "Units: GJ of energy per cubic meter of water (GJ/m3)",
+            "Source: Liu et al. 2016. DOI: 10.1021/acs.est.6b01065",
+            "Column types: ccccnnnn"
+          ],
+          "filters": {
+            "technology": "reverse osmosis",
+            "minicam.energy.input": "elect_td_ind"
+          },
+          "offset": 0,
+          "record_count": 1,
+          "total_matches": 1,
+          "table_rows": 6,
+          "release": "GCAM v9.1"
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "gcam-water",
+            "steward": "Pacific Northwest National Laboratory",
+            "system": "GCAM: Water use",
+            "dataset": "A71.globaltech_coef.csv",
+            "dataset_version": "GCAM v9.1",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "data row 1",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A71.globaltech_coef.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "gcam-water"
+          ],
+          "known_limitations": [
+            "Rows are model inputs, not scenario outputs or measurements of current conditions.",
+            "GCAM3 region labels and numeric GCAM region IDs use different groupings."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+            "source_id": "gcam-water"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "water.desalination_inputs",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-09",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "water.desalination_costs",
+      "args": {
+        "filters": {
+          "technology": "reverse osmosis"
+        },
+        "rows": 2
+      },
+      "envelope": {
+        "data": {
+          "table": "desalination_costs",
+          "columns": [
+            "supplysector",
+            "subsector",
+            "technology",
+            "minicam.non.energy.input",
+            "1971",
+            "2100"
+          ],
+          "records": [
+            {
+              "row_number": 1,
+              "values": {
+                "supplysector": "desalinated water",
+                "subsector": "electricity",
+                "technology": "reverse osmosis",
+                "minicam.non.energy.input": "non-energy",
+                "1971": "0.38",
+                "2100": "0.38"
+              },
+              "evidence_ref": "evidence_01"
+            }
+          ],
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A71.globaltech_cost.csv",
+          "source_notes": [
+            "File: A71.globaltech_cost.csv",
+            "Title: Desalination non-energy costs",
+            "Units: 1975$ per cubic meter of desalinated water (1975$/m3)",
+            "Source: RO tech cost estimated as total costs (about $2400/acre-foot, in 2016 dollars) minus fuel costs (36%), from CA Dept of Water Resources 2016. https://water.ca.gov/-/media/DWR-Website/Web-Pages/Programs/California-Water-Plan/Docs/RMS/2016/09_Desalination_July2016.pdf",
+            "Column types: ccccnn"
+          ],
+          "filters": {
+            "technology": "reverse osmosis"
+          },
+          "offset": 0,
+          "record_count": 1,
+          "total_matches": 1,
+          "table_rows": 3,
+          "release": "GCAM v9.1"
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "gcam-water",
+            "steward": "Pacific Northwest National Laboratory",
+            "system": "GCAM: Water use",
+            "dataset": "A71.globaltech_cost.csv",
+            "dataset_version": "GCAM v9.1",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "data row 1",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A71.globaltech_cost.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "gcam-water"
+          ],
+          "known_limitations": [
+            "Rows are model inputs, not scenario outputs or measurements of current conditions.",
+            "GCAM3 region labels and numeric GCAM region IDs use different groupings."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+            "source_id": "gcam-water"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "water.desalination_costs",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-09",
+          "request_id": "recorded-workflow"
+        }
+      }
+    }
+  ]
+}

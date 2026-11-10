@@ -462,7 +462,11 @@ reachable keyless.</p>
 """
 
 
+from doe_mcp.gcam_examples import EXAMPLES  # noqa: E402
+
 DEMO_CARDS = [
+    *((k, v.title, v.question, "GCAM model inputs") for k, v in EXAMPLES.items()),
+    ("global-climate-archive", "Find Canadian climate simulations", "Inspect historical CanESM5 temperature dataset versions and ensemble members in Oak Ridge's federation index.", "CMIP6 metadata"),
     ("evidence", "Trace a research claim", "Search perovskite solar literature, follow a returned record, and see where the search is incomplete.", "Recorded evidence"),
     ("bibliography", "Prepare a perovskite bibliography", "Download a DOE PAGES citation worksheet. See which author lists were shortened before you cite a paper.", "Genesis: literature-search"),
     ("daymet-calendar", "Inspect the missing Daymet date", "Download daily maximum temperatures near Oak Ridge and the Croissant file describing their dates, units and checksum.", "Genesis: croissant-validator"),

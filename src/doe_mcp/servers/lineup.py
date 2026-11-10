@@ -252,6 +252,18 @@ SERVER_LINEUP: tuple[ServerSpec, ...] = (
                      "them. The Federal Register slice did not wait for it: "
                      "it needs no crawler and ships in doe-research as "
                      "docs.search_rulemakings and docs.get_rulemaking.")),
+    *(ServerSpec(name="doe-" + key, key=key, status="shipping",
+                 default_profile=key + ":default",
+                 description=description,
+                 instructions=(description + " Report the release, units and source notes. "
+                               "These are GCAM inputs, not measured conditions or forecasts. "
+                               + COVERAGE_RULE + " " + UNTRUSTED_CONTENT_RULE + " " + NON_AFFILIATION))
+      for key, description in (
+          ("water", "GCAM water inputs for power plant cooling, irrigation and desalination."),
+          ("land", "GCAM land inputs for crop yields, soil carbon and food demand."),
+          ("emissions", "GCAM emissions inputs for fluorinated gases, pollution control and scenario comparisons."),
+          ("power", "GCAM generation inputs for offshore wind, geothermal resources and power plants."),
+          ("economy", "GCAM country and region mappings, demand elasticities and labor assumptions."))),
 )
 
 

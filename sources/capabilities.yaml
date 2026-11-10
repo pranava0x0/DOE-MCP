@@ -254,3 +254,18 @@ capabilities:
     description: >
       Find quantum-chemistry basis sets by name, family, role, or the
       elements they cover.
+
+  - id: model.water_inputs
+    description: Read water use assumptions and mappings from a released global change model.
+
+  - id: model.land_inputs
+    description: Read land and agriculture assumptions and mappings from a released global change model.
+
+  - id: model.emissions_inputs
+    description: Read emissions assumptions and mappings from a released global change model.
+
+  - id: model.power_inputs
+    description: Read power technology assumptions and mappings from a released global change model.
+
+  - id: model.economy_inputs
+    description: Read regional economics assumptions and mappings from a released global change model.

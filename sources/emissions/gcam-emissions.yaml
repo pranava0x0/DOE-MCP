@@ -1,0 +1,135 @@
+id: gcam-emissions
+name: 'GCAM: Emissions'
+domain: emissions
+publisher:
+  steward: pnnl
+  authority_level: primary
+aliases:
+  former_names: []
+  former_domains: []
+labs:
+- pnnl
+capabilities:
+- id: model.emissions_inputs
+  tool_hint: emissions.warming_potentials
+adapter:
+  type: gcam_csv
+  base_url: https://raw.githubusercontent.com
+  tables:
+    warming_potentials:
+      url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/emissions/A41.GWP.csv
+      columns:
+      - Gas
+      - HFC_PFC
+      - GWP
+    hydrogen_drivers:
+      url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/emissions/A41.H2_globaltech_input_driver.csv
+      columns:
+      - supplysector
+      - subsector
+      - technology
+      - input.name
+    technology_coefficients:
+      url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/emissions/A41.tech_coeff.csv
+      columns:
+      - supplysector
+      - subsector
+      - stub.technology
+      - SO2
+      - NOx
+      - CO
+      - CH4
+      - N2O
+      - BC
+      - OC
+      - NMVOC
+      - exception
+      - exception_tech
+      - may.be.historic
+    farm_reductions:
+      url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/emissions/A11.max_reduction.csv
+      columns:
+      - AgSupplySector
+      - max.reduction
+    waste_reductions:
+      url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/emissions/A32.max_reduction.csv
+      columns:
+      - supplysector
+      - subsector
+      - stub.technology
+      - SO2
+      - NOx
+      - CO
+      - BC
+      - OC
+      - NMVOC
+    pollutant_reductions:
+      url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/emissions/A51.max_reduction.csv
+      columns:
+      - supplysector
+      - subsector
+      - stub.technology
+      - SO2
+      - NOx
+      - CO
+      - BC
+      - OC
+      - NMVOC
+    pollutant_floors:
+      url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/emissions/A51.min_coeff.csv
+      columns:
+      - supplysector
+      - subsector
+      - stub.technology
+      - SO2
+      - NOx
+      - CO
+      - BC
+      - OC
+      - NMVOC
+    scenario_factors:
+      url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/emissions/A61_emfact_rules.csv
+      columns:
+      - SSP_group
+      - region_grouping
+      - policy
+      - year
+      - multiplier_scenario
+      - multiplier_year
+      - multiplier
+      - marker_region
+      - min
+access:
+  mode: anonymous
+  automation_status: public_download
+  tier: thin_proxy
+  terms_url: https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/LICENSE
+  terms_reviewed_at: '2026-11-09'
+  terms_notes: The GCAM data system distributes these model configuration tables under the Educational
+    Community License 2.0. Keep the publisher's source notes with the values.
+  citation_required: true
+  citation_text: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1,
+    gcamdata. Cite the specific input file and retain its source notes.
+  rate_limit_note: One small file per read; cached for one day.
+freshness:
+  expected_cadence: per release
+  cadence_source: Git commit pinned to the published gcam-v9.1 tag.
+  ttl_hint_seconds: 86400
+coverage:
+  scope: Emissions input tables from the Global Change Analysis Model.
+  temporal: Years and currency bases vary by table.
+  dataset_version: GCAM v9.1
+  known_limitations:
+  - Rows are model inputs, not scenario outputs or measurements of current conditions.
+  - GCAM3 region labels and numeric GCAM region IDs use different groupings.
+authority_notes: JGCRI publishes these files as GCAM inputs. Citations in each file identify the sources
+  used to construct them.
+health:
+  probe: gcam_table_rows
+  expect:
+    min_records: 1
+lifecycle:
+  declared_state: active
+  added: '2026-11-09'
+  last_verified: '2026-11-09'
+  verified_by: Codex

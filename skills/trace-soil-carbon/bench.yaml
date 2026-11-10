@@ -1,0 +1,49 @@
+checked:
+- task: 1
+  steps:
+  - tool: economy.country_regions
+    args:
+      filters:
+        iso: ken
+      rows: 2
+    expect:
+      data.total_matches: 1
+      data.records.0.values.GCAM_region_ID: '2'
+      evidence:
+        locators: some
+  - tool: land.soil_timescales
+    args:
+      filters:
+        GCAM_region_ID: '2'
+      rows: 2
+    expect:
+      data.total_matches: 1
+      data.records.0.values.soilTimeScale: '25'
+      evidence:
+        locators: some
+- task: 2
+  steps:
+  - tool: land.soil_timescales
+    args:
+      filters:
+        GCAM_region_ID: '1'
+      rows: 2
+    expect:
+      data.total_matches: 1
+      data.records.0.values.soilTimeScale: '50'
+      evidence:
+        locators: some
+- task: 3
+  steps:
+  - tool: land.soil_timescales
+    args:
+      filters:
+        GCAM_region_ID: no-such-class
+    expect:
+      coverage.result: empty
+      coverage.registry: covered
+      data.total_matches: 0
+reader: []
+workflows:
+- task: 1
+  case: kenya-soil
