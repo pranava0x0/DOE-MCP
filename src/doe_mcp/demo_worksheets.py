@@ -9,6 +9,7 @@ from .core.envelope import Envelope
 from .core.errors import SourceUnavailable
 
 GENESIS_SKILLS = {
+    "load-interval-check": ("uncertainty-quantification", "skills/basesafe-skills/uncertainty-quantification"),
     "load-baseline": ("uq-metrics-evaluator", "skills/basesafe-skills/uq-metrics-evaluator"),
     "bibliography": ("literature-search", "skills/literature-search"),
     "soil-metadata": ("data-exploration", "skills/baseeval-skills/lm-eval-harness-skills/data-exploration"),

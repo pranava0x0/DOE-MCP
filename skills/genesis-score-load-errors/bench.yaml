@@ -1,0 +1,21 @@
+checked:
+- task: 1
+  case: load-baseline
+  expect_report:
+    worksheet.rows.0.2: 5894
+    worksheet.rows.0.3: 5832
+    worksheet.rows.0.4: 62
+- task: 2
+  case: load-baseline
+  expect_report:
+    worksheet.scores.pairs: 11
+    worksheet.excluded_pairs.time_gap: 0
+    worksheet.excluded_pairs.missing_load: 0
+    worksheet.scores.mae_mw: 28.9090909
+    worksheet.scores.rmse_mw: 36.9791096
+- task: 3
+  case: load-baseline
+  expect_report:
+    worksheet.rows.0.5: evidence_01
+    worksheet.rows.0.6: evidence_02
+reader: []

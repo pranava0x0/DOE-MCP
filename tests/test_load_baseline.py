@@ -81,3 +81,32 @@ async def test_source_time_range_follows_published_order_at_clock_rollback(ctx, 
     monkeypatch.setattr(ctx.text_feed._fetcher, "fetch_text", rollback)
     env = await get_bpa_operations(ctx, intervals=2)
     assert (env.coverage.time_range.from_, env.coverage.time_range.to) == (first, last)
+
+
+async def test_interval_width_is_frozen_before_later_readings(ctx):
+    from doe_mcp.load_baseline import INTERVAL_READINGS, check_intervals
+    data = await get_bpa_operations(ctx, intervals=INTERVAL_READINGS)
+    sheet = check_intervals(data)
+    # Make the final observation match its prediction. A fit on all the
+    # errors could narrow the earlier bands when this one outlier disappears.
+    assert sheet["rows"][-1][8] is False
+    data.data["intervals"][-1]["values"]["Load"] = sheet["rows"][-1][3]
+    changed = check_intervals(data)
+    assert changed["scores"]["radius_mw"] == sheet["scores"]["radius_mw"]
+    assert changed["rows"][:-1] == sheet["rows"][:-1]
+    assert changed["scores"]["hits"] == sheet["scores"]["hits"] + 1
+    for phase, _, _, pred, actual, err, low, high, inside, *refs in changed["rows"]:
+        assert len(refs) == 2 and abs(actual - pred) == err
+        if phase == "calibration":
+            assert (low, high, inside) == (None, None, None)
+        else:
+            assert (low, high) == (pred - 62, pred + 62)
+            assert inside is (low <= actual <= high)
+
+
+async def test_interval_check_refuses_missing_targets(ctx):
+    from doe_mcp.load_baseline import INTERVAL_READINGS, check_intervals
+    env = await get_bpa_operations(ctx, intervals=INTERVAL_READINGS)
+    env.data["intervals"][14]["values"]["Load"] = None
+    with pytest.raises(SourceUnavailable, match="consecutive populated"):
+        check_intervals(env)

@@ -13,7 +13,8 @@ from .core.registry import DeclaredState
 from . import daymet_package
 from .demo_worksheets import bibliography, csv_text, soil_metadata
 from .gcam_examples import EXAMPLES, run_example
-from .load_baseline import CASE as LOAD_BASELINE, score_load
+from .load_baseline import (CASE as LOAD_BASELINE, INTERVAL_CASE, INTERVAL_READINGS,
+                            check_intervals, score_load)
 from .runtime import RuntimeContext
 from .servers.build import registries
 
@@ -22,6 +23,7 @@ CASES = {
     "evidence": ("DOE evidence finder", "Find perovskite solar research and inspect one returned record."),
     "bibliography": ("Perovskite bibliography worksheet", "Which citation fields did DOE PAGES supply for this page of results?"),
     daymet_package.CASE: ("The missing Daymet date", "Why does a six-day request return five daily maximum temperatures?"),
+    INTERVAL_CASE: ("Check a load prediction band", "How often does a band fitted on earlier BPA load errors cover later readings?"),
     LOAD_BASELINE: ("Five-minute BPA load prediction", "How far off is the last load reading as a prediction for the next five minutes?"),
     "soil-metadata": ("Soil sample field check", "Which returned NMDC soil samples have a collection date, coordinates and depth in metres?"),
     "dataset-card": ("Geothermal dataset-card starter", "What can public catalog metadata fill in, and what still needs a dataset owner?"),
@@ -48,11 +50,12 @@ RECORDED_ONLY = {
 CASE_SKILLS = {
     **{k: v.skill for k, v in EXAMPLES.items()},
     "global-climate-archive": "environmental-study-brief",
-    LOAD_BASELINE: "grid-status-brief",
-    daymet_package.CASE: "environmental-study-brief",
-    "bibliography": "doe-literature-review", "soil-metadata": "microbiome-data-finder",
+    INTERVAL_CASE: "genesis-check-prediction-bands",
+    LOAD_BASELINE: "genesis-score-load-errors",
+    daymet_package.CASE: "genesis-package-weather-data",
+    "bibliography": "genesis-build-bibliography", "soil-metadata": "genesis-audit-sample-fields",
     "evidence": "doe-literature-review", "partial": "doe-literature-review",
-    "dataset-card": "find-doe-data", "find-data": "find-doe-data",
+    "dataset-card": "genesis-draft-dataset-card", "find-data": "find-doe-data",
     "microbiome": "microbiome-data-finder", "rulemaking": "doe-rulemaking-brief",
     "outage-history": "grid-status-brief", "grid": "grid-status-brief",
     "eia": "grid-status-brief", "site": "energy-project-site-screen",
@@ -213,6 +216,14 @@ async def run_workflow(ctx: RuntimeContext, case: str, *, mode: str = "recorded"
         await call("registry.search_sources", capability="solar.get_resource")
         limits += ["Registry inventory only. Proposed sources were not queried.",
                    "Missing tool coverage does not mean the data does not exist."]
+    elif case == INTERVAL_CASE:
+        worksheet = check_intervals(await call("grid.get_bpa_operations", intervals=INTERVAL_READINGS))
+        s = worksheet["scores"]
+        answer = (f"The 90th percentile of the first {s['calibration_pairs']} absolute errors was "
+                  f"{s['radius_mw']:g} MW. A band that far either side of the prior reading "
+                  f"covered {s['hits']} of the next {s['holdout_pairs']} readings.")
+        limits += ["The band uses the nearest-rank percentile of earlier errors. Later readings do not set its width.",
+                   "Coverage describes this short window. Serially related readings do not establish a future coverage guarantee."]
     elif case == LOAD_BASELINE:
         found = await call("grid.get_bpa_operations", intervals=12)
         worksheet = score_load(found)

@@ -37,7 +37,7 @@ def cmd_skills(args) -> int:
 async def build_report(args):
     if args.live:
         server = {"outage-history": "doe-energy-data", "eia": "doe-energy-data", "grid": "doe-energy-data",
-                  "load-baseline": "doe-energy-data",
+                  "load-baseline": "doe-energy-data", "load-interval-check": "doe-energy-data",
                   "site": "doe-energy-data", "earth": "doe-earth",
                   "materials": "doe-materials", "microbiome": "doe-bio", "soil-metadata": "doe-bio"}.get(args.case, "doe-research")
         if args.case in EXAMPLES:

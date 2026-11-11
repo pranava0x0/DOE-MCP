@@ -74,3 +74,9 @@ least one is checked; the suite holds both rules.
 | [separate-desalination-inputs](separate-desalination-inputs/SKILL.md) | Which electricity input and non-energy cost does GCAM use for reverse osmosis? | `doe-water` |
 | [compare-model-warming-potentials](compare-model-warming-potentials/SKILL.md) | Which 100-year warming potentials did this release use for HFC134a and CF4? | `doe-emissions` |
 | [separate-offshore-wind-classes](separate-offshore-wind-classes/SKILL.md) | What does GCAM assume for wind class c7 and, separately, for deep-water capital cost? | `doe-power` |
+| [genesis-build-bibliography](genesis-build-bibliography/SKILL.md) | Build a traceable bibliography | `doe-research` |
+| [genesis-draft-dataset-card](genesis-draft-dataset-card/SKILL.md) | Draft a dataset card from catalog evidence | `doe-research` |
+| [genesis-audit-sample-fields](genesis-audit-sample-fields/SKILL.md) | Audit environmental sample metadata | `doe-bio` |
+| [genesis-package-weather-data](genesis-package-weather-data/SKILL.md) | Package a weather extract with its checksum | `doe-earth` |
+| [genesis-score-load-errors](genesis-score-load-errors/SKILL.md) | Score a five-minute persistence baseline | `doe-energy-data` |
+| [genesis-check-prediction-bands](genesis-check-prediction-bands/SKILL.md) | Check a prediction band on later readings | `doe-energy-data` |

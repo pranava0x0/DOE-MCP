@@ -50,6 +50,11 @@ def test_every_bench_task_is_checked_or_read(path):
         "which.")
     bench = _bench(path)
     checked = {t["task"] for t in bench.get("checked") or []}
+    for task in bench["checked"]:
+        if "case" in task:
+            assert "steps" not in task and task.get("expect_report"), (name, task)
+        else:
+            assert task.get("steps"), (name, task)
     reader = set(bench.get("reader") or [])
     assert checked.isdisjoint(reader), f"{name}: {checked & reader} in both"
     table = _table_tasks(path)
@@ -63,7 +68,7 @@ def _steps():
     out = []
     for path in SKILLS:
         for task in _bench(path).get("checked") or []:
-            for n, step in enumerate(task["steps"], 1):
+            for n, step in enumerate(task.get("steps", []), 1):
                 out.append(pytest.param(
                     step, id=f"{path.parent.name}-{task['task']}.{n}-"
                              f"{step['tool']}"))
@@ -133,3 +138,15 @@ async def test_bench_step(step, ctx, keyed_ctx):
     env = await fn(keyed_ctx if step.get("keyed") else ctx,
                    **(step.get("args") or {}))
     _check(env, step.get("expect") or {})
+
+
+@pytest.mark.parametrize("task", [
+    pytest.param(task, id=f"{path.parent.name}-{task['task']}")
+    for path in SKILLS for task in _bench(path)["checked"] if "case" in task
+])
+async def test_bench_workflow_report(task, ctx):
+    from doe_mcp.workflows import run_workflow
+    report = await run_workflow(ctx, task["case"])
+    for path, expected in task["expect_report"].items():
+        got = _walk(report, path)
+        assert got == (pytest.approx(expected) if type(expected) is float else expected), path

@@ -1,0 +1,17 @@
+checked:
+- task: 1
+  case: dataset-card
+  expect_report:
+    steps.0.envelope.data.datasets.0.site_code: DOE-GDR
+    steps.0.envelope.coverage.pagination: truncated
+- task: 2
+  case: dataset-card
+  expect_report:
+    drafts.0.metadata.id: '2541598'
+    drafts.0.evidence.0.record_id: '2541598'
+- task: 3
+  case: dataset-card
+  expect_report:
+    drafts.0.status: draft_metadata_only
+    drafts.0.needs_owner_review.2: License and permitted reuse
+reader: []

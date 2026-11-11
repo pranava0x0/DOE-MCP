@@ -75,28 +75,31 @@ provides scientific workflow instructions. DOE-MCP's own skills now use the
 same Agent Skills format. This is format compatibility, not an installed
 connection to the upstream catalog or a claim of DOE endorsement.
 
-Four demos implement steps described in the released skills. The calculations
-run in DOE-MCP and each download can be reproduced from recorded responses.
+Use `doe-mcp skills NAME --show` to read an installed walk. The names
+below are local DOE-MCP skills. Each points to the specific upstream guide
+it draws on and has a bench that checks results from recorded data.
 
-| Genesis skill | DOE-MCP demo | What you get |
-| --- | --- | --- |
-| `literature-search` | [Bibliography](demos.html#bibliography) | A DOE PAGES citation worksheet that flags omitted authors. |
-| `data-exploration` | [Soil samples](demos.html#soil-metadata) | Counts of missing dates, coordinates and depths on the returned NMDC page. |
-| `croissant-validator` | [Daymet calendar](demos.html#daymet-calendar) | A temperature CSV and Croissant metadata with its checksum. CI loads the records with the MLCommons reader. |
-| `uq-metrics-evaluator` | [BPA load](demos.html#load-baseline) | Mean absolute and root mean squared error when the last load reading predicts the next five minutes. |
+| Installed DOE-MCP skill | Genesis method | Recorded result |
+|---|---|---|
+| `genesis-build-bibliography` | literature-search | [Citation worksheet](demos.html#bibliography) with omitted author counts. |
+| `genesis-draft-dataset-card` | datacard-generator | [Geothermal metadata draft](demos.html#dataset-card) with file integrity, rights and sensitivity left for the owner. |
+| `genesis-package-weather-data` | croissant-validator | [Daymet CSV and Croissant metadata](demos.html#daymet-calendar) with a checksum for the exported bytes. |
+| `genesis-audit-sample-fields` | data-exploration | [Soil metadata audit](demos.html#soil-metadata) with missing-field counts on the returned page. |
+| `genesis-score-load-errors` | uq-metrics-evaluator | [BPA baseline errors](demos.html#load-baseline) with mean absolute and root mean squared error in MW. |
+| `genesis-check-prediction-bands` | uncertainty-quantification | [Prediction band worksheet](demos.html#load-interval-check) with separate calibration and evaluation rows. |
 
-Try these local examples after installation:
+For example:
 
 ```bash
-doe-mcp demo dataset-card --output ./dataset-draft
-doe-mcp demo microbiome --output ./microbiome-samples
+doe-mcp skills genesis-check-prediction-bands --show
+doe-mcp demo load-interval-check --output ./bpa-band
 ```
 
-The dataset starter uses `find-doe-data`'s checked DOE-GDR search. Its JSON
-includes `drafts`: catalog metadata, evidence references, and fields that
-need owner review. No file is downloaded or inspected. It is neither a
-validated Genesis datacard nor a Croissant document; checksums, file
-formats, licensing, sensitivity and AI suitability remain unverified.
+Use the worksheet to trace each prediction to its prior and target readings.
+The earlier errors set the width once. The later rows show whether the actual
+load landed inside the band. For the dataset card, the draft contains only
+catalog evidence; no file is downloaded or inspected and the card has not
+been validated against the Genesis schema.
 
 The microbiome example follows `microbiome-data-finder`: search NMDC for
 shale studies, then use a returned study ID to request five biosamples.
@@ -114,7 +117,7 @@ evidence entry in step 1 of its JSON report. See the
 [comparison with other government-data MCPs](genesis-demo-review.html#november-3-what-to-take-from-other-government-data-mcps)
 for the reasons behind these checks.
 
-These examples default to recorded responses with no network or model calls. Add
+These examples default to recorded responses with no network or model calls. Except for the recorded Daymet package, add
 `--live` for public API reads without a key; availability and results can
 change. Downloading the underlying datasets may have separate conditions.
 An AI client chosen by the user may charge for inference, but these CLI

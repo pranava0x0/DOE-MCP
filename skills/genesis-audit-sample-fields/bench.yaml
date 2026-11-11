@@ -1,0 +1,18 @@
+checked:
+- task: 1
+  case: soil-metadata
+  expect_report:
+    steps.0.envelope.data.record_count: 5
+    steps.0.envelope.coverage.pagination: truncated
+- task: 2
+  case: soil-metadata
+  expect_report:
+    worksheet.missing.depth in metres: 5
+    worksheet.missing.coordinate pair: 0
+- task: 3
+  case: soil-metadata
+  expect_report:
+    worksheet.rows.0.5: null
+    worksheet.rows.0.8: evidence_01
+    steps.0.envelope.evidence.0.record_id: nmdc:bsm-13-mrzb2q96
+reader: []

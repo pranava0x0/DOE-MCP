@@ -470,6 +470,7 @@ DEMO_CARDS = [
     ("evidence", "Trace a research claim", "Search perovskite solar literature, follow a returned record, and see where the search is incomplete.", "Recorded evidence"),
     ("bibliography", "Prepare a perovskite bibliography", "Download a DOE PAGES citation worksheet. See which author lists were shortened before you cite a paper.", "Genesis: literature-search"),
     ("daymet-calendar", "Inspect the missing Daymet date", "Download daily maximum temperatures near Oak Ridge and the Croissant file describing their dates, units and checksum.", "Genesis: croissant-validator"),
+    ("load-interval-check", "Check a load prediction band", "Fit the band on earlier BPA errors, then count the later readings it covers.", "Genesis: uncertainty-quantification"),
     ("load-baseline", "Score a five-minute load prediction", "Use the last BPA load reading to predict the next one. Inspect each error and the two readings behind it.", "Genesis: uq-metrics-evaluator"),
     ("soil-metadata", "Check soil sample metadata", "Inspect dates, coordinate pairs and depths for NMDC records whose place contains Washington.", "Genesis: data-exploration"),
     ("microbiome", "Find a microbiome study", "Follow an NMDC shale study to five biosamples, with collection dates, environments and access recipes.", "Recorded metadata"),
@@ -491,11 +492,13 @@ A test holds the case list to workflows.CASES, so a new walkthrough
 without a card fails the build."""
 
 
-def _demo_cards() -> str:
+def _demo_cards(*, genesis: bool) -> str:
     from doe_mcp.workflows import CASE_SKILLS
     out = []
     for case, title, blurb, kind in DEMO_CARDS:
         skill = CASE_SKILLS.get(case)
+        if bool(skill and skill.startswith("genesis-")) != genesis:
+            continue
         label = f"Skill: {skill}" if skill else "Tool: compute.facility_status"
         out.append(f'<a class="demo-link" href="demos.html#{e(case)}"><strong>{e(title)}</strong>'
                    f'<span>{e(blurb)}</span><small>{e(label)} \u00b7 {e(kind)}</small></a>')
@@ -815,7 +818,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
   <h1>MCP servers over public DOE data</h1>
   <p class="tagline">Search research, energy and environmental data from your AI client.</p>
   <p class="free">Free and open source (Apache-2.0). Most tools need no account or API key, and every demo runs on recorded data.</p>
-  <p><a href="demos.html">Browse demos</a> · <a href="guide.html">Local workflow guide</a></p>
+  <p><a href="#genesis-mission">Genesis Mission skills</a> · <a href="demos.html">Browse demos</a> · <a href="guide.html">Local workflow guide</a></p>
   {_inventory(c)}
   <p class="works">Works with: {works}</p>
 </div></header>
@@ -829,7 +832,11 @@ family=Roboto+Mono:wght@400;500&display=swap">
   <p id="overview-about">DOE-MCP connects AI clients to public DOE and national-laboratory data through read-only tools. Results include sources, retrieval dates and coverage limits.</p>
   <h3 id="overview-demos">Demos</h3>
   <p>All {len(DEMO_CARDS)} walkthroughs use recorded data: no account, API key or paid model.</p>
-  {_demo_cards()}
+  <h4 id="genesis-mission">Genesis Mission skills</h4>
+  <p>Follow a Genesis method with DOE-MCP data. Each card opens a recorded example with its evidence.</p>
+  {_demo_cards(genesis=True)}
+  <h4>Other DOE workflows</h4>
+  {_demo_cards(genesis=False)}
   <details><summary>Genesis Skills compatibility</summary>
   <p>DOE-MCP's skills use the same Agent Skills format as <a href="https://github.com/AI-ModCon/genesis-skills">Genesis Agent Skills</a>. The demos use DOE-MCP's own tools; no upstream skills or lab services run here. <a href="guide.html#genesis-and-no-cost-demos">Integration and cost details</a>.</p>
   </details>
