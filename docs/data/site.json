@@ -8,7 +8,7 @@
     "labs": 17,
     "capabilities": 58,
     "capabilities_served": 42,
-    "skills": 16,
+    "skills": 22,
     "program_offices": 19,
     "pmas": 4,
     "servers_shipping": 10,
@@ -775,6 +775,48 @@
       "summary": "Find whether the US Department of Energy publishes a given kind of data, where it lives, and how to actually get at it \u2014 ending in a real locator or in a named reason there is not one.",
       "servers": [
         "doe-research"
+      ]
+    },
+    {
+      "name": "genesis-audit-sample-fields",
+      "summary": "Use when deciding whether a page of soil sample records has usable dates, coordinates and depth metadata.",
+      "servers": [
+        "doe-bio"
+      ]
+    },
+    {
+      "name": "genesis-build-bibliography",
+      "summary": "Use when preparing citations from DOE public-access literature and deciding which author lists still need checking.",
+      "servers": [
+        "doe-research"
+      ]
+    },
+    {
+      "name": "genesis-check-prediction-bands",
+      "summary": "Use when testing how often a fixed band around five-minute load predictions covers later BPA readings.",
+      "servers": [
+        "doe-energy-data"
+      ]
+    },
+    {
+      "name": "genesis-draft-dataset-card",
+      "summary": "Use when a dataset owner needs an initial metadata card and a list of questions that catalog records cannot answer.",
+      "servers": [
+        "doe-research"
+      ]
+    },
+    {
+      "name": "genesis-package-weather-data",
+      "summary": "Use when a recipient needs a Daymet CSV, its field definitions and a way to verify the bytes received.",
+      "servers": [
+        "doe-earth"
+      ]
+    },
+    {
+      "name": "genesis-score-load-errors",
+      "summary": "Use when comparing a grid load predictor with the simple baseline that repeats the previous measured load.",
+      "servers": [
+        "doe-energy-data"
       ]
     },
     {

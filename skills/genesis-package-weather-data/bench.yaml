@@ -1,0 +1,18 @@
+checked:
+- task: 1
+  case: daymet-calendar
+  expect_report:
+    steps.0.envelope.data.dates_absent:
+    - '2024-12-31'
+    steps.0.envelope.data.record_count: 5
+- task: 2
+  case: daymet-calendar
+  expect_report:
+    steps.0.envelope.data.columns.0.name: tmax
+    steps.0.envelope.data.columns.0.units: deg c
+- task: 3
+  case: daymet-calendar
+  expect_report:
+    steps.0.envelope.data.days.0.date: '2024-12-26'
+    steps.0.envelope.data.days.0.values.tmax: 14.51
+reader: []

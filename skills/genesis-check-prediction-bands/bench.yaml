@@ -1,0 +1,19 @@
+checked:
+- task: 1
+  case: load-interval-check
+  expect_report:
+    worksheet.scores.calibration_pairs: 15
+    worksheet.scores.radius_rank: 14
+    worksheet.scores.radius_mw: 62
+- task: 2
+  case: load-interval-check
+  expect_report:
+    worksheet.rows.14.0: calibration
+    worksheet.rows.14.8: null
+    worksheet.rows.15.0: holdout
+- task: 3
+  case: load-interval-check
+  expect_report:
+    worksheet.scores.hits: 7
+    worksheet.scores.holdout_pairs: 8
+reader: []
