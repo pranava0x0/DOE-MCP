@@ -1,0 +1,19 @@
+checked:
+- task: 1
+  case: world-geothermal-grades
+  expect_report:
+    worksheet.summary.regions: 14
+    worksheet.rows.0.1: grade 2
+- task: 2
+  case: world-geothermal-grades
+  expect_report:
+    worksheet.rows.0.0: Latin America
+    worksheet.summary.maximum: '10.23454'
+    worksheet.rows.13.0: Korea
+    worksheet.summary.minimum: '0.001'
+- task: 3
+  case: world-geothermal-grades
+  expect_report:
+    worksheet.rows.0.4: evidence_10
+    worksheet.rows.0.3: '0.569'
+reader: []

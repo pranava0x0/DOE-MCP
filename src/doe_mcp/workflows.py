@@ -13,12 +13,14 @@ from .core.registry import DeclaredState
 from . import daymet_package
 from .demo_worksheets import bibliography, csv_text, soil_metadata
 from .gcam_examples import EXAMPLES, run_example
+from .global_worksheets import WALKS, make_sheet
 from .load_baseline import (CASE as LOAD_BASELINE, INTERVAL_CASE, INTERVAL_READINGS,
                             check_intervals, score_load)
 from .runtime import RuntimeContext
 from .servers.build import registries
 
 CASES = {
+    **{k: (v.title, v.question) for k, v in WALKS.items()},
     **{k: (v.title, v.question) for k, v in EXAMPLES.items()},
     "evidence": ("DOE evidence finder", "Find perovskite solar research and inspect one returned record."),
     "bibliography": ("Perovskite bibliography worksheet", "Which citation fields did DOE PAGES supply for this page of results?"),
@@ -48,6 +50,7 @@ RECORDED_ONLY = {
 }
 
 CASE_SKILLS = {
+    **{k: v.skill for k, v in WALKS.items()},
     **{k: v.skill for k, v in EXAMPLES.items()},
     "global-climate-archive": "environmental-study-brief",
     INTERVAL_CASE: "genesis-check-prediction-bands",
@@ -114,7 +117,11 @@ async def run_workflow(ctx: RuntimeContext, case: str, *, mode: str = "recorded"
         return env
 
     answer = None
-    if case in EXAMPLES:
+    if case in WALKS:
+        walk = WALKS[case]
+        worksheet, answer = make_sheet(case, await call(walk.tool, filters=walk.filters, rows=50))
+        limits.append(walk.limit)
+    elif case in EXAMPLES:
         example = EXAMPLES[case]
         answer = await run_example(example, call)
         limits.append(example.limit)

@@ -8,7 +8,7 @@
     "labs": 17,
     "capabilities": 58,
     "capabilities_served": 42,
-    "skills": 22,
+    "skills": 26,
     "program_offices": 19,
     "pmas": 4,
     "servers_shipping": 10,
@@ -778,6 +778,13 @@
       ]
     },
     {
+      "name": "genesis-audit-region-keys",
+      "summary": "Use when joining country or territory codes to regional model inputs.",
+      "servers": [
+        "doe-economy"
+      ]
+    },
+    {
       "name": "genesis-audit-sample-fields",
       "summary": "Use when deciding whether a page of soil sample records has usable dates, coordinates and depth metadata.",
       "servers": [
@@ -796,6 +803,27 @@
       "summary": "Use when testing how often a fixed band around five-minute load predictions covers later BPA readings.",
       "servers": [
         "doe-energy-data"
+      ]
+    },
+    {
+      "name": "genesis-check-share-balance",
+      "summary": "Use when checking whether a regional allocation adds to one across category pairs in two years.",
+      "servers": [
+        "doe-water"
+      ]
+    },
+    {
+      "name": "genesis-compare-resource-grades",
+      "summary": "Use when comparing regional quantities on the same geothermal supply grade while keeping heat input separate from extraction cost.",
+      "servers": [
+        "doe-power"
+      ]
+    },
+    {
+      "name": "genesis-document-model-columns",
+      "summary": "Use when documenting which of two regional parameter columns a model reads and where their values differ.",
+      "servers": [
+        "doe-land"
       ]
     },
     {

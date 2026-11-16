@@ -1,0 +1,1674 @@
+{
+  "format_version": "1",
+  "case": "latin-america-regions",
+  "title": "Map Latin American country codes",
+  "question": "Does the legacy Latin America label identify a single numeric GCAM region?",
+  "mode": "recorded",
+  "simulation": false,
+  "registry_revision": "2026-11-09",
+  "generated_at": null,
+  "replay_clock": "2026-11-09T00:00:00Z",
+  "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
+  "fixtures": [
+    {
+      "file": "gcam-economy.json",
+      "sha256": "e51120caad276d93a52d9dbf50ea2faa5c298c9ac88f17c3e5f1869be685bb78",
+      "captured_at": "2026-11-10T04:46:58.414403+00:00"
+    }
+  ],
+  "answer": "49 country and territory codes share the legacy label but map to 9 numeric region IDs.",
+  "limitations": [
+    "Country and territory codes belong to this model release. They do not define political boundaries."
+  ],
+  "steps": [
+    {
+      "tool": "economy.country_regions",
+      "args": {
+        "filters": {
+          "region_GCAM3": "Latin America"
+        },
+        "rows": 50
+      },
+      "envelope": {
+        "data": {
+          "table": "country_regions",
+          "columns": [
+            "iso",
+            "country_name",
+            "region_GCAM3",
+            "GCAM_region_ID"
+          ],
+          "records": [
+            {
+              "row_number": 1,
+              "values": {
+                "iso": "abw",
+                "country_name": "Aruba",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_01"
+            },
+            {
+              "row_number": 4,
+              "values": {
+                "iso": "aia",
+                "country_name": "Anguilla",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_02"
+            },
+            {
+              "row_number": 7,
+              "values": {
+                "iso": "ant",
+                "country_name": "Netherlands Antilles",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_03"
+            },
+            {
+              "row_number": 9,
+              "values": {
+                "iso": "arg",
+                "country_name": "Argentina",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "31"
+              },
+              "evidence_ref": "evidence_04"
+            },
+            {
+              "row_number": 12,
+              "values": {
+                "iso": "atg",
+                "country_name": "Antigua & Barbuda",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_05"
+            },
+            {
+              "row_number": 19,
+              "values": {
+                "iso": "bes",
+                "country_name": "Bonaire, Sint Eustatius and Saba",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_06"
+            },
+            {
+              "row_number": 24,
+              "values": {
+                "iso": "bhs",
+                "country_name": "Bahamas",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_07"
+            },
+            {
+              "row_number": 26,
+              "values": {
+                "iso": "blm",
+                "country_name": "Saint Barthelemy",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_08"
+            },
+            {
+              "row_number": 28,
+              "values": {
+                "iso": "blz",
+                "country_name": "Belize",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_09"
+            },
+            {
+              "row_number": 30,
+              "values": {
+                "iso": "bol",
+                "country_name": "Bolivia",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "26"
+              },
+              "evidence_ref": "evidence_10"
+            },
+            {
+              "row_number": 31,
+              "values": {
+                "iso": "bra",
+                "country_name": "Brazil",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "7"
+              },
+              "evidence_ref": "evidence_11"
+            },
+            {
+              "row_number": 32,
+              "values": {
+                "iso": "brb",
+                "country_name": "Barbados",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_12"
+            },
+            {
+              "row_number": 41,
+              "values": {
+                "iso": "chl",
+                "country_name": "Chile",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "26"
+              },
+              "evidence_ref": "evidence_13"
+            },
+            {
+              "row_number": 48,
+              "values": {
+                "iso": "col",
+                "country_name": "Colombia",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "32"
+              },
+              "evidence_ref": "evidence_14"
+            },
+            {
+              "row_number": 51,
+              "values": {
+                "iso": "cri",
+                "country_name": "Costa Rica",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_15"
+            },
+            {
+              "row_number": 52,
+              "values": {
+                "iso": "cub",
+                "country_name": "Cuba",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_16"
+            },
+            {
+              "row_number": 53,
+              "values": {
+                "iso": "cuw",
+                "country_name": "Curacao",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_17"
+            },
+            {
+              "row_number": 54,
+              "values": {
+                "iso": "cym",
+                "country_name": "Cayman Islands",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_18"
+            },
+            {
+              "row_number": 60,
+              "values": {
+                "iso": "dma",
+                "country_name": "Dominica",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_19"
+            },
+            {
+              "row_number": 62,
+              "values": {
+                "iso": "dom",
+                "country_name": "Dominican Republic",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_20"
+            },
+            {
+              "row_number": 64,
+              "values": {
+                "iso": "ecu",
+                "country_name": "Ecuador",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "26"
+              },
+              "evidence_ref": "evidence_21"
+            },
+            {
+              "row_number": 73,
+              "values": {
+                "iso": "flk",
+                "country_name": "Falkland Islands (Malvinas)",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "13"
+              },
+              "evidence_ref": "evidence_22"
+            },
+            {
+              "row_number": 84,
+              "values": {
+                "iso": "glp",
+                "country_name": "Guadeloupe",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_23"
+            },
+            {
+              "row_number": 89,
+              "values": {
+                "iso": "grd",
+                "country_name": "Grenada",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_24"
+            },
+            {
+              "row_number": 91,
+              "values": {
+                "iso": "gtm",
+                "country_name": "Guatemala",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_25"
+            },
+            {
+              "row_number": 92,
+              "values": {
+                "iso": "guf",
+                "country_name": "French Guiana",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "25"
+              },
+              "evidence_ref": "evidence_26"
+            },
+            {
+              "row_number": 94,
+              "values": {
+                "iso": "guy",
+                "country_name": "Guyana",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "25"
+              },
+              "evidence_ref": "evidence_27"
+            },
+            {
+              "row_number": 96,
+              "values": {
+                "iso": "hnd",
+                "country_name": "Honduras",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_28"
+            },
+            {
+              "row_number": 98,
+              "values": {
+                "iso": "hti",
+                "country_name": "Haiti",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_29"
+            },
+            {
+              "row_number": 109,
+              "values": {
+                "iso": "jam",
+                "country_name": "Jamaica",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_30"
+            },
+            {
+              "row_number": 118,
+              "values": {
+                "iso": "kna",
+                "country_name": "Saint Kitts and Nevis",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_31"
+            },
+            {
+              "row_number": 125,
+              "values": {
+                "iso": "lca",
+                "country_name": "Saint Lucia",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_32"
+            },
+            {
+              "row_number": 133,
+              "values": {
+                "iso": "maf",
+                "country_name": "Saint Martin",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_33"
+            },
+            {
+              "row_number": 139,
+              "values": {
+                "iso": "mex",
+                "country_name": "Mexico",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "20"
+              },
+              "evidence_ref": "evidence_34"
+            },
+            {
+              "row_number": 150,
+              "values": {
+                "iso": "msr",
+                "country_name": "Montserrat",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_35"
+            },
+            {
+              "row_number": 161,
+              "values": {
+                "iso": "nic",
+                "country_name": "Nicaragua",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_36"
+            },
+            {
+              "row_number": 170,
+              "values": {
+                "iso": "pan",
+                "country_name": "Panama",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_37"
+            },
+            {
+              "row_number": 173,
+              "values": {
+                "iso": "per",
+                "country_name": "Peru",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "26"
+              },
+              "evidence_ref": "evidence_38"
+            },
+            {
+              "row_number": 181,
+              "values": {
+                "iso": "pry",
+                "country_name": "Paraguay",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "26"
+              },
+              "evidence_ref": "evidence_39"
+            },
+            {
+              "row_number": 199,
+              "values": {
+                "iso": "slv",
+                "country_name": "El Salvador",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_40"
+            },
+            {
+              "row_number": 206,
+              "values": {
+                "iso": "sur",
+                "country_name": "Suriname",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "25"
+              },
+              "evidence_ref": "evidence_41"
+            },
+            {
+              "row_number": 211,
+              "values": {
+                "iso": "sxm",
+                "country_name": "Sint Maarten",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_42"
+            },
+            {
+              "row_number": 214,
+              "values": {
+                "iso": "tca",
+                "country_name": "Turks and Caicos",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "13"
+              },
+              "evidence_ref": "evidence_43"
+            },
+            {
+              "row_number": 223,
+              "values": {
+                "iso": "tto",
+                "country_name": "Trinidad and Tobago",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_44"
+            },
+            {
+              "row_number": 231,
+              "values": {
+                "iso": "ury",
+                "country_name": "Uruguay",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "26"
+              },
+              "evidence_ref": "evidence_45"
+            },
+            {
+              "row_number": 235,
+              "values": {
+                "iso": "vct",
+                "country_name": "Saint Vincent and the Grenadines",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "9"
+              },
+              "evidence_ref": "evidence_46"
+            },
+            {
+              "row_number": 236,
+              "values": {
+                "iso": "ven",
+                "country_name": "Venezuela",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "25"
+              },
+              "evidence_ref": "evidence_47"
+            },
+            {
+              "row_number": 237,
+              "values": {
+                "iso": "vgb",
+                "country_name": "Virgin Islands, British",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "13"
+              },
+              "evidence_ref": "evidence_48"
+            },
+            {
+              "row_number": 238,
+              "values": {
+                "iso": "vir",
+                "country_name": "Virgin Islands, U.S.",
+                "region_GCAM3": "Latin America",
+                "GCAM_region_ID": "1"
+              },
+              "evidence_ref": "evidence_49"
+            }
+          ],
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+          "source_notes": [
+            "File: iso_GCAM_regID.csv",
+            "Title: ISO to GCAM region mapping",
+            "Units: NA",
+            "Description: Maps iso codes to GCAM regions (including composites as necessary)",
+            "Column types: ccci",
+            "----------"
+          ],
+          "filters": {
+            "region_GCAM3": "Latin America"
+          },
+          "offset": 0,
+          "record_count": 49,
+          "total_matches": 49,
+          "table_rows": 248,
+          "release": "GCAM v9.1"
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "gcam-economy",
+            "steward": "Pacific Northwest National Laboratory",
+            "system": "GCAM: Regional economics",
+            "dataset": "iso_GCAM_regID.csv",
+            "dataset_version": "GCAM v9.1",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "data row 1",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_02",
+            "source_ref": "source_01",
+            "record_id": "data row 4",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_03",
+            "source_ref": "source_01",
+            "record_id": "data row 7",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_04",
+            "source_ref": "source_01",
+            "record_id": "data row 9",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_05",
+            "source_ref": "source_01",
+            "record_id": "data row 12",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_06",
+            "source_ref": "source_01",
+            "record_id": "data row 19",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_07",
+            "source_ref": "source_01",
+            "record_id": "data row 24",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_08",
+            "source_ref": "source_01",
+            "record_id": "data row 26",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_09",
+            "source_ref": "source_01",
+            "record_id": "data row 28",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_10",
+            "source_ref": "source_01",
+            "record_id": "data row 30",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_11",
+            "source_ref": "source_01",
+            "record_id": "data row 31",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_12",
+            "source_ref": "source_01",
+            "record_id": "data row 32",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_13",
+            "source_ref": "source_01",
+            "record_id": "data row 41",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_14",
+            "source_ref": "source_01",
+            "record_id": "data row 48",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_15",
+            "source_ref": "source_01",
+            "record_id": "data row 51",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_16",
+            "source_ref": "source_01",
+            "record_id": "data row 52",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_17",
+            "source_ref": "source_01",
+            "record_id": "data row 53",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_18",
+            "source_ref": "source_01",
+            "record_id": "data row 54",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_19",
+            "source_ref": "source_01",
+            "record_id": "data row 60",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_20",
+            "source_ref": "source_01",
+            "record_id": "data row 62",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_21",
+            "source_ref": "source_01",
+            "record_id": "data row 64",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_22",
+            "source_ref": "source_01",
+            "record_id": "data row 73",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_23",
+            "source_ref": "source_01",
+            "record_id": "data row 84",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_24",
+            "source_ref": "source_01",
+            "record_id": "data row 89",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_25",
+            "source_ref": "source_01",
+            "record_id": "data row 91",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_26",
+            "source_ref": "source_01",
+            "record_id": "data row 92",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_27",
+            "source_ref": "source_01",
+            "record_id": "data row 94",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_28",
+            "source_ref": "source_01",
+            "record_id": "data row 96",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_29",
+            "source_ref": "source_01",
+            "record_id": "data row 98",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_30",
+            "source_ref": "source_01",
+            "record_id": "data row 109",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_31",
+            "source_ref": "source_01",
+            "record_id": "data row 118",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_32",
+            "source_ref": "source_01",
+            "record_id": "data row 125",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_33",
+            "source_ref": "source_01",
+            "record_id": "data row 133",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_34",
+            "source_ref": "source_01",
+            "record_id": "data row 139",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_35",
+            "source_ref": "source_01",
+            "record_id": "data row 150",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_36",
+            "source_ref": "source_01",
+            "record_id": "data row 161",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_37",
+            "source_ref": "source_01",
+            "record_id": "data row 170",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_38",
+            "source_ref": "source_01",
+            "record_id": "data row 173",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_39",
+            "source_ref": "source_01",
+            "record_id": "data row 181",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_40",
+            "source_ref": "source_01",
+            "record_id": "data row 199",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_41",
+            "source_ref": "source_01",
+            "record_id": "data row 206",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_42",
+            "source_ref": "source_01",
+            "record_id": "data row 211",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_43",
+            "source_ref": "source_01",
+            "record_id": "data row 214",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_44",
+            "source_ref": "source_01",
+            "record_id": "data row 223",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_45",
+            "source_ref": "source_01",
+            "record_id": "data row 231",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_46",
+            "source_ref": "source_01",
+            "record_id": "data row 235",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_47",
+            "source_ref": "source_01",
+            "record_id": "data row 236",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_48",
+            "source_ref": "source_01",
+            "record_id": "data row 237",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_49",
+            "source_ref": "source_01",
+            "record_id": "data row 238",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "gcam-economy"
+          ],
+          "known_limitations": [
+            "Rows are model inputs, not scenario outputs or measurements of current conditions.",
+            "GCAM3 region labels and numeric GCAM region IDs use different groupings."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+            "source_id": "gcam-economy"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "economy.country_regions",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-09",
+          "request_id": "recorded-workflow"
+        }
+      }
+    }
+  ],
+  "worksheet": {
+    "caption": "Map Latin American country codes",
+    "columns": [
+      "iso",
+      "country_name",
+      "region_GCAM3",
+      "GCAM_region_ID",
+      "Step 1 evidence ID"
+    ],
+    "rows": [
+      [
+        "abw",
+        "Aruba",
+        "Latin America",
+        "9",
+        "evidence_01"
+      ],
+      [
+        "aia",
+        "Anguilla",
+        "Latin America",
+        "9",
+        "evidence_02"
+      ],
+      [
+        "ant",
+        "Netherlands Antilles",
+        "Latin America",
+        "9",
+        "evidence_03"
+      ],
+      [
+        "arg",
+        "Argentina",
+        "Latin America",
+        "31",
+        "evidence_04"
+      ],
+      [
+        "atg",
+        "Antigua & Barbuda",
+        "Latin America",
+        "9",
+        "evidence_05"
+      ],
+      [
+        "bes",
+        "Bonaire, Sint Eustatius and Saba",
+        "Latin America",
+        "9",
+        "evidence_06"
+      ],
+      [
+        "bhs",
+        "Bahamas",
+        "Latin America",
+        "9",
+        "evidence_07"
+      ],
+      [
+        "blm",
+        "Saint Barthelemy",
+        "Latin America",
+        "9",
+        "evidence_08"
+      ],
+      [
+        "blz",
+        "Belize",
+        "Latin America",
+        "9",
+        "evidence_09"
+      ],
+      [
+        "bol",
+        "Bolivia",
+        "Latin America",
+        "26",
+        "evidence_10"
+      ],
+      [
+        "bra",
+        "Brazil",
+        "Latin America",
+        "7",
+        "evidence_11"
+      ],
+      [
+        "brb",
+        "Barbados",
+        "Latin America",
+        "9",
+        "evidence_12"
+      ],
+      [
+        "chl",
+        "Chile",
+        "Latin America",
+        "26",
+        "evidence_13"
+      ],
+      [
+        "col",
+        "Colombia",
+        "Latin America",
+        "32",
+        "evidence_14"
+      ],
+      [
+        "cri",
+        "Costa Rica",
+        "Latin America",
+        "9",
+        "evidence_15"
+      ],
+      [
+        "cub",
+        "Cuba",
+        "Latin America",
+        "9",
+        "evidence_16"
+      ],
+      [
+        "cuw",
+        "Curacao",
+        "Latin America",
+        "9",
+        "evidence_17"
+      ],
+      [
+        "cym",
+        "Cayman Islands",
+        "Latin America",
+        "9",
+        "evidence_18"
+      ],
+      [
+        "dma",
+        "Dominica",
+        "Latin America",
+        "9",
+        "evidence_19"
+      ],
+      [
+        "dom",
+        "Dominican Republic",
+        "Latin America",
+        "9",
+        "evidence_20"
+      ],
+      [
+        "ecu",
+        "Ecuador",
+        "Latin America",
+        "26",
+        "evidence_21"
+      ],
+      [
+        "flk",
+        "Falkland Islands (Malvinas)",
+        "Latin America",
+        "13",
+        "evidence_22"
+      ],
+      [
+        "glp",
+        "Guadeloupe",
+        "Latin America",
+        "9",
+        "evidence_23"
+      ],
+      [
+        "grd",
+        "Grenada",
+        "Latin America",
+        "9",
+        "evidence_24"
+      ],
+      [
+        "gtm",
+        "Guatemala",
+        "Latin America",
+        "9",
+        "evidence_25"
+      ],
+      [
+        "guf",
+        "French Guiana",
+        "Latin America",
+        "25",
+        "evidence_26"
+      ],
+      [
+        "guy",
+        "Guyana",
+        "Latin America",
+        "25",
+        "evidence_27"
+      ],
+      [
+        "hnd",
+        "Honduras",
+        "Latin America",
+        "9",
+        "evidence_28"
+      ],
+      [
+        "hti",
+        "Haiti",
+        "Latin America",
+        "9",
+        "evidence_29"
+      ],
+      [
+        "jam",
+        "Jamaica",
+        "Latin America",
+        "9",
+        "evidence_30"
+      ],
+      [
+        "kna",
+        "Saint Kitts and Nevis",
+        "Latin America",
+        "9",
+        "evidence_31"
+      ],
+      [
+        "lca",
+        "Saint Lucia",
+        "Latin America",
+        "9",
+        "evidence_32"
+      ],
+      [
+        "maf",
+        "Saint Martin",
+        "Latin America",
+        "9",
+        "evidence_33"
+      ],
+      [
+        "mex",
+        "Mexico",
+        "Latin America",
+        "20",
+        "evidence_34"
+      ],
+      [
+        "msr",
+        "Montserrat",
+        "Latin America",
+        "9",
+        "evidence_35"
+      ],
+      [
+        "nic",
+        "Nicaragua",
+        "Latin America",
+        "9",
+        "evidence_36"
+      ],
+      [
+        "pan",
+        "Panama",
+        "Latin America",
+        "9",
+        "evidence_37"
+      ],
+      [
+        "per",
+        "Peru",
+        "Latin America",
+        "26",
+        "evidence_38"
+      ],
+      [
+        "pry",
+        "Paraguay",
+        "Latin America",
+        "26",
+        "evidence_39"
+      ],
+      [
+        "slv",
+        "El Salvador",
+        "Latin America",
+        "9",
+        "evidence_40"
+      ],
+      [
+        "sur",
+        "Suriname",
+        "Latin America",
+        "25",
+        "evidence_41"
+      ],
+      [
+        "sxm",
+        "Sint Maarten",
+        "Latin America",
+        "9",
+        "evidence_42"
+      ],
+      [
+        "tca",
+        "Turks and Caicos",
+        "Latin America",
+        "13",
+        "evidence_43"
+      ],
+      [
+        "tto",
+        "Trinidad and Tobago",
+        "Latin America",
+        "9",
+        "evidence_44"
+      ],
+      [
+        "ury",
+        "Uruguay",
+        "Latin America",
+        "26",
+        "evidence_45"
+      ],
+      [
+        "vct",
+        "Saint Vincent and the Grenadines",
+        "Latin America",
+        "9",
+        "evidence_46"
+      ],
+      [
+        "ven",
+        "Venezuela",
+        "Latin America",
+        "25",
+        "evidence_47"
+      ],
+      [
+        "vgb",
+        "Virgin Islands, British",
+        "Latin America",
+        "13",
+        "evidence_48"
+      ],
+      [
+        "vir",
+        "Virgin Islands, U.S.",
+        "Latin America",
+        "1",
+        "evidence_49"
+      ]
+    ],
+    "summary": {
+      "codes": 49,
+      "numeric_regions": 9
+    }
+  }
+}

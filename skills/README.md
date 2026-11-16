@@ -80,3 +80,7 @@ least one is checked; the suite holds both rules.
 | [genesis-package-weather-data](genesis-package-weather-data/SKILL.md) | Package a weather extract with its checksum | `doe-earth` |
 | [genesis-score-load-errors](genesis-score-load-errors/SKILL.md) | Score a five-minute persistence baseline | `doe-energy-data` |
 | [genesis-check-prediction-bands](genesis-check-prediction-bands/SKILL.md) | Check a prediction band on later readings | `doe-energy-data` |
+| [genesis-audit-region-keys](genesis-audit-region-keys/SKILL.md) | Map Latin American country codes | `doe-economy` |
+| [genesis-check-share-balance](genesis-check-share-balance/SKILL.md) | Check China's coal cooling shares | `doe-water` |
+| [genesis-document-model-columns](genesis-document-model-columns/SKILL.md) | Compare regional bioenergy settings | `doe-land` |
+| [genesis-compare-resource-grades](genesis-compare-resource-grades/SKILL.md) | Compare geothermal heat across regions | `doe-power` |
