@@ -69,6 +69,7 @@ def _rows(env, columns, key):
 
 
 def make_sheet(case, env):
+    stats: dict[str, int | str]
     if case == "latin-america-regions":
         cols = ["iso", "country_name", "region_GCAM3", "GCAM_region_ID"]
         rows = _rows(env, cols, ["iso"])
