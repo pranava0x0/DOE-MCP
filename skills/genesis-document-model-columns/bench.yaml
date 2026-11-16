@@ -1,0 +1,19 @@
+checked:
+- task: 1
+  case: world-bioenergy-columns
+  expect_report:
+    worksheet.summary.regions: 32
+- task: 2
+  case: world-bioenergy-columns
+  expect_report:
+    worksheet.summary.different: 4
+- task: 3
+  case: world-bioenergy-columns
+  expect_report:
+    worksheet.rows.7.1: Canada
+    worksheet.rows.7.2: Low
+    worksheet.rows.7.3: High
+    worksheet.rows.7.4: true
+    worksheet.rows.6.1: Brazil
+    worksheet.rows.6.4: false
+reader: []

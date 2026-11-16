@@ -1,0 +1,19 @@
+checked:
+- task: 1
+  case: china-cooling-balance
+  expect_report:
+    worksheet.summary.sum_2010: '1.000'
+    worksheet.summary.sum_2020: '1.000'
+- task: 2
+  case: china-cooling-balance
+  expect_report:
+    worksheet.rows.0.1: fresh
+    worksheet.rows.0.3: '0.05'
+    worksheet.rows.1.1: seawater
+    worksheet.rows.1.3: '0.075'
+- task: 3
+  case: china-cooling-balance
+  expect_report:
+    worksheet.rows.4.0: dry cooling
+    worksheet.rows.4.4: 0.23
+reader: []

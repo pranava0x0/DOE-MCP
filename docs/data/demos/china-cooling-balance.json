@@ -1,0 +1,360 @@
+{
+  "format_version": "1",
+  "case": "china-cooling-balance",
+  "title": "Check China's coal cooling shares",
+  "question": "Do the published cooling shares add to one in both 2010 and 2020?",
+  "mode": "recorded",
+  "simulation": false,
+  "registry_revision": "2026-11-09",
+  "generated_at": null,
+  "replay_clock": "2026-11-09T00:00:00Z",
+  "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
+  "fixtures": [
+    {
+      "file": "gcam-water.json",
+      "sha256": "ecd273d3b6eeea1cd569b2b70ef51ca0ef203bb2233d4c32f4eebab9c2947869",
+      "captured_at": "2026-11-10T04:46:57.016956+00:00"
+    }
+  ],
+  "answer": "Across 5 cooling and water categories the shares sum to 1.000 in 2010 and 1.000 in 2020.",
+  "limitations": [
+    "These are unitless model inputs for the legacy China region. They do not measure water use or plant counts."
+  ],
+  "steps": [
+    {
+      "tool": "water.cooling_shares",
+      "args": {
+        "filters": {
+          "region_GCAM3": "China",
+          "plant_type": "coal"
+        },
+        "rows": 50
+      },
+      "envelope": {
+        "data": {
+          "table": "cooling_shares",
+          "columns": [
+            "region_GCAM3",
+            "plant_type",
+            "cooling_system",
+            "water_type",
+            "1971",
+            "2005",
+            "2010",
+            "2015",
+            "2017",
+            "2020",
+            "2100"
+          ],
+          "records": [
+            {
+              "row_number": 163,
+              "values": {
+                "region_GCAM3": "China",
+                "plant_type": "coal",
+                "cooling_system": "once through",
+                "water_type": "fresh",
+                "1971": "0.174",
+                "2005": "0.174",
+                "2010": "0.1",
+                "2015": "0.1",
+                "2017": "0.1",
+                "2020": "0.05",
+                "2100": "0.05"
+              },
+              "evidence_ref": "evidence_01"
+            },
+            {
+              "row_number": 164,
+              "values": {
+                "region_GCAM3": "China",
+                "plant_type": "coal",
+                "cooling_system": "once through",
+                "water_type": "seawater",
+                "1971": "0.026",
+                "2005": "0.026",
+                "2010": "0.026",
+                "2015": "0.026",
+                "2017": "0.026",
+                "2020": "0.075",
+                "2100": "0.075"
+              },
+              "evidence_ref": "evidence_02"
+            },
+            {
+              "row_number": 165,
+              "values": {
+                "region_GCAM3": "China",
+                "plant_type": "coal",
+                "cooling_system": "recirculating",
+                "water_type": "fresh",
+                "1971": "0.73",
+                "2005": "0.65",
+                "2010": "0.604",
+                "2015": "0.604",
+                "2017": "0.604",
+                "2020": "0.375",
+                "2100": "0.375"
+              },
+              "evidence_ref": "evidence_03"
+            },
+            {
+              "row_number": 166,
+              "values": {
+                "region_GCAM3": "China",
+                "plant_type": "coal",
+                "cooling_system": "cooling pond",
+                "water_type": "fresh",
+                "1971": "0.07",
+                "2005": "0.07",
+                "2010": "0.07",
+                "2015": "0.07",
+                "2017": "0.07",
+                "2020": "0.07",
+                "2100": "0.07"
+              },
+              "evidence_ref": "evidence_04"
+            },
+            {
+              "row_number": 167,
+              "values": {
+                "region_GCAM3": "China",
+                "plant_type": "coal",
+                "cooling_system": "dry cooling",
+                "water_type": "fresh",
+                "1971": "0",
+                "2005": "0.08",
+                "2010": "0.2",
+                "2015": "0.2",
+                "2017": "0.2",
+                "2020": "0.43",
+                "2100": "0.43"
+              },
+              "evidence_ref": "evidence_05"
+            }
+          ],
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A23.CoolingSystemShares_RG3.csv",
+          "source_notes": [
+            "File: A23.CoolingSystemShares_RG3.csv",
+            "Title: Cooling system shares for GCAM3 regions",
+            "Units: Unitless",
+            "Source: Various sources. USA values are from UCS data. WEUR future are from Schakel inventory.",
+            "Column types: ccccnnnnnnn",
+            "----------"
+          ],
+          "filters": {
+            "region_GCAM3": "China",
+            "plant_type": "coal"
+          },
+          "offset": 0,
+          "record_count": 5,
+          "total_matches": 5,
+          "table_rows": 378,
+          "release": "GCAM v9.1"
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "gcam-water",
+            "steward": "Pacific Northwest National Laboratory",
+            "system": "GCAM: Water use",
+            "dataset": "A23.CoolingSystemShares_RG3.csv",
+            "dataset_version": "GCAM v9.1",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "data row 163",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A23.CoolingSystemShares_RG3.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_02",
+            "source_ref": "source_01",
+            "record_id": "data row 164",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A23.CoolingSystemShares_RG3.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_03",
+            "source_ref": "source_01",
+            "record_id": "data row 165",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A23.CoolingSystemShares_RG3.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_04",
+            "source_ref": "source_01",
+            "record_id": "data row 166",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A23.CoolingSystemShares_RG3.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_05",
+            "source_ref": "source_01",
+            "record_id": "data row 167",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A23.CoolingSystemShares_RG3.csv",
+            "retrieved_at": "2026-11-09T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "gcam-water"
+          ],
+          "known_limitations": [
+            "Rows are model inputs, not scenario outputs or measurements of current conditions.",
+            "GCAM3 region labels and numeric GCAM region IDs use different groupings."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+            "source_id": "gcam-water"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "water.cooling_shares",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-09",
+          "request_id": "recorded-workflow"
+        }
+      }
+    }
+  ],
+  "worksheet": {
+    "caption": "Check China's coal cooling shares",
+    "columns": [
+      "cooling_system",
+      "water_type",
+      "2010",
+      "2020",
+      "Change in share (2020 minus 2010)",
+      "Step 1 evidence ID"
+    ],
+    "rows": [
+      [
+        "once through",
+        "fresh",
+        "0.1",
+        "0.05",
+        -0.05,
+        "evidence_01"
+      ],
+      [
+        "once through",
+        "seawater",
+        "0.026",
+        "0.075",
+        0.049,
+        "evidence_02"
+      ],
+      [
+        "recirculating",
+        "fresh",
+        "0.604",
+        "0.375",
+        -0.229,
+        "evidence_03"
+      ],
+      [
+        "cooling pond",
+        "fresh",
+        "0.07",
+        "0.07",
+        0.0,
+        "evidence_04"
+      ],
+      [
+        "dry cooling",
+        "fresh",
+        "0.2",
+        "0.43",
+        0.23,
+        "evidence_05"
+      ]
+    ],
+    "summary": {
+      "sum_2010": "1.000",
+      "sum_2020": "1.000"
+    }
+  }
+}

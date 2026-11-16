@@ -8,11 +8,18 @@ from .core.assemble import strip_inline_markup
 from .core.envelope import Envelope
 from .core.errors import SourceUnavailable
 
+from .global_worksheets import WALKS
+
+_METHOD_PATHS = {
+    "data-exploration": "skills/baseeval-skills/lm-eval-harness-skills/data-exploration",
+    "datacard-generator": "skills/basedata-skills/datacard-generator",
+}
 GENESIS_SKILLS = {
+    **{case: (w.method, _METHOD_PATHS[w.method]) for case, w in WALKS.items()},
     "load-interval-check": ("uncertainty-quantification", "skills/basesafe-skills/uncertainty-quantification"),
     "load-baseline": ("uq-metrics-evaluator", "skills/basesafe-skills/uq-metrics-evaluator"),
     "bibliography": ("literature-search", "skills/literature-search"),
-    "soil-metadata": ("data-exploration", "skills/baseeval-skills/lm-eval-harness-skills/data-exploration"),
+    "soil-metadata": ("data-exploration", _METHOD_PATHS["data-exploration"]),
 }
 GENESIS_TREE = "https://github.com/AI-ModCon/genesis-skills/blob/70dce5aca946e2804f9b8579da01910cd2861858/"
 

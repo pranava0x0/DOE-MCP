@@ -1,0 +1,6 @@
+Run mode,Registry revision,cooling_system,water_type,2010,2020,Change in share (2020 minus 2010),Step 1 evidence ID
+recorded,2026-11-09,once through,fresh,0.1,0.05,-0.05,evidence_01
+recorded,2026-11-09,once through,seawater,0.026,0.075,0.049,evidence_02
+recorded,2026-11-09,recirculating,fresh,0.604,0.375,-0.229,evidence_03
+recorded,2026-11-09,cooling pond,fresh,0.07,0.07,0.0,evidence_04
+recorded,2026-11-09,dry cooling,fresh,0.2,0.43,0.23,evidence_05

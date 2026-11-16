@@ -87,6 +87,10 @@ it draws on and has a bench that checks results from recorded data.
 | `genesis-audit-sample-fields` | data-exploration | [Soil metadata audit](demos.html#soil-metadata) with missing-field counts on the returned page. |
 | `genesis-score-load-errors` | uq-metrics-evaluator | [BPA baseline errors](demos.html#load-baseline) with mean absolute and root mean squared error in MW. |
 | `genesis-check-prediction-bands` | uncertainty-quantification | [Prediction band worksheet](demos.html#load-interval-check) with separate calibration and evaluation rows. |
+| `genesis-audit-region-keys` | data-exploration | [Map Latin American country codes](demos.html#latin-america-regions). |
+| `genesis-check-share-balance` | data-exploration | [Check China's coal cooling shares](demos.html#china-cooling-balance). |
+| `genesis-document-model-columns` | datacard-generator | [Compare regional bioenergy settings](demos.html#world-bioenergy-columns). |
+| `genesis-compare-resource-grades` | data-exploration | [Compare geothermal heat across regions](demos.html#world-geothermal-grades). |
 
 For example:
 

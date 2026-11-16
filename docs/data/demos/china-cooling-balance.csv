@@ -1,0 +1,6 @@
+step,tool,source,record_id,locator,effective_at,mode
+1,water.cooling_shares,gcam-water,data row 163,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A23.CoolingSystemShares_RG3.csv,,recorded
+1,water.cooling_shares,gcam-water,data row 164,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A23.CoolingSystemShares_RG3.csv,,recorded
+1,water.cooling_shares,gcam-water,data row 165,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A23.CoolingSystemShares_RG3.csv,,recorded
+1,water.cooling_shares,gcam-water,data row 166,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A23.CoolingSystemShares_RG3.csv,,recorded
+1,water.cooling_shares,gcam-water,data row 167,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A23.CoolingSystemShares_RG3.csv,,recorded

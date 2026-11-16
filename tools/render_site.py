@@ -464,7 +464,10 @@ reachable keyless.</p>
 
 from doe_mcp.gcam_examples import EXAMPLES  # noqa: E402
 
+from doe_mcp.global_worksheets import WALKS  # noqa: E402
+
 DEMO_CARDS = [
+    *((k, v.title, v.question, "Global GCAM · Genesis: " + v.method) for k, v in WALKS.items()),
     *((k, v.title, v.question, "GCAM model inputs") for k, v in EXAMPLES.items()),
     ("global-climate-archive", "Find Canadian climate simulations", "Inspect historical CanESM5 temperature dataset versions and ensemble members in Oak Ridge's federation index.", "CMIP6 metadata"),
     ("evidence", "Trace a research claim", "Search perovskite solar literature, follow a returned record, and see where the search is incomplete.", "Recorded evidence"),

@@ -1,0 +1,17 @@
+checked:
+- task: 1
+  case: latin-america-regions
+  expect_report:
+    worksheet.summary.codes: 49
+- task: 2
+  case: latin-america-regions
+  expect_report:
+    worksheet.summary.numeric_regions: 9
+- task: 3
+  case: latin-america-regions
+  expect_report:
+    worksheet.rows.3.0: arg
+    worksheet.rows.3.3: '31'
+    worksheet.rows.10.0: bra
+    worksheet.rows.10.3: '7'
+reader: []
