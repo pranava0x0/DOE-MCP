@@ -1,0 +1,18 @@
+checked:
+- task: 1
+  case: world-industry-response
+  expect_report:
+    worksheet.summary.levels: 11
+- task: 2
+  case: world-industry-response
+  expect_report:
+    worksheet.rows.9.0: '42'
+    worksheet.rows.9.2: zero
+    worksheet.summary.zero_levels: 1
+- task: 3
+  case: world-industry-response
+  expect_report:
+    worksheet.rows.10.0: '46'
+    worksheet.rows.10.1: '-0.05'
+    worksheet.rows.10.2: negative
+reader: []

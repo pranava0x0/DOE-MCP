@@ -25,9 +25,1423 @@ header{padding:12px 16px}header h1{font-size:1.6rem}header p{margin:8px 0}
 .stackable caption{display:block}.downloads{gap:12px}.downloads a{min-height:44px}
 }
 [hidden]{display:none!important}@media(max-width:600px){main,header,footer{padding:16px}td,th{padding:8px}article{padding:16px}}
+
+:root{background:#faf8f0;color:#193b32}
+header{background:#153e35;color:#f7f5e6;border:0;border-bottom:4px solid #dba571}
+header a{color:#f7d7a8}header h1,article h2{font-family:Georgia,serif;letter-spacing:-.035em}
+header h1{font-weight:500}#picker{background:#faf8f0}
+article{border-radius:5px;box-shadow:0 4px 0 #e1e6da}.answer{color:#174737}
+.atlas-chart{padding:clamp(14px,2.5vw,26px);background:#f2f5eb;border:1px solid #cbd7c6;border-radius:4px;margin:16px 0}
+.atlas-chart figcaption{font:600 1.12rem Georgia,serif;margin-bottom:14px}
+.atlas-bar{display:grid;grid-template-columns:minmax(6rem,1fr) 2fr 3.5rem;align-items:center;gap:10px;margin:9px 0;font-size:.9rem}
+.atlas-track{height:12px;background:#dce4d6}.atlas-track i{display:block;height:100%;background:#3d7359}
+.atlas-bar b{font-variant-numeric:tabular-nums;text-align:right}.atlas-chart small{color:#40564b}
 </style></head>
 <body><header><a href="index.html">DOE-MCP home</a><h1>DOE-MCP demos</h1><p>Explore recorded results for free, without an account or API key.</p></header>
-<main><div id="picker" hidden><label for="workflow">Choose a walkthrough</label><select id="workflow"><option value="latin-america-regions">Map Latin American country codes</option><option value="china-cooling-balance">Check China&#x27;s coal cooling shares</option><option value="world-bioenergy-columns">Compare regional bioenergy settings</option><option value="world-geothermal-grades">Compare geothermal heat across regions</option><option value="kenya-soil">Soil carbon recovery in Kenya</option><option value="japan-geothermal">Japan&#x27;s geothermal supply curve</option><option value="germany-cooling">Power plant cooling in Western Europe</option><option value="brazil-bioenergy">Brazil&#x27;s bioenergy preference</option><option value="pakistan-labor">Labor mobility in Pakistan</option><option value="desalination-inputs">The energy cost of reverse osmosis</option><option value="fluorinated-gases">Compare two fluorinated gases</option><option value="offshore-wind">Two offshore wind assumptions</option><option value="evidence">DOE evidence finder</option><option value="bibliography">Perovskite bibliography worksheet</option><option value="daymet-calendar">The missing Daymet date</option><option value="load-interval-check">Check a load prediction band</option><option value="load-baseline">Five-minute BPA load prediction</option><option value="soil-metadata">Soil sample field check</option><option value="dataset-card">Geothermal dataset-card starter</option><option value="microbiome">Microbiome study and sample finder</option><option value="rulemaking">DOE rulemaking brief</option><option value="outage-history">Historical outage-data finder</option><option value="find-data">Does DOE publish this?</option><option value="facility-status">NERSC facility status</option><option value="partial">One collection unavailable</option><option value="blocked">A capability not yet served</option><option value="grid">BPA grid briefing</option><option value="eia">CAISO demand briefing</option><option value="site">Rhode Island facility context</option><option value="earth">Environmental study brief</option><option value="global-climate-archive">Find Canadian climate simulations</option><option value="materials">Materials evidence sheet</option></select><nav id="step-nav" aria-label="Jump to result"></nav></div><article id="latin-america-regions" tabindex="-1"><h2>Map Latin American country codes</h2><p class="skill">Skill: <code>genesis-audit-region-keys</code></p><p class="answer">49 country and territory codes share the legacy label but map to 9 numeric region IDs.</p><p class="scope">Read 49 of 49 matches. A recorded replay at registry revision 2026-11-09, not current data.</p><details open><summary>Limits of this example</summary><ul><li>Country and territory codes belong to this model release. They do not define political boundaries.</li></ul></details><p class="downloads"><a download href="data/demos/latin-america-regions.json">Download JSON evidence</a><a download href="data/demos/latin-america-regions.csv">Download CSV evidence index</a><a download href="data/demos/latin-america-regions-worksheet.csv">Download worksheet CSV</a></p><section class="step worksheet" id="latin-america-regions-worksheet" tabindex="-1"><h3>Map Latin American country codes</h3><p>Based on the Genesis <a href="https://github.com/AI-ModCon/genesis-skills/blob/70dce5aca946e2804f9b8579da01910cd2861858/skills/baseeval-skills/lm-eval-harness-skills/data-exploration/SKILL.md" rel="noreferrer">data-exploration</a> skill. DOE-MCP builds this worksheet locally.</p><div class="scroll"><table class="stackable"><caption>Each evidence ID refers to step 1 in the JSON download.</caption><thead><tr><th scope="col">iso</th><th scope="col">country_name</th><th scope="col">region_GCAM3</th><th scope="col">GCAM_region_ID</th><th scope="col">Step 1 evidence ID</th></tr></thead><tbody><tr><td data-label="iso">abw</td><td data-label="country_name">Aruba</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_01</td></tr><tr><td data-label="iso">aia</td><td data-label="country_name">Anguilla</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_02</td></tr><tr><td data-label="iso">ant</td><td data-label="country_name">Netherlands Antilles</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_03</td></tr><tr><td data-label="iso">arg</td><td data-label="country_name">Argentina</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">31</td><td data-label="Step 1 evidence ID">evidence_04</td></tr><tr><td data-label="iso">atg</td><td data-label="country_name">Antigua &amp; Barbuda</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_05</td></tr><tr><td data-label="iso">bes</td><td data-label="country_name">Bonaire, Sint Eustatius and Saba</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_06</td></tr><tr><td data-label="iso">bhs</td><td data-label="country_name">Bahamas</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_07</td></tr><tr><td data-label="iso">blm</td><td data-label="country_name">Saint Barthelemy</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_08</td></tr><tr><td data-label="iso">blz</td><td data-label="country_name">Belize</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_09</td></tr><tr><td data-label="iso">bol</td><td data-label="country_name">Bolivia</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">26</td><td data-label="Step 1 evidence ID">evidence_10</td></tr><tr><td data-label="iso">bra</td><td data-label="country_name">Brazil</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">7</td><td data-label="Step 1 evidence ID">evidence_11</td></tr><tr><td data-label="iso">brb</td><td data-label="country_name">Barbados</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_12</td></tr><tr><td data-label="iso">chl</td><td data-label="country_name">Chile</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">26</td><td data-label="Step 1 evidence ID">evidence_13</td></tr><tr><td data-label="iso">col</td><td data-label="country_name">Colombia</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">32</td><td data-label="Step 1 evidence ID">evidence_14</td></tr><tr><td data-label="iso">cri</td><td data-label="country_name">Costa Rica</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_15</td></tr><tr><td data-label="iso">cub</td><td data-label="country_name">Cuba</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_16</td></tr><tr><td data-label="iso">cuw</td><td data-label="country_name">Curacao</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_17</td></tr><tr><td data-label="iso">cym</td><td data-label="country_name">Cayman Islands</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_18</td></tr><tr><td data-label="iso">dma</td><td data-label="country_name">Dominica</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_19</td></tr><tr><td data-label="iso">dom</td><td data-label="country_name">Dominican Republic</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_20</td></tr><tr><td data-label="iso">ecu</td><td data-label="country_name">Ecuador</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">26</td><td data-label="Step 1 evidence ID">evidence_21</td></tr><tr><td data-label="iso">flk</td><td data-label="country_name">Falkland Islands (Malvinas)</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">13</td><td data-label="Step 1 evidence ID">evidence_22</td></tr><tr><td data-label="iso">glp</td><td data-label="country_name">Guadeloupe</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_23</td></tr><tr><td data-label="iso">grd</td><td data-label="country_name">Grenada</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_24</td></tr><tr><td data-label="iso">gtm</td><td data-label="country_name">Guatemala</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_25</td></tr><tr><td data-label="iso">guf</td><td data-label="country_name">French Guiana</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">25</td><td data-label="Step 1 evidence ID">evidence_26</td></tr><tr><td data-label="iso">guy</td><td data-label="country_name">Guyana</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">25</td><td data-label="Step 1 evidence ID">evidence_27</td></tr><tr><td data-label="iso">hnd</td><td data-label="country_name">Honduras</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_28</td></tr><tr><td data-label="iso">hti</td><td data-label="country_name">Haiti</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_29</td></tr><tr><td data-label="iso">jam</td><td data-label="country_name">Jamaica</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_30</td></tr><tr><td data-label="iso">kna</td><td data-label="country_name">Saint Kitts and Nevis</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_31</td></tr><tr><td data-label="iso">lca</td><td data-label="country_name">Saint Lucia</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_32</td></tr><tr><td data-label="iso">maf</td><td data-label="country_name">Saint Martin</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_33</td></tr><tr><td data-label="iso">mex</td><td data-label="country_name">Mexico</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">20</td><td data-label="Step 1 evidence ID">evidence_34</td></tr><tr><td data-label="iso">msr</td><td data-label="country_name">Montserrat</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_35</td></tr><tr><td data-label="iso">nic</td><td data-label="country_name">Nicaragua</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_36</td></tr><tr><td data-label="iso">pan</td><td data-label="country_name">Panama</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_37</td></tr><tr><td data-label="iso">per</td><td data-label="country_name">Peru</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">26</td><td data-label="Step 1 evidence ID">evidence_38</td></tr><tr><td data-label="iso">pry</td><td data-label="country_name">Paraguay</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">26</td><td data-label="Step 1 evidence ID">evidence_39</td></tr><tr><td data-label="iso">slv</td><td data-label="country_name">El Salvador</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_40</td></tr><tr><td data-label="iso">sur</td><td data-label="country_name">Suriname</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">25</td><td data-label="Step 1 evidence ID">evidence_41</td></tr><tr><td data-label="iso">sxm</td><td data-label="country_name">Sint Maarten</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_42</td></tr><tr><td data-label="iso">tca</td><td data-label="country_name">Turks and Caicos</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">13</td><td data-label="Step 1 evidence ID">evidence_43</td></tr><tr><td data-label="iso">tto</td><td data-label="country_name">Trinidad and Tobago</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_44</td></tr><tr><td data-label="iso">ury</td><td data-label="country_name">Uruguay</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">26</td><td data-label="Step 1 evidence ID">evidence_45</td></tr><tr><td data-label="iso">vct</td><td data-label="country_name">Saint Vincent and the Grenadines</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_46</td></tr><tr><td data-label="iso">ven</td><td data-label="country_name">Venezuela</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">25</td><td data-label="Step 1 evidence ID">evidence_47</td></tr><tr><td data-label="iso">vgb</td><td data-label="country_name">Virgin Islands, British</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">13</td><td data-label="Step 1 evidence ID">evidence_48</td></tr><tr><td data-label="iso">vir</td><td data-label="country_name">Virgin Islands, U.S.</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">1</td><td data-label="Step 1 evidence ID">evidence_49</td></tr></tbody></table></div></section><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo latin-america-regions --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="step" id="latin-america-regions-step-1" tabindex="-1" data-label="Country regions"><h3>1. Country regions</h3><details><summary>Coverage and source notes</summary><p class="mono">economy.country_regions {&quot;filters&quot;: {&quot;region_GCAM3&quot;: &quot;Latin America&quot;}, &quot;rows&quot;: 50}</p><div class="scroll"><table class="compact"><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td data-label="Coverage dimension">registry</td><td data-label="Value">covered</td></tr><tr><td data-label="Coverage dimension">execution</td><td data-label="Value">complete</td></tr><tr><td data-label="Coverage dimension">pagination</td><td data-label="Value">complete</td></tr><tr><td data-label="Coverage dimension">source_claim</td><td data-label="Value">complete</td></tr><tr><td data-label="Coverage dimension">result</td><td data-label="Value">hit</td></tr></tbody></table></div><p>Searched: gcam-economy</p><ul><li>This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.</li></ul></details><div class="scroll"><table class="compact"><caption></caption><thead><tr><th scope="col">Returned</th><th scope="col">Total matches</th></tr></thead><tbody><tr><td data-label="Returned">49</td><td data-label="Total matches">49</td></tr></tbody></table></div><div class="scroll"><table class="stackable"><caption>GCAM v9.1</caption><thead><tr><th scope="col">iso</th><th scope="col">country_name</th><th scope="col">region_GCAM3</th><th scope="col">GCAM_region_ID</th></tr></thead><tbody><tr><td data-label="iso">abw</td><td data-label="country_name">Aruba</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">aia</td><td data-label="country_name">Anguilla</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">ant</td><td data-label="country_name">Netherlands Antilles</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">arg</td><td data-label="country_name">Argentina</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">31</td></tr><tr><td data-label="iso">atg</td><td data-label="country_name">Antigua &amp; Barbuda</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">bes</td><td data-label="country_name">Bonaire, Sint Eustatius and Saba</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">bhs</td><td data-label="country_name">Bahamas</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">blm</td><td data-label="country_name">Saint Barthelemy</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">blz</td><td data-label="country_name">Belize</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">bol</td><td data-label="country_name">Bolivia</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">26</td></tr><tr><td data-label="iso">bra</td><td data-label="country_name">Brazil</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">7</td></tr><tr><td data-label="iso">brb</td><td data-label="country_name">Barbados</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">chl</td><td data-label="country_name">Chile</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">26</td></tr><tr><td data-label="iso">col</td><td data-label="country_name">Colombia</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">32</td></tr><tr><td data-label="iso">cri</td><td data-label="country_name">Costa Rica</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">cub</td><td data-label="country_name">Cuba</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">cuw</td><td data-label="country_name">Curacao</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">cym</td><td data-label="country_name">Cayman Islands</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">dma</td><td data-label="country_name">Dominica</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">dom</td><td data-label="country_name">Dominican Republic</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">ecu</td><td data-label="country_name">Ecuador</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">26</td></tr><tr><td data-label="iso">flk</td><td data-label="country_name">Falkland Islands (Malvinas)</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">13</td></tr><tr><td data-label="iso">glp</td><td data-label="country_name">Guadeloupe</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">grd</td><td data-label="country_name">Grenada</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">gtm</td><td data-label="country_name">Guatemala</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">guf</td><td data-label="country_name">French Guiana</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">25</td></tr><tr><td data-label="iso">guy</td><td data-label="country_name">Guyana</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">25</td></tr><tr><td data-label="iso">hnd</td><td data-label="country_name">Honduras</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">hti</td><td data-label="country_name">Haiti</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">jam</td><td data-label="country_name">Jamaica</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">kna</td><td data-label="country_name">Saint Kitts and Nevis</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">lca</td><td data-label="country_name">Saint Lucia</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">maf</td><td data-label="country_name">Saint Martin</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">mex</td><td data-label="country_name">Mexico</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">20</td></tr><tr><td data-label="iso">msr</td><td data-label="country_name">Montserrat</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">nic</td><td data-label="country_name">Nicaragua</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">pan</td><td data-label="country_name">Panama</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">per</td><td data-label="country_name">Peru</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">26</td></tr><tr><td data-label="iso">pry</td><td data-label="country_name">Paraguay</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">26</td></tr><tr><td data-label="iso">slv</td><td data-label="country_name">El Salvador</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">sur</td><td data-label="country_name">Suriname</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">25</td></tr><tr><td data-label="iso">sxm</td><td data-label="country_name">Sint Maarten</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">tca</td><td data-label="country_name">Turks and Caicos</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">13</td></tr><tr><td data-label="iso">tto</td><td data-label="country_name">Trinidad and Tobago</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">ury</td><td data-label="country_name">Uruguay</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">26</td></tr><tr><td data-label="iso">vct</td><td data-label="country_name">Saint Vincent and the Grenadines</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">ven</td><td data-label="country_name">Venezuela</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">25</td></tr><tr><td data-label="iso">vgb</td><td data-label="country_name">Virgin Islands, British</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">13</td></tr><tr><td data-label="iso">vir</td><td data-label="country_name">Virgin Islands, U.S.</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">1</td></tr></tbody></table></div><p>GCAM data system, Copyright 2019 Battelle Memorial Institute. <a href="GCAM-ECL-2.0.txt">Educational Community License 2.0</a>.</p><details><summary>Publisher table notes and units</summary><ul><li>File: iso_GCAM_regID.csv</li><li>Title: ISO to GCAM region mapping</li><li>Units: NA</li><li>Description: Maps iso codes to GCAM regions (including composites as necessary)</li><li>Column types: ccci</li></ul></details><details><summary>Record sources</summary><ul class="evidence"><li><strong>data row 1</strong><br>GCAM: Regional economics · record data row 1<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 4</strong><br>GCAM: Regional economics · record data row 4<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 7</strong><br>GCAM: Regional economics · record data row 7<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 9</strong><br>GCAM: Regional economics · record data row 9<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 12</strong><br>GCAM: Regional economics · record data row 12<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 19</strong><br>GCAM: Regional economics · record data row 19<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 24</strong><br>GCAM: Regional economics · record data row 24<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 26</strong><br>GCAM: Regional economics · record data row 26<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 28</strong><br>GCAM: Regional economics · record data row 28<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 30</strong><br>GCAM: Regional economics · record data row 30<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 31</strong><br>GCAM: Regional economics · record data row 31<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 32</strong><br>GCAM: Regional economics · record data row 32<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 41</strong><br>GCAM: Regional economics · record data row 41<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 48</strong><br>GCAM: Regional economics · record data row 48<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 51</strong><br>GCAM: Regional economics · record data row 51<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 52</strong><br>GCAM: Regional economics · record data row 52<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 53</strong><br>GCAM: Regional economics · record data row 53<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 54</strong><br>GCAM: Regional economics · record data row 54<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 60</strong><br>GCAM: Regional economics · record data row 60<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 62</strong><br>GCAM: Regional economics · record data row 62<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 64</strong><br>GCAM: Regional economics · record data row 64<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 73</strong><br>GCAM: Regional economics · record data row 73<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 84</strong><br>GCAM: Regional economics · record data row 84<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 89</strong><br>GCAM: Regional economics · record data row 89<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 91</strong><br>GCAM: Regional economics · record data row 91<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 92</strong><br>GCAM: Regional economics · record data row 92<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 94</strong><br>GCAM: Regional economics · record data row 94<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 96</strong><br>GCAM: Regional economics · record data row 96<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 98</strong><br>GCAM: Regional economics · record data row 98<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 109</strong><br>GCAM: Regional economics · record data row 109<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 118</strong><br>GCAM: Regional economics · record data row 118<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 125</strong><br>GCAM: Regional economics · record data row 125<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 133</strong><br>GCAM: Regional economics · record data row 133<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 139</strong><br>GCAM: Regional economics · record data row 139<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 150</strong><br>GCAM: Regional economics · record data row 150<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 161</strong><br>GCAM: Regional economics · record data row 161<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 170</strong><br>GCAM: Regional economics · record data row 170<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 173</strong><br>GCAM: Regional economics · record data row 173<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 181</strong><br>GCAM: Regional economics · record data row 181<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 199</strong><br>GCAM: Regional economics · record data row 199<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 206</strong><br>GCAM: Regional economics · record data row 206<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 211</strong><br>GCAM: Regional economics · record data row 211<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 214</strong><br>GCAM: Regional economics · record data row 214<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 223</strong><br>GCAM: Regional economics · record data row 223<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 231</strong><br>GCAM: Regional economics · record data row 231<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 235</strong><br>GCAM: Regional economics · record data row 235<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 236</strong><br>GCAM: Regional economics · record data row 236<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 237</strong><br>GCAM: Regional economics · record data row 237<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 238</strong><br>GCAM: Regional economics · record data row 238<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li></ul></details><details><summary>Full response and evidence</summary><pre>{
+<main><div id="picker" hidden><label for="workflow">Choose a walkthrough</label><select id="workflow"><option value="world-crop-rates">Compare crop yield assumptions</option><option value="world-capture-residual">Account for uncaptured carbon</option><option value="world-industry-response">Read industrial demand elasticity</option><option value="latin-america-regions">Map Latin American country codes</option><option value="china-cooling-balance">Check China&#x27;s coal cooling shares</option><option value="world-bioenergy-columns">Compare regional bioenergy settings</option><option value="world-geothermal-grades">Compare geothermal heat across regions</option><option value="kenya-soil">Soil carbon recovery in Kenya</option><option value="japan-geothermal">Japan&#x27;s geothermal supply curve</option><option value="germany-cooling">Power plant cooling in Western Europe</option><option value="brazil-bioenergy">Brazil&#x27;s bioenergy preference</option><option value="pakistan-labor">Labor mobility in Pakistan</option><option value="desalination-inputs">The energy cost of reverse osmosis</option><option value="fluorinated-gases">Compare two fluorinated gases</option><option value="offshore-wind">Two offshore wind assumptions</option><option value="evidence">DOE evidence finder</option><option value="bibliography">Perovskite bibliography worksheet</option><option value="daymet-calendar">The missing Daymet date</option><option value="load-interval-check">Check a load prediction band</option><option value="load-baseline">Five-minute BPA load prediction</option><option value="soil-metadata">Soil sample field check</option><option value="dataset-card">Geothermal dataset-card starter</option><option value="microbiome">Microbiome study and sample finder</option><option value="rulemaking">DOE rulemaking brief</option><option value="outage-history">Historical outage-data finder</option><option value="find-data">Does DOE publish this?</option><option value="facility-status">NERSC facility status</option><option value="partial">One collection unavailable</option><option value="blocked">A capability not yet served</option><option value="grid">BPA grid briefing</option><option value="eia">CAISO demand briefing</option><option value="site">Rhode Island facility context</option><option value="earth">Environmental study brief</option><option value="global-climate-archive">Find Canadian climate simulations</option><option value="materials">Materials evidence sheet</option></select><nav id="step-nav" aria-label="Jump to result"></nav></div><article id="world-crop-rates" tabindex="-1"><h2>Compare crop yield assumptions</h2><p class="skill">Skill: <code>genesis-compare-fallback-rates</code></p><p class="answer">The fallback rate changes for 11 of 18 commodities between 2050 and 2095.</p><p class="scope">Read 18 of 18 matches. A recorded replay at registry revision 2026-11-09, not current data.</p><figure class="atlas-chart"><figcaption>Plate 01 / Land · How the fallback rates compare</figcaption><div class="atlas-bar"><span>Lower</span><span aria-hidden="true" class="atlas-track"><i style="width:61.1111%"></i></span><b>11</b></div><div class="atlas-bar"><span>Unchanged</span><span aria-hidden="true" class="atlas-track"><i style="width:38.8889%"></i></span><b>7</b></div><div class="atlas-bar"><span>Higher</span><span aria-hidden="true" class="atlas-track"><i style="width:0.0000%"></i></span><b>0</b></div><small>Counts out of 18 commodities. Each row compares 2095 with 2050.</small></figure><details open><summary>Limits of this example</summary><ul><li>GCAM uses fallback rates where regional crop estimates are unavailable and beyond 2050. These rates are not harvested yields.</li></ul></details><p class="downloads"><a download href="data/demos/world-crop-rates.json">Download JSON evidence</a><a download href="data/demos/world-crop-rates.csv">Download CSV evidence index</a><a download href="data/demos/world-crop-rates-worksheet.csv">Download worksheet CSV</a></p><section class="step worksheet" id="world-crop-rates-worksheet" tabindex="-1"><h3>Compare crop yield assumptions</h3><p>Based on the Genesis <a href="https://github.com/AI-ModCon/genesis-skills/blob/70dce5aca946e2804f9b8579da01910cd2861858/skills/baseeval-skills/lm-eval-harness-skills/data-exploration/SKILL.md" rel="noreferrer">data-exploration</a> skill. DOE-MCP builds this worksheet locally.</p><div class="scroll"><table class="stackable"><caption>Each evidence ID refers to step 1 in the JSON download.</caption><thead><tr><th scope="col">Commodity</th><th scope="col">2050 rate</th><th scope="col">2095 rate</th><th scope="col">2095 relative to 2050</th><th scope="col">Step 1 evidence ID</th></tr></thead><tbody><tr><td data-label="Commodity">Corn</td><td data-label="2050 rate">0.0025</td><td data-label="2095 rate">0.0015</td><td data-label="2095 relative to 2050">lower</td><td data-label="Step 1 evidence ID">evidence_01</td></tr><tr><td data-label="Commodity">FiberCrop</td><td data-label="2050 rate">0</td><td data-label="2095 rate">0</td><td data-label="2095 relative to 2050">unchanged</td><td data-label="Step 1 evidence ID">evidence_02</td></tr><tr><td data-label="Commodity">FodderGrass</td><td data-label="2050 rate">0</td><td data-label="2095 rate">0</td><td data-label="2095 relative to 2050">unchanged</td><td data-label="Step 1 evidence ID">evidence_03</td></tr><tr><td data-label="Commodity">FodderHerb</td><td data-label="2050 rate">0</td><td data-label="2095 rate">0</td><td data-label="2095 relative to 2050">unchanged</td><td data-label="Step 1 evidence ID">evidence_04</td></tr><tr><td data-label="Commodity">Fruits</td><td data-label="2050 rate">0.003</td><td data-label="2095 rate">0.002</td><td data-label="2095 relative to 2050">lower</td><td data-label="Step 1 evidence ID">evidence_05</td></tr><tr><td data-label="Commodity">Legumes</td><td data-label="2050 rate">0.003</td><td data-label="2095 rate">0.002</td><td data-label="2095 relative to 2050">lower</td><td data-label="Step 1 evidence ID">evidence_06</td></tr><tr><td data-label="Commodity">MiscCrop</td><td data-label="2050 rate">0.003</td><td data-label="2095 rate">0.002</td><td data-label="2095 relative to 2050">lower</td><td data-label="Step 1 evidence ID">evidence_07</td></tr><tr><td data-label="Commodity">NutsSeeds</td><td data-label="2050 rate">0.003</td><td data-label="2095 rate">0.002</td><td data-label="2095 relative to 2050">lower</td><td data-label="Step 1 evidence ID">evidence_08</td></tr><tr><td data-label="Commodity">OilCrop</td><td data-label="2050 rate">0.005</td><td data-label="2095 rate">0.002</td><td data-label="2095 relative to 2050">lower</td><td data-label="Step 1 evidence ID">evidence_09</td></tr><tr><td data-label="Commodity">OtherGrain</td><td data-label="2050 rate">0.001</td><td data-label="2095 rate">0.001</td><td data-label="2095 relative to 2050">unchanged</td><td data-label="Step 1 evidence ID">evidence_10</td></tr><tr><td data-label="Commodity">OilPalm</td><td data-label="2050 rate">0.001</td><td data-label="2095 rate">0.001</td><td data-label="2095 relative to 2050">unchanged</td><td data-label="Step 1 evidence ID">evidence_11</td></tr><tr><td data-label="Commodity">Rice</td><td data-label="2050 rate">0.001</td><td data-label="2095 rate">0.001</td><td data-label="2095 relative to 2050">unchanged</td><td data-label="Step 1 evidence ID">evidence_12</td></tr><tr><td data-label="Commodity">RootTuber</td><td data-label="2050 rate">0.002</td><td data-label="2095 rate">0.001</td><td data-label="2095 relative to 2050">lower</td><td data-label="Step 1 evidence ID">evidence_13</td></tr><tr><td data-label="Commodity">Soybean</td><td data-label="2050 rate">0.001</td><td data-label="2095 rate">0.001</td><td data-label="2095 relative to 2050">unchanged</td><td data-label="Step 1 evidence ID">evidence_14</td></tr><tr><td data-label="Commodity">SugarCrop</td><td data-label="2050 rate">0.002</td><td data-label="2095 rate">0.001</td><td data-label="2095 relative to 2050">lower</td><td data-label="Step 1 evidence ID">evidence_15</td></tr><tr><td data-label="Commodity">Vegetables</td><td data-label="2050 rate">0.002</td><td data-label="2095 rate">0.001</td><td data-label="2095 relative to 2050">lower</td><td data-label="Step 1 evidence ID">evidence_16</td></tr><tr><td data-label="Commodity">Wheat</td><td data-label="2050 rate">0.0015</td><td data-label="2095 rate">0.001</td><td data-label="2095 relative to 2050">lower</td><td data-label="Step 1 evidence ID">evidence_17</td></tr><tr><td data-label="Commodity">biomass</td><td data-label="2050 rate">0.002</td><td data-label="2095 rate">0.001</td><td data-label="2095 relative to 2050">lower</td><td data-label="Step 1 evidence ID">evidence_18</td></tr></tbody></table></div></section><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo world-crop-rates --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="step" id="world-crop-rates-step-1" tabindex="-1" data-label="Crop yield growth"><h3>1. Crop yield growth</h3><details><summary>Coverage and source notes</summary><p class="mono">land.crop_yield_growth {&quot;filters&quot;: {}, &quot;rows&quot;: 50}</p><div class="scroll"><table class="compact"><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td data-label="Coverage dimension">registry</td><td data-label="Value">covered</td></tr><tr><td data-label="Coverage dimension">execution</td><td data-label="Value">complete</td></tr><tr><td data-label="Coverage dimension">pagination</td><td data-label="Value">complete</td></tr><tr><td data-label="Coverage dimension">source_claim</td><td data-label="Value">complete</td></tr><tr><td data-label="Coverage dimension">result</td><td data-label="Value">hit</td></tr></tbody></table></div><p>Searched: gcam-land</p><ul><li>This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.</li></ul></details><div class="scroll"><table class="compact"><caption></caption><thead><tr><th scope="col">Returned</th><th scope="col">Total matches</th></tr></thead><tbody><tr><td data-label="Returned">18</td><td data-label="Total matches">18</td></tr></tbody></table></div><div class="scroll"><table class="stackable"><caption>GCAM v9.1</caption><thead><tr><th scope="col">GCAM_commodity</th><th scope="col">2005</th><th scope="col">2010</th><th scope="col">2011</th><th scope="col">2015</th><th scope="col">2020</th><th scope="col">2035</th><th scope="col">2050</th><th scope="col">2065</th><th scope="col">2080</th><th scope="col">2095</th><th scope="col">2110</th><th scope="col">2125</th><th scope="col">2140</th><th scope="col">2155</th><th scope="col">2170</th><th scope="col">2185</th><th scope="col">2200</th></tr></thead><tbody><tr><td data-label="GCAM_commodity">Corn</td><td data-label="2005">0</td><td data-label="2010">0</td><td data-label="2011">0</td><td data-label="2015">0</td><td data-label="2020">0.0025</td><td data-label="2035">0.0025</td><td data-label="2050">0.0025</td><td data-label="2065">0.0025</td><td data-label="2080">0.002</td><td data-label="2095">0.0015</td><td data-label="2110">0.001</td><td data-label="2125">0.001</td><td data-label="2140">0.001</td><td data-label="2155">0.001</td><td data-label="2170">0.001</td><td data-label="2185">0.001</td><td data-label="2200">0.001</td></tr><tr><td data-label="GCAM_commodity">FiberCrop</td><td data-label="2005">0</td><td data-label="2010">0</td><td data-label="2011">0</td><td data-label="2015">0</td><td data-label="2020">0</td><td data-label="2035">0</td><td data-label="2050">0</td><td data-label="2065">0</td><td data-label="2080">0</td><td data-label="2095">0</td><td data-label="2110">0</td><td data-label="2125">0</td><td data-label="2140">0</td><td data-label="2155">0</td><td data-label="2170">0</td><td data-label="2185">0</td><td data-label="2200">0</td></tr><tr><td data-label="GCAM_commodity">FodderGrass</td><td data-label="2005">0</td><td data-label="2010">0</td><td data-label="2011">0</td><td data-label="2015">0</td><td data-label="2020">0</td><td data-label="2035">0</td><td data-label="2050">0</td><td data-label="2065">0</td><td data-label="2080">0</td><td data-label="2095">0</td><td data-label="2110">0</td><td data-label="2125">0</td><td data-label="2140">0</td><td data-label="2155">0</td><td data-label="2170">0</td><td data-label="2185">0</td><td data-label="2200">0</td></tr><tr><td data-label="GCAM_commodity">FodderHerb</td><td data-label="2005">0</td><td data-label="2010">0</td><td data-label="2011">0</td><td data-label="2015">0</td><td data-label="2020">0</td><td data-label="2035">0</td><td data-label="2050">0</td><td data-label="2065">0</td><td data-label="2080">0</td><td data-label="2095">0</td><td data-label="2110">0</td><td data-label="2125">0</td><td data-label="2140">0</td><td data-label="2155">0</td><td data-label="2170">0</td><td data-label="2185">0</td><td data-label="2200">0</td></tr><tr><td data-label="GCAM_commodity">Fruits</td><td data-label="2005">0</td><td data-label="2010">0</td><td data-label="2011">0</td><td data-label="2015">0</td><td data-label="2020">0.003</td><td data-label="2035">0.003</td><td data-label="2050">0.003</td><td data-label="2065">0.003</td><td data-label="2080">0.0025</td><td data-label="2095">0.002</td><td data-label="2110">0.0015</td><td data-label="2125">0.001</td><td data-label="2140">0.001</td><td data-label="2155">0.001</td><td data-label="2170">0.001</td><td data-label="2185">0.001</td><td data-label="2200">0.001</td></tr><tr><td data-label="GCAM_commodity">Legumes</td><td data-label="2005">0</td><td data-label="2010">0</td><td data-label="2011">0</td><td data-label="2015">0</td><td data-label="2020">0.003</td><td data-label="2035">0.003</td><td data-label="2050">0.003</td><td data-label="2065">0.003</td><td data-label="2080">0.0025</td><td data-label="2095">0.002</td><td data-label="2110">0.0015</td><td data-label="2125">0.001</td><td data-label="2140">0.001</td><td data-label="2155">0.001</td><td data-label="2170">0.001</td><td data-label="2185">0.001</td><td data-label="2200">0.001</td></tr><tr><td data-label="GCAM_commodity">MiscCrop</td><td data-label="2005">0</td><td data-label="2010">0</td><td data-label="2011">0</td><td data-label="2015">0</td><td data-label="2020">0.003</td><td data-label="2035">0.003</td><td data-label="2050">0.003</td><td data-label="2065">0.003</td><td data-label="2080">0.0025</td><td data-label="2095">0.002</td><td data-label="2110">0.0015</td><td data-label="2125">0.001</td><td data-label="2140">0.001</td><td data-label="2155">0.001</td><td data-label="2170">0.001</td><td data-label="2185">0.001</td><td data-label="2200">0.001</td></tr><tr><td data-label="GCAM_commodity">NutsSeeds</td><td data-label="2005">0</td><td data-label="2010">0</td><td data-label="2011">0</td><td data-label="2015">0</td><td data-label="2020">0.003</td><td data-label="2035">0.003</td><td data-label="2050">0.003</td><td data-label="2065">0.003</td><td data-label="2080">0.0025</td><td data-label="2095">0.002</td><td data-label="2110">0.0015</td><td data-label="2125">0.001</td><td data-label="2140">0.001</td><td data-label="2155">0.001</td><td data-label="2170">0.001</td><td data-label="2185">0.001</td><td data-label="2200">0.001</td></tr><tr><td data-label="GCAM_commodity">OilCrop</td><td data-label="2005">0</td><td data-label="2010">0</td><td data-label="2011">0</td><td data-label="2015">0</td><td data-label="2020">0.005</td><td data-label="2035">0.005</td><td data-label="2050">0.005</td><td data-label="2065">0.005</td><td data-label="2080">0.003</td><td data-label="2095">0.002</td><td data-label="2110">0.001</td><td data-label="2125">0.001</td><td data-label="2140">0.001</td><td data-label="2155">0.001</td><td data-label="2170">0.001</td><td data-label="2185">0.001</td><td data-label="2200">0.001</td></tr><tr><td data-label="GCAM_commodity">OtherGrain</td><td data-label="2005">0</td><td data-label="2010">0</td><td data-label="2011">0</td><td data-label="2015">0</td><td data-label="2020">0.001</td><td data-label="2035">0.001</td><td data-label="2050">0.001</td><td data-label="2065">0.001</td><td data-label="2080">0.001</td><td data-label="2095">0.001</td><td data-label="2110">0.001</td><td data-label="2125">0.001</td><td data-label="2140">0.001</td><td data-label="2155">0.001</td><td data-label="2170">0.001</td><td data-label="2185">0.001</td><td data-label="2200">0.001</td></tr><tr><td data-label="GCAM_commodity">OilPalm</td><td data-label="2005">0</td><td data-label="2010">0</td><td data-label="2011">0</td><td data-label="2015">0</td><td data-label="2020">0.001</td><td data-label="2035">0.001</td><td data-label="2050">0.001</td><td data-label="2065">0.001</td><td data-label="2080">0.001</td><td data-label="2095">0.001</td><td data-label="2110">0.001</td><td data-label="2125">0.001</td><td data-label="2140">0.001</td><td data-label="2155">0.001</td><td data-label="2170">0.001</td><td data-label="2185">0.001</td><td data-label="2200">0.001</td></tr><tr><td data-label="GCAM_commodity">Rice</td><td data-label="2005">0</td><td data-label="2010">0</td><td data-label="2011">0</td><td data-label="2015">0</td><td data-label="2020">0.001</td><td data-label="2035">0.001</td><td data-label="2050">0.001</td><td data-label="2065">0.001</td><td data-label="2080">0.001</td><td data-label="2095">0.001</td><td data-label="2110">0.001</td><td data-label="2125">0.001</td><td data-label="2140">0.001</td><td data-label="2155">0.001</td><td data-label="2170">0.001</td><td data-label="2185">0.001</td><td data-label="2200">0.001</td></tr><tr><td data-label="GCAM_commodity">RootTuber</td><td data-label="2005">0</td><td data-label="2010">0</td><td data-label="2011">0</td><td data-label="2015">0</td><td data-label="2020">0.002</td><td data-label="2035">0.002</td><td data-label="2050">0.002</td><td data-label="2065">0.002</td><td data-label="2080">0.0015</td><td data-label="2095">0.001</td><td data-label="2110">0.001</td><td data-label="2125">0.001</td><td data-label="2140">0.001</td><td data-label="2155">0.001</td><td data-label="2170">0.001</td><td data-label="2185">0.001</td><td data-label="2200">0.001</td></tr><tr><td data-label="GCAM_commodity">Soybean</td><td data-label="2005">0</td><td data-label="2010">0</td><td data-label="2011">0</td><td data-label="2015">0</td><td data-label="2020">0.001</td><td data-label="2035">0.001</td><td data-label="2050">0.001</td><td data-label="2065">0.001</td><td data-label="2080">0.001</td><td data-label="2095">0.001</td><td data-label="2110">0.001</td><td data-label="2125">0.001</td><td data-label="2140">0.001</td><td data-label="2155">0.001</td><td data-label="2170">0.001</td><td data-label="2185">0.001</td><td data-label="2200">0.001</td></tr><tr><td data-label="GCAM_commodity">SugarCrop</td><td data-label="2005">0</td><td data-label="2010">0</td><td data-label="2011">0</td><td data-label="2015">0</td><td data-label="2020">0.002</td><td data-label="2035">0.002</td><td data-label="2050">0.002</td><td data-label="2065">0.002</td><td data-label="2080">0.0015</td><td data-label="2095">0.001</td><td data-label="2110">0.001</td><td data-label="2125">0.001</td><td data-label="2140">0.001</td><td data-label="2155">0.001</td><td data-label="2170">0.001</td><td data-label="2185">0.001</td><td data-label="2200">0.001</td></tr><tr><td data-label="GCAM_commodity">Vegetables</td><td data-label="2005">0</td><td data-label="2010">0</td><td data-label="2011">0</td><td data-label="2015">0</td><td data-label="2020">0.002</td><td data-label="2035">0.002</td><td data-label="2050">0.002</td><td data-label="2065">0.002</td><td data-label="2080">0.0015</td><td data-label="2095">0.001</td><td data-label="2110">0.001</td><td data-label="2125">0.001</td><td data-label="2140">0.001</td><td data-label="2155">0.001</td><td data-label="2170">0.001</td><td data-label="2185">0.001</td><td data-label="2200">0.001</td></tr><tr><td data-label="GCAM_commodity">Wheat</td><td data-label="2005">0</td><td data-label="2010">0</td><td data-label="2011">0</td><td data-label="2015">0</td><td data-label="2020">0.0015</td><td data-label="2035">0.0015</td><td data-label="2050">0.0015</td><td data-label="2065">0.0015</td><td data-label="2080">0.001</td><td data-label="2095">0.001</td><td data-label="2110">0.001</td><td data-label="2125">0.001</td><td data-label="2140">0.001</td><td data-label="2155">0.001</td><td data-label="2170">0.001</td><td data-label="2185">0.001</td><td data-label="2200">0.001</td></tr><tr><td data-label="GCAM_commodity">biomass</td><td data-label="2005">0</td><td data-label="2010">0</td><td data-label="2011">0</td><td data-label="2015">0</td><td data-label="2020">0.002</td><td data-label="2035">0.002</td><td data-label="2050">0.002</td><td data-label="2065">0.002</td><td data-label="2080">0.0015</td><td data-label="2095">0.001</td><td data-label="2110">0.001</td><td data-label="2125">0.001</td><td data-label="2140">0.001</td><td data-label="2155">0.001</td><td data-label="2170">0.001</td><td data-label="2185">0.001</td><td data-label="2200">0.001</td></tr></tbody></table></div><p>GCAM data system, Copyright 2019 Battelle Memorial Institute. <a href="GCAM-ECL-2.0.txt">Educational Community License 2.0</a>.</p><details><summary>Publisher table notes and units</summary><ul><li>File: A_defaultYieldRate.csv</li><li>Title: Reference improvement rates of each crop&#x27;s maximum yield trajectory</li><li>Unit: NA</li><li>Description: Conservative yield change rates assumptions for crops if FAO estimates are not available for ceratin region-crop and beyond 2050</li><li>Source: GCAM team assumptions</li><li>Column types: ciinnnnnnnnnnnnnnn</li></ul></details><details><summary>Record sources</summary><ul class="evidence"><li><strong>data row 1</strong><br>GCAM: Land and agriculture · record data row 1<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 2</strong><br>GCAM: Land and agriculture · record data row 2<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 3</strong><br>GCAM: Land and agriculture · record data row 3<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 4</strong><br>GCAM: Land and agriculture · record data row 4<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 5</strong><br>GCAM: Land and agriculture · record data row 5<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 6</strong><br>GCAM: Land and agriculture · record data row 6<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 7</strong><br>GCAM: Land and agriculture · record data row 7<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 8</strong><br>GCAM: Land and agriculture · record data row 8<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 9</strong><br>GCAM: Land and agriculture · record data row 9<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 10</strong><br>GCAM: Land and agriculture · record data row 10<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 11</strong><br>GCAM: Land and agriculture · record data row 11<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 12</strong><br>GCAM: Land and agriculture · record data row 12<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 13</strong><br>GCAM: Land and agriculture · record data row 13<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 14</strong><br>GCAM: Land and agriculture · record data row 14<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 15</strong><br>GCAM: Land and agriculture · record data row 15<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 16</strong><br>GCAM: Land and agriculture · record data row 16<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 17</strong><br>GCAM: Land and agriculture · record data row 17<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 18</strong><br>GCAM: Land and agriculture · record data row 18<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li></ul></details><details><summary>Full response and evidence</summary><pre>{
+  &quot;data&quot;: {
+    &quot;table&quot;: &quot;crop_yield_growth&quot;,
+    &quot;columns&quot;: [
+      &quot;GCAM_commodity&quot;,
+      &quot;2005&quot;,
+      &quot;2010&quot;,
+      &quot;2011&quot;,
+      &quot;2015&quot;,
+      &quot;2020&quot;,
+      &quot;2035&quot;,
+      &quot;2050&quot;,
+      &quot;2065&quot;,
+      &quot;2080&quot;,
+      &quot;2095&quot;,
+      &quot;2110&quot;,
+      &quot;2125&quot;,
+      &quot;2140&quot;,
+      &quot;2155&quot;,
+      &quot;2170&quot;,
+      &quot;2185&quot;,
+      &quot;2200&quot;
+    ],
+    &quot;records&quot;: [
+      {
+        &quot;row_number&quot;: 1,
+        &quot;values&quot;: {
+          &quot;GCAM_commodity&quot;: &quot;Corn&quot;,
+          &quot;2005&quot;: &quot;0&quot;,
+          &quot;2010&quot;: &quot;0&quot;,
+          &quot;2011&quot;: &quot;0&quot;,
+          &quot;2015&quot;: &quot;0&quot;,
+          &quot;2020&quot;: &quot;0.0025&quot;,
+          &quot;2035&quot;: &quot;0.0025&quot;,
+          &quot;2050&quot;: &quot;0.0025&quot;,
+          &quot;2065&quot;: &quot;0.0025&quot;,
+          &quot;2080&quot;: &quot;0.002&quot;,
+          &quot;2095&quot;: &quot;0.0015&quot;,
+          &quot;2110&quot;: &quot;0.001&quot;,
+          &quot;2125&quot;: &quot;0.001&quot;,
+          &quot;2140&quot;: &quot;0.001&quot;,
+          &quot;2155&quot;: &quot;0.001&quot;,
+          &quot;2170&quot;: &quot;0.001&quot;,
+          &quot;2185&quot;: &quot;0.001&quot;,
+          &quot;2200&quot;: &quot;0.001&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_01&quot;
+      },
+      {
+        &quot;row_number&quot;: 2,
+        &quot;values&quot;: {
+          &quot;GCAM_commodity&quot;: &quot;FiberCrop&quot;,
+          &quot;2005&quot;: &quot;0&quot;,
+          &quot;2010&quot;: &quot;0&quot;,
+          &quot;2011&quot;: &quot;0&quot;,
+          &quot;2015&quot;: &quot;0&quot;,
+          &quot;2020&quot;: &quot;0&quot;,
+          &quot;2035&quot;: &quot;0&quot;,
+          &quot;2050&quot;: &quot;0&quot;,
+          &quot;2065&quot;: &quot;0&quot;,
+          &quot;2080&quot;: &quot;0&quot;,
+          &quot;2095&quot;: &quot;0&quot;,
+          &quot;2110&quot;: &quot;0&quot;,
+          &quot;2125&quot;: &quot;0&quot;,
+          &quot;2140&quot;: &quot;0&quot;,
+          &quot;2155&quot;: &quot;0&quot;,
+          &quot;2170&quot;: &quot;0&quot;,
+          &quot;2185&quot;: &quot;0&quot;,
+          &quot;2200&quot;: &quot;0&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_02&quot;
+      },
+      {
+        &quot;row_number&quot;: 3,
+        &quot;values&quot;: {
+          &quot;GCAM_commodity&quot;: &quot;FodderGrass&quot;,
+          &quot;2005&quot;: &quot;0&quot;,
+          &quot;2010&quot;: &quot;0&quot;,
+          &quot;2011&quot;: &quot;0&quot;,
+          &quot;2015&quot;: &quot;0&quot;,
+          &quot;2020&quot;: &quot;0&quot;,
+          &quot;2035&quot;: &quot;0&quot;,
+          &quot;2050&quot;: &quot;0&quot;,
+          &quot;2065&quot;: &quot;0&quot;,
+          &quot;2080&quot;: &quot;0&quot;,
+          &quot;2095&quot;: &quot;0&quot;,
+          &quot;2110&quot;: &quot;0&quot;,
+          &quot;2125&quot;: &quot;0&quot;,
+          &quot;2140&quot;: &quot;0&quot;,
+          &quot;2155&quot;: &quot;0&quot;,
+          &quot;2170&quot;: &quot;0&quot;,
+          &quot;2185&quot;: &quot;0&quot;,
+          &quot;2200&quot;: &quot;0&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_03&quot;
+      },
+      {
+        &quot;row_number&quot;: 4,
+        &quot;values&quot;: {
+          &quot;GCAM_commodity&quot;: &quot;FodderHerb&quot;,
+          &quot;2005&quot;: &quot;0&quot;,
+          &quot;2010&quot;: &quot;0&quot;,
+          &quot;2011&quot;: &quot;0&quot;,
+          &quot;2015&quot;: &quot;0&quot;,
+          &quot;2020&quot;: &quot;0&quot;,
+          &quot;2035&quot;: &quot;0&quot;,
+          &quot;2050&quot;: &quot;0&quot;,
+          &quot;2065&quot;: &quot;0&quot;,
+          &quot;2080&quot;: &quot;0&quot;,
+          &quot;2095&quot;: &quot;0&quot;,
+          &quot;2110&quot;: &quot;0&quot;,
+          &quot;2125&quot;: &quot;0&quot;,
+          &quot;2140&quot;: &quot;0&quot;,
+          &quot;2155&quot;: &quot;0&quot;,
+          &quot;2170&quot;: &quot;0&quot;,
+          &quot;2185&quot;: &quot;0&quot;,
+          &quot;2200&quot;: &quot;0&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_04&quot;
+      },
+      {
+        &quot;row_number&quot;: 5,
+        &quot;values&quot;: {
+          &quot;GCAM_commodity&quot;: &quot;Fruits&quot;,
+          &quot;2005&quot;: &quot;0&quot;,
+          &quot;2010&quot;: &quot;0&quot;,
+          &quot;2011&quot;: &quot;0&quot;,
+          &quot;2015&quot;: &quot;0&quot;,
+          &quot;2020&quot;: &quot;0.003&quot;,
+          &quot;2035&quot;: &quot;0.003&quot;,
+          &quot;2050&quot;: &quot;0.003&quot;,
+          &quot;2065&quot;: &quot;0.003&quot;,
+          &quot;2080&quot;: &quot;0.0025&quot;,
+          &quot;2095&quot;: &quot;0.002&quot;,
+          &quot;2110&quot;: &quot;0.0015&quot;,
+          &quot;2125&quot;: &quot;0.001&quot;,
+          &quot;2140&quot;: &quot;0.001&quot;,
+          &quot;2155&quot;: &quot;0.001&quot;,
+          &quot;2170&quot;: &quot;0.001&quot;,
+          &quot;2185&quot;: &quot;0.001&quot;,
+          &quot;2200&quot;: &quot;0.001&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_05&quot;
+      },
+      {
+        &quot;row_number&quot;: 6,
+        &quot;values&quot;: {
+          &quot;GCAM_commodity&quot;: &quot;Legumes&quot;,
+          &quot;2005&quot;: &quot;0&quot;,
+          &quot;2010&quot;: &quot;0&quot;,
+          &quot;2011&quot;: &quot;0&quot;,
+          &quot;2015&quot;: &quot;0&quot;,
+          &quot;2020&quot;: &quot;0.003&quot;,
+          &quot;2035&quot;: &quot;0.003&quot;,
+          &quot;2050&quot;: &quot;0.003&quot;,
+          &quot;2065&quot;: &quot;0.003&quot;,
+          &quot;2080&quot;: &quot;0.0025&quot;,
+          &quot;2095&quot;: &quot;0.002&quot;,
+          &quot;2110&quot;: &quot;0.0015&quot;,
+          &quot;2125&quot;: &quot;0.001&quot;,
+          &quot;2140&quot;: &quot;0.001&quot;,
+          &quot;2155&quot;: &quot;0.001&quot;,
+          &quot;2170&quot;: &quot;0.001&quot;,
+          &quot;2185&quot;: &quot;0.001&quot;,
+          &quot;2200&quot;: &quot;0.001&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_06&quot;
+      },
+      {
+        &quot;row_number&quot;: 7,
+        &quot;values&quot;: {
+          &quot;GCAM_commodity&quot;: &quot;MiscCrop&quot;,
+          &quot;2005&quot;: &quot;0&quot;,
+          &quot;2010&quot;: &quot;0&quot;,
+          &quot;2011&quot;: &quot;0&quot;,
+          &quot;2015&quot;: &quot;0&quot;,
+          &quot;2020&quot;: &quot;0.003&quot;,
+          &quot;2035&quot;: &quot;0.003&quot;,
+          &quot;2050&quot;: &quot;0.003&quot;,
+          &quot;2065&quot;: &quot;0.003&quot;,
+          &quot;2080&quot;: &quot;0.0025&quot;,
+          &quot;2095&quot;: &quot;0.002&quot;,
+          &quot;2110&quot;: &quot;0.0015&quot;,
+          &quot;2125&quot;: &quot;0.001&quot;,
+          &quot;2140&quot;: &quot;0.001&quot;,
+          &quot;2155&quot;: &quot;0.001&quot;,
+          &quot;2170&quot;: &quot;0.001&quot;,
+          &quot;2185&quot;: &quot;0.001&quot;,
+          &quot;2200&quot;: &quot;0.001&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_07&quot;
+      },
+      {
+        &quot;row_number&quot;: 8,
+        &quot;values&quot;: {
+          &quot;GCAM_commodity&quot;: &quot;NutsSeeds&quot;,
+          &quot;2005&quot;: &quot;0&quot;,
+          &quot;2010&quot;: &quot;0&quot;,
+          &quot;2011&quot;: &quot;0&quot;,
+          &quot;2015&quot;: &quot;0&quot;,
+          &quot;2020&quot;: &quot;0.003&quot;,
+          &quot;2035&quot;: &quot;0.003&quot;,
+          &quot;2050&quot;: &quot;0.003&quot;,
+          &quot;2065&quot;: &quot;0.003&quot;,
+          &quot;2080&quot;: &quot;0.0025&quot;,
+          &quot;2095&quot;: &quot;0.002&quot;,
+          &quot;2110&quot;: &quot;0.0015&quot;,
+          &quot;2125&quot;: &quot;0.001&quot;,
+          &quot;2140&quot;: &quot;0.001&quot;,
+          &quot;2155&quot;: &quot;0.001&quot;,
+          &quot;2170&quot;: &quot;0.001&quot;,
+          &quot;2185&quot;: &quot;0.001&quot;,
+          &quot;2200&quot;: &quot;0.001&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_08&quot;
+      },
+      {
+        &quot;row_number&quot;: 9,
+        &quot;values&quot;: {
+          &quot;GCAM_commodity&quot;: &quot;OilCrop&quot;,
+          &quot;2005&quot;: &quot;0&quot;,
+          &quot;2010&quot;: &quot;0&quot;,
+          &quot;2011&quot;: &quot;0&quot;,
+          &quot;2015&quot;: &quot;0&quot;,
+          &quot;2020&quot;: &quot;0.005&quot;,
+          &quot;2035&quot;: &quot;0.005&quot;,
+          &quot;2050&quot;: &quot;0.005&quot;,
+          &quot;2065&quot;: &quot;0.005&quot;,
+          &quot;2080&quot;: &quot;0.003&quot;,
+          &quot;2095&quot;: &quot;0.002&quot;,
+          &quot;2110&quot;: &quot;0.001&quot;,
+          &quot;2125&quot;: &quot;0.001&quot;,
+          &quot;2140&quot;: &quot;0.001&quot;,
+          &quot;2155&quot;: &quot;0.001&quot;,
+          &quot;2170&quot;: &quot;0.001&quot;,
+          &quot;2185&quot;: &quot;0.001&quot;,
+          &quot;2200&quot;: &quot;0.001&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_09&quot;
+      },
+      {
+        &quot;row_number&quot;: 10,
+        &quot;values&quot;: {
+          &quot;GCAM_commodity&quot;: &quot;OtherGrain&quot;,
+          &quot;2005&quot;: &quot;0&quot;,
+          &quot;2010&quot;: &quot;0&quot;,
+          &quot;2011&quot;: &quot;0&quot;,
+          &quot;2015&quot;: &quot;0&quot;,
+          &quot;2020&quot;: &quot;0.001&quot;,
+          &quot;2035&quot;: &quot;0.001&quot;,
+          &quot;2050&quot;: &quot;0.001&quot;,
+          &quot;2065&quot;: &quot;0.001&quot;,
+          &quot;2080&quot;: &quot;0.001&quot;,
+          &quot;2095&quot;: &quot;0.001&quot;,
+          &quot;2110&quot;: &quot;0.001&quot;,
+          &quot;2125&quot;: &quot;0.001&quot;,
+          &quot;2140&quot;: &quot;0.001&quot;,
+          &quot;2155&quot;: &quot;0.001&quot;,
+          &quot;2170&quot;: &quot;0.001&quot;,
+          &quot;2185&quot;: &quot;0.001&quot;,
+          &quot;2200&quot;: &quot;0.001&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_10&quot;
+      },
+      {
+        &quot;row_number&quot;: 11,
+        &quot;values&quot;: {
+          &quot;GCAM_commodity&quot;: &quot;OilPalm&quot;,
+          &quot;2005&quot;: &quot;0&quot;,
+          &quot;2010&quot;: &quot;0&quot;,
+          &quot;2011&quot;: &quot;0&quot;,
+          &quot;2015&quot;: &quot;0&quot;,
+          &quot;2020&quot;: &quot;0.001&quot;,
+          &quot;2035&quot;: &quot;0.001&quot;,
+          &quot;2050&quot;: &quot;0.001&quot;,
+          &quot;2065&quot;: &quot;0.001&quot;,
+          &quot;2080&quot;: &quot;0.001&quot;,
+          &quot;2095&quot;: &quot;0.001&quot;,
+          &quot;2110&quot;: &quot;0.001&quot;,
+          &quot;2125&quot;: &quot;0.001&quot;,
+          &quot;2140&quot;: &quot;0.001&quot;,
+          &quot;2155&quot;: &quot;0.001&quot;,
+          &quot;2170&quot;: &quot;0.001&quot;,
+          &quot;2185&quot;: &quot;0.001&quot;,
+          &quot;2200&quot;: &quot;0.001&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_11&quot;
+      },
+      {
+        &quot;row_number&quot;: 12,
+        &quot;values&quot;: {
+          &quot;GCAM_commodity&quot;: &quot;Rice&quot;,
+          &quot;2005&quot;: &quot;0&quot;,
+          &quot;2010&quot;: &quot;0&quot;,
+          &quot;2011&quot;: &quot;0&quot;,
+          &quot;2015&quot;: &quot;0&quot;,
+          &quot;2020&quot;: &quot;0.001&quot;,
+          &quot;2035&quot;: &quot;0.001&quot;,
+          &quot;2050&quot;: &quot;0.001&quot;,
+          &quot;2065&quot;: &quot;0.001&quot;,
+          &quot;2080&quot;: &quot;0.001&quot;,
+          &quot;2095&quot;: &quot;0.001&quot;,
+          &quot;2110&quot;: &quot;0.001&quot;,
+          &quot;2125&quot;: &quot;0.001&quot;,
+          &quot;2140&quot;: &quot;0.001&quot;,
+          &quot;2155&quot;: &quot;0.001&quot;,
+          &quot;2170&quot;: &quot;0.001&quot;,
+          &quot;2185&quot;: &quot;0.001&quot;,
+          &quot;2200&quot;: &quot;0.001&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_12&quot;
+      },
+      {
+        &quot;row_number&quot;: 13,
+        &quot;values&quot;: {
+          &quot;GCAM_commodity&quot;: &quot;RootTuber&quot;,
+          &quot;2005&quot;: &quot;0&quot;,
+          &quot;2010&quot;: &quot;0&quot;,
+          &quot;2011&quot;: &quot;0&quot;,
+          &quot;2015&quot;: &quot;0&quot;,
+          &quot;2020&quot;: &quot;0.002&quot;,
+          &quot;2035&quot;: &quot;0.002&quot;,
+          &quot;2050&quot;: &quot;0.002&quot;,
+          &quot;2065&quot;: &quot;0.002&quot;,
+          &quot;2080&quot;: &quot;0.0015&quot;,
+          &quot;2095&quot;: &quot;0.001&quot;,
+          &quot;2110&quot;: &quot;0.001&quot;,
+          &quot;2125&quot;: &quot;0.001&quot;,
+          &quot;2140&quot;: &quot;0.001&quot;,
+          &quot;2155&quot;: &quot;0.001&quot;,
+          &quot;2170&quot;: &quot;0.001&quot;,
+          &quot;2185&quot;: &quot;0.001&quot;,
+          &quot;2200&quot;: &quot;0.001&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_13&quot;
+      },
+      {
+        &quot;row_number&quot;: 14,
+        &quot;values&quot;: {
+          &quot;GCAM_commodity&quot;: &quot;Soybean&quot;,
+          &quot;2005&quot;: &quot;0&quot;,
+          &quot;2010&quot;: &quot;0&quot;,
+          &quot;2011&quot;: &quot;0&quot;,
+          &quot;2015&quot;: &quot;0&quot;,
+          &quot;2020&quot;: &quot;0.001&quot;,
+          &quot;2035&quot;: &quot;0.001&quot;,
+          &quot;2050&quot;: &quot;0.001&quot;,
+          &quot;2065&quot;: &quot;0.001&quot;,
+          &quot;2080&quot;: &quot;0.001&quot;,
+          &quot;2095&quot;: &quot;0.001&quot;,
+          &quot;2110&quot;: &quot;0.001&quot;,
+          &quot;2125&quot;: &quot;0.001&quot;,
+          &quot;2140&quot;: &quot;0.001&quot;,
+          &quot;2155&quot;: &quot;0.001&quot;,
+          &quot;2170&quot;: &quot;0.001&quot;,
+          &quot;2185&quot;: &quot;0.001&quot;,
+          &quot;2200&quot;: &quot;0.001&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_14&quot;
+      },
+      {
+        &quot;row_number&quot;: 15,
+        &quot;values&quot;: {
+          &quot;GCAM_commodity&quot;: &quot;SugarCrop&quot;,
+          &quot;2005&quot;: &quot;0&quot;,
+          &quot;2010&quot;: &quot;0&quot;,
+          &quot;2011&quot;: &quot;0&quot;,
+          &quot;2015&quot;: &quot;0&quot;,
+          &quot;2020&quot;: &quot;0.002&quot;,
+          &quot;2035&quot;: &quot;0.002&quot;,
+          &quot;2050&quot;: &quot;0.002&quot;,
+          &quot;2065&quot;: &quot;0.002&quot;,
+          &quot;2080&quot;: &quot;0.0015&quot;,
+          &quot;2095&quot;: &quot;0.001&quot;,
+          &quot;2110&quot;: &quot;0.001&quot;,
+          &quot;2125&quot;: &quot;0.001&quot;,
+          &quot;2140&quot;: &quot;0.001&quot;,
+          &quot;2155&quot;: &quot;0.001&quot;,
+          &quot;2170&quot;: &quot;0.001&quot;,
+          &quot;2185&quot;: &quot;0.001&quot;,
+          &quot;2200&quot;: &quot;0.001&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_15&quot;
+      },
+      {
+        &quot;row_number&quot;: 16,
+        &quot;values&quot;: {
+          &quot;GCAM_commodity&quot;: &quot;Vegetables&quot;,
+          &quot;2005&quot;: &quot;0&quot;,
+          &quot;2010&quot;: &quot;0&quot;,
+          &quot;2011&quot;: &quot;0&quot;,
+          &quot;2015&quot;: &quot;0&quot;,
+          &quot;2020&quot;: &quot;0.002&quot;,
+          &quot;2035&quot;: &quot;0.002&quot;,
+          &quot;2050&quot;: &quot;0.002&quot;,
+          &quot;2065&quot;: &quot;0.002&quot;,
+          &quot;2080&quot;: &quot;0.0015&quot;,
+          &quot;2095&quot;: &quot;0.001&quot;,
+          &quot;2110&quot;: &quot;0.001&quot;,
+          &quot;2125&quot;: &quot;0.001&quot;,
+          &quot;2140&quot;: &quot;0.001&quot;,
+          &quot;2155&quot;: &quot;0.001&quot;,
+          &quot;2170&quot;: &quot;0.001&quot;,
+          &quot;2185&quot;: &quot;0.001&quot;,
+          &quot;2200&quot;: &quot;0.001&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_16&quot;
+      },
+      {
+        &quot;row_number&quot;: 17,
+        &quot;values&quot;: {
+          &quot;GCAM_commodity&quot;: &quot;Wheat&quot;,
+          &quot;2005&quot;: &quot;0&quot;,
+          &quot;2010&quot;: &quot;0&quot;,
+          &quot;2011&quot;: &quot;0&quot;,
+          &quot;2015&quot;: &quot;0&quot;,
+          &quot;2020&quot;: &quot;0.0015&quot;,
+          &quot;2035&quot;: &quot;0.0015&quot;,
+          &quot;2050&quot;: &quot;0.0015&quot;,
+          &quot;2065&quot;: &quot;0.0015&quot;,
+          &quot;2080&quot;: &quot;0.001&quot;,
+          &quot;2095&quot;: &quot;0.001&quot;,
+          &quot;2110&quot;: &quot;0.001&quot;,
+          &quot;2125&quot;: &quot;0.001&quot;,
+          &quot;2140&quot;: &quot;0.001&quot;,
+          &quot;2155&quot;: &quot;0.001&quot;,
+          &quot;2170&quot;: &quot;0.001&quot;,
+          &quot;2185&quot;: &quot;0.001&quot;,
+          &quot;2200&quot;: &quot;0.001&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_17&quot;
+      },
+      {
+        &quot;row_number&quot;: 18,
+        &quot;values&quot;: {
+          &quot;GCAM_commodity&quot;: &quot;biomass&quot;,
+          &quot;2005&quot;: &quot;0&quot;,
+          &quot;2010&quot;: &quot;0&quot;,
+          &quot;2011&quot;: &quot;0&quot;,
+          &quot;2015&quot;: &quot;0&quot;,
+          &quot;2020&quot;: &quot;0.002&quot;,
+          &quot;2035&quot;: &quot;0.002&quot;,
+          &quot;2050&quot;: &quot;0.002&quot;,
+          &quot;2065&quot;: &quot;0.002&quot;,
+          &quot;2080&quot;: &quot;0.0015&quot;,
+          &quot;2095&quot;: &quot;0.001&quot;,
+          &quot;2110&quot;: &quot;0.001&quot;,
+          &quot;2125&quot;: &quot;0.001&quot;,
+          &quot;2140&quot;: &quot;0.001&quot;,
+          &quot;2155&quot;: &quot;0.001&quot;,
+          &quot;2170&quot;: &quot;0.001&quot;,
+          &quot;2185&quot;: &quot;0.001&quot;,
+          &quot;2200&quot;: &quot;0.001&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_18&quot;
+      }
+    ],
+    &quot;file_url&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv&quot;,
+    &quot;source_notes&quot;: [
+      &quot;File: A_defaultYieldRate.csv&quot;,
+      &quot;Title: Reference improvement rates of each crop&#x27;s maximum yield trajectory&quot;,
+      &quot;Unit: NA&quot;,
+      &quot;Description: Conservative yield change rates assumptions for crops if FAO estimates are not available for ceratin region-crop and beyond 2050&quot;,
+      &quot;Source: GCAM team assumptions&quot;,
+      &quot;Column types: ciinnnnnnnnnnnnnnn&quot;,
+      &quot;----------&quot;
+    ],
+    &quot;filters&quot;: {},
+    &quot;offset&quot;: 0,
+    &quot;record_count&quot;: 18,
+    &quot;total_matches&quot;: 18,
+    &quot;table_rows&quot;: 18,
+    &quot;release&quot;: &quot;GCAM v9.1&quot;
+  },
+  &quot;provenance&quot;: [
+    {
+      &quot;id&quot;: &quot;source_01&quot;,
+      &quot;source_id&quot;: &quot;gcam-land&quot;,
+      &quot;steward&quot;: &quot;Pacific Northwest National Laboratory&quot;,
+      &quot;system&quot;: &quot;GCAM: Land and agriculture&quot;,
+      &quot;dataset&quot;: &quot;A_defaultYieldRate.csv&quot;,
+      &quot;dataset_version&quot;: &quot;GCAM v9.1&quot;,
+      &quot;authority_level&quot;: &quot;primary&quot;,
+      &quot;access_path&quot;: &quot;live&quot;,
+      &quot;source_updated_at&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;cache_age_seconds&quot;: 0,
+      &quot;citation&quot;: {
+        &quot;doi&quot;: null,
+        &quot;recommended&quot;: &quot;Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.&quot;,
+        &quot;required&quot;: true
+      }
+    }
+  ],
+  &quot;evidence&quot;: [
+    {
+      &quot;id&quot;: &quot;evidence_01&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 1&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_02&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 2&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_03&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 3&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_04&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 4&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_05&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 5&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_06&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 6&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_07&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 7&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_08&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 8&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_09&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 9&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_10&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 10&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_11&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 11&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_12&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 12&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_13&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 13&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_14&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 14&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_15&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 15&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_16&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 16&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_17&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 17&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_18&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 18&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    }
+  ],
+  &quot;coverage&quot;: {
+    &quot;registry&quot;: &quot;covered&quot;,
+    &quot;execution&quot;: &quot;complete&quot;,
+    &quot;pagination&quot;: &quot;complete&quot;,
+    &quot;source_claim&quot;: &quot;complete&quot;,
+    &quot;result&quot;: &quot;hit&quot;,
+    &quot;sources_searched&quot;: [
+      &quot;gcam-land&quot;
+    ],
+    &quot;known_limitations&quot;: [
+      &quot;Rows are model inputs, not scenario outputs or measurements of current conditions.&quot;,
+      &quot;GCAM3 region labels and numeric GCAM region IDs use different groupings.&quot;
+    ]
+  },
+  &quot;warnings&quot;: [
+    {
+      &quot;code&quot;: &quot;citation_required&quot;,
+      &quot;message&quot;: &quot;This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.&quot;,
+      &quot;source_id&quot;: &quot;gcam-land&quot;
+    }
+  ],
+  &quot;_execution&quot;: {
+    &quot;server&quot;: &quot;doe-mcp&quot;,
+    &quot;server_version&quot;: &quot;0.1.0.dev0&quot;,
+    &quot;tool&quot;: &quot;land.crop_yield_growth&quot;,
+    &quot;tool_contract_version&quot;: &quot;1&quot;,
+    &quot;envelope_version&quot;: &quot;1&quot;,
+    &quot;adapters&quot;: {
+      &quot;osti_family&quot;: &quot;1&quot;,
+      &quot;opendatasoft&quot;: &quot;1&quot;,
+      &quot;json_document&quot;: &quot;1&quot;,
+      &quot;curated&quot;: &quot;1&quot;,
+      &quot;eia_v2&quot;: &quot;1&quot;,
+      &quot;fueleconomy&quot;: &quot;1&quot;,
+      &quot;text_feed&quot;: &quot;1&quot;,
+      &quot;postgrest&quot;: &quot;1&quot;,
+      &quot;federal_register&quot;: &quot;1&quot;,
+      &quot;vips&quot;: &quot;1&quot;,
+      &quot;daymet&quot;: &quot;1&quot;,
+      &quot;essdive&quot;: &quot;1&quot;,
+      &quot;esgf&quot;: &quot;1&quot;,
+      &quot;sage&quot;: &quot;1&quot;,
+      &quot;optimade&quot;: &quot;1&quot;,
+      &quot;basis_sets&quot;: &quot;1&quot;,
+      &quot;facility_status&quot;: &quot;1&quot;,
+      &quot;gcam_csv&quot;: &quot;1&quot;,
+      &quot;nmdc&quot;: &quot;1&quot;,
+      &quot;none&quot;: &quot;1&quot;,
+      &quot;self_registry&quot;: &quot;1&quot;
+    },
+    &quot;registry_revision&quot;: &quot;2026-11-09&quot;,
+    &quot;request_id&quot;: &quot;recorded-workflow&quot;
+  }
+}</pre></details></section><details><summary>Recording manifest and capture times</summary><p>Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-11-09.</p><div class="scroll"><table class="stackable"><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td data-label="Fixture">gcam-land.json</td><td data-label="Capture time (UTC)">2026-11-10T04:46:57.498065+00:00</td><td data-label="SHA-256">d77c9781b292feb3265cabc2ffa484c7ef27dd7fe27f93f95a29115e2c693e65</td></tr></tbody></table></div></details></article><article id="world-capture-residual" tabindex="-1"><h2>Account for uncaptured carbon</h2><p class="skill">Skill: <code>genesis-compute-residual-shares</code></p><p class="answer">The uncaptured share is lower in 2100 than in the initial future year for 6 of 6 technology rows.</p><p class="scope">Read 6 of 6 matches. A recorded replay at registry revision 2026-11-09, not current data.</p><figure class="atlas-chart"><figcaption>Plate 02 / Power · CO₂ left uncaptured: coal (conv pul CCS)</figcaption><div class="atlas-bar"><span>Initial future year</span><span aria-hidden="true" class="atlas-track"><i style="width:15.0000%"></i></span><b>15%</b></div><div class="atlas-bar"><span>2100</span><span aria-hidden="true" class="atlas-track"><i style="width:5.0000%"></i></span><b>5%</b></div><small>Scale: 0 to 100% of the technology’s CO₂ stream.</small></figure><details open><summary>Limits of this example</summary><ul><li>A fraction of a technology’s CO₂ stream gives neither tonnes emitted nor a lifecycle emissions estimate.</li></ul></details><p class="downloads"><a download href="data/demos/world-capture-residual.json">Download JSON evidence</a><a download href="data/demos/world-capture-residual.csv">Download CSV evidence index</a><a download href="data/demos/world-capture-residual-worksheet.csv">Download worksheet CSV</a></p><section class="step worksheet" id="world-capture-residual-worksheet" tabindex="-1"><h3>Account for uncaptured carbon</h3><p>Based on the Genesis <a href="https://github.com/AI-ModCon/genesis-skills/blob/70dce5aca946e2804f9b8579da01910cd2861858/skills/baseeval-skills/lm-eval-harness-skills/data-exploration/SKILL.md" rel="noreferrer">data-exploration</a> skill. DOE-MCP builds this worksheet locally.</p><div class="scroll"><table class="stackable"><caption>Each evidence ID refers to step 1 in the JSON download.</caption><thead><tr><th scope="col">Fuel</th><th scope="col">Technology</th><th scope="col">Initial future capture</th><th scope="col">2100 capture</th><th scope="col">Initial future residual</th><th scope="col">2100 residual</th><th scope="col">Step 1 evidence ID</th></tr></thead><tbody><tr><td data-label="Fuel">coal</td><td data-label="Technology">coal (conv pul CCS)</td><td data-label="Initial future capture">0.85</td><td data-label="2100 capture">0.95</td><td data-label="Initial future residual">0.15</td><td data-label="2100 residual">0.05</td><td data-label="Step 1 evidence ID">evidence_01</td></tr><tr><td data-label="Fuel">coal</td><td data-label="Technology">coal (IGCC CCS)</td><td data-label="Initial future capture">0.85</td><td data-label="2100 capture">0.95</td><td data-label="Initial future residual">0.15</td><td data-label="2100 residual">0.05</td><td data-label="Step 1 evidence ID">evidence_02</td></tr><tr><td data-label="Fuel">gas</td><td data-label="Technology">gas (CC CCS)</td><td data-label="Initial future capture">0.85</td><td data-label="2100 capture">0.95</td><td data-label="Initial future residual">0.15</td><td data-label="2100 residual">0.05</td><td data-label="Step 1 evidence ID">evidence_03</td></tr><tr><td data-label="Fuel">refined liquids</td><td data-label="Technology">refined liquids (CC CCS)</td><td data-label="Initial future capture">0.85</td><td data-label="2100 capture">0.95</td><td data-label="Initial future residual">0.15</td><td data-label="2100 residual">0.05</td><td data-label="Step 1 evidence ID">evidence_04</td></tr><tr><td data-label="Fuel">biomass</td><td data-label="Technology">biomass (conv CCS)</td><td data-label="Initial future capture">0.85</td><td data-label="2100 capture">0.95</td><td data-label="Initial future residual">0.15</td><td data-label="2100 residual">0.05</td><td data-label="Step 1 evidence ID">evidence_05</td></tr><tr><td data-label="Fuel">biomass</td><td data-label="Technology">biomass (IGCC CCS)</td><td data-label="Initial future capture">0.85</td><td data-label="2100 capture">0.95</td><td data-label="Initial future residual">0.15</td><td data-label="2100 residual">0.05</td><td data-label="Step 1 evidence ID">evidence_06</td></tr></tbody></table></div></section><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo world-capture-residual --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="step" id="world-capture-residual-step-1" tabindex="-1" data-label="Carbon capture"><h3>1. Carbon capture</h3><details><summary>Coverage and source notes</summary><p class="mono">power.carbon_capture {&quot;filters&quot;: {}, &quot;rows&quot;: 50}</p><div class="scroll"><table class="compact"><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td data-label="Coverage dimension">registry</td><td data-label="Value">covered</td></tr><tr><td data-label="Coverage dimension">execution</td><td data-label="Value">complete</td></tr><tr><td data-label="Coverage dimension">pagination</td><td data-label="Value">complete</td></tr><tr><td data-label="Coverage dimension">source_claim</td><td data-label="Value">complete</td></tr><tr><td data-label="Coverage dimension">result</td><td data-label="Value">hit</td></tr></tbody></table></div><p>Searched: gcam-power</p><ul><li>This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.</li></ul></details><div class="scroll"><table class="compact"><caption></caption><thead><tr><th scope="col">Returned</th><th scope="col">Total matches</th></tr></thead><tbody><tr><td data-label="Returned">6</td><td data-label="Total matches">6</td></tr></tbody></table></div><div class="scroll"><table class="stackable"><caption>GCAM v9.1</caption><thead><tr><th scope="col">supplysector</th><th scope="col">subsector</th><th scope="col">technology</th><th scope="col">1971</th><th scope="col">initial-future-year</th><th scope="col">2100</th></tr></thead><tbody><tr><td data-label="supplysector">electricity</td><td data-label="subsector">coal</td><td data-label="technology">coal (conv pul CCS)</td><td data-label="1971">0.85</td><td data-label="initial-future-year">0.85</td><td data-label="2100">0.95</td></tr><tr><td data-label="supplysector">electricity</td><td data-label="subsector">coal</td><td data-label="technology">coal (IGCC CCS)</td><td data-label="1971">0.85</td><td data-label="initial-future-year">0.85</td><td data-label="2100">0.95</td></tr><tr><td data-label="supplysector">electricity</td><td data-label="subsector">gas</td><td data-label="technology">gas (CC CCS)</td><td data-label="1971">0.85</td><td data-label="initial-future-year">0.85</td><td data-label="2100">0.95</td></tr><tr><td data-label="supplysector">electricity</td><td data-label="subsector">refined liquids</td><td data-label="technology">refined liquids (CC CCS)</td><td data-label="1971">0.85</td><td data-label="initial-future-year">0.85</td><td data-label="2100">0.95</td></tr><tr><td data-label="supplysector">electricity</td><td data-label="subsector">biomass</td><td data-label="technology">biomass (conv CCS)</td><td data-label="1971">0.85</td><td data-label="initial-future-year">0.85</td><td data-label="2100">0.95</td></tr><tr><td data-label="supplysector">electricity</td><td data-label="subsector">biomass</td><td data-label="technology">biomass (IGCC CCS)</td><td data-label="1971">0.85</td><td data-label="initial-future-year">0.85</td><td data-label="2100">0.95</td></tr></tbody></table></div><p>GCAM data system, Copyright 2019 Battelle Memorial Institute. <a href="GCAM-ECL-2.0.txt">Educational Community License 2.0</a>.</p><details><summary>Publisher table notes and units</summary><ul><li>File: A23.globaltech_co2capture.csv</li><li>Title: Electricity technology capture fractions</li><li>Units: Unitless; portion of CO2 emissions that are captured</li><li>Source: GCAM assumptions; consistent with David and Herzog 2000 (https://sequestration.mit.edu/pdf/David_and_Herzog.pdf)</li><li>Column types: cccnnn</li></ul></details><details><summary>Record sources</summary><ul class="evidence"><li><strong>data row 1</strong><br>GCAM: Power technology · record data row 1<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A23.globaltech_co2capture.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 2</strong><br>GCAM: Power technology · record data row 2<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A23.globaltech_co2capture.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 3</strong><br>GCAM: Power technology · record data row 3<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A23.globaltech_co2capture.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 4</strong><br>GCAM: Power technology · record data row 4<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A23.globaltech_co2capture.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 5</strong><br>GCAM: Power technology · record data row 5<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A23.globaltech_co2capture.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 6</strong><br>GCAM: Power technology · record data row 6<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A23.globaltech_co2capture.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li></ul></details><details><summary>Full response and evidence</summary><pre>{
+  &quot;data&quot;: {
+    &quot;table&quot;: &quot;carbon_capture&quot;,
+    &quot;columns&quot;: [
+      &quot;supplysector&quot;,
+      &quot;subsector&quot;,
+      &quot;technology&quot;,
+      &quot;1971&quot;,
+      &quot;initial-future-year&quot;,
+      &quot;2100&quot;
+    ],
+    &quot;records&quot;: [
+      {
+        &quot;row_number&quot;: 1,
+        &quot;values&quot;: {
+          &quot;supplysector&quot;: &quot;electricity&quot;,
+          &quot;subsector&quot;: &quot;coal&quot;,
+          &quot;technology&quot;: &quot;coal (conv pul CCS)&quot;,
+          &quot;1971&quot;: &quot;0.85&quot;,
+          &quot;initial-future-year&quot;: &quot;0.85&quot;,
+          &quot;2100&quot;: &quot;0.95&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_01&quot;
+      },
+      {
+        &quot;row_number&quot;: 2,
+        &quot;values&quot;: {
+          &quot;supplysector&quot;: &quot;electricity&quot;,
+          &quot;subsector&quot;: &quot;coal&quot;,
+          &quot;technology&quot;: &quot;coal (IGCC CCS)&quot;,
+          &quot;1971&quot;: &quot;0.85&quot;,
+          &quot;initial-future-year&quot;: &quot;0.85&quot;,
+          &quot;2100&quot;: &quot;0.95&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_02&quot;
+      },
+      {
+        &quot;row_number&quot;: 3,
+        &quot;values&quot;: {
+          &quot;supplysector&quot;: &quot;electricity&quot;,
+          &quot;subsector&quot;: &quot;gas&quot;,
+          &quot;technology&quot;: &quot;gas (CC CCS)&quot;,
+          &quot;1971&quot;: &quot;0.85&quot;,
+          &quot;initial-future-year&quot;: &quot;0.85&quot;,
+          &quot;2100&quot;: &quot;0.95&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_03&quot;
+      },
+      {
+        &quot;row_number&quot;: 4,
+        &quot;values&quot;: {
+          &quot;supplysector&quot;: &quot;electricity&quot;,
+          &quot;subsector&quot;: &quot;refined liquids&quot;,
+          &quot;technology&quot;: &quot;refined liquids (CC CCS)&quot;,
+          &quot;1971&quot;: &quot;0.85&quot;,
+          &quot;initial-future-year&quot;: &quot;0.85&quot;,
+          &quot;2100&quot;: &quot;0.95&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_04&quot;
+      },
+      {
+        &quot;row_number&quot;: 5,
+        &quot;values&quot;: {
+          &quot;supplysector&quot;: &quot;electricity&quot;,
+          &quot;subsector&quot;: &quot;biomass&quot;,
+          &quot;technology&quot;: &quot;biomass (conv CCS)&quot;,
+          &quot;1971&quot;: &quot;0.85&quot;,
+          &quot;initial-future-year&quot;: &quot;0.85&quot;,
+          &quot;2100&quot;: &quot;0.95&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_05&quot;
+      },
+      {
+        &quot;row_number&quot;: 6,
+        &quot;values&quot;: {
+          &quot;supplysector&quot;: &quot;electricity&quot;,
+          &quot;subsector&quot;: &quot;biomass&quot;,
+          &quot;technology&quot;: &quot;biomass (IGCC CCS)&quot;,
+          &quot;1971&quot;: &quot;0.85&quot;,
+          &quot;initial-future-year&quot;: &quot;0.85&quot;,
+          &quot;2100&quot;: &quot;0.95&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_06&quot;
+      }
+    ],
+    &quot;file_url&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A23.globaltech_co2capture.csv&quot;,
+    &quot;source_notes&quot;: [
+      &quot;File: A23.globaltech_co2capture.csv&quot;,
+      &quot;Title: Electricity technology capture fractions&quot;,
+      &quot;Units: Unitless; portion of CO2 emissions that are captured&quot;,
+      &quot;Source: GCAM assumptions; consistent with David and Herzog 2000 (https://sequestration.mit.edu/pdf/David_and_Herzog.pdf)&quot;,
+      &quot;Column types: cccnnn&quot;,
+      &quot;----------&quot;
+    ],
+    &quot;filters&quot;: {},
+    &quot;offset&quot;: 0,
+    &quot;record_count&quot;: 6,
+    &quot;total_matches&quot;: 6,
+    &quot;table_rows&quot;: 6,
+    &quot;release&quot;: &quot;GCAM v9.1&quot;
+  },
+  &quot;provenance&quot;: [
+    {
+      &quot;id&quot;: &quot;source_01&quot;,
+      &quot;source_id&quot;: &quot;gcam-power&quot;,
+      &quot;steward&quot;: &quot;Pacific Northwest National Laboratory&quot;,
+      &quot;system&quot;: &quot;GCAM: Power technology&quot;,
+      &quot;dataset&quot;: &quot;A23.globaltech_co2capture.csv&quot;,
+      &quot;dataset_version&quot;: &quot;GCAM v9.1&quot;,
+      &quot;authority_level&quot;: &quot;primary&quot;,
+      &quot;access_path&quot;: &quot;live&quot;,
+      &quot;source_updated_at&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;cache_age_seconds&quot;: 0,
+      &quot;citation&quot;: {
+        &quot;doi&quot;: null,
+        &quot;recommended&quot;: &quot;Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.&quot;,
+        &quot;required&quot;: true
+      }
+    }
+  ],
+  &quot;evidence&quot;: [
+    {
+      &quot;id&quot;: &quot;evidence_01&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 1&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A23.globaltech_co2capture.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_02&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 2&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A23.globaltech_co2capture.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_03&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 3&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A23.globaltech_co2capture.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_04&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 4&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A23.globaltech_co2capture.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_05&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 5&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A23.globaltech_co2capture.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_06&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 6&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A23.globaltech_co2capture.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    }
+  ],
+  &quot;coverage&quot;: {
+    &quot;registry&quot;: &quot;covered&quot;,
+    &quot;execution&quot;: &quot;complete&quot;,
+    &quot;pagination&quot;: &quot;complete&quot;,
+    &quot;source_claim&quot;: &quot;complete&quot;,
+    &quot;result&quot;: &quot;hit&quot;,
+    &quot;sources_searched&quot;: [
+      &quot;gcam-power&quot;
+    ],
+    &quot;known_limitations&quot;: [
+      &quot;Rows are model inputs, not scenario outputs or measurements of current conditions.&quot;,
+      &quot;GCAM3 region labels and numeric GCAM region IDs use different groupings.&quot;
+    ]
+  },
+  &quot;warnings&quot;: [
+    {
+      &quot;code&quot;: &quot;citation_required&quot;,
+      &quot;message&quot;: &quot;This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.&quot;,
+      &quot;source_id&quot;: &quot;gcam-power&quot;
+    }
+  ],
+  &quot;_execution&quot;: {
+    &quot;server&quot;: &quot;doe-mcp&quot;,
+    &quot;server_version&quot;: &quot;0.1.0.dev0&quot;,
+    &quot;tool&quot;: &quot;power.carbon_capture&quot;,
+    &quot;tool_contract_version&quot;: &quot;1&quot;,
+    &quot;envelope_version&quot;: &quot;1&quot;,
+    &quot;adapters&quot;: {
+      &quot;osti_family&quot;: &quot;1&quot;,
+      &quot;opendatasoft&quot;: &quot;1&quot;,
+      &quot;json_document&quot;: &quot;1&quot;,
+      &quot;curated&quot;: &quot;1&quot;,
+      &quot;eia_v2&quot;: &quot;1&quot;,
+      &quot;fueleconomy&quot;: &quot;1&quot;,
+      &quot;text_feed&quot;: &quot;1&quot;,
+      &quot;postgrest&quot;: &quot;1&quot;,
+      &quot;federal_register&quot;: &quot;1&quot;,
+      &quot;vips&quot;: &quot;1&quot;,
+      &quot;daymet&quot;: &quot;1&quot;,
+      &quot;essdive&quot;: &quot;1&quot;,
+      &quot;esgf&quot;: &quot;1&quot;,
+      &quot;sage&quot;: &quot;1&quot;,
+      &quot;optimade&quot;: &quot;1&quot;,
+      &quot;basis_sets&quot;: &quot;1&quot;,
+      &quot;facility_status&quot;: &quot;1&quot;,
+      &quot;gcam_csv&quot;: &quot;1&quot;,
+      &quot;nmdc&quot;: &quot;1&quot;,
+      &quot;none&quot;: &quot;1&quot;,
+      &quot;self_registry&quot;: &quot;1&quot;
+    },
+    &quot;registry_revision&quot;: &quot;2026-11-09&quot;,
+    &quot;request_id&quot;: &quot;recorded-workflow&quot;
+  }
+}</pre></details></section><details><summary>Recording manifest and capture times</summary><p>Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-11-09.</p><div class="scroll"><table class="stackable"><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td data-label="Fixture">gcam-power.json</td><td data-label="Capture time (UTC)">2026-11-10T04:46:58.079479+00:00</td><td data-label="SHA-256">7485cdd26030b7c15f0812c534223aca205cba855c96bd61c767668207b9cbc8</td></tr></tbody></table></div></details></article><article id="world-industry-response" tabindex="-1"><h2>Read industrial demand elasticity</h2><p class="skill">Skill: <code>genesis-read-signed-response</code></p><p class="answer">Output levels with zero elasticity: 42. Levels with negative elasticity: 46. Output is in GJ per person per year.</p><p class="scope">Read 11 of 11 matches. A recorded replay at registry revision 2026-11-09, not current data.</p><figure class="atlas-chart"><figcaption>Plate 03 / Economy · Sign of income elasticity</figcaption><div class="atlas-bar"><span>Positive</span><span aria-hidden="true" class="atlas-track"><i style="width:81.8182%"></i></span><b>9</b></div><div class="atlas-bar"><span>Zero</span><span aria-hidden="true" class="atlas-track"><i style="width:9.0909%"></i></span><b>1</b></div><div class="atlas-bar"><span>Negative</span><span aria-hidden="true" class="atlas-track"><i style="width:9.0909%"></i></span><b>1</b></div><small>Counts out of 11 published output levels. Each level counts once.</small></figure><details open><summary>Limits of this example</summary><ul><li>The rows specify model parameters at discrete output levels. They do not report industrial demand or an observed income response.</li></ul></details><p class="downloads"><a download href="data/demos/world-industry-response.json">Download JSON evidence</a><a download href="data/demos/world-industry-response.csv">Download CSV evidence index</a><a download href="data/demos/world-industry-response-worksheet.csv">Download worksheet CSV</a></p><section class="step worksheet" id="world-industry-response-worksheet" tabindex="-1"><h3>Read industrial demand elasticity</h3><p>Based on the Genesis <a href="https://github.com/AI-ModCon/genesis-skills/blob/70dce5aca946e2804f9b8579da01910cd2861858/skills/baseeval-skills/lm-eval-harness-skills/data-exploration/SKILL.md" rel="noreferrer">data-exploration</a> skill. DOE-MCP builds this worksheet locally.</p><div class="scroll"><table class="stackable"><caption>Each evidence ID refers to step 1 in the JSON download.</caption><thead><tr><th scope="col">Output (GJ/person/year)</th><th scope="col">Income elasticity</th><th scope="col">Sign</th><th scope="col">Step 1 evidence ID</th></tr></thead><tbody><tr><td data-label="Output (GJ/person/year)">0</td><td data-label="Income elasticity">1.5</td><td data-label="Sign">positive</td><td data-label="Step 1 evidence ID">evidence_01</td></tr><tr><td data-label="Output (GJ/person/year)">3</td><td data-label="Income elasticity">1.12</td><td data-label="Sign">positive</td><td data-label="Step 1 evidence ID">evidence_02</td></tr><tr><td data-label="Output (GJ/person/year)">5</td><td data-label="Income elasticity">0.9</td><td data-label="Sign">positive</td><td data-label="Step 1 evidence ID">evidence_03</td></tr><tr><td data-label="Output (GJ/person/year)">7</td><td data-label="Income elasticity">0.78</td><td data-label="Sign">positive</td><td data-label="Step 1 evidence ID">evidence_04</td></tr><tr><td data-label="Output (GJ/person/year)">10</td><td data-label="Income elasticity">0.6</td><td data-label="Sign">positive</td><td data-label="Step 1 evidence ID">evidence_05</td></tr><tr><td data-label="Output (GJ/person/year)">14</td><td data-label="Income elasticity">0.35</td><td data-label="Sign">positive</td><td data-label="Step 1 evidence ID">evidence_06</td></tr><tr><td data-label="Output (GJ/person/year)">18</td><td data-label="Income elasticity">0.26</td><td data-label="Sign">positive</td><td data-label="Step 1 evidence ID">evidence_07</td></tr><tr><td data-label="Output (GJ/person/year)">26</td><td data-label="Income elasticity">0.22</td><td data-label="Sign">positive</td><td data-label="Step 1 evidence ID">evidence_08</td></tr><tr><td data-label="Output (GJ/person/year)">38</td><td data-label="Income elasticity">0.1</td><td data-label="Sign">positive</td><td data-label="Step 1 evidence ID">evidence_09</td></tr><tr><td data-label="Output (GJ/person/year)">42</td><td data-label="Income elasticity">0</td><td data-label="Sign">zero</td><td data-label="Step 1 evidence ID">evidence_10</td></tr><tr><td data-label="Output (GJ/person/year)">46</td><td data-label="Income elasticity">-0.05</td><td data-label="Sign">negative</td><td data-label="Step 1 evidence ID">evidence_11</td></tr></tbody></table></div></section><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo world-industry-response --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="step" id="world-industry-response-step-1" tabindex="-1" data-label="Industrial elasticity"><h3>1. Industrial elasticity</h3><details><summary>Coverage and source notes</summary><p class="mono">economy.industrial_elasticity {&quot;filters&quot;: {}, &quot;rows&quot;: 50}</p><div class="scroll"><table class="compact"><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td data-label="Coverage dimension">registry</td><td data-label="Value">covered</td></tr><tr><td data-label="Coverage dimension">execution</td><td data-label="Value">complete</td></tr><tr><td data-label="Coverage dimension">pagination</td><td data-label="Value">complete</td></tr><tr><td data-label="Coverage dimension">source_claim</td><td data-label="Value">complete</td></tr><tr><td data-label="Coverage dimension">result</td><td data-label="Value">hit</td></tr></tbody></table></div><p>Searched: gcam-economy</p><ul><li>This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.</li></ul></details><div class="scroll"><table class="compact"><caption></caption><thead><tr><th scope="col">Returned</th><th scope="col">Total matches</th></tr></thead><tbody><tr><td data-label="Returned">11</td><td data-label="Total matches">11</td></tr></tbody></table></div><div class="scroll"><table class="compact"><caption>GCAM v9.1</caption><thead><tr><th scope="col">pc.output_GJ</th><th scope="col">inc_elas</th></tr></thead><tbody><tr><td data-label="pc.output_GJ">0</td><td data-label="inc_elas">1.5</td></tr><tr><td data-label="pc.output_GJ">3</td><td data-label="inc_elas">1.12</td></tr><tr><td data-label="pc.output_GJ">5</td><td data-label="inc_elas">0.9</td></tr><tr><td data-label="pc.output_GJ">7</td><td data-label="inc_elas">0.78</td></tr><tr><td data-label="pc.output_GJ">10</td><td data-label="inc_elas">0.6</td></tr><tr><td data-label="pc.output_GJ">14</td><td data-label="inc_elas">0.35</td></tr><tr><td data-label="pc.output_GJ">18</td><td data-label="inc_elas">0.26</td></tr><tr><td data-label="pc.output_GJ">26</td><td data-label="inc_elas">0.22</td></tr><tr><td data-label="pc.output_GJ">38</td><td data-label="inc_elas">0.1</td></tr><tr><td data-label="pc.output_GJ">42</td><td data-label="inc_elas">0</td></tr><tr><td data-label="pc.output_GJ">46</td><td data-label="inc_elas">-0.05</td></tr></tbody></table></div><p>GCAM data system, Copyright 2019 Battelle Memorial Institute. <a href="GCAM-ECL-2.0.txt">Educational Community License 2.0</a>.</p><details><summary>Publisher table notes and units</summary><ul><li>File: A32.inc_elas_output.csv</li><li>Title: industrial demand income elasticity as a function of per-capita industrial output</li><li>Units: GJ per person per year for pc.output_GJ; Unitless for inc_elas</li><li>Description: inc_elas: income elasticity (unitless); pc.output_GJ: per-capita output in GJ per person per year</li><li>Column types: nn</li></ul></details><details><summary>Record sources</summary><ul class="evidence"><li><strong>data row 1</strong><br>GCAM: Regional economics · record data row 1<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 2</strong><br>GCAM: Regional economics · record data row 2<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 3</strong><br>GCAM: Regional economics · record data row 3<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 4</strong><br>GCAM: Regional economics · record data row 4<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 5</strong><br>GCAM: Regional economics · record data row 5<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 6</strong><br>GCAM: Regional economics · record data row 6<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 7</strong><br>GCAM: Regional economics · record data row 7<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 8</strong><br>GCAM: Regional economics · record data row 8<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 9</strong><br>GCAM: Regional economics · record data row 9<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 10</strong><br>GCAM: Regional economics · record data row 10<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 11</strong><br>GCAM: Regional economics · record data row 11<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li></ul></details><details><summary>Full response and evidence</summary><pre>{
+  &quot;data&quot;: {
+    &quot;table&quot;: &quot;industrial_elasticity&quot;,
+    &quot;columns&quot;: [
+      &quot;pc.output_GJ&quot;,
+      &quot;inc_elas&quot;
+    ],
+    &quot;records&quot;: [
+      {
+        &quot;row_number&quot;: 1,
+        &quot;values&quot;: {
+          &quot;pc.output_GJ&quot;: &quot;0&quot;,
+          &quot;inc_elas&quot;: &quot;1.5&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_01&quot;
+      },
+      {
+        &quot;row_number&quot;: 2,
+        &quot;values&quot;: {
+          &quot;pc.output_GJ&quot;: &quot;3&quot;,
+          &quot;inc_elas&quot;: &quot;1.12&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_02&quot;
+      },
+      {
+        &quot;row_number&quot;: 3,
+        &quot;values&quot;: {
+          &quot;pc.output_GJ&quot;: &quot;5&quot;,
+          &quot;inc_elas&quot;: &quot;0.9&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_03&quot;
+      },
+      {
+        &quot;row_number&quot;: 4,
+        &quot;values&quot;: {
+          &quot;pc.output_GJ&quot;: &quot;7&quot;,
+          &quot;inc_elas&quot;: &quot;0.78&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_04&quot;
+      },
+      {
+        &quot;row_number&quot;: 5,
+        &quot;values&quot;: {
+          &quot;pc.output_GJ&quot;: &quot;10&quot;,
+          &quot;inc_elas&quot;: &quot;0.6&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_05&quot;
+      },
+      {
+        &quot;row_number&quot;: 6,
+        &quot;values&quot;: {
+          &quot;pc.output_GJ&quot;: &quot;14&quot;,
+          &quot;inc_elas&quot;: &quot;0.35&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_06&quot;
+      },
+      {
+        &quot;row_number&quot;: 7,
+        &quot;values&quot;: {
+          &quot;pc.output_GJ&quot;: &quot;18&quot;,
+          &quot;inc_elas&quot;: &quot;0.26&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_07&quot;
+      },
+      {
+        &quot;row_number&quot;: 8,
+        &quot;values&quot;: {
+          &quot;pc.output_GJ&quot;: &quot;26&quot;,
+          &quot;inc_elas&quot;: &quot;0.22&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_08&quot;
+      },
+      {
+        &quot;row_number&quot;: 9,
+        &quot;values&quot;: {
+          &quot;pc.output_GJ&quot;: &quot;38&quot;,
+          &quot;inc_elas&quot;: &quot;0.1&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_09&quot;
+      },
+      {
+        &quot;row_number&quot;: 10,
+        &quot;values&quot;: {
+          &quot;pc.output_GJ&quot;: &quot;42&quot;,
+          &quot;inc_elas&quot;: &quot;0&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_10&quot;
+      },
+      {
+        &quot;row_number&quot;: 11,
+        &quot;values&quot;: {
+          &quot;pc.output_GJ&quot;: &quot;46&quot;,
+          &quot;inc_elas&quot;: &quot;-0.05&quot;
+        },
+        &quot;evidence_ref&quot;: &quot;evidence_11&quot;
+      }
+    ],
+    &quot;file_url&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv&quot;,
+    &quot;source_notes&quot;: [
+      &quot;File: A32.inc_elas_output.csv&quot;,
+      &quot;Title: industrial demand income elasticity as a function of per-capita industrial output&quot;,
+      &quot;Units: GJ per person per year for pc.output_GJ; Unitless for inc_elas&quot;,
+      &quot;Description: inc_elas: income elasticity (unitless); pc.output_GJ: per-capita output in GJ per person per year&quot;,
+      &quot;Column types: nn&quot;,
+      &quot;----------&quot;
+    ],
+    &quot;filters&quot;: {},
+    &quot;offset&quot;: 0,
+    &quot;record_count&quot;: 11,
+    &quot;total_matches&quot;: 11,
+    &quot;table_rows&quot;: 11,
+    &quot;release&quot;: &quot;GCAM v9.1&quot;
+  },
+  &quot;provenance&quot;: [
+    {
+      &quot;id&quot;: &quot;source_01&quot;,
+      &quot;source_id&quot;: &quot;gcam-economy&quot;,
+      &quot;steward&quot;: &quot;Pacific Northwest National Laboratory&quot;,
+      &quot;system&quot;: &quot;GCAM: Regional economics&quot;,
+      &quot;dataset&quot;: &quot;A32.inc_elas_output.csv&quot;,
+      &quot;dataset_version&quot;: &quot;GCAM v9.1&quot;,
+      &quot;authority_level&quot;: &quot;primary&quot;,
+      &quot;access_path&quot;: &quot;live&quot;,
+      &quot;source_updated_at&quot;: null,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;cache_age_seconds&quot;: 0,
+      &quot;citation&quot;: {
+        &quot;doi&quot;: null,
+        &quot;recommended&quot;: &quot;Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.&quot;,
+        &quot;required&quot;: true
+      }
+    }
+  ],
+  &quot;evidence&quot;: [
+    {
+      &quot;id&quot;: &quot;evidence_01&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 1&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_02&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 2&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_03&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 3&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_04&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 4&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_05&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 5&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_06&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 6&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_07&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 7&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_08&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 8&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_09&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 9&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_10&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 10&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    },
+    {
+      &quot;id&quot;: &quot;evidence_11&quot;,
+      &quot;source_ref&quot;: &quot;source_01&quot;,
+      &quot;record_id&quot;: &quot;data row 11&quot;,
+      &quot;locator&quot;: &quot;https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv&quot;,
+      &quot;retrieved_at&quot;: &quot;2026-11-09T00:00:00Z&quot;,
+      &quot;effective_at&quot;: null,
+      &quot;transformations&quot;: [
+        &quot;parse_csv&quot;,
+        &quot;empty_cell_to_null&quot;
+      ],
+      &quot;payload_hash&quot;: null,
+      &quot;raw_recovery&quot;: &quot;available&quot;
+    }
+  ],
+  &quot;coverage&quot;: {
+    &quot;registry&quot;: &quot;covered&quot;,
+    &quot;execution&quot;: &quot;complete&quot;,
+    &quot;pagination&quot;: &quot;complete&quot;,
+    &quot;source_claim&quot;: &quot;complete&quot;,
+    &quot;result&quot;: &quot;hit&quot;,
+    &quot;sources_searched&quot;: [
+      &quot;gcam-economy&quot;
+    ],
+    &quot;known_limitations&quot;: [
+      &quot;Rows are model inputs, not scenario outputs or measurements of current conditions.&quot;,
+      &quot;GCAM3 region labels and numeric GCAM region IDs use different groupings.&quot;
+    ]
+  },
+  &quot;warnings&quot;: [
+    {
+      &quot;code&quot;: &quot;citation_required&quot;,
+      &quot;message&quot;: &quot;This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.&quot;,
+      &quot;source_id&quot;: &quot;gcam-economy&quot;
+    }
+  ],
+  &quot;_execution&quot;: {
+    &quot;server&quot;: &quot;doe-mcp&quot;,
+    &quot;server_version&quot;: &quot;0.1.0.dev0&quot;,
+    &quot;tool&quot;: &quot;economy.industrial_elasticity&quot;,
+    &quot;tool_contract_version&quot;: &quot;1&quot;,
+    &quot;envelope_version&quot;: &quot;1&quot;,
+    &quot;adapters&quot;: {
+      &quot;osti_family&quot;: &quot;1&quot;,
+      &quot;opendatasoft&quot;: &quot;1&quot;,
+      &quot;json_document&quot;: &quot;1&quot;,
+      &quot;curated&quot;: &quot;1&quot;,
+      &quot;eia_v2&quot;: &quot;1&quot;,
+      &quot;fueleconomy&quot;: &quot;1&quot;,
+      &quot;text_feed&quot;: &quot;1&quot;,
+      &quot;postgrest&quot;: &quot;1&quot;,
+      &quot;federal_register&quot;: &quot;1&quot;,
+      &quot;vips&quot;: &quot;1&quot;,
+      &quot;daymet&quot;: &quot;1&quot;,
+      &quot;essdive&quot;: &quot;1&quot;,
+      &quot;esgf&quot;: &quot;1&quot;,
+      &quot;sage&quot;: &quot;1&quot;,
+      &quot;optimade&quot;: &quot;1&quot;,
+      &quot;basis_sets&quot;: &quot;1&quot;,
+      &quot;facility_status&quot;: &quot;1&quot;,
+      &quot;gcam_csv&quot;: &quot;1&quot;,
+      &quot;nmdc&quot;: &quot;1&quot;,
+      &quot;none&quot;: &quot;1&quot;,
+      &quot;self_registry&quot;: &quot;1&quot;
+    },
+    &quot;registry_revision&quot;: &quot;2026-11-09&quot;,
+    &quot;request_id&quot;: &quot;recorded-workflow&quot;
+  }
+}</pre></details></section><details><summary>Recording manifest and capture times</summary><p>Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded. Registry revision: 2026-11-09.</p><div class="scroll"><table class="stackable"><caption></caption><thead><tr><th scope="col">Fixture</th><th scope="col">Capture time (UTC)</th><th scope="col">SHA-256</th></tr></thead><tbody><tr><td data-label="Fixture">gcam-economy.json</td><td data-label="Capture time (UTC)">2026-11-10T04:46:58.414403+00:00</td><td data-label="SHA-256">e51120caad276d93a52d9dbf50ea2faa5c298c9ac88f17c3e5f1869be685bb78</td></tr></tbody></table></div></details></article><article id="latin-america-regions" tabindex="-1"><h2>Map Latin American country codes</h2><p class="skill">Skill: <code>genesis-audit-region-keys</code></p><p class="answer">49 country and territory codes share the legacy label but map to 9 numeric region IDs.</p><p class="scope">Read 49 of 49 matches. A recorded replay at registry revision 2026-11-09, not current data.</p><details open><summary>Limits of this example</summary><ul><li>Country and territory codes belong to this model release. They do not define political boundaries.</li></ul></details><p class="downloads"><a download href="data/demos/latin-america-regions.json">Download JSON evidence</a><a download href="data/demos/latin-america-regions.csv">Download CSV evidence index</a><a download href="data/demos/latin-america-regions-worksheet.csv">Download worksheet CSV</a></p><section class="step worksheet" id="latin-america-regions-worksheet" tabindex="-1"><h3>Map Latin American country codes</h3><p>Based on the Genesis <a href="https://github.com/AI-ModCon/genesis-skills/blob/70dce5aca946e2804f9b8579da01910cd2861858/skills/baseeval-skills/lm-eval-harness-skills/data-exploration/SKILL.md" rel="noreferrer">data-exploration</a> skill. DOE-MCP builds this worksheet locally.</p><div class="scroll"><table class="stackable"><caption>Each evidence ID refers to step 1 in the JSON download.</caption><thead><tr><th scope="col">iso</th><th scope="col">country_name</th><th scope="col">region_GCAM3</th><th scope="col">GCAM_region_ID</th><th scope="col">Step 1 evidence ID</th></tr></thead><tbody><tr><td data-label="iso">abw</td><td data-label="country_name">Aruba</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_01</td></tr><tr><td data-label="iso">aia</td><td data-label="country_name">Anguilla</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_02</td></tr><tr><td data-label="iso">ant</td><td data-label="country_name">Netherlands Antilles</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_03</td></tr><tr><td data-label="iso">arg</td><td data-label="country_name">Argentina</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">31</td><td data-label="Step 1 evidence ID">evidence_04</td></tr><tr><td data-label="iso">atg</td><td data-label="country_name">Antigua &amp; Barbuda</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_05</td></tr><tr><td data-label="iso">bes</td><td data-label="country_name">Bonaire, Sint Eustatius and Saba</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_06</td></tr><tr><td data-label="iso">bhs</td><td data-label="country_name">Bahamas</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_07</td></tr><tr><td data-label="iso">blm</td><td data-label="country_name">Saint Barthelemy</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_08</td></tr><tr><td data-label="iso">blz</td><td data-label="country_name">Belize</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_09</td></tr><tr><td data-label="iso">bol</td><td data-label="country_name">Bolivia</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">26</td><td data-label="Step 1 evidence ID">evidence_10</td></tr><tr><td data-label="iso">bra</td><td data-label="country_name">Brazil</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">7</td><td data-label="Step 1 evidence ID">evidence_11</td></tr><tr><td data-label="iso">brb</td><td data-label="country_name">Barbados</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_12</td></tr><tr><td data-label="iso">chl</td><td data-label="country_name">Chile</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">26</td><td data-label="Step 1 evidence ID">evidence_13</td></tr><tr><td data-label="iso">col</td><td data-label="country_name">Colombia</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">32</td><td data-label="Step 1 evidence ID">evidence_14</td></tr><tr><td data-label="iso">cri</td><td data-label="country_name">Costa Rica</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_15</td></tr><tr><td data-label="iso">cub</td><td data-label="country_name">Cuba</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_16</td></tr><tr><td data-label="iso">cuw</td><td data-label="country_name">Curacao</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_17</td></tr><tr><td data-label="iso">cym</td><td data-label="country_name">Cayman Islands</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_18</td></tr><tr><td data-label="iso">dma</td><td data-label="country_name">Dominica</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_19</td></tr><tr><td data-label="iso">dom</td><td data-label="country_name">Dominican Republic</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_20</td></tr><tr><td data-label="iso">ecu</td><td data-label="country_name">Ecuador</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">26</td><td data-label="Step 1 evidence ID">evidence_21</td></tr><tr><td data-label="iso">flk</td><td data-label="country_name">Falkland Islands (Malvinas)</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">13</td><td data-label="Step 1 evidence ID">evidence_22</td></tr><tr><td data-label="iso">glp</td><td data-label="country_name">Guadeloupe</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_23</td></tr><tr><td data-label="iso">grd</td><td data-label="country_name">Grenada</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_24</td></tr><tr><td data-label="iso">gtm</td><td data-label="country_name">Guatemala</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_25</td></tr><tr><td data-label="iso">guf</td><td data-label="country_name">French Guiana</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">25</td><td data-label="Step 1 evidence ID">evidence_26</td></tr><tr><td data-label="iso">guy</td><td data-label="country_name">Guyana</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">25</td><td data-label="Step 1 evidence ID">evidence_27</td></tr><tr><td data-label="iso">hnd</td><td data-label="country_name">Honduras</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_28</td></tr><tr><td data-label="iso">hti</td><td data-label="country_name">Haiti</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_29</td></tr><tr><td data-label="iso">jam</td><td data-label="country_name">Jamaica</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_30</td></tr><tr><td data-label="iso">kna</td><td data-label="country_name">Saint Kitts and Nevis</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_31</td></tr><tr><td data-label="iso">lca</td><td data-label="country_name">Saint Lucia</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_32</td></tr><tr><td data-label="iso">maf</td><td data-label="country_name">Saint Martin</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_33</td></tr><tr><td data-label="iso">mex</td><td data-label="country_name">Mexico</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">20</td><td data-label="Step 1 evidence ID">evidence_34</td></tr><tr><td data-label="iso">msr</td><td data-label="country_name">Montserrat</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_35</td></tr><tr><td data-label="iso">nic</td><td data-label="country_name">Nicaragua</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_36</td></tr><tr><td data-label="iso">pan</td><td data-label="country_name">Panama</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_37</td></tr><tr><td data-label="iso">per</td><td data-label="country_name">Peru</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">26</td><td data-label="Step 1 evidence ID">evidence_38</td></tr><tr><td data-label="iso">pry</td><td data-label="country_name">Paraguay</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">26</td><td data-label="Step 1 evidence ID">evidence_39</td></tr><tr><td data-label="iso">slv</td><td data-label="country_name">El Salvador</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_40</td></tr><tr><td data-label="iso">sur</td><td data-label="country_name">Suriname</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">25</td><td data-label="Step 1 evidence ID">evidence_41</td></tr><tr><td data-label="iso">sxm</td><td data-label="country_name">Sint Maarten</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_42</td></tr><tr><td data-label="iso">tca</td><td data-label="country_name">Turks and Caicos</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">13</td><td data-label="Step 1 evidence ID">evidence_43</td></tr><tr><td data-label="iso">tto</td><td data-label="country_name">Trinidad and Tobago</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_44</td></tr><tr><td data-label="iso">ury</td><td data-label="country_name">Uruguay</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">26</td><td data-label="Step 1 evidence ID">evidence_45</td></tr><tr><td data-label="iso">vct</td><td data-label="country_name">Saint Vincent and the Grenadines</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td><td data-label="Step 1 evidence ID">evidence_46</td></tr><tr><td data-label="iso">ven</td><td data-label="country_name">Venezuela</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">25</td><td data-label="Step 1 evidence ID">evidence_47</td></tr><tr><td data-label="iso">vgb</td><td data-label="country_name">Virgin Islands, British</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">13</td><td data-label="Step 1 evidence ID">evidence_48</td></tr><tr><td data-label="iso">vir</td><td data-label="country_name">Virgin Islands, U.S.</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">1</td><td data-label="Step 1 evidence ID">evidence_49</td></tr></tbody></table></div></section><details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>doe-mcp demo latin-america-regions --output ./demo-output</pre><p>Add <code>--live</code> to query publishers. No model is called. Live results and availability can differ.</p></details><section class="step" id="latin-america-regions-step-1" tabindex="-1" data-label="Country regions"><h3>1. Country regions</h3><details><summary>Coverage and source notes</summary><p class="mono">economy.country_regions {&quot;filters&quot;: {&quot;region_GCAM3&quot;: &quot;Latin America&quot;}, &quot;rows&quot;: 50}</p><div class="scroll"><table class="compact"><caption></caption><thead><tr><th scope="col">Coverage dimension</th><th scope="col">Value</th></tr></thead><tbody><tr><td data-label="Coverage dimension">registry</td><td data-label="Value">covered</td></tr><tr><td data-label="Coverage dimension">execution</td><td data-label="Value">complete</td></tr><tr><td data-label="Coverage dimension">pagination</td><td data-label="Value">complete</td></tr><tr><td data-label="Coverage dimension">source_claim</td><td data-label="Value">complete</td></tr><tr><td data-label="Coverage dimension">result</td><td data-label="Value">hit</td></tr></tbody></table></div><p>Searched: gcam-economy</p><ul><li>This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.</li></ul></details><div class="scroll"><table class="compact"><caption></caption><thead><tr><th scope="col">Returned</th><th scope="col">Total matches</th></tr></thead><tbody><tr><td data-label="Returned">49</td><td data-label="Total matches">49</td></tr></tbody></table></div><div class="scroll"><table class="stackable"><caption>GCAM v9.1</caption><thead><tr><th scope="col">iso</th><th scope="col">country_name</th><th scope="col">region_GCAM3</th><th scope="col">GCAM_region_ID</th></tr></thead><tbody><tr><td data-label="iso">abw</td><td data-label="country_name">Aruba</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">aia</td><td data-label="country_name">Anguilla</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">ant</td><td data-label="country_name">Netherlands Antilles</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">arg</td><td data-label="country_name">Argentina</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">31</td></tr><tr><td data-label="iso">atg</td><td data-label="country_name">Antigua &amp; Barbuda</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">bes</td><td data-label="country_name">Bonaire, Sint Eustatius and Saba</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">bhs</td><td data-label="country_name">Bahamas</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">blm</td><td data-label="country_name">Saint Barthelemy</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">blz</td><td data-label="country_name">Belize</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">bol</td><td data-label="country_name">Bolivia</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">26</td></tr><tr><td data-label="iso">bra</td><td data-label="country_name">Brazil</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">7</td></tr><tr><td data-label="iso">brb</td><td data-label="country_name">Barbados</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">chl</td><td data-label="country_name">Chile</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">26</td></tr><tr><td data-label="iso">col</td><td data-label="country_name">Colombia</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">32</td></tr><tr><td data-label="iso">cri</td><td data-label="country_name">Costa Rica</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">cub</td><td data-label="country_name">Cuba</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">cuw</td><td data-label="country_name">Curacao</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">cym</td><td data-label="country_name">Cayman Islands</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">dma</td><td data-label="country_name">Dominica</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">dom</td><td data-label="country_name">Dominican Republic</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">ecu</td><td data-label="country_name">Ecuador</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">26</td></tr><tr><td data-label="iso">flk</td><td data-label="country_name">Falkland Islands (Malvinas)</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">13</td></tr><tr><td data-label="iso">glp</td><td data-label="country_name">Guadeloupe</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">grd</td><td data-label="country_name">Grenada</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">gtm</td><td data-label="country_name">Guatemala</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">guf</td><td data-label="country_name">French Guiana</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">25</td></tr><tr><td data-label="iso">guy</td><td data-label="country_name">Guyana</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">25</td></tr><tr><td data-label="iso">hnd</td><td data-label="country_name">Honduras</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">hti</td><td data-label="country_name">Haiti</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">jam</td><td data-label="country_name">Jamaica</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">kna</td><td data-label="country_name">Saint Kitts and Nevis</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">lca</td><td data-label="country_name">Saint Lucia</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">maf</td><td data-label="country_name">Saint Martin</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">mex</td><td data-label="country_name">Mexico</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">20</td></tr><tr><td data-label="iso">msr</td><td data-label="country_name">Montserrat</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">nic</td><td data-label="country_name">Nicaragua</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">pan</td><td data-label="country_name">Panama</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">per</td><td data-label="country_name">Peru</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">26</td></tr><tr><td data-label="iso">pry</td><td data-label="country_name">Paraguay</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">26</td></tr><tr><td data-label="iso">slv</td><td data-label="country_name">El Salvador</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">sur</td><td data-label="country_name">Suriname</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">25</td></tr><tr><td data-label="iso">sxm</td><td data-label="country_name">Sint Maarten</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">tca</td><td data-label="country_name">Turks and Caicos</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">13</td></tr><tr><td data-label="iso">tto</td><td data-label="country_name">Trinidad and Tobago</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">ury</td><td data-label="country_name">Uruguay</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">26</td></tr><tr><td data-label="iso">vct</td><td data-label="country_name">Saint Vincent and the Grenadines</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">9</td></tr><tr><td data-label="iso">ven</td><td data-label="country_name">Venezuela</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">25</td></tr><tr><td data-label="iso">vgb</td><td data-label="country_name">Virgin Islands, British</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">13</td></tr><tr><td data-label="iso">vir</td><td data-label="country_name">Virgin Islands, U.S.</td><td data-label="region_GCAM3">Latin America</td><td data-label="GCAM_region_ID">1</td></tr></tbody></table></div><p>GCAM data system, Copyright 2019 Battelle Memorial Institute. <a href="GCAM-ECL-2.0.txt">Educational Community License 2.0</a>.</p><details><summary>Publisher table notes and units</summary><ul><li>File: iso_GCAM_regID.csv</li><li>Title: ISO to GCAM region mapping</li><li>Units: NA</li><li>Description: Maps iso codes to GCAM regions (including composites as necessary)</li><li>Column types: ccci</li></ul></details><details><summary>Record sources</summary><ul class="evidence"><li><strong>data row 1</strong><br>GCAM: Regional economics · record data row 1<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 4</strong><br>GCAM: Regional economics · record data row 4<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 7</strong><br>GCAM: Regional economics · record data row 7<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 9</strong><br>GCAM: Regional economics · record data row 9<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 12</strong><br>GCAM: Regional economics · record data row 12<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 19</strong><br>GCAM: Regional economics · record data row 19<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 24</strong><br>GCAM: Regional economics · record data row 24<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 26</strong><br>GCAM: Regional economics · record data row 26<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 28</strong><br>GCAM: Regional economics · record data row 28<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 30</strong><br>GCAM: Regional economics · record data row 30<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 31</strong><br>GCAM: Regional economics · record data row 31<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 32</strong><br>GCAM: Regional economics · record data row 32<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 41</strong><br>GCAM: Regional economics · record data row 41<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 48</strong><br>GCAM: Regional economics · record data row 48<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 51</strong><br>GCAM: Regional economics · record data row 51<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 52</strong><br>GCAM: Regional economics · record data row 52<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 53</strong><br>GCAM: Regional economics · record data row 53<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 54</strong><br>GCAM: Regional economics · record data row 54<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 60</strong><br>GCAM: Regional economics · record data row 60<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 62</strong><br>GCAM: Regional economics · record data row 62<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 64</strong><br>GCAM: Regional economics · record data row 64<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 73</strong><br>GCAM: Regional economics · record data row 73<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 84</strong><br>GCAM: Regional economics · record data row 84<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 89</strong><br>GCAM: Regional economics · record data row 89<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 91</strong><br>GCAM: Regional economics · record data row 91<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 92</strong><br>GCAM: Regional economics · record data row 92<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 94</strong><br>GCAM: Regional economics · record data row 94<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 96</strong><br>GCAM: Regional economics · record data row 96<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 98</strong><br>GCAM: Regional economics · record data row 98<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 109</strong><br>GCAM: Regional economics · record data row 109<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 118</strong><br>GCAM: Regional economics · record data row 118<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 125</strong><br>GCAM: Regional economics · record data row 125<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 133</strong><br>GCAM: Regional economics · record data row 133<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 139</strong><br>GCAM: Regional economics · record data row 139<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 150</strong><br>GCAM: Regional economics · record data row 150<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 161</strong><br>GCAM: Regional economics · record data row 161<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 170</strong><br>GCAM: Regional economics · record data row 170<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 173</strong><br>GCAM: Regional economics · record data row 173<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 181</strong><br>GCAM: Regional economics · record data row 181<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 199</strong><br>GCAM: Regional economics · record data row 199<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 206</strong><br>GCAM: Regional economics · record data row 206<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 211</strong><br>GCAM: Regional economics · record data row 211<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 214</strong><br>GCAM: Regional economics · record data row 214<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 223</strong><br>GCAM: Regional economics · record data row 223<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 231</strong><br>GCAM: Regional economics · record data row 231<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 235</strong><br>GCAM: Regional economics · record data row 235<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 236</strong><br>GCAM: Regional economics · record data row 236<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 237</strong><br>GCAM: Regional economics · record data row 237<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li><li><strong>data row 238</strong><br>GCAM: Regional economics · record data row 238<br><a href="https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv" rel="noreferrer">Publisher record</a><br>Record date: Unknown</li></ul></details><details><summary>Full response and evidence</summary><pre>{
   &quot;data&quot;: {
     &quot;table&quot;: &quot;country_regions&quot;,
     &quot;columns&quot;: [

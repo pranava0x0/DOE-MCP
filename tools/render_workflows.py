@@ -321,6 +321,39 @@ header{padding:12px 16px}header h1{font-size:1.6rem}header p{margin:8px 0}
 '''
 
 
+if __package__:
+    from .atlas_style import DEMO_CSS, FIELD_CASES
+else:
+    from atlas_style import DEMO_CSS, FIELD_CASES
+
+
+def field_chart(report):
+    """A compact reading of the same rows as the downloadable worksheet."""
+    case = report["case"]
+    if case not in FIELD_CASES:
+        return ""
+    rows = report["worksheet"]["rows"]
+    number, sector = FIELD_CASES[case]
+    if case == "world-capture-residual":
+        row = rows[0]
+        title = "CO₂ left uncaptured: " + row[1]
+        entries = [(label, float(row[i]) * 100) for label, i in (("Initial future year", 4), ("2100", 5))]
+        scale, suffix, note = 100, "%", "Scale: 0 to 100% of the technology’s CO₂ stream."
+    elif case == "world-crop-rates":
+        title = "How the fallback rates compare"
+        entries = [(name.title(), sum(r[3] == name for r in rows)) for name in ("lower", "unchanged", "higher")]
+        scale, suffix, note = len(rows), "", f"Counts out of {len(rows)} commodities. Each row compares 2095 with 2050."
+    else:
+        title = "Sign of income elasticity"
+        entries = [(name.title(), sum(r[2] == name for r in rows)) for name in ("positive", "zero", "negative")]
+        scale, suffix, note = len(rows), "", f"Counts out of {len(rows)} published output levels. Each level counts once."
+    bars = "".join(f'<div class="atlas-bar"><span>{esc(label)}</span>'
+                   f'<span aria-hidden="true" class="atlas-track"><i style="width:{100*v/scale:.4f}%"></i></span>'
+                   f'<b>{v:g}{suffix}</b></div>' for label, v in entries)
+    return (f'<figure class="atlas-chart"><figcaption>Plate {number} / {sector} · {esc(title)}</figcaption>'
+            f'{bars}<small>{esc(note)}</small></figure>')
+
+
 def render(reports: list[dict]) -> str:
     articles=[]
     for r in reports:
@@ -358,6 +391,7 @@ def render(reports: list[dict]) -> str:
                         + f'<p class="answer">{esc(outcome(r))}</p>'
                         f'<p class="scope">{esc(scope_line(r))}</p>'
                         +('<p class="notice">Simulated source outage. The publisher status was changed only in this isolated replay.</p>' if r['simulation'] else '')
+                        +field_chart(r)
                         +'<details open><summary>Limits of this example</summary><ul>'+''.join(f'<li>{esc(x)}</li>' for x in r['limitations'])+'</ul></details>'
                         +f'<p class="downloads"><a download href="data/demos/{esc(r["case"])}.json">Download JSON evidence</a><a download href="data/demos/{esc(r["case"])}.csv">Download CSV evidence index</a>{sheet_download}</p>'
                         +sheet_view+reproduce+drafts
@@ -365,7 +399,7 @@ def render(reports: list[dict]) -> str:
                         +''.join(step_view(step,i,r['case']) for i,step in enumerate(r['steps'],1))
                         +'<details><summary>Recording manifest and capture times</summary>'+f'<p>{esc(r["timestamp_note"])} Registry revision: {esc(r["registry_revision"])}.</p>'+captures+'</details></article>')
     options=''.join(f'<option value="{esc(r["case"])}">{esc(r["title"])}</option>' for r in reports)
-    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DOE-MCP demos</title><link rel="icon" href="data:,"><style>{STYLE}</style></head>
+    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DOE-MCP demos</title><link rel="icon" href="data:,"><style>{STYLE}{DEMO_CSS}</style></head>
 <body><header><a href="index.html">DOE-MCP home</a><h1>DOE-MCP demos</h1><p>Explore recorded results for free, without an account or API key.</p></header>
 <main><div id="picker" hidden><label for="workflow">Choose a walkthrough</label><select id="workflow">{options}</select><nav id="step-nav" aria-label="Jump to result"></nav></div>{''.join(articles)}</main><footer><p>Independent project; not affiliated with the US Department of Energy.</p><a href="guide.html">Run these workflows locally</a> · <a href="reference.html">Tool reference</a></footer>
 <script>

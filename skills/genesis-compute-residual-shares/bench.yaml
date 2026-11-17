@@ -1,0 +1,16 @@
+checked:
+- task: 1
+  case: world-capture-residual
+  expect_report:
+    worksheet.summary.technologies: 6
+- task: 2
+  case: world-capture-residual
+  expect_report:
+    worksheet.rows.0.2: '0.85'
+    worksheet.rows.0.4: '0.15'
+- task: 3
+  case: world-capture-residual
+  expect_report:
+    worksheet.rows.0.5: '0.05'
+    worksheet.summary.lower_residual: 6
+reader: []

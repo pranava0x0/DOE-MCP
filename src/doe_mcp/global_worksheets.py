@@ -19,6 +19,18 @@ class Walk:
 
 
 WALKS = {
+    "world-crop-rates": Walk(
+        "Compare crop yield assumptions", "Which fallback yield improvement rates change between 2050 and 2095?",
+        "genesis-compare-fallback-rates", "data-exploration", "land.crop_yield_growth", {},
+        "GCAM uses fallback rates where regional crop estimates are unavailable and beyond 2050. These rates are not harvested yields."),
+    "world-capture-residual": Walk(
+        "Account for uncaptured carbon", "What portion of CO₂ remains uncaptured under each electricity technology assumption?",
+        "genesis-compute-residual-shares", "data-exploration", "power.carbon_capture", {},
+        "A fraction of a technology’s CO₂ stream gives neither tonnes emitted nor a lifecycle emissions estimate."),
+    "world-industry-response": Walk(
+        "Read industrial demand elasticity", "At which published output levels is industrial income elasticity zero or negative?",
+        "genesis-read-signed-response", "data-exploration", "economy.industrial_elasticity", {},
+        "The rows specify model parameters at discrete output levels. They do not report industrial demand or an observed income response."),
     "latin-america-regions": Walk(
         "Map Latin American country codes", "Does the legacy Latin America label identify a single numeric GCAM region?",
         "genesis-audit-region-keys", "data-exploration", "economy.country_regions", {"region_GCAM3": "Latin America"},
@@ -39,13 +51,13 @@ WALKS = {
 }
 
 
-def _number(value):
+def _number(value, *, signed=False):
     try:
         n = Decimal(value)
     except (InvalidOperation, ValueError, TypeError) as err:
         raise SourceSchemaChanged("GCAM worksheet requires a numeric model input.") from err
-    if not n.is_finite() or n < 0:
-        raise SourceSchemaChanged("GCAM worksheet requires a finite nonnegative model input.")
+    if not n.is_finite() or (not signed and n < 0):
+        raise SourceSchemaChanged("GCAM worksheet requires a finite model input in the permitted range.")
     return n
 
 
@@ -70,7 +82,46 @@ def _rows(env, columns, key):
 
 def make_sheet(case, env):
     stats: dict[str, int | str]
-    if case == "latin-america-regions":
+    if case == "world-crop-rates":
+        cols = ["GCAM_commodity", "2050", "2095"]
+        rows = _rows(env, cols, ["GCAM_commodity"])
+        changed = 0
+        for row in rows:
+            before, after = (_number(x, signed=True) for x in row[1:3])
+            direction = "lower" if after < before else "higher" if after > before else "unchanged"
+            row.insert(-1, direction)
+            changed += after != before
+        cols = ["Commodity", "2050 rate", "2095 rate", "2095 relative to 2050"]
+        stats = {"commodities": len(rows), "changed": changed}
+        answer = f"The fallback rate changes for {changed} of {len(rows)} commodities between 2050 and 2095."
+    elif case == "world-capture-residual":
+        cols = ["subsector", "technology", "initial-future-year", "2100"]
+        rows = _rows(env, cols, cols[:2])
+        for r in rows:
+            fractions = [_number(v) for v in r[2:4]]
+            if max(fractions) > 1:
+                raise SourceSchemaChanged("A carbon capture fraction exceeds one.")
+            r[-1:-1] = [str(1 - v) for v in fractions]
+        cols = ["Fuel", "Technology", "Initial future capture", "2100 capture", "Initial future residual", "2100 residual"]
+        lower = sum(Decimal(r[5]) < Decimal(r[4]) for r in rows)
+        stats = {"technologies": len(rows), "lower_residual": lower}
+        answer = f"The uncaptured share is lower in 2100 than in the initial future year for {lower} of {len(rows)} technology rows."
+    elif case == "world-industry-response":
+        cols = ["pc.output_GJ", "inc_elas"]
+        rows = _rows(env, cols, ["pc.output_GJ"])
+        rows.sort(key=lambda r: _number(r[0]))
+        if len({_number(r[0]) for r in rows}) != len(rows):
+            raise SourceSchemaChanged("Two rows give the same numeric industrial output level.")
+        for r in rows:
+            elasticity = _number(r[1], signed=True)
+            r.insert(-1, "negative" if elasticity < 0 else "positive" if elasticity > 0 else "zero")
+        cols = ["Output (GJ/person/year)", "Income elasticity", "Sign"]
+        zeros = [r[0] for r in rows if r[2] == "zero"]
+        negatives = [r[0] for r in rows if r[2] == "negative"]
+        stats = {"levels": len(rows), "zero_levels": len(zeros), "negative_levels": len(negatives)}
+        answer = (f"Output levels with zero elasticity: {', '.join(zeros) or 'none'}. "
+                  f"Levels with negative elasticity: {', '.join(negatives) or 'none'}. Output is in GJ per person per year.")
+    elif case == "latin-america-regions":
         cols = ["iso", "country_name", "region_GCAM3", "GCAM_region_ID"]
         rows = _rows(env, cols, ["iso"])
         stats = {"codes": len(rows), "numeric_regions": len({r[3] for r in rows})}

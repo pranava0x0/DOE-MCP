@@ -52,3 +52,23 @@ async def test_sorted_grades_keep_the_source_for_every_row(ctx):
     for region, grade, heat, cost, ref in sheet["rows"]:
         recorded = by_ref[ref]
         assert [region, grade, heat, cost] == [recorded[k] for k in ("region_GCAM3", "grade", "available", "extractioncost")]
+
+
+async def test_capture_complements_include_endpoints_and_reject_invalid_fraction(ctx):
+    case = "world-capture-residual"
+    env = await source(ctx, case)
+    v = env.data["records"][0]["values"]
+    v.update({"initial-future-year": "1", "2100": "0"})
+    sheet, _ = make_sheet(case, env)
+    assert sheet["rows"][0][4:6] == ["0", "1"]
+    v["2100"] = "1.1"
+    with pytest.raises(SourceSchemaChanged):
+        make_sheet(case, env)
+
+
+async def test_response_schedule_refuses_ambiguous_numeric_levels(ctx):
+    case = "world-industry-response"
+    env = await source(ctx, case)
+    env.data["records"][1]["values"]["pc.output_GJ"] = "0.00"
+    with pytest.raises(SourceSchemaChanged, match="same numeric"):
+        make_sheet(case, env)
