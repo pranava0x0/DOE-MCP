@@ -91,6 +91,9 @@ it draws on and has a bench that checks results from recorded data.
 | `genesis-check-share-balance` | data-exploration | [Check China's coal cooling shares](demos.html#china-cooling-balance). |
 | `genesis-document-model-columns` | datacard-generator | [Compare regional bioenergy settings](demos.html#world-bioenergy-columns). |
 | `genesis-compare-resource-grades` | data-exploration | [Compare geothermal heat across regions](demos.html#world-geothermal-grades). |
+| `genesis-compare-fallback-rates` | data-exploration | [Compare crop yield assumptions](demos.html#world-crop-rates). |
+| `genesis-compute-residual-shares` | data-exploration | [Account for uncaptured carbon](demos.html#world-capture-residual). |
+| `genesis-read-signed-response` | data-exploration | [Find the zero in industrial demand](demos.html#world-industry-response). |
 
 For example:
 

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import csv
 import io
+import re
 
 from .core.assemble import strip_inline_markup
 from .core.envelope import Envelope
@@ -78,5 +79,5 @@ def csv_text(headers, rows) -> str:
     writer.writerow(headers)
     for row in rows:
         writer.writerow(["'" + v if isinstance(v, str) and v.lstrip().startswith(("=", "+", "-", "@"))
-                         else v for v in row])
+                         and not re.fullmatch(r"-[0-9]+(?:\.[0-9]+)?", v) else v for v in row])
     return stream.getvalue()

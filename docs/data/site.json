@@ -8,7 +8,7 @@
     "labs": 17,
     "capabilities": 58,
     "capabilities_served": 42,
-    "skills": 26,
+    "skills": 29,
     "program_offices": 19,
     "pmas": 4,
     "servers_shipping": 10,
@@ -813,8 +813,22 @@
       ]
     },
     {
+      "name": "genesis-compare-fallback-rates",
+      "summary": "Use when comparing fallback crop improvement assumptions across model years.",
+      "servers": [
+        "doe-land"
+      ]
+    },
+    {
       "name": "genesis-compare-resource-grades",
       "summary": "Use when comparing regional quantities on the same geothermal supply grade while keeping heat input separate from extraction cost.",
+      "servers": [
+        "doe-power"
+      ]
+    },
+    {
+      "name": "genesis-compute-residual-shares",
+      "summary": "Use when converting a model capture fraction into the portion that remains uncaptured.",
       "servers": [
         "doe-power"
       ]
@@ -838,6 +852,13 @@
       "summary": "Use when a recipient needs a Daymet CSV, its field definitions and a way to verify the bytes received.",
       "servers": [
         "doe-earth"
+      ]
+    },
+    {
+      "name": "genesis-read-signed-response",
+      "summary": "Use when locating zero and negative values in a published model response schedule.",
+      "servers": [
+        "doe-economy"
       ]
     },
     {

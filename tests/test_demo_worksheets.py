@@ -94,3 +94,8 @@ async def test_soil_page_shows_unknown_total_beside_the_sample(ctx):
     report = await run_workflow(ctx, "soil-metadata")
     report["steps"][0]["envelope"]["data"]["total_matches"] = None
     assert "5 returned, total unknown" in scope_line(report)
+
+
+def test_csv_preserves_signed_decimals_but_quotes_formula_text():
+    row = next(csv.reader(csv_text([], [["-0.05", "-1+2", " -3+2", "=4"]]).splitlines()[1:]))
+    assert row == ["-0.05", "'-1+2", "' -3+2", "'=4"]

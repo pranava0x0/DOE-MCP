@@ -1,0 +1,12 @@
+step,tool,source,record_id,locator,effective_at,mode
+1,economy.industrial_elasticity,gcam-economy,data row 1,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv,,recorded
+1,economy.industrial_elasticity,gcam-economy,data row 2,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv,,recorded
+1,economy.industrial_elasticity,gcam-economy,data row 3,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv,,recorded
+1,economy.industrial_elasticity,gcam-economy,data row 4,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv,,recorded
+1,economy.industrial_elasticity,gcam-economy,data row 5,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv,,recorded
+1,economy.industrial_elasticity,gcam-economy,data row 6,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv,,recorded
+1,economy.industrial_elasticity,gcam-economy,data row 7,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv,,recorded
+1,economy.industrial_elasticity,gcam-economy,data row 8,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv,,recorded
+1,economy.industrial_elasticity,gcam-economy,data row 9,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv,,recorded
+1,economy.industrial_elasticity,gcam-economy,data row 10,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv,,recorded
+1,economy.industrial_elasticity,gcam-economy,data row 11,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/socioeconomics/A32.inc_elas_output.csv,,recorded

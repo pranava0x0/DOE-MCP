@@ -1,0 +1,19 @@
+step,tool,source,record_id,locator,effective_at,mode
+1,land.crop_yield_growth,gcam-land,data row 1,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv,,recorded
+1,land.crop_yield_growth,gcam-land,data row 2,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv,,recorded
+1,land.crop_yield_growth,gcam-land,data row 3,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv,,recorded
+1,land.crop_yield_growth,gcam-land,data row 4,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv,,recorded
+1,land.crop_yield_growth,gcam-land,data row 5,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv,,recorded
+1,land.crop_yield_growth,gcam-land,data row 6,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv,,recorded
+1,land.crop_yield_growth,gcam-land,data row 7,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv,,recorded
+1,land.crop_yield_growth,gcam-land,data row 8,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv,,recorded
+1,land.crop_yield_growth,gcam-land,data row 9,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv,,recorded
+1,land.crop_yield_growth,gcam-land,data row 10,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv,,recorded
+1,land.crop_yield_growth,gcam-land,data row 11,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv,,recorded
+1,land.crop_yield_growth,gcam-land,data row 12,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv,,recorded
+1,land.crop_yield_growth,gcam-land,data row 13,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv,,recorded
+1,land.crop_yield_growth,gcam-land,data row 14,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv,,recorded
+1,land.crop_yield_growth,gcam-land,data row 15,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv,,recorded
+1,land.crop_yield_growth,gcam-land,data row 16,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv,,recorded
+1,land.crop_yield_growth,gcam-land,data row 17,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv,,recorded
+1,land.crop_yield_growth,gcam-land,data row 18,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_defaultYieldRate.csv,,recorded

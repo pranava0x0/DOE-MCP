@@ -1,0 +1,7 @@
+step,tool,source,record_id,locator,effective_at,mode
+1,power.carbon_capture,gcam-power,data row 1,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A23.globaltech_co2capture.csv,,recorded
+1,power.carbon_capture,gcam-power,data row 2,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A23.globaltech_co2capture.csv,,recorded
+1,power.carbon_capture,gcam-power,data row 3,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A23.globaltech_co2capture.csv,,recorded
+1,power.carbon_capture,gcam-power,data row 4,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A23.globaltech_co2capture.csv,,recorded
+1,power.carbon_capture,gcam-power,data row 5,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A23.globaltech_co2capture.csv,,recorded
+1,power.carbon_capture,gcam-power,data row 6,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A23.globaltech_co2capture.csv,,recorded

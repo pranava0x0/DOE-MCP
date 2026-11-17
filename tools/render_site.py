@@ -462,6 +462,11 @@ reachable keyless.</p>
 """
 
 
+if __package__:
+    from .atlas_style import ATLAS_CSS, FIELD_CASES, globe
+else:
+    from atlas_style import ATLAS_CSS, FIELD_CASES, globe
+
 from doe_mcp.gcam_examples import EXAMPLES  # noqa: E402
 
 from doe_mcp.global_worksheets import WALKS  # noqa: E402
@@ -503,7 +508,11 @@ def _demo_cards(*, genesis: bool) -> str:
         if bool(skill and skill.startswith("genesis-")) != genesis:
             continue
         label = f"Skill: {skill}" if skill else "Tool: compute.facility_status"
-        out.append(f'<a class="demo-link" href="demos.html#{e(case)}"><strong>{e(title)}</strong>'
+        badge = ""
+        if case in FIELD_CASES:
+            number, sector = FIELD_CASES[case]
+            badge = f'<b class="atlas-label {sector.lower()}">Plate {number} / {sector}</b>'
+        out.append(f'<a class="demo-link" href="demos.html#{e(case)}">{badge}<strong>{e(title)}</strong>'
                    f'<span>{e(blurb)}</span><small>{e(label)} \u00b7 {e(kind)}</small></a>')
     return '<div class="demo-grid">' + "".join(out) + "</div>"
 
@@ -801,7 +810,7 @@ def render(data: dict) -> str:
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?\
 family=Inter:wght@400;500;600;700&family=Crimson+Pro:wght@400;600&\
 family=Roboto+Mono:wght@400;500&display=swap">
-<style>{_style()}</style>
+<style>{_style()}{ATLAS_CSS}</style>
 </head>
 <body>
 
@@ -818,12 +827,15 @@ family=Roboto+Mono:wght@400;500&display=swap">
 </div></nav>
 
 <header><div class="wrap">
-  <h1>MCP servers over public DOE data</h1>
-  <p class="tagline">Search research, energy and environmental data from your AI client.</p>
-  <p class="free">Free and open source (Apache-2.0). Most tools need no account or API key, and every demo runs on recorded data.</p>
-  <p><a href="#genesis-mission">Genesis Mission skills</a> · <a href="demos.html">Browse demos</a> · <a href="guide.html">Local workflow guide</a></p>
-  {_inventory(c)}
-  <p class="works">Works with: {works}</p>
+  <div class="atlas-top"><div>
+  <p class="atlas-kicker">DOE-MCP &nbsp; / &nbsp; Global field atlas</p>
+  <h1>A field guide to DOE data.</h1>
+  <p class="tagline">Explore energy, land and research data from the US Department of Energy and its national laboratories.</p>
+  <p class="free">Free and open source (Apache-2.0). Most tools need no account or API key. Every demo runs on recorded data.</p>
+  <div class="atlas-actions"><a class="primary" href="#genesis-mission">Explore Genesis skills ↓</a><a href="demos.html">All demos</a><a href="guide.html">Local guide</a></div>
+  </div><figure class="atlas-plate">{globe()}<figcaption class="plate-cap"><span>Field atlas</span><span>Global edition</span></figcaption></figure></div>
+  <div class="atlas-inventory">{_inventory(c)}
+  <p class="works">Works with: {works}</p></div>
 </div></header>
 
 <div class="wrap">

@@ -1,0 +1,17 @@
+checked:
+- task: 1
+  case: world-crop-rates
+  expect_report:
+    worksheet.summary.commodities: 18
+- task: 2
+  case: world-crop-rates
+  expect_report:
+    worksheet.summary.changed: 11
+- task: 3
+  case: world-crop-rates
+  expect_report:
+    worksheet.rows.0.0: Corn
+    worksheet.rows.0.1: '0.0025'
+    worksheet.rows.0.2: '0.0015'
+    worksheet.rows.0.3: lower
+reader: []
