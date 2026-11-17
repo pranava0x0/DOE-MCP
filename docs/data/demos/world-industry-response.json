@@ -1,7 +1,7 @@
 {
   "format_version": "1",
   "case": "world-industry-response",
-  "title": "Find the zero in industrial demand",
+  "title": "Read industrial demand elasticity",
   "question": "At which published output levels is industrial income elasticity zero or negative?",
   "mode": "recorded",
   "simulation": false,
@@ -373,7 +373,7 @@
     }
   ],
   "worksheet": {
-    "caption": "Find the zero in industrial demand",
+    "caption": "Read industrial demand elasticity",
     "columns": [
       "Output (GJ/person/year)",
       "Income elasticity",

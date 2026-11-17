@@ -9,7 +9,7 @@ metadata:
   doe-mcp-credentials: none
 ---
 
-# Find the zero in industrial demand
+# Read industrial demand elasticity
 
 Sort the table by its numeric output level. Reject duplicate numeric levels even if they use different decimal spellings. Classify a reported elasticity by sign. Keep a zero coefficient separate from an absent row or a blank cell.
 

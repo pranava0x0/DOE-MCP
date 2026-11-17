@@ -86,4 +86,4 @@ least one is checked; the suite holds both rules.
 | [genesis-compare-resource-grades](genesis-compare-resource-grades/SKILL.md) | Compare geothermal heat across regions | `doe-power` |
 | [genesis-compare-fallback-rates](genesis-compare-fallback-rates/SKILL.md) | Compare crop yield assumptions | `doe-land` |
 | [genesis-compute-residual-shares](genesis-compute-residual-shares/SKILL.md) | Account for uncaptured carbon | `doe-power` |
-| [genesis-read-signed-response](genesis-read-signed-response/SKILL.md) | Find the zero in industrial demand | `doe-economy` |
+| [genesis-read-signed-response](genesis-read-signed-response/SKILL.md) | Read industrial demand elasticity | `doe-economy` |

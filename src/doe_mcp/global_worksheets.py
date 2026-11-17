@@ -28,7 +28,7 @@ WALKS = {
         "genesis-compute-residual-shares", "data-exploration", "power.carbon_capture", {},
         "A fraction of a technology’s CO₂ stream gives neither tonnes emitted nor a lifecycle emissions estimate."),
     "world-industry-response": Walk(
-        "Find the zero in industrial demand", "At which published output levels is industrial income elasticity zero or negative?",
+        "Read industrial demand elasticity", "At which published output levels is industrial income elasticity zero or negative?",
         "genesis-read-signed-response", "data-exploration", "economy.industrial_elasticity", {},
         "The rows specify model parameters at discrete output levels. They do not report industrial demand or an observed income response."),
     "latin-america-regions": Walk(

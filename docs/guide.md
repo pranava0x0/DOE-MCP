@@ -93,7 +93,7 @@ it draws on and has a bench that checks results from recorded data.
 | `genesis-compare-resource-grades` | data-exploration | [Compare geothermal heat across regions](demos.html#world-geothermal-grades). |
 | `genesis-compare-fallback-rates` | data-exploration | [Compare crop yield assumptions](demos.html#world-crop-rates). |
 | `genesis-compute-residual-shares` | data-exploration | [Account for uncaptured carbon](demos.html#world-capture-residual). |
-| `genesis-read-signed-response` | data-exploration | [Find the zero in industrial demand](demos.html#world-industry-response). |
+| `genesis-read-signed-response` | data-exploration | [Read industrial demand elasticity](demos.html#world-industry-response). |
 
 For example:
 
