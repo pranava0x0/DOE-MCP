@@ -1,12 +1,12 @@
 Run mode,Registry revision,Output (GJ/person/year),Income elasticity,Sign,Step 1 evidence ID
-recorded,2026-11-09,0,1.5,positive,evidence_01
-recorded,2026-11-09,3,1.12,positive,evidence_02
-recorded,2026-11-09,5,0.9,positive,evidence_03
-recorded,2026-11-09,7,0.78,positive,evidence_04
-recorded,2026-11-09,10,0.6,positive,evidence_05
-recorded,2026-11-09,14,0.35,positive,evidence_06
-recorded,2026-11-09,18,0.26,positive,evidence_07
-recorded,2026-11-09,26,0.22,positive,evidence_08
-recorded,2026-11-09,38,0.1,positive,evidence_09
-recorded,2026-11-09,42,0,zero,evidence_10
-recorded,2026-11-09,46,-0.05,negative,evidence_11
+recorded,2026-11-21,0,1.5,positive,evidence_01
+recorded,2026-11-21,3,1.12,positive,evidence_02
+recorded,2026-11-21,5,0.9,positive,evidence_03
+recorded,2026-11-21,7,0.78,positive,evidence_04
+recorded,2026-11-21,10,0.6,positive,evidence_05
+recorded,2026-11-21,14,0.35,positive,evidence_06
+recorded,2026-11-21,18,0.26,positive,evidence_07
+recorded,2026-11-21,26,0.22,positive,evidence_08
+recorded,2026-11-21,38,0.1,positive,evidence_09
+recorded,2026-11-21,42,0,zero,evidence_10
+recorded,2026-11-21,46,-0.05,negative,evidence_11

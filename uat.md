@@ -132,3 +132,24 @@ Inspect `journey-375-install.png`, `journey-375-coverage.png` and
 timings and checkpoints are in `journeys.json`. Reaching the homepage
 search still required two wheel actions in the phone script; shortening
 that path remains a possible refinement.
+
+## Application follow-up — 2026-11-21
+
+The dedicated application change adds three recorded bundle journeys at
+375, 768 and 1280 pixels. Each starts at the homepage, opens Applications,
+uses the page contents to reach one application, and downloads its complete
+bundle. Each phone path takes three clicks and no wheel actions. Downloads
+use descriptive filenames and their bytes match the generated ZIP files.
+The forecast, weather and notice examples retain their scope and limits.
+
+All 27 journeys passed. The link check now reads every generated HTML page:
+350 local href targets and fragments across nine documents passed. Browser
+and first-party request errors remained at zero. The original selector,
+download and repeated-navigation checks still run on pull requests and
+pushes to main. The three application presets also passed from an installed
+wheel outside the checkout. An independent Croissant reader recovered all
+five rows from the installed weather application's sample package.
+
+The Regulations.gov path is deliberately gated and not counted as a working
+recorded application. The user selected this scope after HTTP 429 prevented
+recording. The default notice tracker uses Federal Register data.

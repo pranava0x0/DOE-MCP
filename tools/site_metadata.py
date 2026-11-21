@@ -35,7 +35,18 @@ def markdown_page(source: str, name: str, title: str) -> str:
     tokens = md.parse(source)
     seen: dict[str, int] = {}
     toc = []
+    headers, column = [], 0
     for i, token in enumerate(tokens):
+        if token.type == "table_open":
+            headers = []
+        elif token.type == "th_open":
+            headers.append(tokens[i + 1].content)
+            token.attrSet("scope", "col")
+        elif token.type == "tr_open":
+            column = 0
+        elif token.type == "td_open":
+            token.attrSet("data-label", headers[column] if column < len(headers) else "Value")
+            column += 1
         if token.type == "heading_open":
             text = tokens[i + 1].content
             slug = re.sub(r"[^\w\s-]", "", text.lower()).replace(" ", "-")
@@ -48,12 +59,15 @@ def markdown_page(source: str, name: str, title: str) -> str:
         for child in token.children or []:
             if child.type == "link_open":
                 href = child.attrGet("href") or ""
+                if href.startswith("data/apps/") and href.endswith("/bundle.zip"):
+                    child.attrSet("download", href.split("/")[-2] + ".zip")
                 if href.startswith("../"):
                     child.attrSet("href", "https://github.com/pranava0x0/DOE-MCP/blob/main/" + href[3:])
                 for stem in ("guide", "reference", "apps"):
                     if href == stem + ".md" or href.startswith(stem + ".md#"):
                         child.attrSet("href", href.replace(stem + ".md", stem + ".html", 1))
     content = md.renderer.render(tokens, md.options, {})
+    body_class = "application-page" if name == "applications.html" else ""
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(title)} — DOE-MCP</title><link rel="icon" href="data:,">
@@ -66,7 +80,16 @@ nav{{display:flex;gap:20px;flex-wrap:wrap}}h1,h2,h3{{font-family:Georgia,serif;l
 pre{{overflow:auto;background:#e8e7dd;padding:16px;border-radius:6px}}code{{font-size:.9em}}
 table{{display:block;overflow:auto;border-collapse:collapse;max-width:100%}}td,th{{padding:9px;border:1px solid #b4beb4;text-align:left}}
 main{{overflow-wrap:anywhere}}.skip{{position:absolute;top:-100px}}.skip:focus{{top:0;background:white;padding:10px}}
-</style></head><body><a class="skip" href="#content">Skip to content</a>
+.application-page pre{{white-space:pre-wrap;overflow-wrap:anywhere}}
+@media(max-width:600px){{
+.application-page table,.application-page tbody,.application-page tr,.application-page td{{display:block;width:100%}}
+.application-page table{{overflow:visible}}
+.application-page thead{{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}}
+.application-page tr{{border:1px solid #b4beb4;margin:12px 0;padding:8px}}
+.application-page td{{border:0;padding:6px 8px;text-align:left!important}}
+.application-page td::before{{content:attr(data-label);display:block;font-size:.8em;font-weight:600;color:#38654c}}
+}}
+</style></head><body class="{body_class}"><a class="skip" href="#content">Skip to content</a>
 <header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Recorded demos</a></nav></header>
 <main id="content" tabindex="-1"><nav aria-label="On this page"><ul>{''.join(toc)}</ul></nav>{content}</main></body></html>'''
 

@@ -1,12 +1,12 @@
 {
   "version": "0.1.0.dev0",
-  "registry_revision": "2026-11-09",
+  "registry_revision": "2026-11-21",
   "counts": {
     "sources": 88,
     "active": 29,
     "organizations": 54,
     "labs": 17,
-    "capabilities": 58,
+    "capabilities": 59,
     "capabilities_served": 42,
     "skills": 32,
     "program_offices": 19,
@@ -14,7 +14,7 @@
     "servers_shipping": 10,
     "servers_planned": 4,
     "tools": 76,
-    "adapters": 20,
+    "adapters": 21,
     "neighbors": 6,
     "neighbors_phrase": "5 server entries and 1 skill pack in the plug-in catalog",
     "records_reachable": 20153893
@@ -443,7 +443,7 @@
       "name": "doe-docs",
       "profile": null,
       "status": "planned",
-      "description": "NEPA documents and DOE directives \u2014 or a catalog entry pointing at PNNL's NEPA-MCP, which already serves them. The Federal Register slice did not wait for it: it needs no crawler and ships in doe-research as docs.search_rulemakings and docs.get_rulemaking.",
+      "description": "Planned DOE docket metadata server. Regulations.gov integration is gated pending a user-owned api.data.gov key and recorded publisher responses. Federal Register notice tools remain available in doe-research.",
       "tools": [],
       "tools_all": null
     },
@@ -3052,15 +3052,15 @@
       "authority": "primary",
       "automation_status": "public_api",
       "tier": "thin_proxy",
-      "adapter": "none",
+      "adapter": "regulations_gov",
       "fixture": false,
-      "scope": "Dockets, documents, and public comments for DOE rulemakings, including the appliance and equipment standards program.",
+      "scope": "Regulations.gov docket and document metadata under the verified EERE agency code, including publisher identifiers, modification dates and comment windows when supplied. Other DOE agency codes are not yet verified. No public comment text, attachments or document bodies.",
       "record_count": null,
       "capabilities": [],
       "planned_capabilities": [
-        "docs.search_rulemakings"
+        "docs.docket_metadata"
       ],
-      "blocked_reason": "Phase 3 or later: needs the apidatagov_rest adapter and the credential UX that EIA is proving out. Ships with the Federal Register source under the docs capability.",
+      "blocked_reason": "Not activated. Needs a user-owned api.data.gov key and recorded publisher responses. The 2026-11-21 exploration capture stopped on HTTP 429 without retry; no fixture was written.",
       "labs": [],
       "terms_url": "https://open.gsa.gov/api/regulationsgov/"
     },
@@ -5273,7 +5273,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "cache_age_seconds": 0
           },
           {
@@ -5286,7 +5286,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -5296,7 +5296,7 @@
             "source_ref": "source_01",
             "record_id": "3484888",
             "locator": "https://www.osti.gov/biblio/3484888",
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": "2026-08-27T11:00:26Z",
             "transformations": [
               "normalize"
@@ -5309,7 +5309,7 @@
             "source_ref": "source_01",
             "record_id": "3625672",
             "locator": "https://www.osti.gov/biblio/3625672",
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": "2026-09-02T10:56:05Z",
             "transformations": [
               "normalize"
@@ -5322,7 +5322,7 @@
             "source_ref": "source_01",
             "record_id": "3409109",
             "locator": "https://www.osti.gov/biblio/3409109",
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": "2026-09-18T15:49:56Z",
             "transformations": [
               "normalize"
@@ -5335,7 +5335,7 @@
             "source_ref": "source_02",
             "record_id": "3409109",
             "locator": "https://www.osti.gov/biblio/3409109",
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": "2026-09-18T11:49:56Z",
             "transformations": [
               "normalize"
@@ -5348,7 +5348,7 @@
             "source_ref": "source_02",
             "record_id": "3818255",
             "locator": "https://www.osti.gov/biblio/3818255",
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": "2026-09-17T10:27:35Z",
             "transformations": [
               "normalize"
@@ -5361,7 +5361,7 @@
             "source_ref": "source_02",
             "record_id": "3818626",
             "locator": "https://www.osti.gov/biblio/3818626",
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": "2026-09-18T08:11:09Z",
             "transformations": [
               "normalize"
@@ -5508,6 +5508,7 @@
             "text_feed": "1",
             "postgrest": "1",
             "federal_register": "1",
+            "regulations_gov": "1",
             "vips": "1",
             "daymet": "1",
             "essdive": "1",
@@ -5521,7 +5522,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-11-09",
+          "registry_revision": "2026-11-21",
           "request_id": "worked-example"
         }
       }
@@ -5581,11 +5582,11 @@
             "steward": "The DOE-MCP project",
             "system": "DOE-MCP source registry and organization table",
             "dataset": "DOE-MCP source registry and organization table",
-            "dataset_version": "2026-11-09",
+            "dataset_version": "2026-11-21",
             "authority_level": "unverified",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -5595,7 +5596,7 @@
             "source_ref": "source_01",
             "record_id": "nlr",
             "locator": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -5632,6 +5633,7 @@
             "text_feed": "1",
             "postgrest": "1",
             "federal_register": "1",
+            "regulations_gov": "1",
             "vips": "1",
             "daymet": "1",
             "essdive": "1",
@@ -5645,7 +5647,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-11-09",
+          "registry_revision": "2026-11-21",
           "request_id": "worked-example"
         }
       }
@@ -5751,7 +5753,7 @@
             "authority_level": "official_secondary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "cache_age_seconds": 0
           },
           {
@@ -5764,7 +5766,7 @@
             "authority_level": "official_secondary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "cache_age_seconds": 0
           },
           {
@@ -5777,7 +5779,7 @@
             "authority_level": "official_derived",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "cache_age_seconds": 0
           },
           {
@@ -5790,7 +5792,7 @@
             "authority_level": "official_derived",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -5800,7 +5802,7 @@
             "source_ref": "source_01",
             "record_id": "1148737",
             "locator": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "normalize"
@@ -5813,7 +5815,7 @@
             "source_ref": "source_01",
             "record_id": "1542650",
             "locator": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "normalize"
@@ -5826,7 +5828,7 @@
             "source_ref": "source_02",
             "record_id": "glass-buttes-exploration-and-drilling-2010-geothermal-technologies-program-peer-",
             "locator": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "normalize"
@@ -5839,7 +5841,7 @@
             "source_ref": "source_02",
             "record_id": "investigation-of-stimulation-response-relationships-for-complex-fracture-systems",
             "locator": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "normalize"
@@ -5933,6 +5935,7 @@
             "text_feed": "1",
             "postgrest": "1",
             "federal_register": "1",
+            "regulations_gov": "1",
             "vips": "1",
             "daymet": "1",
             "essdive": "1",
@@ -5946,7 +5949,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-11-09",
+          "registry_revision": "2026-11-21",
           "request_id": "worked-example"
         }
       }
@@ -6164,7 +6167,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "cache_age_seconds": 0,
             "citation": {
               "doi": "10.5066/F7TX3DN0",
@@ -6179,7 +6182,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3001502",
             "locator": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -6190,7 +6193,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3015899",
             "locator": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -6201,7 +6204,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3034241",
             "locator": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -6212,7 +6215,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3039300",
             "locator": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -6223,7 +6226,7 @@
             "source_ref": "source_01",
             "record_id": "turbines#3039301",
             "locator": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": null,
             "transformations": [],
             "payload_hash": null,
@@ -6263,6 +6266,7 @@
             "text_feed": "1",
             "postgrest": "1",
             "federal_register": "1",
+            "regulations_gov": "1",
             "vips": "1",
             "daymet": "1",
             "essdive": "1",
@@ -6276,7 +6280,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-11-09",
+          "registry_revision": "2026-11-21",
           "request_id": "worked-example"
         }
       }
@@ -6382,7 +6386,7 @@
             "authority_level": "official_secondary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -6392,7 +6396,7 @@
             "source_ref": "source_01",
             "record_id": "tile:11208@35.9313,-84.3104",
             "locator": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": "2023-06-01",
             "transformations": [
               "day-of-year converted to calendar date"
@@ -6438,6 +6442,7 @@
             "text_feed": "1",
             "postgrest": "1",
             "federal_register": "1",
+            "regulations_gov": "1",
             "vips": "1",
             "daymet": "1",
             "essdive": "1",
@@ -6451,7 +6456,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-11-09",
+          "registry_revision": "2026-11-21",
           "request_id": "worked-example"
         }
       }
@@ -6685,7 +6690,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -6695,7 +6700,7 @@
             "source_ref": "source_01",
             "record_id": "mp-1244984",
             "locator": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": "2019-07-02T00:29:18.792000",
             "transformations": [],
             "payload_hash": null,
@@ -6706,7 +6711,7 @@
             "source_ref": "source_01",
             "record_id": "mp-1223660",
             "locator": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": "2022-06-10T06:23:20.905000",
             "transformations": [],
             "payload_hash": null,
@@ -6717,7 +6722,7 @@
             "source_ref": "source_01",
             "record_id": "mp-1199250",
             "locator": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": "2021-03-09T23:05:01.374000",
             "transformations": [],
             "payload_hash": null,
@@ -6728,7 +6733,7 @@
             "source_ref": "source_01",
             "record_id": "mp-1245997",
             "locator": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": "2021-02-04T20:40:18.753000",
             "transformations": [],
             "payload_hash": null,
@@ -6739,7 +6744,7 @@
             "source_ref": "source_01",
             "record_id": "mp-1198425",
             "locator": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": "2021-03-10T07:53:43.904000",
             "transformations": [],
             "payload_hash": null,
@@ -6785,6 +6790,7 @@
             "text_feed": "1",
             "postgrest": "1",
             "federal_register": "1",
+            "regulations_gov": "1",
             "vips": "1",
             "daymet": "1",
             "essdive": "1",
@@ -6798,7 +6804,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-11-09",
+          "registry_revision": "2026-11-21",
           "request_id": "worked-example"
         }
       }
@@ -6941,7 +6947,7 @@
             "authority_level": "official_secondary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "cache_age_seconds": 0
           }
         ],
@@ -6951,7 +6957,7 @@
             "source_ref": "source_01",
             "record_id": "nmdc:bsm-13-mrzb2q96",
             "locator": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": "2014-04-01",
             "transformations": [
               "normalize"
@@ -6964,7 +6970,7 @@
             "source_ref": "source_01",
             "record_id": "nmdc:bsm-13-4aw9ra87",
             "locator": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": "2014-04-01",
             "transformations": [
               "normalize"
@@ -6977,7 +6983,7 @@
             "source_ref": "source_01",
             "record_id": "nmdc:bsm-13-z9wten89",
             "locator": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": "2014-04-01",
             "transformations": [
               "normalize"
@@ -6990,7 +6996,7 @@
             "source_ref": "source_01",
             "record_id": "nmdc:bsm-13-wktc3357",
             "locator": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": "2014-04-01",
             "transformations": [
               "normalize"
@@ -7003,7 +7009,7 @@
             "source_ref": "source_01",
             "record_id": "nmdc:bsm-13-ap544f22",
             "locator": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": "2014-04-01",
             "transformations": [
               "normalize"
@@ -7051,6 +7057,7 @@
             "text_feed": "1",
             "postgrest": "1",
             "federal_register": "1",
+            "regulations_gov": "1",
             "vips": "1",
             "daymet": "1",
             "essdive": "1",
@@ -7064,7 +7071,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-11-09",
+          "registry_revision": "2026-11-21",
           "request_id": "worked-example"
         }
       }
@@ -7123,7 +7130,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "cache_age_seconds": 0,
             "citation": {
               "doi": null,
@@ -7138,7 +7145,7 @@
             "source_ref": "source_01",
             "record_id": "data row 114",
             "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "parse_csv",
@@ -7185,6 +7192,7 @@
             "text_feed": "1",
             "postgrest": "1",
             "federal_register": "1",
+            "regulations_gov": "1",
             "vips": "1",
             "daymet": "1",
             "essdive": "1",
@@ -7198,7 +7206,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-11-09",
+          "registry_revision": "2026-11-21",
           "request_id": "worked-example"
         }
       }
@@ -7263,7 +7271,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "cache_age_seconds": 0,
             "citation": {
               "doi": null,
@@ -7278,7 +7286,7 @@
             "source_ref": "source_01",
             "record_id": "data row 18",
             "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A16.geo_curves.csv",
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "parse_csv",
@@ -7325,6 +7333,7 @@
             "text_feed": "1",
             "postgrest": "1",
             "federal_register": "1",
+            "regulations_gov": "1",
             "vips": "1",
             "daymet": "1",
             "essdive": "1",
@@ -7338,7 +7347,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-11-09",
+          "registry_revision": "2026-11-21",
           "request_id": "worked-example"
         }
       }
@@ -7400,7 +7409,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "cache_age_seconds": 0,
             "citation": {
               "doi": null,
@@ -7415,7 +7424,7 @@
             "source_ref": "source_01",
             "record_id": "data row 1",
             "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A71.globaltech_cost.csv",
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "parse_csv",
@@ -7462,6 +7471,7 @@
             "text_feed": "1",
             "postgrest": "1",
             "federal_register": "1",
+            "regulations_gov": "1",
             "vips": "1",
             "daymet": "1",
             "essdive": "1",
@@ -7475,7 +7485,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-11-09",
+          "registry_revision": "2026-11-21",
           "request_id": "worked-example"
         }
       }
@@ -7535,7 +7545,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "cache_age_seconds": 0,
             "citation": {
               "doi": null,
@@ -7550,7 +7560,7 @@
             "source_ref": "source_01",
             "record_id": "data row 7",
             "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_biomassSupplyShare_R.csv",
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "parse_csv",
@@ -7597,6 +7607,7 @@
             "text_feed": "1",
             "postgrest": "1",
             "federal_register": "1",
+            "regulations_gov": "1",
             "vips": "1",
             "daymet": "1",
             "essdive": "1",
@@ -7610,7 +7621,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-11-09",
+          "registry_revision": "2026-11-21",
           "request_id": "worked-example"
         }
       }
@@ -7668,7 +7679,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "cache_age_seconds": 0,
             "citation": {
               "doi": null,
@@ -7683,7 +7694,7 @@
             "source_ref": "source_01",
             "record_id": "data row 2",
             "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/emissions/A41.GWP.csv",
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "parse_csv",
@@ -7730,6 +7741,7 @@
             "text_feed": "1",
             "postgrest": "1",
             "federal_register": "1",
+            "regulations_gov": "1",
             "vips": "1",
             "daymet": "1",
             "essdive": "1",
@@ -7743,7 +7755,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-11-09",
+          "registry_revision": "2026-11-21",
           "request_id": "worked-example"
         }
       }

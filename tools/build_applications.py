@@ -17,6 +17,8 @@ TITLES = {"forecast-benchmark": "Grid forecast benchmark lab",
 
 
 def cell(value) -> str:
+    if isinstance(value, float):
+        value = f"{value:.3f}"
     text = html.escape(str(value if value is not None else "Unknown")).replace("\n", " ")
     for char in ("\\", "[", "]", "`", "*", "_"):
         text = text.replace(char, "\\" + char)
@@ -72,7 +74,7 @@ async def write_applications(root: Path) -> None:
                 "|---|---:|---:|---:|---:|---:|"]
             for row in report["metrics"]:
                 lines.append("| " + " | ".join(cell(row[k]) for k in ["model_id", "lead_seconds", "matched", "mae_mw", "rmse_mw", "bias_mw"]) + " |")
-            lines += ["", f"[Forecast input CSV](data/apps/{name}/forecasts.csv) · [Scored rows](data/apps/{name}/scores.csv)", "",
+            lines += ["", "Table metrics are rounded to three decimals; the report retains full precision.", "", f"[Forecast input CSV](data/apps/{name}/forecasts.csv) · [Scored rows](data/apps/{name}/scores.csv)", "",
                       "For your forecasts, pass `--forecasts path/to/forecasts.csv` and an explicit "
                       "`--actual-timezone` when the publisher timestamps lack offsets. "
                       "An unscored run retains exclusions and does not claim calculated metrics.", ""]

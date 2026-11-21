@@ -1,40 +1,40 @@
 Run mode,Registry revision,Sector,Subsector,Technology,CO coefficient,Exception species,Exception technology,CO cell,Step 1 evidence ID
-recorded,2026-11-09,refining,coal to liquids,coal to liquids,0.01,CH4,coal (conv pul),nonzero,evidence_01
-recorded,2026-11-09,refining,coal to liquids,coal to liquids CCS level 1,0.01,CH4,coal (conv pul),nonzero,evidence_02
-recorded,2026-11-09,refining,coal to liquids,coal to liquids CCS level 2,0.01,CH4,coal (conv pul),nonzero,evidence_03
-recorded,2026-11-09,refining,gas to liquids,gas to liquids,0.01,CH4,gas (steam/CT),nonzero,evidence_04
-recorded,2026-11-09,refining,biomass liquids,cellulosic ethanol,0.01,,,nonzero,evidence_05
-recorded,2026-11-09,refining,biomass liquids,cellulosic ethanol CCS level 1,0.01,,,nonzero,evidence_06
-recorded,2026-11-09,refining,biomass liquids,cellulosic ethanol CCS level 2,0.01,,,nonzero,evidence_07
-recorded,2026-11-09,refining,biomass liquids,FT biofuels,0.01,,,nonzero,evidence_08
-recorded,2026-11-09,refining,biomass liquids,FT biofuels CCS level 1,0.01,,,nonzero,evidence_09
-recorded,2026-11-09,refining,biomass liquids,FT biofuels CCS level 2,0.01,,,nonzero,evidence_10
-recorded,2026-11-09,refining,biomass liquids,corn ethanol,0.01,,,nonzero,evidence_11
-recorded,2026-11-09,refining,biomass liquids,sugar cane ethanol,0.01,,,nonzero,evidence_12
-recorded,2026-11-09,refining,biomass liquids,biodiesel,0.01,,,nonzero,evidence_13
-recorded,2026-11-09,electricity,coal,coal (conv pul CCS),,CO,gas (steam/CT),blank,evidence_14
-recorded,2026-11-09,electricity,coal,coal (IGCC),,CO,gas (steam/CT),blank,evidence_15
-recorded,2026-11-09,electricity,coal,coal (IGCC CCS),,CO,gas (steam/CT),blank,evidence_16
-recorded,2026-11-09,electricity,gas,gas (CC),,CO,gas (steam/CT),blank,evidence_17
-recorded,2026-11-09,electricity,gas,gas (CC CCS),,CO,gas (steam/CT),blank,evidence_18
-recorded,2026-11-09,electricity,refined liquids,refined liquids (CC),,CO,gas (steam/CT),blank,evidence_19
-recorded,2026-11-09,electricity,refined liquids,refined liquids (CC CCS),,CO,gas (steam/CT),blank,evidence_20
-recorded,2026-11-09,electricity,biomass,biomass (conv CCS),,CO,gas (steam/CT),blank,evidence_21
-recorded,2026-11-09,electricity,biomass,biomass (IGCC),,CO,gas (steam/CT),blank,evidence_22
-recorded,2026-11-09,electricity,biomass,biomass (IGCC CCS),,CO,gas (steam/CT),blank,evidence_23
-recorded,2026-11-09,H2 central production,gas,natural gas steam reforming,0.00048545,,,nonzero,evidence_24
-recorded,2026-11-09,H2 central production,gas,gas ATR CCS,0.00048545,,,nonzero,evidence_25
-recorded,2026-11-09,H2 central production,biomass,biomass to H2,0.001,,,nonzero,evidence_26
-recorded,2026-11-09,H2 central production,biomass,biomass to H2 CCS,0.001,,,nonzero,evidence_27
-recorded,2026-11-09,H2 LDV,onsite production,natural gas steam reforming,0.00048545,,,nonzero,evidence_28
-recorded,2026-11-09,H2 MHDV,onsite production,natural gas steam reforming,0.00048545,,,nonzero,evidence_29
-recorded,2026-11-09,LH2,onsite production,natural gas steam reforming,0.00048545,,,nonzero,evidence_30
-recorded,2026-11-09,backup_electricity,gas,gas (steam/CT),0.024704416,,,nonzero,evidence_31
-recorded,2026-11-09,backup_electricity,hydrogen,hydrogen combustion turbine,,,,blank,evidence_32
-recorded,2026-11-09,agricultural energy use,stationary,hydrogen,,,,blank,evidence_33
-recorded,2026-11-09,construction energy use,stationary,hydrogen,,,,blank,evidence_34
-recorded,2026-11-09,mining energy use,stationary,hydrogen,,,,blank,evidence_35
-recorded,2026-11-09,process heat cement,hydrogen,hydrogen,,,,blank,evidence_36
-recorded,2026-11-09,chemical energy use,hydrogen,hydrogen,,,,blank,evidence_37
-recorded,2026-11-09,other industrial energy use,hydrogen,hydrogen,,,,blank,evidence_38
-recorded,2026-11-09,other industrial energy use,hydrogen,hydrogen cogen,,,,blank,evidence_39
+recorded,2026-11-21,refining,coal to liquids,coal to liquids,0.01,CH4,coal (conv pul),nonzero,evidence_01
+recorded,2026-11-21,refining,coal to liquids,coal to liquids CCS level 1,0.01,CH4,coal (conv pul),nonzero,evidence_02
+recorded,2026-11-21,refining,coal to liquids,coal to liquids CCS level 2,0.01,CH4,coal (conv pul),nonzero,evidence_03
+recorded,2026-11-21,refining,gas to liquids,gas to liquids,0.01,CH4,gas (steam/CT),nonzero,evidence_04
+recorded,2026-11-21,refining,biomass liquids,cellulosic ethanol,0.01,,,nonzero,evidence_05
+recorded,2026-11-21,refining,biomass liquids,cellulosic ethanol CCS level 1,0.01,,,nonzero,evidence_06
+recorded,2026-11-21,refining,biomass liquids,cellulosic ethanol CCS level 2,0.01,,,nonzero,evidence_07
+recorded,2026-11-21,refining,biomass liquids,FT biofuels,0.01,,,nonzero,evidence_08
+recorded,2026-11-21,refining,biomass liquids,FT biofuels CCS level 1,0.01,,,nonzero,evidence_09
+recorded,2026-11-21,refining,biomass liquids,FT biofuels CCS level 2,0.01,,,nonzero,evidence_10
+recorded,2026-11-21,refining,biomass liquids,corn ethanol,0.01,,,nonzero,evidence_11
+recorded,2026-11-21,refining,biomass liquids,sugar cane ethanol,0.01,,,nonzero,evidence_12
+recorded,2026-11-21,refining,biomass liquids,biodiesel,0.01,,,nonzero,evidence_13
+recorded,2026-11-21,electricity,coal,coal (conv pul CCS),,CO,gas (steam/CT),blank,evidence_14
+recorded,2026-11-21,electricity,coal,coal (IGCC),,CO,gas (steam/CT),blank,evidence_15
+recorded,2026-11-21,electricity,coal,coal (IGCC CCS),,CO,gas (steam/CT),blank,evidence_16
+recorded,2026-11-21,electricity,gas,gas (CC),,CO,gas (steam/CT),blank,evidence_17
+recorded,2026-11-21,electricity,gas,gas (CC CCS),,CO,gas (steam/CT),blank,evidence_18
+recorded,2026-11-21,electricity,refined liquids,refined liquids (CC),,CO,gas (steam/CT),blank,evidence_19
+recorded,2026-11-21,electricity,refined liquids,refined liquids (CC CCS),,CO,gas (steam/CT),blank,evidence_20
+recorded,2026-11-21,electricity,biomass,biomass (conv CCS),,CO,gas (steam/CT),blank,evidence_21
+recorded,2026-11-21,electricity,biomass,biomass (IGCC),,CO,gas (steam/CT),blank,evidence_22
+recorded,2026-11-21,electricity,biomass,biomass (IGCC CCS),,CO,gas (steam/CT),blank,evidence_23
+recorded,2026-11-21,H2 central production,gas,natural gas steam reforming,0.00048545,,,nonzero,evidence_24
+recorded,2026-11-21,H2 central production,gas,gas ATR CCS,0.00048545,,,nonzero,evidence_25
+recorded,2026-11-21,H2 central production,biomass,biomass to H2,0.001,,,nonzero,evidence_26
+recorded,2026-11-21,H2 central production,biomass,biomass to H2 CCS,0.001,,,nonzero,evidence_27
+recorded,2026-11-21,H2 LDV,onsite production,natural gas steam reforming,0.00048545,,,nonzero,evidence_28
+recorded,2026-11-21,H2 MHDV,onsite production,natural gas steam reforming,0.00048545,,,nonzero,evidence_29
+recorded,2026-11-21,LH2,onsite production,natural gas steam reforming,0.00048545,,,nonzero,evidence_30
+recorded,2026-11-21,backup_electricity,gas,gas (steam/CT),0.024704416,,,nonzero,evidence_31
+recorded,2026-11-21,backup_electricity,hydrogen,hydrogen combustion turbine,,,,blank,evidence_32
+recorded,2026-11-21,agricultural energy use,stationary,hydrogen,,,,blank,evidence_33
+recorded,2026-11-21,construction energy use,stationary,hydrogen,,,,blank,evidence_34
+recorded,2026-11-21,mining energy use,stationary,hydrogen,,,,blank,evidence_35
+recorded,2026-11-21,process heat cement,hydrogen,hydrogen,,,,blank,evidence_36
+recorded,2026-11-21,chemical energy use,hydrogen,hydrogen,,,,blank,evidence_37
+recorded,2026-11-21,other industrial energy use,hydrogen,hydrogen,,,,blank,evidence_38
+recorded,2026-11-21,other industrial energy use,hydrogen,hydrogen cogen,,,,blank,evidence_39

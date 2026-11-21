@@ -22,8 +22,10 @@ Run status: **scored**. Matched 46 of 46 forecasts.
 
 | Model | Lead seconds | Matched | MAE MW | RMSE MW | Bias MW |
 |---|---:|---:|---:|---:|---:|
-| retrospective-persistence | 300.0 | 23 | 33.52173913043478 | 40.689171724823474 | 12.043478260869565 |
-| retrospective-plus-10 | 300.0 | 23 | 36.73913043478261 | 44.68196796101942 | 22.043478260869566 |
+| retrospective-persistence | 300.000 | 23 | 33.522 | 40.689 | 12.043 |
+| retrospective-plus-10 | 300.000 | 23 | 36.739 | 44.682 | 22.043 |
+
+Table metrics are rounded to three decimals; the report retains full precision.
 
 [Forecast input CSV](data/apps/forecast-benchmark/forecasts.csv) · [Scored rows](data/apps/forecast-benchmark/scores.csv)
 

@@ -38,6 +38,8 @@ The first check exercises all demo selectors, section jumps and selected
 downloads. The second follows landing-page search through samples, evidence,
 worksheets and the Daymet download pair at phone, tablet and desktop sizes.
 It follows the Install, Source coverage and Local guide shortcuts too.
+The application journeys reach each recorded bundle from the homepage and
+verify its downloaded bytes. Every generated HTML page enters the link check.
 It also cycles all demos repeatedly, checks internal link targets and records
 useful content readiness under fourfold CPU slowdown.
 

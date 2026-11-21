@@ -24,6 +24,16 @@ and what it does not cover.
   runtime, coverage and evaluation. [docs/reference.md](docs/reference.md)
   lists every tool and argument, read back from the assembled servers.
 
+## Local applications
+
+Run a grid forecast benchmark, export a Daymet weather package, or track DOE
+Federal Register notices grouped by docket. These command-line applications
+compose the existing read-only tools and write local evidence bundles.
+Regulations.gov metadata remains gated until it has real recorded responses.
+
+[Application examples and downloads](https://pranava0x0.github.io/DOE-MCP/applications.html)
+· [CLI options](docs/apps.md)
+
 ## Status
 
 The shipping servers read DOE publications, energy and environmental data,
@@ -43,12 +53,12 @@ also cover Japan’s geothermal resources and Canadian climate simulations.
 | Distinct tools across shipping profiles | 76 |
 | Skills with bench tasks | 32 |
 | Registry | 88 source manifests, 29 active, 54 organizations (17 national laboratories), 5 server entries and 1 skill pack in the plug-in catalog |
-| Capabilities | 42 of 58 in the vocabulary served by an active source |
-| Adapters | `basis_sets`, `curated`, `daymet`, `eia_v2`, `esgf`, `essdive`, `facility_status`, `federal_register`, `fueleconomy`, `gcam_csv`, `json_document`, `nmdc`, `opendatasoft`, `optimade`, `osti_family`, `postgrest`, `sage`, `self_registry`, `text_feed`, `vips` |
+| Capabilities | 42 of 59 in the vocabulary served by an active source |
+| Adapters | `basis_sets`, `curated`, `daymet`, `eia_v2`, `esgf`, `essdive`, `facility_status`, `federal_register`, `fueleconomy`, `gcam_csv`, `json_document`, `nmdc`, `opendatasoft`, `optimade`, `osti_family`, `postgrest`, `regulations_gov`, `sage`, `self_registry`, `text_feed`, `vips` |
 | Verified live | Sage / Waggle edge sensor network, Basis Set Exchange, BPA transmission operations feeds, EAGLE-I historical outage datasets, DOE Software Inventory (code.json), DOE Open Data Catalog (data.json), EIA API v2, ESGF search (CMIP6), ESS-DIVE (Environmental System Science Data Infrastructure), Federal Register API (Department of Energy documents), fueleconomy.gov web service, GCAM: Regional economics, GCAM: Emissions, GCAM: Land and agriculture, GCAM: Power technology, GCAM: Water use, Materials Project OPTIMADE endpoint, NERSC Superfacility API (system status), National Microbiome Data Collaborative Runtime API, ORNL DAAC (Daymet, MODIS/VIIRS subsets), Open Energy Data Hub (ORNL), DOE Data Explorer, DOE CODE, DOE PAGES (Public Access Gateway for Energy and Science), OSTI.GOV Search API, US Large-Scale Solar Photovoltaic Database (USPVDB), US Wind Turbine Database (USWTDB) |
 | Not verified | none |
 | Records reachable with no credential | 20,153,893 |
-| Registry revision | 2026-11-09 |
+| Registry revision | 2026-11-21 |
 <!-- status:end -->
 
 For Genesis Mission workflows, see the [skill and demo guide](docs/guide.md#genesis-and-no-cost-demos).

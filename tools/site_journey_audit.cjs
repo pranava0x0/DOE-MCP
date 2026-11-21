@@ -319,12 +319,30 @@ async function performance(browser) {
     } finally { await context.close(); }
   }
 }
+async function applicationJourney(browser, viewport, task) {
+  const counters = metrics();
+  const {page, context} = await pageFor(browser, viewport, counters);
+  try {
+    await page.goto(base + '/index.html', {waitUntil: 'domcontentloaded'});
+    await click(page, page.locator('.atlas-actions a[href="applications.html"]'), counters, 'applications');
+    await click(page, page.locator('nav[aria-label="On this page"] a[href="#' + task.anchor + '"]'), counters, task.id);
+    const heading = page.locator('#' + task.anchor);
+    await heading.waitFor({state: 'visible'});
+    assert.match(await page.locator('main').innerText(), /recorded demonstrations, not live services/);
+    const link = page.locator('a[href="data/apps/' + task.id + '/bundle.zip"]');
+    const file = await download(page, link, counters, 'complete recorded application bundle');
+    assert(file.bytes.equals(fs.readFileSync(path.join(docs, 'data/apps', task.id, 'bundle.zip'))), 'application bundle download differs');
+    assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'application page overflow');
+    await page.screenshot({path: path.join(output, 'application-' + viewport.width + '-' + task.id + '.png')});
+    report.journeys.push({viewport, task: task.id, endpoint: page.url(), ...counters});
+  } finally { await context.close(); }
+}
 async function hrefTargets(browser) {
   const {page, context} = await pageFor(browser, {width: 1280, height: 800}, metrics());
   const destinations = new Map();
   let checked = 0, external = 0;
   try {
-    for (const filename of ['index.html', 'demos.html', 'guide.html', 'reference.html']) {
+    for (const filename of fs.readdirSync(docs).filter(name => name.endsWith('.html')).sort()) {
       await page.goto(base + '/' + filename, {waitUntil: 'domcontentloaded'});
       const links = await page.locator('a[href]').evaluateAll(anchors => anchors.map(anchor => anchor.href));
       for (const href of links) {
@@ -361,6 +379,11 @@ async function hrefTargets(browser) {
       for (const task of [{id: 'microbiome', query: 'microbiome'}, {id: 'bibliography', query: 'bibliography'}, {id: 'daymet-calendar', query: 'Daymet'}])
         await journey(browser, viewport, task);
       for (const task of ['install', 'coverage', 'guide']) await shortcutJourney(browser, viewport, task);
+      for (const task of [
+        {id: 'forecast-benchmark', anchor: 'grid-forecast-benchmark-lab'},
+        {id: 'weather-package', anchor: 'weather-package-builder'},
+        {id: 'docket-tracker', anchor: 'doe-docket-notice-tracker'}])
+        await applicationJourney(browser, viewport, task);
       await stability(browser, viewport);
     }
     await performance(browser);

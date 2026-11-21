@@ -5,9 +5,9 @@
   "question": "What does GCAM assume for wind class c7 and, separately, for deep-water capital cost?",
   "mode": "recorded",
   "simulation": false,
-  "registry_revision": "2026-11-09",
+  "registry_revision": "2026-11-21",
   "generated_at": null,
-  "replay_clock": "2026-11-09T00:00:00Z",
+  "replay_clock": "2026-11-21T00:00:00Z",
   "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
   "fixtures": [
     {
@@ -75,7 +75,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "cache_age_seconds": 0,
             "citation": {
               "doi": null,
@@ -90,7 +90,7 @@
             "source_ref": "source_01",
             "record_id": "data row 7",
             "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A20.wind_class_CFs.csv",
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "parse_csv",
@@ -137,6 +137,7 @@
             "text_feed": "1",
             "postgrest": "1",
             "federal_register": "1",
+            "regulations_gov": "1",
             "vips": "1",
             "daymet": "1",
             "essdive": "1",
@@ -150,7 +151,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-11-09",
+          "registry_revision": "2026-11-21",
           "request_id": "recorded-workflow"
         }
       }
@@ -210,7 +211,7 @@
             "authority_level": "primary",
             "access_path": "live",
             "source_updated_at": null,
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "cache_age_seconds": 0,
             "citation": {
               "doi": null,
@@ -225,7 +226,7 @@
             "source_ref": "source_01",
             "record_id": "data row 3",
             "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A20.offshore_wind_depth_cap_cost.csv",
-            "retrieved_at": "2026-11-09T00:00:00Z",
+            "retrieved_at": "2026-11-21T00:00:00Z",
             "effective_at": null,
             "transformations": [
               "parse_csv",
@@ -272,6 +273,7 @@
             "text_feed": "1",
             "postgrest": "1",
             "federal_register": "1",
+            "regulations_gov": "1",
             "vips": "1",
             "daymet": "1",
             "essdive": "1",
@@ -285,7 +287,7 @@
             "none": "1",
             "self_registry": "1"
           },
-          "registry_revision": "2026-11-09",
+          "registry_revision": "2026-11-21",
           "request_id": "recorded-workflow"
         }
       }

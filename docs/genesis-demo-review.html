@@ -19,7 +19,16 @@ nav{display:flex;gap:20px;flex-wrap:wrap}h1,h2,h3{font-family:Georgia,serif;line
 pre{overflow:auto;background:#e8e7dd;padding:16px;border-radius:6px}code{font-size:.9em}
 table{display:block;overflow:auto;border-collapse:collapse;max-width:100%}td,th{padding:9px;border:1px solid #b4beb4;text-align:left}
 main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0;background:white;padding:10px}
-</style></head><body><a class="skip" href="#content">Skip to content</a>
+.application-page pre{white-space:pre-wrap;overflow-wrap:anywhere}
+@media(max-width:600px){
+.application-page table,.application-page tbody,.application-page tr,.application-page td{display:block;width:100%}
+.application-page table{overflow:visible}
+.application-page thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.application-page tr{border:1px solid #b4beb4;margin:12px 0;padding:8px}
+.application-page td{border:0;padding:6px 8px;text-align:left!important}
+.application-page td::before{content:attr(data-label);display:block;font-size:.8em;font-weight:600;color:#38654c}
+}
+</style></head><body class=""><a class="skip" href="#content">Skip to content</a>
 <header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Recorded demos</a></nav></header>
 <main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#what-can-be-tried">What can be tried</a></li><li><a href="#research-boundaries">Research boundaries</a></li><li><a href="#review-and-validation">Review and validation</a></li><li><a href="#additional-demos--october-20-follow-up">Additional demos — October 20 follow-up</a></li><li><a href="#follow-up-review-2026-10-20">Follow-up review, 2026-10-20</a></li><li><a href="#november-3-what-to-take-from-other-government-data-mcps">November 3: what to take from other government-data MCPs</a></li></ul></nav><h1 id="genesis-demo-review--october-20-2026">Genesis demo review — October 20, 2026</h1>
 <p>PR #7 now combines Agent Skills format compatibility with two no-cost
@@ -109,26 +118,26 @@ the JSON.</p>
 <table>
 <thead>
 <tr>
-<th>Server</th>
-<th>What its maintainers document</th>
-<th>Choice for DOE-MCP</th>
+<th scope="col">Server</th>
+<th scope="col">What its maintainers document</th>
+<th scope="col">Choice for DOE-MCP</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/uscensusbureau/us-census-bureau-data-api-mcp/blob/5dcaa637871b9ded5dab415118f9008c06d13f2a/README.md">US Census Bureau</a></td>
-<td>Its geography tool resolves names to candidate FIPS codes. Aggregate queries specify a dataset and vintage.</td>
-<td>Say exactly what a place filter selected. The NMDC query matches text containing “Washington”; it cannot establish a state boundary.</td>
+<td data-label="Server"><a href="https://github.com/uscensusbureau/us-census-bureau-data-api-mcp/blob/5dcaa637871b9ded5dab415118f9008c06d13f2a/README.md">US Census Bureau</a></td>
+<td data-label="What its maintainers document">Its geography tool resolves names to candidate FIPS codes. Aggregate queries specify a dataset and vintage.</td>
+<td data-label="Choice for DOE-MCP">Say exactly what a place filter selected. The NMDC query matches text containing “Washington”; it cannot establish a state boundary.</td>
 </tr>
 <tr>
-<td><a href="https://github.com/nasa/earthdata-mcp/blob/1c3809a70ee67b93f9ccb7fe326ee7f36f8cc95a/README.md">NASA Earthdata</a></td>
-<td>Separate tools find collections, check for granules and look up citations.</td>
-<td>Give readers citation fields they can take away. A catalog hit by itself says nothing about whether anyone read the paper.</td>
+<td data-label="Server"><a href="https://github.com/nasa/earthdata-mcp/blob/1c3809a70ee67b93f9ccb7fe326ee7f36f8cc95a/README.md">NASA Earthdata</a></td>
+<td data-label="What its maintainers document">Separate tools find collections, check for granules and look up citations.</td>
+<td data-label="Choice for DOE-MCP">Give readers citation fields they can take away. A catalog hit by itself says nothing about whether anyone read the paper.</td>
 </tr>
 <tr>
-<td><a href="https://github.com/cyanheads/eia-energy-mcp-server/blob/36e5ac081e6f44c525eda7a578806ad454f0f3b9/README.md">cyanheads EIA server</a> (community project)</td>
-<td>Its query results carry units and match totals. Its guide distinguishes null from zero.</td>
-<td>Keep numeric zero in the soil worksheet. Leave unreported values blank, name the unit and count missing fields only on the returned page.</td>
+<td data-label="Server"><a href="https://github.com/cyanheads/eia-energy-mcp-server/blob/36e5ac081e6f44c525eda7a578806ad454f0f3b9/README.md">cyanheads EIA server</a> (community project)</td>
+<td data-label="What its maintainers document">Its query results carry units and match totals. Its guide distinguishes null from zero.</td>
+<td data-label="Choice for DOE-MCP">Keep numeric zero in the soil worksheet. Leave unreported values blank, name the unit and count missing fields only on the returned page.</td>
 </tr>
 </tbody>
 </table>

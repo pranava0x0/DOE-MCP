@@ -23,7 +23,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 
 # What we write ourselves.
-AUTHORED = ["tools/render_site.py", "tools/render_workflows.py", "tools/site_metadata.py", "README.md"]
+AUTHORED = ["tools/render_site.py", "tools/render_workflows.py", "tools/site_metadata.py", "tools/build_applications.py", "README.md"]
 # Plus the rendered page, which also carries publisher text — paper titles,
 # manifest prose, tool descriptions — that this project does not write and
 # must not launder. A rule about OUR register is checked against the files

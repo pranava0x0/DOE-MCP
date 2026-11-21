@@ -1,0 +1,134 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Applications built on DOE-MCP — DOE-MCP</title><link rel="icon" href="data:,">
+<link rel="canonical" href="https://pranava0x0.github.io/DOE-MCP/applications.html">
+<meta name="description" content="Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.">
+<meta property="og:title" content="Applications built on DOE-MCP">
+<meta property="og:description" content="Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.">
+<meta property="og:type" content="website"><meta property="og:url" content="https://pranava0x0.github.io/DOE-MCP/applications.html">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" type="text/markdown" href="applications.md">
+<link rel="describedby" type="text/plain" href="llms.txt">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Applications built on DOE-MCP", "url": "https://pranava0x0.github.io/DOE-MCP/applications.html", "description": "Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.", "isPartOf": {"@type": "WebSite", "name": "DOE-MCP", "url": "https://pranava0x0.github.io/DOE-MCP/"}}</script>
+<style>
+:root{color-scheme:light;--ink:#20342b;--paper:#f5f2e8;--accent:#38654c}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible{outline:3px solid #9e572b;outline-offset:4px}
+header,main{max-width:1040px;margin:auto;padding:24px}header{border-bottom:1px solid #a8b3a7}
+nav{display:flex;gap:20px;flex-wrap:wrap}h1,h2,h3{font-family:Georgia,serif;line-height:1.2;scroll-margin-top:1rem}
+pre{overflow:auto;background:#e8e7dd;padding:16px;border-radius:6px}code{font-size:.9em}
+table{display:block;overflow:auto;border-collapse:collapse;max-width:100%}td,th{padding:9px;border:1px solid #b4beb4;text-align:left}
+main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0;background:white;padding:10px}
+.application-page pre{white-space:pre-wrap;overflow-wrap:anywhere}
+@media(max-width:600px){
+.application-page table,.application-page tbody,.application-page tr,.application-page td{display:block;width:100%}
+.application-page table{overflow:visible}
+.application-page thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.application-page tr{border:1px solid #b4beb4;margin:12px 0;padding:8px}
+.application-page td{border:0;padding:6px 8px;text-align:left!important}
+.application-page td::before{content:attr(data-label);display:block;font-size:.8em;font-weight:600;color:#38654c}
+}
+</style></head><body class="application-page"><a class="skip" href="#content">Skip to content</a>
+<header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Recorded demos</a></nav></header>
+<main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#grid-forecast-benchmark-lab">Grid forecast benchmark lab</a></li><li><a href="#weather-package-builder">Weather package builder</a></li><li><a href="#doe-docket-notice-tracker">DOE docket notice tracker</a></li></ul></nav><h1 id="applications-built-on-doe-mcp">Applications built on DOE-MCP</h1>
+<p>These are local command-line applications built on existing read-only tools. The examples below are recorded demonstrations, not live services. Download a complete sample bundle or run a command to create your own.</p>
+<p>A server hosts tools. A tool returns data and provenance. A skill describes a tested workflow. An application combines tools and writes a result bundle. <a href="apps.html">Installation and application options</a> · <a href="index.html#servers-list">Servers</a> · <a href="reference.html">Tool reference</a> · <a href="guide.html#connect-a-client-and-provide-a-skill">Scientific skills</a></p>
+<p>Site examples normalize replay retrieval clocks and request IDs for repeatable builds. The normalized clock is not a capture date. Source data and fixture hashes are preserved. CLI runs preserve their original tool envelopes.</p>
+<h2 id="grid-forecast-benchmark-lab">Grid forecast benchmark lab</h2>
+<p><strong>Recorded example. Runs locally.</strong></p>
+<pre><code class="language-bash">doe-mcp app forecast-benchmark --output ./forecast-benchmark-run
+</code></pre>
+<p><a href="data/apps/forecast-benchmark/bundle.zip" download="forecast-benchmark.zip">Download complete bundle</a> · <a href="data/apps/forecast-benchmark/report.json">View report and source evidence</a> · <a href="data/apps/forecast-benchmark/manifest.json">File checksums</a></p>
+<p>Compare uploaded forecasts with BPA timestamped load samples. The preset creates retrospective forecasts for illustration; it does not measure prospective skill.</p>
+<p>Run status: <strong>scored</strong>. Matched 46 of 46 forecasts.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Model</th>
+<th style="text-align:right" scope="col">Lead seconds</th>
+<th style="text-align:right" scope="col">Matched</th>
+<th style="text-align:right" scope="col">MAE MW</th>
+<th style="text-align:right" scope="col">RMSE MW</th>
+<th style="text-align:right" scope="col">Bias MW</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Model">retrospective-persistence</td>
+<td style="text-align:right" data-label="Lead seconds">300.000</td>
+<td style="text-align:right" data-label="Matched">23</td>
+<td style="text-align:right" data-label="MAE MW">33.522</td>
+<td style="text-align:right" data-label="RMSE MW">40.689</td>
+<td style="text-align:right" data-label="Bias MW">12.043</td>
+</tr>
+<tr>
+<td data-label="Model">retrospective-plus-10</td>
+<td style="text-align:right" data-label="Lead seconds">300.000</td>
+<td style="text-align:right" data-label="Matched">23</td>
+<td style="text-align:right" data-label="MAE MW">36.739</td>
+<td style="text-align:right" data-label="RMSE MW">44.682</td>
+<td style="text-align:right" data-label="Bias MW">22.043</td>
+</tr>
+</tbody>
+</table>
+<p>Table metrics are rounded to three decimals; the report retains full precision.</p>
+<p><a href="data/apps/forecast-benchmark/forecasts.csv">Forecast input CSV</a> · <a href="data/apps/forecast-benchmark/scores.csv">Scored rows</a></p>
+<p>For your forecasts, pass <code>--forecasts path/to/forecasts.csv</code> and an explicit <code>--actual-timezone</code> when the publisher timestamps lack offsets. An unscored run retains exclusions and does not claim calculated metrics.</p>
+<h3 id="scope-and-limits">Scope and limits</h3>
+<ul>
+<li>Actuals are BPA timestamped five-minute sample MW readings, not interval means.</li>
+<li>Issuance times are supplied assertions; this application cannot prove forecasts existed before their targets.</li>
+<li>Persistence uses only observations at or before issuance; gaps and unavailable targets are excluded with reasons.</li>
+<li>Scores compare each model and lead on its own matched rows; differing match sets are not a controlled model comparison.</li>
+<li>The sample forecasts were created retrospectively from recorded BPA readings; they are not publisher forecasts or evidence of prospective performance.</li>
+<li>Unlabelled BPA Pacific clock readings use the supplied IANA timezone assumption; the publisher did not supply an offset for each reading.</li>
+</ul>
+<h2 id="weather-package-builder">Weather package builder</h2>
+<p><strong>Recorded example. Runs locally.</strong></p>
+<pre><code class="language-bash">doe-mcp app weather-package --output ./weather-package-run
+</code></pre>
+<p><a href="data/apps/weather-package/bundle.zip" download="weather-package.zip">Download complete bundle</a> · <a href="data/apps/weather-package/report.json">View report and source evidence</a> · <a href="data/apps/weather-package/manifest.json">File checksums</a></p>
+<p>Build a point-weather CSV and Croissant metadata with a verified CSV checksum. Coordinates, date range and variables are CLI parameters.</p>
+<p>This preset contains <strong>5 days</strong>. Daymet keeps February 29 and omits December 31 in leap years; it reports modelled grid-cell weather.</p>
+<p><a href="data/apps/weather-package/weather.csv">Weather CSV</a> · <a href="data/apps/weather-package/weather-croissant.json">Croissant metadata</a></p>
+<h3 id="scope-and-limits-1">Scope and limits</h3>
+<ul>
+<li>Daymet reports modelled weather for a 1 km grid cell, not station observations.</li>
+<li>Leap day is retained; December 31 is omitted in leap years. No absent or missing values are imputed.</li>
+<li>Croissant metadata describes this exported CSV; its checksum does not identify the publisher's full archive.</li>
+</ul>
+<h2 id="doe-docket-notice-tracker">DOE docket notice tracker</h2>
+<p><strong>Recorded example. Runs locally.</strong></p>
+<pre><code class="language-bash">doe-mcp app docket-tracker --output ./docket-tracker-run
+</code></pre>
+<p><a href="data/apps/docket-tracker/bundle.zip" download="docket-tracker.zip">Download complete bundle</a> · <a href="data/apps/docket-tracker/report.json">View report and source evidence</a> · <a href="data/apps/docket-tracker/manifest.json">File checksums</a></p>
+<p>Track Federal Register DOE notices, retain separate publication/effective/comment dates, group publisher-supplied docket IDs, and compare saved snapshots. Regulations.gov document metadata is a <strong>gated integration</strong>, awaiting a real recording after the public exploration key returned HTTP 429. No comment bodies or attachments are collected.</p>
+<p>This bounded snapshot contains <strong>1 notices</strong>. Complete pagination: <strong>false</strong>. Absence in a snapshot never means deletion or withdrawal.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Notice</th>
+<th scope="col">Title</th>
+<th scope="col">Publication</th>
+<th scope="col">Comment close</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Notice">2026-18370</td>
+<td data-label="Title">Securing the United States Bulk-Power System</td>
+<td data-label="Publication">2026-09-09</td>
+<td data-label="Comment close">Unknown</td>
+</tr>
+</tbody>
+</table>
+<p><a href="data/apps/docket-tracker/notices.csv">Notice CSV</a></p>
+<h3 id="scope-and-limits-2">Scope and limits</h3>
+<ul>
+<li>Federal Register DOE notice metadata only; Regulations.gov docket comments and supporting materials were not retrieved.</li>
+<li>Publication, effective and comment-close dates are separate publisher fields; absent dates remain unknown.</li>
+<li>Search totals include FERC records excluded by the existing DOE source scope. Pagination continues through pages containing only excluded records.</li>
+<li>Multiple docket identifiers retain separate group memberships; records with no docket ID remain explicitly ungrouped.</li>
+<li>A snapshot records what the bounded search returned; absence does not establish deletion, withdrawal or current legal effect.</li>
+</ul>
+</main></body></html>

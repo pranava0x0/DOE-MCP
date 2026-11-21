@@ -1,50 +1,50 @@
 Run mode,Registry revision,iso,country_name,region_GCAM3,GCAM_region_ID,Step 1 evidence ID
-recorded,2026-11-09,abw,Aruba,Latin America,9,evidence_01
-recorded,2026-11-09,aia,Anguilla,Latin America,9,evidence_02
-recorded,2026-11-09,ant,Netherlands Antilles,Latin America,9,evidence_03
-recorded,2026-11-09,arg,Argentina,Latin America,31,evidence_04
-recorded,2026-11-09,atg,Antigua & Barbuda,Latin America,9,evidence_05
-recorded,2026-11-09,bes,"Bonaire, Sint Eustatius and Saba",Latin America,9,evidence_06
-recorded,2026-11-09,bhs,Bahamas,Latin America,9,evidence_07
-recorded,2026-11-09,blm,Saint Barthelemy,Latin America,9,evidence_08
-recorded,2026-11-09,blz,Belize,Latin America,9,evidence_09
-recorded,2026-11-09,bol,Bolivia,Latin America,26,evidence_10
-recorded,2026-11-09,bra,Brazil,Latin America,7,evidence_11
-recorded,2026-11-09,brb,Barbados,Latin America,9,evidence_12
-recorded,2026-11-09,chl,Chile,Latin America,26,evidence_13
-recorded,2026-11-09,col,Colombia,Latin America,32,evidence_14
-recorded,2026-11-09,cri,Costa Rica,Latin America,9,evidence_15
-recorded,2026-11-09,cub,Cuba,Latin America,9,evidence_16
-recorded,2026-11-09,cuw,Curacao,Latin America,9,evidence_17
-recorded,2026-11-09,cym,Cayman Islands,Latin America,9,evidence_18
-recorded,2026-11-09,dma,Dominica,Latin America,9,evidence_19
-recorded,2026-11-09,dom,Dominican Republic,Latin America,9,evidence_20
-recorded,2026-11-09,ecu,Ecuador,Latin America,26,evidence_21
-recorded,2026-11-09,flk,Falkland Islands (Malvinas),Latin America,13,evidence_22
-recorded,2026-11-09,glp,Guadeloupe,Latin America,9,evidence_23
-recorded,2026-11-09,grd,Grenada,Latin America,9,evidence_24
-recorded,2026-11-09,gtm,Guatemala,Latin America,9,evidence_25
-recorded,2026-11-09,guf,French Guiana,Latin America,25,evidence_26
-recorded,2026-11-09,guy,Guyana,Latin America,25,evidence_27
-recorded,2026-11-09,hnd,Honduras,Latin America,9,evidence_28
-recorded,2026-11-09,hti,Haiti,Latin America,9,evidence_29
-recorded,2026-11-09,jam,Jamaica,Latin America,9,evidence_30
-recorded,2026-11-09,kna,Saint Kitts and Nevis,Latin America,9,evidence_31
-recorded,2026-11-09,lca,Saint Lucia,Latin America,9,evidence_32
-recorded,2026-11-09,maf,Saint Martin,Latin America,9,evidence_33
-recorded,2026-11-09,mex,Mexico,Latin America,20,evidence_34
-recorded,2026-11-09,msr,Montserrat,Latin America,9,evidence_35
-recorded,2026-11-09,nic,Nicaragua,Latin America,9,evidence_36
-recorded,2026-11-09,pan,Panama,Latin America,9,evidence_37
-recorded,2026-11-09,per,Peru,Latin America,26,evidence_38
-recorded,2026-11-09,pry,Paraguay,Latin America,26,evidence_39
-recorded,2026-11-09,slv,El Salvador,Latin America,9,evidence_40
-recorded,2026-11-09,sur,Suriname,Latin America,25,evidence_41
-recorded,2026-11-09,sxm,Sint Maarten,Latin America,9,evidence_42
-recorded,2026-11-09,tca,Turks and Caicos,Latin America,13,evidence_43
-recorded,2026-11-09,tto,Trinidad and Tobago,Latin America,9,evidence_44
-recorded,2026-11-09,ury,Uruguay,Latin America,26,evidence_45
-recorded,2026-11-09,vct,Saint Vincent and the Grenadines,Latin America,9,evidence_46
-recorded,2026-11-09,ven,Venezuela,Latin America,25,evidence_47
-recorded,2026-11-09,vgb,"Virgin Islands, British",Latin America,13,evidence_48
-recorded,2026-11-09,vir,"Virgin Islands, U.S.",Latin America,1,evidence_49
+recorded,2026-11-21,abw,Aruba,Latin America,9,evidence_01
+recorded,2026-11-21,aia,Anguilla,Latin America,9,evidence_02
+recorded,2026-11-21,ant,Netherlands Antilles,Latin America,9,evidence_03
+recorded,2026-11-21,arg,Argentina,Latin America,31,evidence_04
+recorded,2026-11-21,atg,Antigua & Barbuda,Latin America,9,evidence_05
+recorded,2026-11-21,bes,"Bonaire, Sint Eustatius and Saba",Latin America,9,evidence_06
+recorded,2026-11-21,bhs,Bahamas,Latin America,9,evidence_07
+recorded,2026-11-21,blm,Saint Barthelemy,Latin America,9,evidence_08
+recorded,2026-11-21,blz,Belize,Latin America,9,evidence_09
+recorded,2026-11-21,bol,Bolivia,Latin America,26,evidence_10
+recorded,2026-11-21,bra,Brazil,Latin America,7,evidence_11
+recorded,2026-11-21,brb,Barbados,Latin America,9,evidence_12
+recorded,2026-11-21,chl,Chile,Latin America,26,evidence_13
+recorded,2026-11-21,col,Colombia,Latin America,32,evidence_14
+recorded,2026-11-21,cri,Costa Rica,Latin America,9,evidence_15
+recorded,2026-11-21,cub,Cuba,Latin America,9,evidence_16
+recorded,2026-11-21,cuw,Curacao,Latin America,9,evidence_17
+recorded,2026-11-21,cym,Cayman Islands,Latin America,9,evidence_18
+recorded,2026-11-21,dma,Dominica,Latin America,9,evidence_19
+recorded,2026-11-21,dom,Dominican Republic,Latin America,9,evidence_20
+recorded,2026-11-21,ecu,Ecuador,Latin America,26,evidence_21
+recorded,2026-11-21,flk,Falkland Islands (Malvinas),Latin America,13,evidence_22
+recorded,2026-11-21,glp,Guadeloupe,Latin America,9,evidence_23
+recorded,2026-11-21,grd,Grenada,Latin America,9,evidence_24
+recorded,2026-11-21,gtm,Guatemala,Latin America,9,evidence_25
+recorded,2026-11-21,guf,French Guiana,Latin America,25,evidence_26
+recorded,2026-11-21,guy,Guyana,Latin America,25,evidence_27
+recorded,2026-11-21,hnd,Honduras,Latin America,9,evidence_28
+recorded,2026-11-21,hti,Haiti,Latin America,9,evidence_29
+recorded,2026-11-21,jam,Jamaica,Latin America,9,evidence_30
+recorded,2026-11-21,kna,Saint Kitts and Nevis,Latin America,9,evidence_31
+recorded,2026-11-21,lca,Saint Lucia,Latin America,9,evidence_32
+recorded,2026-11-21,maf,Saint Martin,Latin America,9,evidence_33
+recorded,2026-11-21,mex,Mexico,Latin America,20,evidence_34
+recorded,2026-11-21,msr,Montserrat,Latin America,9,evidence_35
+recorded,2026-11-21,nic,Nicaragua,Latin America,9,evidence_36
+recorded,2026-11-21,pan,Panama,Latin America,9,evidence_37
+recorded,2026-11-21,per,Peru,Latin America,26,evidence_38
+recorded,2026-11-21,pry,Paraguay,Latin America,26,evidence_39
+recorded,2026-11-21,slv,El Salvador,Latin America,9,evidence_40
+recorded,2026-11-21,sur,Suriname,Latin America,25,evidence_41
+recorded,2026-11-21,sxm,Sint Maarten,Latin America,9,evidence_42
+recorded,2026-11-21,tca,Turks and Caicos,Latin America,13,evidence_43
+recorded,2026-11-21,tto,Trinidad and Tobago,Latin America,9,evidence_44
+recorded,2026-11-21,ury,Uruguay,Latin America,26,evidence_45
+recorded,2026-11-21,vct,Saint Vincent and the Grenadines,Latin America,9,evidence_46
+recorded,2026-11-21,ven,Venezuela,Latin America,25,evidence_47
+recorded,2026-11-21,vgb,"Virgin Islands, British",Latin America,13,evidence_48
+recorded,2026-11-21,vir,"Virgin Islands, U.S.",Latin America,1,evidence_49
