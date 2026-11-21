@@ -30,6 +30,23 @@ def validate_extract(data: dict) -> None:
         raise SourceSchemaChanged("Daymet returned no citation for the temperature extract")
 
 
+def croissant_context() -> dict:
+    """The shared Croissant 1.0 context for fixed demos and point packages."""
+    return {
+        "@language": "en", "@vocab": "https://schema.org/", "sc": "https://schema.org/",
+        "cr": "http://mlcommons.org/croissant/", "dct": "http://purl.org/dc/terms/",
+        "rai": "http://mlcommons.org/croissant/RAI/",
+        "data": {"@id": "cr:data", "@type": "@json"},
+        "examples": {"@id": "cr:examples", "@type": "@json"},
+        "conformsTo": "dct:conformsTo", "dataType": {"@id": "cr:dataType", "@type": "@vocab"},
+        **{k: "cr:" + k for k in ("citeAs", "column", "equivalentProperty", "extract", "field", "fileObject",
+                                   "fileProperty", "fileSet", "format", "includes", "isLiveDataset",
+                                   "jsonPath", "key", "md5", "parentField", "path", "recordSet",
+                                   "references", "regex", "repeated", "replace", "samplingRate",
+                                   "separator", "source", "subField", "transform")},
+    }
+
+
 def package(data: dict) -> tuple[bytes, dict]:
     """Serialize first: the checksum describes this CSV, not the ORNL archive."""
     validate_extract(data)
@@ -43,19 +60,7 @@ def package(data: dict) -> tuple[bytes, dict]:
     description = (f"Recorded Daymet temperatures for the 1 km cell at {data['latitude']}, "
                    f"{data['longitude']}. Requested {data['requested_range']['from']} through "
                    f"{data['requested_range']['to']}. Daymet omits December 31 in leap years.")
-    context = {
-        "@language": "en", "@vocab": "https://schema.org/", "sc": "https://schema.org/",
-        "cr": "http://mlcommons.org/croissant/", "dct": "http://purl.org/dc/terms/",
-        "rai": "http://mlcommons.org/croissant/RAI/",
-        "data": {"@id": "cr:data", "@type": "@json"},
-        "examples": {"@id": "cr:examples", "@type": "@json"},
-        "conformsTo": "dct:conformsTo", "dataType": {"@id": "cr:dataType", "@type": "@vocab"},
-        **{k: "cr:" + k for k in ("citeAs", "column", "equivalentProperty", "extract", "field", "fileObject",
-                                   "fileProperty", "fileSet", "format", "includes", "isLiveDataset",
-                                   "jsonPath", "key", "md5", "parentField", "path", "recordSet",
-                                   "references", "regex", "repeated", "replace", "samplingRate",
-                                   "separator", "source", "subField", "transform")},
-    }
+    context = croissant_context()
     metadata = {
         "@context": context, "@type": "sc:Dataset",
         "conformsTo": "http://mlcommons.org/croissant/1.0",

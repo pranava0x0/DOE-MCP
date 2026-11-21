@@ -246,12 +246,21 @@ SERVER_LINEUP: tuple[ServerSpec, ...] = (
                      "Service. The VIPS adapter is retained in doe-research, "
                      "but its source is blocked pending API-key access review.")),
     ServerSpec(
-        name="doe-docs", key="docs", status="planned",
-        description=("NEPA documents and DOE directives — or a catalog entry "
-                     "pointing at PNNL's NEPA-MCP, which already serves "
-                     "them. The Federal Register slice did not wait for it: "
-                     "it needs no crawler and ships in doe-research as "
-                     "docs.search_rulemakings and docs.get_rulemaking.")),
+        name="doe-docs", key="docs", status="shipping",
+        default_profile="docs:default", needs_credentials=("API_DATA_GOV_KEY",),
+        description=("DOE Federal Register notices and Regulations.gov docket "
+                     "and document metadata for the verified EERE agency scope."),
+        instructions=(
+            "DOE-MCP docs server: DOE's published Federal Register notices plus "
+            "Regulations.gov docket and document metadata. The Regulations.gov "
+            "source currently serves EERE agency records only and requires the "
+            "user's api.data.gov key; other DOE offices are not yet served. "
+            "A Federal Register notice is a publication, not a complete docket. "
+            "Docket document metadata is not the public comment record. No tool "
+            "submits comments or retrieves comment text, attachments or document bodies. "
+            "Use exact publisher identifiers and report comment dates as publisher "
+            "metadata rather than legal advice. "
+            + COVERAGE_RULE + " " + UNTRUSTED_CONTENT_RULE + " " + NON_AFFILIATION)),
     *(ServerSpec(name="doe-" + key, key=key, status="shipping",
                  default_profile=key + ":default",
                  description=description,

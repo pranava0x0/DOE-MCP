@@ -174,6 +174,11 @@ class Credentials:
 
     def require(self, name: str) -> str:
         value = self.values.get(name)
+        if name == "API_DATA_GOV_KEY" and self.is_demo(name):
+            raise CredentialMissing(
+                "Regulations.gov live access requires a user-owned api.data.gov key. "
+                "The public demo key is for API exploration only; configure your "
+                "own key through the credential prompt, a pipe, or --from-env.")
         if not value:
             spec = CREDENTIAL_SPECS.get(name, {})
             register = spec.get("register_url", "the publisher's site")

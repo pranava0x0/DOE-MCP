@@ -30,6 +30,7 @@ from .opendatasoft import OpenDataSoftAdapter
 from .optimade import OptimadeAdapter
 from .osti_family import OstiFamilyAdapter
 from .postgrest import PostgrestAdapter
+from .regulations_gov import RegulationsGovAdapter
 from .sage import SageAdapter
 from .text_feed import TextFeedAdapter
 from .vips import VipsAdapter
@@ -52,6 +53,7 @@ ADAPTER_CLASSES: dict[str, tuple[str, type]] = {
     "text_feed": ("text_feed", TextFeedAdapter),
     "postgrest": ("postgrest", PostgrestAdapter),
     "federal_register": ("federal_register", FederalRegisterAdapter),
+    "regulations_gov": ("regulations_gov", RegulationsGovAdapter),
     "vips": ("vips", VipsAdapter),
     "daymet": ("daymet", DaymetAdapter),
     "essdive": ("essdive", EssDiveAdapter),
@@ -74,6 +76,7 @@ ADAPTER_VERSIONS = {
     "text_feed": TextFeedAdapter.version,
     "postgrest": PostgrestAdapter.version,
     "federal_register": FederalRegisterAdapter.version,
+    "regulations_gov": RegulationsGovAdapter.version,
     "vips": VipsAdapter.version,
     "daymet": DaymetAdapter.version,
     "essdive": EssDiveAdapter.version,

@@ -25,6 +25,7 @@ from .adapters.opendatasoft import OpenDataSoftAdapter
 from .adapters.optimade import OptimadeAdapter
 from .adapters.osti_family import OstiFamilyAdapter
 from .adapters.postgrest import PostgrestAdapter
+from .adapters.regulations_gov import RegulationsGovAdapter
 from .adapters.sage import SageAdapter
 from .adapters.text_feed import TextFeedAdapter
 from .adapters.vips import VipsAdapter
@@ -76,6 +77,7 @@ class RuntimeContext:
     text_feed: TextFeedAdapter
     postgrest: PostgrestAdapter
     federal_register: FederalRegisterAdapter
+    regulations_gov: RegulationsGovAdapter
     vips: VipsAdapter
     daymet: DaymetAdapter
     essdive: EssDiveAdapter
@@ -141,7 +143,7 @@ def load_context(sources_dir: Path | None = None, *,
             built[field_name] = adapters[field_name]
         elif kind == "curated":
             built[field_name] = cls(root)
-        elif kind == "eia_v2":
+        elif kind in ("eia_v2", "regulations_gov"):
             built[field_name] = cls(credentials=creds)
         else:
             built[field_name] = cls()

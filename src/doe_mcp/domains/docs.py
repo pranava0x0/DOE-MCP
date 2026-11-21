@@ -262,3 +262,100 @@ DOCS_TOOLS.register(ToolSpec(
         "an agency DOE-MCP does not cover is reported as found but not "
         "served, with coverage.registry='none' rather than as a miss."),
     toolset="default", contract_version="1", fn=get_rulemaking))
+
+
+REGULATIONS_SOURCE = "regulations-gov-doe"
+
+
+def _regulations_source(b, ctx, manifest, fetched):
+    return add_manifest_source(
+        b, ctx, manifest, retrieved_at=fetched.retrieved_at,
+        cache_age_seconds=fetched.cache_age_seconds, from_cache=fetched.from_cache)
+
+
+def _regulations_evidence(b, fetched, ref, record):
+    b.add_evidence(source_ref=ref, record_id=record["id"],
+                   retrieved_at=fetched.retrieved_at,
+                   effective_at=record.get("last_modified_date"),
+                   locator=record.get("links", {}).get("self"), transformations=["normalize"])
+
+
+async def get_docket(ctx: RuntimeContext, docket_id: str) -> Envelope:
+    """A docket's metadata, not its documents or public comments."""
+    return await _get_regulations_record(ctx, docket_id, kind="dockets",
+                                         tool="docs.get_docket", field="docket")
+
+
+async def get_docket_document(ctx: RuntimeContext, document_id: str) -> Envelope:
+    return await _get_regulations_record(
+        ctx, document_id, kind="documents", tool="docs.get_docket_document", field="document")
+
+
+async def _get_regulations_record(ctx: RuntimeContext, identifier: str, *,
+                                  kind: str, tool: str, field: str) -> Envelope:
+    manifest = require_active_source(ctx, REGULATIONS_SOURCE)
+    fetched = await ctx.regulations_gov.get(manifest, identifier, kind=kind)
+    b = builder(ctx, tool, contract_version="1")
+    ref = _regulations_source(b, ctx, manifest, fetched)
+    _regulations_evidence(b, fetched, ref, fetched.value)
+    return b.build({field: fetched.value, "record_count": 1,
+                    "note": "Regulations.gov metadata for the verified EERE agency scope. "
+                            "Comments, attachments and document bodies are not retrieved."}, Coverage(
+        registry=RegistryCoverage.covered, execution=ExecutionCoverage.complete,
+        pagination=PaginationCoverage.complete, source_claim=SourceClaimCoverage.partial,
+        result=ResultCoverage.hit, sources_searched=[manifest.id],
+        known_limitations=sorted(manifest.coverage.known_limitations)))
+
+
+async def search_docket_documents(ctx: RuntimeContext, docket_id: str,
+                                   agency_id: str = "EERE", query: str = "",
+                                   since: str = "", until: str = "",
+                                   rows: int = 5, page: int = 1) -> Envelope:
+    manifest = require_active_source(ctx, REGULATIONS_SOURCE)
+    fetched = await ctx.regulations_gov.search_documents(
+        manifest, docket_id=docket_id, agency_id=agency_id, query=query,
+        since=since, until=until, rows=rows, page=page)
+    result = fetched.value
+    b = builder(ctx, "docs.search_docket_documents", contract_version="1")
+    ref = _regulations_source(b, ctx, manifest, fetched)
+    for record in result.records:
+        _regulations_evidence(b, fetched, ref, record)
+    return b.build({"documents": result.records, "record_count": len(result.records),
+                    "total_matches": result.total, "rows": rows, "page": page,
+                    "filters": {"docket_id": docket_id, "agency_id": agency_id,
+                                "query": query, "since": since, "until": until},
+                    "note": "One bounded page of Regulations.gov document metadata, "
+                            "ordered by last modification then document id. These are "
+                            "docket documents, not the public comment record. The verified "
+                            "agency scope is EERE; other DOE offices are not yet served."}, Coverage(
+        registry=RegistryCoverage.covered, execution=ExecutionCoverage.complete,
+        pagination=pagination_coverage(result.total, len(result.records),
+                                        offset=(page - 1) * rows, more=result.more),
+        source_claim=SourceClaimCoverage.partial, result=result_dim(len(result.records)),
+        sources_searched=[manifest.id], known_limitations=sorted(manifest.coverage.known_limitations)))
+
+
+DOCS_TOOLS.register(ToolSpec(
+    name="docs.get_docket",
+    description=("Read Regulations.gov docket metadata by its publisher docket id, "
+                 "such as EERE-2025-OT-0031. Verified scope: EERE dockets only. "
+                 "Requires a user-owned api.data.gov key. Does not retrieve the "
+                 "docket's documents or public comments; use docs.search_docket_documents "
+                 "for a bounded page of document metadata."),
+    toolset="dockets", contract_version="1", fn=get_docket))
+DOCS_TOOLS.register(ToolSpec(
+    name="docs.search_docket_documents",
+    description=("Search a bounded page of Regulations.gov document metadata in an "
+                 "exact docket_id, verified agency_id EERE only. Requires a user-owned "
+                 "api.data.gov key. rows is 5–20 and page is 1–20; query searches publisher "
+                 "text, since/until filter posted dates in YYYY-MM-DD form. Returns "
+                 "publisher identifiers, comment dates, modification dates and links. "
+                 "Does not retrieve public comments, attachments or document bodies."),
+    toolset="dockets", contract_version="1", fn=search_docket_documents))
+DOCS_TOOLS.register(ToolSpec(
+    name="docs.get_docket_document",
+    description=("Read one Regulations.gov document's metadata by a document_id returned "
+                 "by docs.search_docket_documents. Verified scope: EERE only. Requires "
+                 "a user-owned api.data.gov key. Returns the publisher's dates and links; "
+                 "does not fetch document bodies, attachments or public comments."),
+    toolset="dockets", contract_version="1", fn=get_docket_document))

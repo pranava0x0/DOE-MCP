@@ -90,7 +90,7 @@ def _context(replay, creds) -> RuntimeContext:
         if kind == "curated":
             continue
         kwargs = {"fetcher": replay, "cache": cache}
-        if kind == "eia_v2":
+        if kind in ("eia_v2", "regulations_gov"):
             kwargs["credentials"] = creds
         overrides[field_name] = cls(**kwargs)
     return dataclasses.replace(
@@ -123,7 +123,8 @@ def keyed_ctx(replay, tmp_path):
     credential parameters stripped, so a recording made with a real key
     replays under this sentinel exactly as it would under any other.
     """
-    creds = Credentials(values={"EIA_API_KEY": "sentinel-not-a-real-key"},
+    creds = Credentials(values={"EIA_API_KEY": "sentinel-not-a-real-key",
+                                "API_DATA_GOV_KEY": "sentinel-apidatagov-key"},
                         path=tmp_path / "credentials.env", file_exists=True)
     return _context(replay, creds)
 

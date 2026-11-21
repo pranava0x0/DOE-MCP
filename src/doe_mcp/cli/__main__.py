@@ -220,6 +220,10 @@ async def _probe(ctx: RuntimeContext, source_id: str) -> int | None:
     if kind == "vips":
         page = (await ctx.vips.search(manifest, rows=1)).value
         return page.total
+    if kind == "regulations_gov":
+        ctx.sources.require_active(source_id)
+        await ctx.regulations_gov.get(manifest, "EERE-2025-OT-0031", kind="dockets")
+        return 1
     if kind == "federal_register":
         # The matching count, which the API caps at 10,000. A floor is a
         # perfectly good liveness signal; the manifest's floor is far below
@@ -599,6 +603,8 @@ def main() -> int:
 
     from .workflows import register as register_workflows
     register_workflows(sub)
+    from .applications import register as register_applications
+    register_applications(sub)
     from ..evaluation import register as register_evaluation
     register_evaluation(sub)
 
