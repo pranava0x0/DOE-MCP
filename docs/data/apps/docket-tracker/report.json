@@ -1,0 +1,431 @@
+{
+  "application": "docket-tracker",
+  "mode": "recorded",
+  "fixtures": [
+    {
+      "file": "anl-sage-waggle.json",
+      "sha256": "f8fa9daef59952bd10fc45ebddaadf9670628e6598ad87088160ce8eef40734f",
+      "captured_at": null
+    },
+    {
+      "file": "basis-set-exchange.json",
+      "sha256": "0dfd2e7d23d4802bc7325a7334ccd4e306ad519c222ca0436964c901e17e8043",
+      "captured_at": null
+    },
+    {
+      "file": "bpa-operations.json",
+      "sha256": "4d69703d9b889d9a1c13fb09ec2476a79e4c0977f5f2a2b79a1fc4fd0139e394",
+      "captured_at": null
+    },
+    {
+      "file": "ceser-eagle-i-outages.json",
+      "sha256": "d3928d3e55187b8b5a951a6bbfffeb78d9faa00f645759c1845a98194e7a7685",
+      "captured_at": "2026-10-08T23:09:56.476179+00:00"
+    },
+    {
+      "file": "doe-code-json.json",
+      "sha256": "09a02ccb524f4c2f7757929d119742484fa7e44a720395a4d95eba9caa418047",
+      "captured_at": null
+    },
+    {
+      "file": "doe-open-data-catalog.json",
+      "sha256": "e4153a473c6afd89401ea09a16617ba16736056f6b9bf524c4276d94c40728a6",
+      "captured_at": null
+    },
+    {
+      "file": "eia-api-v2.json",
+      "sha256": "bb5e6ce41e8eef8057741409499a787b93c965ee44a12688806cd8cfe3aa6c9c",
+      "captured_at": null
+    },
+    {
+      "file": "esgf-search.json",
+      "sha256": "b48a40f84f831197b5621eeb120b6e8dac79c724b53ac5c3d6cebdfc6b2b8ce4",
+      "captured_at": null
+    },
+    {
+      "file": "ess-dive.json",
+      "sha256": "28399526c4bbec1055c0740219c1bee5468f0ebf5b5662182f77fb88f28d827a",
+      "captured_at": null
+    },
+    {
+      "file": "federal-register-doe.json",
+      "sha256": "f1b81fd332bdb47df868b0d419aef22e387c2d3fb8ffb2649375d459a1a56a3b",
+      "captured_at": null
+    },
+    {
+      "file": "fueleconomy-ws.json",
+      "sha256": "9a193408aeb51db8b4e5d2413b6e01b8569e964babd0a3276609fc4b178d0323",
+      "captured_at": null
+    },
+    {
+      "file": "gcam-economy.json",
+      "sha256": "e51120caad276d93a52d9dbf50ea2faa5c298c9ac88f17c3e5f1869be685bb78",
+      "captured_at": "2026-11-10T04:46:58.414403+00:00"
+    },
+    {
+      "file": "gcam-emissions.json",
+      "sha256": "7f582259a874c533a6fe55f65d0c2e0936e84ea1c500e9f9b7b186868315bacd",
+      "captured_at": "2026-11-10T04:46:57.828491+00:00"
+    },
+    {
+      "file": "gcam-land.json",
+      "sha256": "d77c9781b292feb3265cabc2ffa484c7ef27dd7fe27f93f95a29115e2c693e65",
+      "captured_at": "2026-11-10T04:46:57.498065+00:00"
+    },
+    {
+      "file": "gcam-power.json",
+      "sha256": "7485cdd26030b7c15f0812c534223aca205cba855c96bd61c767668207b9cbc8",
+      "captured_at": "2026-11-10T04:46:58.079479+00:00"
+    },
+    {
+      "file": "gcam-water.json",
+      "sha256": "ecd273d3b6eeea1cd569b2b70ef51ca0ef203bb2233d4c32f4eebab9c2947869",
+      "captured_at": "2026-11-10T04:46:57.016956+00:00"
+    },
+    {
+      "file": "lbnl-mp-optimade.json",
+      "sha256": "8a5d15ebe6a47c4103d3611661903b8f41de8b5d101ba203df541e2a7b35e280",
+      "captured_at": null
+    },
+    {
+      "file": "nersc-status.json",
+      "sha256": "1d6915f666940b312c349bfb9e9dcb32e123e89850582f3f7b2e282aeda911a7",
+      "captured_at": "2026-10-08T23:12:37.080875+00:00"
+    },
+    {
+      "file": "nmdc-runtime.json",
+      "sha256": "a47cb8d2a0a93dcec1b30c3de2eca0769c8e5fb4fe9eca8edda61eb580432b78",
+      "captured_at": "2026-10-08T23:37:56.653277+00:00"
+    },
+    {
+      "file": "ornl-daac.json",
+      "sha256": "9fea63aa5e38eaa7fdf8d095bec8d6a70b291f4cc6a9751facf53548d565574a",
+      "captured_at": null
+    },
+    {
+      "file": "ornl-openenergyhub.json",
+      "sha256": "b475b04ed1b8c1a58a08b110c277e087c0b3f9dcf0dbbe8a9ec41bed289cd6aa",
+      "captured_at": null
+    },
+    {
+      "file": "osti-data-explorer.json",
+      "sha256": "71a7e71e7056856c76fcebc8d0234e049c0109bd35e2b1777768e408072ad398",
+      "captured_at": null
+    },
+    {
+      "file": "osti-doe-code.json",
+      "sha256": "b3a6506adab49139d00e4aa99c31a432fd7d6529e80204f923b5476b85411d5f",
+      "captured_at": null
+    },
+    {
+      "file": "osti-doe-pages.json",
+      "sha256": "d985dce1d781b9a7484437ab297f66f39c5d89febdf5acc3527d09b3316e19d8",
+      "captured_at": "2026-09-22T12:33:16.478603+00:00"
+    },
+    {
+      "file": "osti-gov-records.json",
+      "sha256": "c6fd5ded484f83064397a670a15639a4c3903b1add64a6ddcb849cf6da404d17",
+      "captured_at": "2026-09-22T12:33:14.364511+00:00"
+    },
+    {
+      "file": "pnnl-vips.json",
+      "sha256": "f83c54a2e33f84cca881a0d7581f92b782501733b2746c9b17f0201e1da6d89d",
+      "captured_at": null
+    },
+    {
+      "file": "usgs-uspvdb.json",
+      "sha256": "4d93ec19e3b23d1de9ad1a1d618cca40070ae455764062a91d8a19a4c975c24c",
+      "captured_at": null
+    },
+    {
+      "file": "usgs-uswtdb.json",
+      "sha256": "717c92092351ab13cd9ad61bd10f8988c06748fe63201b872ef22d12fd23b70a",
+      "captured_at": null
+    }
+  ],
+  "steps": [
+    {
+      "tool": "docs.search_rulemakings",
+      "args": {
+        "query": "",
+        "docket": "",
+        "since": "",
+        "until": "",
+        "document_type": "NOTICE",
+        "rows": 5,
+        "page": 1
+      },
+      "envelope": {
+        "data": {
+          "documents": [
+            {
+              "document_number": "2026-18370",
+              "title": "Securing the United States Bulk-Power System",
+              "type": "Notice",
+              "action": "Request for information (RFI).",
+              "abstract": "Consistent with the Executive order of August 26, 2026, Declaring a National Emergency to Secure the United States Bulk-Power System, the Department of Energy (DOE or the Department) is seeking information from industry and other stakeholders to inform DOE actions to implement the Executive order. Specifically, DOE seeks information regarding the scope of covered equipment and transactions; risks associated with Covered Foreign Entities and foreign-produced bulk- power system electric equipment; supply chain, software, firmware, digital service, maintenance service, and remote-access practices; existing equipment and potential mitigation; licensing and prequalification; domestic manufacturing and secure replacement capacity; Federal procurement; and potential economic, reliability, safety, and small-entity impacts.",
+              "publication_date": "2026-09-09",
+              "effective_on": null,
+              "comments_close_on": null,
+              "agencies": [
+                "Energy Department"
+              ],
+              "docket_ids": [
+                "DOE-2026-HQ-2026-1123"
+              ],
+              "regulation_id_numbers": [
+                "1901-AB79"
+              ],
+              "cfr_references": [],
+              "html_url": "https://www.federalregister.gov/documents/2026/09/09/2026-18370/securing-the-united-states-bulk-power-system",
+              "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-09/pdf/2026-18370.pdf",
+              "full_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18370.txt"
+            }
+          ],
+          "record_count": 1,
+          "page": 1,
+          "page_size": 5,
+          "total_matches": 10000,
+          "pages_reachable": 50,
+          "note": "The published text of DOE's rules, proposed rules, and notices, from the Federal Register itself. Each record carries its docket id, the CFR parts it touches, its regulatory identifier, and a link to the full text. The docket's comments and supporting material are not here — those live in regulations.gov, which DOE-MCP does not yet serve.",
+          "total_is_a_floor": "The API stops counting at 10000, so that number is a floor rather than a total. Narrow the search with a date range or a document type to get a real count.",
+          "excluded_documents": 4,
+          "exclusion_reason": "The Federal Register files FERC's documents under the Department of Energy's agency tree, and FERC's daily combined filing notices are most of what that tree publishes: of the documents tagged Department of Energy since 2024, FERC is 20% of rules and 26% of proposed rules but 87% of notices, 4,268 of 4,915. DOE-MCP's scope stops at DOE (decision 0001), so those documents are dropped and counted rather than served. FERC's own record is in its eLibrary system.",
+          "total_matches_is_unfiltered": "total_matches is the Federal Register's own count for this query and includes the documents dropped above. 4 of the 5 on this page were dropped, so the number of DOE documents matching is lower than total_matches and this tool cannot say by how much without reading every page."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "federal-register-doe",
+            "steward": "Office of the Federal Register (National Archives)",
+            "system": "Federal Register API (Department of Energy documents)",
+            "dataset": "Federal Register API (Department of Energy documents)",
+            "dataset_version": "current",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "cache_age_seconds": 0
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "2026-18370",
+            "locator": "https://www.federalregister.gov/documents/2026/09/09/2026-18370/securing-the-united-states-bulk-power-system",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": "2026-09-09",
+            "transformations": [],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "partial",
+          "execution": "complete",
+          "pagination": "truncated",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "federal-register-doe"
+          ],
+          "time_range": {
+            "from": "2026-09-09",
+            "to": "2026-09-09"
+          }
+        },
+        "warnings": [],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "docs.search_rulemakings",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "regulations_gov": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-21",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "docs.search_rulemakings",
+      "args": {
+        "query": "",
+        "docket": "",
+        "since": "",
+        "until": "",
+        "document_type": "NOTICE",
+        "rows": 5,
+        "page": 2
+      },
+      "envelope": {
+        "data": {
+          "documents": [],
+          "record_count": 0,
+          "page": 2,
+          "page_size": 5,
+          "total_matches": 10000,
+          "pages_reachable": 50,
+          "note": "Every one of the 5 documents on this page was FERC's, so the page is empty after DOE-MCP's scope filter rather than because the Federal Register had nothing. This is what a broad notice search looks like; filter by document type, or ask a narrower question.",
+          "total_is_a_floor": "The API stops counting at 10000, so that number is a floor rather than a total. Narrow the search with a date range or a document type to get a real count.",
+          "excluded_documents": 5,
+          "exclusion_reason": "The Federal Register files FERC's documents under the Department of Energy's agency tree, and FERC's daily combined filing notices are most of what that tree publishes: of the documents tagged Department of Energy since 2024, FERC is 20% of rules and 26% of proposed rules but 87% of notices, 4,268 of 4,915. DOE-MCP's scope stops at DOE (decision 0001), so those documents are dropped and counted rather than served. FERC's own record is in its eLibrary system.",
+          "total_matches_is_unfiltered": "total_matches is the Federal Register's own count for this query and includes the documents dropped above. 5 of the 5 on this page were dropped, so the number of DOE documents matching is lower than total_matches and this tool cannot say by how much without reading every page."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "federal-register-doe",
+            "steward": "Office of the Federal Register (National Archives)",
+            "system": "Federal Register API (Department of Energy documents)",
+            "dataset": "Federal Register API (Department of Energy documents)",
+            "dataset_version": "current",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "cache_age_seconds": 0
+          }
+        ],
+        "evidence": [],
+        "coverage": {
+          "registry": "partial",
+          "execution": "complete",
+          "pagination": "truncated",
+          "source_claim": "complete",
+          "result": "empty",
+          "sources_searched": [
+            "federal-register-doe"
+          ]
+        },
+        "warnings": [],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "docs.search_rulemakings",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "regulations_gov": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-21",
+          "request_id": "recorded-workflow"
+        }
+      }
+    }
+  ],
+  "retrieval_note": "Site-only recorded example: retrieval clocks and request IDs are normalized; source data and fixture capture metadata remain separate. CLI exports retain original invocation envelopes.",
+  "limitations": [
+    "Federal Register DOE notice metadata only; Regulations.gov docket comments and supporting materials were not retrieved.",
+    "Publication, effective and comment-close dates are separate publisher fields; absent dates remain unknown.",
+    "Search totals include FERC records excluded by the existing DOE source scope. Pagination continues through pages containing only excluded records.",
+    "Multiple docket identifiers retain separate group memberships; records with no docket ID remain explicitly ungrouped.",
+    "A snapshot records what the bounded search returned; absence does not establish deletion, withdrawal or current legal effect."
+  ],
+  "label": "Federal Register notice tracker",
+  "source": "federal-register",
+  "parameters": {
+    "source": "federal-register",
+    "query": "",
+    "docket": "",
+    "since": "",
+    "until": "",
+    "document_type": "NOTICE",
+    "rows": 5
+  },
+  "page_budget": 2,
+  "documents": [
+    {
+      "document_number": "2026-18370",
+      "title": "Securing the United States Bulk-Power System",
+      "type": "Notice",
+      "action": "Request for information (RFI).",
+      "abstract": "Consistent with the Executive order of August 26, 2026, Declaring a National Emergency to Secure the United States Bulk-Power System, the Department of Energy (DOE or the Department) is seeking information from industry and other stakeholders to inform DOE actions to implement the Executive order. Specifically, DOE seeks information regarding the scope of covered equipment and transactions; risks associated with Covered Foreign Entities and foreign-produced bulk- power system electric equipment; supply chain, software, firmware, digital service, maintenance service, and remote-access practices; existing equipment and potential mitigation; licensing and prequalification; domestic manufacturing and secure replacement capacity; Federal procurement; and potential economic, reliability, safety, and small-entity impacts.",
+      "publication_date": "2026-09-09",
+      "effective_on": null,
+      "comments_close_on": null,
+      "agencies": [
+        "Energy Department"
+      ],
+      "docket_ids": [
+        "DOE-2026-HQ-2026-1123"
+      ],
+      "regulation_id_numbers": [
+        "1901-AB79"
+      ],
+      "cfr_references": [],
+      "html_url": "https://www.federalregister.gov/documents/2026/09/09/2026-18370/securing-the-united-states-bulk-power-system",
+      "pdf_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-09/pdf/2026-18370.pdf",
+      "full_text_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18370.txt"
+    }
+  ],
+  "docket_groups": [
+    {
+      "docket_id": "DOE-2026-HQ-2026-1123",
+      "documents": [
+        "2026-18370"
+      ]
+    }
+  ],
+  "pagination": {
+    "pages_read": [
+      1,
+      2
+    ],
+    "complete": false,
+    "gaps": [
+      "page_budget_exhausted"
+    ],
+    "publisher_totals": [
+      10000,
+      10000
+    ],
+    "excluded_ferc_documents": 9
+  },
+  "site_reference_clock": "2026-11-21T00:00:00Z"
+}

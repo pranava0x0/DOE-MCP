@@ -192,6 +192,11 @@ capabilities:
       DOE rules, proposed rules, notices, and dockets by topic, office, date,
       or docket id, with links to the published text and the comment record.
 
+  - id: docs.docket_metadata
+    description: >
+      Read docket metadata and bounded pages of document metadata, with
+      publisher identifiers, dates and links. Does not retrieve public comments.
+
   - id: docs.get_rulemaking
     description: >
       One published rule, proposed rule, or notice in full by its document

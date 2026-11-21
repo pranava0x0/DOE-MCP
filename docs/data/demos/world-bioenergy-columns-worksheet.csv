@@ -1,33 +1,33 @@
 Run mode,Registry revision,GCAM_region_ID,region,preference,preference_alternative,Columns differ,Step 1 evidence ID
-recorded,2026-11-09,1,USA,High,High,False,evidence_01
-recorded,2026-11-09,2,Africa_Eastern,Low,Low,False,evidence_02
-recorded,2026-11-09,3,Africa_Northern,Low,Low,False,evidence_03
-recorded,2026-11-09,4,Africa_Southern,Low,Low,False,evidence_04
-recorded,2026-11-09,5,Africa_Western,Low,Low,False,evidence_05
-recorded,2026-11-09,6,Australia_NZ,High,High,False,evidence_06
-recorded,2026-11-09,7,Brazil,High,High,False,evidence_07
-recorded,2026-11-09,8,Canada,Low,High,True,evidence_08
-recorded,2026-11-09,9,Central America and Caribbean,Low,Low,False,evidence_09
-recorded,2026-11-09,10,Central Asia,Low,Low,False,evidence_10
-recorded,2026-11-09,11,China,High,High,False,evidence_11
-recorded,2026-11-09,12,EU-12,High,High,False,evidence_12
-recorded,2026-11-09,13,EU-15,Low,High,True,evidence_13
-recorded,2026-11-09,14,Ukraine,Low,High,True,evidence_14
-recorded,2026-11-09,15,Europe_Non_EU,High,High,False,evidence_15
-recorded,2026-11-09,16,European Free Trade Association,Low,High,True,evidence_16
-recorded,2026-11-09,17,India,Low,Low,False,evidence_17
-recorded,2026-11-09,18,Indonesia,Low,Low,False,evidence_18
-recorded,2026-11-09,19,Japan,Low,Low,False,evidence_19
-recorded,2026-11-09,20,Mexico,Low,Low,False,evidence_20
-recorded,2026-11-09,21,Middle East,Low,Low,False,evidence_21
-recorded,2026-11-09,22,Pakistan,Low,Low,False,evidence_22
-recorded,2026-11-09,23,Russia,Low,Low,False,evidence_23
-recorded,2026-11-09,24,South Africa,Low,Low,False,evidence_24
-recorded,2026-11-09,25,South America_Northern,Low,Low,False,evidence_25
-recorded,2026-11-09,26,South America_Southern,Low,Low,False,evidence_26
-recorded,2026-11-09,27,South Asia,Low,Low,False,evidence_27
-recorded,2026-11-09,28,South Korea,Low,Low,False,evidence_28
-recorded,2026-11-09,29,Southeast Asia,Low,Low,False,evidence_29
-recorded,2026-11-09,30,Taiwan,Low,Low,False,evidence_30
-recorded,2026-11-09,31,Argentina,High,High,False,evidence_31
-recorded,2026-11-09,32,Colombia,Low,Low,False,evidence_32
+recorded,2026-11-21,1,USA,High,High,False,evidence_01
+recorded,2026-11-21,2,Africa_Eastern,Low,Low,False,evidence_02
+recorded,2026-11-21,3,Africa_Northern,Low,Low,False,evidence_03
+recorded,2026-11-21,4,Africa_Southern,Low,Low,False,evidence_04
+recorded,2026-11-21,5,Africa_Western,Low,Low,False,evidence_05
+recorded,2026-11-21,6,Australia_NZ,High,High,False,evidence_06
+recorded,2026-11-21,7,Brazil,High,High,False,evidence_07
+recorded,2026-11-21,8,Canada,Low,High,True,evidence_08
+recorded,2026-11-21,9,Central America and Caribbean,Low,Low,False,evidence_09
+recorded,2026-11-21,10,Central Asia,Low,Low,False,evidence_10
+recorded,2026-11-21,11,China,High,High,False,evidence_11
+recorded,2026-11-21,12,EU-12,High,High,False,evidence_12
+recorded,2026-11-21,13,EU-15,Low,High,True,evidence_13
+recorded,2026-11-21,14,Ukraine,Low,High,True,evidence_14
+recorded,2026-11-21,15,Europe_Non_EU,High,High,False,evidence_15
+recorded,2026-11-21,16,European Free Trade Association,Low,High,True,evidence_16
+recorded,2026-11-21,17,India,Low,Low,False,evidence_17
+recorded,2026-11-21,18,Indonesia,Low,Low,False,evidence_18
+recorded,2026-11-21,19,Japan,Low,Low,False,evidence_19
+recorded,2026-11-21,20,Mexico,Low,Low,False,evidence_20
+recorded,2026-11-21,21,Middle East,Low,Low,False,evidence_21
+recorded,2026-11-21,22,Pakistan,Low,Low,False,evidence_22
+recorded,2026-11-21,23,Russia,Low,Low,False,evidence_23
+recorded,2026-11-21,24,South Africa,Low,Low,False,evidence_24
+recorded,2026-11-21,25,South America_Northern,Low,Low,False,evidence_25
+recorded,2026-11-21,26,South America_Southern,Low,Low,False,evidence_26
+recorded,2026-11-21,27,South Asia,Low,Low,False,evidence_27
+recorded,2026-11-21,28,South Korea,Low,Low,False,evidence_28
+recorded,2026-11-21,29,Southeast Asia,Low,Low,False,evidence_29
+recorded,2026-11-21,30,Taiwan,Low,Low,False,evidence_30
+recorded,2026-11-21,31,Argentina,High,High,False,evidence_31
+recorded,2026-11-21,32,Colombia,Low,Low,False,evidence_32

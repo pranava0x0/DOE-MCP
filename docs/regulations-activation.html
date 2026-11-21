@@ -1,0 +1,76 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regulations.gov activation — DOE-MCP</title><link rel="icon" href="data:,">
+<link rel="canonical" href="https://pranava0x0.github.io/DOE-MCP/regulations-activation.html">
+<meta name="description" content="Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.">
+<meta property="og:title" content="Regulations.gov activation">
+<meta property="og:description" content="Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.">
+<meta property="og:type" content="website"><meta property="og:url" content="https://pranava0x0.github.io/DOE-MCP/regulations-activation.html">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" type="text/markdown" href="regulations-activation.md">
+<link rel="describedby" type="text/plain" href="llms.txt">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Regulations.gov activation", "url": "https://pranava0x0.github.io/DOE-MCP/regulations-activation.html", "description": "Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.", "isPartOf": {"@type": "WebSite", "name": "DOE-MCP", "url": "https://pranava0x0.github.io/DOE-MCP/"}}</script>
+<style>
+:root{color-scheme:light;--ink:#20342b;--paper:#f5f2e8;--accent:#38654c}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible{outline:3px solid #9e572b;outline-offset:4px}
+header,main{max-width:1040px;margin:auto;padding:24px}header{border-bottom:1px solid #a8b3a7}
+nav{display:flex;gap:20px;flex-wrap:wrap}h1,h2,h3{font-family:Georgia,serif;line-height:1.2;scroll-margin-top:1rem}
+pre{overflow:auto;background:#e8e7dd;padding:16px;border-radius:6px}code{font-size:.9em}
+table{display:block;overflow:auto;border-collapse:collapse;max-width:100%}td,th{padding:9px;border:1px solid #b4beb4;text-align:left}
+main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0;background:white;padding:10px}
+.application-page pre{white-space:pre-wrap;overflow-wrap:anywhere}
+@media(max-width:600px){
+.application-page table,.application-page tbody,.application-page tr,.application-page td{display:block;width:100%}
+.application-page table{overflow:visible}
+.application-page thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.application-page tr{border:1px solid #b4beb4;margin:12px 0;padding:8px}
+.application-page td{border:0;padding:6px 8px;text-align:left!important}
+.application-page td::before{content:attr(data-label);display:block;font-size:.8em;font-weight:600;color:#38654c}
+}
+</style></head><body class=""><a class="skip" href="#content">Skip to content</a>
+<header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Recorded demos</a></nav></header>
+<main id="content" tabindex="-1"><nav aria-label="On this page"><ul></ul></nav><h1 id="regulationsgov-activation">Regulations.gov activation</h1>
+<p>The integration is prepared but gated. <code>regulations-gov-doe</code> remains
+proposed, <code>doe-docs</code> remains planned, and no Regulations.gov fixture ships.
+The default application reads Federal Register notices and labels that
+scope. An explicit <code>--source regulations</code> refuses at the source gate.</p>
+<p>The November exploration capture made one HTTP 200 request whose response
+was discarded by an overly strict local quota-header check. After that
+check was corrected, one request received HTTP 429. Both attempts stopped
+without retry. No complete recording was written. The missing fixture
+cannot be replaced with a constructed response.</p>
+<p>Before activation:</p>
+<ol>
+<li>Re-read the publisher's GET API and key policies, and record their URLs
+and verdicts in the local evidence ledger. Check the applicable quota;
+do not retry a rate-limit refusal by changing keys, hosts or networks.</li>
+<li>Obtain the user's authorization to configure their own api.data.gov key.
+Use the hidden credential prompt, a pipe or <code>--from-env</code>. Never place a
+credential in a client configuration, fixture, log or command argument.
+The normal credential path rejects the public exploration key.</li>
+<li>Record the canonical plan through <code>tools/record_fixtures.py</code> and
+<code>record_through</code>: read docket <code>EERE-2025-OT-0031</code>, search its exact
+EERE document page, then read a document id returned by that search.
+The docket id comes from the existing Federal Register recording.
+Stop on a failed interaction and preserve the whole-file write guards.</li>
+<li>Inspect the captured metadata, dates, boolean fields, filter results and
+publisher links. Add its factual metadata entry to <code>THIRD_PARTY_DATA.yml</code>.
+Do not infer a licence for linked documents or record comment bodies.</li>
+<li>Add positive replay tests for all prepared operations, cache provenance,
+totals, pagination and returned agency and docket validation. Extend the
+activation sabotage matrix. Use <code>keyed_ctx</code> and isolated replay keys.
+Run the full suite immediately after recording.</li>
+<li>Activate the manifest and its docket-metadata capability only after those
+checks pass. Promote the docs lineup, add its profiles and executable,
+and scope that server to <code>API_DATA_GOV_KEY</code>. Retain the Federal Register
+tools in the existing research profiles and keep those profiles within
+their tool ceilings. Every server must carry the third-party text rule.</li>
+<li>Run the source validator, schema and site builders, Ruff, the full replay
+suite and the writing checker. Demonstrate the default recorded notice
+app and the explicit recorded docket app with credentials loading disabled.</li>
+</ol>
+<p>The prepared scope is EERE docket and document metadata. Docket search,
+other agency codes, comments and attachment retrieval require their own
+recorded evidence before they are exposed.</p>
+</main></body></html>

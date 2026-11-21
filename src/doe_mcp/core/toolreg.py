@@ -88,7 +88,7 @@ PROFILES: dict[str, list[tuple[str, str]]] = {
                            ("registry", "discovery"),
                            ("discovery", "facilities")],
     "research:all": [("research", "*"), ("registry", "*"),
-                     ("discovery", "*"), ("docs", "*"),
+                     ("discovery", "*"), ("docs", "default"),
                      ("tech", "*")],
     "energy:default": [("energy", "default"), ("registry", "discovery-min")],
     "energy:all": [("energy", "*"), ("registry", "*")],

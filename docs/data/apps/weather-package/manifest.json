@@ -1,0 +1,21 @@
+{
+  "application": "weather-package",
+  "mode": "recorded",
+  "files": [
+    {
+      "file": "report.json",
+      "bytes": 11882,
+      "sha256": "7b84043101904eaaedc295f72bffdf85567d2347240ec27c338aa99d2fb63391"
+    },
+    {
+      "file": "weather-croissant.json",
+      "bytes": 4493,
+      "sha256": "dfda4ec620a512288036577973cc5ed3c389609789c3dc7e6b623724d86d000b"
+    },
+    {
+      "file": "weather.csv",
+      "bytes": 133,
+      "sha256": "dd077ebf7adc63676330ed01151dcad69adf15a29fc3024ab6a358b3d36f001f"
+    }
+  ]
+}

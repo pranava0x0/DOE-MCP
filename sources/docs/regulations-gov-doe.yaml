@@ -12,28 +12,31 @@ aliases:
 
 labs: []
 
-# Capabilities stay empty until this source is active: a capability id
-# is a routing promise, and the activation gate refuses one from a
-# manifest nothing can query. What this source would serve is listed
-# under planned_capabilities, which nothing routes on.
 capabilities: []
-
-planned_capabilities: ['docs.search_rulemakings']
+planned_capabilities: ['docs.docket_metadata']
 adapter:
-  type: none
+  type: regulations_gov
+  base_url: https://api.regulations.gov/v4
+  credential_ref: API_DATA_GOV_KEY
+  agency_ids: ['EERE']
 
 access:
   mode: api_key
+  credential_ref: API_DATA_GOV_KEY
   automation_status: public_api
   tier: thin_proxy
   terms_url: https://open.gsa.gov/api/regulationsgov/
+  terms_reviewed_at: "2026-11-21"
   terms_notes: >
-    GSA's eRulemaking API. Needs an api.data.gov key, the same key
-    class as the NLR developer network; DEMO_KEY works at a low rate
-    limit. A filter on agencyId EERE returned 200 on 2026-09-08 (page
-    size must be five or more). DOE dockets are filed under the
-    historical office codes, so the agency-id list needs the
-    organisation table's aliases.
+    GSA documents GET access to docket and document metadata, with an
+    api.data.gov key in the X-Api-Key header. The public demonstration
+    key is for API exploration; live tools require a user-owned key.
+    Comment submission uses POST and is outside this adapter.
+  rate_limit_note: >
+    api.data.gov publishes request limits; inspect the response headers
+    for the applicable allowance. The demonstration responses in the
+    2026-11-21 probe advertised a limit of ten. Do not retry a refusal
+    by changing keys or hosts.
 
 freshness:
   expected_cadence: continuous
@@ -43,33 +46,39 @@ freshness:
 
 coverage:
   scope: >
-    Dockets, documents, and public comments for DOE rulemakings,
-    including the appliance and equipment standards program.
-  temporal: 2000s onward, by docket
+    Regulations.gov docket and document metadata under the verified EERE
+    agency code, including publisher identifiers, modification dates and
+    comment windows when supplied. Other DOE agency codes are not yet
+    verified. No public comment text, attachments or document bodies.
+  temporal: By docket, as exposed by the publisher
   dataset_version: "current"
   known_limitations:
     - >
-      Agency ids are historical. Dockets opened under EERE keep the EERE
-      id after the office's dissolution; a caller asking about CMEI must
-      be routed to the old codes.
+      The verified agency scope is EERE only. This historical code does
+      not establish complete coverage of DOE or its current offices.
     - >
-      Keyed and rate-limited. The shared 1,000-per-hour api.data.gov
-      budget applies across every API the key touches.
+      Document searches require an exact docket id and are bounded to
+      twenty rows per page and twenty pages. A page is not a full docket.
+    - >
+      Comment dates and withdrawal fields are publisher metadata; they
+      do not establish a legal deadline or the complete public record.
 
 authority_notes: >
-  Primary for the comment record. Complements the Federal Register
-  source, which has the published documents but not the dockets'
-  comments. Found in the 2026-09-08 gap sweep.
+  Primary publisher metadata. The Federal Register source carries the
+  published notice; this source describes its docket and documents.
+  The November implementation serves the verified EERE subset only.
 
 health:
-  probe: none
+  probe: regulations_gov_docket
+  expect:
+    min_records: 1
 
 lifecycle:
   declared_state: proposed
   added: "2026-09-08"
-  last_verified: "2026-09-08"
+  last_verified: "2026-11-21"
   verified_by: pranava0x0
   blocked_reason: >
-    Phase 3 or later: needs the apidatagov_rest adapter and the
-    credential UX that EIA is proving out. Ships with the Federal
-    Register source under the docs capability.
+    Not activated. Needs a user-owned api.data.gov key and recorded
+    publisher responses. The 2026-11-21 exploration capture stopped on
+    HTTP 429 without retry; no fixture was written.

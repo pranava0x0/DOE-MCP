@@ -593,6 +593,8 @@ def main() -> int:
 
     if args.fixtures:
         asyncio.run(write_workflows())
+        from build_applications import write_applications
+        asyncio.run(write_applications(ROOT))
 
     write_readme_status(data)
     REFERENCE.write_text(render_reference(

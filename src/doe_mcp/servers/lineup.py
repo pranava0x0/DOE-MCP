@@ -247,11 +247,11 @@ SERVER_LINEUP: tuple[ServerSpec, ...] = (
                      "but its source is blocked pending API-key access review.")),
     ServerSpec(
         name="doe-docs", key="docs", status="planned",
-        description=("NEPA documents and DOE directives — or a catalog entry "
-                     "pointing at PNNL's NEPA-MCP, which already serves "
-                     "them. The Federal Register slice did not wait for it: "
-                     "it needs no crawler and ships in doe-research as "
-                     "docs.search_rulemakings and docs.get_rulemaking.")),
+        needs_credentials=("API_DATA_GOV_KEY",),
+        description=("Planned DOE docket metadata server. Regulations.gov integration "
+                     "is gated pending a user-owned api.data.gov key and recorded "
+                     "publisher responses. Federal Register notice tools remain "
+                     "available in doe-research.")),
     *(ServerSpec(name="doe-" + key, key=key, status="shipping",
                  default_profile=key + ":default",
                  description=description,

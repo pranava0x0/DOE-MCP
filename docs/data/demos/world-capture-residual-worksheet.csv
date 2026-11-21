@@ -1,7 +1,7 @@
 Run mode,Registry revision,Fuel,Technology,Initial future capture,2100 capture,Initial future residual,2100 residual,Step 1 evidence ID
-recorded,2026-11-09,coal,coal (conv pul CCS),0.85,0.95,0.15,0.05,evidence_01
-recorded,2026-11-09,coal,coal (IGCC CCS),0.85,0.95,0.15,0.05,evidence_02
-recorded,2026-11-09,gas,gas (CC CCS),0.85,0.95,0.15,0.05,evidence_03
-recorded,2026-11-09,refined liquids,refined liquids (CC CCS),0.85,0.95,0.15,0.05,evidence_04
-recorded,2026-11-09,biomass,biomass (conv CCS),0.85,0.95,0.15,0.05,evidence_05
-recorded,2026-11-09,biomass,biomass (IGCC CCS),0.85,0.95,0.15,0.05,evidence_06
+recorded,2026-11-21,coal,coal (conv pul CCS),0.85,0.95,0.15,0.05,evidence_01
+recorded,2026-11-21,coal,coal (IGCC CCS),0.85,0.95,0.15,0.05,evidence_02
+recorded,2026-11-21,gas,gas (CC CCS),0.85,0.95,0.15,0.05,evidence_03
+recorded,2026-11-21,refined liquids,refined liquids (CC CCS),0.85,0.95,0.15,0.05,evidence_04
+recorded,2026-11-21,biomass,biomass (conv CCS),0.85,0.95,0.15,0.05,evidence_05
+recorded,2026-11-21,biomass,biomass (IGCC CCS),0.85,0.95,0.15,0.05,evidence_06

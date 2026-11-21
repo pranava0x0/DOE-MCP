@@ -19,7 +19,16 @@ nav{display:flex;gap:20px;flex-wrap:wrap}h1,h2,h3{font-family:Georgia,serif;line
 pre{overflow:auto;background:#e8e7dd;padding:16px;border-radius:6px}code{font-size:.9em}
 table{display:block;overflow:auto;border-collapse:collapse;max-width:100%}td,th{padding:9px;border:1px solid #b4beb4;text-align:left}
 main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0;background:white;padding:10px}
-</style></head><body><a class="skip" href="#content">Skip to content</a>
+.application-page pre{white-space:pre-wrap;overflow-wrap:anywhere}
+@media(max-width:600px){
+.application-page table,.application-page tbody,.application-page tr,.application-page td{display:block;width:100%}
+.application-page table{overflow:visible}
+.application-page thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.application-page tr{border:1px solid #b4beb4;margin:12px 0;padding:8px}
+.application-page td{border:0;padding:6px 8px;text-align:left!important}
+.application-page td::before{content:attr(data-label);display:block;font-size:.8em;font-weight:600;color:#38654c}
+}
+</style></head><body class=""><a class="skip" href="#content">Skip to content</a>
 <header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Recorded demos</a></nav></header>
 <main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#pr-assessment">PR assessment</a></li><li><a href="#repairs-and-usability">Repairs and usability</a></li><li><a href="#security-scope">Security scope</a></li><li><a href="#validation">Validation</a></li><li><a href="#expansion-order">Expansion order</a></li><li><a href="#evidence-and-models">Evidence and models</a></li><li><a href="#follow-up-correction-2026-11-21">Follow-up correction, 2026-11-21</a></li></ul></nav><h1 id="doe-mcp-review-2026-11-21">DOE-MCP review, 2026-11-21</h1>
 <p>The shared core and domain servers remain a sound design. Activation gates,
@@ -35,78 +44,78 @@ informed a focused source review; its formal full-audit workflow did not run.</p
 <table>
 <thead>
 <tr>
-<th>PR</th>
-<th>Assessment of the current result</th>
+<th scope="col">PR</th>
+<th scope="col">Assessment of the current result</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>#1</td>
-<td>Closed checkout update; retain immutable action pins and read-only workflow permissions. A version change alone is not evidence of a defect.</td>
+<td data-label="PR">#1</td>
+<td data-label="Assessment of the current result">Closed checkout update; retain immutable action pins and read-only workflow permissions. A version change alone is not evidence of a defect.</td>
 </tr>
 <tr>
-<td>#2</td>
-<td>Closed setup-uv update; retain the manual action review policy.</td>
+<td data-label="PR">#2</td>
+<td data-label="Assessment of the current result">Closed setup-uv update; retain the manual action review policy.</td>
 </tr>
 <tr>
-<td>#3</td>
-<td>Closed Ruff update; lint is a useful gate, but a newer linter is not a security repair.</td>
+<td data-label="PR">#3</td>
+<td data-label="Assessment of the current result">Closed Ruff update; lint is a useful gate, but a newer linter is not a security repair.</td>
 </tr>
 <tr>
-<td>#4</td>
-<td>Closed Pydantic patch update; later publisher advisories justify updating to 2.14.2.</td>
+<td data-label="PR">#4</td>
+<td data-label="Assessment of the current result">Closed Pydantic patch update; later publisher advisories justify updating to 2.14.2.</td>
 </tr>
 <tr>
-<td>#5</td>
-<td>Closed MCP SDK update; publisher advisories now justify updating to 2.2.0 and repeating the stdio contract checks.</td>
+<td data-label="PR">#5</td>
+<td data-label="Assessment of the current result">Closed MCP SDK update; publisher advisories now justify updating to 2.2.0 and repeating the stdio contract checks.</td>
 </tr>
 <tr>
-<td>#6</td>
-<td>Outage discovery, facility status and microbiome coverage are useful additions. Repair the status adapter's loss of the separate outage fetch metadata.</td>
+<td data-label="PR">#6</td>
+<td data-label="Assessment of the current result">Outage discovery, facility status and microbiome coverage are useful additions. Repair the status adapter's loss of the separate outage fetch metadata.</td>
 </tr>
 <tr>
-<td>#7</td>
-<td>A shared skill reader and explicit Genesis compatibility are good boundaries. Deterministic benches do not establish model reasoning quality.</td>
+<td data-label="PR">#7</td>
+<td data-label="Assessment of the current result">A shared skill reader and explicit Genesis compatibility are good boundaries. Deterministic benches do not establish model reasoning quality.</td>
 </tr>
 <tr>
-<td>#8</td>
-<td>Keep visible access limitations and the mobile section controls. The larger catalog now needs text search.</td>
+<td data-label="PR">#8</td>
+<td data-label="Assessment of the current result">Keep visible access limitations and the mobile section controls. The larger catalog now needs text search.</td>
 </tr>
 <tr>
-<td>#9</td>
-<td>Bibliography and soil worksheets retain evidence and missing fields. Extend only with publisher-specific field meanings.</td>
+<td data-label="PR">#9</td>
+<td data-label="Assessment of the current result">Bibliography and soil worksheets retain evidence and missing fields. Extend only with publisher-specific field meanings.</td>
 </tr>
 <tr>
-<td>#11</td>
-<td>Keep the Daymet calendar, checksum and independent-reader checks. Parameterized packaging is more useful next than another fixed example.</td>
+<td data-label="PR">#11</td>
+<td data-label="Assessment of the current result">Keep the Daymet calendar, checksum and independent-reader checks. Parameterized packaging is more useful next than another fixed example.</td>
 </tr>
 <tr>
-<td>#12</td>
-<td>The persistence baseline retains both readings and excludes invalid pairs. It is a retrospective benchmark, not an operational forecast.</td>
+<td data-label="PR">#12</td>
+<td data-label="Assessment of the current result">The persistence baseline retains both readings and excludes invalid pairs. It is a retrospective benchmark, not an operational forecast.</td>
 </tr>
 <tr>
-<td>#13</td>
-<td>Counting measured slots separately from gaps is correct. The repeated hour and full-file counts remain covered by regression tests.</td>
+<td data-label="PR">#13</td>
+<td data-label="Assessment of the current result">Counting measured slots separately from gaps is correct. The repeated hour and full-file counts remain covered by regression tests.</td>
 </tr>
 <tr>
-<td>#14</td>
-<td>A shared GCAM reader prevents parser duplication. One-file tools still create discovery work; expose their columns and tool mappings through existing registry metadata.</td>
+<td data-label="PR">#14</td>
+<td data-label="Assessment of the current result">A shared GCAM reader prevents parser duplication. One-file tools still create discovery work; expose their columns and tool mappings through existing registry metadata.</td>
 </tr>
 <tr>
-<td>#15</td>
-<td>Reusable methods and calibration/evaluation separation are useful. Add optional semantic evaluation tasks without calling replay success an accuracy score.</td>
+<td data-label="PR">#15</td>
+<td data-label="Assessment of the current result">Reusable methods and calibration/evaluation separation are useful. Add optional semantic evaluation tasks without calling replay success an accuracy score.</td>
 </tr>
 <tr>
-<td>#16</td>
-<td>Keep region-convention checks, complete-page requirements and evidence after sorting.</td>
+<td data-label="PR">#16</td>
+<td data-label="Assessment of the current result">Keep region-convention checks, complete-page requirements and evidence after sorting.</td>
 </tr>
 <tr>
-<td>#17</td>
-<td>The atlas styling and worksheet charts help scanning. Keep signed numbers numeric and formula-like text escaped in CSV.</td>
+<td data-label="PR">#17</td>
+<td data-label="Assessment of the current result">The atlas styling and worksheet charts help scanning. Keep signed numbers numeric and formula-like text escaped in CSV.</td>
 </tr>
 <tr>
-<td>#18</td>
-<td>The simpler headings improve the site. Preserve the distinctions between blank and zero cells, electricity and material inputs, and lifetime and retirement half-life.</td>
+<td data-label="PR">#18</td>
+<td data-label="Assessment of the current result">The simpler headings improve the site. Preserve the distinctions between blank and zero cells, electricity and material inputs, and lifetime and retirement half-life.</td>
 </tr>
 </tbody>
 </table>

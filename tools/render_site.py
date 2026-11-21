@@ -860,7 +860,7 @@ def render(data: dict) -> str:
   <h1>A field guide to DOE data.</h1>
   <p class="tagline">Explore energy, land and research data from the US Department of Energy and its national laboratories.</p>
   <p class="free">Free and open source (Apache-2.0). Most tools need no account or API key. Every demo runs on recorded data.</p>
-  <div class="atlas-actions"><a class="primary" href="#genesis-mission">Explore Genesis skills ↓</a><a href="demos.html">All demos</a><a href="#start-install">Install</a><a href="#registry-sources">Source coverage</a><a href="guide.html">Local guide</a></div>
+  <div class="atlas-actions"><a class="primary" href="#genesis-mission">Explore Genesis skills ↓</a><a href="applications.html">Applications</a><a href="demos.html">All demos</a><a href="#start-install">Install</a><a href="#registry-sources">Source coverage</a><a href="guide.html">Local guide</a></div>
   </div><div class="atlas-plate">{globe()}</div></div>
   <div class="atlas-inventory">{_inventory(c)}
   <p class="works">Works with: {works}</p></div>
@@ -891,6 +891,9 @@ def render(data: dict) -> str:
   <details><summary>Genesis Skills compatibility</summary>
   <p>DOE-MCP's skills use the same Agent Skills format as <a href="https://github.com/AI-ModCon/genesis-skills">Genesis Agent Skills</a>. The demos use DOE-MCP's own tools; no upstream skills or lab services run here. <a href="guide.html#genesis-and-no-cost-demos">Integration and cost details</a>.</p>
   </details>
+  <h3 id="applications">Applications</h3>
+  <p>Run a grid forecast benchmark, build a weather package, or track DOE Federal Register notices locally. Each writes a bundle with evidence and checksums. Regulations.gov docket metadata remains a gated integration.</p>
+  <p><a href="applications.html">Explore three applications and download recorded bundles</a> · <a href="apps.html">CLI options and limits</a></p>
   <h3 id="overview-queries">Questions it answers</h3>
   <p class="lede">Each question below is answered by one tool on one server:</p>
   {_questions(data)}

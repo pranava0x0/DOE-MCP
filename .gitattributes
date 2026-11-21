@@ -1,0 +1,4 @@
+# Checksummed recorded exports must retain their exact bytes on checkout.
+docs/data/**/*.csv -text whitespace=cr-at-eol
+docs/data/**/*.json -text
+docs/data/**/*.zip binary

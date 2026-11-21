@@ -19,7 +19,16 @@ nav{display:flex;gap:20px;flex-wrap:wrap}h1,h2,h3{font-family:Georgia,serif;line
 pre{overflow:auto;background:#e8e7dd;padding:16px;border-radius:6px}code{font-size:.9em}
 table{display:block;overflow:auto;border-collapse:collapse;max-width:100%}td,th{padding:9px;border:1px solid #b4beb4;text-align:left}
 main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0;background:white;padding:10px}
-</style></head><body><a class="skip" href="#content">Skip to content</a>
+.application-page pre{white-space:pre-wrap;overflow-wrap:anywhere}
+@media(max-width:600px){
+.application-page table,.application-page tbody,.application-page tr,.application-page td{display:block;width:100%}
+.application-page table{overflow:visible}
+.application-page thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.application-page tr{border:1px solid #b4beb4;margin:12px 0;padding:8px}
+.application-page td{border:0;padding:6px 8px;text-align:left!important}
+.application-page td::before{content:attr(data-label);display:block;font-size:.8em;font-weight:600;color:#38654c}
+}
+</style></head><body class=""><a class="skip" href="#content">Skip to content</a>
 <header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Recorded demos</a></nav></header>
 <main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#start-with-a-recorded-workflow">Start with a recorded workflow</a></li><li><a href="#use-live-publishers-locally">Use live publishers locally</a></li><li><a href="#genesis-and-no-cost-demos">Genesis and no-cost demos</a></li><li><a href="#connect-a-client-and-provide-a-skill">Connect a client and provide a skill</a></li><li><a href="#interpret-the-result">Interpret the result</a></li><li><a href="#evaluate-agent-behavior">Evaluate agent behavior</a></li><li><a href="#development-checks">Development checks</a></li><li><a href="#rulemaking-brief">Rulemaking brief</a></li><li><a href="#historical-outage-data-finder">Historical outage-data finder</a></li><li><a href="#load-a-daymet-temperature-extract">Load a Daymet temperature extract</a></li><li><a href="#score-a-five-minute-bpa-load-prediction">Score a five-minute BPA load prediction</a></li></ul></nav><h1 id="local-workflows-and-evidence">Local workflows and evidence</h1>
 <p>DOE-MCP reads public publisher APIs through focused domain servers. Each
@@ -83,91 +92,91 @@ it draws on and has a bench that checks results from recorded data.</p>
 <table>
 <thead>
 <tr>
-<th>Installed DOE-MCP skill</th>
-<th>Genesis method</th>
-<th>Recorded result</th>
+<th scope="col">Installed DOE-MCP skill</th>
+<th scope="col">Genesis method</th>
+<th scope="col">Recorded result</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>genesis-build-bibliography</code></td>
-<td>literature-search</td>
-<td><a href="demos.html#bibliography">Citation worksheet</a> with omitted author counts.</td>
+<td data-label="Installed DOE-MCP skill"><code>genesis-build-bibliography</code></td>
+<td data-label="Genesis method">literature-search</td>
+<td data-label="Recorded result"><a href="demos.html#bibliography">Citation worksheet</a> with omitted author counts.</td>
 </tr>
 <tr>
-<td><code>genesis-draft-dataset-card</code></td>
-<td>datacard-generator</td>
-<td><a href="demos.html#dataset-card">Geothermal metadata draft</a> with file integrity, rights and sensitivity left for the owner.</td>
+<td data-label="Installed DOE-MCP skill"><code>genesis-draft-dataset-card</code></td>
+<td data-label="Genesis method">datacard-generator</td>
+<td data-label="Recorded result"><a href="demos.html#dataset-card">Geothermal metadata draft</a> with file integrity, rights and sensitivity left for the owner.</td>
 </tr>
 <tr>
-<td><code>genesis-package-weather-data</code></td>
-<td>croissant-validator</td>
-<td><a href="demos.html#daymet-calendar">Daymet CSV and Croissant metadata</a> with a checksum for the exported bytes.</td>
+<td data-label="Installed DOE-MCP skill"><code>genesis-package-weather-data</code></td>
+<td data-label="Genesis method">croissant-validator</td>
+<td data-label="Recorded result"><a href="demos.html#daymet-calendar">Daymet CSV and Croissant metadata</a> with a checksum for the exported bytes.</td>
 </tr>
 <tr>
-<td><code>genesis-audit-sample-fields</code></td>
-<td>data-exploration</td>
-<td><a href="demos.html#soil-metadata">Soil metadata audit</a> with missing-field counts on the returned page.</td>
+<td data-label="Installed DOE-MCP skill"><code>genesis-audit-sample-fields</code></td>
+<td data-label="Genesis method">data-exploration</td>
+<td data-label="Recorded result"><a href="demos.html#soil-metadata">Soil metadata audit</a> with missing-field counts on the returned page.</td>
 </tr>
 <tr>
-<td><code>genesis-score-load-errors</code></td>
-<td>uq-metrics-evaluator</td>
-<td><a href="demos.html#load-baseline">BPA baseline errors</a> with mean absolute and root mean squared error in MW.</td>
+<td data-label="Installed DOE-MCP skill"><code>genesis-score-load-errors</code></td>
+<td data-label="Genesis method">uq-metrics-evaluator</td>
+<td data-label="Recorded result"><a href="demos.html#load-baseline">BPA baseline errors</a> with mean absolute and root mean squared error in MW.</td>
 </tr>
 <tr>
-<td><code>genesis-check-prediction-bands</code></td>
-<td>uncertainty-quantification</td>
-<td><a href="demos.html#load-interval-check">Prediction band worksheet</a> with separate calibration and evaluation rows.</td>
+<td data-label="Installed DOE-MCP skill"><code>genesis-check-prediction-bands</code></td>
+<td data-label="Genesis method">uncertainty-quantification</td>
+<td data-label="Recorded result"><a href="demos.html#load-interval-check">Prediction band worksheet</a> with separate calibration and evaluation rows.</td>
 </tr>
 <tr>
-<td><code>genesis-audit-region-keys</code></td>
-<td>data-exploration</td>
-<td><a href="demos.html#latin-america-regions">Map Latin American country codes</a>.</td>
+<td data-label="Installed DOE-MCP skill"><code>genesis-audit-region-keys</code></td>
+<td data-label="Genesis method">data-exploration</td>
+<td data-label="Recorded result"><a href="demos.html#latin-america-regions">Map Latin American country codes</a>.</td>
 </tr>
 <tr>
-<td><code>genesis-check-share-balance</code></td>
-<td>data-exploration</td>
-<td><a href="demos.html#china-cooling-balance">Check China's coal cooling shares</a>.</td>
+<td data-label="Installed DOE-MCP skill"><code>genesis-check-share-balance</code></td>
+<td data-label="Genesis method">data-exploration</td>
+<td data-label="Recorded result"><a href="demos.html#china-cooling-balance">Check China's coal cooling shares</a>.</td>
 </tr>
 <tr>
-<td><code>genesis-document-model-columns</code></td>
-<td>datacard-generator</td>
-<td><a href="demos.html#world-bioenergy-columns">Compare regional bioenergy settings</a>.</td>
+<td data-label="Installed DOE-MCP skill"><code>genesis-document-model-columns</code></td>
+<td data-label="Genesis method">datacard-generator</td>
+<td data-label="Recorded result"><a href="demos.html#world-bioenergy-columns">Compare regional bioenergy settings</a>.</td>
 </tr>
 <tr>
-<td><code>genesis-compare-resource-grades</code></td>
-<td>data-exploration</td>
-<td><a href="demos.html#world-geothermal-grades">Compare geothermal heat across regions</a>.</td>
+<td data-label="Installed DOE-MCP skill"><code>genesis-compare-resource-grades</code></td>
+<td data-label="Genesis method">data-exploration</td>
+<td data-label="Recorded result"><a href="demos.html#world-geothermal-grades">Compare geothermal heat across regions</a>.</td>
 </tr>
 <tr>
-<td><code>genesis-compare-fallback-rates</code></td>
-<td>data-exploration</td>
-<td><a href="demos.html#world-crop-rates">Compare crop yield assumptions</a>.</td>
+<td data-label="Installed DOE-MCP skill"><code>genesis-compare-fallback-rates</code></td>
+<td data-label="Genesis method">data-exploration</td>
+<td data-label="Recorded result"><a href="demos.html#world-crop-rates">Compare crop yield assumptions</a>.</td>
 </tr>
 <tr>
-<td><code>genesis-compute-residual-shares</code></td>
-<td>data-exploration</td>
-<td><a href="demos.html#world-capture-residual">Account for uncaptured carbon</a>.</td>
+<td data-label="Installed DOE-MCP skill"><code>genesis-compute-residual-shares</code></td>
+<td data-label="Genesis method">data-exploration</td>
+<td data-label="Recorded result"><a href="demos.html#world-capture-residual">Account for uncaptured carbon</a>.</td>
 </tr>
 <tr>
-<td><code>genesis-read-signed-response</code></td>
-<td>data-exploration</td>
-<td><a href="demos.html#world-industry-response">Read industrial demand elasticity</a>.</td>
+<td data-label="Installed DOE-MCP skill"><code>genesis-read-signed-response</code></td>
+<td data-label="Genesis method">data-exploration</td>
+<td data-label="Recorded result"><a href="demos.html#world-industry-response">Read industrial demand elasticity</a>.</td>
 </tr>
 <tr>
-<td><code>genesis-convert-energy-units</code></td>
-<td>data-exploration</td>
-<td><a href="demos.html#world-desalination-electricity">Convert desalination electricity inputs</a>.</td>
+<td data-label="Installed DOE-MCP skill"><code>genesis-convert-energy-units</code></td>
+<td data-label="Genesis method">data-exploration</td>
+<td data-label="Recorded result"><a href="demos.html#world-desalination-electricity">Convert desalination electricity inputs</a>.</td>
 </tr>
 <tr>
-<td><code>genesis-audit-coefficient-gaps</code></td>
-<td>data-exploration</td>
-<td><a href="demos.html#world-coefficient-gaps">Inspect blanks in emissions coefficients</a>.</td>
+<td data-label="Installed DOE-MCP skill"><code>genesis-audit-coefficient-gaps</code></td>
+<td data-label="Genesis method">data-exploration</td>
+<td data-label="Recorded result"><a href="demos.html#world-coefficient-gaps">Inspect blanks in emissions coefficients</a>.</td>
 </tr>
 <tr>
-<td><code>genesis-separate-retirement-parameters</code></td>
-<td>datacard-generator</td>
-<td><a href="demos.html#world-retirement-parameters">Separate two retirement parameters</a>.</td>
+<td data-label="Installed DOE-MCP skill"><code>genesis-separate-retirement-parameters</code></td>
+<td data-label="Genesis method">datacard-generator</td>
+<td data-label="Recorded result"><a href="demos.html#world-retirement-parameters">Separate two retirement parameters</a>.</td>
 </tr>
 </tbody>
 </table>
