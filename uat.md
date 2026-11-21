@@ -222,3 +222,10 @@ with installed Chrome 158.0.8127.36 on loopback; they are scripted local
 checks. A homepage-to-bundle journey now measures clicks, wheel actions and
 navigation with the shared audit instrumentation. Its results follow after
 integration with the other applications.
+
+The first integrated matrix journey passed all 36 site paths and 395 local
+targets. Reaching its bundle through the guide took five clicks and four
+document loads, plus three wheel actions on the phone and one at larger
+widths. A direct homepage Evaluation lab shortcut now avoids those guide
+steps. The separate functional audit still checks the guide and contract.
+The integrated regression suite passed 1,496 tests with one optional skip.

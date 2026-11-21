@@ -355,11 +355,7 @@ async function evaluationJourney(browser, viewport) {
   const {page, context} = await pageFor(browser, viewport, counters);
   try {
     await page.goto(base + '/index.html', {waitUntil: 'domcontentloaded'});
-    await click(page, page.locator('.atlas-actions a[href="guide.html"]'), counters, 'local guide');
-    await click(page, page.locator('nav[aria-label="On this page"] a[href="#evaluate-agent-behavior"]'), counters, 'evaluation guide');
-    await click(page, page.getByRole('link', {name: 'Compare existing reports offline', exact: true}), counters, 'comparison contract');
-    await page.getByRole('heading', {name: 'Compare evaluation reports offline', exact: true}).waitFor();
-    await click(page, page.getByRole('link', {name: 'Inspect the deterministic driver demonstration', exact: true}), counters, 'simulation example');
+    await click(page, page.locator('.atlas-actions a[href="evaluation-example.html"]'), counters, 'evaluation lab');
     await page.getByRole('heading', {name: 'Evaluation matrix demonstration', exact: true}).waitFor();
     assert.equal(await page.getByText('Unknown: no reviews', {exact: true}).count(), 4);
     assert.equal(await page.getByText('Unknown: no prices', {exact: true}).count(), 4);
