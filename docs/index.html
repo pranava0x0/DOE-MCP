@@ -153,8 +153,6 @@ section{border-bottom:1px solid var(--line);scroll-margin-top:4.2rem}
 h3[id]{scroll-margin-top:4.5rem}
 h2{font-family:var(--display);font-weight:700;font-size:1.28rem;
    margin:0 0 .5rem;letter-spacing:-.01em}
-h2 .num{color:var(--faint);font-weight:400;margin-right:.5rem;
-  font-variant-numeric:tabular-nums;font-size:.9em}
 h3{font-size:.98rem;margin:1.6rem 0 .5rem}
 .lede{color:var(--muted);margin:0 0 1.1rem;max-width:45rem}
 
@@ -276,24 +274,24 @@ a{color:var(--accent)}
 .toc-brand{font:bold 1.15rem Georgia,serif}.toc-brand:before{content:"";display:inline-block;width:.7em;height:.7em;border-radius:50%;background:#bf5d33;margin-right:.4em}
 header{background:#153e35;color:#f7f5e6;padding:clamp(24px,4vw,52px) 0 18px}
 .atlas-top{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(200px,.83fr);gap:clamp(20px,5vw,72px);align-items:center}
-.atlas-kicker,.plate-cap,.atlas-label{font:600 .72rem/1.4 var(--mono);letter-spacing:.11em;text-transform:uppercase}
-.atlas-kicker{color:#eabd8c;margin:0 0 12px}header h1{font:500 clamp(2.8rem,6vw,5.3rem)/.99 Georgia,serif;letter-spacing:-.055em;max-width:14ch;margin:0 0 18px}
+header h1{font:500 clamp(2.8rem,6vw,5.3rem)/.99 Georgia,serif;letter-spacing:-.055em;max-width:14ch;margin:0 0 18px}
 header h1{text-wrap:balance}header .tagline{color:#dde9de;max-width:43ch;font-size:1.05rem}header .free{color:#d0dfd1;max-width:56ch;font-size:.87rem}
 .atlas-actions{display:flex;align-items:center;flex-wrap:wrap;gap:1.1rem;margin:16px 0}
 .atlas-actions a{color:#fff2d6;font-weight:600;text-underline-offset:4px}
 .atlas-actions .primary{display:inline-block;background:#ffcd94;color:#243b31;border-radius:3px;padding:9px 14px;text-decoration:none}
 .atlas-plate{max-width:340px;justify-self:center;width:100%;margin:0}.atlas-plate svg{display:block;width:100%}
-.plate-cap{display:flex;justify-content:space-between;color:#e4c59d;margin:4px 12px 12px}
 .atlas-inventory{margin-top:18px;padding-top:16px;border-top:1px solid #517368}
 header .funnel .step{background:transparent;border-color:#648175;color:white}header .funnel .step b{color:#fff1d2}header .funnel .step span,header .works,header .works b,header .inventory,header .inventory a{color:#d7e5d7}
 header a:focus-visible{outline:3px solid #ffcd94;outline-offset:3px}
 #genesis-mission{font:500 clamp(1.7rem,4vw,2.8rem)/1.15 Georgia,serif;margin:24px 0 0;scroll-margin-top:4rem}
 .demo-link{border-radius:4px;box-shadow:0 3px 0 #e3e8de}.demo-link strong{color:#183e33;font:600 1.25rem/1.2 Georgia,serif}
-.demo-link:hover{background:#f4f7ee}.atlas-label{display:block;color:#654722;border-top:3px solid #b97539;padding-top:10px}
-.demo-link:has(.atlas-label){background:#f8edd8}.demo-link:has(.land){background:#e5efde}.atlas-label.land{color:#385a36;border-color:#577c46}
-.demo-link:has(.economy){background:#e5edf2}.atlas-label.economy{color:#31546b;border-color:#537991}
+.demo-link:hover{background:#f4f7ee}
+.demo-link[data-field]{border-top:3px solid #b97539;background:#f8edd8}
+.demo-link[data-field="land"]{background:#e5efde;border-top-color:#577c46}
+.demo-link[data-field="economy"],.demo-link[data-field="water"]{background:#e5edf2;border-top-color:#537991}
+.demo-link[data-field="emissions"]{background:#eee7ec;border-top-color:#93627b}
 @media(max-width:650px){.atlas-top{grid-template-columns:1fr;gap:0}.atlas-plate{display:none}header h1{max-width:15ch;font-size:clamp(2.35rem,10vw,3.7rem)}
-.atlas-actions{display:grid;grid-template-columns:max-content max-content;justify-content:start;gap:8px 20px;font-size:.91rem}.atlas-actions .primary{grid-column:1/-1;text-align:center}.atlas-inventory{margin-top:8px}.demo-link:has(.atlas-label) span{display:block}.demo-link:has(.atlas-label){gap:7px}}
+.atlas-actions{display:grid;grid-template-columns:max-content max-content;justify-content:start;gap:8px 20px;font-size:.91rem}.atlas-actions .primary{grid-column:1/-1;text-align:center}.atlas-inventory{margin-top:8px}.demo-link[data-field] span{display:block}.demo-link[data-field]{gap:7px}}
 </style>
 </head>
 <body>
@@ -312,12 +310,11 @@ header a:focus-visible{outline:3px solid #ffcd94;outline-offset:3px}
 
 <header><div class="wrap">
   <div class="atlas-top"><div>
-  <p class="atlas-kicker">DOE-MCP &nbsp; / &nbsp; Global field atlas</p>
   <h1>A field guide to DOE data.</h1>
   <p class="tagline">Explore energy, land and research data from the US Department of Energy and its national laboratories.</p>
   <p class="free">Free and open source (Apache-2.0). Most tools need no account or API key. Every demo runs on recorded data.</p>
   <div class="atlas-actions"><a class="primary" href="#genesis-mission">Explore Genesis skills ↓</a><a href="demos.html">All demos</a><a href="guide.html">Local guide</a></div>
-  </div><figure class="atlas-plate"><svg viewBox="0 0 320 280" aria-hidden="true" focusable="false">
+  </div><div class="atlas-plate"><svg viewBox="0 0 320 280" aria-hidden="true" focusable="false">
     <defs><clipPath id="atlas-disc"><circle cx="160" cy="140" r="102"/></clipPath>
     <pattern id="atlas-dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".9" fill="#63887f"/></pattern></defs>
     <rect width="320" height="280" fill="url(#atlas-dots)"/>
@@ -325,8 +322,8 @@ header a:focus-visible{outline:3px solid #ffcd94;outline-offset:3px}
     <g clip-path="url(#atlas-disc)"><g transform="rotate(-24 160 140)" fill="none" stroke="#99c69f" stroke-width=".85"><ellipse cx="160" cy="140" rx="22" ry="102"/><ellipse cx="160" cy="140" rx="48" ry="102"/><ellipse cx="160" cy="140" rx="73" ry="102"/><ellipse cx="160" cy="140" rx="92" ry="102"/><ellipse cx="160" cy="140" rx="102" ry="102"/><path d="M45 55 Q160 100 275 55"/><path d="M45 80 Q160 126 275 80"/><path d="M45 107 Q160 151 275 107"/><path d="M45 135 Q160 174 275 135"/><path d="M45 163 Q160 194 275 163"/><path d="M45 192 Q160 212 275 192"/><path d="M45 220 Q160 232 275 220"/></g></g>
     <path d="M25 218 C62 271 319 104 289 74 C270 54 221 75 194 86" fill="none" stroke="#f8b473" stroke-width="1.8"/>
     <circle cx="194" cy="86" r="4" fill="#ffc58b"/><circle cx="26" cy="219" r="3" fill="#ffc58b"/>
-    <path d="M12 29v-15h15m266 0h15v15M12 251v15h15m266 0h15v-15" stroke="#a6bdb1" fill="none"/></svg><figcaption class="plate-cap"><span>Field atlas</span><span>Global edition</span></figcaption></figure></div>
-  <div class="atlas-inventory"><div class="funnel"><a class="step" href="#registry-sources"><b>29</b><span>live systems</span></a><span class="arrow" aria-hidden="true">→</span><a class="step" href="#servers-list"><b>10</b><span>domain servers</span></a><span class="arrow" aria-hidden="true">→</span><a class="step" href="reference.html"><b>76</b><span>read-only tools</span></a><span class="arrow" aria-hidden="true">→</span><a class="step" href="#skills"><b>29</b><span>skills</span></a></div><p class="inventory">Published by 17 national laboratories, 19 program offices and 4 power marketing administrations.</p>
+    <path d="M12 29v-15h15m266 0h15v15M12 251v15h15m266 0h15v-15" stroke="#a6bdb1" fill="none"/></svg></div></div>
+  <div class="atlas-inventory"><div class="funnel"><a class="step" href="#registry-sources"><b>29</b><span>live systems</span></a><span class="arrow" aria-hidden="true">→</span><a class="step" href="#servers-list"><b>10</b><span>domain servers</span></a><span class="arrow" aria-hidden="true">→</span><a class="step" href="reference.html"><b>76</b><span>read-only tools</span></a><span class="arrow" aria-hidden="true">→</span><a class="step" href="#skills"><b>32</b><span>skills</span></a></div><p class="inventory">Published by 17 national laboratories, 19 program offices and 4 power marketing administrations.</p>
   <p class="works">Works with: <b>CLAUDE CODE</b> · <b>CLAUDE DESKTOP</b> · <b>VS CODE</b> · <b>CURSOR</b></p></div>
 </div></header>
 
@@ -334,14 +331,14 @@ header a:focus-visible{outline:3px solid #ffcd94;outline-offset:3px}
 
 <section id="overview">
 <details class="sect" open>
-  <summary><h2><span class="num">01</span>Overview</h2></summary>
+  <summary><h2>Overview</h2></summary>
   <div class="sect-body">
   <p id="overview-about">DOE-MCP connects AI clients to public DOE and national-laboratory data through read-only tools. Results include sources, retrieval dates and coverage limits.</p>
   <h3 id="overview-demos">Demos</h3>
-  <p>All 35 walkthroughs use recorded data: no account, API key or paid model.</p>
+  <p>All 38 walkthroughs use recorded data: no account, API key or paid model.</p>
   <h4 id="genesis-mission">Genesis Mission skills</h4>
   <p>Follow a Genesis method with DOE-MCP data. Each card opens a recorded example with its evidence.</p>
-  <div class="demo-grid"><a class="demo-link" href="demos.html#world-crop-rates"><b class="atlas-label land">Plate 01 / Land</b><strong>Compare crop yield assumptions</strong><span>Which fallback yield improvement rates change between 2050 and 2095?</span><small>Skill: genesis-compare-fallback-rates · Global GCAM · Genesis: data-exploration</small></a><a class="demo-link" href="demos.html#world-capture-residual"><b class="atlas-label power">Plate 02 / Power</b><strong>Account for uncaptured carbon</strong><span>What portion of CO₂ remains uncaptured under each electricity technology assumption?</span><small>Skill: genesis-compute-residual-shares · Global GCAM · Genesis: data-exploration</small></a><a class="demo-link" href="demos.html#world-industry-response"><b class="atlas-label economy">Plate 03 / Economy</b><strong>Read industrial demand elasticity</strong><span>At which published output levels is industrial income elasticity zero or negative?</span><small>Skill: genesis-read-signed-response · Global GCAM · Genesis: data-exploration</small></a><a class="demo-link" href="demos.html#latin-america-regions"><strong>Map Latin American country codes</strong><span>Does the legacy Latin America label identify a single numeric GCAM region?</span><small>Skill: genesis-audit-region-keys · Global GCAM · Genesis: data-exploration</small></a><a class="demo-link" href="demos.html#china-cooling-balance"><strong>Check China&#x27;s coal cooling shares</strong><span>Do the published cooling shares add to one in both 2010 and 2020?</span><small>Skill: genesis-check-share-balance · Global GCAM · Genesis: data-exploration</small></a><a class="demo-link" href="demos.html#world-bioenergy-columns"><strong>Compare regional bioenergy settings</strong><span>Where does the alternative column differ from the preference GCAM uses?</span><small>Skill: genesis-document-model-columns · Global GCAM · Genesis: datacard-generator</small></a><a class="demo-link" href="demos.html#world-geothermal-grades"><strong>Compare geothermal heat across regions</strong><span>How do the regions compare for the same hydrothermal resource grade?</span><small>Skill: genesis-compare-resource-grades · Global GCAM · Genesis: data-exploration</small></a><a class="demo-link" href="demos.html#bibliography"><strong>Prepare a perovskite bibliography</strong><span>Download a DOE PAGES citation worksheet. See which author lists were shortened before you cite a paper.</span><small>Skill: genesis-build-bibliography · Genesis: literature-search</small></a><a class="demo-link" href="demos.html#daymet-calendar"><strong>Inspect the missing Daymet date</strong><span>Download daily maximum temperatures near Oak Ridge and the Croissant file describing their dates, units and checksum.</span><small>Skill: genesis-package-weather-data · Genesis: croissant-validator</small></a><a class="demo-link" href="demos.html#load-interval-check"><strong>Check a load prediction band</strong><span>Fit the band on earlier BPA errors, then count the later readings it covers.</span><small>Skill: genesis-check-prediction-bands · Genesis: uncertainty-quantification</small></a><a class="demo-link" href="demos.html#load-baseline"><strong>Score a five-minute load prediction</strong><span>Use the last BPA load reading to predict the next one. Inspect each error and the two readings behind it.</span><small>Skill: genesis-score-load-errors · Genesis: uq-metrics-evaluator</small></a><a class="demo-link" href="demos.html#soil-metadata"><strong>Check soil sample metadata</strong><span>Inspect dates, coordinate pairs and depths for NMDC records whose place contains Washington.</span><small>Skill: genesis-audit-sample-fields · Genesis: data-exploration</small></a><a class="demo-link" href="demos.html#dataset-card"><strong>Start a geothermal dataset card</strong><span>Two DOE Data Explorer records, their evidence, and the fields a dataset owner still needs to supply.</span><small>Skill: genesis-draft-dataset-card · Recorded metadata</small></a></div>
+  <div class="demo-grid"><a class="demo-link" href="demos.html#world-desalination-electricity" data-field="water"><strong>Convert desalination electricity inputs</strong><span>How much electricity does the reverse osmosis input represent in kWh per cubic metre?</span><small>Skill: genesis-convert-energy-units · Global GCAM · Genesis: data-exploration</small></a><a class="demo-link" href="demos.html#world-coefficient-gaps" data-field="emissions"><strong>Inspect blanks in emissions coefficients</strong><span>Which carbon monoxide coefficients are filled, blank or explicitly zero?</span><small>Skill: genesis-audit-coefficient-gaps · Global GCAM · Genesis: data-exploration</small></a><a class="demo-link" href="demos.html#world-retirement-parameters" data-field="power"><strong>Separate two retirement parameters</strong><span>Which technology-period rows report both a lifetime and a retirement half-life?</span><small>Skill: genesis-separate-retirement-parameters · Global GCAM · Genesis: datacard-generator</small></a><a class="demo-link" href="demos.html#world-crop-rates" data-field="land"><strong>Compare crop yield assumptions</strong><span>Which fallback yield improvement rates change between 2050 and 2095?</span><small>Skill: genesis-compare-fallback-rates · Global GCAM · Genesis: data-exploration</small></a><a class="demo-link" href="demos.html#world-capture-residual" data-field="power"><strong>Account for uncaptured carbon</strong><span>What portion of CO₂ remains uncaptured under each electricity technology assumption?</span><small>Skill: genesis-compute-residual-shares · Global GCAM · Genesis: data-exploration</small></a><a class="demo-link" href="demos.html#world-industry-response" data-field="economy"><strong>Read industrial demand elasticity</strong><span>At which published output levels is industrial income elasticity zero or negative?</span><small>Skill: genesis-read-signed-response · Global GCAM · Genesis: data-exploration</small></a><a class="demo-link" href="demos.html#latin-america-regions"><strong>Map Latin American country codes</strong><span>Does the legacy Latin America label identify a single numeric GCAM region?</span><small>Skill: genesis-audit-region-keys · Global GCAM · Genesis: data-exploration</small></a><a class="demo-link" href="demos.html#china-cooling-balance"><strong>Check China&#x27;s coal cooling shares</strong><span>Do the published cooling shares add to one in both 2010 and 2020?</span><small>Skill: genesis-check-share-balance · Global GCAM · Genesis: data-exploration</small></a><a class="demo-link" href="demos.html#world-bioenergy-columns"><strong>Compare regional bioenergy settings</strong><span>Where does the alternative column differ from the preference GCAM uses?</span><small>Skill: genesis-document-model-columns · Global GCAM · Genesis: datacard-generator</small></a><a class="demo-link" href="demos.html#world-geothermal-grades"><strong>Compare geothermal heat across regions</strong><span>How do the regions compare for the same hydrothermal resource grade?</span><small>Skill: genesis-compare-resource-grades · Global GCAM · Genesis: data-exploration</small></a><a class="demo-link" href="demos.html#bibliography"><strong>Prepare a perovskite bibliography</strong><span>Download a DOE PAGES citation worksheet. See which author lists were shortened before you cite a paper.</span><small>Skill: genesis-build-bibliography · Genesis: literature-search</small></a><a class="demo-link" href="demos.html#daymet-calendar"><strong>Inspect the missing Daymet date</strong><span>Download daily maximum temperatures near Oak Ridge and the Croissant file describing their dates, units and checksum.</span><small>Skill: genesis-package-weather-data · Genesis: croissant-validator</small></a><a class="demo-link" href="demos.html#load-interval-check"><strong>Check a load prediction band</strong><span>Fit the band on earlier BPA errors, then count the later readings it covers.</span><small>Skill: genesis-check-prediction-bands · Genesis: uncertainty-quantification</small></a><a class="demo-link" href="demos.html#load-baseline"><strong>Score a five-minute load prediction</strong><span>Use the last BPA load reading to predict the next one. Inspect each error and the two readings behind it.</span><small>Skill: genesis-score-load-errors · Genesis: uq-metrics-evaluator</small></a><a class="demo-link" href="demos.html#soil-metadata"><strong>Check soil sample metadata</strong><span>Inspect dates, coordinate pairs and depths for NMDC records whose place contains Washington.</span><small>Skill: genesis-audit-sample-fields · Genesis: data-exploration</small></a><a class="demo-link" href="demos.html#dataset-card"><strong>Start a geothermal dataset card</strong><span>Two DOE Data Explorer records, their evidence, and the fields a dataset owner still needs to supply.</span><small>Skill: genesis-draft-dataset-card · Recorded metadata</small></a></div>
   <h4>Other DOE workflows</h4>
   <div class="demo-grid"><a class="demo-link" href="demos.html#kenya-soil"><strong>Soil carbon recovery in Kenya</strong><span>Which recovery time does GCAM assign to Kenya&#x27;s model region?</span><small>Skill: trace-soil-carbon · GCAM model inputs</small></a><a class="demo-link" href="demos.html#japan-geothermal"><strong>Japan&#x27;s geothermal supply curve</strong><span>How much heat input does the model assign to Japan&#x27;s second hydrothermal grade?</span><small>Skill: read-geothermal-grades · GCAM model inputs</small></a><a class="demo-link" href="demos.html#germany-cooling"><strong>Power plant cooling in Western Europe</strong><span>Which fresh-water cooling share applies to coal in Germany&#x27;s legacy model region?</span><small>Skill: trace-plant-cooling · GCAM model inputs</small></a><a class="demo-link" href="demos.html#brazil-bioenergy"><strong>Brazil&#x27;s bioenergy preference</strong><span>Which supply preference does the model apply in Brazil?</span><small>Skill: trace-bioenergy-support · GCAM model inputs</small></a><a class="demo-link" href="demos.html#pakistan-labor"><strong>Labor mobility in Pakistan</strong><span>How does GCAM parameterize movement of labor between sectors in Pakistan?</span><small>Skill: trace-labor-mobility · GCAM model inputs</small></a><a class="demo-link" href="demos.html#desalination-inputs"><strong>The energy cost of reverse osmosis</strong><span>Which electricity input and non-energy cost does GCAM use for reverse osmosis?</span><small>Skill: separate-desalination-inputs · GCAM model inputs</small></a><a class="demo-link" href="demos.html#fluorinated-gases"><strong>Compare two fluorinated gases</strong><span>Which 100-year warming potentials did this release use for HFC134a and CF4?</span><small>Skill: compare-model-warming-potentials · GCAM model inputs</small></a><a class="demo-link" href="demos.html#offshore-wind"><strong>Two offshore wind assumptions</strong><span>What does GCAM assume for wind class c7 and, separately, for deep-water capital cost?</span><small>Skill: separate-offshore-wind-classes · GCAM model inputs</small></a><a class="demo-link" href="demos.html#global-climate-archive"><strong>Find Canadian climate simulations</strong><span>Inspect historical CanESM5 temperature dataset versions and ensemble members in Oak Ridge&#x27;s federation index.</span><small>Skill: environmental-study-brief · CMIP6 metadata</small></a><a class="demo-link" href="demos.html#evidence"><strong>Trace a research claim</strong><span>Search perovskite solar literature, follow a returned record, and see where the search is incomplete.</span><small>Skill: doe-literature-review · Recorded evidence</small></a><a class="demo-link" href="demos.html#microbiome"><strong>Find a microbiome study</strong><span>Follow an NMDC shale study to five biosamples, with collection dates, environments and access recipes.</span><small>Skill: microbiome-data-finder · Recorded metadata</small></a><a class="demo-link" href="demos.html#rulemaking"><strong>Read a DOE rulemaking brief</strong><span>Follow a Federal Register record to its action, docket IDs and dates, and see what the search excludes.</span><small>Skill: doe-rulemaking-brief · Recorded documents</small></a><a class="demo-link" href="demos.html#find-data"><strong>Find out whether DOE publishes it</strong><span>Resolve NREL to its new name, check the registry, and search four DOE catalogs, two of them old harvests.</span><small>Skill: find-doe-data · Recorded catalogs</small></a><a class="demo-link" href="demos.html#outage-history"><strong>Find historical outage data</strong><span>Locate the EAGLE-I release covering 2021, its documentation and the customer counts needed for rates.</span><small>Skill: grid-status-brief · Release metadata</small></a><a class="demo-link" href="demos.html#grid"><strong>Read BPA&#x27;s five-minute grid feed</strong><span>Recorded load for the Bonneville Power Administration area, charted in Pacific Time.</span><small>Skill: grid-status-brief · Recorded feed</small></a><a class="demo-link" href="demos.html#eia"><strong>Read CAISO demand from EIA-930</strong><span>Three measured hourly demand values for California&#x27;s grid operator, kept apart from the forecast.</span><small>Skill: grid-status-brief · Recorded; live needs an EIA key</small></a><a class="demo-link" href="demos.html#site"><strong>Map facilities near a site</strong><span>Sample wind turbines and utility solar in Rhode Island, and the inputs a full screen still needs.</span><small>Skill: energy-project-site-screen · Recorded inventory</small></a><a class="demo-link" href="demos.html#earth"><strong>Pair datasets with modelled weather</strong><span>Find permafrost datasets and five days of Daymet weather at Oak Ridge, without claiming they match.</span><small>Skill: environmental-study-brief · Recorded data</small></a><a class="demo-link" href="demos.html#materials"><strong>Inspect a computed material</strong><span>A gallium nitride structure and a separate chemistry basis-set example, with their sources.</span><small>Skill: materials-structure-and-code · Recorded structures</small></a><a class="demo-link" href="demos.html#facility-status"><strong>Check NERSC system status</strong><span>Which NERSC systems are active, the next planned outage, and which facilities are not covered.</span><small>Tool: compute.facility_status · Recorded board</small></a><a class="demo-link" href="demos.html#partial"><strong>See an answer with a source down</strong><span>The literature search replayed with DOE PAGES unavailable, and how the answer reports the gap.</span><small>Skill: doe-literature-review · Simulated outage</small></a><a class="demo-link" href="demos.html#blocked"><strong>Ask for data DOE-MCP cannot serve</strong><span>Ask for a site&#x27;s solar resource and get the registry&#x27;s named reason instead of an empty answer.</span><small>Skill: energy-project-site-screen · Registry inventory</small></a></div>
   <details><summary>Genesis Skills compatibility</summary>
@@ -356,7 +353,7 @@ header a:focus-visible{outline:3px solid #ffcd94;outline-offset:3px}
 
 <section id="start">
 <details class="sect">
-  <summary><h2><span class="num">02</span>Quick start</h2></summary>
+  <summary><h2>Quick start</h2></summary>
   <div class="sect-body">
   <p class="lede">Install, verify, and connect to an MCP client in four steps. The research workflow needs no API key; EIA queries require your own key.</p>
   
@@ -413,7 +410,7 @@ reachable keyless.</p>
 
 <section id="servers">
 <details class="sect">
-  <summary><h2><span class="num">03</span>Servers</h2></summary>
+  <summary><h2>Servers</h2></summary>
   <div class="sect-body">
   <p class="lede">Each server covers one data domain with a small set of tools. 10 ship today; 4 more are planned, and each planned one lists the sources it would serve and what blocks them.</p>
   <h3 id="servers-arch">Architecture</h3>
@@ -445,6 +442,10 @@ reachable keyless.</p>
       <div class="arch-box">
         <div class="arch-box-title">find-doe-data · <a href="demos.html#find-data">demo</a></div>
         <div class="arch-box-desc">Find whether the US Department of Energy publishes a given kind of data, where it lives, and how to actually get at it — ending in a real locator or in a named reason there is not one.</div>
+      </div>
+      <div class="arch-box">
+        <div class="arch-box-title">genesis-audit-coefficient-gaps · <a href="demos.html#world-coefficient-gaps">demo</a></div>
+        <div class="arch-box-desc">Use when auditing a model coefficient column that contains blanks and exception references.</div>
       </div>
       <div class="arch-box">
         <div class="arch-box-title">genesis-audit-region-keys · <a href="demos.html#latin-america-regions">demo</a></div>
@@ -479,6 +480,10 @@ reachable keyless.</p>
         <div class="arch-box-desc">Use when converting a model capture fraction into the portion that remains uncaptured.</div>
       </div>
       <div class="arch-box">
+        <div class="arch-box-title">genesis-convert-energy-units · <a href="demos.html#world-desalination-electricity">demo</a></div>
+        <div class="arch-box-desc">Use when converting an energy input per volume of water into electricity units without mixing energy and material flows.</div>
+      </div>
+      <div class="arch-box">
         <div class="arch-box-title">genesis-document-model-columns · <a href="demos.html#world-bioenergy-columns">demo</a></div>
         <div class="arch-box-desc">Use when documenting which of two regional parameter columns a model reads and where their values differ.</div>
       </div>
@@ -497,6 +502,10 @@ reachable keyless.</p>
       <div class="arch-box">
         <div class="arch-box-title">genesis-score-load-errors · <a href="demos.html#load-baseline">demo</a></div>
         <div class="arch-box-desc">Use when comparing a grid load predictor with the simple baseline that repeats the previous measured load.</div>
+      </div>
+      <div class="arch-box">
+        <div class="arch-box-title">genesis-separate-retirement-parameters · <a href="demos.html#world-retirement-parameters">demo</a></div>
+        <div class="arch-box-desc">Use when documenting generator retirement parameters whose time scales have different meanings.</div>
       </div>
       <div class="arch-box">
         <div class="arch-box-title">grid-status-brief · <a href="demos.html#outage-history">demo</a></div>
@@ -716,7 +725,7 @@ reachable keyless.</p>
 
 <section id="answer">
 <details class="sect">
-  <summary><h2><span class="num">04</span>Response format</h2></summary>
+  <summary><h2>Response format</h2></summary>
   <div class="sect-body">
   <p class="lede">Every tool returns a consistent JSON response containing query results, data citations, vintage timestamps, and coverage indicators. Below is an annotated real response:</p>
   <p class='note'><b><code>research.search_literature</code></b> — Find DOE-funded work on perovskite solar cells, across both collections at once. A real response, captured at build time by replaying recorded publisher bytes; the replay's timestamps are pinned to the registry revision date and the request id is fixed, so the page rebuilds identically.</p><pre>{
@@ -1798,7 +1807,7 @@ reachable keyless.</p>
 
 <section id="registry">
 <details class="sect">
-  <summary><h2><span class="num">05</span>Data registry</h2></summary>
+  <summary><h2>Data registry</h2></summary>
   <div class="sect-body">
   <p class="lede">The CC0 registry indexes 88 data systems across 54 national laboratories and offices. You can browse by publishing organization to see which facilities steward each system, or search the complete catalog of 29 active sources and planned integrations with notes on automation status and access protocols.</p>
   <h3 id="registry-orgs">By organization</h3>
@@ -2060,7 +2069,7 @@ reachable keyless.</p>
 
 <section id="neighbours">
 <details class="sect">
-  <summary><h2><span class="num">06</span>Other MCP servers</h2></summary>
+  <summary><h2>Other MCP servers</h2></summary>
   <div class="sect-body">
   <p class="lede">DOE-MCP is not the only MCP server over DOE-adjacent data
   and does not try to be. MCP offers no mechanism for one server to advertise
@@ -2080,7 +2089,7 @@ reachable keyless.</p>
 
 <section id="governance">
 <details class="sect">
-  <summary><h2><span class="num">07</span>Licensing and governance</h2></summary>
+  <summary><h2>Licensing and governance</h2></summary>
   <div class="sect-body">
   <p class="lede">Code Apache-2.0. <b>The source registry is CC0</b> — the
   inventory of what exists, who stewards it, what its terms say, and what it

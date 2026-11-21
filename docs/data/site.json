@@ -8,7 +8,7 @@
     "labs": 17,
     "capabilities": 58,
     "capabilities_served": 42,
-    "skills": 29,
+    "skills": 32,
     "program_offices": 19,
     "pmas": 4,
     "servers_shipping": 10,
@@ -778,6 +778,13 @@
       ]
     },
     {
+      "name": "genesis-audit-coefficient-gaps",
+      "summary": "Use when auditing a model coefficient column that contains blanks and exception references.",
+      "servers": [
+        "doe-emissions"
+      ]
+    },
+    {
       "name": "genesis-audit-region-keys",
       "summary": "Use when joining country or territory codes to regional model inputs.",
       "servers": [
@@ -834,6 +841,13 @@
       ]
     },
     {
+      "name": "genesis-convert-energy-units",
+      "summary": "Use when converting an energy input per volume of water into electricity units without mixing energy and material flows.",
+      "servers": [
+        "doe-water"
+      ]
+    },
+    {
       "name": "genesis-document-model-columns",
       "summary": "Use when documenting which of two regional parameter columns a model reads and where their values differ.",
       "servers": [
@@ -866,6 +880,13 @@
       "summary": "Use when comparing a grid load predictor with the simple baseline that repeats the previous measured load.",
       "servers": [
         "doe-energy-data"
+      ]
+    },
+    {
+      "name": "genesis-separate-retirement-parameters",
+      "summary": "Use when documenting generator retirement parameters whose time scales have different meanings.",
+      "servers": [
+        "doe-power"
       ]
     },
     {

@@ -72,3 +72,39 @@ async def test_response_schedule_refuses_ambiguous_numeric_levels(ctx):
     env.data["records"][1]["values"]["pc.output_GJ"] = "0.00"
     with pytest.raises(SourceSchemaChanged, match="same numeric"):
         make_sheet(case, env)
+
+
+async def test_unit_conversion_refuses_seawater_even_when_numeric(ctx):
+    case = "world-desalination-electricity"
+    env = await source(ctx, case)
+    values = env.data["records"][0]["values"]
+    values["minicam.energy.input"] = "seawater"
+    with pytest.raises(SourceUnavailable, match="electricity row"):
+        make_sheet(case, env)
+
+
+async def test_coefficient_audit_keeps_zero_distinct_from_blank_and_exception(ctx):
+    case = "world-coefficient-gaps"
+    env = await source(ctx, case)
+    before, _ = make_sheet(case, env)
+    env.data["records"][-1]["values"]["CO"] = "0"
+    after, _ = make_sheet(case, env)
+    assert after["summary"]["blank"] == before["summary"]["blank"] - 1
+    assert after["summary"]["zero"] == before["summary"]["zero"] + 1
+    assert after["rows"][-1][3] == "0"
+    assert after["rows"][-1][6] == "zero"
+    del env.data["records"][-1]["values"]["CO"]
+    with pytest.raises(SourceSchemaChanged):
+        make_sheet(case, env)
+
+
+async def test_retirement_roles_require_definitions_and_preserve_zero_half_life(ctx):
+    case = "world-retirement-parameters"
+    env = await source(ctx, case)
+    env.data["records"][-1]["values"]["half.life"] = "0"
+    sheet, _ = make_sheet(case, env)
+    assert sheet["rows"][-1][4] == "0"
+    assert sheet["summary"]["both_parameters"] == 7
+    env.data["source_notes"] = []
+    with pytest.raises(SourceSchemaChanged, match="parameter roles"):
+        make_sheet(case, env)

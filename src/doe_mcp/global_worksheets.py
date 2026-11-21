@@ -19,6 +19,20 @@ class Walk:
 
 
 WALKS = {
+    "world-desalination-electricity": Walk(
+        "Convert desalination electricity inputs", "How much electricity does the reverse osmosis input represent in kWh per cubic metre?",
+        "genesis-convert-energy-units", "data-exploration", "water.desalination_inputs",
+        {"technology": "reverse osmosis", "minicam.energy.input": "elect_td_ind"},
+        "These are global model coefficients, not measurements at a desalination plant. The seawater input is a separate row and is not converted."),
+    "world-coefficient-gaps": Walk(
+        "Inspect blanks in emissions coefficients", "Which carbon monoxide coefficients are filled, blank or explicitly zero?",
+        "genesis-audit-coefficient-gaps", "data-exploration", "emissions.technology_coefficients", {},
+        "A blank is not zero. Exception fields are retained but not resolved; this file gives no physical unit for the coefficients."),
+    "world-retirement-parameters": Walk(
+        "Separate two retirement parameters", "Which technology-period rows report both a lifetime and a retirement half-life?",
+        "genesis-separate-retirement-parameters", "datacard-generator", "power.generator_retirement", {},
+        "Lifetime is the cohort maximum; half-life belongs to a particular retirement function. A blank half-life gives no retirement date or proof that the function runs."),
+
     "world-crop-rates": Walk(
         "Compare crop yield assumptions", "Which fallback yield improvement rates change between 2050 and 2095?",
         "genesis-compare-fallback-rates", "data-exploration", "land.crop_yield_growth", {},
@@ -61,7 +75,7 @@ def _number(value, *, signed=False):
     return n
 
 
-def _rows(env, columns, key):
+def _rows(env, columns, key, *, nullable=()):
     data = env.data
     records = data["records"]
     if not records or data["offset"] != 0 or len(records) != data["total_matches"]:
@@ -70,7 +84,7 @@ def _rows(env, columns, key):
     out = []
     for r in records:
         v = r["values"]
-        if any(v.get(k) in (None, "") for k in columns):
+        if any(k not in v or (k not in nullable and v[k] in (None, "")) for k in columns):
             raise SourceSchemaChanged("GCAM worksheet has a blank required field.")
         identity = tuple(v[k] for k in key)
         if identity in seen:
@@ -82,7 +96,44 @@ def _rows(env, columns, key):
 
 def make_sheet(case, env):
     stats: dict[str, int | str]
-    if case == "world-crop-rates":
+    if case == "world-desalination-electricity":
+        years = ["1971", "2015", "2017", "2100"]
+        records = _rows(env, ["technology", "minicam.energy.input", *years], ["technology", "minicam.energy.input"])
+        if len(records) != 1 or records[0][:2] != ["reverse osmosis", "elect_td_ind"]:
+            raise SourceUnavailable("The electricity conversion needs one reverse osmosis electricity row.")
+        record = records[0]
+        rows = [[year, record[i + 2], str(_number(record[i + 2]) / Decimal("0.0036")), record[-1]]
+                for i, year in enumerate(years)]
+        cols = ["Year", "Electricity (GJ/m³)", "Electricity (kWh/m³)"]
+        stats = {"periods": len(rows), "gj_per_kwh": "0.0036"}
+        answer = "Reverse osmosis electricity inputs: " + "; ".join(f"{r[0]}: {r[2]} kWh/m³" for r in rows) + "."
+    elif case == "world-coefficient-gaps":
+        cols = ["supplysector", "subsector", "stub.technology", "CO", "exception", "exception_tech"]
+        rows = _rows(env, cols, cols[:3], nullable=cols[3:])
+        counts = {"blank": 0, "zero": 0, "nonzero": 0}
+        for r in rows:
+            status = "blank" if r[3] is None else "zero" if _number(r[3]) == 0 else "nonzero"
+            r.insert(-1, status)
+            counts[status] += 1
+        cols = ["Sector", "Subsector", "Technology", "CO coefficient", "Exception species", "Exception technology", "CO cell"]
+        stats = {"rows": len(rows), **counts}
+        answer = (f"Among {len(rows)} technology rows, {counts['blank']} CO coefficients are blank, "
+                  f"{counts['zero']} are explicitly zero, and {counts['nonzero']} are nonzero.")
+    elif case == "world-retirement-parameters":
+        notes = " ".join(env.data["source_notes"])
+        if "lifetime: maximum lifetime of cohort" not in notes or "s-curve-shutdown-decider" not in notes:
+            raise SourceSchemaChanged("The retirement table no longer explains the two parameter roles.")
+        cols = ["subsector", "technology", "year", "lifetime", "half.life"]
+        rows = _rows(env, cols, cols[:3], nullable=["half.life"])
+        for r in rows:
+            _number(r[3])
+            if r[4] is not None:
+                _number(r[4])
+        both = sum(r[4] is not None for r in rows)
+        stats = {"rows": len(rows), "both_parameters": both, "blank_half_life": len(rows) - both}
+        cols = ["Fuel", "Technology", "Period label", "Maximum lifetime (years)", "Retirement half-life (years)"]
+        answer = f"{both} of {len(rows)} technology-period rows provide both parameters. The remaining {len(rows) - both} leave half-life blank."
+    elif case == "world-crop-rates":
         cols = ["GCAM_commodity", "2050", "2095"]
         rows = _rows(env, cols, ["GCAM_commodity"])
         changed = 0

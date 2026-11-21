@@ -1,9 +1,12 @@
-"""Field atlas masthead and plate styling for the static site."""
+"""Field atlas masthead and demo styling for the static site."""
 
 FIELD_CASES = {
-    "world-crop-rates": ("01", "Land"),
-    "world-capture-residual": ("02", "Power"),
-    "world-industry-response": ("03", "Economy"),
+    "world-desalination-electricity": "water",
+    "world-coefficient-gaps": "emissions",
+    "world-retirement-parameters": "power",
+    "world-crop-rates": "land",
+    "world-capture-residual": "power",
+    "world-industry-response": "economy",
 }
 
 
@@ -30,24 +33,24 @@ ATLAS_CSS = """
 .toc-brand{font:bold 1.15rem Georgia,serif}.toc-brand:before{content:"";display:inline-block;width:.7em;height:.7em;border-radius:50%;background:#bf5d33;margin-right:.4em}
 header{background:#153e35;color:#f7f5e6;padding:clamp(24px,4vw,52px) 0 18px}
 .atlas-top{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(200px,.83fr);gap:clamp(20px,5vw,72px);align-items:center}
-.atlas-kicker,.plate-cap,.atlas-label{font:600 .72rem/1.4 var(--mono);letter-spacing:.11em;text-transform:uppercase}
-.atlas-kicker{color:#eabd8c;margin:0 0 12px}header h1{font:500 clamp(2.8rem,6vw,5.3rem)/.99 Georgia,serif;letter-spacing:-.055em;max-width:14ch;margin:0 0 18px}
+header h1{font:500 clamp(2.8rem,6vw,5.3rem)/.99 Georgia,serif;letter-spacing:-.055em;max-width:14ch;margin:0 0 18px}
 header h1{text-wrap:balance}header .tagline{color:#dde9de;max-width:43ch;font-size:1.05rem}header .free{color:#d0dfd1;max-width:56ch;font-size:.87rem}
 .atlas-actions{display:flex;align-items:center;flex-wrap:wrap;gap:1.1rem;margin:16px 0}
 .atlas-actions a{color:#fff2d6;font-weight:600;text-underline-offset:4px}
 .atlas-actions .primary{display:inline-block;background:#ffcd94;color:#243b31;border-radius:3px;padding:9px 14px;text-decoration:none}
 .atlas-plate{max-width:340px;justify-self:center;width:100%;margin:0}.atlas-plate svg{display:block;width:100%}
-.plate-cap{display:flex;justify-content:space-between;color:#e4c59d;margin:4px 12px 12px}
 .atlas-inventory{margin-top:18px;padding-top:16px;border-top:1px solid #517368}
 header .funnel .step{background:transparent;border-color:#648175;color:white}header .funnel .step b{color:#fff1d2}header .funnel .step span,header .works,header .works b,header .inventory,header .inventory a{color:#d7e5d7}
 header a:focus-visible{outline:3px solid #ffcd94;outline-offset:3px}
 #genesis-mission{font:500 clamp(1.7rem,4vw,2.8rem)/1.15 Georgia,serif;margin:24px 0 0;scroll-margin-top:4rem}
 .demo-link{border-radius:4px;box-shadow:0 3px 0 #e3e8de}.demo-link strong{color:#183e33;font:600 1.25rem/1.2 Georgia,serif}
-.demo-link:hover{background:#f4f7ee}.atlas-label{display:block;color:#654722;border-top:3px solid #b97539;padding-top:10px}
-.demo-link:has(.atlas-label){background:#f8edd8}.demo-link:has(.land){background:#e5efde}.atlas-label.land{color:#385a36;border-color:#577c46}
-.demo-link:has(.economy){background:#e5edf2}.atlas-label.economy{color:#31546b;border-color:#537991}
+.demo-link:hover{background:#f4f7ee}
+.demo-link[data-field]{border-top:3px solid #b97539;background:#f8edd8}
+.demo-link[data-field="land"]{background:#e5efde;border-top-color:#577c46}
+.demo-link[data-field="economy"],.demo-link[data-field="water"]{background:#e5edf2;border-top-color:#537991}
+.demo-link[data-field="emissions"]{background:#eee7ec;border-top-color:#93627b}
 @media(max-width:650px){.atlas-top{grid-template-columns:1fr;gap:0}.atlas-plate{display:none}header h1{max-width:15ch;font-size:clamp(2.35rem,10vw,3.7rem)}
-.atlas-actions{display:grid;grid-template-columns:max-content max-content;justify-content:start;gap:8px 20px;font-size:.91rem}.atlas-actions .primary{grid-column:1/-1;text-align:center}.atlas-inventory{margin-top:8px}.demo-link:has(.atlas-label) span{display:block}.demo-link:has(.atlas-label){gap:7px}}
+.atlas-actions{display:grid;grid-template-columns:max-content max-content;justify-content:start;gap:8px 20px;font-size:.91rem}.atlas-actions .primary{grid-column:1/-1;text-align:center}.atlas-inventory{margin-top:8px}.demo-link[data-field] span{display:block}.demo-link[data-field]{gap:7px}}
 """
 
 DEMO_CSS = """

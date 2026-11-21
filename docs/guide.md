@@ -94,6 +94,9 @@ it draws on and has a bench that checks results from recorded data.
 | `genesis-compare-fallback-rates` | data-exploration | [Compare crop yield assumptions](demos.html#world-crop-rates). |
 | `genesis-compute-residual-shares` | data-exploration | [Account for uncaptured carbon](demos.html#world-capture-residual). |
 | `genesis-read-signed-response` | data-exploration | [Read industrial demand elasticity](demos.html#world-industry-response). |
+| `genesis-convert-energy-units` | data-exploration | [Convert desalination electricity inputs](demos.html#world-desalination-electricity). |
+| `genesis-audit-coefficient-gaps` | data-exploration | [Inspect blanks in emissions coefficients](demos.html#world-coefficient-gaps). |
+| `genesis-separate-retirement-parameters` | datacard-generator | [Separate two retirement parameters](demos.html#world-retirement-parameters). |
 
 For example:
 

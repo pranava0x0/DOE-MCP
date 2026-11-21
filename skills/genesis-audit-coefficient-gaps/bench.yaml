@@ -1,0 +1,21 @@
+checked:
+- task: 1
+  case: world-coefficient-gaps
+  expect_report:
+    worksheet.summary.rows: 39
+    worksheet.summary.blank: 18
+    worksheet.summary.nonzero: 21
+- task: 2
+  case: world-coefficient-gaps
+  expect_report:
+    worksheet.summary.zero: 0
+    worksheet.rows.38.3: null
+    worksheet.rows.38.6: blank
+- task: 3
+  case: world-coefficient-gaps
+  expect_report:
+    worksheet.rows.0.3: '0.01'
+    worksheet.rows.0.4: CH4
+    worksheet.rows.0.5: coal (conv pul)
+    worksheet.rows.0.6: nonzero
+reader: []
