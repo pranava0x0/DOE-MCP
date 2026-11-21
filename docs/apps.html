@@ -30,7 +30,7 @@ main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0
 }
 </style></head><body class=""><a class="skip" href="#content">Skip to content</a>
 <header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Recorded demos</a></nav></header>
-<main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#forecast-benchmark">Forecast benchmark</a></li><li><a href="#weather-package">Weather package</a></li><li><a href="#federal-register-notice-tracker">Federal Register notice tracker</a></li><li><a href="#regulationsgov-integration-gated">Regulations.gov integration: gated</a></li></ul></nav><h1 id="local-applications">Local applications</h1>
+<main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#gcam-comparison-receipts">GCAM comparison receipts</a></li><li><a href="#forecast-benchmark">Forecast benchmark</a></li><li><a href="#weather-package">Weather package</a></li><li><a href="#federal-register-notice-tracker">Federal Register notice tracker</a></li><li><a href="#regulationsgov-integration-gated">Regulations.gov integration: gated</a></li></ul></nav><h1 id="local-applications">Local applications</h1>
 <p>These applications compose the existing source tools. They replay recorded
 publisher responses by default. <code>--live</code> makes a publisher request with the
 same source activation gates as the MCP servers.</p>
@@ -40,6 +40,56 @@ The report preserves original tool envelopes, including evidence and
 coverage. Replay retrieval clocks describe the replay execution. They are
 not publisher capture times; available fixture capture times are listed
 separately. Existing output directories are refused.</p>
+<h2 id="gcam-comparison-receipts">GCAM comparison receipts</h2>
+<pre><code class="language-bash">doe-mcp app gcam-comparison --output ./gcam-receipts
+doe-mcp app gcam-comparison --plan ./gcam-receipts/plan.json --output ./gcam-custom
+</code></pre>
+<p><a href="applications.html#gcam-comparison-receipts">Download the recorded preset and receipts</a>.
+The preset selects Japan and Indonesia's regional geothermal inputs, Kenya
+and Canada's regional soil parameters, and separate desalination energy
+and cost inputs. Every value retains its full row, selected column, source
+file, release, source notes and evidence reference. Decimal spellings and
+null cells stay as the publisher supplied them.</p>
+<p>Edit <code>plan.json</code> to select other rows and columns from existing GCAM tools.
+A plan contains 1–12 <code>selections</code> and 1–12 side-by-side <code>pairs</code>. Each
+selection has a unique <code>id</code>, a GCAM <code>tool</code>, exact text <code>filters</code>, and 1–8
+<code>columns</code>. Pair endpoints name a selection and one of its selected columns:</p>
+<pre><code class="language-json">{
+  &quot;selections&quot;: [
+    {&quot;id&quot;: &quot;wind-c7&quot;, &quot;tool&quot;: &quot;power.wind_capacity_factors&quot;,
+     &quot;filters&quot;: {&quot;wind_class&quot;: &quot;c7&quot;}, &quot;columns&quot;: [&quot;CF&quot;]},
+    {&quot;id&quot;: &quot;deep-cost&quot;, &quot;tool&quot;: &quot;power.offshore_depth_costs&quot;,
+     &quot;filters&quot;: {&quot;depth_class&quot;: &quot;deep&quot;}, &quot;columns&quot;: [&quot;capital.overnight&quot;]}
+  ],
+  &quot;pairs&quot;: [
+    {&quot;left&quot;: &quot;wind-c7&quot;, &quot;left_column&quot;: &quot;CF&quot;,
+     &quot;right&quot;: &quot;deep-cost&quot;, &quot;right_column&quot;: &quot;capital.overnight&quot;}
+  ]
+}
+</code></pre>
+<p>Both example tables have recordings. <code>--live</code> reads the selected files
+from the pinned release; it does not switch to a newer release. No key is
+needed. A selector must return exactly one row with complete pagination.
+Empty, ambiguous or incomplete selections are refused before export.</p>
+<p>For a regional table, optional <code>country_iso</code> resolves a lowercase
+three-letter country code through the publisher's country table. The app
+uses the region column present in the target table: <code>region_GCAM3</code> or
+<code>GCAM_region_ID</code>. It retains both original country classifications in the
+mapping receipt. An explicit regional filter that conflicts with the
+mapping is refused. Country selection cannot be applied to a global table.</p>
+<p>Indonesia maps to Southeast Asia in the geothermal table; a regional
+input does not become an Indonesia observation. The soil table prints
+<code>Units: NA</code>, while its description explains recovery in years. The
+receipt preserves both statements and marks the units line unspecified.</p>
+<p><code>receipts.csv</code> indexes the selected cells. <code>receipts.json</code> contains full
+rows, original unit statements and mapping receipts. <code>comparisons.json</code>
+describes whether paired cells share a table and column, use different
+fields or releases, have unspecified units, or contain a null. These are
+structural checks, not proof that two scientific quantities are
+interchangeable. No arithmetic, ranking, aggregation or unit conversion
+is performed. A shared <code>2100</code> column cannot turn desalination energy and
+monetary inputs into a total. These are model inputs, not scenario output
+or measurements of current conditions.</p>
 <h2 id="forecast-benchmark">Forecast benchmark</h2>
 <pre><code class="language-bash">doe-mcp app forecast-benchmark --output ./recorded-benchmark
 doe-mcp app forecast-benchmark \

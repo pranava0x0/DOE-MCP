@@ -117,12 +117,15 @@ async function click(page, locator, counters, label) {
   await locator.waitFor({state: 'visible'});
   for (let attempt = 0; attempt < 60; attempt++) {
     const point = await locator.evaluate(element => {
-      const rect = element.getBoundingClientRect();
-      const left = Math.max(4, rect.left), right = Math.min(innerWidth - 4, rect.right);
-      const top = Math.max(4, rect.top), bottom = Math.min(innerHeight - 4, rect.bottom);
-      for (const y of [(top + bottom) / 2, top + 6, bottom - 6]) {
-        const x = (left + right) / 2;
-        if (right > left && bottom > top && element.contains(document.elementFromPoint(x, y))) return {x, y};
+      // Wrapped inline links have several actual hit rectangles; their union
+      // can put its centre on whitespace or a neighbouring link.
+      for (const rect of element.getClientRects()) {
+        const left = Math.max(4, rect.left), right = Math.min(innerWidth - 4, rect.right);
+        const top = Math.max(4, rect.top), bottom = Math.min(innerHeight - 4, rect.bottom);
+        for (const y of [(top + bottom) / 2, top + 6, bottom - 6]) {
+          const x = (left + right) / 2;
+          if (right > left && bottom > top && element.contains(document.elementFromPoint(x, y))) return {x, y};
+        }
       }
       return null;
     });
@@ -164,9 +167,7 @@ async function jump(page, label, expected, counters) {
   assert(state.top >= state.toolbar - 1 && state.top < state.height, 'jump destination hidden by controls');
 }
 async function download(page, locator, counters, label) {
-  const event = page.waitForEvent('download');
-  await click(page, locator, counters, label);
-  const file = await event;
+  const [file] = await Promise.all([page.waitForEvent('download'), click(page, locator, counters, label)]);
   assert.equal(await file.failure(), null, 'download failed');
   const bytes = fs.readFileSync(await file.path());
   assert(bytes.length > 0, 'empty download');
@@ -332,6 +333,18 @@ async function applicationJourney(browser, viewport, task) {
     const link = page.locator('a[href="data/apps/' + task.id + '/bundle.zip"]');
     const file = await download(page, link, counters, 'complete recorded application bundle');
     assert(file.bytes.equals(fs.readFileSync(path.join(docs, 'data/apps', task.id, 'bundle.zip'))), 'application bundle download differs');
+    if (task.id === 'gcam-comparison') {
+      assert.match(await page.locator('main').innerText(), /Southeast Asia/);
+      assert.match(await page.locator('main').innerText(), /No arithmetic or unit conversion is performed/);
+      for (const filename of ['plan.json', 'receipts.json', 'receipts.csv', 'comparisons.json']) {
+        const receiptFile = await download(page, page.locator('a[href="data/apps/' + task.id + '/' + filename + '"]'), counters, filename);
+        assert(receiptFile.bytes.equals(fs.readFileSync(path.join(docs, 'data/apps', task.id, filename))), 'GCAM receipt download differs: ' + filename);
+        if (filename.endsWith('.json')) JSON.parse(receiptFile.bytes.toString('utf8'));
+      }
+      const receipts = JSON.parse(fs.readFileSync(path.join(docs, 'data/apps', task.id, 'receipts.json'), 'utf8'));
+      assert(receipts.every(receipt => receipt.file_url && receipt.evidence_ref && receipt.row_number && receipt.publisher_columns.length), 'GCAM receipts lack source identity');
+      assert.equal(receipts.find(receipt => receipt.id === 'indonesia-geothermal').region_mapping.join_value, 'Southeast Asia');
+    }
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'application page overflow');
     await page.screenshot({path: path.join(output, 'application-' + viewport.width + '-' + task.id + '.png')});
     report.journeys.push({viewport, task: task.id, endpoint: page.url(), ...counters});
@@ -382,7 +395,8 @@ async function hrefTargets(browser) {
       for (const task of [
         {id: 'forecast-benchmark', anchor: 'grid-forecast-benchmark-lab'},
         {id: 'weather-package', anchor: 'weather-package-builder'},
-        {id: 'docket-tracker', anchor: 'doe-docket-notice-tracker'}])
+        {id: 'docket-tracker', anchor: 'doe-docket-notice-tracker'},
+        {id: 'gcam-comparison', anchor: 'gcam-comparison-receipts'}])
         await applicationJourney(browser, viewport, task);
       await stability(browser, viewport);
     }

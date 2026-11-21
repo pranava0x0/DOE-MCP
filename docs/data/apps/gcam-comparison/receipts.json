@@ -1,0 +1,546 @@
+[
+  {
+    "id": "japan-geothermal",
+    "selector": {
+      "id": "japan-geothermal",
+      "tool": "power.geothermal_curves",
+      "country_iso": "jpn",
+      "filters": {
+        "resource": "geothermal",
+        "subresource": "hydrothermal",
+        "grade": "grade 2"
+      },
+      "columns": [
+        "available"
+      ]
+    },
+    "resolved_filters": {
+      "resource": "geothermal",
+      "subresource": "hydrothermal",
+      "grade": "grade 2",
+      "region_GCAM3": "Japan"
+    },
+    "region_mapping": {
+      "requested_iso": "jpn",
+      "region_key": "region_GCAM3",
+      "join_value": "Japan",
+      "receipt": {
+        "step_number": 1,
+        "tool": "economy.country_regions",
+        "table": "country_regions",
+        "release": "GCAM v9.1",
+        "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+        "source_notes": [
+          "File: iso_GCAM_regID.csv",
+          "Title: ISO to GCAM region mapping",
+          "Units: NA",
+          "Description: Maps iso codes to GCAM regions (including composites as necessary)",
+          "Column types: ccci",
+          "----------"
+        ],
+        "publisher_columns": [
+          "iso",
+          "country_name",
+          "region_GCAM3",
+          "GCAM_region_ID"
+        ],
+        "row_number": 112,
+        "row_values": {
+          "iso": "jpn",
+          "country_name": "Japan",
+          "region_GCAM3": "Japan",
+          "GCAM_region_ID": "19"
+        },
+        "selected_values": {
+          "iso": "jpn",
+          "country_name": "Japan",
+          "region_GCAM3": "Japan",
+          "GCAM_region_ID": "19"
+        },
+        "evidence_ref": "evidence_01",
+        "source_ref": "source_01",
+        "units": {
+          "status": "unspecified",
+          "publisher_statements": [
+            "Units: NA"
+          ],
+          "scope": "Original table notes; a statement may describe several columns. No unit conversion was performed."
+        }
+      }
+    },
+    "step_number": 2,
+    "tool": "power.geothermal_curves",
+    "table": "geothermal_curves",
+    "release": "GCAM v9.1",
+    "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A16.geo_curves.csv",
+    "source_notes": [
+      "File: A16.geo_curves.csv",
+      "Title: Supply curves of hydrothermal geothermal resources, inherited from GCAM 3.0",
+      "Units: available in Thermal EJ/yr (i.e. heat input to geothermal power plants); extractioncost in 1975$/GJ",
+      "Description: available: quantity available; extractioncost: costs of production",
+      "Reference: Hannam, P., P. Kyle, and S.J. Smith. 2009. Global Deployment of Geothermal Energy Using a New Characterization in GCAM 1.0. PNNL-19231, Pacitic Northwest National Laboratory. http://www.pnl.gov/main/publications/external/technical_reports/PNNL-19231.pdf",
+      "Column types: ccccnn",
+      "----------"
+    ],
+    "publisher_columns": [
+      "region_GCAM3",
+      "resource",
+      "subresource",
+      "grade",
+      "available",
+      "extractioncost"
+    ],
+    "row_number": 18,
+    "row_values": {
+      "region_GCAM3": "Japan",
+      "resource": "geothermal",
+      "subresource": "hydrothermal",
+      "grade": "grade 2",
+      "available": "0.56582",
+      "extractioncost": "0.569"
+    },
+    "selected_values": {
+      "available": "0.56582"
+    },
+    "evidence_ref": "evidence_01",
+    "source_ref": "source_01",
+    "units": {
+      "status": "stated",
+      "publisher_statements": [
+        "Units: available in Thermal EJ/yr (i.e. heat input to geothermal power plants); extractioncost in 1975$/GJ"
+      ],
+      "scope": "Original table notes; a statement may describe several columns. No unit conversion was performed."
+    }
+  },
+  {
+    "id": "indonesia-geothermal",
+    "selector": {
+      "id": "indonesia-geothermal",
+      "tool": "power.geothermal_curves",
+      "country_iso": "idn",
+      "filters": {
+        "resource": "geothermal",
+        "subresource": "hydrothermal",
+        "grade": "grade 2"
+      },
+      "columns": [
+        "available"
+      ]
+    },
+    "resolved_filters": {
+      "resource": "geothermal",
+      "subresource": "hydrothermal",
+      "grade": "grade 2",
+      "region_GCAM3": "Southeast Asia"
+    },
+    "region_mapping": {
+      "requested_iso": "idn",
+      "region_key": "region_GCAM3",
+      "join_value": "Southeast Asia",
+      "receipt": {
+        "step_number": 3,
+        "tool": "economy.country_regions",
+        "table": "country_regions",
+        "release": "GCAM v9.1",
+        "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+        "source_notes": [
+          "File: iso_GCAM_regID.csv",
+          "Title: ISO to GCAM region mapping",
+          "Units: NA",
+          "Description: Maps iso codes to GCAM regions (including composites as necessary)",
+          "Column types: ccci",
+          "----------"
+        ],
+        "publisher_columns": [
+          "iso",
+          "country_name",
+          "region_GCAM3",
+          "GCAM_region_ID"
+        ],
+        "row_number": 100,
+        "row_values": {
+          "iso": "idn",
+          "country_name": "Indonesia",
+          "region_GCAM3": "Southeast Asia",
+          "GCAM_region_ID": "18"
+        },
+        "selected_values": {
+          "iso": "idn",
+          "country_name": "Indonesia",
+          "region_GCAM3": "Southeast Asia",
+          "GCAM_region_ID": "18"
+        },
+        "evidence_ref": "evidence_01",
+        "source_ref": "source_01",
+        "units": {
+          "status": "unspecified",
+          "publisher_statements": [
+            "Units: NA"
+          ],
+          "scope": "Original table notes; a statement may describe several columns. No unit conversion was performed."
+        }
+      }
+    },
+    "step_number": 4,
+    "tool": "power.geothermal_curves",
+    "table": "geothermal_curves",
+    "release": "GCAM v9.1",
+    "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A16.geo_curves.csv",
+    "source_notes": [
+      "File: A16.geo_curves.csv",
+      "Title: Supply curves of hydrothermal geothermal resources, inherited from GCAM 3.0",
+      "Units: available in Thermal EJ/yr (i.e. heat input to geothermal power plants); extractioncost in 1975$/GJ",
+      "Description: available: quantity available; extractioncost: costs of production",
+      "Reference: Hannam, P., P. Kyle, and S.J. Smith. 2009. Global Deployment of Geothermal Energy Using a New Characterization in GCAM 1.0. PNNL-19231, Pacitic Northwest National Laboratory. http://www.pnl.gov/main/publications/external/technical_reports/PNNL-19231.pdf",
+      "Column types: ccccnn",
+      "----------"
+    ],
+    "publisher_columns": [
+      "region_GCAM3",
+      "resource",
+      "subresource",
+      "grade",
+      "available",
+      "extractioncost"
+    ],
+    "row_number": 25,
+    "row_values": {
+      "region_GCAM3": "Southeast Asia",
+      "resource": "geothermal",
+      "subresource": "hydrothermal",
+      "grade": "grade 2",
+      "available": "5.65548",
+      "extractioncost": "0.569"
+    },
+    "selected_values": {
+      "available": "5.65548"
+    },
+    "evidence_ref": "evidence_01",
+    "source_ref": "source_01",
+    "units": {
+      "status": "stated",
+      "publisher_statements": [
+        "Units: available in Thermal EJ/yr (i.e. heat input to geothermal power plants); extractioncost in 1975$/GJ"
+      ],
+      "scope": "Original table notes; a statement may describe several columns. No unit conversion was performed."
+    }
+  },
+  {
+    "id": "kenya-soil",
+    "selector": {
+      "id": "kenya-soil",
+      "tool": "land.soil_timescales",
+      "country_iso": "ken",
+      "filters": {},
+      "columns": [
+        "soilTimeScale"
+      ]
+    },
+    "resolved_filters": {
+      "GCAM_region_ID": "2"
+    },
+    "region_mapping": {
+      "requested_iso": "ken",
+      "region_key": "GCAM_region_ID",
+      "join_value": "2",
+      "receipt": {
+        "step_number": 5,
+        "tool": "economy.country_regions",
+        "table": "country_regions",
+        "release": "GCAM v9.1",
+        "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+        "source_notes": [
+          "File: iso_GCAM_regID.csv",
+          "Title: ISO to GCAM region mapping",
+          "Units: NA",
+          "Description: Maps iso codes to GCAM regions (including composites as necessary)",
+          "Column types: ccci",
+          "----------"
+        ],
+        "publisher_columns": [
+          "iso",
+          "country_name",
+          "region_GCAM3",
+          "GCAM_region_ID"
+        ],
+        "row_number": 114,
+        "row_values": {
+          "iso": "ken",
+          "country_name": "Kenya",
+          "region_GCAM3": "Africa",
+          "GCAM_region_ID": "2"
+        },
+        "selected_values": {
+          "iso": "ken",
+          "country_name": "Kenya",
+          "region_GCAM3": "Africa",
+          "GCAM_region_ID": "2"
+        },
+        "evidence_ref": "evidence_01",
+        "source_ref": "source_01",
+        "units": {
+          "status": "unspecified",
+          "publisher_statements": [
+            "Units: NA"
+          ],
+          "scope": "Original table notes; a statement may describe several columns. No unit conversion was performed."
+        }
+      }
+    },
+    "step_number": 6,
+    "tool": "land.soil_timescales",
+    "table": "soil_timescales",
+    "release": "GCAM v9.1",
+    "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_soil_time_scale_R.csv",
+    "source_notes": [
+      "File: A_soil_time_scale_R.csv",
+      "Title: A_soil_tim_scale_R",
+      "Units: NA",
+      "Description: sets the number of years for soil carbon recovery following LUC",
+      "Original source: NA",
+      "Column types: ii",
+      "----------"
+    ],
+    "publisher_columns": [
+      "GCAM_region_ID",
+      "soilTimeScale"
+    ],
+    "row_number": 2,
+    "row_values": {
+      "GCAM_region_ID": "2",
+      "soilTimeScale": "25"
+    },
+    "selected_values": {
+      "soilTimeScale": "25"
+    },
+    "evidence_ref": "evidence_01",
+    "source_ref": "source_01",
+    "units": {
+      "status": "unspecified",
+      "publisher_statements": [
+        "Units: NA"
+      ],
+      "scope": "Original table notes; a statement may describe several columns. No unit conversion was performed."
+    }
+  },
+  {
+    "id": "canada-soil",
+    "selector": {
+      "id": "canada-soil",
+      "tool": "land.soil_timescales",
+      "country_iso": "can",
+      "filters": {},
+      "columns": [
+        "soilTimeScale"
+      ]
+    },
+    "resolved_filters": {
+      "GCAM_region_ID": "8"
+    },
+    "region_mapping": {
+      "requested_iso": "can",
+      "region_key": "GCAM_region_ID",
+      "join_value": "8",
+      "receipt": {
+        "step_number": 7,
+        "tool": "economy.country_regions",
+        "table": "country_regions",
+        "release": "GCAM v9.1",
+        "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+        "source_notes": [
+          "File: iso_GCAM_regID.csv",
+          "Title: ISO to GCAM region mapping",
+          "Units: NA",
+          "Description: Maps iso codes to GCAM regions (including composites as necessary)",
+          "Column types: ccci",
+          "----------"
+        ],
+        "publisher_columns": [
+          "iso",
+          "country_name",
+          "region_GCAM3",
+          "GCAM_region_ID"
+        ],
+        "row_number": 37,
+        "row_values": {
+          "iso": "can",
+          "country_name": "Canada",
+          "region_GCAM3": "Canada",
+          "GCAM_region_ID": "8"
+        },
+        "selected_values": {
+          "iso": "can",
+          "country_name": "Canada",
+          "region_GCAM3": "Canada",
+          "GCAM_region_ID": "8"
+        },
+        "evidence_ref": "evidence_01",
+        "source_ref": "source_01",
+        "units": {
+          "status": "unspecified",
+          "publisher_statements": [
+            "Units: NA"
+          ],
+          "scope": "Original table notes; a statement may describe several columns. No unit conversion was performed."
+        }
+      }
+    },
+    "step_number": 8,
+    "tool": "land.soil_timescales",
+    "table": "soil_timescales",
+    "release": "GCAM v9.1",
+    "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_soil_time_scale_R.csv",
+    "source_notes": [
+      "File: A_soil_time_scale_R.csv",
+      "Title: A_soil_tim_scale_R",
+      "Units: NA",
+      "Description: sets the number of years for soil carbon recovery following LUC",
+      "Original source: NA",
+      "Column types: ii",
+      "----------"
+    ],
+    "publisher_columns": [
+      "GCAM_region_ID",
+      "soilTimeScale"
+    ],
+    "row_number": 8,
+    "row_values": {
+      "GCAM_region_ID": "8",
+      "soilTimeScale": "75"
+    },
+    "selected_values": {
+      "soilTimeScale": "75"
+    },
+    "evidence_ref": "evidence_01",
+    "source_ref": "source_01",
+    "units": {
+      "status": "unspecified",
+      "publisher_statements": [
+        "Units: NA"
+      ],
+      "scope": "Original table notes; a statement may describe several columns. No unit conversion was performed."
+    }
+  },
+  {
+    "id": "desalination-energy",
+    "selector": {
+      "id": "desalination-energy",
+      "tool": "water.desalination_inputs",
+      "filters": {
+        "technology": "reverse osmosis",
+        "minicam.energy.input": "elect_td_ind"
+      },
+      "columns": [
+        "2100"
+      ]
+    },
+    "resolved_filters": {
+      "technology": "reverse osmosis",
+      "minicam.energy.input": "elect_td_ind"
+    },
+    "region_mapping": null,
+    "step_number": 9,
+    "tool": "water.desalination_inputs",
+    "table": "desalination_inputs",
+    "release": "GCAM v9.1",
+    "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A71.globaltech_coef.csv",
+    "source_notes": [
+      "File: A71.globaltech_coef.csv",
+      "Title: Desalination energy-for-water coefficients",
+      "Units: GJ of energy per cubic meter of water (GJ/m3)",
+      "Source: Liu et al. 2016. DOI: 10.1021/acs.est.6b01065",
+      "Column types: ccccnnnn"
+    ],
+    "publisher_columns": [
+      "supplysector",
+      "subsector",
+      "technology",
+      "minicam.energy.input",
+      "1971",
+      "2015",
+      "2017",
+      "2100"
+    ],
+    "row_number": 1,
+    "row_values": {
+      "supplysector": "desalinated water",
+      "subsector": "electricity",
+      "technology": "reverse osmosis",
+      "minicam.energy.input": "elect_td_ind",
+      "1971": "0.0432",
+      "2015": "0.0099",
+      "2017": "0.0099",
+      "2100": "0.0063"
+    },
+    "selected_values": {
+      "2100": "0.0063"
+    },
+    "evidence_ref": "evidence_01",
+    "source_ref": "source_01",
+    "units": {
+      "status": "stated",
+      "publisher_statements": [
+        "Units: GJ of energy per cubic meter of water (GJ/m3)"
+      ],
+      "scope": "Original table notes; a statement may describe several columns. No unit conversion was performed."
+    }
+  },
+  {
+    "id": "desalination-cost",
+    "selector": {
+      "id": "desalination-cost",
+      "tool": "water.desalination_costs",
+      "filters": {
+        "technology": "reverse osmosis"
+      },
+      "columns": [
+        "2100"
+      ]
+    },
+    "resolved_filters": {
+      "technology": "reverse osmosis"
+    },
+    "region_mapping": null,
+    "step_number": 10,
+    "tool": "water.desalination_costs",
+    "table": "desalination_costs",
+    "release": "GCAM v9.1",
+    "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A71.globaltech_cost.csv",
+    "source_notes": [
+      "File: A71.globaltech_cost.csv",
+      "Title: Desalination non-energy costs",
+      "Units: 1975$ per cubic meter of desalinated water (1975$/m3)",
+      "Source: RO tech cost estimated as total costs (about $2400/acre-foot, in 2016 dollars) minus fuel costs (36%), from CA Dept of Water Resources 2016. https://water.ca.gov/-/media/DWR-Website/Web-Pages/Programs/California-Water-Plan/Docs/RMS/2016/09_Desalination_July2016.pdf",
+      "Column types: ccccnn"
+    ],
+    "publisher_columns": [
+      "supplysector",
+      "subsector",
+      "technology",
+      "minicam.non.energy.input",
+      "1971",
+      "2100"
+    ],
+    "row_number": 1,
+    "row_values": {
+      "supplysector": "desalinated water",
+      "subsector": "electricity",
+      "technology": "reverse osmosis",
+      "minicam.non.energy.input": "non-energy",
+      "1971": "0.38",
+      "2100": "0.38"
+    },
+    "selected_values": {
+      "2100": "0.38"
+    },
+    "evidence_ref": "evidence_01",
+    "source_ref": "source_01",
+    "units": {
+      "status": "stated",
+      "publisher_statements": [
+        "Units: 1975$ per cubic meter of desalinated water (1975$/m3)"
+      ],
+      "scope": "Original table notes; a statement may describe several columns. No unit conversion was performed."
+    }
+  }
+]

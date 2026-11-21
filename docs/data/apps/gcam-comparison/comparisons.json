@@ -1,0 +1,62 @@
+[
+  {
+    "left": "japan-geothermal",
+    "left_column": "available",
+    "right": "indonesia-geothermal",
+    "right_column": "available",
+    "values": {
+      "left": "0.56582",
+      "right": "5.65548"
+    },
+    "relationship": "same_table_field",
+    "checks": {
+      "same_tool": true,
+      "same_column": true,
+      "same_release": true,
+      "same_units_statements": true,
+      "units_stated": true
+    },
+    "arithmetic": "not_performed",
+    "interpretation": "Side-by-side released model inputs. Matching table fields does not establish country observations, interchangeable regions or a common scientific meaning across row qualifiers."
+  },
+  {
+    "left": "kenya-soil",
+    "left_column": "soilTimeScale",
+    "right": "canada-soil",
+    "right_column": "soilTimeScale",
+    "values": {
+      "left": "25",
+      "right": "75"
+    },
+    "relationship": "units_unspecified",
+    "checks": {
+      "same_tool": true,
+      "same_column": true,
+      "same_release": true,
+      "same_units_statements": true,
+      "units_stated": false
+    },
+    "arithmetic": "not_performed",
+    "interpretation": "Side-by-side released model inputs. Matching table fields does not establish country observations, interchangeable regions or a common scientific meaning across row qualifiers."
+  },
+  {
+    "left": "desalination-energy",
+    "left_column": "2100",
+    "right": "desalination-cost",
+    "right_column": "2100",
+    "values": {
+      "left": "0.0063",
+      "right": "0.38"
+    },
+    "relationship": "different_table_or_field",
+    "checks": {
+      "same_tool": false,
+      "same_column": true,
+      "same_release": true,
+      "same_units_statements": false,
+      "units_stated": true
+    },
+    "arithmetic": "not_performed",
+    "interpretation": "Side-by-side released model inputs. Matching table fields does not establish country observations, interchangeable regions or a common scientific meaning across row qualifiers."
+  }
+]

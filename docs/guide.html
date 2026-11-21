@@ -30,7 +30,7 @@ main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0
 }
 </style></head><body class=""><a class="skip" href="#content">Skip to content</a>
 <header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Recorded demos</a></nav></header>
-<main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#start-with-a-recorded-workflow">Start with a recorded workflow</a></li><li><a href="#use-live-publishers-locally">Use live publishers locally</a></li><li><a href="#genesis-and-no-cost-demos">Genesis and no-cost demos</a></li><li><a href="#connect-a-client-and-provide-a-skill">Connect a client and provide a skill</a></li><li><a href="#interpret-the-result">Interpret the result</a></li><li><a href="#evaluate-agent-behavior">Evaluate agent behavior</a></li><li><a href="#development-checks">Development checks</a></li><li><a href="#rulemaking-brief">Rulemaking brief</a></li><li><a href="#historical-outage-data-finder">Historical outage-data finder</a></li><li><a href="#load-a-daymet-temperature-extract">Load a Daymet temperature extract</a></li><li><a href="#score-a-five-minute-bpa-load-prediction">Score a five-minute BPA load prediction</a></li></ul></nav><h1 id="local-workflows-and-evidence">Local workflows and evidence</h1>
+<main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#start-with-a-recorded-workflow">Start with a recorded workflow</a></li><li><a href="#use-live-publishers-locally">Use live publishers locally</a></li><li><a href="#genesis-and-no-cost-demos">Genesis and no-cost demos</a></li><li><a href="#connect-a-client-and-provide-a-skill">Connect a client and provide a skill</a></li><li><a href="#interpret-the-result">Interpret the result</a></li><li><a href="#evaluate-agent-behavior">Evaluate agent behavior</a></li><li><a href="#development-checks">Development checks</a></li><li><a href="#rulemaking-brief">Rulemaking brief</a></li><li><a href="#historical-outage-data-finder">Historical outage-data finder</a></li><li><a href="#load-a-daymet-temperature-extract">Load a Daymet temperature extract</a></li><li><a href="#score-a-five-minute-bpa-load-prediction">Score a five-minute BPA load prediction</a></li><li><a href="#compare-gcam-inputs-with-receipts">Compare GCAM inputs with receipts</a></li></ul></nav><h1 id="local-workflows-and-evidence">Local workflows and evidence</h1>
 <p>DOE-MCP reads public publisher APIs through focused domain servers. Each
 answer separates the data from its sources, record evidence, access
 recipes, warnings and coverage. It does not operate facilities or run
@@ -350,4 +350,15 @@ megawatts. The root mean squared error gives larger misses more weight.
 Both scores use only pairs five minutes apart with load at both ends.
 These are retrospective scores for this sample. BPA did not issue the
 predictions. Add <code>--live</code> to score a new window from the public feed.</p>
+<h2 id="compare-gcam-inputs-with-receipts">Compare GCAM inputs with receipts</h2>
+<p>Run <code>doe-mcp app gcam-comparison --output ./gcam-receipts</code> to select released
+model inputs and retain their row, column, file, unit notes and country
+mapping evidence. The application places cells side by side without
+arithmetic or unit conversion. A country mapping preserves the target
+table's region convention; it does not turn regional assumptions into
+country observations.</p>
+<p><a href="applications.html#gcam-comparison-receipts">Inspect the recorded receipts and download the selection plan</a>.
+<a href="apps.html#gcam-comparison-receipts">CLI plan format and limits</a> explain how
+to choose other exact rows. All existing GCAM table recordings are
+available offline.</p>
 </main></body></html>

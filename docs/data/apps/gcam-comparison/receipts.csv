@@ -1,0 +1,38 @@
+selection_id,tool,column,value,release,file_url,row_number,evidence_ref,step_number,region_key,region_value,units_status,units_statements,resolved_filters
+japan-geothermal,power.geothermal_curves,available,0.56582,GCAM v9.1,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A16.geo_curves.csv,18,evidence_01,2,region_GCAM3,Japan,stated,"[
+  ""Units: available in Thermal EJ/yr (i.e. heat input to geothermal power plants); extractioncost in 1975$/GJ""
+]","{
+  ""resource"": ""geothermal"",
+  ""subresource"": ""hydrothermal"",
+  ""grade"": ""grade 2"",
+  ""region_GCAM3"": ""Japan""
+}"
+indonesia-geothermal,power.geothermal_curves,available,5.65548,GCAM v9.1,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A16.geo_curves.csv,25,evidence_01,4,region_GCAM3,Southeast Asia,stated,"[
+  ""Units: available in Thermal EJ/yr (i.e. heat input to geothermal power plants); extractioncost in 1975$/GJ""
+]","{
+  ""resource"": ""geothermal"",
+  ""subresource"": ""hydrothermal"",
+  ""grade"": ""grade 2"",
+  ""region_GCAM3"": ""Southeast Asia""
+}"
+kenya-soil,land.soil_timescales,soilTimeScale,25,GCAM v9.1,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_soil_time_scale_R.csv,2,evidence_01,6,GCAM_region_ID,2,unspecified,"[
+  ""Units: NA""
+]","{
+  ""GCAM_region_ID"": ""2""
+}"
+canada-soil,land.soil_timescales,soilTimeScale,75,GCAM v9.1,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_soil_time_scale_R.csv,8,evidence_01,8,GCAM_region_ID,8,unspecified,"[
+  ""Units: NA""
+]","{
+  ""GCAM_region_ID"": ""8""
+}"
+desalination-energy,water.desalination_inputs,2100,0.0063,GCAM v9.1,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A71.globaltech_coef.csv,1,evidence_01,9,,,stated,"[
+  ""Units: GJ of energy per cubic meter of water (GJ/m3)""
+]","{
+  ""technology"": ""reverse osmosis"",
+  ""minicam.energy.input"": ""elect_td_ind""
+}"
+desalination-cost,water.desalination_costs,2100,0.38,GCAM v9.1,https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A71.globaltech_cost.csv,1,evidence_01,10,,,stated,"[
+  ""Units: 1975$ per cubic meter of desalinated water (1975$/m3)""
+]","{
+  ""technology"": ""reverse osmosis""
+}"
