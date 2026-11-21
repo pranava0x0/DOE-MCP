@@ -350,6 +350,23 @@ async function applicationJourney(browser, viewport, task) {
     report.journeys.push({viewport, task: task.id, endpoint: page.url(), ...counters});
   } finally { await context.close(); }
 }
+async function evaluationJourney(browser, viewport) {
+  const counters = metrics();
+  const {page, context} = await pageFor(browser, viewport, counters);
+  try {
+    await page.goto(base + '/index.html', {waitUntil: 'domcontentloaded'});
+    await click(page, page.locator('.atlas-actions a[href="evaluation-example.html"]'), counters, 'evaluation lab');
+    await page.getByRole('heading', {name: 'Evaluation matrix demonstration', exact: true}).waitFor();
+    assert.equal(await page.getByText('Unknown: no reviews', {exact: true}).count(), 4);
+    assert.equal(await page.getByText('Unknown: no prices', {exact: true}).count(), 4);
+    const file = await download(page, page.getByRole('link', {name: 'Download the complete comparison bundle', exact: true}), counters, 'evaluation bundle');
+    assert(file.bytes.equals(fs.readFileSync(path.join(docs, 'data/evaluation-matrix/bundle.zip'))), 'evaluation bundle differs');
+    await settled(page);
+    assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'evaluation page overflow');
+    await page.screenshot({path: path.join(output, 'journey-' + viewport.width + '-evaluation-matrix.png')});
+    report.journeys.push({viewport, task: 'evaluation-matrix', endpoint: page.url(), ...counters});
+  } finally { await context.close(); }
+}
 async function hrefTargets(browser) {
   const {page, context} = await pageFor(browser, {width: 1280, height: 800}, metrics());
   const destinations = new Map();
@@ -399,6 +416,7 @@ async function hrefTargets(browser) {
         {id: 'gcam-comparison', anchor: 'gcam-comparison-receipts'},
         {id: 'research-linkage', anchor: 'research-artifact-linkage-explorer'}])
         await applicationJourney(browser, viewport, task);
+      await evaluationJourney(browser, viewport);
       await stability(browser, viewport);
     }
     await performance(browser);

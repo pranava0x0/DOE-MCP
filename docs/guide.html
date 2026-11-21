@@ -249,7 +249,7 @@ its renderer or registry inputs, not generated pages.</p>
 <p>Prepare the existing skill tasks without calling a model:</p>
 <pre><code class="language-bash">doe-mcp evaluate --prepare --output ./evaluation-tasks.json
 </code></pre>
-<p>The twelve cases cover useful answers and six traps. Evaluation annotations
+<p>The cases cover useful answers and semantic traps. Evaluation annotations
 live beside the checked and reader tasks in each skill's <code>bench.yaml</code>.
 Contract tests run offline. They do not prove model-selection accuracy.</p>
 <p>Optional model runs use an explicitly supplied executable driver:</p>
@@ -264,6 +264,9 @@ and returns either <code>tool_calls</code> (name and arguments) or <code>answer<
 citations), plus actual <code>usage.input_tokens</code> and <code>usage.output_tokens</code>. Return
 <code>model_version</code> and <code>settings</code> to identify the model and sampling
 configuration; absent values are explicitly reported as unknown.
+Optional <code>cached_input_tokens</code> and <code>reasoning_output_tokens</code> are subsets of
+input and output totals. New reports preserve per-call usage and exact
+answer, task and rubric bindings for later review.
 Each citation names a one-based tool step and an evidence ID from that
 step. Keep provider credentials in the driver's own environment; never
 return them or log them. Driver stderr is not retained.</p>
@@ -279,6 +282,10 @@ denominator. Reports preserve failures and require human review against
 each task's rubric. Automatic citation checks are not semantic grading;
 no accuracy score is advertised before that review. Source text is
 untrusted, including the injected-instruction trap.</p>
+<p><a href="evaluation-matrix.html">Compare existing reports offline</a> to export an
+execution, review, token and estimated-cost matrix. Missing reviews and
+prices stay unknown. The <a href="evaluation-example.html">deterministic driver example</a>
+demonstrates the export without calling a model or claiming model quality.</p>
 <p>For a release, require no fabricated locators, leaked keys, forecast-as-
 demand claims or invented source coverage. Inspect all trap answers and
 report numerator and denominator for useful-task success. The architecture's

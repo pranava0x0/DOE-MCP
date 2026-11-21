@@ -595,6 +595,8 @@ def main() -> int:
         asyncio.run(write_workflows())
         from build_applications import write_applications
         asyncio.run(write_applications(ROOT))
+        from build_evaluation_example import write_evaluation_example
+        asyncio.run(write_evaluation_example(ROOT))
 
     write_readme_status(data)
     REFERENCE.write_text(render_reference(

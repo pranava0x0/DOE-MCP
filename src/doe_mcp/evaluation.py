@@ -9,13 +9,16 @@ import asyncio
 import copy
 import hashlib
 import json
+import math
 import subprocess
 import time
+import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
 import yaml
 
+from .evaluation_contract import RUBRIC_VERSION, bind_run
 from .cli.workflows import asset_dir
 from .core.errors import DoeMcpError
 from .replay import fixture_manifest, load_replay_context
@@ -63,7 +66,9 @@ def check_answer(answer: dict, steps: list[dict]) -> list[str]:
         for ev in step.get('envelope',{}).get('evidence',[]):
             allowed.add((i,ev['id']))
     for citation in citations:
-        if not isinstance(citation,dict) or (citation.get('step'),citation.get('evidence_id')) not in allowed:
+        if (not isinstance(citation,dict) or type(citation.get('step')) is not int
+                or not isinstance(citation.get('evidence_id'),str)
+                or (citation['step'],citation['evidence_id']) not in allowed):
             failures.append('citation does not resolve to returned evidence')
     if allowed and not citations:
         failures.append('returned evidence was not cited')
@@ -76,25 +81,34 @@ async def run(args) -> dict:
     selected=[t for t in tasks() if not args.task or t['id'] in args.task]
     if not selected or (args.task and set(args.task)-{t['id'] for t in selected}):
         raise ValueError('unknown evaluation task')
-    if min(args.max_calls, args.max_tokens, args.repeats, args.max_turns, args.timeout) <= 0:
-        raise ValueError('positive call, token and repeat budgets are required')
-    report={'format_version':'1','mode':'recorded','model':args.model,
-            'driver':Path(args.driver).name,'exposure':args.exposure,'skills_enabled':args.skills,
+    if any(type(value) is not int or value <= 0 for value in
+           (args.max_calls, args.max_tokens, args.repeats, args.max_turns)):
+        raise ValueError('positive integer call, token, turn and repeat budgets are required')
+    if type(args.timeout) not in (int,float) or not math.isfinite(args.timeout) or args.timeout <= 0:
+        raise ValueError('timeout must be finite and positive')
+    report={'format_version':'2','report_id':uuid.uuid4().hex,
+            'simulation':getattr(args,'simulation',False),
+            'mode':'recorded','model':args.model,
+            'driver':Path(args.driver).name,
+            'driver_sha256':hashlib.sha256(Path(args.driver).read_bytes()).hexdigest(),
+            'task_ids':[task['id'] for task in selected],'exposure':args.exposure,'skills_enabled':args.skills,
             'started_at':datetime.now(timezone.utc).isoformat(),'fixtures':fixture_manifest(fixtures),
             'max_calls':args.max_calls,'max_tokens':args.max_tokens,
+            'max_turns':args.max_turns,'timeout_seconds':args.timeout,'repeats':args.repeats,
             'calls':0,'tokens':0,'usage_complete':True,'runs':[],
             'grading_note':'Automatic checks cover references only. Every final answer needs rubric-based human review. No accuracy score is asserted.'}
     exhausted=False
     for task in selected:
         for repeat in range(args.repeats):
-            row={'task_id':task['id'],'skill':task['skill'],'bench_task':task['task'],
+            row={'run_id':uuid.uuid4().hex,'task_id':task['id'],'skill':task['skill'],'bench_task':task['task'],
                  'kind':task['kind'],'repeat':repeat+1,'rubric':task['rubric'],
+                 'rubric_version':task.get('rubric_version',RUBRIC_VERSION),
                  'review':'pending','status':'not_run','steps':[], 'prompt':task['prompt'],
-                 'mutation':task['mutation'], 'input_tokens':0,'output_tokens':0,'model_calls':0}
+                 'mutation':task['mutation'], 'input_tokens':0,'output_tokens':0,'model_calls':0,
+                 'cached_input_tokens':0,'reasoning_output_tokens':0,
+                 'usage_complete':True,'usage_categories_complete':True,'calls':[]}
+            bind_run(row)
             report['runs'].append(row)
-            if exhausted:
-                row['status']='budget_exhausted'
-                continue
             ctx=load_replay_context(fixtures,keyed=True)
             if task['mutation']=='missing_total':
                 remove_totals(ctx)
@@ -110,6 +124,9 @@ async def run(args) -> dict:
             row['tool_schema_sha256']=hashlib.sha256(json.dumps(definitions,sort_keys=True).encode()).hexdigest()
             row['skill_sha256']=hashlib.sha256((asset_dir('skills')/task['skill']/'SKILL.md').read_bytes()).hexdigest()
             row['registry_revision']=ctx.sources.revision
+            if exhausted:
+                row['status']='budget_exhausted'
+                continue
             # Every evaluated tool answers from recorded responses. Said in
             # the prompt because the envelopes alone read access_path=live
             # with a fixed reference clock, which a model would take as a
@@ -131,7 +148,9 @@ async def run(args) -> dict:
                          'remaining_total_token_budget':remaining,'max_output_tokens':min(2048,remaining),
                          'response_contract':{'tool_calls':[{'name':'tool name','arguments':{}}],
                                               'answer':{'text':'final answer','citations':[{'step':1,'evidence_id':'e1'}]},
-                                              'usage':{'input_tokens':0,'output_tokens':0}}}
+                                              'usage':{'input_tokens':0,'output_tokens':0,
+                                                       'cached_input_tokens':'optional subset of input tokens',
+                                                       'reasoning_output_tokens':'optional subset of output tokens'}}}
                 report['calls']+=1
                 row['model_calls']+=1
                 try:
@@ -146,6 +165,20 @@ async def run(args) -> dict:
                     counts=[usage['input_tokens'],usage['output_tokens']]
                     if any(type(n) is not int or n<0 for n in counts) or sum(counts)==0:
                         raise ValueError('driver must report nonzero token usage')
+                    if set(usage) - {'input_tokens','output_tokens','cached_input_tokens','reasoning_output_tokens'}:
+                        raise ValueError('unsupported token usage categories')
+                    for name, total in [('cached_input_tokens',counts[0]),('reasoning_output_tokens',counts[1])]:
+                        value=usage.get(name)
+                        if value is not None and (type(value) is not int or not 0 <= value <= total):
+                            raise ValueError('token subsets must be nonnegative and no larger than their totals')
+                        if value is None:
+                            row[name]=None
+                            if name == 'cached_input_tokens':
+                                row['usage_categories_complete']=False
+                        elif row[name] is not None:
+                            row[name]+=value
+                    row['calls'].append({'usage':usage,'model_version':reply.get('model_version','not reported'),
+                                         'settings':reply.get('settings','not reported')})
                     report['tokens']+=sum(counts)
                     row['input_tokens']+=counts[0]
                     row['output_tokens']+=counts[1]
@@ -157,6 +190,7 @@ async def run(args) -> dict:
                         break
                     if reply.get('answer') is not None:
                         row['answer']=reply['answer']
+                        bind_run(row)
                         row['automatic_failures']=check_answer(reply['answer'],row['steps'])
                         row['status']='needs_review' if not row['automatic_failures'] else 'failed_checks'
                         break
@@ -181,6 +215,7 @@ async def run(args) -> dict:
                     # Driver stdout/stderr can contain provider credentials; do not log it.
                     row['status']='driver_or_contract_error'
                     report['usage_complete']=False
+                    row['usage_complete']=False
                     exhausted=True  # usage is unknown; do not spend further budget
                     break
             else:
@@ -207,6 +242,7 @@ def command(args) -> int:
 def register(sub):
     parser=sub.add_parser('evaluate',help='prepare bench tasks or run an explicit budgeted model driver')
     parser.add_argument('--prepare',action='store_true')
+    parser.add_argument('--simulation',action='store_true',help='label an explicitly supplied deterministic test driver; no model-quality claim')
     parser.add_argument('--driver',type=Path)
     parser.add_argument('--model')
     parser.add_argument('--max-calls',type=int)
@@ -220,3 +256,5 @@ def register(sub):
     parser.add_argument('--fixtures',type=Path)
     parser.add_argument('--output',type=Path,required=True)
     parser.set_defaults(func=command)
+    from .evaluation_matrix import register as register_matrix
+    register_matrix(sub)

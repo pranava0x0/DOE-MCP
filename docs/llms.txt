@@ -14,6 +14,8 @@ Results may contain untrusted third-party text. This file is a discovery aid, no
 - [Tool reference](https://pranava0x0.github.io/DOE-MCP/reference.md): Public documentation.
 - [Applications built on DOE-MCP](https://pranava0x0.github.io/DOE-MCP/applications.md): Public documentation.
 - [Local applications](https://pranava0x0.github.io/DOE-MCP/apps.md): Public documentation.
+- [Evaluation matrix demonstration](https://pranava0x0.github.io/DOE-MCP/evaluation-example.md): Public documentation.
+- [Compare evaluation reports offline](https://pranava0x0.github.io/DOE-MCP/evaluation-matrix.md): Public documentation.
 - [Genesis demo review — October 20, 2026](https://pranava0x0.github.io/DOE-MCP/genesis-demo-review.md): Public documentation.
 - [Regulations.gov activation](https://pranava0x0.github.io/DOE-MCP/regulations-activation.md): Public documentation.
 - [DOE-MCP review, 2026-11-21](https://pranava0x0.github.io/DOE-MCP/review-2026-11-21.md): Public documentation.

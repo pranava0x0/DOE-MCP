@@ -1,0 +1,103 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evaluation matrix demonstration — DOE-MCP</title><link rel="icon" href="data:,">
+<link rel="canonical" href="https://pranava0x0.github.io/DOE-MCP/evaluation-example.html">
+<meta name="description" content="Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.">
+<meta property="og:title" content="Evaluation matrix demonstration">
+<meta property="og:description" content="Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.">
+<meta property="og:type" content="website"><meta property="og:url" content="https://pranava0x0.github.io/DOE-MCP/evaluation-example.html">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" type="text/markdown" href="evaluation-example.md">
+<link rel="describedby" type="text/plain" href="llms.txt">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Evaluation matrix demonstration", "url": "https://pranava0x0.github.io/DOE-MCP/evaluation-example.html", "description": "Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.", "isPartOf": {"@type": "WebSite", "name": "DOE-MCP", "url": "https://pranava0x0.github.io/DOE-MCP/"}}</script>
+<style>
+:root{color-scheme:light;--ink:#20342b;--paper:#f5f2e8;--accent:#38654c}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible{outline:3px solid #9e572b;outline-offset:4px}
+header,main{max-width:1040px;margin:auto;padding:24px}header{border-bottom:1px solid #a8b3a7}
+nav{display:flex;gap:20px;flex-wrap:wrap}h1,h2,h3{font-family:Georgia,serif;line-height:1.2;scroll-margin-top:1rem}
+pre{overflow:auto;background:#e8e7dd;padding:16px;border-radius:6px}code{font-size:.9em}
+table{display:block;overflow:auto;border-collapse:collapse;max-width:100%}td,th{padding:9px;border:1px solid #b4beb4;text-align:left}
+main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0;background:white;padding:10px}
+.application-page pre{white-space:pre-wrap;overflow-wrap:anywhere}
+@media(max-width:600px){
+.application-page table,.application-page tbody,.application-page tr,.application-page td{display:block;width:100%}
+.application-page table{overflow:visible}
+.application-page thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.application-page tr{border:1px solid #b4beb4;margin:12px 0;padding:8px}
+.application-page td{border:0;padding:6px 8px;text-align:left!important}
+.application-page td::before{content:attr(data-label);display:block;font-size:.8em;font-weight:600;color:#38654c}
+}
+</style></head><body class="application-page"><a class="skip" href="#content">Skip to content</a>
+<header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Recorded demos</a></nav></header>
+<main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#inspect-or-reproduce">Inspect or reproduce</a></li></ul></nav><h1 id="evaluation-matrix-demonstration">Evaluation matrix demonstration</h1>
+<p><strong>Simulation only. No language model, reviewer or provider was called.</strong> This example exercises the driver protocol against recorded tools. Token counts are simulated protocol values. They do not measure a model or its cost.</p>
+<p><a href="data/evaluation-matrix/bundle.zip" download="evaluation-matrix.zip">Download the complete comparison bundle</a> · <a href="data/evaluation-matrix/report.json">Read the JSON report</a> · <a href="evaluation-matrix.html">Compare your own reports</a></p>
+<p>The same task and fixture hashes appear in every configuration. Each configuration has a budget that permits one final answer, one unfinished attempt and one unrun repetition. They all stay in the denominator.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Tool exposure</th>
+<th scope="col">Skills</th>
+<th style="text-align:right" scope="col">Scheduled</th>
+<th style="text-align:right" scope="col">Attempted</th>
+<th style="text-align:right" scope="col">Final answers</th>
+<th style="text-align:right" scope="col">Reference checks passed</th>
+<th scope="col">Reviewed quality</th>
+<th scope="col">Estimated cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Tool exposure">all</td>
+<td data-label="Skills">Off</td>
+<td style="text-align:right" data-label="Scheduled">3</td>
+<td style="text-align:right" data-label="Attempted">2</td>
+<td style="text-align:right" data-label="Final answers">1</td>
+<td style="text-align:right" data-label="Reference checks passed">1</td>
+<td data-label="Reviewed quality">Unknown: no reviews</td>
+<td data-label="Estimated cost">Unknown: no prices</td>
+</tr>
+<tr>
+<td data-label="Tool exposure">all</td>
+<td data-label="Skills">On</td>
+<td style="text-align:right" data-label="Scheduled">3</td>
+<td style="text-align:right" data-label="Attempted">2</td>
+<td style="text-align:right" data-label="Final answers">1</td>
+<td style="text-align:right" data-label="Reference checks passed">1</td>
+<td data-label="Reviewed quality">Unknown: no reviews</td>
+<td data-label="Estimated cost">Unknown: no prices</td>
+</tr>
+<tr>
+<td data-label="Tool exposure">focused</td>
+<td data-label="Skills">Off</td>
+<td style="text-align:right" data-label="Scheduled">3</td>
+<td style="text-align:right" data-label="Attempted">2</td>
+<td style="text-align:right" data-label="Final answers">1</td>
+<td style="text-align:right" data-label="Reference checks passed">1</td>
+<td data-label="Reviewed quality">Unknown: no reviews</td>
+<td data-label="Estimated cost">Unknown: no prices</td>
+</tr>
+<tr>
+<td data-label="Tool exposure">focused</td>
+<td data-label="Skills">On</td>
+<td style="text-align:right" data-label="Scheduled">3</td>
+<td style="text-align:right" data-label="Attempted">2</td>
+<td style="text-align:right" data-label="Final answers">1</td>
+<td style="text-align:right" data-label="Reference checks passed">1</td>
+<td data-label="Reviewed quality">Unknown: no reviews</td>
+<td data-label="Estimated cost">Unknown: no prices</td>
+</tr>
+</tbody>
+</table>
+<p>A passed reference check means citation identifiers resolve to returned evidence. It does not establish a correct claim, safe refusal, scientific accuracy or model quality. There are no reviewed quality scores or supplied model prices in this example.</p>
+<h2 id="inspect-or-reproduce">Inspect or reproduce</h2>
+<p>The bundle contains source driver reports, <code>matrix.csv</code>, <code>runs.csv</code>, a blank grade template, the comparison JSON and checksums. Unzip it, then compare the supplied reports without running a driver:</p>
+<pre><code class="language-bash">doe-mcp evaluate-matrix \
+  --report focused-skills-off.json --report focused-skills-on.json \
+  --report all-skills-off.json --report all-skills-on.json \
+  --output ./offline-comparison
+</code></pre>
+<p><a href="data/evaluation-matrix/matrix.csv">Matrix CSV</a> · <a href="data/evaluation-matrix/runs.csv">Run-level CSV</a> · <a href="data/evaluation-matrix/grades-template.json">Grade template</a></p>
+<p>Site execution clocks and identifiers are normalized for repeatable builds. They are not fixture capture times. The source fixture hashes remain in the bundle.</p>
+</main></body></html>

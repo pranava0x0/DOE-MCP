@@ -104,6 +104,7 @@ jobs:
           done
           npm run uat
           npm run uat:journeys
+          npm run uat:evaluation
       - name: Publish benchmark summary in job output
         if: always()
         run: |

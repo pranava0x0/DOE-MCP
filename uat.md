@@ -206,3 +206,28 @@ clicks and zero wheel actions at each width. Anchor movement increased to
 The full regression suite passed 1,429 tests with one optional skip. The
 research application also exported successfully from an installed wheel
 outside the checkout. The existing 38-demo functional audit passed.
+
+## Evaluation matrix addition — 2026-11-21
+
+The offline comparison pages passed their functional audit at 375×812,
+768×1024 and 1280×800. Each path followed the guide, comparison contract and
+explicit simulation example, verified bundle and CSV bytes, and checked
+keyboard access. Phone tables fit without page overflow. The example keeps
+quality and cost unknown because no reviews or prices were supplied.
+
+The baseline audit passed 27 journeys and 375 local targets across eleven
+HTML documents. The 38-demo functional checks also passed. Browser errors
+and blocked external requests were zero. These runs used Playwright 1.58.2
+with installed Chrome 158.0.8127.36 on loopback; they are scripted local
+checks. A homepage-to-bundle journey now measures clicks, wheel actions and
+navigation with the shared audit instrumentation. After adding the direct
+shortcut, the matrix bundle takes two clicks, zero wheel actions and two
+document loads at all three widths. All 36 integrated journeys and 396
+local targets pass with no browser errors.
+
+The first integrated matrix journey passed all 36 site paths and 395 local
+targets. Reaching its bundle through the guide took five clicks and four
+document loads, plus three wheel actions on the phone and one at larger
+widths. A direct homepage Evaluation lab shortcut now avoids those guide
+steps. The separate functional audit still checks the guide and contract.
+The integrated regression suite passed 1,496 tests with one optional skip.
