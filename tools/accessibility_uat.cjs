@@ -259,14 +259,19 @@ async function modifiedLink(page, id) {
     const link = page.locator('[data-location-links] a').first();
     const hash = await link.getAttribute('href');
     const original = page.url();
+    const destination = new URL(hash, original).href;
     const popupPromise = page.context().waitForEvent('page');
     await link.click({modifiers: [process.platform === 'darwin' ? 'Meta' : 'Control']});
     const popup = await popupPromise;
     try {
-      await popup.waitForLoadState();
+      // A new tab can initially report a loaded about:blank document. Wait for the
+      // real anchor destination before checking readiness or fragment semantics.
+      await popup.waitForURL(destination, {waitUntil: 'domcontentloaded'});
+      await popup.waitForLoadState('load');
+      assert.equal(popup.url(), destination, 'modified anchor opens its exact native destination in another tab');
       assert.equal(new URL(popup.url()).hash, hash, 'modified anchor opens its native fragment in another tab');
       assert.equal(page.url(), original, 'modified anchor preserves original page location');
-      return {hash, nativeNewTab: true};
+      return {hash, destination, nativeNewTab: true};
     } finally { await popup.close(); await page.bringToFront(); }
   });
 }

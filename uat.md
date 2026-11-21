@@ -422,3 +422,11 @@ The 1,571 replay tests passed with one architecture-file skip. Ruff, source
 validation, schema comparison, writing checks, all 38 export comparisons and
 the independent Croissant reader passed. A complete fixture rebuild changed
 no generated file. Astra reviewed the navigation design and final fixes.
+
+The first Linux CI run exposed a test-readiness race: a modified-click tab
+could report the loaded `about:blank` document before its anchor destination.
+The audit now waits for the exact destination before checking the fragment
+and unchanged original page. A delayed-navigation regression reproduced the
+old race; the corrected helper passed it and five native modified-click runs
+with delayed responses and fourfold CPU slowdown. No product rule or
+accessibility assertion was removed.
