@@ -5,7 +5,7 @@
   "simulation": true,
   "cohorts": [
     {
-      "id": "03b23ebde4125d4110479008cab69801d3d970281e7751963a1794c9822c5fa2",
+      "id": "5ff433c35213d98ffaec2531603a7064ba32299bf628ce345d7488a371b28d93",
       "tasks": {
         "alias": {
           "task": {
@@ -108,6 +108,10 @@
           "1d6915f666940b312c349bfb9e9dcb32e123e89850582f3f7b2e282aeda911a7"
         ],
         [
+          "nlr-atb.json",
+          "4c664d08b044c901695c0018a4a1a70e2576394b4bd78c782d772fadfe8f2ed1"
+        ],
+        [
           "nmdc-runtime.json",
           "a47cb8d2a0a93dcec1b30c3de2eca0769c8e5fb4fe9eca8edda61eb580432b78"
         ],
@@ -159,7 +163,7 @@
   "reports": [
     {
       "id": "simulation-focused-skills-off",
-      "sha256": "ec258c442f873cc211cf5f6f20d0f2c62ce429a1830491734dcfde39aed6ba49",
+      "sha256": "7321acefb15e3954ce2375cb9759c8f9e204ce1cd87ceb1d184a35fbc3fae948",
       "started_at": "2026-11-21T00:00:00+00:00",
       "fixtures": [
         {
@@ -251,6 +255,23 @@
           "file": "nersc-status.json",
           "sha256": "1d6915f666940b312c349bfb9e9dcb32e123e89850582f3f7b2e282aeda911a7",
           "captured_at": "2026-10-08T23:12:37.080875+00:00"
+        },
+        {
+          "file": "nlr-atb.json",
+          "sha256": "4c664d08b044c901695c0018a4a1a70e2576394b4bd78c782d772fadfe8f2ed1",
+          "captured_at": "2026-11-21T20:34:37.552205+00:00",
+          "binary_assets": [
+            {
+              "file": "blobs/13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e.bin",
+              "bytes": 5131651,
+              "sha256": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e"
+            },
+            {
+              "file": "blobs/c380220b472b7832d864afe9dd15d6c748aee0a7f58a6ffc26d89261413502b4.bin",
+              "bytes": 9193709,
+              "sha256": "c380220b472b7832d864afe9dd15d6c748aee0a7f58a6ffc26d89261413502b4"
+            }
+          ]
         },
         {
           "file": "nmdc-runtime.json",
@@ -307,7 +328,7 @@
     },
     {
       "id": "simulation-focused-skills-on",
-      "sha256": "eaf9c4618ad5965b5ae460cf2372d0525ab23d40242e49670d829ac85d0fe9bc",
+      "sha256": "182671effe11b3b535405336017bb7d1f5cf6b76842fe44b40ae3ac854de01d0",
       "started_at": "2026-11-21T00:00:00+00:00",
       "fixtures": [
         {
@@ -399,6 +420,23 @@
           "file": "nersc-status.json",
           "sha256": "1d6915f666940b312c349bfb9e9dcb32e123e89850582f3f7b2e282aeda911a7",
           "captured_at": "2026-10-08T23:12:37.080875+00:00"
+        },
+        {
+          "file": "nlr-atb.json",
+          "sha256": "4c664d08b044c901695c0018a4a1a70e2576394b4bd78c782d772fadfe8f2ed1",
+          "captured_at": "2026-11-21T20:34:37.552205+00:00",
+          "binary_assets": [
+            {
+              "file": "blobs/13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e.bin",
+              "bytes": 5131651,
+              "sha256": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e"
+            },
+            {
+              "file": "blobs/c380220b472b7832d864afe9dd15d6c748aee0a7f58a6ffc26d89261413502b4.bin",
+              "bytes": 9193709,
+              "sha256": "c380220b472b7832d864afe9dd15d6c748aee0a7f58a6ffc26d89261413502b4"
+            }
+          ]
         },
         {
           "file": "nmdc-runtime.json",
@@ -455,7 +493,7 @@
     },
     {
       "id": "simulation-all-skills-off",
-      "sha256": "53ffd5111aaf6aa4af442cd5518a937d0416a04a2411595505ef96e94d0e6649",
+      "sha256": "c09df8a991eeadef786556c99d3552ec8f847a19dd172159c2b049055a320580",
       "started_at": "2026-11-21T00:00:00+00:00",
       "fixtures": [
         {
@@ -547,6 +585,23 @@
           "file": "nersc-status.json",
           "sha256": "1d6915f666940b312c349bfb9e9dcb32e123e89850582f3f7b2e282aeda911a7",
           "captured_at": "2026-10-08T23:12:37.080875+00:00"
+        },
+        {
+          "file": "nlr-atb.json",
+          "sha256": "4c664d08b044c901695c0018a4a1a70e2576394b4bd78c782d772fadfe8f2ed1",
+          "captured_at": "2026-11-21T20:34:37.552205+00:00",
+          "binary_assets": [
+            {
+              "file": "blobs/13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e.bin",
+              "bytes": 5131651,
+              "sha256": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e"
+            },
+            {
+              "file": "blobs/c380220b472b7832d864afe9dd15d6c748aee0a7f58a6ffc26d89261413502b4.bin",
+              "bytes": 9193709,
+              "sha256": "c380220b472b7832d864afe9dd15d6c748aee0a7f58a6ffc26d89261413502b4"
+            }
+          ]
         },
         {
           "file": "nmdc-runtime.json",
@@ -603,7 +658,7 @@
     },
     {
       "id": "simulation-all-skills-on",
-      "sha256": "998fdbcc52a9f59b35fc864282cbb55e514cc62bd88830f6fec6799fdacb7f10",
+      "sha256": "254b4620adcb70cf2bcdcfaa8d97850c6b6dec95b06aa96dc2c1b0dcc2430acf",
       "started_at": "2026-11-21T00:00:00+00:00",
       "fixtures": [
         {
@@ -695,6 +750,23 @@
           "file": "nersc-status.json",
           "sha256": "1d6915f666940b312c349bfb9e9dcb32e123e89850582f3f7b2e282aeda911a7",
           "captured_at": "2026-10-08T23:12:37.080875+00:00"
+        },
+        {
+          "file": "nlr-atb.json",
+          "sha256": "4c664d08b044c901695c0018a4a1a70e2576394b4bd78c782d772fadfe8f2ed1",
+          "captured_at": "2026-11-21T20:34:37.552205+00:00",
+          "binary_assets": [
+            {
+              "file": "blobs/13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e.bin",
+              "bytes": 5131651,
+              "sha256": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e"
+            },
+            {
+              "file": "blobs/c380220b472b7832d864afe9dd15d6c748aee0a7f58a6ffc26d89261413502b4.bin",
+              "bytes": 9193709,
+              "sha256": "c380220b472b7832d864afe9dd15d6c748aee0a7f58a6ffc26d89261413502b4"
+            }
+          ]
         },
         {
           "file": "nmdc-runtime.json",
@@ -752,7 +824,7 @@
   ],
   "cells": [
     {
-      "cohort_id": "03b23ebde4125d4110479008cab69801d3d970281e7751963a1794c9822c5fa2",
+      "cohort_id": "5ff433c35213d98ffaec2531603a7064ba32299bf628ce345d7488a371b28d93",
       "configuration_id": "2c77f0cca572508da6866970b5d3b5b2d3b953a93a1b7d39bbd6744ffc8be1d3",
       "model": "deterministic-simulation",
       "model_version": "simulation-v1",
@@ -821,7 +893,7 @@
       "cost_unknown_runs": 2
     },
     {
-      "cohort_id": "03b23ebde4125d4110479008cab69801d3d970281e7751963a1794c9822c5fa2",
+      "cohort_id": "5ff433c35213d98ffaec2531603a7064ba32299bf628ce345d7488a371b28d93",
       "configuration_id": "44d081c1b186cd5295b6137e420bab9ea2528287f13a231694fa8ae6dfbca357",
       "model": "deterministic-simulation",
       "model_version": "simulation-v1",
@@ -890,8 +962,8 @@
       "cost_unknown_runs": 2
     },
     {
-      "cohort_id": "03b23ebde4125d4110479008cab69801d3d970281e7751963a1794c9822c5fa2",
-      "configuration_id": "64d8d4f4483e8905f390aeba4ff430fa37d030678a61e12e479b038b67e144df",
+      "cohort_id": "5ff433c35213d98ffaec2531603a7064ba32299bf628ce345d7488a371b28d93",
+      "configuration_id": "4bef8c5c4cad275307c184787b1b6e2d7385e28b985fb4a84676bcff6a67578a",
       "model": "deterministic-simulation",
       "model_version": "simulation-v1",
       "sample_settings": {
@@ -901,7 +973,7 @@
       "driver": "evaluation-simulation-driver.py",
       "driver_sha256": "d0319e1efd52092e9196105f5dd2ef8d69c841a2c74c8969e330b38733da7fa7",
       "exposure": "all",
-      "skills_enabled": false,
+      "skills_enabled": true,
       "simulation": true,
       "budgets": {
         "max_calls": 3,
@@ -912,10 +984,11 @@
       "contexts": {
         "alias": {
           "skill_sha256": "5d86224925242eb92958fcdb43cdbd939380fce41c180daaa19718b61dc1c279",
-          "tool_schema_sha256": "f262c6724606e52369c8de459254b6aa3fdec9c5e72f3ca694377a3a0bef6b47",
+          "tool_schema_sha256": "e1fe029e023f514e891acf5c4de30ca054a87d82df55c356d1e640cca6d505cc",
           "profiles": [
             "research:default",
             "energy:default",
+            "energy-tech:default",
             "earth:default",
             "materials:default",
             "bio:default",
@@ -989,7 +1062,10 @@
             "research.search_literature",
             "research.search_software",
             "sensors.find_nodes",
+            "solar.estimate_production",
+            "tech.describe_atb",
             "tech.find_licensable_ip",
+            "tech.read_atb",
             "water.cooling_costs",
             "water.cooling_shares",
             "water.desalination_costs",
@@ -1029,8 +1105,8 @@
       "cost_unknown_runs": 2
     },
     {
-      "cohort_id": "03b23ebde4125d4110479008cab69801d3d970281e7751963a1794c9822c5fa2",
-      "configuration_id": "8bcb51029d7f4f9f98a666ed0706487f2fd31916cf6bf7eb953988911b570d50",
+      "cohort_id": "5ff433c35213d98ffaec2531603a7064ba32299bf628ce345d7488a371b28d93",
+      "configuration_id": "ef0130ad733874930d9648137f29e154d07732f2d40bade40680ed044f9d4938",
       "model": "deterministic-simulation",
       "model_version": "simulation-v1",
       "sample_settings": {
@@ -1040,7 +1116,7 @@
       "driver": "evaluation-simulation-driver.py",
       "driver_sha256": "d0319e1efd52092e9196105f5dd2ef8d69c841a2c74c8969e330b38733da7fa7",
       "exposure": "all",
-      "skills_enabled": true,
+      "skills_enabled": false,
       "simulation": true,
       "budgets": {
         "max_calls": 3,
@@ -1051,10 +1127,11 @@
       "contexts": {
         "alias": {
           "skill_sha256": "5d86224925242eb92958fcdb43cdbd939380fce41c180daaa19718b61dc1c279",
-          "tool_schema_sha256": "f262c6724606e52369c8de459254b6aa3fdec9c5e72f3ca694377a3a0bef6b47",
+          "tool_schema_sha256": "e1fe029e023f514e891acf5c4de30ca054a87d82df55c356d1e640cca6d505cc",
           "profiles": [
             "research:default",
             "energy:default",
+            "energy-tech:default",
             "earth:default",
             "materials:default",
             "bio:default",
@@ -1128,7 +1205,10 @@
             "research.search_literature",
             "research.search_software",
             "sensors.find_nodes",
+            "solar.estimate_production",
+            "tech.describe_atb",
             "tech.find_licensable_ip",
+            "tech.read_atb",
             "water.cooling_costs",
             "water.cooling_shares",
             "water.desalination_costs",
@@ -1171,7 +1251,7 @@
   "runs": [
     {
       "report_id": "simulation-focused-skills-off",
-      "report_sha256": "ec258c442f873cc211cf5f6f20d0f2c62ce429a1830491734dcfde39aed6ba49",
+      "report_sha256": "7321acefb15e3954ce2375cb9759c8f9e204ce1cd87ceb1d184a35fbc3fae948",
       "run_id": "simulation-focused-skills-off-1",
       "task_id": "alias",
       "repeat": 1,
@@ -1216,7 +1296,7 @@
     },
     {
       "report_id": "simulation-focused-skills-off",
-      "report_sha256": "ec258c442f873cc211cf5f6f20d0f2c62ce429a1830491734dcfde39aed6ba49",
+      "report_sha256": "7321acefb15e3954ce2375cb9759c8f9e204ce1cd87ceb1d184a35fbc3fae948",
       "run_id": "simulation-focused-skills-off-2",
       "task_id": "alias",
       "repeat": 2,
@@ -1253,7 +1333,7 @@
     },
     {
       "report_id": "simulation-focused-skills-off",
-      "report_sha256": "ec258c442f873cc211cf5f6f20d0f2c62ce429a1830491734dcfde39aed6ba49",
+      "report_sha256": "7321acefb15e3954ce2375cb9759c8f9e204ce1cd87ceb1d184a35fbc3fae948",
       "run_id": "simulation-focused-skills-off-3",
       "task_id": "alias",
       "repeat": 3,
@@ -1287,7 +1367,7 @@
     },
     {
       "report_id": "simulation-focused-skills-on",
-      "report_sha256": "eaf9c4618ad5965b5ae460cf2372d0525ab23d40242e49670d829ac85d0fe9bc",
+      "report_sha256": "182671effe11b3b535405336017bb7d1f5cf6b76842fe44b40ae3ac854de01d0",
       "run_id": "simulation-focused-skills-on-1",
       "task_id": "alias",
       "repeat": 1,
@@ -1332,7 +1412,7 @@
     },
     {
       "report_id": "simulation-focused-skills-on",
-      "report_sha256": "eaf9c4618ad5965b5ae460cf2372d0525ab23d40242e49670d829ac85d0fe9bc",
+      "report_sha256": "182671effe11b3b535405336017bb7d1f5cf6b76842fe44b40ae3ac854de01d0",
       "run_id": "simulation-focused-skills-on-2",
       "task_id": "alias",
       "repeat": 2,
@@ -1369,7 +1449,7 @@
     },
     {
       "report_id": "simulation-focused-skills-on",
-      "report_sha256": "eaf9c4618ad5965b5ae460cf2372d0525ab23d40242e49670d829ac85d0fe9bc",
+      "report_sha256": "182671effe11b3b535405336017bb7d1f5cf6b76842fe44b40ae3ac854de01d0",
       "run_id": "simulation-focused-skills-on-3",
       "task_id": "alias",
       "repeat": 3,
@@ -1403,7 +1483,7 @@
     },
     {
       "report_id": "simulation-all-skills-off",
-      "report_sha256": "53ffd5111aaf6aa4af442cd5518a937d0416a04a2411595505ef96e94d0e6649",
+      "report_sha256": "c09df8a991eeadef786556c99d3552ec8f847a19dd172159c2b049055a320580",
       "run_id": "simulation-all-skills-off-1",
       "task_id": "alias",
       "repeat": 1,
@@ -1448,7 +1528,7 @@
     },
     {
       "report_id": "simulation-all-skills-off",
-      "report_sha256": "53ffd5111aaf6aa4af442cd5518a937d0416a04a2411595505ef96e94d0e6649",
+      "report_sha256": "c09df8a991eeadef786556c99d3552ec8f847a19dd172159c2b049055a320580",
       "run_id": "simulation-all-skills-off-2",
       "task_id": "alias",
       "repeat": 2,
@@ -1485,7 +1565,7 @@
     },
     {
       "report_id": "simulation-all-skills-off",
-      "report_sha256": "53ffd5111aaf6aa4af442cd5518a937d0416a04a2411595505ef96e94d0e6649",
+      "report_sha256": "c09df8a991eeadef786556c99d3552ec8f847a19dd172159c2b049055a320580",
       "run_id": "simulation-all-skills-off-3",
       "task_id": "alias",
       "repeat": 3,
@@ -1519,7 +1599,7 @@
     },
     {
       "report_id": "simulation-all-skills-on",
-      "report_sha256": "998fdbcc52a9f59b35fc864282cbb55e514cc62bd88830f6fec6799fdacb7f10",
+      "report_sha256": "254b4620adcb70cf2bcdcfaa8d97850c6b6dec95b06aa96dc2c1b0dcc2430acf",
       "run_id": "simulation-all-skills-on-1",
       "task_id": "alias",
       "repeat": 1,
@@ -1564,7 +1644,7 @@
     },
     {
       "report_id": "simulation-all-skills-on",
-      "report_sha256": "998fdbcc52a9f59b35fc864282cbb55e514cc62bd88830f6fec6799fdacb7f10",
+      "report_sha256": "254b4620adcb70cf2bcdcfaa8d97850c6b6dec95b06aa96dc2c1b0dcc2430acf",
       "run_id": "simulation-all-skills-on-2",
       "task_id": "alias",
       "repeat": 2,
@@ -1601,7 +1681,7 @@
     },
     {
       "report_id": "simulation-all-skills-on",
-      "report_sha256": "998fdbcc52a9f59b35fc864282cbb55e514cc62bd88830f6fec6799fdacb7f10",
+      "report_sha256": "254b4620adcb70cf2bcdcfaa8d97850c6b6dec95b06aa96dc2c1b0dcc2430acf",
       "run_id": "simulation-all-skills-on-3",
       "task_id": "alias",
       "repeat": 3,

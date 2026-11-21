@@ -325,3 +325,36 @@ about 2–6 ms with bounded result caching. Peak process memory was about
 141 MB including Python, PyArrow and both release assets. These are local
 measurements, not production latency or memory guarantees. Scans use
 4,096-row batches, while context construction reads only fixture manifests.
+
+## Combined applications and energy integration — 2026-11-21
+
+After rebasing the energy readers onto the GCAM, research, evaluation and
+forecast-panel work, the generated site preserves seven CLI applications
+and the evaluation workbench. Recorded examples retain source envelopes;
+the forecast-panel example remains a labelled simulation with no publisher
+fixture or normalized retrieval clock. Both ATB editions exported again
+with valid file checksums, distinct currency notes and null PVWatts output.
+
+All required checks passed: 1,571 replay tests and one architecture-file
+skip, Ruff, source validation, schema and site builds, and the writing
+checker. All three browser scripts passed. The functional check covered
+38 demos at each viewport and 216 section jumps. The evaluation check
+passed three paths. The shared measured check passed 42 journeys and
+440 local targets across thirteen HTML documents, with zero browser or
+failed first-party request errors.
+
+| Phone path from the homepage | Clicks | Wheel actions | Scroll pixels | Document loads |
+|---|---:|---:|---:|---:|
+| ATB assumptions bundle | 3 | 0 | 21,576 | 2 |
+| Forecast panel bundle, inputs and receipts | 10 | 1 | 13,952 | 2 |
+| Evaluation example and comparison bundle | 2 | 0 | 0 | 2 |
+
+The forecast path includes its additional input and receipt downloads;
+these paths have different endpoints. Scroll pixels include anchor and
+focus movement. These are scripted actions, without an inferred swipe
+count or a globally shortest-path claim. The run used Playwright 1.58.2
+and installed Chrome 158.0.8127.36 on loopback at the same three viewports.
+Phone screenshots for the ATB and evaluation endpoints were inspected;
+their release, scope and simulation labels remained visible. Artifacts are
+in ignored `uat-screenshots/integrated/`. No external model or public
+publisher was called by the browser checks.
