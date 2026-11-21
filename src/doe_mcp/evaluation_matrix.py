@@ -291,7 +291,7 @@ def normalize_report(report: dict) -> dict:
             {repeat for task, repeat in schedule if task == name} != set(range(1, count + 1))
             for name, count in repeats.items()):
         _fail("task repeats must be complete contiguous schedules")
-    known = [row for row in normalized if row["attempted"] and row["model_version"] != "not reported"]
+    attempted = [row for row in normalized if row["attempted"]]
     if version == "2":
         task_ids = _list(report.get("task_ids"), "task_ids")
         if (any(not isinstance(task, str) for task in task_ids) or len(set(task_ids)) != len(task_ids)
@@ -304,16 +304,21 @@ def normalize_report(report: dict) -> dict:
         timeout = report.get("timeout_seconds")
         if type(timeout) not in (int, float) or not math.isfinite(timeout) or timeout <= 0:
             _fail("timeout_seconds must be finite and positive")
-    versions = {row["model_version"] for row in known}
-    settings = {content_sha256(row["sample_settings"]) for row in known}
+    versions = {row["model_version"] for row in attempted if row["model_version"] != "not reported"}
+    settings = {content_sha256(row["sample_settings"]) for row in attempted
+                if row["sample_settings"] != "not reported"}
     if len(versions) > 1 or len(settings) > 1:
         _fail("a report changed model version or settings between runs")
     skill_versions = {task: contexts.get(task, {}).get("skill_sha256") for task in definitions}
     revisions = {task: contexts.get(task, {}).get("registry_revision") for task in definitions}
     cohort = {"tasks": definitions, "schedule": sorted(schedule), "fixtures": fixture_ids,
               "skill_versions": skill_versions, "registry_revisions": revisions}
-    configuration = {"model": model, "model_version": next(iter(versions), "not reported"),
-        "sample_settings": next((r["sample_settings"] for r in known), "not reported"),
+    model_version = (next(iter(versions), "not reported") if attempted
+                     and all(row["model_version"] != "not reported" for row in attempted) else "not reported")
+    sample_settings = (attempted[0]["sample_settings"] if attempted
+                       and all(row["sample_settings"] != "not reported" for row in attempted) else "not reported")
+    configuration = {"model": model, "model_version": model_version,
+        "sample_settings": sample_settings,
         "driver": report["driver"], "driver_sha256": report.get("driver_sha256"), "exposure": exposure, "skills_enabled": report["skills_enabled"],
         "simulation": simulation, "budgets": {key: report.get(key) for key in
             ("max_calls", "max_tokens", "max_turns", "timeout_seconds")}, "contexts": contexts}

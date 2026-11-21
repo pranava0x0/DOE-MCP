@@ -392,3 +392,37 @@ def test_model_settings_preserve_json_types_between_calls(report):
     report["runs"][0]["calls"][0]["settings"] = {"parameter": True}
     with pytest.raises(ValueError, match="changed model version or settings"):
         compare([report])
+
+
+@pytest.mark.parametrize("missing", [("model_version",), ("settings",), ("model_version", "settings")])
+def test_every_attempt_contributes_configuration_uncertainty(missing):
+    source = Path(__file__).resolve().parents[1] / "docs/data/evaluation-matrix/focused-skills-off.json"
+    supplied = json.loads(source.read_text())
+    known_report = clone(supplied)
+    completed = supplied["runs"][0]
+    for name in missing:
+        completed.pop("reported_model_version" if name == "model_version" else "sample_settings")
+        for call in completed["calls"]:
+            call.pop(name)
+    result, _ = compare([supplied, known_report], grades=grade_document(supplied))
+    uncertain = next(cell for cell in result["cells"] if cell["reviewed"])
+    known = next(cell for cell in result["cells"] if not cell["reviewed"])
+    expected_unknown = {"model_version" if name == "model_version" else "sample_settings" for name in missing}
+    assert set(uncertain["unknown_configuration_fields"]) == expected_unknown
+    assert uncertain["unpooled_report_id"] == supplied["report_id"]
+    assert uncertain["reports"] == known["reports"] == 1
+    assert uncertain["reviewed"] == 1 and uncertain["reviewed_quality_mean"] == 0.75
+    assert known["model_version"] == "simulation-v1" and known["unknown_configuration_fields"] == []
+    for field in expected_unknown:
+        assert uncertain[field] == "not reported"
+
+
+def test_known_settings_conflicts_are_checked_even_when_a_model_version_is_missing(report):
+    first = report["runs"][0]
+    first.pop("reported_model_version")
+    first["sample_settings"] = {"changed": True}
+    for call in first["calls"]:
+        call.pop("model_version")
+        call["settings"] = {"changed": True}
+    with pytest.raises(ValueError, match="changed model version or settings between runs"):
+        compare([report])
