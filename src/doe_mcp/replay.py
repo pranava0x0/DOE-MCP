@@ -13,9 +13,17 @@ from .runtime import RuntimeContext, load_context
 
 
 def fixture_manifest(directory: Path) -> list[dict]:
-    return [{"file": p.name, "sha256": hashlib.sha256(p.read_bytes()).hexdigest(),
-             "captured_at": json.loads(p.read_text()).get("recorded_at")}
-            for p in sorted(directory.glob("*.json"))]
+    manifests = []
+    for path in sorted(directory.glob("*.json")):
+        content = path.read_bytes()
+        document = json.loads(content)
+        item = {"file": path.name, "sha256": hashlib.sha256(content).hexdigest(),
+                "captured_at": document.get("recorded_at")}
+        sidecars = [entry["body_ref"] for entry in document["interactions"] if "body_ref" in entry]
+        if sidecars:
+            item["binary_assets"] = sidecars
+        manifests.append(item)
+    return manifests
 
 
 def load_replay_context(directory: Path, sources: Path | None = None, *,
@@ -39,7 +47,7 @@ def load_replay_context(directory: Path, sources: Path | None = None, *,
         if kind == "curated":
             continue
         kwargs = {"fetcher": fetcher, "cache": cache}
-        if kind in ("eia_v2", "regulations_gov"):
+        if kind in ("eia_v2", "regulations_gov", "pvwatts_v8"):
             kwargs["credentials"] = credentials
         adapters[field_name] = cls(**kwargs)
     return load_context(sources, credentials=credentials, **adapters)

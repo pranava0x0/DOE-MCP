@@ -25,8 +25,12 @@ from doe_mcp.domains import (bio, discovery, docs, earth, energy,
                              materials, registry_tools, research, tech)
 
 from doe_mcp.domains.gcam import GCAM_TOOLS
+from doe_mcp.domains.energy_tech import describe_atb, read_atb, estimate_production
 
 FIXED_SOURCE_TOOLS = [
+    ("nlr-atb", "tech.describe_atb", lambda ctx: describe_atb(ctx, 2024)),
+    ("nlr-atb", "tech.read_atb", lambda ctx: read_atb(ctx, 2024, {})),
+    ("nlr-pvwatts", "solar.estimate_production", lambda ctx: estimate_production(ctx, {})),
     *(("gcam-" + domain, spec.name, spec.fn) for domain, reg in GCAM_TOOLS.items()
       for spec in reg.tools()),
     ("osti-data-explorer", "research.search_datasets",

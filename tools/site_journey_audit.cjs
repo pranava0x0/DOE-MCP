@@ -430,7 +430,8 @@ async function hrefTargets(browser) {
         {id: 'docket-tracker', anchor: 'doe-docket-notice-tracker'},
         {id: 'gcam-comparison', anchor: 'gcam-comparison-receipts'},
         {id: 'research-linkage', anchor: 'research-artifact-linkage-explorer'},
-        {id: 'forecast-panel', anchor: 'forecast-panel-with-common-cohorts'}])
+        {id: 'forecast-panel', anchor: 'forecast-panel-with-common-cohorts'},
+        {id: 'energy-assumptions', anchor: 'atb-energy-assumptions-reader'}])
         await applicationJourney(browser, viewport, task);
       await evaluationJourney(browser, viewport);
       await stability(browser, viewport);

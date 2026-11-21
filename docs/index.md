@@ -12,7 +12,7 @@ Independent project; not affiliated with the US Department of Energy.
 - Application: a runnable workflow that combines tools and writes a local result bundle.
 - Demo: a recorded example; it does not establish current publisher health.
 
-The generated registry contains 10 shipping servers, 29 active sources and 32 scientific skills.
+The generated registry contains 11 shipping servers, 30 active sources and 32 scientific skills.
 
 ## Read next
 

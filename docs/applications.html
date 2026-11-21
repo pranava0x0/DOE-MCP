@@ -30,7 +30,7 @@ main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0
 }
 </style></head><body class="application-page"><a class="skip" href="#content">Skip to content</a>
 <header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Recorded demos</a></nav></header>
-<main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#grid-forecast-benchmark-lab">Grid forecast benchmark lab</a></li><li><a href="#weather-package-builder">Weather package builder</a></li><li><a href="#doe-docket-notice-tracker">DOE docket notice tracker</a></li><li><a href="#gcam-comparison-receipts">GCAM comparison receipts</a></li><li><a href="#research-artifact-linkage-explorer">Research artifact linkage explorer</a></li><li><a href="#forecast-panel-with-common-cohorts">Forecast panel with common cohorts</a></li></ul></nav><h1 id="applications-built-on-doe-mcp">Applications built on DOE-MCP</h1>
+<main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#grid-forecast-benchmark-lab">Grid forecast benchmark lab</a></li><li><a href="#weather-package-builder">Weather package builder</a></li><li><a href="#doe-docket-notice-tracker">DOE docket notice tracker</a></li><li><a href="#gcam-comparison-receipts">GCAM comparison receipts</a></li><li><a href="#research-artifact-linkage-explorer">Research artifact linkage explorer</a></li><li><a href="#forecast-panel-with-common-cohorts">Forecast panel with common cohorts</a></li><li><a href="#atb-energy-assumptions-reader">ATB energy assumptions reader</a></li></ul></nav><h1 id="applications-built-on-doe-mcp">Applications built on DOE-MCP</h1>
 <p>These local command-line applications use read-only tools or declared input files. Examples use recorded publisher responses or clearly labelled synthetic simulations. They are not live services. Download a complete sample bundle or run a command to create your own.</p>
 <p>A server hosts tools. A tool returns data and provenance. A skill describes a tested workflow. An application combines tools or declared inputs and writes a result bundle. <a href="apps.html">Installation and application options</a> · <a href="index.html#servers-list">Servers</a> · <a href="reference.html">Tool reference</a> · <a href="guide.html#connect-a-client-and-provide-a-skill">Scientific skills</a></p>
 <p>Recorded site examples normalize replay retrieval clocks and request IDs for repeatable builds. The normalized clock is not a capture date. Source data and fixture hashes are preserved. CLI runs preserve their original tool envelopes.</p>
@@ -408,5 +408,154 @@ main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0
 <li>Persistence uses only observations effective and available at or before issuance, within the declared maximum age. Later observations never set its prediction.</li>
 <li>Quantity, unit, cadence, interval meaning and timestamp meaning must match the declaration. Power samples, interval means and energy totals cannot be mixed; no unit conversion or temporal aggregation is performed.</li>
 <li>Missing declarations are refused. Missing values, forecasts and observations remain explicit cohort exclusions; a region with no common targets stays in the report with null metrics.</li>
+</ul>
+<h2 id="atb-energy-assumptions-reader">ATB energy assumptions reader</h2>
+<p><strong>Recorded example. Runs locally.</strong></p>
+<pre><code class="language-bash">doe-mcp app energy-assumptions --output ./energy-assumptions-run
+</code></pre>
+<p><a href="data/apps/energy-assumptions/bundle.zip" download="energy-assumptions.zip">Download complete bundle</a> · <a href="data/apps/energy-assumptions/report.json">View report and source evidence</a> · <a href="data/apps/energy-assumptions/manifest.json">File checksums</a></p>
+<p>Read technology cost and performance assumptions from one pinned ATB edition. Every row retains its scenario, projection year, technology/resource detail, units and financial qualifiers.</p>
+<p>This preset reads <strong>ATB 2024 v4.0.0</strong> and returns <strong>10 of 40 matching rows</strong>. Selection status: <strong>multiple_matching_rows</strong>. A page of qualified assumptions is not a project-specific estimate.</p>
+<p>Currency basis: 2022 USD unless noted otherwise by the publisher; nonmonetary metrics keep their own units.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Technology detail</th>
+<th scope="col">Scenario</th>
+<th style="text-align:right" scope="col">Projection year</th>
+<th scope="col">Financial case</th>
+<th scope="col">Tax credit</th>
+<th style="text-align:right" scope="col">CRP</th>
+<th scope="col">Metric</th>
+<th scope="col">Units</th>
+<th style="text-align:right" scope="col">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Technology detail">Class1</td>
+<td data-label="Scenario">Moderate</td>
+<td style="text-align:right" data-label="Projection year">2035</td>
+<td data-label="Financial case">Market</td>
+<td data-label="Tax credit">PTC</td>
+<td style="text-align:right" data-label="CRP">20</td>
+<td data-label="Metric">CAPEX</td>
+<td data-label="Units">$/kW</td>
+<td style="text-align:right" data-label="Value">895.321</td>
+</tr>
+<tr>
+<td data-label="Technology detail">Class2</td>
+<td data-label="Scenario">Moderate</td>
+<td style="text-align:right" data-label="Projection year">2035</td>
+<td data-label="Financial case">Market</td>
+<td data-label="Tax credit">PTC</td>
+<td style="text-align:right" data-label="CRP">20</td>
+<td data-label="Metric">CAPEX</td>
+<td data-label="Units">$/kW</td>
+<td style="text-align:right" data-label="Value">895.321</td>
+</tr>
+<tr>
+<td data-label="Technology detail">Class3</td>
+<td data-label="Scenario">Moderate</td>
+<td style="text-align:right" data-label="Projection year">2035</td>
+<td data-label="Financial case">Market</td>
+<td data-label="Tax credit">PTC</td>
+<td style="text-align:right" data-label="CRP">20</td>
+<td data-label="Metric">CAPEX</td>
+<td data-label="Units">$/kW</td>
+<td style="text-align:right" data-label="Value">895.321</td>
+</tr>
+<tr>
+<td data-label="Technology detail">Class4</td>
+<td data-label="Scenario">Moderate</td>
+<td style="text-align:right" data-label="Projection year">2035</td>
+<td data-label="Financial case">Market</td>
+<td data-label="Tax credit">PTC</td>
+<td style="text-align:right" data-label="CRP">20</td>
+<td data-label="Metric">CAPEX</td>
+<td data-label="Units">$/kW</td>
+<td style="text-align:right" data-label="Value">895.321</td>
+</tr>
+<tr>
+<td data-label="Technology detail">Class5</td>
+<td data-label="Scenario">Moderate</td>
+<td style="text-align:right" data-label="Projection year">2035</td>
+<td data-label="Financial case">Market</td>
+<td data-label="Tax credit">PTC</td>
+<td style="text-align:right" data-label="CRP">20</td>
+<td data-label="Metric">CAPEX</td>
+<td data-label="Units">$/kW</td>
+<td style="text-align:right" data-label="Value">895.321</td>
+</tr>
+<tr>
+<td data-label="Technology detail">Class6</td>
+<td data-label="Scenario">Moderate</td>
+<td style="text-align:right" data-label="Projection year">2035</td>
+<td data-label="Financial case">Market</td>
+<td data-label="Tax credit">PTC</td>
+<td style="text-align:right" data-label="CRP">20</td>
+<td data-label="Metric">CAPEX</td>
+<td data-label="Units">$/kW</td>
+<td style="text-align:right" data-label="Value">895.321</td>
+</tr>
+<tr>
+<td data-label="Technology detail">Class7</td>
+<td data-label="Scenario">Moderate</td>
+<td style="text-align:right" data-label="Projection year">2035</td>
+<td data-label="Financial case">Market</td>
+<td data-label="Tax credit">PTC</td>
+<td style="text-align:right" data-label="CRP">20</td>
+<td data-label="Metric">CAPEX</td>
+<td data-label="Units">$/kW</td>
+<td style="text-align:right" data-label="Value">895.321</td>
+</tr>
+<tr>
+<td data-label="Technology detail">Class8</td>
+<td data-label="Scenario">Moderate</td>
+<td style="text-align:right" data-label="Projection year">2035</td>
+<td data-label="Financial case">Market</td>
+<td data-label="Tax credit">PTC</td>
+<td style="text-align:right" data-label="CRP">20</td>
+<td data-label="Metric">CAPEX</td>
+<td data-label="Units">$/kW</td>
+<td style="text-align:right" data-label="Value">895.321</td>
+</tr>
+<tr>
+<td data-label="Technology detail">Class9</td>
+<td data-label="Scenario">Moderate</td>
+<td style="text-align:right" data-label="Projection year">2035</td>
+<td data-label="Financial case">Market</td>
+<td data-label="Tax credit">PTC</td>
+<td style="text-align:right" data-label="CRP">20</td>
+<td data-label="Metric">CAPEX</td>
+<td data-label="Units">$/kW</td>
+<td style="text-align:right" data-label="Value">895.321</td>
+</tr>
+<tr>
+<td data-label="Technology detail">Class10</td>
+<td data-label="Scenario">Moderate</td>
+<td style="text-align:right" data-label="Projection year">2035</td>
+<td data-label="Financial case">Market</td>
+<td data-label="Tax credit">PTC</td>
+<td style="text-align:right" data-label="CRP">20</td>
+<td data-label="Metric">CAPEX</td>
+<td data-label="Units">$/kW</td>
+<td style="text-align:right" data-label="Value">895.321</td>
+</tr>
+</tbody>
+</table>
+<p>Displayed numbers are rounded to three decimals; JSON and CSV retain the parsed publisher values.</p>
+<p><a href="data/apps/energy-assumptions/assumptions.csv">Assumptions CSV</a> · <a href="data/apps/energy-assumptions/assumptions.json">Qualified rows and evidence pointers</a></p>
+<p>Pass <code>--edition 2025</code> for the separately pinned 2025 release, and <code>--filters</code> for exact JSON qualifiers. No edition is treated as latest, and differing currency bases are not converted or blended. <a href="energy-readers.html">ATB reader and PVWatts activation limits</a>.</p>
+<p>PVWatts remains <strong>proposed</strong>: no user key, model call or real model recording is present. The report contains no fabricated photovoltaic production output.</p>
+<h3 id="scope-and-limits-6">Scope and limits</h3>
+<ul>
+<li>This run reads one pinned ATB electricity edition and release. It does not select a latest edition or blend currency bases.</li>
+<li>Rows retain publisher technology detail, resource class, metric, scenario, projection year, units, financial case, tax-credit case and capital recovery period. Multiple matches are explicit, not a chosen first row.</li>
+<li>These are published scenario assumptions, not observed costs, bids, economic advice or a project-specific estimate. Null metric values remain missing.</li>
+<li>A bounded page is not all matches when pagination is truncated. Refine filters or use the offset for subsequent pages.</li>
+<li>The full pinned release is verified locally; only selected rows are exported. Publisher row numbers are one-based data rows within those exact bytes.</li>
+<li>PVWatts remains proposed without a real credential-redacted recording. No model result, API request, DEMO_KEY use or key configuration is part of this application.</li>
+<li>Source text is third-party data. CSV expression-like text is prefixed with an apostrophe; JSON retains original content.</li>
 </ul>
 </main></body></html>

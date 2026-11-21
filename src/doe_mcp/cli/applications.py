@@ -7,7 +7,7 @@ from pathlib import Path
 import sys
 
 from ..adapters.base import close_shared_client
-from ..applications import dockets, forecast, forecast_panel, gcam, research_linkage, weather
+from ..applications import dockets, energy_assumptions, forecast, forecast_panel, gcam, research_linkage, weather
 from ..applications.samples import APPLICATIONS
 from ..applications.bundle import Run, export_bundle
 from ..core.credentials import Credentials
@@ -30,7 +30,7 @@ async def execute(args):
     if args.live:
         source = getattr(args, "source", "")
         server = {"forecast-benchmark": "doe-energy-data", "weather-package": "doe-earth",
-                  "docket-tracker": "doe-research", gcam.NAME: "doe-mcp", "research-linkage": "doe-research"}[args.application]
+                  "docket-tracker": "doe-research", gcam.NAME: "doe-mcp", "research-linkage": "doe-research", "energy-assumptions": "doe-energy-tech"}[args.application]
         creds = Credentials(values={}, path=Path("/nonexistent"), file_exists=False)
         if args.application == "docket-tracker" and source == "regulations":
             # The source gate precedes any read of the user's key store.
@@ -52,6 +52,9 @@ async def execute(args):
                                          timezone_name=args.actual_timezone, intervals=args.intervals)
         elif args.application == "weather-package":
             files = await weather.build(run, latitude=args.latitude, longitude=args.longitude, start=args.start, end=args.end, variables=args.variables)
+        elif args.application == "energy-assumptions":
+            filters = json.loads(args.filters) if args.filters is not None else None
+            files = await energy_assumptions.build(run, edition=args.edition, filters=filters, rows=args.rows, offset=args.offset)
         elif args.application == gcam.NAME:
             plan = gcam.validate_plan(json.loads(args.plan.read_bytes())) if args.plan else None
             files = await gcam.build(run, plan=plan)
@@ -117,6 +120,11 @@ def register(sub):
             parser.add_argument("--start", default="2024-12-26")
             parser.add_argument("--end", default="2024-12-31")
             parser.add_argument("--variables", default="tmax")
+        elif name == "energy-assumptions":
+            parser.add_argument("--edition", type=int, default=2024, help="explicit supported edition; recorded preset is ATB 2024 v4.0.0")
+            parser.add_argument("--filters", help="JSON object of exact publisher dimension text or null")
+            parser.add_argument("--rows", type=int, default=10)
+            parser.add_argument("--offset", type=int, default=0)
         elif name == gcam.NAME:
             parser.add_argument("--plan", type=Path, help="JSON selections and side-by-side pairs; default is the recorded GCAM preset")
         elif name == "research-linkage":

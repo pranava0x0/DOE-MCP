@@ -149,14 +149,18 @@ SERVER_LINEUP: tuple[ServerSpec, ...] = (
             "the eia_id column when a user asks about output. "
             + UNTRUSTED_CONTENT_RULE + " " + NON_AFFILIATION)),
     ServerSpec(
-        name="doe-energy-tech", key="energy-tech", status="planned",
-        description=("What is modelled, tested or published for an energy "
-                     "technology: the NLR developer network (PVWatts, solar "
-                     "resource, tariffs, alternative-fuel stations), the ATB "
-                     "and Cambium releases, module and battery test data, "
-                     "and the geothermal, marine, hydropower, bioenergy and "
-                     "carbon-storage repositories. Holds the api.data.gov "
-                     "and EDX keys; nothing in it is built yet.")),
+        name="doe-energy-tech", key="energy-tech", status="shipping",
+        default_profile="energy-tech:default",
+        description=("Pinned ATB electricity cost and performance assumptions for named "
+                     "2024 and 2025 releases. PVWatts is prepared and source-gated; "
+                     "no model output or keyed integration is claimed."),
+        instructions=("DOE-MCP energy-technology server. Read ATB assumptions from an explicit "
+            "edition/release; inspect dimensions before filtering. Preserve technology/resource "
+            "detail, scenario, projection year, financial case, tax credit, CRP and units. "
+            "Multiple rows are multiple qualified assumptions; never silently choose one. "
+            "Monetary bases differ across editions and are not converted. PVWatts remains "
+            "proposed without a user key or real recording; report its activation reason. "
+            + COVERAGE_RULE + " " + UNTRUSTED_CONTENT_RULE + " " + NON_AFFILIATION)),
     ServerSpec(
         name="doe-earth", key="earth", status="shipping",
         default_profile="earth:default",

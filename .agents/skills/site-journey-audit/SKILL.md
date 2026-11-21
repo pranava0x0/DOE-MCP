@@ -6,7 +6,9 @@ description: Measure recorded-site journeys, useful content readiness and repeat
 # Site journey audit
 
 Use this engineering skill for the generated site in `docs/`. Its scripts
-exercise recorded content. They do not call DOE publishers or a model.
+exercise recorded publisher inputs, explicitly labelled retrospective
+simulations and local import examples. They make no external model or
+public publisher calls. Preserve each example's label and evidence scope.
 
 Read `uat.md` and `issues.md` first. Preserve historical measurements and
 append dated corrections. Change the renderers or source content when a
@@ -32,14 +34,19 @@ In another process, run:
 ```sh
 UAT_URL=http://127.0.0.1:4192 npm run uat
 UAT_URL=http://127.0.0.1:4192 npm run uat:journeys
+UAT_URL=http://127.0.0.1:4192 npm run uat:evaluation
 ```
 
 The first check exercises all demo selectors, section jumps and selected
 downloads. The second follows landing-page search through samples, evidence,
 worksheets and the Daymet download pair at phone, tablet and desktop sizes.
 It follows the Install, Source coverage and Local guide shortcuts too.
-The application journeys reach each recorded bundle from the homepage and
-verify its downloaded bytes. Every generated HTML page enters the link check.
+The application journeys reach each bundle from the homepage and verify
+its downloaded bytes. Recorded data, simulations and imports keep their
+different labels; downloading an example does not validate a model or an
+unrecorded publisher integration. The evaluation workbench also has the
+functional `uat:evaluation` check and a shared measured journey in CI.
+Every generated HTML page enters the link check.
 It also cycles all demos repeatedly, checks internal link targets and records
 useful content readiness under fourfold CPU slowdown.
 

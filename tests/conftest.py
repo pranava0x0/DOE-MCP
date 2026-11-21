@@ -90,7 +90,7 @@ def _context(replay, creds) -> RuntimeContext:
         if kind == "curated":
             continue
         kwargs = {"fetcher": replay, "cache": cache}
-        if kind in ("eia_v2", "regulations_gov"):
+        if kind in ("eia_v2", "regulations_gov", "pvwatts_v8"):
             kwargs["credentials"] = creds
         overrides[field_name] = cls(**kwargs)
     return dataclasses.replace(

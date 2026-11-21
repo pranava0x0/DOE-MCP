@@ -28,6 +28,7 @@ from ..domains.discovery import DISCOVERY_TOOLS
 from ..domains.docs import DOCS_TOOLS
 from ..domains.earth import EARTH_TOOLS
 from ..domains.energy import ENERGY_TOOLS
+from ..domains.energy_tech import ENERGY_TECH_TOOLS
 from ..domains.gcam import GCAM_TOOLS
 from ..domains.materials import MATERIALS_TOOLS
 from ..domains.registry_tools import REGISTRY_TOOLS
@@ -48,7 +49,7 @@ SERVER_INSTRUCTIONS = {s.name: s.instructions for s in shipping()}
 
 def registries():
     return {"research": RESEARCH_TOOLS, "registry": REGISTRY_TOOLS,
-            "discovery": DISCOVERY_TOOLS, "energy": ENERGY_TOOLS,
+            "discovery": DISCOVERY_TOOLS, "energy": ENERGY_TOOLS, "energy_tech": ENERGY_TECH_TOOLS,
             "docs": DOCS_TOOLS, "tech": TECH_TOOLS,
             "earth": EARTH_TOOLS, "materials": MATERIALS_TOOLS,
             "bio": BIO_TOOLS, **GCAM_TOOLS}

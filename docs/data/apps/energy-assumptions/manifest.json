@@ -1,0 +1,21 @@
+{
+  "application": "energy-assumptions",
+  "mode": "recorded",
+  "files": [
+    {
+      "file": "assumptions.csv",
+      "bytes": 1951,
+      "sha256": "1c02dc5f27acbe3b0261e8f8a3ffa377adb2d0541d46507682b6f4b78e0e33c7"
+    },
+    {
+      "file": "assumptions.json",
+      "bytes": 8895,
+      "sha256": "1efd3a212e4c9c67ff9db0b93d6d0df4025dae69ef1844e0ed80711868a8fdbd"
+    },
+    {
+      "file": "report.json",
+      "bytes": 45067,
+      "sha256": "403bd11b422e7f1a96da4a0ecd7fad211c4d06d4c99d3d9bf71de1ffcaddd311"
+    }
+  ]
+}

@@ -220,3 +220,50 @@ Import your own declared CSVs with `--plan`, `--actuals` and `--forecasts`. The 
 - Persistence uses only observations effective and available at or before issuance, within the declared maximum age. Later observations never set its prediction.
 - Quantity, unit, cadence, interval meaning and timestamp meaning must match the declaration. Power samples, interval means and energy totals cannot be mixed; no unit conversion or temporal aggregation is performed.
 - Missing declarations are refused. Missing values, forecasts and observations remain explicit cohort exclusions; a region with no common targets stays in the report with null metrics.
+
+## ATB energy assumptions reader
+
+**Recorded example. Runs locally.**
+
+```bash
+doe-mcp app energy-assumptions --output ./energy-assumptions-run
+```
+
+[Download complete bundle](data/apps/energy-assumptions/bundle.zip) · [View report and source evidence](data/apps/energy-assumptions/report.json) · [File checksums](data/apps/energy-assumptions/manifest.json)
+
+Read technology cost and performance assumptions from one pinned ATB edition. Every row retains its scenario, projection year, technology/resource detail, units and financial qualifiers.
+
+This preset reads **ATB 2024 v4.0.0** and returns **10 of 40 matching rows**. Selection status: **multiple_matching_rows**. A page of qualified assumptions is not a project-specific estimate.
+
+Currency basis: 2022 USD unless noted otherwise by the publisher; nonmonetary metrics keep their own units.
+
+| Technology detail | Scenario | Projection year | Financial case | Tax credit | CRP | Metric | Units | Value |
+|---|---|---:|---|---|---:|---|---|---:|
+| Class1 | Moderate | 2035 | Market | PTC | 20 | CAPEX | $/kW | 895.321 |
+| Class2 | Moderate | 2035 | Market | PTC | 20 | CAPEX | $/kW | 895.321 |
+| Class3 | Moderate | 2035 | Market | PTC | 20 | CAPEX | $/kW | 895.321 |
+| Class4 | Moderate | 2035 | Market | PTC | 20 | CAPEX | $/kW | 895.321 |
+| Class5 | Moderate | 2035 | Market | PTC | 20 | CAPEX | $/kW | 895.321 |
+| Class6 | Moderate | 2035 | Market | PTC | 20 | CAPEX | $/kW | 895.321 |
+| Class7 | Moderate | 2035 | Market | PTC | 20 | CAPEX | $/kW | 895.321 |
+| Class8 | Moderate | 2035 | Market | PTC | 20 | CAPEX | $/kW | 895.321 |
+| Class9 | Moderate | 2035 | Market | PTC | 20 | CAPEX | $/kW | 895.321 |
+| Class10 | Moderate | 2035 | Market | PTC | 20 | CAPEX | $/kW | 895.321 |
+
+Displayed numbers are rounded to three decimals; JSON and CSV retain the parsed publisher values.
+
+[Assumptions CSV](data/apps/energy-assumptions/assumptions.csv) · [Qualified rows and evidence pointers](data/apps/energy-assumptions/assumptions.json)
+
+Pass `--edition 2025` for the separately pinned 2025 release, and `--filters` for exact JSON qualifiers. No edition is treated as latest, and differing currency bases are not converted or blended. [ATB reader and PVWatts activation limits](energy-readers.html).
+
+PVWatts remains **proposed**: no user key, model call or real model recording is present. The report contains no fabricated photovoltaic production output.
+
+### Scope and limits
+
+- This run reads one pinned ATB electricity edition and release. It does not select a latest edition or blend currency bases.
+- Rows retain publisher technology detail, resource class, metric, scenario, projection year, units, financial case, tax-credit case and capital recovery period. Multiple matches are explicit, not a chosen first row.
+- These are published scenario assumptions, not observed costs, bids, economic advice or a project-specific estimate. Null metric values remain missing.
+- A bounded page is not all matches when pagination is truncated. Refine filters or use the offset for subsequent pages.
+- The full pinned release is verified locally; only selected rows are exported. Publisher row numbers are one-based data rows within those exact bytes.
+- PVWatts remains proposed without a real credential-redacted recording. No model result, API request, DEMO\_KEY use or key configuration is part of this application.
+- Source text is third-party data. CSV expression-like text is prefixed with an apostrophe; JSON retains original content.

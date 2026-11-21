@@ -435,6 +435,22 @@ redistributed:
     rights: Copyright 2019 Battelle Memorial Institute. ECL-2.0; see licenses/GCAM-ECL-2.0.txt.
     attribution_required: true
 
+  - source_id: nlr-atb
+    publisher: National Laboratory of the Rockies
+    system: Annual Technology Baseline electricity releases
+    url: https://atb.nlr.gov/electricity/2025/data
+    retrieved: "2026-11-21"
+    content: >
+      Complete publisher-listed Parquet assets for ATB 2024 v4.0.0 and ATB
+      2025 v2.0.0, stored as hash-addressed binary fixture sidecars.
+    rights: >
+      Publicly distributed NLR/Alliance data; retain publisher attribution.
+      The ATB disclaimer provides estimates and assumptions as-is for
+      reference, without support or endorsement, and places responsibility
+      for use and reliance on the user. No CC0 claim is made for these data.
+      Disclaimer: https://atb.nlr.gov/electricity/2025/disclaimer
+    attribution_required: true
+
 citation_required_when_integrated:
   - source_id: arm-data-center
     publisher: ARM Data Center (ORNL)

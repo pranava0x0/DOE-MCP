@@ -14,6 +14,7 @@ from __future__ import annotations
 import dataclasses
 from datetime import datetime, timezone
 import json
+import hashlib
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -21,7 +22,8 @@ from typing import Any
 from urllib.parse import quote, quote_plus
 
 from ..core.errors import SourceUnavailable
-from .base import JsonResponse, TextResponse
+from .base import BytesResponse, JsonResponse, TextResponse, _request_secrets
+from ..core.egress import MAX_RESPONSE_BYTES
 
 # Government APIs return people's contact details, and this project commits
 # recorded responses to a public repository. Those are two different acts:
@@ -127,8 +129,37 @@ class ReplayFetcher:
     def from_file(cls, path: Path) -> "ReplayFetcher":
         doc = json.loads(path.read_text())
         return cls(interactions={
-            _key(i["url"], i.get("params", {})): i
+            _key(i["url"], i.get("params", {})): {**i, "_fixture_root": path.parent}
             for i in doc["interactions"]})
+
+    async def fetch_bytes(self, url: str, params: dict[str, Any]) -> BytesResponse:
+        self.calls.append((url, dict(params)))
+        hit = self.interactions.get(_key(url, params))
+        if hit is None:
+            raise SourceUnavailable("no recorded binary interaction for requested release")
+        _reraise_recorded(hit)
+        spec = hit.get("body_ref", {})
+        if not isinstance(spec, dict):
+            raise SourceUnavailable("invalid recorded binary content reference")
+        digest = spec.get("sha256", "")
+        if (not isinstance(digest, str) or not re.fullmatch(r"[0-9a-f]{64}", digest)
+                or spec.get("file") != f"blobs/{digest}.bin"
+                or type(spec.get("bytes")) is not int or not 0 < spec["bytes"] <= MAX_RESPONSE_BYTES):
+            raise SourceUnavailable("invalid recorded binary content reference")
+        root = hit.get("_fixture_root")
+        if not isinstance(root, Path):
+            raise SourceUnavailable("recorded binary content has no fixture directory")
+        path = root / spec["file"]
+        if path.is_symlink() or path.parent.is_symlink():
+            raise SourceUnavailable("recorded binary content must not follow symlinks")
+        try:
+            with path.open("rb") as stream:
+                content = stream.read(MAX_RESPONSE_BYTES + 1)
+        except OSError as err:
+            raise SourceUnavailable("recorded binary content is unavailable") from err
+        if len(content) != spec["bytes"] or hashlib.sha256(content).hexdigest() != digest:
+            raise SourceUnavailable("recorded binary content failed size or SHA256 verification")
+        return BytesResponse(content, hit.get("headers", {}), url)
 
     async def fetch_json(self, url: str,
                          params: dict[str, Any]) -> JsonResponse:
@@ -140,6 +171,8 @@ class ReplayFetcher:
                 f"{sorted(params)}. Record one with `doe-mcp sources sample "
                 "--record` rather than hand-writing the response.")
         _reraise_recorded(hit)
+        if "body" not in hit:
+            raise SourceUnavailable("recorded binary content was requested as JSON")
         return JsonResponse(payload=hit["body"],
                             headers={k.lower(): str(v) for k, v
                                      in (hit.get("headers") or {}).items()},
@@ -159,7 +192,7 @@ class ReplayFetcher:
                 f"{sorted(params)}. Record one with `doe-mcp sources sample "
                 "--record` rather than hand-writing the response.")
         _reraise_recorded(hit)
-        body = hit["body"]
+        body = hit.get("body")
         if not isinstance(body, str):
             raise SourceUnavailable(
                 f"the recorded interaction for {url} holds a "
@@ -194,6 +227,7 @@ class RecordingFetcher:
     inner: Any
     interactions: list[dict[str, Any]] = field(default_factory=list)
     secrets: frozenset[str] = frozenset()
+    _binary_blobs: dict[str, bytes] = field(default_factory=dict)
     """Every credential value the runtime holds. The name-based rule catches
     the request parameter; these catch anything the publisher echoed."""
 
@@ -240,6 +274,24 @@ class RecordingFetcher:
              "body": redact_pii(response.text)}, self.secrets))
         return response
 
+    async def fetch_bytes(self, url: str, params: dict[str, Any]) -> BytesResponse:
+        # Compressed binary content cannot be safely redacted. Refuse the
+        # entire recording when credentials could enter it, before fetching.
+        headers = getattr(self.inner, "extra_headers", None) or {}
+        if (self.secrets or _request_secrets(url, params, headers) or any(is_credential_param(name) for name in params)
+                or any(name.lower().replace("-", "_") in
+                       {"authorization", "x_api_key", "api_key", "token"} for name in headers)):
+            raise ValueError("binary recording requires a credential-free fetcher and context")
+        response = await self.inner.fetch_bytes(url, params)
+        if not 0 < len(response.content) <= MAX_RESPONSE_BYTES:
+            raise ValueError("binary recording is empty or exceeds the response cap")
+        digest = hashlib.sha256(response.content).hexdigest()
+        self._binary_blobs[digest] = response.content
+        self.interactions.append({"url": url, "params": {k: str(v) for k, v in params.items()},
+            "headers": {k: v for k, v in response.headers.items() if k in {"content-type", "etag", "last-modified"}},
+            "body_ref": {"file": f"blobs/{digest}.bin", "bytes": len(response.content), "sha256": digest}})
+        return response
+
     def _record_refusal(self, url: str, params: dict[str, Any],
                         refusal: SourceUnavailable) -> None:
         """Keep a publisher's refusal as an interaction of its own.
@@ -277,10 +329,12 @@ class RecordingFetcher:
             raise ValueError(
                 f"refusing to write {path}: a named credential field survived "
                 "redaction. Nothing was written.")
+        if self._binary_blobs and self.secrets:
+            raise ValueError("binary recording requires a credential-free context at publication")
         text = json.dumps(
             {"note": note,
              "recorded_at": datetime.now(timezone.utc).isoformat(),
-             "redaction": f"Email addresses replaced with "
+             "redaction": ("Binary sidecars preserve original bytes. Binary recording refuses credential-bearing contexts and requests. Text/JSON redaction: " if self._binary_blobs else "") + f"Email addresses replaced with "
                           f"{REDACTED_EMAIL} and credential values with "
                           f"{REDACTED_SECRET!r} at record time. Field shapes "
                           "and lengths are otherwise the publisher's.",
@@ -293,6 +347,24 @@ class RecordingFetcher:
                 f"refusing to write {path}: a credential value survived "
                 "redaction. Nothing was written.")
         path.parent.mkdir(parents=True, exist_ok=True)
+        if self._binary_blobs:
+            directory = path.parent / "blobs"
+            if directory.is_symlink():
+                raise ValueError("binary fixture directory must not be a symlink")
+            directory.mkdir(exist_ok=True)
+            # The JSON file is the publication point. All planned requests
+            # and validation finish first; old content-addressed blobs stay
+            # valid even if publication is interrupted.
+            for digest, content in self._binary_blobs.items():
+                target = directory / f"{digest}.bin"
+                if target.is_symlink():
+                    raise ValueError("binary fixture must not be a symlink")
+                if target.exists():
+                    if target.read_bytes() != content:
+                        raise ValueError("existing binary fixture differs from its content hash")
+                else:
+                    with target.open("xb") as stream:
+                        stream.write(content)
         path.write_text(text)
 
 

@@ -75,6 +75,8 @@ class ToolRegistry:
 # and a caller who does not know which DOE catalog holds a dataset needs the
 # fan-out on the default surface, not one toolset switch away.
 PROFILES: dict[str, list[tuple[str, str]]] = {
+    "energy-tech:default": [("energy_tech", "default"), ("registry", "discovery-min")],
+    "energy-tech:all": [("energy_tech", "*"), ("registry", "*")],
     "research:default": [("research", "default"),
                          ("registry", "discovery-min"),
                          ("discovery", "default"),

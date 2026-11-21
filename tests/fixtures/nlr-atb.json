@@ -1,0 +1,35 @@
+{
+  "note": "Recorded live from anonymous ATB 2024 v4.0.0 and 2025 v2.0.0 Parquet releases from the publisher-listed OEDI assets. Binary bytes are preserved and content-addressed; no credentials were held or sent. See THIRD_PARTY_DATA.yml.",
+  "recorded_at": "2026-11-21T20:34:37.552205+00:00",
+  "redaction": "Binary sidecars preserve original publisher bytes. No credentials were held or sent; binary recording refuses credential-bearing contexts and requests. Text/JSON redaction does not rewrite binary content.",
+  "interactions": [
+    {
+      "url": "https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2024/v4.0.0/ATBe.parquet",
+      "params": {},
+      "headers": {
+        "last-modified": "Tue, 28 Jul 2026 23:47:08 GMT",
+        "etag": "\"21dcaf11b07a1a9ab226d125dee3ab06\"",
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      "body_ref": {
+        "file": "blobs/13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e.bin",
+        "bytes": 5131651,
+        "sha256": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e"
+      }
+    },
+    {
+      "url": "https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2025/v2.0.0/ATBe.parquet",
+      "params": {},
+      "headers": {
+        "last-modified": "Fri, 13 Nov 2026 16:15:38 GMT",
+        "etag": "\"db7bb50040965d3ebe79b282c0669e56\"",
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      "body_ref": {
+        "file": "blobs/c380220b472b7832d864afe9dd15d6c748aee0a7f58a6ffc26d89261413502b4.bin",
+        "bytes": 9193709,
+        "sha256": "c380220b472b7832d864afe9dd15d6c748aee0a7f58a6ffc26d89261413502b4"
+      }
+    }
+  ]
+}

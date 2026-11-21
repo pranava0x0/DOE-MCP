@@ -31,6 +31,10 @@ main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0
 </style></head><body class=""><a class="skip" href="#content">Skip to content</a>
 <header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Recorded demos</a></nav></header>
 <main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#gcam-comparison-receipts">GCAM comparison receipts</a></li><li><a href="#forecast-benchmark">Forecast benchmark</a></li><li><a href="#forecast-panel-with-common-cohorts">Forecast panel with common cohorts</a></li><li><a href="#weather-package">Weather package</a></li><li><a href="#federal-register-notice-tracker">Federal Register notice tracker</a></li><li><a href="#regulationsgov-integration-gated">Regulations.gov integration: gated</a></li><li><a href="#research-artifact-linkage-explorer">Research artifact linkage explorer</a></li></ul></nav><h1 id="local-applications">Local applications</h1>
+<p>The <a href="energy-readers.html">ATB energy assumptions reader</a> exports qualified
+rows from pinned public 2024 and 2025 releases. Install the optional
+<code>energy-tech</code> extra, then run <code>doe-mcp app energy-assumptions --output ./recorded-atb</code>. Its PVWatts path remains proposed and supplies no model
+output. See the <a href="pvwatts-activation.html">activation checklist</a>.</p>
 <p>These applications compose source tools or declared input files. Publisher
 applications replay recorded responses by default; the forecast panel runs
 a labelled simulation or imports CSVs. Where supported, <code>--live</code> queries

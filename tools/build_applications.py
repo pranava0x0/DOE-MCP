@@ -16,7 +16,8 @@ TITLES = {"forecast-benchmark": "Grid forecast benchmark lab",
           "weather-package": "Weather package builder", "docket-tracker": "DOE docket notice tracker",
           "gcam-comparison": "GCAM comparison receipts",
           "research-linkage": "Research artifact linkage explorer",
-          "forecast-panel": "Forecast panel with common cohorts"}
+          "forecast-panel": "Forecast panel with common cohorts",
+          "energy-assumptions": "ATB energy assumptions reader"}
 
 
 def cell(value) -> str:
@@ -155,6 +156,27 @@ async def write_applications(root: Path) -> None:
                 "Import your own declared CSVs with `--plan`, `--actuals` and `--forecasts`. The import preserves raw input hashes "
                 "and attribution but cannot establish that supplied observations, issuance times or availability times are historically true. "
                 "A simulation declaration remains simulation on reimport. [Input format and measurement rules](apps.html#forecast-panel-with-common-cohorts).", ""]
+        elif name == "energy-assumptions":
+            lines += ["Read technology cost and performance assumptions from one pinned ATB edition. "
+                "Every row retains its scenario, projection year, technology/resource detail, units and financial qualifiers.", "",
+                f"This preset reads **ATB {report['edition']} {report['release']}** and returns "
+                f"**{len(report['records'])} of {report['total_matches']} matching rows**. "
+                f"Selection status: **{report['selection_status']}**. "
+                "A page of qualified assumptions is not a project-specific estimate.", "",
+                f"Currency basis: {cell(report['currency_basis'])}.", "",
+                "| Technology detail | Scenario | Projection year | Financial case | Tax credit | CRP | Metric | Units | Value |",
+                "|---|---|---:|---|---|---:|---|---|---:|"]
+            for record in report["records"]:
+                row = record["values"]
+                lines.append("| " + " | ".join(cell(row.get(key)) for key in
+                    ["techdetail", "scenario", "core_metric_variable", "core_metric_case", "tax_credit_case", "crpyears", "core_metric_parameter", "units", "value"]) + " |")
+            lines += ["", "Displayed numbers are rounded to three decimals; JSON and CSV retain the parsed publisher values.", "",
+                f"[Assumptions CSV](data/apps/{name}/assumptions.csv) · [Qualified rows and evidence pointers](data/apps/{name}/assumptions.json)", "",
+                "Pass `--edition 2025` for the separately pinned 2025 release, and `--filters` for exact JSON qualifiers. "
+                "No edition is treated as latest, and differing currency bases are not converted or blended. "
+                "[ATB reader and PVWatts activation limits](energy-readers.html).", "",
+                "PVWatts remains **proposed**: no user key, model call or real model recording is present. "
+                "The report contains no fabricated photovoltaic production output.", ""]
         else:
             lines += ["Track Federal Register DOE notices, retain separate publication/effective/comment dates, "
                 "group publisher-supplied docket IDs, and compare saved snapshots. "

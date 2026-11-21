@@ -15,6 +15,8 @@ from __future__ import annotations
 
 from . import inventory as _inventory  # noqa: F401  (registers "none")
 from .basis_sets import BasisSetExchangeAdapter
+from .atb import AtbAdapter
+from .pvwatts import PvwattsAdapter
 from .curated import CuratedAdapter
 from .daymet import DaymetAdapter
 from .eia_v2 import EiaV2Adapter
@@ -44,6 +46,8 @@ from .vips import VipsAdapter
 # directory; `eia_v2` takes the credential store; every other class takes
 # (fetcher, cache).
 ADAPTER_CLASSES: dict[str, tuple[str, type]] = {
+    "atb_parquet": ("atb", AtbAdapter),
+    "pvwatts_v8": ("pvwatts", PvwattsAdapter),
     "osti_family": ("osti", OstiFamilyAdapter),
     "opendatasoft": ("opendatasoft", OpenDataSoftAdapter),
     "json_document": ("json_document", JsonDocumentAdapter),
@@ -67,6 +71,8 @@ ADAPTER_CLASSES: dict[str, tuple[str, type]] = {
 }
 
 ADAPTER_VERSIONS = {
+    "atb_parquet": AtbAdapter.version,
+    "pvwatts_v8": PvwattsAdapter.version,
     "osti_family": OstiFamilyAdapter.version,
     "opendatasoft": OpenDataSoftAdapter.version,
     "json_document": JsonDocumentAdapter.version,

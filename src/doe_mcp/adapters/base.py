@@ -185,6 +185,19 @@ class TextFetcher(Protocol):
                          params: dict[str, Any]) -> "TextResponse": ...
 
 
+class BytesFetcher(Protocol):
+    """Binary content over the same guarded, capped GET path."""
+
+    async def fetch_bytes(self, url: str, params: dict[str, Any]) -> "BytesResponse": ...
+
+
+@dataclass
+class BytesResponse:
+    content: bytes
+    headers: dict[str, str]
+    url: str
+
+
 @dataclass
 class JsonResponse:
     """Body plus the headers that carry meaning.
@@ -260,6 +273,17 @@ class HttpFetcher:
                                 headers={k.lower(): v
                                          for k, v in body.headers.items()},
                                 url=_redact_secrets(body.url, secrets))
+        except DoeMcpError as err:
+            err.args = (_redact_secrets(str(err), secrets),)
+            raise err from None
+
+    async def fetch_bytes(self, url: str, params: dict[str, Any]) -> BytesResponse:
+        secrets = _request_secrets(url, params, self.extra_headers)
+        try:
+            body, host = await self._fetch(url, params, "application/octet-stream")
+            return BytesResponse(content=self._checked_body(body, host),
+                                 headers={k.lower(): v for k, v in body.headers.items()},
+                                 url=_redact_secrets(body.url, secrets))
         except DoeMcpError as err:
             err.args = (_redact_secrets(str(err), secrets),)
             raise err from None

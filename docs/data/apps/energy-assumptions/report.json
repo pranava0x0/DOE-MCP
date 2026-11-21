@@ -1,0 +1,1229 @@
+{
+  "application": "energy-assumptions",
+  "mode": "recorded",
+  "fixtures": [
+    {
+      "file": "anl-sage-waggle.json",
+      "sha256": "f8fa9daef59952bd10fc45ebddaadf9670628e6598ad87088160ce8eef40734f",
+      "captured_at": null
+    },
+    {
+      "file": "basis-set-exchange.json",
+      "sha256": "0dfd2e7d23d4802bc7325a7334ccd4e306ad519c222ca0436964c901e17e8043",
+      "captured_at": null
+    },
+    {
+      "file": "bpa-operations.json",
+      "sha256": "4d69703d9b889d9a1c13fb09ec2476a79e4c0977f5f2a2b79a1fc4fd0139e394",
+      "captured_at": null
+    },
+    {
+      "file": "ceser-eagle-i-outages.json",
+      "sha256": "d3928d3e55187b8b5a951a6bbfffeb78d9faa00f645759c1845a98194e7a7685",
+      "captured_at": "2026-10-08T23:09:56.476179+00:00"
+    },
+    {
+      "file": "doe-code-json.json",
+      "sha256": "09a02ccb524f4c2f7757929d119742484fa7e44a720395a4d95eba9caa418047",
+      "captured_at": null
+    },
+    {
+      "file": "doe-open-data-catalog.json",
+      "sha256": "e4153a473c6afd89401ea09a16617ba16736056f6b9bf524c4276d94c40728a6",
+      "captured_at": null
+    },
+    {
+      "file": "eia-api-v2.json",
+      "sha256": "bb5e6ce41e8eef8057741409499a787b93c965ee44a12688806cd8cfe3aa6c9c",
+      "captured_at": null
+    },
+    {
+      "file": "esgf-search.json",
+      "sha256": "b48a40f84f831197b5621eeb120b6e8dac79c724b53ac5c3d6cebdfc6b2b8ce4",
+      "captured_at": null
+    },
+    {
+      "file": "ess-dive.json",
+      "sha256": "28399526c4bbec1055c0740219c1bee5468f0ebf5b5662182f77fb88f28d827a",
+      "captured_at": null
+    },
+    {
+      "file": "federal-register-doe.json",
+      "sha256": "f1b81fd332bdb47df868b0d419aef22e387c2d3fb8ffb2649375d459a1a56a3b",
+      "captured_at": null
+    },
+    {
+      "file": "fueleconomy-ws.json",
+      "sha256": "9a193408aeb51db8b4e5d2413b6e01b8569e964babd0a3276609fc4b178d0323",
+      "captured_at": null
+    },
+    {
+      "file": "gcam-economy.json",
+      "sha256": "e51120caad276d93a52d9dbf50ea2faa5c298c9ac88f17c3e5f1869be685bb78",
+      "captured_at": "2026-11-10T04:46:58.414403+00:00"
+    },
+    {
+      "file": "gcam-emissions.json",
+      "sha256": "7f582259a874c533a6fe55f65d0c2e0936e84ea1c500e9f9b7b186868315bacd",
+      "captured_at": "2026-11-10T04:46:57.828491+00:00"
+    },
+    {
+      "file": "gcam-land.json",
+      "sha256": "d77c9781b292feb3265cabc2ffa484c7ef27dd7fe27f93f95a29115e2c693e65",
+      "captured_at": "2026-11-10T04:46:57.498065+00:00"
+    },
+    {
+      "file": "gcam-power.json",
+      "sha256": "7485cdd26030b7c15f0812c534223aca205cba855c96bd61c767668207b9cbc8",
+      "captured_at": "2026-11-10T04:46:58.079479+00:00"
+    },
+    {
+      "file": "gcam-water.json",
+      "sha256": "ecd273d3b6eeea1cd569b2b70ef51ca0ef203bb2233d4c32f4eebab9c2947869",
+      "captured_at": "2026-11-10T04:46:57.016956+00:00"
+    },
+    {
+      "file": "lbnl-mp-optimade.json",
+      "sha256": "8a5d15ebe6a47c4103d3611661903b8f41de8b5d101ba203df541e2a7b35e280",
+      "captured_at": null
+    },
+    {
+      "file": "nersc-status.json",
+      "sha256": "1d6915f666940b312c349bfb9e9dcb32e123e89850582f3f7b2e282aeda911a7",
+      "captured_at": "2026-10-08T23:12:37.080875+00:00"
+    },
+    {
+      "file": "nlr-atb.json",
+      "sha256": "4c664d08b044c901695c0018a4a1a70e2576394b4bd78c782d772fadfe8f2ed1",
+      "captured_at": "2026-11-21T20:34:37.552205+00:00",
+      "binary_assets": [
+        {
+          "file": "blobs/13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e.bin",
+          "bytes": 5131651,
+          "sha256": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e"
+        },
+        {
+          "file": "blobs/c380220b472b7832d864afe9dd15d6c748aee0a7f58a6ffc26d89261413502b4.bin",
+          "bytes": 9193709,
+          "sha256": "c380220b472b7832d864afe9dd15d6c748aee0a7f58a6ffc26d89261413502b4"
+        }
+      ]
+    },
+    {
+      "file": "nmdc-runtime.json",
+      "sha256": "a47cb8d2a0a93dcec1b30c3de2eca0769c8e5fb4fe9eca8edda61eb580432b78",
+      "captured_at": "2026-10-08T23:37:56.653277+00:00"
+    },
+    {
+      "file": "ornl-daac.json",
+      "sha256": "9fea63aa5e38eaa7fdf8d095bec8d6a70b291f4cc6a9751facf53548d565574a",
+      "captured_at": null
+    },
+    {
+      "file": "ornl-openenergyhub.json",
+      "sha256": "b475b04ed1b8c1a58a08b110c277e087c0b3f9dcf0dbbe8a9ec41bed289cd6aa",
+      "captured_at": null
+    },
+    {
+      "file": "osti-data-explorer.json",
+      "sha256": "71a7e71e7056856c76fcebc8d0234e049c0109bd35e2b1777768e408072ad398",
+      "captured_at": null
+    },
+    {
+      "file": "osti-doe-code.json",
+      "sha256": "b3a6506adab49139d00e4aa99c31a432fd7d6529e80204f923b5476b85411d5f",
+      "captured_at": null
+    },
+    {
+      "file": "osti-doe-pages.json",
+      "sha256": "d985dce1d781b9a7484437ab297f66f39c5d89febdf5acc3527d09b3316e19d8",
+      "captured_at": "2026-09-22T12:33:16.478603+00:00"
+    },
+    {
+      "file": "osti-gov-records.json",
+      "sha256": "c6fd5ded484f83064397a670a15639a4c3903b1add64a6ddcb849cf6da404d17",
+      "captured_at": "2026-09-22T12:33:14.364511+00:00"
+    },
+    {
+      "file": "pnnl-vips.json",
+      "sha256": "f83c54a2e33f84cca881a0d7581f92b782501733b2746c9b17f0201e1da6d89d",
+      "captured_at": null
+    },
+    {
+      "file": "usgs-uspvdb.json",
+      "sha256": "4d93ec19e3b23d1de9ad1a1d618cca40070ae455764062a91d8a19a4c975c24c",
+      "captured_at": null
+    },
+    {
+      "file": "usgs-uswtdb.json",
+      "sha256": "717c92092351ab13cd9ad61bd10f8988c06748fe63201b872ef22d12fd23b70a",
+      "captured_at": null
+    }
+  ],
+  "steps": [
+    {
+      "tool": "tech.describe_atb",
+      "args": {
+        "edition": 2024,
+        "dimension": "core_metric_case",
+        "filters": {
+          "technology": "UtilityPV",
+          "core_metric_parameter": "CAPEX",
+          "scenario": "Moderate",
+          "core_metric_variable": "2035"
+        },
+        "rows": 50,
+        "offset": 0
+      },
+      "envelope": {
+        "data": {
+          "edition": 2024,
+          "release": "v4.0.0",
+          "file_url": "https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2024/v4.0.0/ATBe.parquet",
+          "asset_sha256": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e",
+          "asset_bytes": 5131651,
+          "table_rows": 585630,
+          "currency_basis": "2022 USD unless noted otherwise by the publisher; nonmonetary metrics keep their own units",
+          "currency_basis_source": "https://atb.nlr.gov/electricity/2024/changes_in_2024",
+          "filters": {
+            "technology": "UtilityPV",
+            "core_metric_parameter": "CAPEX",
+            "scenario": "Moderate",
+            "core_metric_variable": "2035"
+          },
+          "offset": 0,
+          "total_matches": 2,
+          "columns": [
+            "atb_year",
+            "core_metric_key",
+            "core_metric_parameter",
+            "core_metric_case",
+            "tax_credit_case",
+            "crpyears",
+            "technology",
+            "technology_alias",
+            "techdetail",
+            "techdetail2",
+            "resourcedetail",
+            "display_name",
+            "default",
+            "scale",
+            "maturity",
+            "scenario",
+            "core_metric_variable",
+            "units",
+            "value"
+          ],
+          "filter_columns": [
+            "atb_year",
+            "core_metric_case",
+            "core_metric_parameter",
+            "core_metric_variable",
+            "crpyears",
+            "default",
+            "display_name",
+            "maturity",
+            "resourcedetail",
+            "scale",
+            "scenario",
+            "tax_credit_case",
+            "techdetail",
+            "techdetail2",
+            "technology",
+            "technology_alias",
+            "units"
+          ],
+          "interpretation": "Published scenario assumptions and projections, not observations, bids or a project-specific cost estimate.",
+          "dimension": "core_metric_case",
+          "values": [
+            "Market",
+            "R&D"
+          ],
+          "evidence_ref": "evidence_01",
+          "returned": 2
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "nlr-atb",
+            "steward": "National Laboratory of the Rockies",
+            "system": "Annual Technology Baseline (ATB)",
+            "dataset": "ATB electricity",
+            "dataset_version": "ATB 2024 v4.0.0",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "National Laboratory of the Rockies, Annual Technology Baseline electricity, edition and release as reported with the asset URL and SHA256.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "distinct core_metric_case",
+            "locator": "https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2024/v4.0.0/ATBe.parquet",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "verify_sha256",
+              "parse_parquet",
+              "exact_filter",
+              "distinct_dimension"
+            ],
+            "payload_hash": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e",
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "nlr-atb"
+          ],
+          "known_limitations": [
+            "Edition and release are explicit. No latest alias or verified ATB 2026 asset is supported.",
+            "Each Parquet asset is checked against its recorded byte size and SHA256 before parsing.",
+            "Values are scenario assumptions and projections, not observations or project bids.",
+            "Technology detail, resource class, scenario, projection year, metric, financial case, tax credit, CRP and units remain separate publisher columns.",
+            "ATB 2024 generally uses 2022 USD and ATB 2025 generally uses 2023 USD unless noted by the publisher. No currency conversion or cross-edition blending is performed.",
+            "Missing metric values remain null; multiple matching rows remain explicit."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: National Laboratory of the Rockies, Annual Technology Baseline electricity, edition and release as reported with the asset URL and SHA256.",
+            "source_id": "nlr-atb"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "tech.describe_atb",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "atb_parquet": "1",
+            "pvwatts_v8": "1",
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "regulations_gov": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-21",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "tech.read_atb",
+      "args": {
+        "edition": 2024,
+        "filters": {
+          "technology": "UtilityPV",
+          "core_metric_parameter": "CAPEX",
+          "scenario": "Moderate",
+          "core_metric_variable": "2035"
+        },
+        "rows": 10,
+        "offset": 0
+      },
+      "envelope": {
+        "data": {
+          "edition": 2024,
+          "release": "v4.0.0",
+          "file_url": "https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2024/v4.0.0/ATBe.parquet",
+          "asset_sha256": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e",
+          "asset_bytes": 5131651,
+          "table_rows": 585630,
+          "currency_basis": "2022 USD unless noted otherwise by the publisher; nonmonetary metrics keep their own units",
+          "currency_basis_source": "https://atb.nlr.gov/electricity/2024/changes_in_2024",
+          "filters": {
+            "technology": "UtilityPV",
+            "core_metric_parameter": "CAPEX",
+            "scenario": "Moderate",
+            "core_metric_variable": "2035"
+          },
+          "offset": 0,
+          "total_matches": 40,
+          "columns": [
+            "atb_year",
+            "core_metric_key",
+            "core_metric_parameter",
+            "core_metric_case",
+            "tax_credit_case",
+            "crpyears",
+            "technology",
+            "technology_alias",
+            "techdetail",
+            "techdetail2",
+            "resourcedetail",
+            "display_name",
+            "default",
+            "scale",
+            "maturity",
+            "scenario",
+            "core_metric_variable",
+            "units",
+            "value"
+          ],
+          "filter_columns": [
+            "atb_year",
+            "core_metric_case",
+            "core_metric_parameter",
+            "core_metric_variable",
+            "crpyears",
+            "default",
+            "display_name",
+            "maturity",
+            "resourcedetail",
+            "scale",
+            "scenario",
+            "tax_credit_case",
+            "techdetail",
+            "techdetail2",
+            "technology",
+            "technology_alias",
+            "units"
+          ],
+          "interpretation": "Published scenario assumptions and projections, not observations, bids or a project-specific cost estimate.",
+          "records": [
+            {
+              "row_number": 151024,
+              "values": {
+                "atb_year": 2024,
+                "core_metric_key": "289303",
+                "core_metric_parameter": "CAPEX",
+                "core_metric_case": "Market",
+                "tax_credit_case": "PTC",
+                "crpyears": 20,
+                "technology": "UtilityPV",
+                "technology_alias": "Utility PV",
+                "techdetail": "Class1",
+                "techdetail2": "Tracking PV",
+                "resourcedetail": "Class1",
+                "display_name": "Utility PV - Class 1",
+                "default": 0,
+                "scale": "Utility",
+                "maturity": "Y",
+                "scenario": "Moderate",
+                "core_metric_variable": 2035,
+                "units": "$/kW",
+                "value": 895.3211436190419
+              },
+              "evidence_ref": "evidence_01"
+            },
+            {
+              "row_number": 151027,
+              "values": {
+                "atb_year": 2024,
+                "core_metric_key": "289306",
+                "core_metric_parameter": "CAPEX",
+                "core_metric_case": "Market",
+                "tax_credit_case": "PTC",
+                "crpyears": 20,
+                "technology": "UtilityPV",
+                "technology_alias": "Utility PV",
+                "techdetail": "Class2",
+                "techdetail2": "Tracking PV",
+                "resourcedetail": "Class2",
+                "display_name": "Utility PV - Class 2",
+                "default": 0,
+                "scale": "Utility",
+                "maturity": "Y",
+                "scenario": "Moderate",
+                "core_metric_variable": 2035,
+                "units": "$/kW",
+                "value": 895.3211436190419
+              },
+              "evidence_ref": "evidence_02"
+            },
+            {
+              "row_number": 151030,
+              "values": {
+                "atb_year": 2024,
+                "core_metric_key": "289309",
+                "core_metric_parameter": "CAPEX",
+                "core_metric_case": "Market",
+                "tax_credit_case": "PTC",
+                "crpyears": 20,
+                "technology": "UtilityPV",
+                "technology_alias": "Utility PV",
+                "techdetail": "Class3",
+                "techdetail2": "Tracking PV",
+                "resourcedetail": "Class3",
+                "display_name": "Utility PV - Class 3",
+                "default": 0,
+                "scale": "Utility",
+                "maturity": "Y",
+                "scenario": "Moderate",
+                "core_metric_variable": 2035,
+                "units": "$/kW",
+                "value": 895.3211436190419
+              },
+              "evidence_ref": "evidence_03"
+            },
+            {
+              "row_number": 151034,
+              "values": {
+                "atb_year": 2024,
+                "core_metric_key": "289312",
+                "core_metric_parameter": "CAPEX",
+                "core_metric_case": "Market",
+                "tax_credit_case": "PTC",
+                "crpyears": 20,
+                "technology": "UtilityPV",
+                "technology_alias": "Utility PV",
+                "techdetail": "Class4",
+                "techdetail2": "Tracking PV",
+                "resourcedetail": "Class4",
+                "display_name": "Utility PV - Class 4",
+                "default": 0,
+                "scale": "Utility",
+                "maturity": "Y",
+                "scenario": "Moderate",
+                "core_metric_variable": 2035,
+                "units": "$/kW",
+                "value": 895.3211436190419
+              },
+              "evidence_ref": "evidence_04"
+            },
+            {
+              "row_number": 151037,
+              "values": {
+                "atb_year": 2024,
+                "core_metric_key": "289315",
+                "core_metric_parameter": "CAPEX",
+                "core_metric_case": "Market",
+                "tax_credit_case": "PTC",
+                "crpyears": 20,
+                "technology": "UtilityPV",
+                "technology_alias": "Utility PV",
+                "techdetail": "Class5",
+                "techdetail2": "Tracking PV",
+                "resourcedetail": "Class5",
+                "display_name": "Utility PV - Class 5",
+                "default": 1,
+                "scale": "Utility",
+                "maturity": "Y",
+                "scenario": "Moderate",
+                "core_metric_variable": 2035,
+                "units": "$/kW",
+                "value": 895.3211436190419
+              },
+              "evidence_ref": "evidence_05"
+            },
+            {
+              "row_number": 151040,
+              "values": {
+                "atb_year": 2024,
+                "core_metric_key": "289318",
+                "core_metric_parameter": "CAPEX",
+                "core_metric_case": "Market",
+                "tax_credit_case": "PTC",
+                "crpyears": 20,
+                "technology": "UtilityPV",
+                "technology_alias": "Utility PV",
+                "techdetail": "Class6",
+                "techdetail2": "Tracking PV",
+                "resourcedetail": "Class6",
+                "display_name": "Utility PV - Class 6",
+                "default": 0,
+                "scale": "Utility",
+                "maturity": "Y",
+                "scenario": "Moderate",
+                "core_metric_variable": 2035,
+                "units": "$/kW",
+                "value": 895.3211436190419
+              },
+              "evidence_ref": "evidence_06"
+            },
+            {
+              "row_number": 151044,
+              "values": {
+                "atb_year": 2024,
+                "core_metric_key": "289321",
+                "core_metric_parameter": "CAPEX",
+                "core_metric_case": "Market",
+                "tax_credit_case": "PTC",
+                "crpyears": 20,
+                "technology": "UtilityPV",
+                "technology_alias": "Utility PV",
+                "techdetail": "Class7",
+                "techdetail2": "Tracking PV",
+                "resourcedetail": "Class7",
+                "display_name": "Utility PV - Class 7",
+                "default": 0,
+                "scale": "Utility",
+                "maturity": "Y",
+                "scenario": "Moderate",
+                "core_metric_variable": 2035,
+                "units": "$/kW",
+                "value": 895.3211436190419
+              },
+              "evidence_ref": "evidence_07"
+            },
+            {
+              "row_number": 151047,
+              "values": {
+                "atb_year": 2024,
+                "core_metric_key": "289324",
+                "core_metric_parameter": "CAPEX",
+                "core_metric_case": "Market",
+                "tax_credit_case": "PTC",
+                "crpyears": 20,
+                "technology": "UtilityPV",
+                "technology_alias": "Utility PV",
+                "techdetail": "Class8",
+                "techdetail2": "Tracking PV",
+                "resourcedetail": "Class8",
+                "display_name": "Utility PV - Class 8",
+                "default": 0,
+                "scale": "Utility",
+                "maturity": "Y",
+                "scenario": "Moderate",
+                "core_metric_variable": 2035,
+                "units": "$/kW",
+                "value": 895.3211436190419
+              },
+              "evidence_ref": "evidence_08"
+            },
+            {
+              "row_number": 151050,
+              "values": {
+                "atb_year": 2024,
+                "core_metric_key": "289327",
+                "core_metric_parameter": "CAPEX",
+                "core_metric_case": "Market",
+                "tax_credit_case": "PTC",
+                "crpyears": 20,
+                "technology": "UtilityPV",
+                "technology_alias": "Utility PV",
+                "techdetail": "Class9",
+                "techdetail2": "Tracking PV",
+                "resourcedetail": "Class9",
+                "display_name": "Utility PV - Class 9",
+                "default": 0,
+                "scale": "Utility",
+                "maturity": "Y",
+                "scenario": "Moderate",
+                "core_metric_variable": 2035,
+                "units": "$/kW",
+                "value": 895.3211436190419
+              },
+              "evidence_ref": "evidence_09"
+            },
+            {
+              "row_number": 151054,
+              "values": {
+                "atb_year": 2024,
+                "core_metric_key": "289330",
+                "core_metric_parameter": "CAPEX",
+                "core_metric_case": "Market",
+                "tax_credit_case": "PTC",
+                "crpyears": 20,
+                "technology": "UtilityPV",
+                "technology_alias": "Utility PV",
+                "techdetail": "Class10",
+                "techdetail2": "Tracking PV",
+                "resourcedetail": "Class10",
+                "display_name": "Utility PV - Class 10",
+                "default": 0,
+                "scale": "Utility",
+                "maturity": "Y",
+                "scenario": "Moderate",
+                "core_metric_variable": 2035,
+                "units": "$/kW",
+                "value": 895.3211436190419
+              },
+              "evidence_ref": "evidence_10"
+            }
+          ],
+          "returned": 10,
+          "selection_status": "multiple_matching_rows",
+          "selection_note": "All qualifying rows remain distinct; no ambiguous first row is chosen. Refine technology detail, scenario, year, financial case, tax credit and CRP qualifiers as needed."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "nlr-atb",
+            "steward": "National Laboratory of the Rockies",
+            "system": "Annual Technology Baseline (ATB)",
+            "dataset": "ATB electricity",
+            "dataset_version": "ATB 2024 v4.0.0",
+            "authority_level": "primary",
+            "access_path": "cache",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "National Laboratory of the Rockies, Annual Technology Baseline electricity, edition and release as reported with the asset URL and SHA256.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "ATB 2024 v4.0.0:data row 151024",
+            "locator": "https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2024/v4.0.0/ATBe.parquet",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "verify_sha256",
+              "parse_parquet",
+              "exact_filter"
+            ],
+            "payload_hash": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e",
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_02",
+            "source_ref": "source_01",
+            "record_id": "ATB 2024 v4.0.0:data row 151027",
+            "locator": "https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2024/v4.0.0/ATBe.parquet",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "verify_sha256",
+              "parse_parquet",
+              "exact_filter"
+            ],
+            "payload_hash": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e",
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_03",
+            "source_ref": "source_01",
+            "record_id": "ATB 2024 v4.0.0:data row 151030",
+            "locator": "https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2024/v4.0.0/ATBe.parquet",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "verify_sha256",
+              "parse_parquet",
+              "exact_filter"
+            ],
+            "payload_hash": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e",
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_04",
+            "source_ref": "source_01",
+            "record_id": "ATB 2024 v4.0.0:data row 151034",
+            "locator": "https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2024/v4.0.0/ATBe.parquet",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "verify_sha256",
+              "parse_parquet",
+              "exact_filter"
+            ],
+            "payload_hash": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e",
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_05",
+            "source_ref": "source_01",
+            "record_id": "ATB 2024 v4.0.0:data row 151037",
+            "locator": "https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2024/v4.0.0/ATBe.parquet",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "verify_sha256",
+              "parse_parquet",
+              "exact_filter"
+            ],
+            "payload_hash": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e",
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_06",
+            "source_ref": "source_01",
+            "record_id": "ATB 2024 v4.0.0:data row 151040",
+            "locator": "https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2024/v4.0.0/ATBe.parquet",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "verify_sha256",
+              "parse_parquet",
+              "exact_filter"
+            ],
+            "payload_hash": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e",
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_07",
+            "source_ref": "source_01",
+            "record_id": "ATB 2024 v4.0.0:data row 151044",
+            "locator": "https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2024/v4.0.0/ATBe.parquet",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "verify_sha256",
+              "parse_parquet",
+              "exact_filter"
+            ],
+            "payload_hash": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e",
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_08",
+            "source_ref": "source_01",
+            "record_id": "ATB 2024 v4.0.0:data row 151047",
+            "locator": "https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2024/v4.0.0/ATBe.parquet",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "verify_sha256",
+              "parse_parquet",
+              "exact_filter"
+            ],
+            "payload_hash": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e",
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_09",
+            "source_ref": "source_01",
+            "record_id": "ATB 2024 v4.0.0:data row 151050",
+            "locator": "https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2024/v4.0.0/ATBe.parquet",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "verify_sha256",
+              "parse_parquet",
+              "exact_filter"
+            ],
+            "payload_hash": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e",
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_10",
+            "source_ref": "source_01",
+            "record_id": "ATB 2024 v4.0.0:data row 151054",
+            "locator": "https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2024/v4.0.0/ATBe.parquet",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "verify_sha256",
+              "parse_parquet",
+              "exact_filter"
+            ],
+            "payload_hash": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e",
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "truncated",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "nlr-atb"
+          ],
+          "known_limitations": [
+            "Edition and release are explicit. No latest alias or verified ATB 2026 asset is supported.",
+            "Each Parquet asset is checked against its recorded byte size and SHA256 before parsing.",
+            "Values are scenario assumptions and projections, not observations or project bids.",
+            "Technology detail, resource class, scenario, projection year, metric, financial case, tax credit, CRP and units remain separate publisher columns.",
+            "ATB 2024 generally uses 2022 USD and ATB 2025 generally uses 2023 USD unless noted by the publisher. No currency conversion or cross-edition blending is performed.",
+            "Missing metric values remain null; multiple matching rows remain explicit."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: National Laboratory of the Rockies, Annual Technology Baseline electricity, edition and release as reported with the asset URL and SHA256.",
+            "source_id": "nlr-atb"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "tech.read_atb",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "atb_parquet": "1",
+            "pvwatts_v8": "1",
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "regulations_gov": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-21",
+          "request_id": "recorded-workflow"
+        }
+      }
+    }
+  ],
+  "retrieval_note": "Site-only recorded example: retrieval clocks and request IDs are normalized; source data and fixture capture metadata remain separate. CLI exports retain original invocation envelopes.",
+  "limitations": [
+    "This run reads one pinned ATB electricity edition and release. It does not select a latest edition or blend currency bases.",
+    "Rows retain publisher technology detail, resource class, metric, scenario, projection year, units, financial case, tax-credit case and capital recovery period. Multiple matches are explicit, not a chosen first row.",
+    "These are published scenario assumptions, not observed costs, bids, economic advice or a project-specific estimate. Null metric values remain missing.",
+    "A bounded page is not all matches when pagination is truncated. Refine filters or use the offset for subsequent pages.",
+    "The full pinned release is verified locally; only selected rows are exported. Publisher row numbers are one-based data rows within those exact bytes.",
+    "PVWatts remains proposed without a real credential-redacted recording. No model result, API request, DEMO_KEY use or key configuration is part of this application.",
+    "Source text is third-party data. CSV expression-like text is prefixed with an apostrophe; JSON retains original content."
+  ],
+  "label": "ATB energy assumptions reader",
+  "edition": 2024,
+  "release": "v4.0.0",
+  "parameters": {
+    "edition": 2024,
+    "filters": {
+      "technology": "UtilityPV",
+      "core_metric_parameter": "CAPEX",
+      "scenario": "Moderate",
+      "core_metric_variable": "2035"
+    },
+    "rows": 10,
+    "offset": 0
+  },
+  "asset": {
+    "url": "https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2024/v4.0.0/ATBe.parquet",
+    "bytes": 5131651,
+    "sha256": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e"
+  },
+  "evidence_document": "report.json",
+  "currency_basis": "2022 USD unless noted otherwise by the publisher; nonmonetary metrics keep their own units",
+  "currency_basis_source": "https://atb.nlr.gov/electricity/2024/changes_in_2024",
+  "available_financial_cases": [
+    "Market",
+    "R&D"
+  ],
+  "records": [
+    {
+      "row_number": 151024,
+      "values": {
+        "atb_year": 2024,
+        "core_metric_key": "289303",
+        "core_metric_parameter": "CAPEX",
+        "core_metric_case": "Market",
+        "tax_credit_case": "PTC",
+        "crpyears": 20,
+        "technology": "UtilityPV",
+        "technology_alias": "Utility PV",
+        "techdetail": "Class1",
+        "techdetail2": "Tracking PV",
+        "resourcedetail": "Class1",
+        "display_name": "Utility PV - Class 1",
+        "default": 0,
+        "scale": "Utility",
+        "maturity": "Y",
+        "scenario": "Moderate",
+        "core_metric_variable": 2035,
+        "units": "$/kW",
+        "value": 895.3211436190419
+      },
+      "evidence_ref": "evidence_01",
+      "evidence_pointer": "/steps/1/envelope/evidence/0",
+      "record_pointer": "/steps/1/envelope/data/records/0"
+    },
+    {
+      "row_number": 151027,
+      "values": {
+        "atb_year": 2024,
+        "core_metric_key": "289306",
+        "core_metric_parameter": "CAPEX",
+        "core_metric_case": "Market",
+        "tax_credit_case": "PTC",
+        "crpyears": 20,
+        "technology": "UtilityPV",
+        "technology_alias": "Utility PV",
+        "techdetail": "Class2",
+        "techdetail2": "Tracking PV",
+        "resourcedetail": "Class2",
+        "display_name": "Utility PV - Class 2",
+        "default": 0,
+        "scale": "Utility",
+        "maturity": "Y",
+        "scenario": "Moderate",
+        "core_metric_variable": 2035,
+        "units": "$/kW",
+        "value": 895.3211436190419
+      },
+      "evidence_ref": "evidence_02",
+      "evidence_pointer": "/steps/1/envelope/evidence/1",
+      "record_pointer": "/steps/1/envelope/data/records/1"
+    },
+    {
+      "row_number": 151030,
+      "values": {
+        "atb_year": 2024,
+        "core_metric_key": "289309",
+        "core_metric_parameter": "CAPEX",
+        "core_metric_case": "Market",
+        "tax_credit_case": "PTC",
+        "crpyears": 20,
+        "technology": "UtilityPV",
+        "technology_alias": "Utility PV",
+        "techdetail": "Class3",
+        "techdetail2": "Tracking PV",
+        "resourcedetail": "Class3",
+        "display_name": "Utility PV - Class 3",
+        "default": 0,
+        "scale": "Utility",
+        "maturity": "Y",
+        "scenario": "Moderate",
+        "core_metric_variable": 2035,
+        "units": "$/kW",
+        "value": 895.3211436190419
+      },
+      "evidence_ref": "evidence_03",
+      "evidence_pointer": "/steps/1/envelope/evidence/2",
+      "record_pointer": "/steps/1/envelope/data/records/2"
+    },
+    {
+      "row_number": 151034,
+      "values": {
+        "atb_year": 2024,
+        "core_metric_key": "289312",
+        "core_metric_parameter": "CAPEX",
+        "core_metric_case": "Market",
+        "tax_credit_case": "PTC",
+        "crpyears": 20,
+        "technology": "UtilityPV",
+        "technology_alias": "Utility PV",
+        "techdetail": "Class4",
+        "techdetail2": "Tracking PV",
+        "resourcedetail": "Class4",
+        "display_name": "Utility PV - Class 4",
+        "default": 0,
+        "scale": "Utility",
+        "maturity": "Y",
+        "scenario": "Moderate",
+        "core_metric_variable": 2035,
+        "units": "$/kW",
+        "value": 895.3211436190419
+      },
+      "evidence_ref": "evidence_04",
+      "evidence_pointer": "/steps/1/envelope/evidence/3",
+      "record_pointer": "/steps/1/envelope/data/records/3"
+    },
+    {
+      "row_number": 151037,
+      "values": {
+        "atb_year": 2024,
+        "core_metric_key": "289315",
+        "core_metric_parameter": "CAPEX",
+        "core_metric_case": "Market",
+        "tax_credit_case": "PTC",
+        "crpyears": 20,
+        "technology": "UtilityPV",
+        "technology_alias": "Utility PV",
+        "techdetail": "Class5",
+        "techdetail2": "Tracking PV",
+        "resourcedetail": "Class5",
+        "display_name": "Utility PV - Class 5",
+        "default": 1,
+        "scale": "Utility",
+        "maturity": "Y",
+        "scenario": "Moderate",
+        "core_metric_variable": 2035,
+        "units": "$/kW",
+        "value": 895.3211436190419
+      },
+      "evidence_ref": "evidence_05",
+      "evidence_pointer": "/steps/1/envelope/evidence/4",
+      "record_pointer": "/steps/1/envelope/data/records/4"
+    },
+    {
+      "row_number": 151040,
+      "values": {
+        "atb_year": 2024,
+        "core_metric_key": "289318",
+        "core_metric_parameter": "CAPEX",
+        "core_metric_case": "Market",
+        "tax_credit_case": "PTC",
+        "crpyears": 20,
+        "technology": "UtilityPV",
+        "technology_alias": "Utility PV",
+        "techdetail": "Class6",
+        "techdetail2": "Tracking PV",
+        "resourcedetail": "Class6",
+        "display_name": "Utility PV - Class 6",
+        "default": 0,
+        "scale": "Utility",
+        "maturity": "Y",
+        "scenario": "Moderate",
+        "core_metric_variable": 2035,
+        "units": "$/kW",
+        "value": 895.3211436190419
+      },
+      "evidence_ref": "evidence_06",
+      "evidence_pointer": "/steps/1/envelope/evidence/5",
+      "record_pointer": "/steps/1/envelope/data/records/5"
+    },
+    {
+      "row_number": 151044,
+      "values": {
+        "atb_year": 2024,
+        "core_metric_key": "289321",
+        "core_metric_parameter": "CAPEX",
+        "core_metric_case": "Market",
+        "tax_credit_case": "PTC",
+        "crpyears": 20,
+        "technology": "UtilityPV",
+        "technology_alias": "Utility PV",
+        "techdetail": "Class7",
+        "techdetail2": "Tracking PV",
+        "resourcedetail": "Class7",
+        "display_name": "Utility PV - Class 7",
+        "default": 0,
+        "scale": "Utility",
+        "maturity": "Y",
+        "scenario": "Moderate",
+        "core_metric_variable": 2035,
+        "units": "$/kW",
+        "value": 895.3211436190419
+      },
+      "evidence_ref": "evidence_07",
+      "evidence_pointer": "/steps/1/envelope/evidence/6",
+      "record_pointer": "/steps/1/envelope/data/records/6"
+    },
+    {
+      "row_number": 151047,
+      "values": {
+        "atb_year": 2024,
+        "core_metric_key": "289324",
+        "core_metric_parameter": "CAPEX",
+        "core_metric_case": "Market",
+        "tax_credit_case": "PTC",
+        "crpyears": 20,
+        "technology": "UtilityPV",
+        "technology_alias": "Utility PV",
+        "techdetail": "Class8",
+        "techdetail2": "Tracking PV",
+        "resourcedetail": "Class8",
+        "display_name": "Utility PV - Class 8",
+        "default": 0,
+        "scale": "Utility",
+        "maturity": "Y",
+        "scenario": "Moderate",
+        "core_metric_variable": 2035,
+        "units": "$/kW",
+        "value": 895.3211436190419
+      },
+      "evidence_ref": "evidence_08",
+      "evidence_pointer": "/steps/1/envelope/evidence/7",
+      "record_pointer": "/steps/1/envelope/data/records/7"
+    },
+    {
+      "row_number": 151050,
+      "values": {
+        "atb_year": 2024,
+        "core_metric_key": "289327",
+        "core_metric_parameter": "CAPEX",
+        "core_metric_case": "Market",
+        "tax_credit_case": "PTC",
+        "crpyears": 20,
+        "technology": "UtilityPV",
+        "technology_alias": "Utility PV",
+        "techdetail": "Class9",
+        "techdetail2": "Tracking PV",
+        "resourcedetail": "Class9",
+        "display_name": "Utility PV - Class 9",
+        "default": 0,
+        "scale": "Utility",
+        "maturity": "Y",
+        "scenario": "Moderate",
+        "core_metric_variable": 2035,
+        "units": "$/kW",
+        "value": 895.3211436190419
+      },
+      "evidence_ref": "evidence_09",
+      "evidence_pointer": "/steps/1/envelope/evidence/8",
+      "record_pointer": "/steps/1/envelope/data/records/8"
+    },
+    {
+      "row_number": 151054,
+      "values": {
+        "atb_year": 2024,
+        "core_metric_key": "289330",
+        "core_metric_parameter": "CAPEX",
+        "core_metric_case": "Market",
+        "tax_credit_case": "PTC",
+        "crpyears": 20,
+        "technology": "UtilityPV",
+        "technology_alias": "Utility PV",
+        "techdetail": "Class10",
+        "techdetail2": "Tracking PV",
+        "resourcedetail": "Class10",
+        "display_name": "Utility PV - Class 10",
+        "default": 0,
+        "scale": "Utility",
+        "maturity": "Y",
+        "scenario": "Moderate",
+        "core_metric_variable": 2035,
+        "units": "$/kW",
+        "value": 895.3211436190419
+      },
+      "evidence_ref": "evidence_10",
+      "evidence_pointer": "/steps/1/envelope/evidence/9",
+      "record_pointer": "/steps/1/envelope/data/records/9"
+    }
+  ],
+  "total_matches": 40,
+  "selection_status": "multiple_matching_rows",
+  "pagination": {
+    "coverage": "truncated",
+    "offset": 0,
+    "returned": 10
+  },
+  "pvwatts": {
+    "status": "proposed",
+    "model_output": null,
+    "reason": "No user key or recorded response; the PVWatts API was not called and no credential was loaded."
+  },
+  "site_reference_clock": "2026-11-21T00:00:00Z"
+}

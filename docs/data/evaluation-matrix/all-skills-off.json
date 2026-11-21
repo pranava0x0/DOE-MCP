@@ -104,6 +104,23 @@
       "captured_at": "2026-10-08T23:12:37.080875+00:00"
     },
     {
+      "file": "nlr-atb.json",
+      "sha256": "4c664d08b044c901695c0018a4a1a70e2576394b4bd78c782d772fadfe8f2ed1",
+      "captured_at": "2026-11-21T20:34:37.552205+00:00",
+      "binary_assets": [
+        {
+          "file": "blobs/13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e.bin",
+          "bytes": 5131651,
+          "sha256": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e"
+        },
+        {
+          "file": "blobs/c380220b472b7832d864afe9dd15d6c748aee0a7f58a6ffc26d89261413502b4.bin",
+          "bytes": 9193709,
+          "sha256": "c380220b472b7832d864afe9dd15d6c748aee0a7f58a6ffc26d89261413502b4"
+        }
+      ]
+    },
+    {
       "file": "nmdc-runtime.json",
       "sha256": "a47cb8d2a0a93dcec1b30c3de2eca0769c8e5fb4fe9eca8edda61eb580432b78",
       "captured_at": "2026-10-08T23:37:56.653277+00:00"
@@ -216,7 +233,7 @@
               },
               "basis": "former_name",
               "candidates": [],
-              "source_count": 13,
+              "source_count": 14,
               "historical_name": {
                 "queried": "NREL",
                 "resolved_to": "nlr",
@@ -273,6 +290,8 @@
               "tool_contract_version": "1",
               "envelope_version": "1",
               "adapters": {
+                "atb_parquet": "1",
+                "pvwatts_v8": "1",
                 "osti_family": "1",
                 "opendatasoft": "1",
                 "json_document": "1",
@@ -405,7 +424,10 @@
         "research.search_literature",
         "research.search_software",
         "sensors.find_nodes",
+        "solar.estimate_production",
+        "tech.describe_atb",
         "tech.find_licensable_ip",
+        "tech.read_atb",
         "water.cooling_costs",
         "water.cooling_shares",
         "water.desalination_costs",
@@ -418,6 +440,7 @@
       "profiles": [
         "research:default",
         "energy:default",
+        "energy-tech:default",
         "earth:default",
         "materials:default",
         "bio:default",
@@ -427,7 +450,7 @@
         "power:default",
         "economy:default"
       ],
-      "tool_schema_sha256": "f262c6724606e52369c8de459254b6aa3fdec9c5e72f3ca694377a3a0bef6b47",
+      "tool_schema_sha256": "e1fe029e023f514e891acf5c4de30ca054a87d82df55c356d1e640cca6d505cc",
       "skill_sha256": "5d86224925242eb92958fcdb43cdbd939380fce41c180daaa19718b61dc1c279",
       "registry_revision": "2026-11-21",
       "reported_model_version": "simulation-v1",
@@ -501,7 +524,7 @@
               },
               "basis": "former_name",
               "candidates": [],
-              "source_count": 13,
+              "source_count": 14,
               "historical_name": {
                 "queried": "NREL",
                 "resolved_to": "nlr",
@@ -558,6 +581,8 @@
               "tool_contract_version": "1",
               "envelope_version": "1",
               "adapters": {
+                "atb_parquet": "1",
+                "pvwatts_v8": "1",
                 "osti_family": "1",
                 "opendatasoft": "1",
                 "json_document": "1",
@@ -677,7 +702,10 @@
         "research.search_literature",
         "research.search_software",
         "sensors.find_nodes",
+        "solar.estimate_production",
+        "tech.describe_atb",
         "tech.find_licensable_ip",
+        "tech.read_atb",
         "water.cooling_costs",
         "water.cooling_shares",
         "water.desalination_costs",
@@ -690,6 +718,7 @@
       "profiles": [
         "research:default",
         "energy:default",
+        "energy-tech:default",
         "earth:default",
         "materials:default",
         "bio:default",
@@ -699,7 +728,7 @@
         "power:default",
         "economy:default"
       ],
-      "tool_schema_sha256": "f262c6724606e52369c8de459254b6aa3fdec9c5e72f3ca694377a3a0bef6b47",
+      "tool_schema_sha256": "e1fe029e023f514e891acf5c4de30ca054a87d82df55c356d1e640cca6d505cc",
       "skill_sha256": "5d86224925242eb92958fcdb43cdbd939380fce41c180daaa19718b61dc1c279",
       "registry_revision": "2026-11-21",
       "reported_model_version": "simulation-v1",
@@ -797,7 +826,10 @@
         "research.search_literature",
         "research.search_software",
         "sensors.find_nodes",
+        "solar.estimate_production",
+        "tech.describe_atb",
         "tech.find_licensable_ip",
+        "tech.read_atb",
         "water.cooling_costs",
         "water.cooling_shares",
         "water.desalination_costs",
@@ -810,6 +842,7 @@
       "profiles": [
         "research:default",
         "energy:default",
+        "energy-tech:default",
         "earth:default",
         "materials:default",
         "bio:default",
@@ -819,7 +852,7 @@
         "power:default",
         "economy:default"
       ],
-      "tool_schema_sha256": "f262c6724606e52369c8de459254b6aa3fdec9c5e72f3ca694377a3a0bef6b47",
+      "tool_schema_sha256": "e1fe029e023f514e891acf5c4de30ca054a87d82df55c356d1e640cca6d505cc",
       "skill_sha256": "5d86224925242eb92958fcdb43cdbd939380fce41c180daaa19718b61dc1c279",
       "registry_revision": "2026-11-21"
     }

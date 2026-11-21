@@ -1,0 +1,51 @@
+id: nlr-pvwatts
+name: PVWatts v8 monthly production model
+domain: energy-tech
+publisher:
+  steward: nlr
+  authority_level: primary
+aliases:
+  former_names: []
+  former_domains: []
+labs: [nlr]
+capabilities: []
+planned_capabilities: [solar.estimate_production]
+adapter:
+  type: pvwatts_v8
+  base_url: https://developer.nlr.gov/api/pvwatts/v8.json
+access:
+  mode: api_key
+  credential_ref: API_DATA_GOV_KEY
+  automation_status: public_api
+  tier: thin_proxy
+  terms_url: https://developer.nlr.gov/terms/
+  terms_reviewed_at: "2026-11-21"
+  terms_notes: >
+    Developer terms permit use and distribution with disclaimers and no
+    endorsement. The key policy and shared hourly rate policy were reviewed.
+    No key is configured and no API request was made for this integration.
+freshness:
+  expected_cadence: computed on request
+  cadence_source: PVWatts v8 monthly model using the selected typical-weather dataset.
+  ttl_hint_seconds: 86400
+coverage:
+  scope: Prepared monthly photovoltaic production model for explicit system and location inputs.
+  temporal: typical-weather annual and monthly summaries
+  dataset_version: PVWatts v8; actual response version and weather metadata required at activation
+  known_limitations:
+    - This source is proposed. No working model output or recorded API response is claimed.
+    - User-owned API_DATA_GOV_KEY and a real successful credential-redacted recording are required before activation.
+    - Production estimates use typical weather, not observed generation or a named-year forecast.
+    - Prepared adapter supports monthly coordinates and a bounded subset of documented v8 inputs; hourly and arbitrary file identifiers are refused.
+    - Warnings, model version and weather source must remain in every future response.
+authority_notes: >
+  Prepared 2026-11-21 from publisher documentation only. The user has no key;
+  no DEMO_KEY request, credential configuration or model call is authorized.
+health:
+  probe: none
+lifecycle:
+  declared_state: proposed
+  added: "2026-11-21"
+  last_verified: "2026-11-21"
+  verified_by: pranava0x0
+  blocked_reason: No user key or recorded model response. Follow docs/pvwatts-activation.md before activation.
