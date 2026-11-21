@@ -152,7 +152,7 @@
         "request": {
           "command": "/v2/electricity/rto/region-data/",
           "params": {
-            "api_key": "fZqWfzLVJzmfje6BuyovCvqcGo551Hjt0dTXgNZm"
+            "api_key": "redacted"
           }
         },
         "apiVersion": "2.1.13",

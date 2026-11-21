@@ -20,5 +20,9 @@
       "phrase": "transformative progress for research itself",
       "reason": "research/09 quotes Jared Kaplan verbatim from DOE's Genesis announcement coverage; the word is the source's."
     }
-  ]
+  ],
+  "quote_keys": {
+    "github_verbatim": "Downloaded PR metadata and review comments in research/pr-review-2026-11-21 are verbatim GitHub responses, including third-party release notes; preserve the quotations.",
+    "publisher_verbatim": "Raw publisher documentation captured in research/notes is retained verbatim for policy review; it is not project prose."
+  }
 }

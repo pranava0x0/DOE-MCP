@@ -12,7 +12,7 @@
   "fixtures": [
     {
       "file": "eia-api-v2.json",
-      "sha256": "339c0326900d553dd8146f9c5c379bdacde0bab625a34596f3dca670433ea48d",
+      "sha256": "bb5e6ce41e8eef8057741409499a787b93c965ee44a12688806cd8cfe3aa6c9c",
       "captured_at": null
     }
   ],

@@ -15,3 +15,14 @@ checked:
     worksheet.rows.10.0: bra
     worksheet.rows.10.3: '7'
 reader: []
+evaluation:
+- task: 3
+  id: gcam-region-convention
+  kind: trap
+  profile: economy:default
+  prompt: Argentina and Brazil share the legacy GCAM label Latin America. Can I use Argentina's numeric
+    region ID for Brazil when joining another model input table? Check both countries using their iso codes.
+  rubric: Read both country rows and cite their evidence. Preserve the shared legacy label but distinguish
+    Argentina's numeric ID 31 from Brazil's ID 7. Refuse the proposed substitution and say the destination
+    table's exact column determines which convention is needed. Do not infer a numeric key from the legacy label.
+  mutation: none

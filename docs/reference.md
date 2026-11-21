@@ -161,7 +161,7 @@ Search DOE-MCP's own source registry: which public DOE systems this project know
 
 #### `registry.describe_source`
 
-The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
+The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. GCAM entries also list table tools, exact filter columns and publisher file URLs from the local manifest and tool catalog, without fetching table data. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
 
 | Argument | Type | Required | Default |
 |---|---|---|---|
@@ -406,7 +406,7 @@ Search DOE-MCP's own source registry: which public DOE systems this project know
 
 #### `registry.describe_source`
 
-The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
+The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. GCAM entries also list table tools, exact filter columns and publisher file URLs from the local manifest and tool catalog, without fetching table data. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
 
 | Argument | Type | Required | Default |
 |---|---|---|---|
@@ -561,7 +561,7 @@ Search DOE-MCP's own source registry: which public DOE systems this project know
 
 #### `registry.describe_source`
 
-The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
+The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. GCAM entries also list table tools, exact filter columns and publisher file URLs from the local manifest and tool catalog, without fetching table data. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
 
 | Argument | Type | Required | Default |
 |---|---|---|---|
@@ -685,7 +685,7 @@ Search DOE-MCP's own source registry: which public DOE systems this project know
 
 #### `registry.describe_source`
 
-The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
+The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. GCAM entries also list table tools, exact filter columns and publisher file URLs from the local manifest and tool catalog, without fetching table data. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
 
 | Argument | Type | Required | Default |
 |---|---|---|---|
@@ -792,7 +792,7 @@ Search DOE-MCP's own source registry: which public DOE systems this project know
 
 #### `registry.describe_source`
 
-The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
+The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. GCAM entries also list table tools, exact filter columns and publisher file URLs from the local manifest and tool catalog, without fetching table data. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
 
 | Argument | Type | Required | Default |
 |---|---|---|---|
@@ -955,7 +955,7 @@ Search DOE-MCP's own source registry: which public DOE systems this project know
 
 #### `registry.describe_source`
 
-The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
+The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. GCAM entries also list table tools, exact filter columns and publisher file URLs from the local manifest and tool catalog, without fetching table data. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
 
 | Argument | Type | Required | Default |
 |---|---|---|---|
@@ -1118,7 +1118,7 @@ Search DOE-MCP's own source registry: which public DOE systems this project know
 
 #### `registry.describe_source`
 
-The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
+The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. GCAM entries also list table tools, exact filter columns and publisher file URLs from the local manifest and tool catalog, without fetching table data. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
 
 | Argument | Type | Required | Default |
 |---|---|---|---|
@@ -1281,7 +1281,7 @@ Search DOE-MCP's own source registry: which public DOE systems this project know
 
 #### `registry.describe_source`
 
-The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
+The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. GCAM entries also list table tools, exact filter columns and publisher file URLs from the local manifest and tool catalog, without fetching table data. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
 
 | Argument | Type | Required | Default |
 |---|---|---|---|
@@ -1432,7 +1432,7 @@ Search DOE-MCP's own source registry: which public DOE systems this project know
 
 #### `registry.describe_source`
 
-The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
+The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. GCAM entries also list table tools, exact filter columns and publisher file URLs from the local manifest and tool catalog, without fetching table data. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
 
 | Argument | Type | Required | Default |
 |---|---|---|---|
@@ -1583,7 +1583,7 @@ Search DOE-MCP's own source registry: which public DOE systems this project know
 
 #### `registry.describe_source`
 
-The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
+The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. GCAM entries also list table tools, exact filter columns and publisher file URLs from the local manifest and tool catalog, without fetching table data. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
 
 | Argument | Type | Required | Default |
 |---|---|---|---|

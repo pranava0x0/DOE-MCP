@@ -94,3 +94,59 @@ async def test_every_planned_outage_can_be_cited(ctx):
     ids = {e.record_id for e in env.evidence}
     for o in env.data["planned_outages"]:
         assert f"{o['system']}@{o['start_at']}" in ids
+
+
+@pytest.mark.parametrize("warm_status", [False, True])
+async def test_status_and_outages_keep_separate_fetch_histories(
+        ctx, replay, monkeypatch, warm_status):
+    from doe_mcp.adapters import base
+    from doe_mcp.core.envelope import AccessPath
+
+    status_time = "2026-11-21T10:00:00Z"
+    outage_time = "2026-11-21T10:05:00Z"
+    times = iter((status_time, outage_time))
+    monkeypatch.setattr(base, "utc_now_iso", lambda: next(times))
+    if warm_status:
+        status_only = await discovery.facility_status(ctx, include_planned=False)
+        assert len(status_only.provenance) == 1
+        assert status_only.provenance[0].retrieved_at == status_time
+
+    env = await discovery.facility_status(ctx)
+    assert len(replay.calls) == 2
+    status, planned = env.provenance
+    assert status.source_id == planned.source_id == "nersc-status"
+    assert status.id != planned.id
+    assert status.dataset != planned.dataset
+    assert status.retrieved_at == status_time
+    assert status.access_path is (AccessPath.cache if warm_status else AccessPath.live)
+    assert planned.retrieved_at == outage_time
+    assert planned.access_path is AccessPath.live
+    assert planned.cache_age_seconds == 0
+    by_record = {e.record_id: e for e in env.evidence}
+    for row in env.data["systems"]:
+        evidence = by_record[row["name"]]
+        assert evidence.source_ref == status.id
+        assert evidence.retrieved_at == status_time
+        assert evidence.locator is None
+    assert env.data["planned_outages"]
+    for row in env.data["planned_outages"]:
+        evidence = by_record[f"{row['system']}@{row['start_at'] or 'unscheduled'}"]
+        assert evidence.source_ref == planned.id
+        assert evidence.retrieved_at == outage_time
+        assert evidence.locator is None
+
+    cached = await discovery.facility_status(ctx)
+    assert len(replay.calls) == 2
+    assert [p.access_path for p in cached.provenance] == [AccessPath.cache] * 2
+    assert [p.retrieved_at for p in cached.provenance] == [status_time, outage_time]
+
+
+async def test_adapter_keeps_each_component_request_url(ctx):
+    manifest = ctx.sources.get("nersc-status")
+    params = ctx.facility_status.params_for(manifest)
+    fetched = await ctx.facility_status.board(manifest)
+    assert fetched.request_url == params.base_url.rstrip("/") + params.status_path
+    assert fetched.value.planned_fetch is not None
+    assert fetched.value.planned_fetch.request_url == (
+        params.base_url.rstrip("/") + params.planned_path)
+    assert fetched.value.planned == fetched.value.planned_fetch.value

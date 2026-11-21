@@ -20,9 +20,10 @@ import asyncio
 import json
 import logging
 import time
+from contextvars import ContextVar
 from dataclasses import dataclass
 from typing import Any, Generic, Protocol, TypeVar
-from urllib.parse import urlparse
+from urllib.parse import parse_qsl, quote, quote_plus, urlparse
 
 import httpx
 
@@ -30,10 +31,54 @@ from ..core.egress import (DECOMPRESSION_RATIO_FLOOR_BYTES,
                            MAX_DECOMPRESSION_RATIO, MAX_RESPONSE_BYTES,
                            EgressPolicy)
 from ..core.envelope import utc_now_iso
-from ..core.errors import InvalidQuery, RateLimited, SourceUnavailable
+from ..core.errors import DoeMcpError, InvalidQuery, RateLimited, SourceUnavailable
 from ..core.registry import SourceManifest
+from ..core.transport import PinnedHTTPTransport, pinned_target
 
 log = logging.getLogger("doe_mcp.adapters")
+
+_fetch_logging: ContextVar[bool] = ContextVar("doe_mcp_fetch_logging", default=False)
+_SECRET_NAMES = frozenset({"api_key", "x_api_key", "apikey", "key", "token", "access_token",
+                           "auth_token", "authorization", "password", "secret"})
+
+
+class _QuerylessRequestLog(logging.Filter):
+    def filter(self, record: logging.LogRecord) -> bool:
+        if _fetch_logging.get() and isinstance(record.args, tuple):
+            # httpx logs the complete request URL at INFO, including API
+            # keys and unpublished query text. Scope the filter to our call.
+            record.args = tuple(
+                value.copy_with(query=None) if isinstance(value, httpx.URL) else value
+                for value in record.args)
+        return True
+
+
+logging.getLogger("httpx").addFilter(_QuerylessRequestLog())
+
+
+def _request_secrets(url: str, params: dict[str, Any],
+                     headers: dict[str, str] | None) -> set[str]:
+    try:
+        pairs = list(parse_qsl(urlparse(url).query))
+    except ValueError:
+        pairs = []  # The egress policy reports malformed authorities.
+    pairs.extend(params.items())
+    pairs.extend((headers or {}).items())
+    secrets = set()
+    for name, value in pairs:
+        if str(name).lower().replace("-", "_") in _SECRET_NAMES and value:
+            secret = str(value)
+            if str(name).lower() == "authorization":
+                secret = secret.rsplit(" ", 1)[-1]
+            secrets.update((secret, quote(secret, safe=""), quote_plus(secret),
+                            json.dumps(secret)[1:-1]))
+    return secrets
+
+
+def _redact_secrets(message: str, secrets: set[str]) -> str:
+    for secret in sorted(secrets, key=len, reverse=True):
+        message = message.replace(secret, "<redacted>")
+    return message
 
 PER_HOST_CONCURRENCY = 2
 RETRY_BUDGET = 1
@@ -90,7 +135,8 @@ def shared_client() -> httpx.AsyncClient:
         del _clients[stale]
     client = _clients.get(loop)
     if client is None or client.is_closed:
-        client = httpx.AsyncClient(follow_redirects=False,
+        client = httpx.AsyncClient(transport=PinnedHTTPTransport(), trust_env=False,
+                                   follow_redirects=False,
                                    timeout=REQUEST_TIMEOUT_SECONDS)
         _clients[loop] = client
     return client
@@ -194,19 +240,29 @@ class HttpFetcher:
 
     async def fetch_json(self, url: str,
                          params: dict[str, Any]) -> JsonResponse:
-        body, host = await self._fetch(url, params, JSON_ACCEPT)
-        return JsonResponse(payload=self._decode_json(body, host),
-                            headers={k.lower(): v
-                                     for k, v in body.headers.items()},
-                            url=body.url)
+        secrets = _request_secrets(url, params, self.extra_headers)
+        try:
+            body, host = await self._fetch(url, params, JSON_ACCEPT)
+            return JsonResponse(payload=self._decode_json(body, host),
+                                headers={k.lower(): v
+                                         for k, v in body.headers.items()},
+                                url=_redact_secrets(body.url, secrets))
+        except DoeMcpError as err:
+            err.args = (_redact_secrets(str(err), secrets),)
+            raise err from None
 
     async def fetch_text(self, url: str,
                          params: dict[str, Any]) -> TextResponse:
-        body, host = await self._fetch(url, params, TEXT_ACCEPT)
-        return TextResponse(text=self._decode_text(body, host),
-                            headers={k.lower(): v
-                                     for k, v in body.headers.items()},
-                            url=body.url)
+        secrets = _request_secrets(url, params, self.extra_headers)
+        try:
+            body, host = await self._fetch(url, params, TEXT_ACCEPT)
+            return TextResponse(text=self._decode_text(body, host),
+                                headers={k.lower(): v
+                                         for k, v in body.headers.items()},
+                                url=_redact_secrets(body.url, secrets))
+        except DoeMcpError as err:
+            err.args = (_redact_secrets(str(err), secrets),)
+            raise err from None
 
     def _headers(self, accept: str) -> dict[str, str]:
         # Accept matters: OSTI's APIs return XML to a client that does not
@@ -222,17 +278,18 @@ class HttpFetcher:
                      accept: str = JSON_ACCEPT) -> tuple[_Body, str]:
         current = url
         for hop in range(4):  # initial request + MAX_REDIRECTS
-            self.policy.validate_url(current)
+            target = self.policy.validate_url(current)
             host = urlparse(current).hostname or ""
             async with _semaphore_for(host):
-                response = await self._request_with_retry(current, params,
-                                                          accept)
+                with pinned_target(target):
+                    response = await self._request_with_retry(current, params,
+                                                              accept)
             if response.status_code in (301, 302, 303, 307, 308):
                 location = response.headers.get("location")
                 if not location:
                     raise SourceUnavailable(
                         f"redirect from {host} without a Location header")
-                current = self.policy.validate_redirect(current, location,
+                current = self.policy.validate_redirect(response.url, location,
                                                         hop + 1)
                 params = {}  # params were consumed by the first URL
                 continue
@@ -301,9 +358,13 @@ class HttpFetcher:
         Location header is the whole message.
         """
         host = urlparse(url).hostname or ""
-        request = client.build_request("GET", url, params=params,
+        request = client.build_request("GET", url, params=params or None,
                                        headers=self._headers(accept))
-        response = await client.send(request, stream=True)
+        token = _fetch_logging.set(True)
+        try:
+            response = await client.send(request, stream=True)
+        finally:
+            _fetch_logging.reset(token)
         chunks: list[bytes] = []
         decoded = 0
         declared = _declared_length(response)
@@ -356,7 +417,7 @@ class HttpFetcher:
         raw = self._checked_body(body, host)
         try:
             return json.loads(raw)
-        except json.JSONDecodeError as err:
+        except (json.JSONDecodeError, UnicodeDecodeError) as err:
             raise SourceUnavailable(
                 f"{host} returned non-JSON where JSON was expected. On the "
                 "OSTI family this usually means the Accept header did not "

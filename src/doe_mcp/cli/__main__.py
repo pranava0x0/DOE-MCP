@@ -22,7 +22,8 @@ from ..adapters import ADAPTER_VERSIONS
 from ..adapters.base import (HttpFetcher, close_shared_client,
                              egress_policy_for)
 from ..adapters.replay import record_through
-from ..core.credentials import CREDENTIAL_SPECS, Credentials, default_path
+from ..core.credentials import (CREDENTIAL_SPECS, Credentials, default_path,
+                                write_credential)
 from ..core.errors import DoeMcpError
 from ..core.organizations import OrganizationTable
 from ..core.registry import (SourceRegistry)
@@ -42,6 +43,15 @@ def _load_ctx(sources_dir: Path | None = None) -> RuntimeContext:
 def _fail(msg: str) -> int:
     print(f"[{BAD}] {msg}", file=sys.stderr)
     return 1
+
+
+class _ArgumentParser(argparse.ArgumentParser):
+    def error(self, message: str) -> None:
+        if sys.argv[1:3] == ["configure", "credentials"]:
+            message = ("invalid credential arguments; the value does not go on the command line. "
+                       "Use pbpaste | doe-mcp configure credentials --set NAME, "
+                       "< keyfile, --from-env VAR, or the hidden prompt")
+        super().error(message)
 
 
 def _run(coro):
@@ -403,7 +413,7 @@ def cmd_configure(args: argparse.Namespace) -> int:
             # Almost always the key itself, typed after --set. Say so without
             # repeating the value: it is already in the shell history, and
             # echoing it puts it in the scrollback too.
-            target = args.set or "NAME"
+            target = args.set if args.set in CREDENTIAL_SPECS else "NAME"
             return _fail(
                 "the credential value does not go on the command line — it "
                 "would be written into your shell history. Use one of:\n"
@@ -459,7 +469,7 @@ def _configure_credentials(args: argparse.Namespace) -> int:
 
     name = args.set
     if name not in CREDENTIAL_SPECS:
-        return _fail(f"unknown credential {name!r}; known: "
+        return _fail("unknown credential name; known: "
                      f"{sorted(CREDENTIAL_SPECS)}")
     spec = CREDENTIAL_SPECS[name]
     try:
@@ -470,14 +480,10 @@ def _configure_credentials(args: argparse.Namespace) -> int:
     if not value:
         return _fail("no value entered")
 
-    path.parent.mkdir(parents=True, exist_ok=True)
-    lines = []
-    if path.exists():
-        lines = [ln for ln in path.read_text().splitlines()
-                 if not ln.strip().startswith(f"{name}=")]
-    lines.append(f"{name}={value}")
-    path.write_text("\n".join(lines) + "\n")
-    path.chmod(0o600)
+    try:
+        write_credential(path, name, value)
+    except ValueError as err:
+        return _fail(str(err))
     print(f"\nwrote {name} to {path} (mode 600), read from {route}. The "
           "value is not echoed and is never written into a client config.")
     return 0
@@ -504,8 +510,8 @@ def _credential_value(name: str, spec: dict,
         value = os.environ.get(args.from_env, "").strip()
         if not value:
             raise SystemExit(_fail(
-                f"environment variable {args.from_env} is unset or empty"))
-        return value, f"${args.from_env}"
+                "the requested environment variable is unset or empty"))
+        return value, "an environment variable"
     if not sys.stdin.isatty():
         return sys.stdin.read().strip(), "standard input"
     import getpass
@@ -582,7 +588,7 @@ def cmd_serve(args: argparse.Namespace) -> int:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(
+    ap = _ArgumentParser(
         prog="doe-mcp",
         description="MCP servers over public DOE and national-laboratory "
                     "data. Independent project; not affiliated with the US "

@@ -2,16 +2,49 @@ import json
 import sys
 from argparse import Namespace
 
+import pytest
 
-from doe_mcp.evaluation import check_answer, remove_totals, run, tasks
+from doe_mcp.evaluation import check_answer, command, remove_totals, run, tasks
 from doe_mcp.domains.research import search_literature
+from doe_mcp.servers.build import build_server
 
 
-def test_evaluation_reuses_twelve_skill_tasks():
+GCAM_TRAPS = {
+    'gcam-region-convention': ('economy:default', 'economy.country_regions'),
+    'gcam-blank-coefficient': ('emissions:default', 'emissions.technology_coefficients'),
+    'gcam-incompatible-input-units': ('water:default', 'water.desalination_inputs'),
+    'gcam-inputs-versus-observations': ('water:default', 'water.cooling_shares'),
+}
+
+
+def test_evaluation_reuses_existing_skill_tasks_and_semantic_traps():
     rows = tasks()
-    assert len(rows) == 12
-    assert sum(r['kind'] == 'trap' for r in rows) == 6
+    assert {r['id'] for r in rows} == {
+        'facility', 'literature', 'registry-gap', 'alias', 'missing-total', 'vintages',
+        'raw-data-injection', 'weather', 'structures', 'demand', 'bpa', 'forecast',
+        *GCAM_TRAPS,
+    }
+    assert sum(r['kind'] == 'trap' for r in rows) == 10
     assert sum(r['kind'] == 'answerable' for r in rows) == 6
+
+
+@pytest.mark.parametrize('task_id', GCAM_TRAPS)
+async def test_gcam_evaluation_profile_exposes_the_required_read(ctx, task_id):
+    task = next(row for row in tasks() if row['id'] == task_id)
+    profile, tool = GCAM_TRAPS[task_id]
+    assert task['profile'] == profile
+    assert task['kind'] == 'trap' and task['mutation'] == 'none'
+    assert task['prompt'] and task['rubric']
+    visible = await build_server(ctx, profile).list_tools()
+    assert tool in {entry.name for entry in visible}
+
+
+def test_prepare_exports_semantic_tasks_without_a_model_or_network(tmp_path):
+    output = tmp_path / 'evaluation.json'
+    assert command(Namespace(prepare=True, output=output)) == 0
+    report = json.loads(output.read_text())
+    assert set(GCAM_TRAPS) <= {row['id'] for row in report['tasks']}
+    assert 'Grade each answer against its rubric' in report['required_review']
 
 
 async def test_missing_total_mutation_preserves_fixture(ctx):
