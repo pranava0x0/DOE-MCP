@@ -1378,20 +1378,14 @@
               "`product_type` filters on OSTI's own vocabulary — \"Technical Report\", \"Journal Article\" — and the value \"Dataset\" returns zero here even though datasets exist, because dataset records live in DOE Data Explorer. Checked live 2026-09-02. A caller filtering for datasets on this API gets an empty result that means \"wrong API\", not \"none\"."
             ]
           },
-          "publisher_totals": [
-            {
-              "source_id": "osti-gov-records",
-              "system": "OSTI.GOV Search API",
-              "total_matches": 8313,
-              "returned": 3
-            },
-            {
-              "source_id": "osti-doe-pages",
-              "system": "DOE PAGES (Public Access Gateway for Energy and Science)",
-              "total_matches": 5669,
-              "returned": 3
-            }
-          ]
+          "publisher_totals": {
+            "osti-gov-records": 8313,
+            "osti-doe-pages": 5669
+          },
+          "returned_counts": {
+            "osti-gov-records": 3,
+            "osti-doe-pages": 3
+          }
         }
       ],
       "pagination_complete": false,
@@ -1423,7 +1417,12 @@
               "`site_ownership_code` is the field that makes single-repository views possible (DOE-GDR returns 1,035 records, checked live 2026-09-02) but its vocabulary is OSTI's own and is not published as an enumerable list. Codes are discovered from returned records, not from a dictionary."
             ]
           },
-          "publisher_totals": 1062
+          "publisher_totals": {
+            "osti-data-explorer": 1062
+          },
+          "returned_counts": {
+            "osti-data-explorer": 2
+          }
         }
       ],
       "pagination_complete": false,
@@ -1455,7 +1454,12 @@
               "`repository_link` points at GitHub or another forge outside this source's egress allowlist. Returned as data, never fetched."
             ]
           },
-          "publisher_totals": 362
+          "publisher_totals": {
+            "osti-doe-code": 362
+          },
+          "returned_counts": {
+            "osti-doe-code": 3
+          }
         }
       ],
       "pagination_complete": false,

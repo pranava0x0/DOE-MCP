@@ -69,8 +69,16 @@ async def build(run, *, query: str = "", literature_query: str = "", dataset_que
             step = len(run.report["steps"]) - 1
             envelope = run.report["steps"][step]["envelope"]
             sources = {source["id"]: source["source_id"] for source in envelope["provenance"]}
+            per_source = env.data.get("per_source")
+            if per_source is not None:
+                publisher_totals = {row["source_id"]: row.get("total_matches") for row in per_source}
+                returned_counts = {row["source_id"]: row.get("returned") for row in per_source}
+            else:
+                publisher_totals = {source: env.data.get("total_matches") for source in sources.values()}
+                returned_counts = {source: sum(row.get("source_id") == source for row in env.data[result_field])
+                                   for source in sources.values()}
             page_scopes.append({"page": page, "step": step, "coverage": envelope["coverage"],
-                                "publisher_totals": env.data.get("per_source", env.data.get("total_matches"))})
+                                "publisher_totals": publisher_totals, "returned_counts": returned_counts})
             for index, row in enumerate(env.data[result_field]):
                 source = row.get("source_id")
                 if not source or not row.get("id"):

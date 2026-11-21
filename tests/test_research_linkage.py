@@ -174,6 +174,48 @@ async def test_page_budget_duplicate_results_and_unknown_totals_remain_visible(c
     assert all(page['coverage']['pagination'] == 'unknown' for scope in run.report['search_scope'] for page in scope['pages'])
 
 
+@pytest.mark.parametrize('changed_total', [False, True])
+async def test_short_final_literature_page_compares_totals_independently_of_returned_counts(ctx, monkeypatch, changed_total):
+    original = ctx.osti.search
+
+    async def split_recorded_rows(manifest, **kwargs):
+        # Split real recorded records into disjoint pages without changing a
+        # publisher fixture. Other collections finish in one bounded page.
+        requested_page = kwargs['page']
+        kwargs.update(page=1, rows=2 if manifest.id == 'osti-data-explorer' else 3)
+        fetched = copy.deepcopy(await original(manifest, **kwargs))
+        result = fetched.value
+        result.page, result.rows = requested_page, 2
+        if manifest.id in {'osti-gov-records', 'osti-doe-pages'}:
+            assert len(result.records) == 3
+            result.records = result.records[:2] if requested_page == 1 else result.records[2:]
+            result.total_matches = 2 if changed_total and requested_page == 2 else 3
+        else:
+            result.records = result.records[:2]
+            result.total_matches = len(result.records)
+        return fetched
+
+    monkeypatch.setattr(ctx.osti, 'search', split_recorded_rows)
+    run = Run(ctx, 'research-linkage', 'recorded')
+    await build(run, rows=2, page_budget=2)
+    literature, dataset, software = run.report['search_scope']
+    first, final = literature['pages']
+    assert literature['repeated_records'] == 0
+    assert first['returned_counts'] == {'osti-gov-records': 2, 'osti-doe-pages': 2}
+    assert final['returned_counts'] == {'osti-gov-records': 1, 'osti-doe-pages': 1}
+    assert first['publisher_totals'] == {'osti-gov-records': 3, 'osti-doe-pages': 3}
+    assert final['publisher_totals'] == {'osti-gov-records': 2 if changed_total else 3,
+                                         'osti-doe-pages': 2 if changed_total else 3}
+    assert final['coverage']['pagination'] == 'complete'
+    assert literature['pagination_complete'] is not changed_total
+    assert literature['consistency_gaps'] == (['publisher_totals_changed'] if changed_total else [])
+    assert literature['stop_reason'] == 'publisher_page_complete'
+    for scope in [dataset, software]:
+        assert scope['pagination_complete'] and len(scope['pages']) == 1
+        assert list(scope['pages'][0]['publisher_totals'].values()) == [2]
+        assert list(scope['pages'][0]['returned_counts'].values()) == [2]
+
+
 @pytest.mark.parametrize('kwargs', [{'page_budget': 0}, {'page_budget': 6}, {'rows': 0}, {'rows': 51}])
 async def test_bounded_search_parameters_are_validated_before_fetch(ctx, kwargs):
     run = Run(ctx, 'research-linkage', 'recorded')
