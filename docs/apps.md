@@ -1,5 +1,12 @@
 # Local applications
 
+The [ATB energy assumptions reader](energy-readers.html) exports qualified
+rows from pinned public 2024 and 2025 releases. Install the optional
+`energy-tech` extra, then run `doe-mcp app energy-assumptions --output
+./recorded-atb`. Its PVWatts path remains proposed and supplies no model
+output. See the [activation checklist](pvwatts-activation.html).
+
+
 These applications compose source tools or declared input files. Publisher
 applications replay recorded responses by default; the forecast panel runs
 a labelled simulation or imports CSVs. Where supported, `--live` queries

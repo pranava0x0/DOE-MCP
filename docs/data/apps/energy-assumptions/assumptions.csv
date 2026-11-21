@@ -1,0 +1,11 @@
+row_number,atb_year,core_metric_key,core_metric_parameter,core_metric_case,tax_credit_case,crpyears,technology,technology_alias,techdetail,techdetail2,resourcedetail,display_name,default,scale,maturity,scenario,core_metric_variable,units,value,evidence_ref
+151024,2024,289303,CAPEX,Market,PTC,20,UtilityPV,Utility PV,Class1,Tracking PV,Class1,Utility PV - Class 1,0,Utility,Y,Moderate,2035,$/kW,895.3211436190419,evidence_01
+151027,2024,289306,CAPEX,Market,PTC,20,UtilityPV,Utility PV,Class2,Tracking PV,Class2,Utility PV - Class 2,0,Utility,Y,Moderate,2035,$/kW,895.3211436190419,evidence_02
+151030,2024,289309,CAPEX,Market,PTC,20,UtilityPV,Utility PV,Class3,Tracking PV,Class3,Utility PV - Class 3,0,Utility,Y,Moderate,2035,$/kW,895.3211436190419,evidence_03
+151034,2024,289312,CAPEX,Market,PTC,20,UtilityPV,Utility PV,Class4,Tracking PV,Class4,Utility PV - Class 4,0,Utility,Y,Moderate,2035,$/kW,895.3211436190419,evidence_04
+151037,2024,289315,CAPEX,Market,PTC,20,UtilityPV,Utility PV,Class5,Tracking PV,Class5,Utility PV - Class 5,1,Utility,Y,Moderate,2035,$/kW,895.3211436190419,evidence_05
+151040,2024,289318,CAPEX,Market,PTC,20,UtilityPV,Utility PV,Class6,Tracking PV,Class6,Utility PV - Class 6,0,Utility,Y,Moderate,2035,$/kW,895.3211436190419,evidence_06
+151044,2024,289321,CAPEX,Market,PTC,20,UtilityPV,Utility PV,Class7,Tracking PV,Class7,Utility PV - Class 7,0,Utility,Y,Moderate,2035,$/kW,895.3211436190419,evidence_07
+151047,2024,289324,CAPEX,Market,PTC,20,UtilityPV,Utility PV,Class8,Tracking PV,Class8,Utility PV - Class 8,0,Utility,Y,Moderate,2035,$/kW,895.3211436190419,evidence_08
+151050,2024,289327,CAPEX,Market,PTC,20,UtilityPV,Utility PV,Class9,Tracking PV,Class9,Utility PV - Class 9,0,Utility,Y,Moderate,2035,$/kW,895.3211436190419,evidence_09
+151054,2024,289330,CAPEX,Market,PTC,20,UtilityPV,Utility PV,Class10,Tracking PV,Class10,Utility PV - Class 10,0,Utility,Y,Moderate,2035,$/kW,895.3211436190419,evidence_10

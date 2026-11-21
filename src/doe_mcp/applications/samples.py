@@ -1,10 +1,10 @@
 """Fixed recorded or simulated application presets, each retaining its mode."""
 from __future__ import annotations
 
-from . import dockets, forecast, forecast_panel, gcam, research_linkage, weather
+from . import dockets, energy_assumptions, forecast, forecast_panel, gcam, research_linkage, weather
 from .bundle import Run
 
-APPLICATIONS = ("forecast-benchmark", "weather-package", "docket-tracker", gcam.NAME, "research-linkage", forecast_panel.NAME)
+APPLICATIONS = ("forecast-benchmark", "weather-package", "docket-tracker", gcam.NAME, "research-linkage", forecast_panel.NAME, "energy-assumptions")
 
 
 async def recorded_sample(ctx, name: str, fixtures: list[dict] | None = None) -> tuple[dict, dict[str, bytes]]:
@@ -28,6 +28,8 @@ async def recorded_sample(ctx, name: str, fixtures: list[dict] | None = None) ->
         files = await gcam.build(run)
     elif name == "research-linkage":
         files = await research_linkage.build(run)
+    elif name == "energy-assumptions":
+        files = await energy_assumptions.build(run)
     else:
         raise ValueError("unknown application sample")
     return run.report, files

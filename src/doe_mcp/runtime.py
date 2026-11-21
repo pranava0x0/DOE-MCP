@@ -10,6 +10,8 @@ from typing import Any
 from . import __version__
 from .adapters import ADAPTER_CLASSES, ADAPTER_VERSIONS
 from .adapters.basis_sets import BasisSetExchangeAdapter
+from .adapters.atb import AtbAdapter
+from .adapters.pvwatts import PvwattsAdapter
 from .adapters.curated import CuratedAdapter
 from .adapters.daymet import DaymetAdapter
 from .adapters.eia_v2 import EiaV2Adapter
@@ -68,6 +70,8 @@ class RuntimeContext:
     organizations: OrganizationTable
     catalog: SubMcpCatalog
     credentials: Credentials
+    atb: AtbAdapter
+    pvwatts: PvwattsAdapter
     osti: OstiFamilyAdapter
     opendatasoft: OpenDataSoftAdapter
     json_document: JsonDocumentAdapter
@@ -143,7 +147,7 @@ def load_context(sources_dir: Path | None = None, *,
             built[field_name] = adapters[field_name]
         elif kind == "curated":
             built[field_name] = cls(root)
-        elif kind in ("eia_v2", "regulations_gov"):
+        elif kind in ("eia_v2", "regulations_gov", "pvwatts_v8"):
             built[field_name] = cls(credentials=creds)
         else:
             built[field_name] = cls()

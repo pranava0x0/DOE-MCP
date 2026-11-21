@@ -34,7 +34,8 @@ dependencies = [
 # domains never lands on a literature-only install.
 research = []
 energy = []
-all = ["doe-mcp[research,energy]"]
+energy-tech = ["pyarrow==26.0.1"]
+all = ["doe-mcp[research,energy,energy-tech]"]
 
 [project.urls]
 Homepage = "https://github.com/pranava0x0/DOE-MCP"
@@ -69,6 +70,7 @@ select = ["E4", "E7", "E9", "F", "B", "W"]
 doe-mcp = "doe_mcp.cli.__main__:main"
 doe-research = "doe_mcp.servers.research:main"
 doe-energy-data = "doe_mcp.servers.energy_data:main"
+doe-energy-tech = "doe_mcp.servers.energy_tech:main"
 doe-earth = "doe_mcp.servers.earth:main"
 doe-materials = "doe_mcp.servers.materials:main"
 doe-bio = "doe_mcp.servers.bio:main"

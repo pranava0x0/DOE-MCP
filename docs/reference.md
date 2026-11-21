@@ -420,6 +420,110 @@ Other MCP servers over DOE-adjacent data — PNNL's NEPA-MCP, the building-simul
 |---|---|---|---|
 | `capability` | string | no | `""` |
 
+## doe-energy-tech
+
+Pinned ATB electricity cost and performance assumptions for named 2024 and 2025 releases. PVWatts is prepared and source-gated; no model output or keyed integration is claimed.
+
+Profiles: `energy-tech:all`, `energy-tech:default` (default)
+
+### Profile `energy-tech:all` — 8 tools
+
+| Tool | Arguments |
+|---|---|
+| `tech.describe_atb` | `edition`, `dimension`?, `filters`?, `rows`?, `offset`? |
+| `tech.read_atb` | `edition`, `filters`, `rows`?, `offset`? |
+| `solar.estimate_production` | `inputs` |
+| `registry.resolve_org` | `query` |
+| `registry.lab_crosswalk` | `lab`? |
+| `registry.search_sources` | `text`?, `domain`?, `capability`?, `state`?, `limit`? |
+| `registry.describe_source` | `source_id` |
+| `registry.list_neighbors` | `capability`? |
+
+### Profile `energy-tech:default` — 5 tools
+
+| Tool | Arguments |
+|---|---|
+| `tech.describe_atb` | `edition`, `dimension`?, `filters`?, `rows`?, `offset`? |
+| `tech.read_atb` | `edition`, `filters`, `rows`?, `offset`? |
+| `solar.estimate_production` | `inputs` |
+| `registry.resolve_org` | `query` |
+| `registry.lab_crosswalk` | `lab`? |
+
+#### `tech.describe_atb`
+
+Inspect exact qualifier values in a pinned ATB electricity edition (2024 or 2025). Returns bounded distinct values, units/currency notes and the release SHA256. No latest alias.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `edition` | integer | yes |  |
+| `dimension` | string | no | `"technology"` |
+| `filters` | object or null | no |  |
+| `rows` | integer | no | `50` |
+| `offset` | integer | no | `0` |
+
+#### `tech.read_atb`
+
+Read bounded ATB scenario-assumption rows from an explicit 2024 or 2025 release. Exact publisher-column text filters or null; preserves technology/resource detail, year, metric, units, financial case, tax-credit case and CRP. Multiple matching rows remain explicit.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `edition` | integer | yes |  |
+| `filters` | object | yes |  |
+| `rows` | integer | no | `10` |
+| `offset` | integer | no | `0` |
+
+#### `solar.estimate_production`
+
+Prepared PVWatts v8 monthly model contract. Currently refuses: source proposed, user key and real recording absent. No model result or fallback is fabricated. Future activation requires its checklist; modelled production is not observed generation.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `inputs` | object | yes |  |
+
+#### `registry.resolve_org`
+
+Resolve a DOE organization from a name, abbreviation, FORMER name, or domain — including dead ones. Use FIRST whenever a user names a lab or office, because this ecosystem renames things and the old URLs do not redirect. 'NREL' resolves to the National Laboratory of the Rockies and warns that the name is historical; a *.nrel.gov domain resolves the same way and warns that the URL is dead with no forwarding. Same for EERE (now CMEI), FECM (now HGEO), LPO (now EDF), HFTO and BETO (merged into AFFO), IEDO (now ITO), and the dismantled Grid Deployment Office.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `query` | string | yes |  |
+
+#### `registry.lab_crosswalk`
+
+What a DOE national laboratory publishes, across every platform carrying its data. Call with no argument for all seventeen labs and their source counts. Servers here are organized by data domain, not by laboratory, so this is how a lab-oriented question gets answered — and it is the honest way, since several labs' flagship data lives on shared cross-lab platforms rather than their own domains. A lab with zero sources is a gap in this project, not a claim that the lab publishes nothing.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `lab` | string | no | `""` |
+
+#### `registry.search_sources`
+
+Search DOE-MCP's own source registry: which public DOE systems this project knows about, active or not. Use to answer 'what does DOE-MCP cover?' BEFORE assuming coverage, and to explain a gap — every non-active source carries a blocked_reason naming what stands in the way, which is a real answer where an empty result is not. Not a data-query tool: use the research.* tools for records.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `text` | string | no | `""` |
+| `domain` | string | no | `""` |
+| `capability` | string | no | `""` |
+| `state` | string | no | `""` |
+| `limit` | integer | no | `25` |
+
+#### `registry.describe_source`
+
+The full registry entry for one source: publisher and funder, authority level, terms and when they were reviewed, known limitations, record counts, and why it is not active if it is not. GCAM entries also list table tools, exact filter columns and publisher file URLs from the local manifest and tool catalog, without fetching table data. Use when the user asks where an answer came from, what a source's caveats are, or whether they may use the data.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `source_id` | string | yes |  |
+
+#### `registry.list_neighbors`
+
+Other MCP servers over DOE-adjacent data — PNNL's NEPA-MCP, the building-simulation servers, NASA's Earthdata server, the gated Genesis-lane deployments — and skill packs such as DOE's Genesis Agent Skills, each with an install command, its kind (server or skill_pack), and a stated reason DOE-MCP does not duplicate it. Use when a question falls outside this project's coverage and a neighbouring server serves it.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `capability` | string | no | `""` |
+
 ## doe-earth
 
 Daymet single-pixel weather from ORNL DAAC, ESS-DIVE's environmental datasets, the ESGF climate-model index, and the Sage/Waggle sensor-node inventory.

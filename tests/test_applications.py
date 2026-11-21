@@ -213,7 +213,7 @@ async def test_docket_grouping_and_incomplete_snapshot_diff(ctx):
         dockets.compare(run.report, previous)
 
 
-@pytest.mark.parametrize("name", ["forecast-benchmark", "weather-package", "docket-tracker"])
+@pytest.mark.parametrize("name", ["forecast-benchmark", "weather-package", "docket-tracker", "energy-assumptions"])
 def test_actual_cli_samples_export_offline(name, tmp_path):
     result = subprocess.run([sys.executable, "-m", "doe_mcp.cli", "app", name, "--output", str(tmp_path / name)],
                             cwd=ROOT, env={**os.environ, "PYTHONPATH": str(ROOT / "src")}, capture_output=True, text=True)

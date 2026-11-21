@@ -51,6 +51,7 @@ THIRD_PARTY = ROOT / "THIRD_PARTY_DATA.yml"
 from doe_mcp.gcam_catalog import TABLES  # noqa: E402
 
 PLANS: dict[str, list[tuple[str, str]]] = {
+    "nlr-atb": [("ATB 2024 v4.0.0", "atb:2024"), ("ATB 2025 v2.0.0", "atb:2025")],
     "regulations-gov-doe": [("one published docket", "regulations:docket"),
                             ("exact docket documents", "regulations:documents"),
                             ("one discovered document", "regulations:document")],
@@ -393,6 +394,8 @@ async def run(source_id: str, plan: list[tuple[str, str]], *,
             raise ValueError("exploration runs only the canonical three-request Regulations.gov plan")
         ctx = load_context(credentials=_ExplorationCredentials(
             {"API_DATA_GOV_KEY": DEMO_KEY}, Path("/nonexistent"), False))
+    elif source_id == "nlr-atb":
+        ctx = load_context(credentials=Credentials({}, Path("/nonexistent"), False))
     else:
         ctx = load_context()
     manifest = ctx.sources.get(source_id)
@@ -425,7 +428,9 @@ async def run(source_id: str, plan: list[tuple[str, str]], *,
     for label, spec in plan:
         kind, _, rest = spec.partition(":")
         try:
-            if kind == "regulations":
+            if kind == "atb":
+                await ctx.atb.scan(manifest, int(rest), {}, rows=1)
+            elif kind == "regulations":
                 if rest == "docket":
                     await ctx.regulations_gov.get(manifest, RECORDED_DOCKET, kind="dockets")
                 elif rest == "documents":

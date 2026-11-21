@@ -99,6 +99,9 @@ capabilities:
   #     capability under planned_capabilities, and so coverage gaps can
   #     answer "not yet, and here is what is blocking it" -----------------
 
+  - id: tech.cost_assumptions
+    description: Read edition-specific technology cost and performance scenario assumptions.
+
   - id: solar.estimate_production
     description: Modelled photovoltaic production for a location and system design.
 

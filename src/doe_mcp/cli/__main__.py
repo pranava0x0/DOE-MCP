@@ -279,6 +279,9 @@ async def _probe(ctx: RuntimeContext, source_id: str) -> int | None:
         manifest = ctx.sources.require_active(source_id)
         name = next(iter(ctx.gcam.params_for(manifest).tables))
         return len((await ctx.gcam.read(manifest, name)).value.rows)
+    if kind == "atb_parquet":
+        manifest = ctx.sources.require_active(source_id)
+        return (await ctx.atb.scan(manifest, 2024, {}, rows=1)).value["table_rows"]
     if kind == "nmdc":
         # The collection is read whole, so the count is the collection's
         # size and the manifest's floor is checked against all of it.

@@ -46,3 +46,7 @@ def test_published_application_bundle_has_verified_files_and_mode_provenance(app
         assert report['explicit_relationships'] == report['shared_identity'] == []
         assert {step['tool'] for step in report['steps']} == {
             'research.search_literature', 'research.search_datasets', 'research.search_software'}
+
+    elif application == 'energy-assumptions':
+        assert report['edition'] == 2024 and report['asset']['sha256']
+        assert report['records'] and report['pvwatts']['model_output'] is None

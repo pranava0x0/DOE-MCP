@@ -2,19 +2,19 @@
   "version": "0.1.0.dev0",
   "registry_revision": "2026-11-21",
   "counts": {
-    "sources": 88,
-    "active": 29,
+    "sources": 89,
+    "active": 30,
     "organizations": 54,
     "labs": 17,
-    "capabilities": 59,
-    "capabilities_served": 42,
+    "capabilities": 60,
+    "capabilities_served": 43,
     "skills": 32,
     "program_offices": 19,
     "pmas": 4,
-    "servers_shipping": 10,
-    "servers_planned": 4,
-    "tools": 76,
-    "adapters": 21,
+    "servers_shipping": 11,
+    "servers_planned": 3,
+    "tools": 79,
+    "adapters": 23,
     "neighbors": 6,
     "neighbors_phrase": "5 server entries and 1 skill pack in the plug-in catalog",
     "records_reachable": 20153893
@@ -290,11 +290,37 @@
     },
     {
       "name": "doe-energy-tech",
-      "profile": null,
-      "status": "planned",
-      "description": "What is modelled, tested or published for an energy technology: the NLR developer network (PVWatts, solar resource, tariffs, alternative-fuel stations), the ATB and Cambium releases, module and battery test data, and the geothermal, marine, hydropower, bioenergy and carbon-storage repositories. Holds the api.data.gov and EDX keys; nothing in it is built yet.",
-      "tools": [],
-      "tools_all": null
+      "profile": "energy-tech:default",
+      "status": "shipping",
+      "description": "Pinned ATB electricity cost and performance assumptions for named 2024 and 2025 releases. PVWatts is prepared and source-gated; no model output or keyed integration is claimed.",
+      "tools": [
+        {
+          "name": "tech.describe_atb",
+          "toolset": "default",
+          "description": "Inspect exact qualifier values in a pinned ATB electricity edition (2024 or 2025). Returns bounded distinct values, units/currency notes and the release SHA256. No latest alias."
+        },
+        {
+          "name": "tech.read_atb",
+          "toolset": "default",
+          "description": "Read bounded ATB scenario-assumption rows from an explicit 2024 or 2025 release. Exact publisher-column text filters or null; preserves technology/resource detail, year, metric, units, financial case, tax-credit case and CRP. Multiple matching rows remain explicit."
+        },
+        {
+          "name": "solar.estimate_production",
+          "toolset": "default",
+          "description": "Prepared PVWatts v8 monthly model contract. Currently refuses: source proposed, user key and real recording absent. No model result or fallback is fabricated. Future activation requires its checklist; modelled production is not observed generation."
+        },
+        {
+          "name": "registry.resolve_org",
+          "toolset": "discovery-min",
+          "description": "Resolve a DOE organization from a name, abbreviation, FORMER name, or domain \u2014 including dead ones. Use FIRST whenever a user names a lab or office, because this ecosystem renames things and the old URLs do not redirect. 'NREL' resolves to the National Laboratory of the Rockies and warns that the name is historical; a *.nrel.gov domain resolves the same way and warns that the URL is dead with no forwarding. Same for EERE (now CMEI), FECM (now HGEO), LPO (now EDF), HFTO and BETO (merged into AFFO), IEDO (now ITO), and the dismantled Grid Deployment Office."
+        },
+        {
+          "name": "registry.lab_crosswalk",
+          "toolset": "discovery-min",
+          "description": "What a DOE national laboratory publishes, across every platform carrying its data. Call with no argument for all seventeen labs and their source counts. Servers here are organized by data domain, not by laboratory, so this is how a lab-oriented question gets answered \u2014 and it is the honest way, since several labs' flagship data lives on shared cross-lab platforms rather than their own domains. A lab with zero sources is a gap in this project, not a claim that the lab publishes nothing."
+        }
+      ],
+      "tools_all": 8
     },
     {
       "name": "doe-earth",
@@ -1474,6 +1500,31 @@
       "terms_url": "https://docs.nersc.gov/services/sfapi/"
     },
     {
+      "id": "nlr-atb",
+      "name": "Annual Technology Baseline (ATB)",
+      "domain": "energy-tech",
+      "state": "active",
+      "steward": "National Laboratory of the Rockies",
+      "funder": null,
+      "host": null,
+      "authority": "primary",
+      "automation_status": "public_download",
+      "tier": "thin_proxy",
+      "adapter": "atb_parquet",
+      "fixture": true,
+      "scope": "Electricity technology cost and performance assumptions in two pinned public releases.",
+      "record_count": null,
+      "capabilities": [
+        "tech.cost_assumptions"
+      ],
+      "planned_capabilities": [],
+      "blocked_reason": null,
+      "labs": [
+        "nlr"
+      ],
+      "terms_url": "https://atb.nlr.gov/electricity/2025/disclaimer"
+    },
+    {
       "id": "nmdc-runtime",
       "name": "National Microbiome Data Collaborative Runtime API",
       "domain": "bio",
@@ -2420,29 +2471,6 @@
       "terms_url": "https://edx.netl.doe.gov/"
     },
     {
-      "id": "nlr-atb",
-      "name": "Annual Technology Baseline (ATB)",
-      "domain": "energy-tech",
-      "state": "proposed",
-      "steward": "National Laboratory of the Rockies",
-      "funder": null,
-      "host": null,
-      "authority": "primary",
-      "automation_status": "public_download",
-      "tier": "catalog_pointer",
-      "adapter": "none",
-      "fixture": false,
-      "scope": "Cost and performance baselines and projections by generation technology.",
-      "record_count": null,
-      "capabilities": [],
-      "planned_capabilities": [],
-      "blocked_reason": "There is no API. atb.nlr.gov answers and its data pages resolve, but /api returns 404 and the machine-readable release is bulk CSV and parquet under the ATB/ prefix of the OEDI data lake on S3. That is the `s3_bulk` genre, which is not built, and a bulk release is not a thin proxy. Verified 2026-09-08.",
-      "labs": [
-        "nlr"
-      ],
-      "terms_url": "https://atb.nlr.gov/"
-    },
-    {
       "id": "nlr-cambium",
       "name": "Cambium scenario data",
       "domain": "energy-tech",
@@ -2584,6 +2612,31 @@
         "jlab"
       ],
       "terms_url": "https://developer.nlr.gov/"
+    },
+    {
+      "id": "nlr-pvwatts",
+      "name": "PVWatts v8 monthly production model",
+      "domain": "energy-tech",
+      "state": "proposed",
+      "steward": "National Laboratory of the Rockies",
+      "funder": null,
+      "host": null,
+      "authority": "primary",
+      "automation_status": "public_api",
+      "tier": "thin_proxy",
+      "adapter": "pvwatts_v8",
+      "fixture": false,
+      "scope": "Prepared monthly photovoltaic production model for explicit system and location inputs.",
+      "record_count": null,
+      "capabilities": [],
+      "planned_capabilities": [
+        "solar.estimate_production"
+      ],
+      "blocked_reason": "No user key or recorded model response. Follow docs/pvwatts-activation.md before activation.",
+      "labs": [
+        "nlr"
+      ],
+      "terms_url": "https://developer.nlr.gov/terms/"
     },
     {
       "id": "oced-community-benefits-map",
@@ -3942,7 +3995,7 @@
         {
           "id": "nlr-atb",
           "name": "Annual Technology Baseline (ATB)",
-          "state": "proposed",
+          "state": "active",
           "domain": "energy-tech"
         },
         {
@@ -3974,6 +4027,12 @@
           "name": "Lab Partnering Service API",
           "state": "proposed",
           "domain": "projects"
+        },
+        {
+          "id": "nlr-pvwatts",
+          "name": "PVWatts v8 monthly production model",
+          "state": "proposed",
+          "domain": "energy-tech"
         },
         {
           "id": "oedi-data-lake",
@@ -4018,7 +4077,7 @@
           "domain": "projects"
         }
       ],
-      "active": 4
+      "active": 5
     },
     {
       "id": "ornl",
@@ -5504,6 +5563,8 @@
           "tool_contract_version": "1",
           "envelope_version": "1",
           "adapters": {
+            "atb_parquet": "1",
+            "pvwatts_v8": "1",
             "osti_family": "1",
             "opendatasoft": "1",
             "json_document": "1",
@@ -5572,7 +5633,7 @@
           },
           "basis": "former_name",
           "candidates": [],
-          "source_count": 13,
+          "source_count": 14,
           "historical_name": {
             "queried": "NREL",
             "resolved_to": "nlr",
@@ -5629,6 +5690,8 @@
           "tool_contract_version": "1",
           "envelope_version": "1",
           "adapters": {
+            "atb_parquet": "1",
+            "pvwatts_v8": "1",
             "osti_family": "1",
             "opendatasoft": "1",
             "json_document": "1",
@@ -5931,6 +5994,8 @@
           "tool_contract_version": "1",
           "envelope_version": "1",
           "adapters": {
+            "atb_parquet": "1",
+            "pvwatts_v8": "1",
             "osti_family": "1",
             "opendatasoft": "1",
             "json_document": "1",
@@ -6262,6 +6327,8 @@
           "tool_contract_version": "1",
           "envelope_version": "1",
           "adapters": {
+            "atb_parquet": "1",
+            "pvwatts_v8": "1",
             "osti_family": "1",
             "opendatasoft": "1",
             "json_document": "1",
@@ -6438,6 +6505,8 @@
           "tool_contract_version": "1",
           "envelope_version": "1",
           "adapters": {
+            "atb_parquet": "1",
+            "pvwatts_v8": "1",
             "osti_family": "1",
             "opendatasoft": "1",
             "json_document": "1",
@@ -6786,6 +6855,8 @@
           "tool_contract_version": "1",
           "envelope_version": "1",
           "adapters": {
+            "atb_parquet": "1",
+            "pvwatts_v8": "1",
             "osti_family": "1",
             "opendatasoft": "1",
             "json_document": "1",
@@ -7053,6 +7124,8 @@
           "tool_contract_version": "1",
           "envelope_version": "1",
           "adapters": {
+            "atb_parquet": "1",
+            "pvwatts_v8": "1",
             "osti_family": "1",
             "opendatasoft": "1",
             "json_document": "1",
@@ -7188,6 +7261,8 @@
           "tool_contract_version": "1",
           "envelope_version": "1",
           "adapters": {
+            "atb_parquet": "1",
+            "pvwatts_v8": "1",
             "osti_family": "1",
             "opendatasoft": "1",
             "json_document": "1",
@@ -7329,6 +7404,8 @@
           "tool_contract_version": "1",
           "envelope_version": "1",
           "adapters": {
+            "atb_parquet": "1",
+            "pvwatts_v8": "1",
             "osti_family": "1",
             "opendatasoft": "1",
             "json_document": "1",
@@ -7467,6 +7544,8 @@
           "tool_contract_version": "1",
           "envelope_version": "1",
           "adapters": {
+            "atb_parquet": "1",
+            "pvwatts_v8": "1",
             "osti_family": "1",
             "opendatasoft": "1",
             "json_document": "1",
@@ -7603,6 +7682,8 @@
           "tool_contract_version": "1",
           "envelope_version": "1",
           "adapters": {
+            "atb_parquet": "1",
+            "pvwatts_v8": "1",
             "osti_family": "1",
             "opendatasoft": "1",
             "json_document": "1",
@@ -7737,6 +7818,8 @@
           "tool_contract_version": "1",
           "envelope_version": "1",
           "adapters": {
+            "atb_parquet": "1",
+            "pvwatts_v8": "1",
             "osti_family": "1",
             "opendatasoft": "1",
             "json_document": "1",

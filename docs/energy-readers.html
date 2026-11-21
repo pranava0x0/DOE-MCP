@@ -1,0 +1,139 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Energy technology assumptions readers — DOE-MCP</title><link rel="icon" href="data:,">
+<link rel="canonical" href="https://pranava0x0.github.io/DOE-MCP/energy-readers.html">
+<meta name="description" content="Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.">
+<meta property="og:title" content="Energy technology assumptions readers">
+<meta property="og:description" content="Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.">
+<meta property="og:type" content="website"><meta property="og:url" content="https://pranava0x0.github.io/DOE-MCP/energy-readers.html">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" type="text/markdown" href="energy-readers.md">
+<link rel="describedby" type="text/plain" href="llms.txt">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Energy technology assumptions readers", "url": "https://pranava0x0.github.io/DOE-MCP/energy-readers.html", "description": "Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.", "isPartOf": {"@type": "WebSite", "name": "DOE-MCP", "url": "https://pranava0x0.github.io/DOE-MCP/"}}</script>
+<style>
+:root{color-scheme:light;--ink:#20342b;--paper:#f5f2e8;--accent:#38654c}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible{outline:3px solid #9e572b;outline-offset:4px}
+header,main{max-width:1040px;margin:auto;padding:24px}header{border-bottom:1px solid #a8b3a7}
+nav{display:flex;gap:20px;flex-wrap:wrap}h1,h2,h3{font-family:Georgia,serif;line-height:1.2;scroll-margin-top:1rem}
+pre{overflow:auto;background:#e8e7dd;padding:16px;border-radius:6px}code{font-size:.9em}
+table{display:block;overflow:auto;border-collapse:collapse;max-width:100%}td,th{padding:9px;border:1px solid #b4beb4;text-align:left}
+main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0;background:white;padding:10px}
+.application-page pre{white-space:pre-wrap;overflow-wrap:anywhere}
+@media(max-width:600px){
+.application-page table,.application-page tbody,.application-page tr,.application-page td{display:block;width:100%}
+.application-page table{overflow:visible}
+.application-page thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.application-page tr{border:1px solid #b4beb4;margin:12px 0;padding:8px}
+.application-page td{border:0;padding:6px 8px;text-align:left!important}
+.application-page td::before{content:attr(data-label);display:block;font-size:.8em;font-weight:600;color:#38654c}
+}
+</style></head><body class=""><a class="skip" href="#content">Skip to content</a>
+<header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Recorded demos</a></nav></header>
+<main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#pinned-releases">Pinned releases</a></li><li><a href="#explore-before-selecting">Explore before selecting</a></li><li><a href="#export-a-local-assumptions-bundle">Export a local assumptions bundle</a></li><li><a href="#pvwatts-status">PVWatts status</a></li></ul></nav><h1 id="energy-technology-assumptions-readers">Energy technology assumptions readers</h1>
+<p>The <code>doe-energy-tech</code> MCP server reads two pinned Annual Technology
+Baseline electricity releases. Its local application exports qualified
+assumptions with their evidence. PVWatts v8 has a prepared monthly adapter
+and an activation checklist, but remains proposed and refuses model calls.
+No user key is configured or read for this server or the ATB application.</p>
+<p>From a source checkout, install the Parquet reader and start the server:</p>
+<pre><code class="language-bash">python -m pip install -e '.[energy-tech]'
+doe-energy-tech
+</code></pre>
+<p>PyArrow 26.0.1 is pinned in the optional extra. Base research installations
+do not import PyArrow or read binary fixtures at context construction.
+Calling an ATB tool without that extra gives an installation error.</p>
+<h2 id="pinned-releases">Pinned releases</h2>
+<table>
+<thead>
+<tr>
+<th scope="col">Edition</th>
+<th scope="col">Release</th>
+<th style="text-align:right" scope="col">Asset size</th>
+<th style="text-align:right" scope="col">Data rows</th>
+<th scope="col">Monetary basis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Edition">2024</td>
+<td data-label="Release">v4.0.0</td>
+<td style="text-align:right" data-label="Asset size">5,131,651 bytes</td>
+<td style="text-align:right" data-label="Data rows">585,630</td>
+<td data-label="Monetary basis">2022 USD unless noted otherwise</td>
+</tr>
+<tr>
+<td data-label="Edition">2025</td>
+<td data-label="Release">v2.0.0</td>
+<td style="text-align:right" data-label="Asset size">9,193,709 bytes</td>
+<td style="text-align:right" data-label="Data rows">1,161,588</td>
+<td data-label="Monetary basis">2023 USD unless noted otherwise</td>
+</tr>
+</tbody>
+</table>
+<p>The public assets were captured on 2026-11-21 from the publisher-listed
+OEDI downloads. The reader checks the recorded size and SHA256 before
+parsing. Each response identifies the exact edition, release, asset and
+hash; retrieval metadata comes from the fetch or its cache.</p>
+<p>Publisher sources are the <a href="https://atb.nlr.gov/electricity/2025/data">2025 data page</a>,
+<a href="https://atb.nlr.gov/electricity/2024/changes_in_2024">2024 monetary-basis note</a>,
+<a href="https://atb.nlr.gov/electricity/2025/definitions">2025 definitions</a> and
+<a href="https://atb.nlr.gov/electricity/2025/disclaimer">ATB disclaimer</a>.
+These data contain assumptions and projections supplied for reference.
+Their use does not imply publisher endorsement of a result.</p>
+<p>Correction dated 2026-11-21: the older registry described ATB 2026 without
+a verified release asset. Its data page returned HTTP 404 in this review.
+Only the two releases above are supported. There is no <code>latest</code> alias,
+silent edition substitution or currency conversion. The much larger CSV
+downloads exceed the existing response cap and are not used.</p>
+<h2 id="explore-before-selecting">Explore before selecting</h2>
+<p>Use <code>tech.describe_atb</code> with an explicit <code>edition</code> and a dimension such as
+<code>technology</code>, <code>core_metric_parameter</code>, <code>core_metric_case</code>, <code>techdetail</code>,
+<code>scenario</code>, <code>core_metric_variable</code> or <code>units</code>. It returns exact distinct
+values and a count, with bounded pagination. Optional filters restrict the
+values to a particular technology or scenario.</p>
+<p>Then call <code>tech.read_atb</code> with <code>edition</code>, exact <code>filters</code>, <code>rows</code> and
+<code>offset</code>. Filter values are publisher text spellings or JSON null; integer
+dimensions use their text spelling, such as <code>&quot;2035&quot;</code>. Matching is case
+sensitive. Unknown column names are refused. <code>rows</code> accepts 1–50 and
+<code>offset</code> is a nonnegative integer.</p>
+<p>Every row preserves technology and resource detail, metric, scenario,
+projection year, units, financial case, tax-credit case and capital recovery
+period. Null values remain missing. The 2025 release also retains the
+publisher's reference summary and evidence type. Multiple matches are
+reported as multiple matching rows; the reader never chooses an ambiguous
+first row as the answer. A truncated page is not the complete selection.</p>
+<p>Values with different units or financial qualifiers are separate assumptions.
+The edition-wide monetary note is retained alongside the row's units and
+publisher qualifiers. It does not override a publisher exception. The app
+does not combine the 2024 and 2025 currency bases or convert them into a
+single estimate.</p>
+<h2 id="export-a-local-assumptions-bundle">Export a local assumptions bundle</h2>
+<pre><code class="language-bash">doe-mcp app energy-assumptions --output ./recorded-atb-2024
+doe-mcp app energy-assumptions --edition 2025 \
+  --filters '{&quot;technology&quot;:&quot;UtilityPV&quot;,&quot;core_metric_parameter&quot;:&quot;CAPEX&quot;,&quot;scenario&quot;:&quot;Moderate&quot;,&quot;core_metric_variable&quot;:&quot;2035&quot;}' \
+  --rows 10 --offset 0 --output ./recorded-atb-2025
+</code></pre>
+<p>Both commands replay the real pinned release assets. The preset selects
+UtilityPV, CAPEX, Moderate and projection year 2035. Other technology,
+scenario, financial and resource qualifiers remain explicit; it does not
+pick one silently. <code>--live</code> fetches the same hash-pinned release through
+the guarded GET path. It cannot select a newer release.</p>
+<p>The bundle contains <code>assumptions.csv</code>, <code>assumptions.json</code>, the original
+tool envelopes in <code>report.json</code> and file checksums in <code>manifest.json</code>.
+Evidence points to the exact asset and one-based data-row number within
+its hash-pinned bytes. The JSON includes pointers into <code>report.json</code>.
+CSV expression-like text is prefixed with an apostrophe; JSON preserves
+the publisher text. Existing output directories are refused.</p>
+<p>The reader scans 4,096-row batches and retains only the requested page or
+bounded dimension values. It caches release bytes for a day and up to 64
+bounded query results. It does not materialize the full table in memory.
+Recorded assets are binary sidecars: their small JSON manifests load with
+the normal context, while binary reads and hash checks happen only on use.</p>
+<h2 id="pvwatts-status">PVWatts status</h2>
+<p><code>solar.estimate_production</code> currently refuses with the proposed source's
+activation reason before credential access. No successful model recording
+or production output is supplied. The ATB bundle records this status with
+null model output. It does not substitute an ATB assumption for a PVWatts
+simulation. See the <a href="pvwatts-activation.html">PVWatts activation checklist</a>.</p>
+</main></body></html>

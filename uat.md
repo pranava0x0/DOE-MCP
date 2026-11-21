@@ -292,3 +292,36 @@ Results are in ignored `uat-screenshots/final-panel-functional/`,
 `uat-screenshots/final-panel-evaluation/`. These are local scripted checks,
 not a physical-device or human study. No publisher API, model or reviewer
 was invoked and no real-world forecast performance or model cost was measured.
+
+## ATB assumptions reader addition — 2026-11-21
+
+The new ATB application journey reaches its section from the homepage and
+downloads the complete recorded assumptions bundle. It takes three clicks,
+zero wheel actions, two document loads and one same-document anchor
+transition at 375×812, 768×1024 and 1280×800. Vertical scroll movement was
+5,983, 3,347 and 2,870 pixels respectively, including anchor movement.
+Downloaded bytes matched the generated ZIP. The phone screenshot showed
+the release, bounded row count and currency note without horizontal clipping;
+the assumptions table uses labelled cards at this width.
+
+All thirty journeys passed. The link check verified 377 local targets and
+fragments across eleven HTML documents, with zero browser errors or failed
+first-party requests. The functional check passed 38 demos at each viewport,
+216 section jumps, worksheet downloads, the Daymet download pair and keyboard
+navigation, with zero errors. The run used Playwright 1.58.2 and installed Chrome
+158.0.8127.36 on loopback. Results and screenshots remain in ignored
+`uat-screenshots/`. The existing scripted benchmark limits apply; no human
+or physical-device usability result is claimed.
+
+Both pinned ATB release presets also ran from an installed wheel outside
+the checkout. They retain financial, scenario, technology and unit qualifiers
+and explicit pagination. File checksums passed. PVWatts remained proposed
+with null model output: no public model request, key configuration or
+credential load was part of this verification.
+
+A single local diagnostic measured fresh describe/query calls at about
+125/233 ms for ATB 2024 and 83/495 ms for ATB 2025; repeated calls took
+about 2–6 ms with bounded result caching. Peak process memory was about
+141 MB including Python, PyArrow and both release assets. These are local
+measurements, not production latency or memory guarantees. Scans use
+4,096-row batches, while context construction reads only fixture manifests.

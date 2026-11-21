@@ -332,6 +332,8 @@
           "tool_contract_version": "1",
           "envelope_version": "1",
           "adapters": {
+            "atb_parquet": "1",
+            "pvwatts_v8": "1",
             "osti_family": "1",
             "opendatasoft": "1",
             "json_document": "1",
@@ -647,6 +649,8 @@
           "tool_contract_version": "1",
           "envelope_version": "1",
           "adapters": {
+            "atb_parquet": "1",
+            "pvwatts_v8": "1",
             "osti_family": "1",
             "opendatasoft": "1",
             "json_document": "1",
@@ -746,6 +750,8 @@
           "tool_contract_version": "1",
           "envelope_version": "1",
           "adapters": {
+            "atb_parquet": "1",
+            "pvwatts_v8": "1",
             "osti_family": "1",
             "opendatasoft": "1",
             "json_document": "1",
@@ -977,6 +983,8 @@
           "tool_contract_version": "1",
           "envelope_version": "1",
           "adapters": {
+            "atb_parquet": "1",
+            "pvwatts_v8": "1",
             "osti_family": "1",
             "opendatasoft": "1",
             "json_document": "1",

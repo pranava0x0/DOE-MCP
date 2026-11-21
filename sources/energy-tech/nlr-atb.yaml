@@ -1,76 +1,61 @@
 id: nlr-atb
 name: Annual Technology Baseline (ATB)
 domain: energy-tech
-
 publisher:
   steward: nlr
   authority_level: primary
-
 aliases:
   former_names: []
-  former_domains: ["atb.nrel.gov"]
-
+  former_domains: [atb.nrel.gov]
 labs: [nlr]
-
-# Capabilities stay empty until this source is active: a capability id
-# is a routing promise, and the activation gate refuses one from a
-# manifest nothing can query. What this source would serve is listed
-# under planned_capabilities, which nothing routes on.
-capabilities: []
-
+capabilities:
+  - id: tech.cost_assumptions
+    tool_hint: tech.read_atb
 adapter:
-  type: none
-
+  type: atb_parquet
+  base_url: https://oedi-data-lake.s3.amazonaws.com
 access:
   mode: anonymous
   automation_status: public_download
-  tier: catalog_pointer
-  terms_url: https://atb.nlr.gov/
+  tier: thin_proxy
+  terms_url: https://atb.nlr.gov/electricity/2025/disclaimer
+  terms_reviewed_at: "2026-11-21"
+  citation_required: true
+  citation_text: National Laboratory of the Rockies, Annual Technology Baseline electricity, edition and release as reported with the asset URL and SHA256.
+  rate_limit_note: >
+    No source-specific download quota is stated in the reviewed ATB pages.
+    One pinned 5–10 MB release is fetched and cached for a day; shared host
+    concurrency, timeout and retry limits apply.
   terms_notes: >
-    Annual cost and performance projections for electricity generation
-    technologies, published openly. API endpoints were not established
-    after the rename and are a named pre-build check.
-
+    Public OEDI downloads. Publisher disclaimer describes estimates and assumptions
+    supplied as-is for reference, with no endorsement of results or support.
+    Users remain responsible for reliance and downstream interpretation.
 freshness:
   expected_cadence: annual
-  cadence_source: >
-    Stated; a named annual edition, ATB 2026 being current.
+  cadence_source: Named publisher editions; a release is pinned rather than silently updated.
   ttl_hint_seconds: 86400
-
 coverage:
-  scope: >
-    Cost and performance baselines and projections by generation
-    technology.
-  temporal: annual editions
-  dataset_version: "ATB 2026"
+  scope: Electricity technology cost and performance assumptions in two pinned public releases.
+  temporal: ATB 2024 v4.0.0 and ATB 2025 v2.0.0
+  dataset_version: "ATB 2024 v4.0.0 / 2025 v2.0.0; selected edition is reported per fetch"
   known_limitations:
-    - >
-      Edition IS identity. ATB 2024 and ATB 2026 give different numbers
-      for the same technology, and mixing them is the canonical mixed-
-      vintage error — one of the four coverage traps this project tests
-      against.
-    - >
-      Projections, not observations. An ATB number for 2035 is a
-      scenario output.
-    - >
-      The rename killed atb.nrel.gov. Post-rename endpoints are
-      unverified.
-
+    - Edition and release are explicit. No latest alias or verified ATB 2026 asset is supported.
+    - Each Parquet asset is checked against its recorded byte size and SHA256 before parsing.
+    - Values are scenario assumptions and projections, not observations or project bids.
+    - Technology detail, resource class, scenario, projection year, metric, financial case, tax credit, CRP and units remain separate publisher columns.
+    - ATB 2024 generally uses 2022 USD and ATB 2025 generally uses 2023 USD unless noted by the publisher. No currency conversion or cross-edition blending is performed.
+    - Missing metric values remain null; multiple matching rows remain explicit.
 authority_notes: >
-  Primary for its own projections. Intended capabilities: a technology-
-  cost skill's backbone. Phase 3.
-
+  Corrected 2026-11-21: public Parquet downloads for two named releases were
+  verified and recorded. The earlier planned ATB 2026 claim was not verified;
+  its data page returned HTTP 404. CSV assets exceed the unchanged response
+  cap and are not downloaded by this reader.
 health:
-  probe: none
-
+  probe: atb_parquet
+  expect:
+    min_records: 500000
 lifecycle:
-  declared_state: proposed
+  declared_state: active
   added: "2026-09-02"
-  last_verified: "2026-09-08"
+  last_verified: "2026-11-21"
   verified_by: pranava0x0
-  blocked_reason: >
-    There is no API. atb.nlr.gov answers and its data pages resolve,
-    but /api returns 404 and the machine-readable release is bulk CSV
-    and parquet under the ATB/ prefix of the OEDI data lake on S3.
-    That is the `s3_bulk` genre, which is not built, and a bulk release
-    is not a thin proxy. Verified 2026-09-08.
