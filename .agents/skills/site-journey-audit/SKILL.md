@@ -35,6 +35,7 @@ In another process, run:
 UAT_URL=http://127.0.0.1:4192 npm run uat
 UAT_URL=http://127.0.0.1:4192 npm run uat:journeys
 UAT_URL=http://127.0.0.1:4192 npm run uat:evaluation
+UAT_URL=http://127.0.0.1:4192 npm run uat:accessibility
 ```
 
 The first check exercises all demo selectors, section jumps and selected
@@ -49,6 +50,14 @@ functional `uat:evaluation` check and a shared measured journey in CI.
 Every generated HTML page enters the link check.
 It also cycles all demos repeatedly, checks internal link targets and records
 useful content readiness under fourfold CPU slowdown.
+
+The accessibility check runs pinned axe rules on every generated page and
+selected demo at desktop and narrow widths. It also checks keyboard access,
+focus, landmarks, current-section navigation, history, deep links, reflow and
+the no-JavaScript fallback. Keep raw violations and incomplete results in
+the report; incomplete checks need manual review and are not passes. Browser
+accessibility trees do not replace VoiceOver or NVDA testing. CSS viewport
+sizes used for reflow are not native browser zoom or physical-device tests.
 
 Results and screenshots go to ignored `uat-screenshots/`. Set
 `UAT_OUTPUT_DIR` to change that destination. `UAT_STABILITY_ROUNDS` accepts
@@ -72,6 +81,9 @@ Compare DOM checkpoints only after returning to the same selected panel.
 Inspect heap and long tasks as diagnostics; approximate Chromium heap values
 alone do not establish a memory leak. Repeated state changes must preserve
 the selected demo, section access and browser history behavior.
+Changed demo selections add one history entry; reselecting the current
+fragment and passive section tracking add none. Open the mobile section
+menu through its visible control and count that action in measured journeys.
 
 CPU slowdown is a local browser diagnostic. The harness does not emulate a
 phone network. External resource requests are blocked and listed. Raw and

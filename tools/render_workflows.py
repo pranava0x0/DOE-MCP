@@ -38,7 +38,7 @@ def board_time(value):
 def table(headers, rows, caption="") -> str:
     head = ''.join(f'<th scope="col">{esc(x)}</th>' for x in headers)
     body = ''.join('<tr>'+''.join(f'<td data-label="{esc(headers[i])}">{esc(x if x is not None else "Unknown")}</td>' for i,x in enumerate(row))+'</tr>' for row in rows)
-    return f'<div class="scroll"><table class="{"stackable" if len(headers)>2 else "compact"}"><caption>{esc(caption)}</caption><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>'
+    return f'<div class="scroll" tabindex="0"><table class="{"stackable" if len(headers)>2 else "compact"}"><caption>{esc(caption)}</caption><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>'
 
 
 def series_chart(rows, label: str, units: str) -> str:
@@ -288,7 +288,7 @@ def step_view(step, number, case="demo") -> str:
             +('<h4>Unavailable sources</h4><ul>'+gaps+'</ul>' if gaps else '')
             +('<ul>'+warns+'</ul>' if warns else '')+'</details>'
             +totals+extra+('<h4>Publisher access recipes</h4><ul>'+recipes+'</ul>' if recipes else '')+evidence+proposed+handoff
-            +f'<details><summary>Full response and evidence</summary><pre>{esc(json.dumps(env,indent=2))}</pre></details></section>')
+            +f'<details><summary>Full response and evidence</summary><pre tabindex="0">{esc(json.dumps(env,indent=2))}</pre></details></section>')
 
 
 STYLE='''
@@ -306,10 +306,10 @@ label{display:block;font-weight:650;margin:10px 0}article{background:white;borde
 .evidence{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px}.evidence li{border:1px solid #c5cec6;border-radius:8px;padding:16px;overflow-wrap:anywhere}
 .scroll{overflow:auto}table{border-collapse:collapse;width:100%;font-size:.9rem;margin:12px 0}caption{text-align:left;font-weight:650;padding:8px 0}td,th{text-align:left;padding:10px;border-bottom:1px solid #d7ded7;vertical-align:top}th{background:#f2f5ef}
 pre{overflow:auto;max-height:420px;background:#f2f5ef;padding:14px;font-size:.8rem}svg{display:block;width:100%;max-width:800px;background:#fbfcf8}svg text{font-size:12px;fill:#31443b}
-summary{cursor:pointer;padding:12px 0;font-weight:650}.mono{font-family:monospace;overflow-wrap:anywhere;font-size:.85rem}.downloads{display:flex;gap:20px;flex-wrap:wrap}a:focus-visible,summary:focus-visible,select:focus-visible{outline:3px solid #b05c0e;outline-offset:4px}
+summary{cursor:pointer;padding:12px 0;font-weight:650}.mono{font-family:monospace;overflow-wrap:anywhere;font-size:.85rem}.downloads{display:flex;gap:20px;flex-wrap:wrap}.scroll:focus-visible,pre:focus-visible,a:focus-visible,summary:focus-visible,select:focus-visible{outline:3px solid #b05c0e;outline-offset:4px}
 @media(max-width:600px){
 header{padding:12px 16px}header h1{font-size:1.6rem}header p{margin:8px 0}
-#picker label{display:none}#picker select{width:100%;min-height:44px}h2{font-size:1.35rem;margin:8px 0}
+#picker label{display:block;font-size:.85rem;line-height:1.4;margin:0 0 5px}#picker select{width:100%;min-height:44px}h2{font-size:1.35rem;margin:8px 0}
 .stackable thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 .stackable,.stackable tbody,.stackable tr{display:block;width:100%}
 .stackable tr{border:1px solid #c5cec6;border-radius:6px;margin-bottom:10px;padding:6px}
@@ -317,14 +317,16 @@ header{padding:12px 16px}header h1{font-size:1.6rem}header p{margin:8px 0}
 .stackable td::before{content:attr(data-label);font-weight:650;overflow-wrap:normal}
 .stackable caption{display:block}.downloads{gap:12px}.downloads a{min-height:44px}
 }
-[hidden]{display:none!important}@media(max-width:600px){main,header,footer{padding:16px}td,th{padding:8px}article{padding:16px}}
+.demo-skip{position:absolute;top:-100px}.demo-skip:focus{top:0;z-index:20;background:white;padding:12px}[hidden]{display:none!important}@media(max-width:600px){main,header,footer{padding:16px}td,th{padding:8px}article{padding:16px}}
 '''
 
 
 if __package__:
     from .atlas_style import DEMO_CSS, FIELD_CASES
+    from .location_nav import CSS as LOCATION_CSS, SCRIPT as LOCATION_SCRIPT, navigation
 else:
     from atlas_style import DEMO_CSS, FIELD_CASES
+    from location_nav import CSS as LOCATION_CSS, SCRIPT as LOCATION_SCRIPT, navigation
 
 
 def field_chart(report):
@@ -378,7 +380,7 @@ def render(reports: list[dict]) -> str:
             drafts += table(['Catalog field','Value'],[(k, ', '.join(map(str,v)) if isinstance(v,list) else v) for k,v in metadata.items()], 'Draft metadata only — not schema validated')
             drafts += '<h4>Still needs owner review</h4><ul>'+''.join('<li>'+esc(x)+'</li>' for x in draft['needs_owner_review'])+'</ul></section>'
         command = 'doe-mcp demo '+r['case']+' --output ./demo-output'
-        reproduce = '<details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre>'+esc(command)+'</pre>'
+        reproduce = '<details><summary>Run this example locally</summary><p>After installing DOE-MCP, replay without a key, model or network request:</p><pre tabindex="0">'+esc(command)+'</pre>'
         if r['case'] not in RECORDED_ONLY:
             reproduce += '<p>Add <code>--live</code> to query publishers. '+('EIA requires your own key.' if r['case']=='eia' else 'No model is called.')+' Live results and availability can differ.</p>'
         reproduce += '</details>'
@@ -398,7 +400,8 @@ def render(reports: list[dict]) -> str:
                           +table(sheet['columns'], sheet['rows'], 'Each evidence ID refers to step 1 in the JSON download.')
                           +'</section>')
             sheet_download = f'<a download href="data/demos/{esc(r["case"])}-worksheet.csv">Download worksheet CSV</a>'
-        captures=table(['Fixture','Capture time (UTC)','SHA-256'],[(f['file'],f.get('captured_at') or 'Unknown; old recording',f['sha256']) for f in r['fixtures']])
+        captures=(table(['Fixture','Capture time (UTC)','SHA-256'],[(f['file'],f.get('captured_at') or 'Unknown; old recording',f['sha256']) for f in r['fixtures']])
+                  if r['fixtures'] else '<p>No fixture captures are associated with this example.</p>')
         articles.append(f'<article id="{esc(r["case"])}" tabindex="-1">'
                         f'<h2>{esc(r["title"])}</h2>'
                         + (f'<p class="skill">Skill: <code>{esc(CASE_SKILLS[r["case"]])}</code></p>' if CASE_SKILLS.get(r["case"]) else '')
@@ -412,30 +415,48 @@ def render(reports: list[dict]) -> str:
                         +(point_map(r['steps']) if r['case']=='site' else '')
                         +''.join(step_view(step,i,r['case']) for i,step in enumerate(r['steps'],1))
                         +'<details><summary>Recording manifest and capture times</summary>'+f'<p>{esc(r["timestamp_note"])} Registry revision: {esc(r["registry_revision"])}.</p>'+captures+'</details></article>')
+    location_nav = navigation([(r['case'], r['title'], 0) for r in reports], context='Demos', topbar='#picker')
     options=''.join(f'<option value="{esc(r["case"])}">{esc(r["title"])}</option>' for r in reports)
-    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DOE-MCP demos</title><link rel="icon" href="data:,"><style>{STYLE}{DEMO_CSS}</style></head>
-<body><header><a href="index.html">DOE-MCP home</a><h1>DOE-MCP demos</h1><p>Explore recorded results for free, without an account or API key.</p></header>
-<main><div id="picker" hidden><label for="workflow">Choose a walkthrough</label><select id="workflow">{options}</select><nav id="step-nav" aria-label="Jump to result"></nav></div>{''.join(articles)}</main><footer><p>Independent project; not affiliated with the US Department of Energy.</p><a href="guide.html">Run these workflows locally</a> · <a href="reference.html">Tool reference</a></footer>
+    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DOE-MCP demos</title><link rel="icon" href="data:,"><style>{STYLE}{DEMO_CSS}{LOCATION_CSS}</style></head>
+<body data-location-layout><a class="demo-skip" href="#demo-content">Skip to content</a><header><a href="index.html">DOE-MCP home</a><h1>DOE-MCP demos</h1><p>Explore recorded results for free, without an account or API key.</p></header>
+<main id="demo-content" tabindex="-1"><div id="picker" hidden><label for="workflow">Choose a walkthrough</label><select id="workflow">{options}</select><nav id="step-nav" aria-label="Jump to result"></nav></div>{location_nav}{''.join(articles)}</main><footer><p>Independent project; not affiliated with the US Department of Energy.</p><a href="guide.html">Run these workflows locally</a> · <a href="reference.html">Tool reference</a></footer>
+<script>{LOCATION_SCRIPT}</script>
 <script>
 const select=document.getElementById('workflow');
 const panels=[...document.querySelectorAll('article')];
 const nav=document.getElementById('step-nav');
+let selected='';
+function owner(id){{
+  const target=document.getElementById(id);
+  return target?.closest('article')||panels.find(panel=>panel.id==='evidence')||panels[0];
+}}
 function show(id){{
-  if(!panels.some(p=>p.id===id))id='evidence';
-  select.value=id; panels.forEach(p=>p.hidden=p.id!==id);
+  const panel=owner(id);if(!panel||selected===panel.id)return;
+  selected=panel.id;select.value=selected;
+  const relocateFocus=nav.contains(document.activeElement)||panels.some(p=>p!==panel&&p.contains(document.activeElement));
+  panels.forEach(p=>p.hidden=p!==panel);
+  if(relocateFocus)panel.focus({{preventScroll:true}});
   nav.replaceChildren();
-  const panel=document.getElementById(id);
   const targets=[{{el:panel,label:'Overview'}},...Array.from(panel.querySelectorAll('.worksheet'),el=>({{el,label:'Worksheet'}})),...Array.from(panel.querySelectorAll('.step[data-label]'),(el,i)=>({{el,label:(i+1)+'. '+el.dataset.label}}))];
   for(const target of targets){{
     const button=document.createElement('button');
-    button.type='button';button.textContent=target.label;
-    button.addEventListener('click',()=>{{target.el.scrollIntoView({{block:'start'}});target.el.focus({{preventScroll:true}});}});
+    button.type='button';button.textContent=target.label;button.dataset.target=target.el.id;
+    button.addEventListener('click',()=>window.DOELocation.navigate(target.el.id));
     nav.append(button);
   }}
+  window.DOELocation.configure(targets.map(target=>({{id:target.el.id,label:target.label}})),select.selectedOptions[0].textContent);
 }}
 document.getElementById('picker').hidden=false;
-select.addEventListener('change',()=>{{history.replaceState(null,'','#'+select.value);show(select.value);window.scrollTo(0,0);}});
-window.addEventListener('hashchange',()=>{{show(location.hash.slice(1));window.scrollTo(0,0);}});
-show(location.hash.slice(1));
+document.addEventListener('location:reveal',event=>{{if(event.detail.target.closest('article'))show(event.detail.target.id);}});
+document.addEventListener('location:reset',()=>show(''));
+document.addEventListener('location:current',event=>{{
+  for(const button of nav.querySelectorAll('button')){{
+    if(button.dataset.target===event.detail.id)button.setAttribute('aria-current','location');
+    else button.removeAttribute('aria-current');
+  }}
+}});
+select.addEventListener('change',()=>{{show(select.value);window.DOELocation.navigate(select.value,{{focus:false}});}});
+let initial='';try{{initial=decodeURIComponent(location.hash.slice(1));}}catch{{}}
+show(initial);
 new ResizeObserver(()=>document.documentElement.style.setProperty('--toolbar-height',(document.getElementById('picker').offsetHeight+16)+'px')).observe(document.getElementById('picker'));
 </script></body></html>'''

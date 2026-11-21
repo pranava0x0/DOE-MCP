@@ -1,5 +1,7 @@
 # DOE-MCP
 
+[Development backlog](docs/backlog.md): completed work, the next no-key batch and gated integrations.
+
 **MCP servers over public US Department of Energy and national-laboratory
 data. Every answer names the systems it came from, when they were read, and
 what it did not cover.**

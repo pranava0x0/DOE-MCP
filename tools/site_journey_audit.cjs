@@ -37,6 +37,8 @@ async function instrument(context, metrics) {
   await context.exposeBinding('__auditEvent', (_, event) => {
     if (event.type === 'document') metrics.navigations++;
     if (event.type === 'click') metrics.clicks++;
+    if (event.type === 'pushState') metrics.pushStateCalls++;
+    if (event.type === 'replaceState') metrics.replaceStateCalls++;
     if (event.type === 'scroll') {
       metrics.scrollEvents++;
       metrics.scrollPixelsY += Math.abs(event.dy);
@@ -45,6 +47,14 @@ async function instrument(context, metrics) {
     if (event.type === 'longtask') metrics.longTasks.push(event.ms);
   });
   await context.addInitScript(() => {
+    for (const method of ['pushState', 'replaceState']) {
+      const original = history[method];
+      history[method] = function(...args) {
+        const result = Reflect.apply(original, this, args);
+        window.__auditEvent({type: method});
+        return result;
+      };
+    }
     if (/^https?:$/.test(location.protocol)) window.__auditEvent({type: 'document'});
     let x = scrollX, y = scrollY;
     document.addEventListener('click', event => {
@@ -64,6 +74,7 @@ async function instrument(context, metrics) {
 function metrics() {
   return {clicks: 0, wheelActions: 0, keyboardActions: 0, scrollEvents: 0,
     scrollPixelsY: 0, scrollPixelsX: 0, navigations: 0, navigationEvents: 0,
+    pushStateCalls: 0, replaceStateCalls: 0,
     get sameDocumentTransitions() { return Math.max(0, this.navigationEvents - this.navigations); },
     longTasks: [], actions: []};
 }
@@ -163,7 +174,8 @@ async function jump(page, label, expected, counters) {
   await page.waitForFunction(id => document.activeElement.id === id, expected);
   await settled(page);
   const state = await page.evaluate(() => ({top: document.activeElement.getBoundingClientRect().top,
-    toolbar: document.getElementById('picker').getBoundingClientRect().bottom, height: innerHeight}));
+    toolbar: Math.max(document.getElementById('picker').getBoundingClientRect().bottom,
+      Number(document.querySelector('[data-location-nav]')?.dataset.locationOffset || 0)), height: innerHeight}));
   assert(state.top >= state.toolbar - 1 && state.top < state.height, 'jump destination hidden by controls');
 }
 async function download(page, locator, counters, label) {
@@ -185,7 +197,8 @@ async function shortcutJourney(browser, viewport, task) {
       await page.locator('#start-install pre').waitFor({state: 'visible'});
       assert.match(await page.locator('#start-install').innerText(), /pipx? install \./);
       const target = await page.evaluate(() => ({top: document.getElementById('start-install').getBoundingClientRect().top,
-        navBottom: document.querySelector('nav.toc').getBoundingClientRect().bottom, height: innerHeight}));
+        navBottom: Math.max(document.querySelector('nav.toc').getBoundingClientRect().bottom,
+          Number(document.querySelector('[data-location-nav]')?.dataset.locationOffset || 0)), height: innerHeight}));
       assert(target.top >= target.navBottom - 1 && target.top < target.height,
         'Install destination is hidden by sticky navigation');
     } else if (task === 'coverage') {
@@ -260,9 +273,17 @@ async function stability(browser, viewport) {
     const ids = await page.locator('#workflow option').evaluateAll(options => options.map(option => option.value));
     const cdp = await context.newCDPSession(page);
     await cdp.send('Performance.enable');
+    async function selectChecked(id) {
+      const before = {hash: decodeURIComponent(new URL(page.url()).hash.slice(1)),
+        pushes: counters.pushStateCalls, replacements: counters.replaceStateCalls};
+      await page.locator('#workflow').selectOption(id);
+      await readyDemo(page, id);
+      assert.equal(counters.pushStateCalls - before.pushes, before.hash === id ? 0 : 1,
+        'a changed demo should add one history entry; selecting the current demo adds none');
+      assert.equal(counters.replaceStateCalls, before.replacements, 'demo selection replaced an existing history entry');
+    }
     async function checkpoint(round) {
-      await page.locator('#workflow').selectOption('microbiome');
-      await readyDemo(page, 'microbiome');
+      await selectChecked('microbiome');
       const state = await page.evaluate(() => ({domNodes: document.querySelectorAll('*').length, historyLength: history.length}));
       const values = (await cdp.send('Performance.getMetrics')).metrics;
       return {round, ...state, heapBytes: values.find(metric => metric.name === 'JSHeapUsedSize')?.value ?? null};
@@ -270,17 +291,26 @@ async function stability(browser, viewport) {
     const checkpoints = [await checkpoint(0)];
     for (let round = 1; round <= rounds; round++) {
       for (const id of ids) {
-        await page.locator('#workflow').selectOption(id);
-        await readyDemo(page, id);
+        await selectChecked(id);
       }
       const state = await checkpoint(round);
       assert.equal(state.domNodes, checkpoints[0].domNodes, 'DOM grew after returning to the same panel');
-      assert.equal(state.historyLength, checkpoints[0].historyLength, 'demo changes grew browser history');
+      const historyBefore = {url: page.url(), pushes: counters.pushStateCalls, replacements: counters.replaceStateCalls};
+      await selectChecked('microbiome');
+      await page.evaluate(() => window.scrollBy(0, 80));
+      await settled(page);
+      assert.equal(page.url(), historyBefore.url, 'passive scroll changed the URL');
+      assert.equal(counters.pushStateCalls, historyBefore.pushes, 'passive updates created history entries');
+      assert.equal(counters.replaceStateCalls, historyBefore.replacements, 'passive updates replaced history entries');
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await settled(page);
       checkpoints.push(state);
       await page.screenshot({path: path.join(output, 'stability-' + viewport.width + '-' + round + '.png')});
     }
     report.stability.push({viewport, rounds, demosPerRound: ids.length,
-      scriptedSelectChanges: rounds * ids.length + rounds + 1, checkpoints, ...counters});
+      scriptedSelectChanges: rounds * ids.length + 2 * rounds + 1,
+      historyContract: 'One push per changed fragment; none for current selection or passive scroll. Browser history length may be capped.',
+      checkpoints, ...counters});
   } finally { await context.close(); }
 }
 async function performance(browser) {
@@ -326,6 +356,10 @@ async function applicationJourney(browser, viewport, task) {
   try {
     await page.goto(base + '/index.html', {waitUntil: 'domcontentloaded'});
     await click(page, page.locator('.atlas-actions a[href="applications.html"]'), counters, 'applications');
+    const menu = page.locator('details.location-menu');
+    if (!await menu.getAttribute('open').then(value => value !== null)) {
+      await click(page, menu.locator('summary'), counters, 'open page sections');
+    }
     await click(page, page.locator('nav[aria-label="On this page"] a[href="#' + task.anchor + '"]'), counters, task.id);
     const heading = page.locator('#' + task.anchor);
     await heading.waitFor({state: 'visible'});

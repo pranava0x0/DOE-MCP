@@ -1,4 +1,4 @@
-"""Field atlas masthead and demo styling for the static site."""
+"""Shared masthead and demo styling for the static site."""
 
 FIELD_CASES = {
     "world-desalination-electricity": "water",
@@ -42,7 +42,7 @@ header h1{text-wrap:balance}header .tagline{color:#dde9de;max-width:43ch;font-si
 .atlas-inventory{margin-top:18px;padding-top:16px;border-top:1px solid #517368}
 header .funnel .step{background:transparent;border-color:#648175;color:white}header .funnel .step b{color:#fff1d2}header .funnel .step span,header .works,header .works b,header .inventory,header .inventory a{color:#d7e5d7}
 header a:focus-visible{outline:3px solid #ffcd94;outline-offset:3px}
-#genesis-mission{font:500 clamp(1.7rem,4vw,2.8rem)/1.15 Georgia,serif;margin:24px 0 0;scroll-margin-top:4rem}
+#genesis-mission{font:500 clamp(1.7rem,4vw,2.8rem)/1.15 Georgia,serif;margin:24px 0 0;scroll-margin-top:var(--location-offset,4rem)}
 .demo-link{border-radius:4px;box-shadow:0 3px 0 #e3e8de}.demo-link strong{color:#183e33;font:600 1.25rem/1.2 Georgia,serif}
 .demo-link:hover{background:#f4f7ee}
 .demo-link[data-field]{border-top:3px solid #b97539;background:#f8edd8}

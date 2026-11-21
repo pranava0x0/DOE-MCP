@@ -202,12 +202,18 @@ def test_nothing_committable_carries_a_third_party_email_address():
     terms page into `terms_notes` would slip past the fixture check.
     """
     import re
+    import subprocess
     from doe_mcp.adapters.replay import REDACTED_EMAIL
     pattern = re.compile(r"[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}")
-    skip = {"research", ".venv", ".git", "__pycache__", ".pytest_cache"}
+    # Scan tracked files (even if force-added) and unignored new files.
+    # Local browser dependencies and audit captures are not published.
+    inventory = subprocess.check_output(
+        ["git", "ls-files", "-z", "--cached", "--others", "--exclude-standard"],
+        cwd=ROOT).decode().split("\0")
     offenders = []
-    for path in ROOT.rglob("*"):
-        if not path.is_file() or skip & set(path.parts):
+    for name in set(inventory) - {""}:
+        path = ROOT / name
+        if not path.is_file():
             continue
         if path.suffix not in (".py", ".yaml", ".yml", ".md", ".json",
                                ".html", ".toml", ".cff"):
@@ -215,8 +221,8 @@ def test_nothing_committable_carries_a_third_party_email_address():
         for found in pattern.findall(path.read_text(errors="replace")):
             if found == REDACTED_EMAIL or found.endswith(".invalid"):
                 continue
-            offenders.append(f"{path.relative_to(ROOT)}: {found}")
-    assert not offenders, f"third-party addresses in the tree: {offenders[:8]}"
+            offenders.append(name)
+    assert not offenders, f"third-party addresses in committable files: {sorted(set(offenders))[:8]}"
 
 
 def test_the_research_directory_is_not_committable():

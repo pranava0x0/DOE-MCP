@@ -28,9 +28,38 @@ main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0
 .application-page td{border:0;padding:6px 8px;text-align:left!important}
 .application-page td::before{content:attr(data-label);display:block;font-size:.8em;font-weight:600;color:#38654c}
 }
-</style></head><body class=""><a class="skip" href="#content">Skip to content</a>
-<header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Recorded demos</a></nav></header>
-<main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#gcam-comparison-receipts">GCAM comparison receipts</a></li><li><a href="#forecast-benchmark">Forecast benchmark</a></li><li><a href="#forecast-panel-with-common-cohorts">Forecast panel with common cohorts</a></li><li><a href="#weather-package">Weather package</a></li><li><a href="#federal-register-notice-tracker">Federal Register notice tracker</a></li><li><a href="#regulationsgov-integration-gated">Regulations.gov integration: gated</a></li><li><a href="#research-artifact-linkage-explorer">Research artifact linkage explorer</a></li></ul></nav><h1 id="local-applications">Local applications</h1>
+
+.page-location{color:#203c31;background:#faf8f0;border-bottom:1px solid #b8c6ba;z-index:8}
+.page-location *{box-sizing:border-box}
+.page-location .location-menu{margin:0;border:0;border-radius:0;background:inherit}
+.page-location .location-toggle{min-height:44px;padding:10px 16px;cursor:pointer;line-height:1.45;font:600 .9rem/1.45 system-ui,sans-serif}
+.page-location .location-toggle [data-current-location]{font-weight:400}
+.page-location .location-toggle:focus-visible,.page-location a:focus-visible{outline:3px solid #a65b14;outline-offset:-3px}
+.page-location nav{display:block;padding:8px 12px;background:inherit}
+.page-location .location-context{font:650 .9rem/1.45 system-ui,sans-serif;margin:4px 8px 10px;overflow-wrap:anywhere}
+.page-location ul{display:block;list-style:none;padding:0;margin:0}
+.page-location li{margin:0;padding:0;line-height:1.35}
+.page-location a{display:block;min-height:36px;padding:8px 10px;border-left:3px solid transparent;color:#305547;text-decoration:none;font:400 .87rem/1.45 system-ui,sans-serif;overflow-wrap:anywhere}
+.page-location .location-depth-1 a{padding-left:22px;font-size:.81rem}
+.page-location a:hover{background:#e8eee3}
+.page-location a[aria-current="location"]{border-left-color:#1e5d47;background:#dfeadd;color:#183b2e;font-weight:700}
+[data-location-target]{scroll-margin-top:var(--location-offset,70px)}
+@media(min-width:1200px){
+body[data-location-layout]{padding-left:15rem}
+.page-location{position:fixed;left:0;top:0;bottom:0;width:15rem;border:0;border-right:1px solid #b8c6ba;overflow:auto;padding:16px 8px}
+/* Preserve focus until layout() transfers it to a desktop section link. */
+.page-location .location-menu[open]>.location-toggle:not(:focus){display:none}
+}
+@media(max-width:1199px){
+.page-location{position:sticky;top:var(--location-site-top,0px)}
+.page-location .location-toggle{display:list-item;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.page-location nav{max-height:min(65vh,32rem);overflow:auto;overscroll-behavior:contain}
+.page-location a{min-height:44px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}
+</style></head><body class="" data-location-layout><a class="skip" href="#content">Skip to content</a>
+<header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Demos</a><a href="backlog.html">Project backlog</a></nav></header>
+<aside class="page-location" data-location-nav data-location-context="Local applications" data-location-topbar=""><details class="location-menu" open><summary class="location-toggle"><span>Current: </span><span data-current-location>Overview</span></summary><nav aria-label="On this page"><p class="location-context">Local applications</p><ul data-location-links><li class="location-depth-0"><a href="#local-applications" aria-current="location">Overview</a></li><li class="location-depth-0"><a href="#gcam-comparison-receipts">GCAM comparison receipts</a></li><li class="location-depth-0"><a href="#forecast-benchmark">Forecast benchmark</a></li><li class="location-depth-0"><a href="#forecast-panel-with-common-cohorts">Forecast panel with common cohorts</a></li><li class="location-depth-0"><a href="#weather-package">Weather package</a></li><li class="location-depth-0"><a href="#federal-register-notice-tracker">Federal Register notice tracker</a></li><li class="location-depth-0"><a href="#regulationsgov-integration-gated">Regulations.gov integration: gated</a></li><li class="location-depth-0"><a href="#research-artifact-linkage-explorer">Research artifact linkage explorer</a></li></ul></nav></details></aside><main id="content" tabindex="-1"><h1 id="local-applications">Local applications</h1>
 <p>The <a href="energy-readers.html">ATB energy assumptions reader</a> exports qualified
 rows from pinned public 2024 and 2025 releases. Install the optional
 <code>energy-tech</code> extra, then run <code>doe-mcp app energy-assumptions --output ./recorded-atb</code>. Its PVWatts path remains proposed and supplies no model
@@ -46,7 +75,7 @@ coverage. Replay retrieval clocks describe the replay execution. They are
 not publisher capture times; available fixture capture times are listed
 separately. Existing output directories are refused.</p>
 <h2 id="gcam-comparison-receipts">GCAM comparison receipts</h2>
-<pre><code class="language-bash">doe-mcp app gcam-comparison --output ./gcam-receipts
+<pre tabindex="0"><code class="language-bash">doe-mcp app gcam-comparison --output ./gcam-receipts
 doe-mcp app gcam-comparison --plan ./gcam-receipts/plan.json --output ./gcam-custom
 </code></pre>
 <p><a href="applications.html#gcam-comparison-receipts">Download the recorded preset and receipts</a>.
@@ -59,7 +88,7 @@ null cells stay as the publisher supplied them.</p>
 A plan contains 1–12 <code>selections</code> and 1–12 side-by-side <code>pairs</code>. Each
 selection has a unique <code>id</code>, a GCAM <code>tool</code>, exact text <code>filters</code>, and 1–8
 <code>columns</code>. Pair endpoints name a selection and one of its selected columns:</p>
-<pre><code class="language-json">{
+<pre tabindex="0"><code class="language-json">{
   &quot;selections&quot;: [
     {&quot;id&quot;: &quot;wind-c7&quot;, &quot;tool&quot;: &quot;power.wind_capacity_factors&quot;,
      &quot;filters&quot;: {&quot;wind_class&quot;: &quot;c7&quot;}, &quot;columns&quot;: [&quot;CF&quot;]},
@@ -96,7 +125,7 @@ is performed. A shared <code>2100</code> column cannot turn desalination energy 
 monetary inputs into a total. These are model inputs, not scenario output
 or measurements of current conditions.</p>
 <h2 id="forecast-benchmark">Forecast benchmark</h2>
-<pre><code class="language-bash">doe-mcp app forecast-benchmark --output ./recorded-benchmark
+<pre tabindex="0"><code class="language-bash">doe-mcp app forecast-benchmark --output ./recorded-benchmark
 doe-mcp app forecast-benchmark \
   --forecasts ./recorded-benchmark/forecasts.csv \
   --actual-timezone America/Los_Angeles --output ./submitted-benchmark
@@ -105,7 +134,7 @@ doe-mcp app forecast-benchmark \
 BPA readings. These are application inputs derived for a demonstration,
 not recorded publisher forecasts. The second scores that exported input.
 Use your own UTF-8 CSV with these columns:</p>
-<pre><code class="language-csv">model_id,issued_at,target_at,prediction_mw
+<pre tabindex="0"><code class="language-csv">model_id,issued_at,target_at,prediction_mw
 example,2026-09-03T07:00:00+00:00,2026-09-03T07:05:00+00:00,5000
 </code></pre>
 <p>Timestamps must carry UTC offsets, predictions must be finite, and
@@ -137,7 +166,7 @@ guarantee future coverage.</p>
 The recorded sample uses <code>America/Los_Angeles</code> as a disclosed assumption.
 Ambiguous or nonexistent local timestamps are refused.</p>
 <h2 id="forecast-panel-with-common-cohorts">Forecast panel with common cohorts</h2>
-<pre><code class="language-bash">doe-mcp app forecast-panel --output ./panel-simulation
+<pre tabindex="0"><code class="language-bash">doe-mcp app forecast-panel --output ./panel-simulation
 doe-mcp app forecast-panel --plan ./panel-simulation/plan.json \
   --actuals ./panel-simulation/actuals.csv \
   --forecasts ./panel-simulation/forecasts.csv --output ./panel-reimport
@@ -196,10 +225,10 @@ unit conversion or temporal aggregation. BPA's five-minute MW samples
 cannot be combined with EIA's hourly MWh totals in a panel. Sample power,
 mean power and interval energy also remain distinct.</p>
 <p>Actual CSV columns are:</p>
-<pre><code class="language-csv">region_id,target_at,available_at,value,quantity,unit,interval_seconds,interval_semantics,timestamp_semantics
+<pre tabindex="0"><code class="language-csv">region_id,target_at,available_at,value,quantity,unit,interval_seconds,interval_semantics,timestamp_semantics
 </code></pre>
 <p>Forecast CSV columns are:</p>
-<pre><code class="language-csv">model_id,region_id,issued_at,target_at,prediction,quantity,unit,interval_seconds,interval_semantics,timestamp_semantics
+<pre tabindex="0"><code class="language-csv">model_id,region_id,issued_at,target_at,prediction,quantity,unit,interval_seconds,interval_semantics,timestamp_semantics
 </code></pre>
 <p>Use UTF-8, aware ISO timestamps and finite numeric values. A blank <code>value</code>
 or <code>prediction</code> means missing. Effective and availability times must be
@@ -236,7 +265,7 @@ slots; each input file is at most 20 MB and each CSV at most 100,000 rows.</p>
 options are refused. Existing publisher tools keep their own source and
 credential gates; this application does not configure or acquire a key.</p>
 <h2 id="weather-package">Weather package</h2>
-<pre><code class="language-bash">doe-mcp app weather-package --output ./recorded-weather
+<pre tabindex="0"><code class="language-bash">doe-mcp app weather-package --output ./recorded-weather
 doe-mcp app weather-package --latitude 35.9313 --longitude -84.3104 \
   --start 2023-06-01 --end 2023-06-05 --variables prcp,tmax,tmin \
   --output ./recorded-weather-variables
@@ -256,7 +285,7 @@ calendar and never imputes missing values. An incomplete extract is
 refused. The CSV checksum identifies the exported bytes, not the full
 publisher archive.</p>
 <h2 id="federal-register-notice-tracker">Federal Register notice tracker</h2>
-<pre><code class="language-bash">doe-mcp app docket-tracker --output ./recorded-notices
+<pre tabindex="0"><code class="language-bash">doe-mcp app docket-tracker --output ./recorded-notices
 doe-mcp app docket-tracker --previous ./recorded-notices/report.json \
   --output ./compared-notices
 doe-mcp app docket-tracker --source federal-register --live \
@@ -278,7 +307,7 @@ snapshot must use the same mode and search parameters. Changes are reported
 as added, changed or not returned; an absent record is never labelled
 deleted or withdrawn.</p>
 <h2 id="regulationsgov-integration-gated">Regulations.gov integration: gated</h2>
-<pre><code class="language-bash">doe-mcp app docket-tracker --source regulations --docket EERE-2025-OT-0031
+<pre tabindex="0"><code class="language-bash">doe-mcp app docket-tracker --source regulations --docket EERE-2025-OT-0031
 </code></pre>
 <p>This explicit source selection currently refuses with the source's
 activation reason in both recorded and live mode. There is no
@@ -294,7 +323,7 @@ key is refused by the normal credential path.</p>
 <a href="regulations-activation.md">Regulations.gov activation</a>. No broader DOE
 agency scope is inferred from EERE or from a current office name.</p>
 <h2 id="research-artifact-linkage-explorer">Research artifact linkage explorer</h2>
-<pre><code class="language-bash">doe-mcp app research-linkage --output ./recorded-research
+<pre tabindex="0"><code class="language-bash">doe-mcp app research-linkage --output ./recorded-research
 doe-mcp app research-linkage --live --query geothermal \
   --rows 10 --page-budget 2 --output ./geothermal-research
 </code></pre>
@@ -338,4 +367,135 @@ reason. A budget stop or unknown total cannot establish exhaustive coverage.
 The literature tool deduplicates overlapping collections by DOI; the app
 does not reconstruct discarded rows. No repository, dataset payload or
 relationship target is downloaded.</p>
-</main></body></html>
+</main><script>
+(()=>{
+  const shell=document.querySelector('[data-location-nav]');
+  if(!shell)return;
+  const disclosure=shell.querySelector('.location-menu');
+  const toggle=shell.querySelector('.location-toggle');
+  const links=shell.querySelector('[data-location-links]');
+  const currentText=shell.querySelector('[data-current-location]');
+  const contextText=shell.querySelector('.location-context');
+  const desktop=matchMedia('(min-width:1200px)');
+  let context=shell.dataset.locationContext||'', targets=[], pending=false, last='';
+  document.body.dataset.locationLayout='';
+  const decode=value=>{try{return decodeURIComponent(value);}catch{return '';}};
+  function visible(el){
+    if(!el||el.closest('[hidden]')||!el.getClientRects().length)return false;
+    for(let ancestor=el.parentElement;ancestor;ancestor=ancestor.parentElement){
+      if(ancestor.tagName==='DETAILS'&&!ancestor.open){
+        const summary=ancestor.querySelector(':scope > summary');
+        if(!summary||!summary.contains(el))return false;
+      }
+    }
+    return getComputedStyle(el).visibility!=='hidden';
+  }
+  function measure(){
+    const selector=shell.dataset.locationTopbar;
+    const bar=selector?document.querySelector(selector):null;
+    const height=bar&&visible(bar)?bar.getBoundingClientRect().height:0;
+    document.documentElement.style.setProperty('--location-site-top',height+'px');
+    const own=desktop.matches?0:shell.getBoundingClientRect().height;
+    document.documentElement.style.setProperty('--location-offset',(height+own+16)+'px');
+    shell.dataset.locationOffset=String(height+own+16);
+    return height+own+16;
+  }
+  function setCurrent(item){
+    if(!item)return;
+    for(const anchor of links.querySelectorAll('a')){
+      if(decode(anchor.hash.slice(1))===item.id)anchor.setAttribute('aria-current','location');
+      else anchor.removeAttribute('aria-current');
+    }
+    const label=item.label+(context&&context!==item.label?' · '+context:'');
+    if(currentText.textContent!==label)currentText.textContent=label;
+    shell.dataset.currentTarget=item.id;
+    if(last!==item.id){
+      last=item.id;
+      document.dispatchEvent(new CustomEvent('location:current',{detail:{id:item.id}}));
+    }
+  }
+  function update(){
+    pending=false;
+    const offset=measure();
+    const eligible=targets.filter(item=>visible(item.el));
+    let item=eligible[0];
+    for(const candidate of eligible){if(candidate.el.getBoundingClientRect().top<=offset+8)item=candidate;else break;}
+    const page=document.scrollingElement;
+    if(page.scrollHeight>innerHeight+2&&page.scrollTop+innerHeight>=page.scrollHeight-2)item=eligible.at(-1)||item;
+    setCurrent(item);
+  }
+  function schedule(){if(!pending){pending=true;requestAnimationFrame(update);}}
+  function configure(entries,newContext){
+    if(newContext!==undefined)context=newContext;
+    contextText.textContent=context||'On this page';
+    const restoreLinkFocus=links.contains(document.activeElement);
+    if(entries){
+      links.replaceChildren();
+      for(const entry of entries){
+        const li=document.createElement('li'),anchor=document.createElement('a');
+        li.className='location-depth-'+(entry.depth||0);
+        anchor.href='#'+encodeURIComponent(entry.id);anchor.textContent=entry.label;
+        li.append(anchor);links.append(li);
+      }
+    }
+    targets=[...links.querySelectorAll('a[href^="#"]')].map(anchor=>{
+      const id=decode(anchor.hash.slice(1));return{id,label:anchor.textContent,el:document.getElementById(id)};
+    }).filter(item=>item.el);
+    targets.sort((a,b)=>a.el===b.el?0:a.el.compareDocumentPosition(b.el)&Node.DOCUMENT_POSITION_FOLLOWING?-1:1);
+    for(const target of targets)target.el.dataset.locationTarget='';
+    if(entries&&restoreLinkFocus)links.querySelector('a')?.focus({preventScroll:true});
+    last='';schedule();
+  }
+  function reveal(target){
+    document.dispatchEvent(new CustomEvent('location:reveal',{detail:{target}}));
+    for(let node=target;node;node=node.parentElement){if(node.tagName==='DETAILS')node.open=true;}
+    const own=target.querySelector('details.sect');if(own)own.open=true;
+    for(let sibling=target.nextElementSibling;sibling&&!/^H[1-4]$/.test(sibling.tagName);sibling=sibling.nextElementSibling){
+      if(sibling.tagName==='DETAILS'){sibling.open=true;break;}
+    }
+  }
+  function navigate(id,{push=true,focus=true}={}){
+    const target=document.getElementById(id);if(!target)return false;
+    target.dataset.locationTarget='';
+    reveal(target);
+    const menuHadFocus=links.contains(document.activeElement);
+    if(!desktop.matches)disclosure.open=false;
+    measure();
+    if(!focus&&menuHadFocus&&!desktop.matches)toggle.focus({preventScroll:true});
+    if(push&&decode(location.hash.slice(1))!==id){try{history.pushState(null,'','#'+encodeURIComponent(id));}catch{}}
+    if(focus){if(!target.hasAttribute('tabindex'))target.tabIndex=-1;target.focus({preventScroll:true});}
+    target.scrollIntoView({block:'start',behavior:'auto'});schedule();return true;
+  }
+  document.addEventListener('click',event=>{
+    if(event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+    const anchor=event.target instanceof Element?event.target.closest('a[href^="#"]'):null;
+    if(!anchor||anchor.hasAttribute('download')||anchor.target&&anchor.target!=='_self')return;
+    const id=decode(anchor.getAttribute('href').slice(1));if(!id||!document.getElementById(id))return;
+    event.preventDefault();navigate(id);
+  });
+  const follow=()=>{const id=decode(location.hash.slice(1));
+    if(!id||!navigate(id,{push:false,focus:false})){document.dispatchEvent(new CustomEvent('location:reset'));schedule();}
+  };
+  addEventListener('hashchange',follow);addEventListener('popstate',follow);
+  addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule);
+  document.addEventListener('toggle',schedule,true);
+  disclosure.addEventListener('keydown',event=>{
+    if(event.key==='Escape'&&!desktop.matches&&disclosure.open){disclosure.open=false;toggle.focus({preventScroll:true});event.preventDefault();}
+  });
+  document.addEventListener('focusin',event=>{
+    if(!desktop.matches&&disclosure.open&&!shell.contains(event.target)){disclosure.open=false;schedule();}
+  });
+  function layout(){
+    const toggleFocused=document.activeElement===toggle;
+    disclosure.open=desktop.matches||links.contains(document.activeElement);
+    if(desktop.matches&&toggleFocused)(links.querySelector('[aria-current]')||links.querySelector('a'))?.focus({preventScroll:true});
+    schedule();
+  }
+  desktop.addEventListener('change',layout);
+  new ResizeObserver(schedule).observe(shell);
+  const bar=shell.dataset.locationTopbar?document.querySelector(shell.dataset.locationTopbar):null;
+  if(bar)new ResizeObserver(schedule).observe(bar);
+  window.DOELocation={configure,navigate,refresh:schedule};
+  configure();layout();requestAnimationFrame(follow);
+})();
+</script></body></html>

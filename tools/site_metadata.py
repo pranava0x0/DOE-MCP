@@ -6,6 +6,11 @@ import json
 import re
 from pathlib import Path
 
+if __package__:
+    from .location_nav import CSS as LOCATION_CSS, SCRIPT as LOCATION_SCRIPT, navigation
+else:
+    from location_nav import CSS as LOCATION_CSS, SCRIPT as LOCATION_SCRIPT, navigation
+
 BASE = "https://pranava0x0.github.io/DOE-MCP/"
 DESCRIPTION = ("Read-only MCP servers for public DOE and national-laboratory data, "
                "with source evidence, coverage limits and recorded walkthroughs.")
@@ -54,8 +59,8 @@ def markdown_page(source: str, name: str, title: str) -> str:
             seen[slug] = count + 1
             anchor = slug + (f"-{count}" if count else "")
             token.attrSet("id", anchor)
-            if token.tag == "h2":
-                toc.append(f'<li><a href="#{anchor}">{html.escape(text)}</a></li>')
+            if token.tag in {"h1", "h2"}:
+                toc.append((anchor, "Overview" if token.tag == "h1" else text, 0))
         for child in token.children or []:
             if child.type == "link_open":
                 href = child.attrGet("href") or ""
@@ -71,7 +76,7 @@ def markdown_page(source: str, name: str, title: str) -> str:
                 for stem in ("guide", "reference", "apps", "evaluation-matrix", "evaluation-example"):
                     if href == stem + ".md" or href.startswith(stem + ".md#"):
                         child.attrSet("href", href.replace(stem + ".md", stem + ".html", 1))
-    content = md.renderer.render(tokens, md.options, {})
+    content = md.renderer.render(tokens, md.options, {}).replace("<pre>", '<pre tabindex="0">')
     body_class = "application-page" if name in {"applications.html", "evaluation-matrix.html", "evaluation-example.html"} else ""
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -94,9 +99,9 @@ main{{overflow-wrap:anywhere}}.skip{{position:absolute;top:-100px}}.skip:focus{{
 .application-page td{{border:0;padding:6px 8px;text-align:left!important}}
 .application-page td::before{{content:attr(data-label);display:block;font-size:.8em;font-weight:600;color:#38654c}}
 }}
-</style></head><body class="{body_class}"><a class="skip" href="#content">Skip to content</a>
-<header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Recorded demos</a></nav></header>
-<main id="content" tabindex="-1"><nav aria-label="On this page"><ul>{''.join(toc)}</ul></nav>{content}</main></body></html>'''
+{LOCATION_CSS}</style></head><body class="{body_class}" data-location-layout><a class="skip" href="#content">Skip to content</a>
+<header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Demos</a><a href="backlog.html">Project backlog</a></nav></header>
+{navigation(toc, context=title)}<main id="content" tabindex="-1">{content}</main><script>{LOCATION_SCRIPT}</script></body></html>'''
 
 
 def write_discovery(docs: Path, data: dict) -> None:
