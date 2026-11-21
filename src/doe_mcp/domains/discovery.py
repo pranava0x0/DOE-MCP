@@ -17,16 +17,16 @@ from __future__ import annotations
 import asyncio
 from typing import Any
 
-from ..core.assemble import (failure, gap, result_dim,
+from ..core.assemble import (failure, pagination_coverage, result_dim,
                              selection_coverage)
 from ..core.envelope import (Coverage, Envelope, ExecutionCoverage,
                              PaginationCoverage, RecipeKind, RegistryCoverage,
                              SourceClaimCoverage, WarningCode)
 from ..core.errors import InvalidQuery, SourceUnavailable
-from ..core.registry import SourceManifest
 from ..core.toolreg import ToolRegistry, ToolSpec
 from ..runtime import RuntimeContext
-from ._common import add_manifest_source, builder, require_active_source
+from ._common import (add_manifest_source, builder, require_active_source,
+                      select_fixed)
 
 DISCOVERY_TOOLS = ToolRegistry(package="discovery")
 
@@ -67,22 +67,14 @@ async def search_all_catalogs(ctx: RuntimeContext, query: str,
     results: list[dict[str, Any]] = []
     per_catalog_rows: list[dict[str, Any]] = []
     failures = []
-    gaps = []
+    pages = []
     seen_titles: set[str] = set()
 
     # The same gate as every other route into a source. A catalog that is
     # not active is named in sources_unavailable rather than skipped in
     # silence, so a four-catalog answer that came from three says so.
-    queried: list[tuple[str, SourceManifest]] = []
-    for source_id in wanted:
-        manifest = ctx.sources.get(source_id)
-        if manifest is None:
-            continue
-        block = ctx.sources.selection_block(manifest)
-        if block is not None:
-            gaps.append(gap(source_id, block))
-            continue
-        queried.append((source_id, manifest))
+    selected, gaps = select_fixed(ctx, wanted)
+    queried = [(manifest.id, manifest) for manifest in selected]
     searched = [source_id for source_id, _ in queried]
 
     # The catalogs live on different hosts, so they are asked at once; the
@@ -103,6 +95,7 @@ async def search_all_catalogs(ctx: RuntimeContext, query: str,
         if isinstance(outcome, BaseException):
             raise outcome
         rows, total, vintage, retrieved, cache_age, cached = outcome
+        pages.append(pagination_coverage(total, len(rows)))
 
         ref = add_manifest_source(b, ctx, manifest, retrieved_at=retrieved,
                                   cache_age_seconds=cache_age,
@@ -149,23 +142,34 @@ async def search_all_catalogs(ctx: RuntimeContext, query: str,
                 "unverified — a dead link in a catalog is common and is not "
                 "evidence the dataset is gone.",
     }
-    if not results and not failures:
+    if (not results and not failures and not gaps
+            and all(p is PaginationCoverage.complete for p in pages)):
         data["note"] = (
             f"None of the {len(searched)} catalogs searched holds a match for "
             f"{query!r}. These are catalogs of DOE-funded data; a gap here is "
             "about registration and cataloguing rather than about whether the "
             "data exists.")
 
-    if failures and not results:
+    if failures and not per_catalog_rows:
         execution = ExecutionCoverage.failed
-    elif failures:
+    elif failures or gaps:
         execution = ExecutionCoverage.partial
     else:
         execution = ExecutionCoverage.complete
 
+    # A known unreturned page settles truncation even if another catalog
+    # could not answer. Otherwise an unread or uncounted catalog prevents
+    # a claim that the whole requested search is complete.
+    if PaginationCoverage.truncated in pages:
+        pagination = PaginationCoverage.truncated
+    elif gaps or failures or PaginationCoverage.unknown in pages:
+        pagination = PaginationCoverage.unknown
+    else:
+        pagination = PaginationCoverage.complete
+
     return b.build(data, Coverage(
-        registry=RegistryCoverage.covered, execution=execution,
-        pagination=PaginationCoverage.truncated,
+        registry=RegistryCoverage.partial if gaps else RegistryCoverage.covered,
+        execution=execution, pagination=pagination,
         source_claim=SourceClaimCoverage.partial,
         result=result_dim(len(results)), sources_searched=searched,
         sources_unavailable=gaps, source_failures=failures))
@@ -280,7 +284,8 @@ async def facility_status(ctx: RuntimeContext, system: str = "",
     ref = add_manifest_source(b, ctx, manifest,
                               retrieved_at=fetched.retrieved_at,
                               cache_age_seconds=fetched.cache_age_seconds,
-                              from_cache=fetched.from_cache)
+                              from_cache=fetched.from_cache,
+                              dataset=f"{board.facility} system status")
     for s in board.systems:
         b.add_evidence(source_ref=ref, record_id=s.name,
                        retrieved_at=fetched.retrieved_at,
@@ -305,13 +310,20 @@ async def facility_status(ctx: RuntimeContext, system: str = "",
                  "allocation."),
     }
     if include_planned:
+        planned_fetch = board.planned_fetch
+        assert planned_fetch is not None
+        planned_ref = add_manifest_source(
+            b, ctx, manifest, retrieved_at=planned_fetch.retrieved_at,
+            cache_age_seconds=planned_fetch.cache_age_seconds,
+            from_cache=planned_fetch.from_cache,
+            dataset=f"{board.facility} planned outages")
         # Each window is its own record, so each gets evidence a citation
         # can point at. The board gives a window no id; system and start
         # time together are unique on it.
         for o in board.planned:
-            b.add_evidence(source_ref=ref,
+            b.add_evidence(source_ref=planned_ref,
                            record_id=f"{o.system}@{o.start_at or 'unscheduled'}",
-                           retrieved_at=fetched.retrieved_at,
+                           retrieved_at=planned_fetch.retrieved_at,
                            effective_at=o.start_at, transformations=[])
         data["planned_outages"] = [
             {"system": o.system, "start_at": o.start_at, "end_at": o.end_at,

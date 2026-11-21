@@ -25,6 +25,7 @@ from ..core.errors import InvalidQuery
 from ..core.organizations import OrgKind, Organization
 from ..core.registry import SourceManifest
 from ..core.toolreg import ToolRegistry, ToolSpec
+from ..gcam_catalog import TABLES
 from ..runtime import RuntimeContext
 from ._common import add_project_source, builder
 
@@ -323,6 +324,21 @@ async def describe_source(ctx: RuntimeContext, source_id: str) -> Envelope:
     if m.aliases.former_names or m.aliases.former_domains:
         detail["aliases"] = {"former_names": m.aliases.former_names,
                              "former_domains": m.aliases.former_domains}
+    if m.adapter.type == "gcam_csv":
+        tables = ctx.gcam.params_for(m).tables
+        detail["table_inventory"] = {
+            "metadata_source": "local_manifest_and_tool_catalog",
+            "note": ("Local registry metadata; no publisher table was fetched. "
+                     "Read a table's source_notes to check units and field meanings. "
+                     "Filters match column names and text values exactly."),
+            "tables": [
+                {"table": name, "tool": f"{m.domain}.{name}",
+                 "description": TABLES[m.domain][name],
+                 "filter_columns": spec.columns, "file_url": spec.url}
+                for name, spec in tables.items()
+            ],
+            "record_count": len(tables),
+        }
     detail = {k: v for k, v in detail.items() if v not in (None, [], "")}
 
     if m.access.citation_required:
@@ -429,6 +445,8 @@ REGISTRY_TOOLS.register(ToolSpec(
         "The full registry entry for one source: publisher and funder, "
         "authority level, terms and when they were reviewed, known "
         "limitations, record counts, and why it is not active if it is not. "
+        "GCAM entries also list table tools, exact filter columns and publisher file URLs "
+        "from the local manifest and tool catalog, without fetching table data. "
         "Use when the user asks where an answer came from, what a source's "
         "caveats are, or whether they may use the data."),
     toolset="discovery", contract_version="1", fn=describe_source))

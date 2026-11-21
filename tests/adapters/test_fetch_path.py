@@ -14,7 +14,7 @@ import pytest
 import doe_mcp.adapters.base as base
 from doe_mcp.adapters.base import HttpFetcher
 from doe_mcp.core.egress import EgressPolicy
-from doe_mcp.core.errors import RateLimited, SourceUnavailable
+from doe_mcp.core.errors import DoeMcpError, RateLimited, SourceUnavailable
 
 HOST = "api.eia.gov"
 
@@ -145,3 +145,61 @@ async def test_the_shared_client_is_one_per_loop():
     assert first is second
     await base.close_shared_client()
     assert first.is_closed
+
+
+@pytest.mark.parametrize("status", [400, 401, 403, 404, 422])
+@pytest.mark.parametrize("operation", ["fetch_json", "fetch_text"])
+async def test_publisher_error_echoes_do_not_disclose_the_request_key(status, operation):
+    secret = "do-not-print-this-api-key"
+
+    def handler(request):
+        return httpx.Response(status, json={"error": {"code": "REFUSED",
+                              "message": f"Invalid api_key: {secret}"}})
+
+    with pytest.raises(DoeMcpError) as err:
+        await getattr(fetcher(handler), operation)(f"https://{HOST}/v2", {"api_key": secret})
+    assert secret not in str(err.value)
+    assert "<redacted>" in str(err.value)
+
+
+async def test_request_logs_omit_keys_and_private_query_text(caplog):
+    secret = "do-not-print-this-api-key"
+    query = "unpublished-research-idea"
+
+    def handler(request):
+        assert request.url.params["api_key"] == secret
+        return httpx.Response(200, json={"ok": True})
+
+    with caplog.at_level("INFO", logger="httpx"):
+        result = await fetcher(handler).fetch_json(f"https://{HOST}/v2",
+                                                  {"api_key": secret, "query": query})
+    assert "HTTP Request:" in caplog.text
+    assert secret not in caplog.text
+    assert query not in caplog.text
+    assert secret not in result.url
+
+
+async def test_the_httpx_log_filter_leaves_unrelated_client_logs_alone(caplog):
+    with caplog.at_level("INFO", logger="httpx"):
+        async with httpx.AsyncClient(transport=httpx.MockTransport(
+                lambda request: httpx.Response(200, json={}))) as client:
+            await client.get("https://unrelated.example/data", params={"page": 2})
+    assert "page=2" in caplog.text
+
+
+async def test_invalid_json_encoding_is_a_typed_source_failure():
+    def handler(request):
+        return httpx.Response(200, content=b'\xff{"message": "bad encoding"}')
+
+    with pytest.raises(SourceUnavailable, match="non-JSON"):
+        await fetcher(handler).fetch_json(f"https://{HOST}/v2", {})
+
+
+async def test_relative_redirects_resolve_against_the_actual_request_query():
+    def handler(request):
+        if "redirected" not in request.url.fragment:
+            return httpx.Response(302, headers={"location": "#redirected"})
+        return httpx.Response(200, json={"page": request.url.params["page"]})
+
+    result = await fetcher(handler).fetch_json(f"https://{HOST}/v2", {"page": 2})
+    assert result.payload == {"page": "2"}

@@ -18,6 +18,7 @@ import re
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
+from urllib.parse import quote, quote_plus
 
 from ..core.errors import SourceUnavailable
 from .base import JsonResponse, TextResponse
@@ -69,27 +70,42 @@ def redact_pii(node: Any) -> Any:
     return node
 
 
-def redact_secrets(node: Any, secrets: frozenset[str]) -> Any:
-    """Replace known credential VALUES wherever they appear.
-
-    The name-based rule covers the request parameter. This covers whatever
-    the publisher reflected back: EIA's v2 responses carry a `request` block
-    echoing the query, and a redirect or error body can quote the URL that
-    produced it. Both routes would put a key on disk without this pass.
-    """
-    if not secrets:
-        return node
+def _named_credential_values(node: Any) -> set[str]:
+    values: set[str] = set()
     if isinstance(node, dict):
-        return {k: redact_secrets(v, secrets) for k, v in node.items()}
-    if isinstance(node, list):
-        return [redact_secrets(v, secrets) for v in node]
-    if isinstance(node, str):
-        out = node
-        for secret in secrets:
-            if secret and secret in out:
-                out = out.replace(secret, REDACTED_SECRET)
-        return out
-    return node
+        for name, value in node.items():
+            if (is_credential_param(str(name)) and isinstance(value, str)
+                    and value and value != REDACTED_SECRET):
+                values.add(value)
+            values.update(_named_credential_values(value))
+    elif isinstance(node, list):
+        for value in node:
+            values.update(_named_credential_values(value))
+    return values
+
+
+def redact_secrets(node: Any, secrets: frozenset[str]) -> Any:
+    """Replace credential values, including keys reflected by a publisher.
+
+    A publisher may return a cached request block carrying a different key
+    from the one we sent. Collect named credential fields throughout the
+    response before replacing their values anywhere, including free text.
+    """
+    known = set(secrets) | _named_credential_values(node)
+    variants = {variant for value in known if value for variant in
+                (value, quote(value, safe=""), quote_plus(value), json.dumps(value)[1:-1])}
+
+    def replace(value: Any) -> Any:
+        if isinstance(value, dict):
+            return {key: replace(item) for key, item in value.items()}
+        if isinstance(value, list):
+            return [replace(item) for item in value]
+        if isinstance(value, str):
+            for secret in sorted(variants, key=len, reverse=True):
+                value = value.replace(secret, REDACTED_SECRET)
+        return value
+
+    return replace(node)
 
 
 def _key(url: str, params: dict[str, Any]) -> str:
@@ -235,13 +251,13 @@ class RecordingFetcher:
         """
         if refusal.status is None:
             return
-        self.interactions.append({
+        self.interactions.append(redact_secrets({
             "url": url,
             "params": {k: (REDACTED_SECRET if is_credential_param(k)
                            else str(v)) for k, v in params.items()},
             "headers": {},
             "error": {"code": refusal.code, "status": refusal.status,
-                      "message": str(refusal)}})
+                      "message": str(refusal)}}, self.secrets))
 
     def write(self, path: Path, note: str) -> None:
         # A fixture with nothing in it is not a fixture, and writing one
@@ -257,6 +273,10 @@ class RecordingFetcher:
                 "The previous fixture is left alone; a publisher that "
                 "refused every request is an outage to wait out, not a "
                 "reason to overwrite what was recorded when it was up.")
+        if _named_credential_values(self.interactions):
+            raise ValueError(
+                f"refusing to write {path}: a named credential field survived "
+                "redaction. Nothing was written.")
         text = json.dumps(
             {"note": note,
              "recorded_at": datetime.now(timezone.utc).isoformat(),

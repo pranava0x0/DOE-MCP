@@ -19,7 +19,8 @@ from __future__ import annotations
 
 import os
 import stat
-from dataclasses import dataclass
+import tempfile
+from dataclasses import dataclass, field
 from pathlib import Path
 
 from .errors import CredentialMissing
@@ -84,9 +85,40 @@ def _parse(text: str) -> dict[str, str]:
     return out
 
 
+def write_credential(path: Path, name: str, value: str) -> None:
+    """Replace a credential file only after a private copy is complete."""
+    if name not in CREDENTIAL_SPECS:
+        raise ValueError("unknown credential name")
+    if not value or any(char.isspace() or char == "\x00" for char in value):
+        raise ValueError("a credential must be one nonempty value without whitespace")
+    if path.is_symlink():
+        raise ValueError("refusing to replace a symbolic-link credentials file")
+    lines = []
+    if path.exists():
+        if not path.is_file():
+            raise ValueError("the credentials path must be a regular file")
+        lines = [line for line in path.read_text().splitlines()
+                 if line.partition("=")[0].strip() != name]
+    lines.append(f"{name}={value}")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary: Path | None = None
+    try:
+        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8",
+                                         dir=path.parent, delete=False) as stream:
+            temporary = Path(stream.name)
+            os.fchmod(stream.fileno(), 0o600)
+            stream.write("\n".join(lines) + "\n")
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, path)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
+
+
 @dataclass
 class Credentials:
-    values: dict[str, str]
+    values: dict[str, str] = field(repr=False)
     path: Path
     file_exists: bool
     insecure_mode: bool = False

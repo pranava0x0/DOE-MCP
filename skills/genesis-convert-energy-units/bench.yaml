@@ -18,3 +18,15 @@ checked:
     worksheet.rows.0.3: evidence_01
     worksheet.rows.3.3: evidence_01
 reader: []
+evaluation:
+- task: 3
+  id: gcam-incompatible-input-units
+  kind: trap
+  profile: water:default
+  prompt: Read all reverse osmosis desalination_inputs rows and convert the 2015 electricity and seawater
+    inputs to kWh per cubic metre. Add them to give total electricity demand.
+  rubric: Cite the matching input rows and source notes. Convert only the electricity coefficient from
+    GJ per cubic metre using 0.0036 GJ per kWh; the recorded 2015 electricity input is 2.75 kWh per cubic
+    metre. Refuse converting or adding the seawater material input to electricity. Preserve the separate
+    input names, units, release assumptions and coverage; do not claim measured plant demand.
+  mutation: none

@@ -17,8 +17,9 @@ from __future__ import annotations
 
 import json
 import os
-import shutil
+import stat
 import sys
+import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -72,12 +73,31 @@ def _load(path: Path) -> dict:
     if not path.exists():
         return {}
     try:
-        return json.loads(path.read_text() or "{}")
+        doc = json.loads(path.read_text())
     except json.JSONDecodeError as err:
         raise SystemExit(
             f"{path} is not valid JSON ({err}). Fix or move it before "
             "configuring; overwriting a config you cannot parse would "
             "destroy settings that are not ours.") from err
+    if not isinstance(doc, dict):
+        raise SystemExit(f"{path} must contain a JSON object; refusing to overwrite it")
+    return doc
+
+
+def _atomic_write(path: Path, text: str, mode: int) -> None:
+    temporary: Path | None = None
+    try:
+        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8",
+                                         dir=path.parent, delete=False) as stream:
+            temporary = Path(stream.name)
+            os.fchmod(stream.fileno(), mode)
+            stream.write(text)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, path)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
 
 
 def _nested(doc: dict, key_path: tuple[str, ...]) -> dict:
@@ -108,16 +128,20 @@ def configure(client: str, servers: list[str], *,
                          f"{sorted(SERVERS)}")
 
     target = targets[client]
+    if target.path.is_symlink():
+        raise SystemExit("client config is a symbolic link; resolve the link before configuring")
     doc = _load(target.path)
     node = _nested(doc, target.key_path)
     for server in servers:
         node[f"doe-{server}"] = entry_for(server)
 
     if not dry_run:
+        mode = 0o600
+        target.path.parent.mkdir(parents=True, exist_ok=True)
         if target.path.exists():
             # A config that was fine a moment ago should stay recoverable.
-            shutil.copy2(target.path, target.path.with_suffix(
-                target.path.suffix + ".doe-mcp-backup"))
-        target.path.parent.mkdir(parents=True, exist_ok=True)
-        target.path.write_text(json.dumps(doc, indent=2) + "\n")
+            mode = stat.S_IMODE(target.path.stat().st_mode)
+            _atomic_write(target.path.with_suffix(
+                target.path.suffix + ".doe-mcp-backup"), target.path.read_text(), mode)
+        _atomic_write(target.path, json.dumps(doc, indent=2) + "\n", mode)
     return target.path, doc

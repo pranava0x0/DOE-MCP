@@ -1,10 +1,9 @@
 """Egress policy: the only outbound path.
 
 Adapters are the only code that reaches the network, and every request URL
-passes through `EgressPolicy.validate_url` immediately before use. DNS is
-resolved and checked here, at request time; the small resolve-to-connect
-window a pinned-IP transport would close is a known residual, recorded
-rather than hidden.
+passes through `EgressPolicy.validate_url` immediately before use. Its
+immutable address snapshot is the transport's only set of TCP destinations;
+the HTTP origin and TLS hostname remain the publisher's hostname.
 
 Every rule has a known-bad fixture in tests/core/test_egress.py that must be
 refused — an egress rule without its refusal test is prose, not policy.
@@ -35,6 +34,8 @@ _SHARED_CGNAT = ipaddress.ip_network("100.64.0.0/10")
 
 
 def _blocked_ip(ip: ipaddress.IPv4Address | ipaddress.IPv6Address) -> str | None:
+    if isinstance(ip, ipaddress.IPv6Address) and ip.ipv4_mapped is not None:
+        return _blocked_ip(ip.ipv4_mapped)
     if ip.is_loopback:
         return "loopback"
     if ip.is_link_local:
@@ -46,6 +47,25 @@ def _blocked_ip(ip: ipaddress.IPv4Address | ipaddress.IPv6Address) -> str | None
     if ip.version == 4 and ip in _SHARED_CGNAT:
         return "shared CGNAT range"
     return None
+
+
+@dataclass(frozen=True)
+class ResolvedTarget:
+    scheme: str
+    host: str
+    port: int
+    addresses: tuple[str, ...]
+
+    def __post_init__(self) -> None:
+        if not self.addresses:
+            raise EgressRefused("validated DNS snapshot has no addresses")
+        for address in self.addresses:
+            try:
+                ip = ipaddress.ip_address(address)
+            except ValueError as err:
+                raise EgressRefused("validated DNS snapshot contains a nonnumeric address") from err
+            if str(ip) != address or _blocked_ip(ip):
+                raise EgressRefused("validated DNS snapshot contains an unsafe address")
 
 
 @dataclass
@@ -63,8 +83,15 @@ class EgressPolicy:
     allowed_ports: frozenset[int] = field(default_factory=frozenset)
     resolver: object = None  # test seam; defaults to socket.getaddrinfo
 
-    def validate_url(self, url: str) -> None:
-        parsed = urlparse(url)
+    def validate_url(self, url: str) -> ResolvedTarget:
+        try:
+            parsed = urlparse(url)
+            port = parsed.port
+        except ValueError as err:
+            raise EgressRefused("malformed URL authority or port refused") from err
+
+        if parsed.username is not None or parsed.password is not None:
+            raise EgressRefused("URL user information refused; credentials belong outside URLs")
 
         if parsed.scheme == "http":
             if not self.insecure_transport:
@@ -77,7 +104,7 @@ class EgressPolicy:
 
         host = parsed.hostname
         if not host:
-            raise EgressRefused(f"URL has no host: {url!r}")
+            raise EgressRefused("URL has no host")
 
         try:
             ipaddress.ip_address(host)
@@ -93,31 +120,37 @@ class EgressPolicy:
                 f"host {host!r} is not in this source's registered host set "
                 f"{sorted(self.allowed_hosts)}")
 
-        port = parsed.port
         default_ports = {443} | ({80} if self.insecure_transport else set())
         permitted = default_ports | set(self.allowed_ports)
         if port is not None and port not in permitted:
             raise EgressRefused(f"port {port} refused; permitted: "
                                 f"{sorted(permitted)}")
 
-        self._check_dns(host)
+        return ResolvedTarget(parsed.scheme, host, port or (
+            443 if parsed.scheme == "https" else 80), self._check_dns(host))
 
-    def _check_dns(self, host: str) -> None:
+    def _check_dns(self, host: str) -> tuple[str, ...]:
         resolver = self.resolver or socket.getaddrinfo
         try:
             infos = resolver(host, None)
         except OSError as err:
             raise EgressRefused(f"DNS resolution failed for {host!r}: "
                                 f"{err.__class__.__name__}") from err
-        addrs = {info[4][0] for info in infos}
+        addrs = tuple(dict.fromkeys(info[4][0] for info in infos))
         if not addrs:
             raise EgressRefused(f"DNS returned no addresses for {host!r}")
+        checked = []
         for raw in addrs:
-            ip = ipaddress.ip_address(raw.split("%")[0])
+            try:
+                ip = ipaddress.ip_address(raw.split("%")[0])
+            except ValueError as err:
+                raise EgressRefused(f"DNS returned an invalid address for {host!r}") from err
             reason = _blocked_ip(ip)
             if reason:
                 raise EgressRefused(
                     f"{host!r} resolves to {ip} ({reason}); refusing")
+            checked.append(str(ip))
+        return tuple(dict.fromkeys(checked))
 
     def validate_redirect(self, from_url: str, location: str,
                           hop_count: int) -> str:

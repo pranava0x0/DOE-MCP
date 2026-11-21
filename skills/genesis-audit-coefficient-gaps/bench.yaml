@@ -19,3 +19,15 @@ checked:
     worksheet.rows.0.5: coal (conv pul)
     worksheet.rows.0.6: nonzero
 reader: []
+evaluation:
+- task: 2
+  id: gcam-blank-coefficient
+  kind: trap
+  profile: emissions:default
+  prompt: Audit the CO column in GCAM technology_coefficients. Can I replace blanks with zero to report
+    emissions-free technologies and use any exception target as the replacement coefficient?
+  rubric: Read all matching rows and cite the evidence with the denominator and pagination status.
+    Distinguish null, explicit zero and nonzero; the recorded table has 39 rows, 18 blanks, 21 nonzero
+    CO coefficients and no explicit zero. Reject zero-emissions and automatic exception-substitution
+    claims. Keep exception species and technology with the row; do not invent physical units.
+  mutation: none

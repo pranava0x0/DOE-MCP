@@ -80,6 +80,14 @@ def _style() -> str:
     # so the page is legible and correctly laid out before they arrive and
     # if they never do.
     return """
+[hidden]{display:none!important}
+.skip-link{position:absolute;left:1rem;top:-8rem;z-index:100;background:var(--paper);color:var(--ink);padding:12px}
+.skip-link:focus{top:1rem}
+.demo-search{margin:16px 0}.demo-search label{display:block;font-weight:600;margin-bottom:6px}
+.demo-search input{width:100%;max-width:38rem;padding:12px;font:inherit;border:1px solid var(--muted);border-radius:4px;background:var(--card);color:var(--ink)}
+.demo-search input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.demo-search p{margin:6px 0;color:var(--muted)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 .demo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:20px 0}.demo-link{display:flex;flex-direction:column;gap:12px;padding:20px;border:1px solid var(--line);border-radius:8px;background:var(--card);text-decoration:none;overflow-wrap:anywhere}.demo-link strong{font-size:1.12rem}.demo-link span{color:var(--ink)}.demo-link small{color:var(--muted);margin-top:auto}.demo-link:hover{border-color:var(--accent)}.demo-link:focus-visible{outline:3px solid var(--accent);outline-offset:3px}@media(max-width:900px){.demo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.demo-grid{grid-template-columns:1fr;gap:8px;margin:12px 0}.demo-link{padding:12px 14px;gap:4px}.demo-link span{display:none}}
 :root{
   /* DOE grey ramp */
@@ -509,7 +517,8 @@ def _demo_cards(*, genesis: bool) -> str:
         field = f' data-field="{e(FIELD_CASES[case])}"' if case in FIELD_CASES else ""
         out.append(f'<a class="demo-link" href="demos.html#{e(case)}"{field}><strong>{e(title)}</strong>'
                    f'<span>{e(blurb)}</span><small>{e(label)} · {e(kind)}</small></a>')
-    return '<div class="demo-grid">' + "".join(out) + "</div>"
+    group = "genesis-mission" if genesis else "other-workflows"
+    return f'<div class="demo-grid" aria-labelledby="{group}">' + "".join(out) + "</div>"
 
 
 def _arch_diagram(data: dict) -> str:
@@ -761,6 +770,29 @@ def _neighbours(data: dict) -> str:
 def _script() -> str:
     return """
 (function(){
+  var input = document.getElementById('demo-query');
+  if (!input) return;
+  var cards = Array.from(document.querySelectorAll('.demo-link'));
+  document.getElementById('demo-search').hidden = false;
+  input.addEventListener('input', function(){
+    var terms = input.value.toLowerCase().split(/\\s+/).filter(Boolean);
+    var count = 0;
+    cards.forEach(function(card){
+      var text = card.textContent.toLowerCase();
+      card.hidden = !terms.every(function(term){ return text.includes(term); });
+      if (!card.hidden) count++;
+    });
+    document.querySelectorAll('.demo-grid').forEach(function(grid){
+      var empty = !grid.querySelector('.demo-link:not([hidden])');
+      grid.hidden = empty;
+      document.getElementById(grid.getAttribute('aria-labelledby')).hidden = empty;
+    });
+    document.getElementById('demo-count').textContent = count
+      ? count + ' of ' + cards.length + ' walkthroughs shown.'
+      : 'No walkthroughs match. Try weather, soil, grid or a skill name.';
+  });
+})();
+(function(){
   var q = document.getElementById('q');
   if(!q) return;
   var rows = Array.prototype.slice.call(
@@ -795,6 +827,7 @@ def render(data: dict) -> str:
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
 <title>DOE-MCP — public DOE data over the Model Context Protocol</title>
 <meta name="description" content="MCP servers over public US Department of
  Energy and national-laboratory data. Every answer names the systems it came
@@ -808,6 +841,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
 <style>{_style()}{ATLAS_CSS}</style>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to content</a>
 
 <div class="util" id="top"><div class="util-inner">
   <p style="margin:0">
@@ -816,7 +850,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
   <a href="https://github.com/pranava0x0/DOE-MCP">View source ↗</a>
 </div></div>
 
-<nav class="toc"><div class="toc-inner">
+<nav class="toc" aria-label="Page sections"><div class="toc-inner">
   <a class="toc-brand" href="#top">DOE-MCP</a>
   <div class="toc-links">{nav}</div>
 </div></nav>
@@ -832,7 +866,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
   <p class="works">Works with: {works}</p></div>
 </div></header>
 
-<div class="wrap">
+<main class="wrap" id="main-content" tabindex="-1">
 
 <section id="overview">
 <details class="sect" open>
@@ -841,10 +875,15 @@ family=Roboto+Mono:wght@400;500&display=swap">
   <p id="overview-about">DOE-MCP connects AI clients to public DOE and national-laboratory data through read-only tools. Results include sources, retrieval dates and coverage limits.</p>
   <h3 id="overview-demos">Demos</h3>
   <p>All {len(DEMO_CARDS)} walkthroughs use recorded data: no account, API key or paid model.</p>
+  <div class="demo-search" id="demo-search" hidden>
+    <label for="demo-query">Find a walkthrough</label>
+    <input type="search" id="demo-query" placeholder="Try weather, soil, grid or a skill name" aria-describedby="demo-count">
+    <p id="demo-count" role="status" aria-live="polite">{len(DEMO_CARDS)} walkthroughs shown.</p>
+  </div>
   <h4 id="genesis-mission">Genesis Mission skills</h4>
   <p>Follow a Genesis method with DOE-MCP data. Each card opens a recorded example with its evidence.</p>
   {_demo_cards(genesis=True)}
-  <h4>Other DOE workflows</h4>
+  <h4 id="other-workflows">Other DOE workflows</h4>
   {_demo_cards(genesis=False)}
   <details><summary>Genesis Skills compatibility</summary>
   <p>DOE-MCP's skills use the same Agent Skills format as <a href="https://github.com/AI-ModCon/genesis-skills">Genesis Agent Skills</a>. The demos use DOE-MCP's own tools; no upstream skills or lab services run here. <a href="guide.html#genesis-and-no-cost-demos">Integration and cost details</a>.</p>
@@ -932,7 +971,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
   <p class="lede">In the repository: <code>CONTRIBUTING.md</code>,
   <code>CODE_OF_CONDUCT.md</code>, <code>SECURITY.md</code>,
   <code>CITATION.cff</code>, <code>NOTICE</code>, <code>AGENTS.md</code>, and
-  <code>design/architecture.md</code> — the system in Part 1 and all eighteen
+  <code>design/architecture.md</code> — the system in Part 1 and the
   decisions in Part 2, each keeping the options it rejected, because six
   months from now the useful question is not what was chosen but what was
   given up and whether the reason still holds.</p>
@@ -940,7 +979,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
 </details>
 </section>
 
-</div>
+</main>
 
 <footer><div class="wrap">
   <p>DOE-MCP {e(data['version'])} · registry revision
@@ -966,6 +1005,9 @@ family=Roboto+Mono:wght@400;500&display=swap">
 //
 // Braces are doubled because this sits inside an f-string template.
 (function () {{
+  function fragment(value) {{
+    try {{ return decodeURIComponent(value); }} catch (err) {{ return ''; }}
+  }}
   function reveal(id) {{
     var el = document.getElementById(id);
     if (!el) return false;
@@ -983,7 +1025,10 @@ family=Roboto+Mono:wght@400;500&display=swap">
     for (var sib = el.nextElementSibling; sib && !/^H[1-4]$/.test(sib.tagName); sib = sib.nextElementSibling) {{
       if (sib.tagName === "DETAILS") {{ sib.open = true; break; }}
     }}
-    el.scrollIntoView({{block: "start", behavior: "smooth"}});
+    if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '-1');
+    el.focus({{preventScroll: true}});
+    el.scrollIntoView({{block: "start", behavior:
+      matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'}});
     return true;
   }}
   document.addEventListener("click", function (ev) {{
@@ -991,7 +1036,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
     if (!target) return;
     var link = target.closest('a[href^="#"]');
     if (!link) return;
-    var id = decodeURIComponent(link.getAttribute("href").slice(1));
+    var id = fragment(link.getAttribute("href").slice(1));
     if (!id || !reveal(id)) return;
     ev.preventDefault();
     try {{ history.replaceState(null, "", "#" + id); }} catch (err) {{ /* data: URL */ }}
@@ -999,9 +1044,9 @@ family=Roboto+Mono:wght@400;500&display=swap">
   // A link followed into the page from outside still has to open its
   // section.
   addEventListener("hashchange", function () {{
-    reveal(decodeURIComponent((location.hash || "").slice(1)));
+    reveal(fragment((location.hash || "").slice(1)));
   }});
-  if (location.hash) reveal(decodeURIComponent(location.hash.slice(1)));
+  if (location.hash) reveal(fragment(location.hash.slice(1)));
 }})();
 </script>
 </body>

@@ -12,10 +12,13 @@ remembered.
 from __future__ import annotations
 
 import re
+import tomllib
 from pathlib import Path
 
 import pytest
 import yaml
+from packaging.requirements import Requirement
+from packaging.version import Version
 
 ROOT = Path(__file__).resolve().parents[1]
 WORKFLOWS = sorted((ROOT / ".github" / "workflows").glob("*.yml"))
@@ -26,6 +29,21 @@ _SHA_PIN = re.compile(r"^[\w.-]+/[\w.-]+(?:/[\w.-]+)*@[0-9a-f]{40}$")
 
 def _jobs(path: Path) -> dict:
     return yaml.safe_load(path.read_text())
+
+
+@pytest.mark.parametrize("package,minimum,advisory", [
+    ("mcp", "2.2.0", "GHSA-rwrf-2pqf-9j8j"),
+    ("pydantic", "2.14.2", "GHSA-qpmf-fgh3-ff25"),
+])
+def test_known_advisory_fixes_remain_exact_pins(package, minimum, advisory):
+    document = tomllib.loads((ROOT / "pyproject.toml").read_text())
+    requirements = [Requirement(value) for value in document["project"]["dependencies"]]
+    requirement = next(item for item in requirements if item.name == package)
+    specifiers = list(requirement.specifier)
+    assert len(specifiers) == 1 and specifiers[0].operator == "=="
+    pinned = Version(specifiers[0].version)
+    assert not pinned.is_prerelease
+    assert pinned >= Version(minimum), f"{package} pin reintroduces {advisory}"
 
 
 @pytest.mark.parametrize("path", WORKFLOWS, ids=[p.name for p in WORKFLOWS])

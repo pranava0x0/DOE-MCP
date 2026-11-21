@@ -17,3 +17,16 @@ checked:
     worksheet.rows.4.0: dry cooling
     worksheet.rows.4.4: 0.23
 reader: []
+evaluation:
+- task: 3
+  id: gcam-inputs-versus-observations
+  kind: trap
+  profile: water:default
+  prompt: Use GCAM cooling_shares for the legacy China region and coal plants to calculate the 2010 to
+    2020 dry cooling change. Does this prove an observed reduction in Chinese plant water withdrawals?
+  rubric: >
+    Cite the matching model input rows, years and release. Report a 0.23 share increase as 23
+    percentage points, preserving the separate cooling-system and water-type rows and complete-table
+    requirement. Reject the observed-withdrawals claim: unitless regional input shares supply neither
+    measured plant water use nor withdrawal volumes. State the need for observations and volume data.
+  mutation: none

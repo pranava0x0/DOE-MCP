@@ -34,6 +34,8 @@ RENDERED = AUTHORED + ["docs/index.html", "docs/demos.html"]
 # (phrase, surfaces, why it is out). Matched case-insensitively as a
 # substring, so keep each one specific enough not to catch a legitimate use.
 BANNED = [
+    ("all eighteen", AUTHORED,
+     "A fixed decision count became stale; refer to the decision records without a count."),
     ('class="atlas-kicker"', RENDERED, "User requested no eyebrow labels."),
     ('class="atlas-label', RENDERED, "User requested no eyebrow labels."),
     ('class="plate-cap"', RENDERED, "Remove decorative captions around the globe."),

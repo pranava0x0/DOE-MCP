@@ -95,3 +95,16 @@ def test_dns_failure_is_a_refusal_not_a_silent_pass():
 
 def test_hosts_from_url():
     assert hosts_from_url("https://WWW.OSTI.GOV/api") == frozenset({"www.osti.gov"})
+
+
+@pytest.mark.parametrize("authority", ["www.osti.gov:invalid", "www.osti.gov:65536", "[broken"])
+def test_malformed_authorities_are_typed_refusals(authority):
+    with pytest.raises(EgressRefused, match="malformed URL"):
+        policy().validate_url(f"https://{authority}/api")
+
+
+def test_url_credentials_are_refused_without_echoing_them():
+    with pytest.raises(EgressRefused, match="user information") as err:
+        policy(allowed_hosts=frozenset({"publisher.example.invalid"})).validate_url(
+            "https://user:do-not-echo@publisher.example.invalid/api")
+    assert "do-not-echo" not in str(err.value)

@@ -7,7 +7,7 @@ import json
 import pytest
 
 from doe_mcp.cli.configure import SERVERS, configure, entry_for
-from doe_mcp.core.credentials import CREDENTIAL_SPECS, Credentials
+from doe_mcp.core.credentials import CREDENTIAL_SPECS, Credentials, write_credential
 
 
 def test_a_client_config_entry_carries_no_environment_block():
@@ -172,3 +172,140 @@ def test_tools_call_auto_detects_profile(ctx, capsys, monkeypatch):
     response = json.loads(capsys.readouterr().out)
     assert response["_execution"]["tool"] == "grid.get_bpa_operations"
     assert response["data"]["record_count"] == 2
+
+
+@pytest.mark.parametrize("text", ["null", "[]", '"settings"', "42", ""])
+def test_configure_preserves_a_config_without_an_object_root(tmp_path, monkeypatch, text):
+    import doe_mcp.cli.configure as mod
+    monkeypatch.setattr(mod, "_home", lambda: tmp_path)
+    target = tmp_path / ".claude.json"
+    target.write_text(text)
+    with pytest.raises(SystemExit):
+        configure("claude-code", ["research"])
+    assert target.read_text() == text
+    assert not target.with_suffix(".json.doe-mcp-backup").exists()
+
+
+def test_configure_replaces_a_backup_link_without_touching_its_target(tmp_path, monkeypatch):
+    import doe_mcp.cli.configure as mod
+    monkeypatch.setattr(mod, "_home", lambda: tmp_path)
+    target = tmp_path / ".claude.json"
+    original = '{"other": true}'
+    target.write_text(original)
+    unrelated = tmp_path / "unrelated"
+    unrelated.write_text("preserve me")
+    backup = tmp_path / ".claude.json.doe-mcp-backup"
+    backup.symlink_to(unrelated)
+    configure("claude-code", ["research"])
+    assert unrelated.read_text() == "preserve me"
+    assert backup.read_text() == original
+    assert not backup.is_symlink()
+
+
+def test_failed_config_replacement_preserves_the_original(tmp_path, monkeypatch):
+    import doe_mcp.cli.configure as mod
+    monkeypatch.setattr(mod, "_home", lambda: tmp_path)
+    target = tmp_path / ".claude.json"
+    original = '{"other": true}'
+    target.write_text(original)
+    replace = mod.os.replace
+
+    def fail_final(source, destination):
+        if destination == target:
+            raise OSError("simulated disk failure")
+        replace(source, destination)
+
+    monkeypatch.setattr(mod.os, "replace", fail_final)
+    with pytest.raises(OSError, match="simulated disk failure"):
+        configure("claude-code", ["research"])
+    assert target.read_text() == original
+    assert set(tmp_path.iterdir()) == {target, target.with_suffix(".json.doe-mcp-backup")}
+
+
+def test_credential_replacement_is_private_before_publication(tmp_path, monkeypatch):
+    import doe_mcp.core.credentials as mod
+    path = tmp_path / "credentials.env"
+    path.write_text("# keep this\nEIA_API_KEY = old-key\nMP_API_KEY=other-key\n")
+    replace = mod.os.replace
+
+    def check_mode(source, destination):
+        assert source.stat().st_mode & 0o777 == 0o600
+        assert "EIA_API_KEY=new-key" in source.read_text()
+        replace(source, destination)
+
+    monkeypatch.setattr(mod.os, "replace", check_mode)
+    write_credential(path, "EIA_API_KEY", "new-key")
+    assert Credentials.load(path).values["EIA_API_KEY"] == "new-key"
+    assert "old-key" not in path.read_text()
+    assert "# keep this" in path.read_text()
+    assert "MP_API_KEY=other-key" in path.read_text()
+
+
+def test_credential_write_refuses_a_symbolic_link(tmp_path):
+    target = tmp_path / "unrelated"
+    target.write_text("preserve me")
+    path = tmp_path / "credentials.env"
+    path.symlink_to(target)
+    with pytest.raises(ValueError, match="symbolic-link"):
+        write_credential(path, "EIA_API_KEY", "new-key")
+    assert target.read_text() == "preserve me"
+
+
+def test_failed_credential_replacement_preserves_the_original(tmp_path, monkeypatch):
+    import doe_mcp.core.credentials as mod
+    path = tmp_path / "credentials.env"
+    original = "EIA_API_KEY=old-key\n"
+    path.write_text(original)
+
+    def fail_replace(source, destination):
+        raise OSError("simulated disk failure")
+
+    monkeypatch.setattr(mod.os, "replace", fail_replace)
+    with pytest.raises(OSError, match="simulated disk failure"):
+        write_credential(path, "EIA_API_KEY", "new-key")
+    assert path.read_text() == original
+    assert list(tmp_path.iterdir()) == [path]
+
+
+def test_configure_refuses_a_symbolic_link_without_touching_the_target(tmp_path, monkeypatch):
+    import doe_mcp.cli.configure as mod
+    monkeypatch.setattr(mod, "_home", lambda: tmp_path)
+    target = tmp_path / "actual-config"
+    target.write_text('{"other": true}')
+    (tmp_path / ".claude.json").symlink_to(target)
+    with pytest.raises(SystemExit, match="symbolic link"):
+        configure("claude-code", ["research"])
+    assert target.read_text() == '{"other": true}'
+
+
+@pytest.mark.parametrize("value", ["first\nMP_API_KEY=injected", "a\rb", "a\x00b", "a b"])
+def test_credential_write_refuses_multiple_values_without_echoing_them(tmp_path, value):
+    path = tmp_path / "credentials.env"
+    with pytest.raises(ValueError) as err:
+        write_credential(path, "EIA_API_KEY", value)
+    assert value not in str(err.value)
+    assert not path.exists()
+
+
+@pytest.mark.parametrize("arguments", [
+    ["--set", "secret-as-name"],
+    ["--set", "secret-as-name", "another-value"],
+    ["--set", "EIA_API_KEY", "--secret-as-name"],
+    ["--set", "EIA_API_KEY", "--from-env", "secret-as-name"],
+])
+def test_all_credential_argument_refusals_hide_input(arguments, capsys, monkeypatch):
+    import sys
+    from doe_mcp.cli.__main__ import main
+    monkeypatch.setattr(sys, "argv", ["doe-mcp", "configure", "credentials", *arguments])
+    monkeypatch.delenv("secret-as-name", raising=False)
+    try:
+        assert main() != 0
+    except SystemExit as err:
+        assert err.code != 0
+    captured = capsys.readouterr()
+    assert "secret-as-name" not in captured.out + captured.err
+
+
+def test_credentials_repr_omits_values(tmp_path):
+    creds = Credentials({"EIA_API_KEY": "do-not-print-me"}, tmp_path, False)
+    assert "do-not-print-me" not in repr(creds)

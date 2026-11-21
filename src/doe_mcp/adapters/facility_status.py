@@ -93,9 +93,13 @@ class PlannedOutage:
 class StatusBoard:
     facility: str
     systems: list[SystemStatus]
-    planned: list[PlannedOutage]
+    planned_fetch: Fetched[list[PlannedOutage]] | None
     systems_on_board: int
     """Every system the board lists, before a caller's filter."""
+
+    @property
+    def planned(self) -> list[PlannedOutage]:
+        return self.planned_fetch.value if self.planned_fetch is not None else []
 
 
 def _text(value: Any) -> str | None:
@@ -159,6 +163,7 @@ class FacilityStatusAdapter:
 
     async def board(self, manifest: SourceManifest, *, system: str = "",
                     include_planned: bool = True) -> Fetched[StatusBoard]:
+        """Status fetch metadata wraps the board; outages retain their own."""
         params = self.params_for(manifest)
         base = params.base_url.rstrip("/")
         status = await self._fetch(manifest, params,
@@ -178,15 +183,17 @@ class FacilityStatusAdapter:
                     f"Its systems: {sorted(s.name for s in systems)}.")
         chosen = [s for s in systems if not wanted or s.name.lower() == wanted]
 
-        planned: list[PlannedOutage] = []
+        planned_fetch = None
         if include_planned:
             outages = await self._fetch(manifest, params,
                                         base + params.planned_path)
             planned = self._planned(outages.payload, manifest.id)
             if wanted:
                 planned = [o for o in planned if o.system.lower() == wanted]
+            planned_fetch = Fetched.of(outages, planned)
         board = StatusBoard(facility=params.facility, systems=chosen,
-                            planned=planned, systems_on_board=len(systems))
+                            planned_fetch=planned_fetch,
+                            systems_on_board=len(systems))
         log_source_call(manifest, "board", {"system": system}, len(chosen))
         return Fetched.of(status, board)
 
