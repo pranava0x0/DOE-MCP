@@ -302,7 +302,8 @@
           "sha256": "717c92092351ab13cd9ad61bd10f8988c06748fe63201b872ef22d12fd23b70a",
           "captured_at": null
         }
-      ]
+      ],
+      "format_version": "2"
     },
     {
       "id": "simulation-focused-skills-on",
@@ -449,7 +450,8 @@
           "sha256": "717c92092351ab13cd9ad61bd10f8988c06748fe63201b872ef22d12fd23b70a",
           "captured_at": null
         }
-      ]
+      ],
+      "format_version": "2"
     },
     {
       "id": "simulation-all-skills-off",
@@ -596,7 +598,8 @@
           "sha256": "717c92092351ab13cd9ad61bd10f8988c06748fe63201b872ef22d12fd23b70a",
           "captured_at": null
         }
-      ]
+      ],
+      "format_version": "2"
     },
     {
       "id": "simulation-all-skills-on",
@@ -743,7 +746,8 @@
           "sha256": "717c92092351ab13cd9ad61bd10f8988c06748fe63201b872ef22d12fd23b70a",
           "captured_at": null
         }
-      ]
+      ],
+      "format_version": "2"
     }
   ],
   "cells": [
