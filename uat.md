@@ -261,3 +261,34 @@ was queried and no real-world forecast performance was evaluated.
 The functional audit also passed all 38 demos at each viewport, including
 216 section jumps, thirteen worksheet downloads, the Daymet checksum pair
 and keyboard navigation. It reported no browser errors or page overflow.
+
+## Integrated forecast and evaluation verification — 2026-11-21
+
+The forecast panel now runs beside the GCAM receipts, research explorer
+and evaluation matrix. The integrated suite passed 1,522 tests with one
+optional skip. Registry validation, Ruff, writing checks, schema generation,
+site regeneration, the 38-demo CLI/download comparison and the independent
+Croissant reader passed. Generated files match their source definitions.
+
+All three browser scripts passed with Playwright 1.58.2 and installed
+Chrome 158.0.8127.36 at 375×812, 768×1024 and 1280×800. The site audit
+completed 39 journeys and verified 413 local targets across eleven HTML
+documents, with no browser or first-party request errors. The functional
+audit passed the existing 38 demos, 216 section jumps, worksheet downloads,
+Daymet pair and keyboard checks. The separate evaluation audit verified
+the guide, comparison contract, simulation example, ZIP/CSV downloads and
+skip link at all three sizes.
+
+The forecast path verified the complete bundle and seven individual input
+and result files. It used ten clicks and two document loads, with one
+wheel action on the phone and none at larger widths. The homepage
+Evaluation lab shortcut retained its two-click, zero-wheel, two-load path.
+Phone screenshots show readable simulation labels, links and metric cards.
+Source-specific receipts and publisher replay clocks remain separate from
+the forecast simulation's input hashes and caller-declared provenance.
+
+Results are in ignored `uat-screenshots/final-panel-functional/`,
+`uat-screenshots/final-panel-journeys/` and
+`uat-screenshots/final-panel-evaluation/`. These are local scripted checks,
+not a physical-device or human study. No publisher API, model or reviewer
+was invoked and no real-world forecast performance or model cost was measured.
