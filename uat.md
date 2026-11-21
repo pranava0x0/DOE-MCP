@@ -198,3 +198,11 @@ fixture was modified or invented. An isolated test carries a real recorded
 typed relationship through the tool and app, retaining its unresolved target
 and field-specific evidence. Identity, malformed metadata, source activation,
 unknown totals and page-budget boundaries have separate regression checks.
+
+After integration with GCAM receipts, all 33 journeys and 370 local targets
+across nine HTML documents passed. The research bundle still takes three
+clicks and zero wheel actions at each width. Anchor movement increased to
+11,157, 5,454 and 4,613 vertical pixels; those movements are not user swipes.
+The full regression suite passed 1,429 tests with one optional skip. The
+research application also exported successfully from an installed wheel
+outside the checkout. The existing 38-demo functional audit passed.
