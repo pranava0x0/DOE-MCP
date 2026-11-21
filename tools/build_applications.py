@@ -86,7 +86,10 @@ async def write_applications(root: Path) -> None:
                 "Daymet keeps February 29 and omits December 31 in leap years; it reports modelled grid-cell weather.", "",
                 f"[Weather CSV](data/apps/{name}/weather.csv) · [Croissant metadata](data/apps/{name}/weather-croissant.json)", ""]
         elif name == "gcam-comparison":
-            lines += ["Select exact rows from released GCAM input tables and place their values side by side. "
+            lines += [
+                f"[Selection plan JSON](data/apps/{name}/plan.json) · [Receipt CSV](data/apps/{name}/receipts.csv) · "
+                f"[Receipts with source notes](data/apps/{name}/receipts.json) · [Pair assessments](data/apps/{name}/comparisons.json)", "",
+                "Select exact rows from released GCAM input tables and place their values side by side. "
                 "Each value retains a file, row, column, source note and evidence reference. "
                 "No arithmetic or unit conversion is performed.", "",
                 "The preset follows the publisher's country mappings for Japan, Indonesia, Kenya and Canada. "
@@ -107,8 +110,6 @@ async def write_applications(root: Path) -> None:
                 lines.append("| " + " | ".join(cell(pair[k]) for k in ["left", "right", "relationship", "arithmetic"]) + " |")
             lines += ["", "A relationship describes table and field identity, not scientific interchangeability. "
                 "The report retains each full row and its original envelope. Blank publisher values stay null.", "",
-                f"[Selection plan JSON](data/apps/{name}/plan.json) · [Receipt CSV](data/apps/{name}/receipts.csv) · "
-                f"[Receipts with source notes](data/apps/{name}/receipts.json) · [Pair assessments](data/apps/{name}/comparisons.json)", "",
                 "Download the plan, edit its exact filters and selected columns, then run:", "",
                 "```bash\ndoe-mcp app gcam-comparison --plan ./plan.json --output ./gcam-custom\n```", ""]
         else:

@@ -136,6 +136,7 @@ main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0
 <pre><code class="language-bash">doe-mcp app gcam-comparison --output ./gcam-comparison-run
 </code></pre>
 <p><a href="data/apps/gcam-comparison/bundle.zip" download="gcam-comparison.zip">Download complete bundle</a> · <a href="data/apps/gcam-comparison/report.json">View report and source evidence</a> · <a href="data/apps/gcam-comparison/manifest.json">File checksums</a></p>
+<p><a href="data/apps/gcam-comparison/plan.json" download="gcam-comparison-plan.json">Selection plan JSON</a> · <a href="data/apps/gcam-comparison/receipts.csv" download="gcam-comparison-receipts.csv">Receipt CSV</a> · <a href="data/apps/gcam-comparison/receipts.json" download="gcam-comparison-receipts.json">Receipts with source notes</a> · <a href="data/apps/gcam-comparison/comparisons.json" download="gcam-comparison-comparisons.json">Pair assessments</a></p>
 <p>Select exact rows from released GCAM input tables and place their values side by side. Each value retains a file, row, column, source note and evidence reference. No arithmetic or unit conversion is performed.</p>
 <p>The preset follows the publisher's country mappings for Japan, Indonesia, Kenya and Canada. Indonesia maps to the legacy <strong>Southeast Asia</strong> region; that value is not an Indonesia observation. The soil table uses numeric region IDs and prints <code>Units: NA</code>; its source description explains recovery in years. The 2100 desalination energy and cost fields are different inputs with different units.</p>
 <table>
@@ -224,7 +225,6 @@ main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0
 </tbody>
 </table>
 <p>A relationship describes table and field identity, not scientific interchangeability. The report retains each full row and its original envelope. Blank publisher values stay null.</p>
-<p><a href="data/apps/gcam-comparison/plan.json" download="gcam-comparison-plan.json">Selection plan JSON</a> · <a href="data/apps/gcam-comparison/receipts.csv" download="gcam-comparison-receipts.csv">Receipt CSV</a> · <a href="data/apps/gcam-comparison/receipts.json" download="gcam-comparison-receipts.json">Receipts with source notes</a> · <a href="data/apps/gcam-comparison/comparisons.json" download="gcam-comparison-comparisons.json">Pair assessments</a></p>
 <p>Download the plan, edit its exact filters and selected columns, then run:</p>
 <pre><code class="language-bash">doe-mcp app gcam-comparison --plan ./plan.json --output ./gcam-custom
 </code></pre>

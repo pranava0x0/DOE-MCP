@@ -168,3 +168,8 @@ link. Its earlier bounding-box centre could land on whitespace or another
 link. Download observation and clicking are awaited together so a failure
 produces an audit report instead of an unhandled promise rejection. These
 changes preserve real click and scroll counts; they do not use forced clicks.
+
+The receipt links now sit before the GCAM tables. This removes the need to
+scroll through those tables to download the selection plan and source
+receipts. The full audit path checks five downloads, so its action count is
+not the same task as downloading only the bundle.

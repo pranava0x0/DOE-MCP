@@ -100,6 +100,8 @@ doe-mcp app gcam-comparison --output ./gcam-comparison-run
 
 [Download complete bundle](data/apps/gcam-comparison/bundle.zip) · [View report and source evidence](data/apps/gcam-comparison/report.json) · [File checksums](data/apps/gcam-comparison/manifest.json)
 
+[Selection plan JSON](data/apps/gcam-comparison/plan.json) · [Receipt CSV](data/apps/gcam-comparison/receipts.csv) · [Receipts with source notes](data/apps/gcam-comparison/receipts.json) · [Pair assessments](data/apps/gcam-comparison/comparisons.json)
+
 Select exact rows from released GCAM input tables and place their values side by side. Each value retains a file, row, column, source note and evidence reference. No arithmetic or unit conversion is performed.
 
 The preset follows the publisher's country mappings for Japan, Indonesia, Kenya and Canada. Indonesia maps to the legacy **Southeast Asia** region; that value is not an Indonesia observation. The soil table uses numeric region IDs and prints `Units: NA`; its source description explains recovery in years. The 2100 desalination energy and cost fields are different inputs with different units.
@@ -120,8 +122,6 @@ The preset follows the publisher's country mappings for Japan, Indonesia, Kenya 
 | desalination-energy | desalination-cost | different\_table\_or\_field | not\_performed |
 
 A relationship describes table and field identity, not scientific interchangeability. The report retains each full row and its original envelope. Blank publisher values stay null.
-
-[Selection plan JSON](data/apps/gcam-comparison/plan.json) · [Receipt CSV](data/apps/gcam-comparison/receipts.csv) · [Receipts with source notes](data/apps/gcam-comparison/receipts.json) · [Pair assessments](data/apps/gcam-comparison/comparisons.json)
 
 Download the plan, edit its exact filters and selected columns, then run:
 
