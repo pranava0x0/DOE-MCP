@@ -61,6 +61,8 @@ def markdown_page(source: str, name: str, title: str) -> str:
                 href = child.attrGet("href") or ""
                 if href.startswith("data/apps/") and href.endswith("/bundle.zip"):
                     child.attrSet("download", href.split("/")[-2] + ".zip")
+                elif href.startswith("data/apps/") and href.rsplit("/", 1)[-1] in {"plan.json", "receipts.json", "receipts.csv", "comparisons.json"}:
+                    child.attrSet("download", "-".join(href.split("/")[-2:]))
                 if href.startswith("../"):
                     child.attrSet("href", "https://github.com/pranava0x0/DOE-MCP/blob/main/" + href[3:])
                 for stem in ("guide", "reference", "apps"):

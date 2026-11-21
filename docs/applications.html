@@ -30,7 +30,7 @@ main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0
 }
 </style></head><body class="application-page"><a class="skip" href="#content">Skip to content</a>
 <header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Recorded demos</a></nav></header>
-<main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#grid-forecast-benchmark-lab">Grid forecast benchmark lab</a></li><li><a href="#weather-package-builder">Weather package builder</a></li><li><a href="#doe-docket-notice-tracker">DOE docket notice tracker</a></li></ul></nav><h1 id="applications-built-on-doe-mcp">Applications built on DOE-MCP</h1>
+<main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#grid-forecast-benchmark-lab">Grid forecast benchmark lab</a></li><li><a href="#weather-package-builder">Weather package builder</a></li><li><a href="#doe-docket-notice-tracker">DOE docket notice tracker</a></li><li><a href="#gcam-comparison-receipts">GCAM comparison receipts</a></li></ul></nav><h1 id="applications-built-on-doe-mcp">Applications built on DOE-MCP</h1>
 <p>These are local command-line applications built on existing read-only tools. The examples below are recorded demonstrations, not live services. Download a complete sample bundle or run a command to create your own.</p>
 <p>A server hosts tools. A tool returns data and provenance. A skill describes a tested workflow. An application combines tools and writes a result bundle. <a href="apps.html">Installation and application options</a> · <a href="index.html#servers-list">Servers</a> · <a href="reference.html">Tool reference</a> · <a href="guide.html#connect-a-client-and-provide-a-skill">Scientific skills</a></p>
 <p>Site examples normalize replay retrieval clocks and request IDs for repeatable builds. The normalized clock is not a capture date. Source data and fixture hashes are preserved. CLI runs preserve their original tool envelopes.</p>
@@ -130,5 +130,111 @@ main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0
 <li>Search totals include FERC records excluded by the existing DOE source scope. Pagination continues through pages containing only excluded records.</li>
 <li>Multiple docket identifiers retain separate group memberships; records with no docket ID remain explicitly ungrouped.</li>
 <li>A snapshot records what the bounded search returned; absence does not establish deletion, withdrawal or current legal effect.</li>
+</ul>
+<h2 id="gcam-comparison-receipts">GCAM comparison receipts</h2>
+<p><strong>Recorded example. Runs locally.</strong></p>
+<pre><code class="language-bash">doe-mcp app gcam-comparison --output ./gcam-comparison-run
+</code></pre>
+<p><a href="data/apps/gcam-comparison/bundle.zip" download="gcam-comparison.zip">Download complete bundle</a> · <a href="data/apps/gcam-comparison/report.json">View report and source evidence</a> · <a href="data/apps/gcam-comparison/manifest.json">File checksums</a></p>
+<p><a href="data/apps/gcam-comparison/plan.json" download="gcam-comparison-plan.json">Selection plan JSON</a> · <a href="data/apps/gcam-comparison/receipts.csv" download="gcam-comparison-receipts.csv">Receipt CSV</a> · <a href="data/apps/gcam-comparison/receipts.json" download="gcam-comparison-receipts.json">Receipts with source notes</a> · <a href="data/apps/gcam-comparison/comparisons.json" download="gcam-comparison-comparisons.json">Pair assessments</a></p>
+<p>Select exact rows from released GCAM input tables and place their values side by side. Each value retains a file, row, column, source note and evidence reference. No arithmetic or unit conversion is performed.</p>
+<p>The preset follows the publisher's country mappings for Japan, Indonesia, Kenya and Canada. Indonesia maps to the legacy <strong>Southeast Asia</strong> region; that value is not an Indonesia observation. The soil table uses numeric region IDs and prints <code>Units: NA</code>; its source description explains recovery in years. The 2100 desalination energy and cost fields are different inputs with different units.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Selection</th>
+<th scope="col">Column</th>
+<th scope="col">Original value</th>
+<th scope="col">Region convention and value</th>
+<th scope="col">Publisher unit statement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Selection">japan-geothermal</td>
+<td data-label="Column">available</td>
+<td data-label="Original value">0.56582</td>
+<td data-label="Region convention and value">region_GCAM3: Japan</td>
+<td data-label="Publisher unit statement">Units: available in Thermal EJ/yr (i.e. heat input to geothermal power plants); extractioncost in 1975$/GJ</td>
+</tr>
+<tr>
+<td data-label="Selection">indonesia-geothermal</td>
+<td data-label="Column">available</td>
+<td data-label="Original value">5.65548</td>
+<td data-label="Region convention and value">region_GCAM3: Southeast Asia</td>
+<td data-label="Publisher unit statement">Units: available in Thermal EJ/yr (i.e. heat input to geothermal power plants); extractioncost in 1975$/GJ</td>
+</tr>
+<tr>
+<td data-label="Selection">kenya-soil</td>
+<td data-label="Column">soilTimeScale</td>
+<td data-label="Original value">25</td>
+<td data-label="Region convention and value">GCAM_region_ID: 2</td>
+<td data-label="Publisher unit statement">Units: NA</td>
+</tr>
+<tr>
+<td data-label="Selection">canada-soil</td>
+<td data-label="Column">soilTimeScale</td>
+<td data-label="Original value">75</td>
+<td data-label="Region convention and value">GCAM_region_ID: 8</td>
+<td data-label="Publisher unit statement">Units: NA</td>
+</tr>
+<tr>
+<td data-label="Selection">desalination-energy</td>
+<td data-label="Column">2100</td>
+<td data-label="Original value">0.0063</td>
+<td data-label="Region convention and value">No country mapping requested</td>
+<td data-label="Publisher unit statement">Units: GJ of energy per cubic meter of water (GJ/m3)</td>
+</tr>
+<tr>
+<td data-label="Selection">desalination-cost</td>
+<td data-label="Column">2100</td>
+<td data-label="Original value">0.38</td>
+<td data-label="Region convention and value">No country mapping requested</td>
+<td data-label="Publisher unit statement">Units: 1975$ per cubic meter of desalinated water (1975$/m3)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th scope="col">Left selection</th>
+<th scope="col">Right selection</th>
+<th scope="col">Receipt relationship</th>
+<th scope="col">Arithmetic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Left selection">japan-geothermal</td>
+<td data-label="Right selection">indonesia-geothermal</td>
+<td data-label="Receipt relationship">same_table_field</td>
+<td data-label="Arithmetic">not_performed</td>
+</tr>
+<tr>
+<td data-label="Left selection">kenya-soil</td>
+<td data-label="Right selection">canada-soil</td>
+<td data-label="Receipt relationship">units_unspecified</td>
+<td data-label="Arithmetic">not_performed</td>
+</tr>
+<tr>
+<td data-label="Left selection">desalination-energy</td>
+<td data-label="Right selection">desalination-cost</td>
+<td data-label="Receipt relationship">different_table_or_field</td>
+<td data-label="Arithmetic">not_performed</td>
+</tr>
+</tbody>
+</table>
+<p>A relationship describes table and field identity, not scientific interchangeability. The report retains each full row and its original envelope. Blank publisher values stay null.</p>
+<p>Download the plan, edit its exact filters and selected columns, then run:</p>
+<pre><code class="language-bash">doe-mcp app gcam-comparison --plan ./plan.json --output ./gcam-custom
+</code></pre>
+<h3 id="scope-and-limits-3">Scope and limits</h3>
+<ul>
+<li>These are released GCAM configuration inputs, not observations, current prices, forecasts or scenario outputs.</li>
+<li>Every selector must match exactly one row. Original decimal strings, categories and null cells are preserved.</li>
+<li>Country mapping uses the region convention present in the selected table. A country's membership does not make a regional input a country measurement.</li>
+<li>Unit statements are retained verbatim from publisher table notes. NA or absent statements remain unspecified; source descriptions may give further context.</li>
+<li>Pairs are side-by-side receipts only. No addition, subtraction, ranking, conversion or aggregation is performed, including for matching table fields.</li>
+<li>Different tables can use the same year column for unrelated concepts. Read full row qualifiers, release, source notes and region mappings before interpreting a pair.</li>
 </ul>
 </main></body></html>

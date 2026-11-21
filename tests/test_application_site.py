@@ -5,11 +5,12 @@ from pathlib import Path
 import zipfile
 
 import pytest
+from doe_mcp.applications.samples import APPLICATIONS
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
-@pytest.mark.parametrize('application', ['forecast-benchmark', 'weather-package', 'docket-tracker'])
+@pytest.mark.parametrize('application', APPLICATIONS)
 def test_published_application_bundle_has_verified_files_and_recorded_provenance(application):
     directory = ROOT / 'docs' / 'data' / 'apps' / application
     manifest = json.loads((directory / 'manifest.json').read_bytes())
@@ -29,3 +30,8 @@ def test_published_application_bundle_has_verified_files_and_recorded_provenance
     if application == 'docket-tracker':
         assert all(step['tool'] == 'docs.search_rulemakings' for step in report['steps'])
         assert report['source'] == 'federal-register'
+    if application == 'gcam-comparison':
+        assert report['arithmetic'] == 'not_performed'
+        assert len(report['receipts']) == 6
+        assert all(r['evidence_ref'] and r['file_url'] for r in report['receipts'])
+        assert report['comparisons'][-1]['relationship'] == 'different_table_or_field'

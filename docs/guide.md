@@ -319,3 +319,17 @@ megawatts. The root mean squared error gives larger misses more weight.
 Both scores use only pairs five minutes apart with load at both ends.
 These are retrospective scores for this sample. BPA did not issue the
 predictions. Add `--live` to score a new window from the public feed.
+
+## Compare GCAM inputs with receipts
+
+Run `doe-mcp app gcam-comparison --output ./gcam-receipts` to select released
+model inputs and retain their row, column, file, unit notes and country
+mapping evidence. The application places cells side by side without
+arithmetic or unit conversion. A country mapping preserves the target
+table's region convention; it does not turn regional assumptions into
+country observations.
+
+[Inspect the recorded receipts and download the selection plan](applications.html#gcam-comparison-receipts).
+[CLI plan format and limits](apps.html#gcam-comparison-receipts) explain how
+to choose other exact rows. All existing GCAM table recordings are
+available offline.

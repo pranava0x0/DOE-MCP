@@ -1,0 +1,31 @@
+{
+  "application": "gcam-comparison",
+  "mode": "recorded",
+  "files": [
+    {
+      "file": "comparisons.json",
+      "bytes": 1961,
+      "sha256": "46d368b2e342af87eefd8876dbff4055a121fabe2b68b9d49e25f561ea3ef0af"
+    },
+    {
+      "file": "plan.json",
+      "bytes": 1871,
+      "sha256": "666ca9b64df8dc6a0f3d1aa64547d76346bde94fe88a89bac1eb5de5012be617"
+    },
+    {
+      "file": "receipts.csv",
+      "bytes": 2567,
+      "sha256": "a41b0cafa2ee19dfdf8514c038bbd9262ed9aac8de18622a260a91722d1ca3b4"
+    },
+    {
+      "file": "receipts.json",
+      "bytes": 17590,
+      "sha256": "c86e30cb65fa3e32ea9e458053b90e928537a8de4ff132058e78a32f268aee08"
+    },
+    {
+      "file": "report.json",
+      "bytes": 78806,
+      "sha256": "ce2ac7492ea5a359cb331f4ec437de965c33461f84599ecf267486a54c094ac3"
+    }
+  ]
+}

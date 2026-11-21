@@ -1,0 +1,89 @@
+{
+  "selections": [
+    {
+      "id": "japan-geothermal",
+      "tool": "power.geothermal_curves",
+      "country_iso": "jpn",
+      "filters": {
+        "resource": "geothermal",
+        "subresource": "hydrothermal",
+        "grade": "grade 2"
+      },
+      "columns": [
+        "available"
+      ]
+    },
+    {
+      "id": "indonesia-geothermal",
+      "tool": "power.geothermal_curves",
+      "country_iso": "idn",
+      "filters": {
+        "resource": "geothermal",
+        "subresource": "hydrothermal",
+        "grade": "grade 2"
+      },
+      "columns": [
+        "available"
+      ]
+    },
+    {
+      "id": "kenya-soil",
+      "tool": "land.soil_timescales",
+      "country_iso": "ken",
+      "filters": {},
+      "columns": [
+        "soilTimeScale"
+      ]
+    },
+    {
+      "id": "canada-soil",
+      "tool": "land.soil_timescales",
+      "country_iso": "can",
+      "filters": {},
+      "columns": [
+        "soilTimeScale"
+      ]
+    },
+    {
+      "id": "desalination-energy",
+      "tool": "water.desalination_inputs",
+      "filters": {
+        "technology": "reverse osmosis",
+        "minicam.energy.input": "elect_td_ind"
+      },
+      "columns": [
+        "2100"
+      ]
+    },
+    {
+      "id": "desalination-cost",
+      "tool": "water.desalination_costs",
+      "filters": {
+        "technology": "reverse osmosis"
+      },
+      "columns": [
+        "2100"
+      ]
+    }
+  ],
+  "pairs": [
+    {
+      "left": "japan-geothermal",
+      "left_column": "available",
+      "right": "indonesia-geothermal",
+      "right_column": "available"
+    },
+    {
+      "left": "kenya-soil",
+      "left_column": "soilTimeScale",
+      "right": "canada-soil",
+      "right_column": "soilTimeScale"
+    },
+    {
+      "left": "desalination-energy",
+      "left_column": "2100",
+      "right": "desalination-cost",
+      "right_column": "2100"
+    }
+  ]
+}

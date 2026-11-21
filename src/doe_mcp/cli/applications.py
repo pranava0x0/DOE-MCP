@@ -7,7 +7,8 @@ from pathlib import Path
 import sys
 
 from ..adapters.base import close_shared_client
-from ..applications import dockets, forecast, weather
+from ..applications import dockets, forecast, gcam, weather
+from ..applications.samples import APPLICATIONS
 from ..applications.bundle import Run, export_bundle
 from ..core.credentials import Credentials
 from ..core.errors import DoeMcpError
@@ -20,7 +21,7 @@ async def execute(args):
     if args.live:
         source = getattr(args, "source", "")
         server = {"forecast-benchmark": "doe-energy-data", "weather-package": "doe-earth",
-                  "docket-tracker": "doe-research"}[args.application]
+                  "docket-tracker": "doe-research", gcam.NAME: "doe-mcp"}[args.application]
         creds = Credentials(values={}, path=Path("/nonexistent"), file_exists=False)
         if args.application == "docket-tracker" and source == "regulations":
             # The source gate precedes any read of the user's key store.
@@ -42,6 +43,9 @@ async def execute(args):
                                          timezone_name=args.actual_timezone, intervals=args.intervals)
         elif args.application == "weather-package":
             files = await weather.build(run, latitude=args.latitude, longitude=args.longitude, start=args.start, end=args.end, variables=args.variables)
+        elif args.application == gcam.NAME:
+            plan = gcam.validate_plan(json.loads(args.plan.read_bytes())) if args.plan else None
+            files = await gcam.build(run, plan=plan)
         else:
             previous = json.loads(args.previous.read_bytes()) if args.previous else None
             if args.source == "regulations":
@@ -78,7 +82,7 @@ def cmd_app(args):
 def register(sub):
     root = sub.add_parser("app", help="run a parameterized DOE data application")
     apps = root.add_subparsers(dest="application", required=True)
-    for name in ["forecast-benchmark", "weather-package", "docket-tracker"]:
+    for name in APPLICATIONS:
         parser = apps.add_parser(name)
         parser.add_argument("--live", action="store_true", help="query publishers; default replays recordings")
         parser.add_argument("--fixtures", type=Path)
@@ -94,6 +98,8 @@ def register(sub):
             parser.add_argument("--start", default="2024-12-26")
             parser.add_argument("--end", default="2024-12-31")
             parser.add_argument("--variables", default="tmax")
+        elif name == gcam.NAME:
+            parser.add_argument("--plan", type=Path, help="JSON selections and side-by-side pairs; default is the recorded GCAM preset")
         else:
             parser.add_argument("--source", choices=["federal-register", "regulations"],
                                 default="federal-register",

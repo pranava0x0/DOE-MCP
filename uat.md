@@ -153,3 +153,23 @@ five rows from the installed weather application's sample package.
 The Regulations.gov path is deliberately gated and not counted as a working
 recorded application. The user selected this scope after HTTP 429 prevented
 recording. The default notice tracker uses Federal Register data.
+
+## GCAM receipt follow-up — 2026-11-21
+
+The GCAM application adds three browser journeys. Each opens the application,
+downloads its bundle, then downloads and checks the selection plan, receipt
+JSON, receipt CSV and pair assessments. All 30 journeys passed across phone,
+tablet and desktop widths. The existing demo selector, stability and download
+checks also passed. Source receipts preserve step-scoped evidence and region
+mappings; the selected Indonesia row uses Southeast Asia.
+
+The physical-click helper now tests each hit rectangle of a wrapped inline
+link. Its earlier bounding-box centre could land on whitespace or another
+link. Download observation and clicking are awaited together so a failure
+produces an audit report instead of an unhandled promise rejection. These
+changes preserve real click and scroll counts; they do not use forced clicks.
+
+The receipt links now sit before the GCAM tables. This removes the need to
+scroll through those tables to download the selection plan and source
+receipts. The full audit path checks five downloads, so its action count is
+not the same task as downloading only the bundle.

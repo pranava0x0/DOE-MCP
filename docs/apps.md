@@ -11,6 +11,67 @@ coverage. Replay retrieval clocks describe the replay execution. They are
 not publisher capture times; available fixture capture times are listed
 separately. Existing output directories are refused.
 
+## GCAM comparison receipts
+
+```bash
+doe-mcp app gcam-comparison --output ./gcam-receipts
+doe-mcp app gcam-comparison --plan ./gcam-receipts/plan.json --output ./gcam-custom
+```
+
+[Download the recorded preset and receipts](applications.html#gcam-comparison-receipts).
+The preset selects Japan and Indonesia's regional geothermal inputs, Kenya
+and Canada's regional soil parameters, and separate desalination energy
+and cost inputs. Every value retains its full row, selected column, source
+file, release, source notes and evidence reference. Decimal spellings and
+null cells stay as the publisher supplied them.
+
+Edit `plan.json` to select other rows and columns from existing GCAM tools.
+A plan contains 1–12 `selections` and 1–12 side-by-side `pairs`. Each
+selection has a unique `id`, a GCAM `tool`, exact text `filters`, and 1–8
+`columns`. Pair endpoints name a selection and one of its selected columns:
+
+```json
+{
+  "selections": [
+    {"id": "wind-c7", "tool": "power.wind_capacity_factors",
+     "filters": {"wind_class": "c7"}, "columns": ["CF"]},
+    {"id": "deep-cost", "tool": "power.offshore_depth_costs",
+     "filters": {"depth_class": "deep"}, "columns": ["capital.overnight"]}
+  ],
+  "pairs": [
+    {"left": "wind-c7", "left_column": "CF",
+     "right": "deep-cost", "right_column": "capital.overnight"}
+  ]
+}
+```
+
+Both example tables have recordings. `--live` reads the selected files
+from the pinned release; it does not switch to a newer release. No key is
+needed. A selector must return exactly one row with complete pagination.
+Empty, ambiguous or incomplete selections are refused before export.
+
+For a regional table, optional `country_iso` resolves a lowercase
+three-letter country code through the publisher's country table. The app
+uses the region column present in the target table: `region_GCAM3` or
+`GCAM_region_ID`. It retains both original country classifications in the
+mapping receipt. An explicit regional filter that conflicts with the
+mapping is refused. Country selection cannot be applied to a global table.
+
+Indonesia maps to Southeast Asia in the geothermal table; a regional
+input does not become an Indonesia observation. The soil table prints
+`Units: NA`, while its description explains recovery in years. The
+receipt preserves both statements and marks the units line unspecified.
+
+`receipts.csv` indexes the selected cells. `receipts.json` contains full
+rows, original unit statements and mapping receipts. `comparisons.json`
+describes whether paired cells share a table and column, use different
+fields or releases, have unspecified units, or contain a null. These are
+structural checks, not proof that two scientific quantities are
+interchangeable. No arithmetic, ranking, aggregation or unit conversion
+is performed. A shared `2100` column cannot turn desalination energy and
+monetary inputs into a total. These are model inputs, not scenario output
+or measurements of current conditions.
+
 ## Forecast benchmark
 
 ```bash

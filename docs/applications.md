@@ -89,3 +89,51 @@ This bounded snapshot contains **1 notices**. Complete pagination: **false**. Ab
 - Search totals include FERC records excluded by the existing DOE source scope. Pagination continues through pages containing only excluded records.
 - Multiple docket identifiers retain separate group memberships; records with no docket ID remain explicitly ungrouped.
 - A snapshot records what the bounded search returned; absence does not establish deletion, withdrawal or current legal effect.
+
+## GCAM comparison receipts
+
+**Recorded example. Runs locally.**
+
+```bash
+doe-mcp app gcam-comparison --output ./gcam-comparison-run
+```
+
+[Download complete bundle](data/apps/gcam-comparison/bundle.zip) · [View report and source evidence](data/apps/gcam-comparison/report.json) · [File checksums](data/apps/gcam-comparison/manifest.json)
+
+[Selection plan JSON](data/apps/gcam-comparison/plan.json) · [Receipt CSV](data/apps/gcam-comparison/receipts.csv) · [Receipts with source notes](data/apps/gcam-comparison/receipts.json) · [Pair assessments](data/apps/gcam-comparison/comparisons.json)
+
+Select exact rows from released GCAM input tables and place their values side by side. Each value retains a file, row, column, source note and evidence reference. No arithmetic or unit conversion is performed.
+
+The preset follows the publisher's country mappings for Japan, Indonesia, Kenya and Canada. Indonesia maps to the legacy **Southeast Asia** region; that value is not an Indonesia observation. The soil table uses numeric region IDs and prints `Units: NA`; its source description explains recovery in years. The 2100 desalination energy and cost fields are different inputs with different units.
+
+| Selection | Column | Original value | Region convention and value | Publisher unit statement |
+|---|---|---|---|---|
+| japan-geothermal | available | 0.56582 | region\_GCAM3: Japan | Units: available in Thermal EJ/yr (i.e. heat input to geothermal power plants); extractioncost in 1975$/GJ |
+| indonesia-geothermal | available | 5.65548 | region\_GCAM3: Southeast Asia | Units: available in Thermal EJ/yr (i.e. heat input to geothermal power plants); extractioncost in 1975$/GJ |
+| kenya-soil | soilTimeScale | 25 | GCAM\_region\_ID: 2 | Units: NA |
+| canada-soil | soilTimeScale | 75 | GCAM\_region\_ID: 8 | Units: NA |
+| desalination-energy | 2100 | 0.0063 | No country mapping requested | Units: GJ of energy per cubic meter of water (GJ/m3) |
+| desalination-cost | 2100 | 0.38 | No country mapping requested | Units: 1975$ per cubic meter of desalinated water (1975$/m3) |
+
+| Left selection | Right selection | Receipt relationship | Arithmetic |
+|---|---|---|---|
+| japan-geothermal | indonesia-geothermal | same\_table\_field | not\_performed |
+| kenya-soil | canada-soil | units\_unspecified | not\_performed |
+| desalination-energy | desalination-cost | different\_table\_or\_field | not\_performed |
+
+A relationship describes table and field identity, not scientific interchangeability. The report retains each full row and its original envelope. Blank publisher values stay null.
+
+Download the plan, edit its exact filters and selected columns, then run:
+
+```bash
+doe-mcp app gcam-comparison --plan ./plan.json --output ./gcam-custom
+```
+
+### Scope and limits
+
+- These are released GCAM configuration inputs, not observations, current prices, forecasts or scenario outputs.
+- Every selector must match exactly one row. Original decimal strings, categories and null cells are preserved.
+- Country mapping uses the region convention present in the selected table. A country&#x27;s membership does not make a regional input a country measurement.
+- Unit statements are retained verbatim from publisher table notes. NA or absent statements remain unspecified; source descriptions may give further context.
+- Pairs are side-by-side receipts only. No addition, subtraction, ranking, conversion or aggregation is performed, including for matching table fields.
+- Different tables can use the same year column for unrelated concepts. Read full row qualifiers, release, source notes and region mappings before interpreting a pair.

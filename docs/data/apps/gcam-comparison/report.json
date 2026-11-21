@@ -1,0 +1,2276 @@
+{
+  "application": "gcam-comparison",
+  "mode": "recorded",
+  "fixtures": [
+    {
+      "file": "anl-sage-waggle.json",
+      "sha256": "f8fa9daef59952bd10fc45ebddaadf9670628e6598ad87088160ce8eef40734f",
+      "captured_at": null
+    },
+    {
+      "file": "basis-set-exchange.json",
+      "sha256": "0dfd2e7d23d4802bc7325a7334ccd4e306ad519c222ca0436964c901e17e8043",
+      "captured_at": null
+    },
+    {
+      "file": "bpa-operations.json",
+      "sha256": "4d69703d9b889d9a1c13fb09ec2476a79e4c0977f5f2a2b79a1fc4fd0139e394",
+      "captured_at": null
+    },
+    {
+      "file": "ceser-eagle-i-outages.json",
+      "sha256": "d3928d3e55187b8b5a951a6bbfffeb78d9faa00f645759c1845a98194e7a7685",
+      "captured_at": "2026-10-08T23:09:56.476179+00:00"
+    },
+    {
+      "file": "doe-code-json.json",
+      "sha256": "09a02ccb524f4c2f7757929d119742484fa7e44a720395a4d95eba9caa418047",
+      "captured_at": null
+    },
+    {
+      "file": "doe-open-data-catalog.json",
+      "sha256": "e4153a473c6afd89401ea09a16617ba16736056f6b9bf524c4276d94c40728a6",
+      "captured_at": null
+    },
+    {
+      "file": "eia-api-v2.json",
+      "sha256": "bb5e6ce41e8eef8057741409499a787b93c965ee44a12688806cd8cfe3aa6c9c",
+      "captured_at": null
+    },
+    {
+      "file": "esgf-search.json",
+      "sha256": "b48a40f84f831197b5621eeb120b6e8dac79c724b53ac5c3d6cebdfc6b2b8ce4",
+      "captured_at": null
+    },
+    {
+      "file": "ess-dive.json",
+      "sha256": "28399526c4bbec1055c0740219c1bee5468f0ebf5b5662182f77fb88f28d827a",
+      "captured_at": null
+    },
+    {
+      "file": "federal-register-doe.json",
+      "sha256": "f1b81fd332bdb47df868b0d419aef22e387c2d3fb8ffb2649375d459a1a56a3b",
+      "captured_at": null
+    },
+    {
+      "file": "fueleconomy-ws.json",
+      "sha256": "9a193408aeb51db8b4e5d2413b6e01b8569e964babd0a3276609fc4b178d0323",
+      "captured_at": null
+    },
+    {
+      "file": "gcam-economy.json",
+      "sha256": "e51120caad276d93a52d9dbf50ea2faa5c298c9ac88f17c3e5f1869be685bb78",
+      "captured_at": "2026-11-10T04:46:58.414403+00:00"
+    },
+    {
+      "file": "gcam-emissions.json",
+      "sha256": "7f582259a874c533a6fe55f65d0c2e0936e84ea1c500e9f9b7b186868315bacd",
+      "captured_at": "2026-11-10T04:46:57.828491+00:00"
+    },
+    {
+      "file": "gcam-land.json",
+      "sha256": "d77c9781b292feb3265cabc2ffa484c7ef27dd7fe27f93f95a29115e2c693e65",
+      "captured_at": "2026-11-10T04:46:57.498065+00:00"
+    },
+    {
+      "file": "gcam-power.json",
+      "sha256": "7485cdd26030b7c15f0812c534223aca205cba855c96bd61c767668207b9cbc8",
+      "captured_at": "2026-11-10T04:46:58.079479+00:00"
+    },
+    {
+      "file": "gcam-water.json",
+      "sha256": "ecd273d3b6eeea1cd569b2b70ef51ca0ef203bb2233d4c32f4eebab9c2947869",
+      "captured_at": "2026-11-10T04:46:57.016956+00:00"
+    },
+    {
+      "file": "lbnl-mp-optimade.json",
+      "sha256": "8a5d15ebe6a47c4103d3611661903b8f41de8b5d101ba203df541e2a7b35e280",
+      "captured_at": null
+    },
+    {
+      "file": "nersc-status.json",
+      "sha256": "1d6915f666940b312c349bfb9e9dcb32e123e89850582f3f7b2e282aeda911a7",
+      "captured_at": "2026-10-08T23:12:37.080875+00:00"
+    },
+    {
+      "file": "nmdc-runtime.json",
+      "sha256": "a47cb8d2a0a93dcec1b30c3de2eca0769c8e5fb4fe9eca8edda61eb580432b78",
+      "captured_at": "2026-10-08T23:37:56.653277+00:00"
+    },
+    {
+      "file": "ornl-daac.json",
+      "sha256": "9fea63aa5e38eaa7fdf8d095bec8d6a70b291f4cc6a9751facf53548d565574a",
+      "captured_at": null
+    },
+    {
+      "file": "ornl-openenergyhub.json",
+      "sha256": "b475b04ed1b8c1a58a08b110c277e087c0b3f9dcf0dbbe8a9ec41bed289cd6aa",
+      "captured_at": null
+    },
+    {
+      "file": "osti-data-explorer.json",
+      "sha256": "71a7e71e7056856c76fcebc8d0234e049c0109bd35e2b1777768e408072ad398",
+      "captured_at": null
+    },
+    {
+      "file": "osti-doe-code.json",
+      "sha256": "b3a6506adab49139d00e4aa99c31a432fd7d6529e80204f923b5476b85411d5f",
+      "captured_at": null
+    },
+    {
+      "file": "osti-doe-pages.json",
+      "sha256": "d985dce1d781b9a7484437ab297f66f39c5d89febdf5acc3527d09b3316e19d8",
+      "captured_at": "2026-09-22T12:33:16.478603+00:00"
+    },
+    {
+      "file": "osti-gov-records.json",
+      "sha256": "c6fd5ded484f83064397a670a15639a4c3903b1add64a6ddcb849cf6da404d17",
+      "captured_at": "2026-09-22T12:33:14.364511+00:00"
+    },
+    {
+      "file": "pnnl-vips.json",
+      "sha256": "f83c54a2e33f84cca881a0d7581f92b782501733b2746c9b17f0201e1da6d89d",
+      "captured_at": null
+    },
+    {
+      "file": "usgs-uspvdb.json",
+      "sha256": "4d93ec19e3b23d1de9ad1a1d618cca40070ae455764062a91d8a19a4c975c24c",
+      "captured_at": null
+    },
+    {
+      "file": "usgs-uswtdb.json",
+      "sha256": "717c92092351ab13cd9ad61bd10f8988c06748fe63201b872ef22d12fd23b70a",
+      "captured_at": null
+    }
+  ],
+  "steps": [
+    {
+      "tool": "economy.country_regions",
+      "args": {
+        "filters": {
+          "iso": "jpn"
+        },
+        "rows": 2
+      },
+      "envelope": {
+        "data": {
+          "table": "country_regions",
+          "columns": [
+            "iso",
+            "country_name",
+            "region_GCAM3",
+            "GCAM_region_ID"
+          ],
+          "records": [
+            {
+              "row_number": 112,
+              "values": {
+                "iso": "jpn",
+                "country_name": "Japan",
+                "region_GCAM3": "Japan",
+                "GCAM_region_ID": "19"
+              },
+              "evidence_ref": "evidence_01"
+            }
+          ],
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+          "source_notes": [
+            "File: iso_GCAM_regID.csv",
+            "Title: ISO to GCAM region mapping",
+            "Units: NA",
+            "Description: Maps iso codes to GCAM regions (including composites as necessary)",
+            "Column types: ccci",
+            "----------"
+          ],
+          "filters": {
+            "iso": "jpn"
+          },
+          "offset": 0,
+          "record_count": 1,
+          "total_matches": 1,
+          "table_rows": 248,
+          "release": "GCAM v9.1"
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "gcam-economy",
+            "steward": "Pacific Northwest National Laboratory",
+            "system": "GCAM: Regional economics",
+            "dataset": "iso_GCAM_regID.csv",
+            "dataset_version": "GCAM v9.1",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "data row 112",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "gcam-economy"
+          ],
+          "known_limitations": [
+            "Rows are model inputs, not scenario outputs or measurements of current conditions.",
+            "GCAM3 region labels and numeric GCAM region IDs use different groupings."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+            "source_id": "gcam-economy"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "economy.country_regions",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "regulations_gov": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-21",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "power.geothermal_curves",
+      "args": {
+        "filters": {
+          "resource": "geothermal",
+          "subresource": "hydrothermal",
+          "grade": "grade 2",
+          "region_GCAM3": "Japan"
+        },
+        "rows": 2
+      },
+      "envelope": {
+        "data": {
+          "table": "geothermal_curves",
+          "columns": [
+            "region_GCAM3",
+            "resource",
+            "subresource",
+            "grade",
+            "available",
+            "extractioncost"
+          ],
+          "records": [
+            {
+              "row_number": 18,
+              "values": {
+                "region_GCAM3": "Japan",
+                "resource": "geothermal",
+                "subresource": "hydrothermal",
+                "grade": "grade 2",
+                "available": "0.56582",
+                "extractioncost": "0.569"
+              },
+              "evidence_ref": "evidence_01"
+            }
+          ],
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A16.geo_curves.csv",
+          "source_notes": [
+            "File: A16.geo_curves.csv",
+            "Title: Supply curves of hydrothermal geothermal resources, inherited from GCAM 3.0",
+            "Units: available in Thermal EJ/yr (i.e. heat input to geothermal power plants); extractioncost in 1975$/GJ",
+            "Description: available: quantity available; extractioncost: costs of production",
+            "Reference: Hannam, P., P. Kyle, and S.J. Smith. 2009. Global Deployment of Geothermal Energy Using a New Characterization in GCAM 1.0. PNNL-19231, Pacitic Northwest National Laboratory. http://www.pnl.gov/main/publications/external/technical_reports/PNNL-19231.pdf",
+            "Column types: ccccnn",
+            "----------"
+          ],
+          "filters": {
+            "resource": "geothermal",
+            "subresource": "hydrothermal",
+            "grade": "grade 2",
+            "region_GCAM3": "Japan"
+          },
+          "offset": 0,
+          "record_count": 1,
+          "total_matches": 1,
+          "table_rows": 28,
+          "release": "GCAM v9.1"
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "gcam-power",
+            "steward": "Pacific Northwest National Laboratory",
+            "system": "GCAM: Power technology",
+            "dataset": "A16.geo_curves.csv",
+            "dataset_version": "GCAM v9.1",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "data row 18",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A16.geo_curves.csv",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "gcam-power"
+          ],
+          "known_limitations": [
+            "Rows are model inputs, not scenario outputs or measurements of current conditions.",
+            "GCAM3 region labels and numeric GCAM region IDs use different groupings."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+            "source_id": "gcam-power"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "power.geothermal_curves",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "regulations_gov": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-21",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "economy.country_regions",
+      "args": {
+        "filters": {
+          "iso": "idn"
+        },
+        "rows": 2
+      },
+      "envelope": {
+        "data": {
+          "table": "country_regions",
+          "columns": [
+            "iso",
+            "country_name",
+            "region_GCAM3",
+            "GCAM_region_ID"
+          ],
+          "records": [
+            {
+              "row_number": 100,
+              "values": {
+                "iso": "idn",
+                "country_name": "Indonesia",
+                "region_GCAM3": "Southeast Asia",
+                "GCAM_region_ID": "18"
+              },
+              "evidence_ref": "evidence_01"
+            }
+          ],
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+          "source_notes": [
+            "File: iso_GCAM_regID.csv",
+            "Title: ISO to GCAM region mapping",
+            "Units: NA",
+            "Description: Maps iso codes to GCAM regions (including composites as necessary)",
+            "Column types: ccci",
+            "----------"
+          ],
+          "filters": {
+            "iso": "idn"
+          },
+          "offset": 0,
+          "record_count": 1,
+          "total_matches": 1,
+          "table_rows": 248,
+          "release": "GCAM v9.1"
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "gcam-economy",
+            "steward": "Pacific Northwest National Laboratory",
+            "system": "GCAM: Regional economics",
+            "dataset": "iso_GCAM_regID.csv",
+            "dataset_version": "GCAM v9.1",
+            "authority_level": "primary",
+            "access_path": "cache",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "data row 100",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "gcam-economy"
+          ],
+          "known_limitations": [
+            "Rows are model inputs, not scenario outputs or measurements of current conditions.",
+            "GCAM3 region labels and numeric GCAM region IDs use different groupings."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+            "source_id": "gcam-economy"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "economy.country_regions",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "regulations_gov": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-21",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "power.geothermal_curves",
+      "args": {
+        "filters": {
+          "resource": "geothermal",
+          "subresource": "hydrothermal",
+          "grade": "grade 2",
+          "region_GCAM3": "Southeast Asia"
+        },
+        "rows": 2
+      },
+      "envelope": {
+        "data": {
+          "table": "geothermal_curves",
+          "columns": [
+            "region_GCAM3",
+            "resource",
+            "subresource",
+            "grade",
+            "available",
+            "extractioncost"
+          ],
+          "records": [
+            {
+              "row_number": 25,
+              "values": {
+                "region_GCAM3": "Southeast Asia",
+                "resource": "geothermal",
+                "subresource": "hydrothermal",
+                "grade": "grade 2",
+                "available": "5.65548",
+                "extractioncost": "0.569"
+              },
+              "evidence_ref": "evidence_01"
+            }
+          ],
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A16.geo_curves.csv",
+          "source_notes": [
+            "File: A16.geo_curves.csv",
+            "Title: Supply curves of hydrothermal geothermal resources, inherited from GCAM 3.0",
+            "Units: available in Thermal EJ/yr (i.e. heat input to geothermal power plants); extractioncost in 1975$/GJ",
+            "Description: available: quantity available; extractioncost: costs of production",
+            "Reference: Hannam, P., P. Kyle, and S.J. Smith. 2009. Global Deployment of Geothermal Energy Using a New Characterization in GCAM 1.0. PNNL-19231, Pacitic Northwest National Laboratory. http://www.pnl.gov/main/publications/external/technical_reports/PNNL-19231.pdf",
+            "Column types: ccccnn",
+            "----------"
+          ],
+          "filters": {
+            "resource": "geothermal",
+            "subresource": "hydrothermal",
+            "grade": "grade 2",
+            "region_GCAM3": "Southeast Asia"
+          },
+          "offset": 0,
+          "record_count": 1,
+          "total_matches": 1,
+          "table_rows": 28,
+          "release": "GCAM v9.1"
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "gcam-power",
+            "steward": "Pacific Northwest National Laboratory",
+            "system": "GCAM: Power technology",
+            "dataset": "A16.geo_curves.csv",
+            "dataset_version": "GCAM v9.1",
+            "authority_level": "primary",
+            "access_path": "cache",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "data row 25",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A16.geo_curves.csv",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "gcam-power"
+          ],
+          "known_limitations": [
+            "Rows are model inputs, not scenario outputs or measurements of current conditions.",
+            "GCAM3 region labels and numeric GCAM region IDs use different groupings."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+            "source_id": "gcam-power"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "power.geothermal_curves",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "regulations_gov": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-21",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "economy.country_regions",
+      "args": {
+        "filters": {
+          "iso": "ken"
+        },
+        "rows": 2
+      },
+      "envelope": {
+        "data": {
+          "table": "country_regions",
+          "columns": [
+            "iso",
+            "country_name",
+            "region_GCAM3",
+            "GCAM_region_ID"
+          ],
+          "records": [
+            {
+              "row_number": 114,
+              "values": {
+                "iso": "ken",
+                "country_name": "Kenya",
+                "region_GCAM3": "Africa",
+                "GCAM_region_ID": "2"
+              },
+              "evidence_ref": "evidence_01"
+            }
+          ],
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+          "source_notes": [
+            "File: iso_GCAM_regID.csv",
+            "Title: ISO to GCAM region mapping",
+            "Units: NA",
+            "Description: Maps iso codes to GCAM regions (including composites as necessary)",
+            "Column types: ccci",
+            "----------"
+          ],
+          "filters": {
+            "iso": "ken"
+          },
+          "offset": 0,
+          "record_count": 1,
+          "total_matches": 1,
+          "table_rows": 248,
+          "release": "GCAM v9.1"
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "gcam-economy",
+            "steward": "Pacific Northwest National Laboratory",
+            "system": "GCAM: Regional economics",
+            "dataset": "iso_GCAM_regID.csv",
+            "dataset_version": "GCAM v9.1",
+            "authority_level": "primary",
+            "access_path": "cache",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "data row 114",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "gcam-economy"
+          ],
+          "known_limitations": [
+            "Rows are model inputs, not scenario outputs or measurements of current conditions.",
+            "GCAM3 region labels and numeric GCAM region IDs use different groupings."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+            "source_id": "gcam-economy"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "economy.country_regions",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "regulations_gov": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-21",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "land.soil_timescales",
+      "args": {
+        "filters": {
+          "GCAM_region_ID": "2"
+        },
+        "rows": 2
+      },
+      "envelope": {
+        "data": {
+          "table": "soil_timescales",
+          "columns": [
+            "GCAM_region_ID",
+            "soilTimeScale"
+          ],
+          "records": [
+            {
+              "row_number": 2,
+              "values": {
+                "GCAM_region_ID": "2",
+                "soilTimeScale": "25"
+              },
+              "evidence_ref": "evidence_01"
+            }
+          ],
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_soil_time_scale_R.csv",
+          "source_notes": [
+            "File: A_soil_time_scale_R.csv",
+            "Title: A_soil_tim_scale_R",
+            "Units: NA",
+            "Description: sets the number of years for soil carbon recovery following LUC",
+            "Original source: NA",
+            "Column types: ii",
+            "----------"
+          ],
+          "filters": {
+            "GCAM_region_ID": "2"
+          },
+          "offset": 0,
+          "record_count": 1,
+          "total_matches": 1,
+          "table_rows": 32,
+          "release": "GCAM v9.1"
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "gcam-land",
+            "steward": "Pacific Northwest National Laboratory",
+            "system": "GCAM: Land and agriculture",
+            "dataset": "A_soil_time_scale_R.csv",
+            "dataset_version": "GCAM v9.1",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "data row 2",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_soil_time_scale_R.csv",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "gcam-land"
+          ],
+          "known_limitations": [
+            "Rows are model inputs, not scenario outputs or measurements of current conditions.",
+            "GCAM3 region labels and numeric GCAM region IDs use different groupings."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+            "source_id": "gcam-land"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "land.soil_timescales",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "regulations_gov": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-21",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "economy.country_regions",
+      "args": {
+        "filters": {
+          "iso": "can"
+        },
+        "rows": 2
+      },
+      "envelope": {
+        "data": {
+          "table": "country_regions",
+          "columns": [
+            "iso",
+            "country_name",
+            "region_GCAM3",
+            "GCAM_region_ID"
+          ],
+          "records": [
+            {
+              "row_number": 37,
+              "values": {
+                "iso": "can",
+                "country_name": "Canada",
+                "region_GCAM3": "Canada",
+                "GCAM_region_ID": "8"
+              },
+              "evidence_ref": "evidence_01"
+            }
+          ],
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+          "source_notes": [
+            "File: iso_GCAM_regID.csv",
+            "Title: ISO to GCAM region mapping",
+            "Units: NA",
+            "Description: Maps iso codes to GCAM regions (including composites as necessary)",
+            "Column types: ccci",
+            "----------"
+          ],
+          "filters": {
+            "iso": "can"
+          },
+          "offset": 0,
+          "record_count": 1,
+          "total_matches": 1,
+          "table_rows": 248,
+          "release": "GCAM v9.1"
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "gcam-economy",
+            "steward": "Pacific Northwest National Laboratory",
+            "system": "GCAM: Regional economics",
+            "dataset": "iso_GCAM_regID.csv",
+            "dataset_version": "GCAM v9.1",
+            "authority_level": "primary",
+            "access_path": "cache",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "data row 37",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "gcam-economy"
+          ],
+          "known_limitations": [
+            "Rows are model inputs, not scenario outputs or measurements of current conditions.",
+            "GCAM3 region labels and numeric GCAM region IDs use different groupings."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+            "source_id": "gcam-economy"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "economy.country_regions",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "regulations_gov": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-21",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "land.soil_timescales",
+      "args": {
+        "filters": {
+          "GCAM_region_ID": "8"
+        },
+        "rows": 2
+      },
+      "envelope": {
+        "data": {
+          "table": "soil_timescales",
+          "columns": [
+            "GCAM_region_ID",
+            "soilTimeScale"
+          ],
+          "records": [
+            {
+              "row_number": 8,
+              "values": {
+                "GCAM_region_ID": "8",
+                "soilTimeScale": "75"
+              },
+              "evidence_ref": "evidence_01"
+            }
+          ],
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_soil_time_scale_R.csv",
+          "source_notes": [
+            "File: A_soil_time_scale_R.csv",
+            "Title: A_soil_tim_scale_R",
+            "Units: NA",
+            "Description: sets the number of years for soil carbon recovery following LUC",
+            "Original source: NA",
+            "Column types: ii",
+            "----------"
+          ],
+          "filters": {
+            "GCAM_region_ID": "8"
+          },
+          "offset": 0,
+          "record_count": 1,
+          "total_matches": 1,
+          "table_rows": 32,
+          "release": "GCAM v9.1"
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "gcam-land",
+            "steward": "Pacific Northwest National Laboratory",
+            "system": "GCAM: Land and agriculture",
+            "dataset": "A_soil_time_scale_R.csv",
+            "dataset_version": "GCAM v9.1",
+            "authority_level": "primary",
+            "access_path": "cache",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "data row 8",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_soil_time_scale_R.csv",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "gcam-land"
+          ],
+          "known_limitations": [
+            "Rows are model inputs, not scenario outputs or measurements of current conditions.",
+            "GCAM3 region labels and numeric GCAM region IDs use different groupings."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+            "source_id": "gcam-land"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "land.soil_timescales",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "regulations_gov": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-21",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "water.desalination_inputs",
+      "args": {
+        "filters": {
+          "technology": "reverse osmosis",
+          "minicam.energy.input": "elect_td_ind"
+        },
+        "rows": 2
+      },
+      "envelope": {
+        "data": {
+          "table": "desalination_inputs",
+          "columns": [
+            "supplysector",
+            "subsector",
+            "technology",
+            "minicam.energy.input",
+            "1971",
+            "2015",
+            "2017",
+            "2100"
+          ],
+          "records": [
+            {
+              "row_number": 1,
+              "values": {
+                "supplysector": "desalinated water",
+                "subsector": "electricity",
+                "technology": "reverse osmosis",
+                "minicam.energy.input": "elect_td_ind",
+                "1971": "0.0432",
+                "2015": "0.0099",
+                "2017": "0.0099",
+                "2100": "0.0063"
+              },
+              "evidence_ref": "evidence_01"
+            }
+          ],
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A71.globaltech_coef.csv",
+          "source_notes": [
+            "File: A71.globaltech_coef.csv",
+            "Title: Desalination energy-for-water coefficients",
+            "Units: GJ of energy per cubic meter of water (GJ/m3)",
+            "Source: Liu et al. 2016. DOI: 10.1021/acs.est.6b01065",
+            "Column types: ccccnnnn"
+          ],
+          "filters": {
+            "technology": "reverse osmosis",
+            "minicam.energy.input": "elect_td_ind"
+          },
+          "offset": 0,
+          "record_count": 1,
+          "total_matches": 1,
+          "table_rows": 6,
+          "release": "GCAM v9.1"
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "gcam-water",
+            "steward": "Pacific Northwest National Laboratory",
+            "system": "GCAM: Water use",
+            "dataset": "A71.globaltech_coef.csv",
+            "dataset_version": "GCAM v9.1",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "data row 1",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A71.globaltech_coef.csv",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "gcam-water"
+          ],
+          "known_limitations": [
+            "Rows are model inputs, not scenario outputs or measurements of current conditions.",
+            "GCAM3 region labels and numeric GCAM region IDs use different groupings."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+            "source_id": "gcam-water"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "water.desalination_inputs",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "regulations_gov": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-21",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "water.desalination_costs",
+      "args": {
+        "filters": {
+          "technology": "reverse osmosis"
+        },
+        "rows": 2
+      },
+      "envelope": {
+        "data": {
+          "table": "desalination_costs",
+          "columns": [
+            "supplysector",
+            "subsector",
+            "technology",
+            "minicam.non.energy.input",
+            "1971",
+            "2100"
+          ],
+          "records": [
+            {
+              "row_number": 1,
+              "values": {
+                "supplysector": "desalinated water",
+                "subsector": "electricity",
+                "technology": "reverse osmosis",
+                "minicam.non.energy.input": "non-energy",
+                "1971": "0.38",
+                "2100": "0.38"
+              },
+              "evidence_ref": "evidence_01"
+            }
+          ],
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A71.globaltech_cost.csv",
+          "source_notes": [
+            "File: A71.globaltech_cost.csv",
+            "Title: Desalination non-energy costs",
+            "Units: 1975$ per cubic meter of desalinated water (1975$/m3)",
+            "Source: RO tech cost estimated as total costs (about $2400/acre-foot, in 2016 dollars) minus fuel costs (36%), from CA Dept of Water Resources 2016. https://water.ca.gov/-/media/DWR-Website/Web-Pages/Programs/California-Water-Plan/Docs/RMS/2016/09_Desalination_July2016.pdf",
+            "Column types: ccccnn"
+          ],
+          "filters": {
+            "technology": "reverse osmosis"
+          },
+          "offset": 0,
+          "record_count": 1,
+          "total_matches": 1,
+          "table_rows": 3,
+          "release": "GCAM v9.1"
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "gcam-water",
+            "steward": "Pacific Northwest National Laboratory",
+            "system": "GCAM: Water use",
+            "dataset": "A71.globaltech_cost.csv",
+            "dataset_version": "GCAM v9.1",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "data row 1",
+            "locator": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A71.globaltech_cost.csv",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "parse_csv",
+              "empty_cell_to_null"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "gcam-water"
+          ],
+          "known_limitations": [
+            "Rows are model inputs, not scenario outputs or measurements of current conditions.",
+            "GCAM3 region labels and numeric GCAM region IDs use different groupings."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: Joint Global Change Research Institute, Pacific Northwest National Laboratory. GCAM v9.1, gcamdata. Cite the specific input file and retain its source notes.",
+            "source_id": "gcam-water"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "water.desalination_costs",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "regulations_gov": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-21",
+          "request_id": "recorded-workflow"
+        }
+      }
+    }
+  ],
+  "retrieval_note": "Site-only recorded example: retrieval clocks and request IDs are normalized; source data and fixture capture metadata remain separate. CLI exports retain original invocation envelopes.",
+  "limitations": [
+    "These are released GCAM configuration inputs, not observations, current prices, forecasts or scenario outputs.",
+    "Every selector must match exactly one row. Original decimal strings, categories and null cells are preserved.",
+    "Country mapping uses the region convention present in the selected table. A country's membership does not make a regional input a country measurement.",
+    "Unit statements are retained verbatim from publisher table notes. NA or absent statements remain unspecified; source descriptions may give further context.",
+    "Pairs are side-by-side receipts only. No addition, subtraction, ranking, conversion or aggregation is performed, including for matching table fields.",
+    "Different tables can use the same year column for unrelated concepts. Read full row qualifiers, release, source notes and region mappings before interpreting a pair."
+  ],
+  "status": "receipts_ready",
+  "plan": {
+    "selections": [
+      {
+        "id": "japan-geothermal",
+        "tool": "power.geothermal_curves",
+        "country_iso": "jpn",
+        "filters": {
+          "resource": "geothermal",
+          "subresource": "hydrothermal",
+          "grade": "grade 2"
+        },
+        "columns": [
+          "available"
+        ]
+      },
+      {
+        "id": "indonesia-geothermal",
+        "tool": "power.geothermal_curves",
+        "country_iso": "idn",
+        "filters": {
+          "resource": "geothermal",
+          "subresource": "hydrothermal",
+          "grade": "grade 2"
+        },
+        "columns": [
+          "available"
+        ]
+      },
+      {
+        "id": "kenya-soil",
+        "tool": "land.soil_timescales",
+        "country_iso": "ken",
+        "filters": {},
+        "columns": [
+          "soilTimeScale"
+        ]
+      },
+      {
+        "id": "canada-soil",
+        "tool": "land.soil_timescales",
+        "country_iso": "can",
+        "filters": {},
+        "columns": [
+          "soilTimeScale"
+        ]
+      },
+      {
+        "id": "desalination-energy",
+        "tool": "water.desalination_inputs",
+        "filters": {
+          "technology": "reverse osmosis",
+          "minicam.energy.input": "elect_td_ind"
+        },
+        "columns": [
+          "2100"
+        ]
+      },
+      {
+        "id": "desalination-cost",
+        "tool": "water.desalination_costs",
+        "filters": {
+          "technology": "reverse osmosis"
+        },
+        "columns": [
+          "2100"
+        ]
+      }
+    ],
+    "pairs": [
+      {
+        "left": "japan-geothermal",
+        "left_column": "available",
+        "right": "indonesia-geothermal",
+        "right_column": "available"
+      },
+      {
+        "left": "kenya-soil",
+        "left_column": "soilTimeScale",
+        "right": "canada-soil",
+        "right_column": "soilTimeScale"
+      },
+      {
+        "left": "desalination-energy",
+        "left_column": "2100",
+        "right": "desalination-cost",
+        "right_column": "2100"
+      }
+    ]
+  },
+  "receipts": [
+    {
+      "id": "japan-geothermal",
+      "selector": {
+        "id": "japan-geothermal",
+        "tool": "power.geothermal_curves",
+        "country_iso": "jpn",
+        "filters": {
+          "resource": "geothermal",
+          "subresource": "hydrothermal",
+          "grade": "grade 2"
+        },
+        "columns": [
+          "available"
+        ]
+      },
+      "resolved_filters": {
+        "resource": "geothermal",
+        "subresource": "hydrothermal",
+        "grade": "grade 2",
+        "region_GCAM3": "Japan"
+      },
+      "region_mapping": {
+        "requested_iso": "jpn",
+        "region_key": "region_GCAM3",
+        "join_value": "Japan",
+        "receipt": {
+          "step_number": 1,
+          "tool": "economy.country_regions",
+          "table": "country_regions",
+          "release": "GCAM v9.1",
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+          "source_notes": [
+            "File: iso_GCAM_regID.csv",
+            "Title: ISO to GCAM region mapping",
+            "Units: NA",
+            "Description: Maps iso codes to GCAM regions (including composites as necessary)",
+            "Column types: ccci",
+            "----------"
+          ],
+          "publisher_columns": [
+            "iso",
+            "country_name",
+            "region_GCAM3",
+            "GCAM_region_ID"
+          ],
+          "row_number": 112,
+          "row_values": {
+            "iso": "jpn",
+            "country_name": "Japan",
+            "region_GCAM3": "Japan",
+            "GCAM_region_ID": "19"
+          },
+          "selected_values": {
+            "iso": "jpn",
+            "country_name": "Japan",
+            "region_GCAM3": "Japan",
+            "GCAM_region_ID": "19"
+          },
+          "evidence_ref": "evidence_01",
+          "source_ref": "source_01",
+          "units": {
+            "status": "unspecified",
+            "publisher_statements": [
+              "Units: NA"
+            ],
+            "scope": "Original table notes; a statement may describe several columns. No unit conversion was performed."
+          }
+        }
+      },
+      "step_number": 2,
+      "tool": "power.geothermal_curves",
+      "table": "geothermal_curves",
+      "release": "GCAM v9.1",
+      "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A16.geo_curves.csv",
+      "source_notes": [
+        "File: A16.geo_curves.csv",
+        "Title: Supply curves of hydrothermal geothermal resources, inherited from GCAM 3.0",
+        "Units: available in Thermal EJ/yr (i.e. heat input to geothermal power plants); extractioncost in 1975$/GJ",
+        "Description: available: quantity available; extractioncost: costs of production",
+        "Reference: Hannam, P., P. Kyle, and S.J. Smith. 2009. Global Deployment of Geothermal Energy Using a New Characterization in GCAM 1.0. PNNL-19231, Pacitic Northwest National Laboratory. http://www.pnl.gov/main/publications/external/technical_reports/PNNL-19231.pdf",
+        "Column types: ccccnn",
+        "----------"
+      ],
+      "publisher_columns": [
+        "region_GCAM3",
+        "resource",
+        "subresource",
+        "grade",
+        "available",
+        "extractioncost"
+      ],
+      "row_number": 18,
+      "row_values": {
+        "region_GCAM3": "Japan",
+        "resource": "geothermal",
+        "subresource": "hydrothermal",
+        "grade": "grade 2",
+        "available": "0.56582",
+        "extractioncost": "0.569"
+      },
+      "selected_values": {
+        "available": "0.56582"
+      },
+      "evidence_ref": "evidence_01",
+      "source_ref": "source_01",
+      "units": {
+        "status": "stated",
+        "publisher_statements": [
+          "Units: available in Thermal EJ/yr (i.e. heat input to geothermal power plants); extractioncost in 1975$/GJ"
+        ],
+        "scope": "Original table notes; a statement may describe several columns. No unit conversion was performed."
+      }
+    },
+    {
+      "id": "indonesia-geothermal",
+      "selector": {
+        "id": "indonesia-geothermal",
+        "tool": "power.geothermal_curves",
+        "country_iso": "idn",
+        "filters": {
+          "resource": "geothermal",
+          "subresource": "hydrothermal",
+          "grade": "grade 2"
+        },
+        "columns": [
+          "available"
+        ]
+      },
+      "resolved_filters": {
+        "resource": "geothermal",
+        "subresource": "hydrothermal",
+        "grade": "grade 2",
+        "region_GCAM3": "Southeast Asia"
+      },
+      "region_mapping": {
+        "requested_iso": "idn",
+        "region_key": "region_GCAM3",
+        "join_value": "Southeast Asia",
+        "receipt": {
+          "step_number": 3,
+          "tool": "economy.country_regions",
+          "table": "country_regions",
+          "release": "GCAM v9.1",
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+          "source_notes": [
+            "File: iso_GCAM_regID.csv",
+            "Title: ISO to GCAM region mapping",
+            "Units: NA",
+            "Description: Maps iso codes to GCAM regions (including composites as necessary)",
+            "Column types: ccci",
+            "----------"
+          ],
+          "publisher_columns": [
+            "iso",
+            "country_name",
+            "region_GCAM3",
+            "GCAM_region_ID"
+          ],
+          "row_number": 100,
+          "row_values": {
+            "iso": "idn",
+            "country_name": "Indonesia",
+            "region_GCAM3": "Southeast Asia",
+            "GCAM_region_ID": "18"
+          },
+          "selected_values": {
+            "iso": "idn",
+            "country_name": "Indonesia",
+            "region_GCAM3": "Southeast Asia",
+            "GCAM_region_ID": "18"
+          },
+          "evidence_ref": "evidence_01",
+          "source_ref": "source_01",
+          "units": {
+            "status": "unspecified",
+            "publisher_statements": [
+              "Units: NA"
+            ],
+            "scope": "Original table notes; a statement may describe several columns. No unit conversion was performed."
+          }
+        }
+      },
+      "step_number": 4,
+      "tool": "power.geothermal_curves",
+      "table": "geothermal_curves",
+      "release": "GCAM v9.1",
+      "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/energy/A16.geo_curves.csv",
+      "source_notes": [
+        "File: A16.geo_curves.csv",
+        "Title: Supply curves of hydrothermal geothermal resources, inherited from GCAM 3.0",
+        "Units: available in Thermal EJ/yr (i.e. heat input to geothermal power plants); extractioncost in 1975$/GJ",
+        "Description: available: quantity available; extractioncost: costs of production",
+        "Reference: Hannam, P., P. Kyle, and S.J. Smith. 2009. Global Deployment of Geothermal Energy Using a New Characterization in GCAM 1.0. PNNL-19231, Pacitic Northwest National Laboratory. http://www.pnl.gov/main/publications/external/technical_reports/PNNL-19231.pdf",
+        "Column types: ccccnn",
+        "----------"
+      ],
+      "publisher_columns": [
+        "region_GCAM3",
+        "resource",
+        "subresource",
+        "grade",
+        "available",
+        "extractioncost"
+      ],
+      "row_number": 25,
+      "row_values": {
+        "region_GCAM3": "Southeast Asia",
+        "resource": "geothermal",
+        "subresource": "hydrothermal",
+        "grade": "grade 2",
+        "available": "5.65548",
+        "extractioncost": "0.569"
+      },
+      "selected_values": {
+        "available": "5.65548"
+      },
+      "evidence_ref": "evidence_01",
+      "source_ref": "source_01",
+      "units": {
+        "status": "stated",
+        "publisher_statements": [
+          "Units: available in Thermal EJ/yr (i.e. heat input to geothermal power plants); extractioncost in 1975$/GJ"
+        ],
+        "scope": "Original table notes; a statement may describe several columns. No unit conversion was performed."
+      }
+    },
+    {
+      "id": "kenya-soil",
+      "selector": {
+        "id": "kenya-soil",
+        "tool": "land.soil_timescales",
+        "country_iso": "ken",
+        "filters": {},
+        "columns": [
+          "soilTimeScale"
+        ]
+      },
+      "resolved_filters": {
+        "GCAM_region_ID": "2"
+      },
+      "region_mapping": {
+        "requested_iso": "ken",
+        "region_key": "GCAM_region_ID",
+        "join_value": "2",
+        "receipt": {
+          "step_number": 5,
+          "tool": "economy.country_regions",
+          "table": "country_regions",
+          "release": "GCAM v9.1",
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+          "source_notes": [
+            "File: iso_GCAM_regID.csv",
+            "Title: ISO to GCAM region mapping",
+            "Units: NA",
+            "Description: Maps iso codes to GCAM regions (including composites as necessary)",
+            "Column types: ccci",
+            "----------"
+          ],
+          "publisher_columns": [
+            "iso",
+            "country_name",
+            "region_GCAM3",
+            "GCAM_region_ID"
+          ],
+          "row_number": 114,
+          "row_values": {
+            "iso": "ken",
+            "country_name": "Kenya",
+            "region_GCAM3": "Africa",
+            "GCAM_region_ID": "2"
+          },
+          "selected_values": {
+            "iso": "ken",
+            "country_name": "Kenya",
+            "region_GCAM3": "Africa",
+            "GCAM_region_ID": "2"
+          },
+          "evidence_ref": "evidence_01",
+          "source_ref": "source_01",
+          "units": {
+            "status": "unspecified",
+            "publisher_statements": [
+              "Units: NA"
+            ],
+            "scope": "Original table notes; a statement may describe several columns. No unit conversion was performed."
+          }
+        }
+      },
+      "step_number": 6,
+      "tool": "land.soil_timescales",
+      "table": "soil_timescales",
+      "release": "GCAM v9.1",
+      "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_soil_time_scale_R.csv",
+      "source_notes": [
+        "File: A_soil_time_scale_R.csv",
+        "Title: A_soil_tim_scale_R",
+        "Units: NA",
+        "Description: sets the number of years for soil carbon recovery following LUC",
+        "Original source: NA",
+        "Column types: ii",
+        "----------"
+      ],
+      "publisher_columns": [
+        "GCAM_region_ID",
+        "soilTimeScale"
+      ],
+      "row_number": 2,
+      "row_values": {
+        "GCAM_region_ID": "2",
+        "soilTimeScale": "25"
+      },
+      "selected_values": {
+        "soilTimeScale": "25"
+      },
+      "evidence_ref": "evidence_01",
+      "source_ref": "source_01",
+      "units": {
+        "status": "unspecified",
+        "publisher_statements": [
+          "Units: NA"
+        ],
+        "scope": "Original table notes; a statement may describe several columns. No unit conversion was performed."
+      }
+    },
+    {
+      "id": "canada-soil",
+      "selector": {
+        "id": "canada-soil",
+        "tool": "land.soil_timescales",
+        "country_iso": "can",
+        "filters": {},
+        "columns": [
+          "soilTimeScale"
+        ]
+      },
+      "resolved_filters": {
+        "GCAM_region_ID": "8"
+      },
+      "region_mapping": {
+        "requested_iso": "can",
+        "region_key": "GCAM_region_ID",
+        "join_value": "8",
+        "receipt": {
+          "step_number": 7,
+          "tool": "economy.country_regions",
+          "table": "country_regions",
+          "release": "GCAM v9.1",
+          "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/common/iso_GCAM_regID.csv",
+          "source_notes": [
+            "File: iso_GCAM_regID.csv",
+            "Title: ISO to GCAM region mapping",
+            "Units: NA",
+            "Description: Maps iso codes to GCAM regions (including composites as necessary)",
+            "Column types: ccci",
+            "----------"
+          ],
+          "publisher_columns": [
+            "iso",
+            "country_name",
+            "region_GCAM3",
+            "GCAM_region_ID"
+          ],
+          "row_number": 37,
+          "row_values": {
+            "iso": "can",
+            "country_name": "Canada",
+            "region_GCAM3": "Canada",
+            "GCAM_region_ID": "8"
+          },
+          "selected_values": {
+            "iso": "can",
+            "country_name": "Canada",
+            "region_GCAM3": "Canada",
+            "GCAM_region_ID": "8"
+          },
+          "evidence_ref": "evidence_01",
+          "source_ref": "source_01",
+          "units": {
+            "status": "unspecified",
+            "publisher_statements": [
+              "Units: NA"
+            ],
+            "scope": "Original table notes; a statement may describe several columns. No unit conversion was performed."
+          }
+        }
+      },
+      "step_number": 8,
+      "tool": "land.soil_timescales",
+      "table": "soil_timescales",
+      "release": "GCAM v9.1",
+      "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/aglu/A_soil_time_scale_R.csv",
+      "source_notes": [
+        "File: A_soil_time_scale_R.csv",
+        "Title: A_soil_tim_scale_R",
+        "Units: NA",
+        "Description: sets the number of years for soil carbon recovery following LUC",
+        "Original source: NA",
+        "Column types: ii",
+        "----------"
+      ],
+      "publisher_columns": [
+        "GCAM_region_ID",
+        "soilTimeScale"
+      ],
+      "row_number": 8,
+      "row_values": {
+        "GCAM_region_ID": "8",
+        "soilTimeScale": "75"
+      },
+      "selected_values": {
+        "soilTimeScale": "75"
+      },
+      "evidence_ref": "evidence_01",
+      "source_ref": "source_01",
+      "units": {
+        "status": "unspecified",
+        "publisher_statements": [
+          "Units: NA"
+        ],
+        "scope": "Original table notes; a statement may describe several columns. No unit conversion was performed."
+      }
+    },
+    {
+      "id": "desalination-energy",
+      "selector": {
+        "id": "desalination-energy",
+        "tool": "water.desalination_inputs",
+        "filters": {
+          "technology": "reverse osmosis",
+          "minicam.energy.input": "elect_td_ind"
+        },
+        "columns": [
+          "2100"
+        ]
+      },
+      "resolved_filters": {
+        "technology": "reverse osmosis",
+        "minicam.energy.input": "elect_td_ind"
+      },
+      "region_mapping": null,
+      "step_number": 9,
+      "tool": "water.desalination_inputs",
+      "table": "desalination_inputs",
+      "release": "GCAM v9.1",
+      "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A71.globaltech_coef.csv",
+      "source_notes": [
+        "File: A71.globaltech_coef.csv",
+        "Title: Desalination energy-for-water coefficients",
+        "Units: GJ of energy per cubic meter of water (GJ/m3)",
+        "Source: Liu et al. 2016. DOI: 10.1021/acs.est.6b01065",
+        "Column types: ccccnnnn"
+      ],
+      "publisher_columns": [
+        "supplysector",
+        "subsector",
+        "technology",
+        "minicam.energy.input",
+        "1971",
+        "2015",
+        "2017",
+        "2100"
+      ],
+      "row_number": 1,
+      "row_values": {
+        "supplysector": "desalinated water",
+        "subsector": "electricity",
+        "technology": "reverse osmosis",
+        "minicam.energy.input": "elect_td_ind",
+        "1971": "0.0432",
+        "2015": "0.0099",
+        "2017": "0.0099",
+        "2100": "0.0063"
+      },
+      "selected_values": {
+        "2100": "0.0063"
+      },
+      "evidence_ref": "evidence_01",
+      "source_ref": "source_01",
+      "units": {
+        "status": "stated",
+        "publisher_statements": [
+          "Units: GJ of energy per cubic meter of water (GJ/m3)"
+        ],
+        "scope": "Original table notes; a statement may describe several columns. No unit conversion was performed."
+      }
+    },
+    {
+      "id": "desalination-cost",
+      "selector": {
+        "id": "desalination-cost",
+        "tool": "water.desalination_costs",
+        "filters": {
+          "technology": "reverse osmosis"
+        },
+        "columns": [
+          "2100"
+        ]
+      },
+      "resolved_filters": {
+        "technology": "reverse osmosis"
+      },
+      "region_mapping": null,
+      "step_number": 10,
+      "tool": "water.desalination_costs",
+      "table": "desalination_costs",
+      "release": "GCAM v9.1",
+      "file_url": "https://raw.githubusercontent.com/JGCRI/gcam-core/11e128fb7ce3e14e9c4daf3903ba73123046a7aa/input/gcamdata/inst/extdata/water/A71.globaltech_cost.csv",
+      "source_notes": [
+        "File: A71.globaltech_cost.csv",
+        "Title: Desalination non-energy costs",
+        "Units: 1975$ per cubic meter of desalinated water (1975$/m3)",
+        "Source: RO tech cost estimated as total costs (about $2400/acre-foot, in 2016 dollars) minus fuel costs (36%), from CA Dept of Water Resources 2016. https://water.ca.gov/-/media/DWR-Website/Web-Pages/Programs/California-Water-Plan/Docs/RMS/2016/09_Desalination_July2016.pdf",
+        "Column types: ccccnn"
+      ],
+      "publisher_columns": [
+        "supplysector",
+        "subsector",
+        "technology",
+        "minicam.non.energy.input",
+        "1971",
+        "2100"
+      ],
+      "row_number": 1,
+      "row_values": {
+        "supplysector": "desalinated water",
+        "subsector": "electricity",
+        "technology": "reverse osmosis",
+        "minicam.non.energy.input": "non-energy",
+        "1971": "0.38",
+        "2100": "0.38"
+      },
+      "selected_values": {
+        "2100": "0.38"
+      },
+      "evidence_ref": "evidence_01",
+      "source_ref": "source_01",
+      "units": {
+        "status": "stated",
+        "publisher_statements": [
+          "Units: 1975$ per cubic meter of desalinated water (1975$/m3)"
+        ],
+        "scope": "Original table notes; a statement may describe several columns. No unit conversion was performed."
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "left": "japan-geothermal",
+      "left_column": "available",
+      "right": "indonesia-geothermal",
+      "right_column": "available",
+      "values": {
+        "left": "0.56582",
+        "right": "5.65548"
+      },
+      "relationship": "same_table_field",
+      "checks": {
+        "same_tool": true,
+        "same_column": true,
+        "same_release": true,
+        "same_units_statements": true,
+        "units_stated": true
+      },
+      "arithmetic": "not_performed",
+      "interpretation": "Side-by-side released model inputs. Matching table fields does not establish country observations, interchangeable regions or a common scientific meaning across row qualifiers."
+    },
+    {
+      "left": "kenya-soil",
+      "left_column": "soilTimeScale",
+      "right": "canada-soil",
+      "right_column": "soilTimeScale",
+      "values": {
+        "left": "25",
+        "right": "75"
+      },
+      "relationship": "units_unspecified",
+      "checks": {
+        "same_tool": true,
+        "same_column": true,
+        "same_release": true,
+        "same_units_statements": true,
+        "units_stated": false
+      },
+      "arithmetic": "not_performed",
+      "interpretation": "Side-by-side released model inputs. Matching table fields does not establish country observations, interchangeable regions or a common scientific meaning across row qualifiers."
+    },
+    {
+      "left": "desalination-energy",
+      "left_column": "2100",
+      "right": "desalination-cost",
+      "right_column": "2100",
+      "values": {
+        "left": "0.0063",
+        "right": "0.38"
+      },
+      "relationship": "different_table_or_field",
+      "checks": {
+        "same_tool": false,
+        "same_column": true,
+        "same_release": true,
+        "same_units_statements": false,
+        "units_stated": true
+      },
+      "arithmetic": "not_performed",
+      "interpretation": "Side-by-side released model inputs. Matching table fields does not establish country observations, interchangeable regions or a common scientific meaning across row qualifiers."
+    }
+  ],
+  "plan_sha256": "666ca9b64df8dc6a0f3d1aa64547d76346bde94fe88a89bac1eb5de5012be617",
+  "arithmetic": "not_performed",
+  "site_reference_clock": "2026-11-21T00:00:00Z"
+}

@@ -13,7 +13,8 @@ from doe_mcp.replay import fixture_manifest, load_replay_context
 from doe_mcp.workflows import freeze
 
 TITLES = {"forecast-benchmark": "Grid forecast benchmark lab",
-          "weather-package": "Weather package builder", "docket-tracker": "DOE docket notice tracker"}
+          "weather-package": "Weather package builder", "docket-tracker": "DOE docket notice tracker",
+          "gcam-comparison": "GCAM comparison receipts"}
 
 
 def cell(value) -> str:
@@ -84,6 +85,33 @@ async def write_applications(root: Path) -> None:
                 f"This preset contains **{report['row_count']} days**. "
                 "Daymet keeps February 29 and omits December 31 in leap years; it reports modelled grid-cell weather.", "",
                 f"[Weather CSV](data/apps/{name}/weather.csv) · [Croissant metadata](data/apps/{name}/weather-croissant.json)", ""]
+        elif name == "gcam-comparison":
+            lines += [
+                f"[Selection plan JSON](data/apps/{name}/plan.json) · [Receipt CSV](data/apps/{name}/receipts.csv) · "
+                f"[Receipts with source notes](data/apps/{name}/receipts.json) · [Pair assessments](data/apps/{name}/comparisons.json)", "",
+                "Select exact rows from released GCAM input tables and place their values side by side. "
+                "Each value retains a file, row, column, source note and evidence reference. "
+                "No arithmetic or unit conversion is performed.", "",
+                "The preset follows the publisher's country mappings for Japan, Indonesia, Kenya and Canada. "
+                "Indonesia maps to the legacy **Southeast Asia** region; that value is not an Indonesia observation. "
+                "The soil table uses numeric region IDs and prints `Units: NA`; its source description explains recovery in years. "
+                "The 2100 desalination energy and cost fields are different inputs with different units.", "",
+                "| Selection | Column | Original value | Region convention and value | Publisher unit statement |",
+                "|---|---|---|---|---|"]
+            for receipt in report["receipts"]:
+                mapping = receipt["region_mapping"]
+                region = f"{mapping['region_key']}: {mapping['join_value']}" if mapping else "No country mapping requested"
+                for column, value in receipt["selected_values"].items():
+                    lines.append("| " + " | ".join(cell(v) for v in [receipt["id"], column, value, region,
+                        "; ".join(receipt["units"]["publisher_statements"]) or "Unspecified"]) + " |")
+            lines += ["", "| Left selection | Right selection | Receipt relationship | Arithmetic |",
+                      "|---|---|---|---|"]
+            for pair in report["comparisons"]:
+                lines.append("| " + " | ".join(cell(pair[k]) for k in ["left", "right", "relationship", "arithmetic"]) + " |")
+            lines += ["", "A relationship describes table and field identity, not scientific interchangeability. "
+                "The report retains each full row and its original envelope. Blank publisher values stay null.", "",
+                "Download the plan, edit its exact filters and selected columns, then run:", "",
+                "```bash\ndoe-mcp app gcam-comparison --plan ./plan.json --output ./gcam-custom\n```", ""]
         else:
             lines += ["Track Federal Register DOE notices, retain separate publication/effective/comment dates, "
                 "group publisher-supplied docket IDs, and compare saved snapshots. "
