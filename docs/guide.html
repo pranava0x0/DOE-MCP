@@ -30,7 +30,7 @@ main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0
 }
 </style></head><body class=""><a class="skip" href="#content">Skip to content</a>
 <header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Recorded demos</a></nav></header>
-<main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#start-with-a-recorded-workflow">Start with a recorded workflow</a></li><li><a href="#use-live-publishers-locally">Use live publishers locally</a></li><li><a href="#genesis-and-no-cost-demos">Genesis and no-cost demos</a></li><li><a href="#connect-a-client-and-provide-a-skill">Connect a client and provide a skill</a></li><li><a href="#interpret-the-result">Interpret the result</a></li><li><a href="#evaluate-agent-behavior">Evaluate agent behavior</a></li><li><a href="#development-checks">Development checks</a></li><li><a href="#rulemaking-brief">Rulemaking brief</a></li><li><a href="#historical-outage-data-finder">Historical outage-data finder</a></li><li><a href="#load-a-daymet-temperature-extract">Load a Daymet temperature extract</a></li><li><a href="#score-a-five-minute-bpa-load-prediction">Score a five-minute BPA load prediction</a></li><li><a href="#compare-gcam-inputs-with-receipts">Compare GCAM inputs with receipts</a></li></ul></nav><h1 id="local-workflows-and-evidence">Local workflows and evidence</h1>
+<main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#start-with-a-recorded-workflow">Start with a recorded workflow</a></li><li><a href="#use-live-publishers-locally">Use live publishers locally</a></li><li><a href="#genesis-and-no-cost-demos">Genesis and no-cost demos</a></li><li><a href="#connect-a-client-and-provide-a-skill">Connect a client and provide a skill</a></li><li><a href="#interpret-the-result">Interpret the result</a></li><li><a href="#evaluate-agent-behavior">Evaluate agent behavior</a></li><li><a href="#development-checks">Development checks</a></li><li><a href="#rulemaking-brief">Rulemaking brief</a></li><li><a href="#historical-outage-data-finder">Historical outage-data finder</a></li><li><a href="#load-a-daymet-temperature-extract">Load a Daymet temperature extract</a></li><li><a href="#score-a-five-minute-bpa-load-prediction">Score a five-minute BPA load prediction</a></li><li><a href="#compare-gcam-inputs-with-receipts">Compare GCAM inputs with receipts</a></li><li><a href="#compare-forecasts-on-common-targets">Compare forecasts on common targets</a></li></ul></nav><h1 id="local-workflows-and-evidence">Local workflows and evidence</h1>
 <p>DOE-MCP reads public publisher APIs through focused domain servers. Each
 answer separates the data from its sources, record evidence, access
 recipes, warnings and coverage. It does not operate facilities or run
@@ -368,4 +368,18 @@ country observations.</p>
 <a href="apps.html#gcam-comparison-receipts">CLI plan format and limits</a> explain how
 to choose other exact rows. All existing GCAM table recordings are
 available offline.</p>
+<h2 id="compare-forecasts-on-common-targets">Compare forecasts on common targets</h2>
+<p><code>doe-mcp app forecast-panel --output ./panel-simulation</code> demonstrates two
+fictitious regions and two forecast series. The simulation is labelled
+throughout the report and download bundle. It establishes no real-world
+model performance.</p>
+<p>Import your own CSVs with a declaration of models, regions, leads, scoring
+window and measurement basis. Every compared model and persistence uses
+the same eligible targets within each region and lead; an explicit
+intersection mode also aligns targets across all declared regions.
+Missing inputs remain exclusion rows, and empty regions retain null
+metrics. Source attribution and issuance/availability times are supplied
+assertions, with raw input hashes retained.</p>
+<p><a href="applications.html#forecast-panel-with-common-cohorts">Inspect the simulation and download all input files</a>.
+<a href="apps.html#forecast-panel-with-common-cohorts">Read the plan and CSV rules</a>.</p>
 </main></body></html>

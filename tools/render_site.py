@@ -892,8 +892,8 @@ def render(data: dict) -> str:
   <p>DOE-MCP's skills use the same Agent Skills format as <a href="https://github.com/AI-ModCon/genesis-skills">Genesis Agent Skills</a>. The demos use DOE-MCP's own tools; no upstream skills or lab services run here. <a href="guide.html#genesis-and-no-cost-demos">Integration and cost details</a>.</p>
   </details>
   <h3 id="applications">Applications</h3>
-  <p>Compare released GCAM inputs with row receipts, run a grid forecast benchmark, build a weather package, track DOE Federal Register notices, or explore explicit research-artifact links locally. Each writes a bundle with evidence and checksums. Regulations.gov docket metadata remains a gated integration.</p>
-  <p><a href="applications.html">Explore applications and download recorded bundles</a> · <a href="apps.html">CLI options and limits</a></p>
+  <p>Compare released GCAM inputs with row receipts, explore explicit research-artifact links, run a grid forecast benchmark, compare forecast models on common targets, build a weather package, or track DOE Federal Register notices locally. The forecast panel offers a labelled synthetic simulation and CSV import; each application exports input provenance and checksums. Regulations.gov docket metadata remains a gated integration.</p>
+  <p><a href="applications.html">Explore applications and download example bundles</a> · <a href="apps.html">CLI options and limits</a></p>
   <h3 id="overview-queries">Questions it answers</h3>
   <p class="lede">Each question below is answered by one tool on one server:</p>
   {_questions(data)}

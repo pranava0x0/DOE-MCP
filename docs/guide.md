@@ -341,3 +341,21 @@ country observations.
 [CLI plan format and limits](apps.html#gcam-comparison-receipts) explain how
 to choose other exact rows. All existing GCAM table recordings are
 available offline.
+
+## Compare forecasts on common targets
+
+`doe-mcp app forecast-panel --output ./panel-simulation` demonstrates two
+fictitious regions and two forecast series. The simulation is labelled
+throughout the report and download bundle. It establishes no real-world
+model performance.
+
+Import your own CSVs with a declaration of models, regions, leads, scoring
+window and measurement basis. Every compared model and persistence uses
+the same eligible targets within each region and lead; an explicit
+intersection mode also aligns targets across all declared regions.
+Missing inputs remain exclusion rows, and empty regions retain null
+metrics. Source attribution and issuance/availability times are supplied
+assertions, with raw input hashes retained.
+
+[Inspect the simulation and download all input files](applications.html#forecast-panel-with-common-cohorts).
+[Read the plan and CSV rules](apps.html#forecast-panel-with-common-cohorts).

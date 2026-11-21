@@ -1,0 +1,142 @@
+[
+  {
+    "region_id": "sim-east",
+    "lead_seconds": 300,
+    "status": "partial",
+    "expected_targets": 12,
+    "eligible_before_region_intersection": 12,
+    "included_targets": [
+      "2026-01-01T00:10:00+00:00",
+      "2026-01-01T00:15:00+00:00",
+      "2026-01-01T00:20:00+00:00",
+      "2026-01-01T00:25:00+00:00",
+      "2026-01-01T00:30:00+00:00",
+      "2026-01-01T00:35:00+00:00",
+      "2026-01-01T00:40:00+00:00",
+      "2026-01-01T00:50:00+00:00",
+      "2026-01-01T00:55:00+00:00",
+      "2026-01-01T01:00:00+00:00",
+      "2026-01-01T01:05:00+00:00"
+    ],
+    "exclusions": [
+      {
+        "target_at": "2026-01-01T00:45:00+00:00",
+        "reasons": [
+          "outside_cross_region_intersection"
+        ],
+        "blocking_regions": [
+          "sim-west"
+        ]
+      }
+    ]
+  },
+  {
+    "region_id": "sim-east",
+    "lead_seconds": 600,
+    "status": "partial",
+    "expected_targets": 12,
+    "eligible_before_region_intersection": 11,
+    "included_targets": [
+      "2026-01-01T00:10:00+00:00",
+      "2026-01-01T00:15:00+00:00",
+      "2026-01-01T00:20:00+00:00",
+      "2026-01-01T00:25:00+00:00",
+      "2026-01-01T00:35:00+00:00",
+      "2026-01-01T00:40:00+00:00",
+      "2026-01-01T00:50:00+00:00",
+      "2026-01-01T00:55:00+00:00",
+      "2026-01-01T01:00:00+00:00",
+      "2026-01-01T01:05:00+00:00"
+    ],
+    "exclusions": [
+      {
+        "target_at": "2026-01-01T00:30:00+00:00",
+        "reasons": [
+          "missing_forecast:sim-offset"
+        ],
+        "blocking_regions": [
+          "sim-east"
+        ]
+      },
+      {
+        "target_at": "2026-01-01T00:45:00+00:00",
+        "reasons": [
+          "outside_cross_region_intersection"
+        ],
+        "blocking_regions": [
+          "sim-west"
+        ]
+      }
+    ]
+  },
+  {
+    "region_id": "sim-west",
+    "lead_seconds": 300,
+    "status": "partial",
+    "expected_targets": 12,
+    "eligible_before_region_intersection": 11,
+    "included_targets": [
+      "2026-01-01T00:10:00+00:00",
+      "2026-01-01T00:15:00+00:00",
+      "2026-01-01T00:20:00+00:00",
+      "2026-01-01T00:25:00+00:00",
+      "2026-01-01T00:30:00+00:00",
+      "2026-01-01T00:35:00+00:00",
+      "2026-01-01T00:40:00+00:00",
+      "2026-01-01T00:50:00+00:00",
+      "2026-01-01T00:55:00+00:00",
+      "2026-01-01T01:00:00+00:00",
+      "2026-01-01T01:05:00+00:00"
+    ],
+    "exclusions": [
+      {
+        "target_at": "2026-01-01T00:45:00+00:00",
+        "reasons": [
+          "missing_actual"
+        ],
+        "blocking_regions": [
+          "sim-west"
+        ]
+      }
+    ]
+  },
+  {
+    "region_id": "sim-west",
+    "lead_seconds": 600,
+    "status": "partial",
+    "expected_targets": 12,
+    "eligible_before_region_intersection": 11,
+    "included_targets": [
+      "2026-01-01T00:10:00+00:00",
+      "2026-01-01T00:15:00+00:00",
+      "2026-01-01T00:20:00+00:00",
+      "2026-01-01T00:25:00+00:00",
+      "2026-01-01T00:35:00+00:00",
+      "2026-01-01T00:40:00+00:00",
+      "2026-01-01T00:50:00+00:00",
+      "2026-01-01T00:55:00+00:00",
+      "2026-01-01T01:00:00+00:00",
+      "2026-01-01T01:05:00+00:00"
+    ],
+    "exclusions": [
+      {
+        "target_at": "2026-01-01T00:30:00+00:00",
+        "reasons": [
+          "outside_cross_region_intersection"
+        ],
+        "blocking_regions": [
+          "sim-east"
+        ]
+      },
+      {
+        "target_at": "2026-01-01T00:45:00+00:00",
+        "reasons": [
+          "missing_actual"
+        ],
+        "blocking_regions": [
+          "sim-west"
+        ]
+      }
+    ]
+  }
+]

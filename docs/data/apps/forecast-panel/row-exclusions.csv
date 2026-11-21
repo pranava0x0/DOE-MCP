@@ -1,0 +1,61 @@
+region_id,model_id,lead_seconds,target_at,reasons,blocking_regions,forecast_row,actual_row
+sim-east,sim-trend,300,2026-01-01T00:45:00+00:00,"[
+  ""outside_cross_region_intersection""
+]","[
+  ""sim-west""
+]",28,10
+sim-east,sim-offset,300,2026-01-01T00:45:00+00:00,"[
+  ""outside_cross_region_intersection""
+]","[
+  ""sim-west""
+]",29,10
+sim-east,sim-trend,600,2026-01-01T00:30:00+00:00,"[
+  ""missing_forecast:sim-offset""
+]","[
+  ""sim-east""
+]",19,7
+sim-east,sim-offset,600,2026-01-01T00:30:00+00:00,"[
+  ""missing_forecast:sim-offset""
+]","[
+  ""sim-east""
+]",,7
+sim-east,sim-trend,600,2026-01-01T00:45:00+00:00,"[
+  ""outside_cross_region_intersection""
+]","[
+  ""sim-west""
+]",30,10
+sim-east,sim-offset,600,2026-01-01T00:45:00+00:00,"[
+  ""outside_cross_region_intersection""
+]","[
+  ""sim-west""
+]",31,10
+sim-west,sim-trend,300,2026-01-01T00:45:00+00:00,"[
+  ""missing_actual""
+]","[
+  ""sim-west""
+]",76,24
+sim-west,sim-offset,300,2026-01-01T00:45:00+00:00,"[
+  ""missing_actual""
+]","[
+  ""sim-west""
+]",77,24
+sim-west,sim-trend,600,2026-01-01T00:30:00+00:00,"[
+  ""outside_cross_region_intersection""
+]","[
+  ""sim-east""
+]",66,21
+sim-west,sim-offset,600,2026-01-01T00:30:00+00:00,"[
+  ""outside_cross_region_intersection""
+]","[
+  ""sim-east""
+]",67,21
+sim-west,sim-trend,600,2026-01-01T00:45:00+00:00,"[
+  ""missing_actual""
+]","[
+  ""sim-west""
+]",78,24
+sim-west,sim-offset,600,2026-01-01T00:45:00+00:00,"[
+  ""missing_actual""
+]","[
+  ""sim-west""
+]",79,24

@@ -7,17 +7,26 @@ from pathlib import Path
 import sys
 
 from ..adapters.base import close_shared_client
-from ..applications import dockets, forecast, gcam, research_linkage, weather
+from ..applications import dockets, forecast, forecast_panel, gcam, research_linkage, weather
 from ..applications.samples import APPLICATIONS
 from ..applications.bundle import Run, export_bundle
 from ..core.credentials import Credentials
-from ..core.errors import DoeMcpError
+from ..core.errors import DoeMcpError, InvalidQuery
 from ..replay import fixture_manifest, load_replay_context
 from ..runtime import load_context
 from .workflows import asset_dir
 
 
 async def execute(args):
+    if args.application == forecast_panel.NAME:
+        if args.live or args.fixtures:
+            raise InvalidQuery("forecast-panel imports CSVs or runs a simulation; it does not fetch live publishers or replay publisher fixtures")
+        supplied = [args.plan, args.actuals, args.forecasts]
+        if not any(supplied):
+            return forecast_panel.simulation_sample()
+        if not all(supplied):
+            raise InvalidQuery("forecast-panel imports require --plan, --actuals and --forecasts together")
+        return forecast_panel.build(args.plan.read_bytes(), args.actuals.read_bytes(), args.forecasts.read_bytes())
     if args.live:
         source = getattr(args, "source", "")
         server = {"forecast-benchmark": "doe-energy-data", "weather-package": "doe-earth",
@@ -77,6 +86,13 @@ def cmd_app(args):
             if report["status"] == "unscored":
                 print("Warning: no forecasts matched usable actuals; no forecast metrics were calculated. "
                       "Evidence and exclusion reasons are available in the report.", file=sys.stderr)
+        elif report["application"] == forecast_panel.NAME:
+            coverage = report["coverage"]
+            print(f"Forecast panel mode: {report['mode']}; status: {report['status']}; "
+                  f"included {coverage['included_region_lead_targets']} of {coverage['expected_region_lead_targets']} "
+                  "declared region/lead/target slots. Inputs are not publisher verified.", file=sys.stderr)
+            if report["status"] == "unscored":
+                print("Warning: no common eligible targets; metrics are null and no ranking is produced.", file=sys.stderr)
     except (DoeMcpError, ValueError, OSError) as err:
         raise SystemExit(f"application failed: {err}") from None
     return 0
@@ -110,6 +126,11 @@ def register(sub):
             parser.add_argument("--software-query", default="", help="override software topic")
             parser.add_argument("--rows", type=int, help="per-source page size; preset uses recorded sizes")
             parser.add_argument("--page-budget", type=int, default=1)
+
+        elif name == forecast_panel.NAME:
+            parser.add_argument("--plan", type=Path, help="JSON model/region/lead/window/measurement declaration")
+            parser.add_argument("--actuals", type=Path, help="actual CSV with availability timestamps and measurement labels")
+            parser.add_argument("--forecasts", type=Path, help="forecast CSV; provide all three inputs or run the labelled simulation")
         else:
             parser.add_argument("--source", choices=["federal-register", "regulations"],
                                 default="federal-register",

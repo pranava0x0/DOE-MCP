@@ -1,0 +1,44 @@
+{
+  "data_kind": "simulation",
+  "cohort_mode": "cross_region_intersection",
+  "models": [
+    {
+      "id": "sim-trend",
+      "label": "sim-trend",
+      "attribution": "Deterministic illustrative simulation, not an issued real-world forecast."
+    },
+    {
+      "id": "sim-offset",
+      "label": "sim-offset",
+      "attribution": "Deterministic illustrative simulation, not an issued real-world forecast."
+    }
+  ],
+  "regions": [
+    {
+      "id": "sim-east",
+      "label": "sim-east",
+      "attribution": "Fictitious region with generated MW samples; no actual balancing authority or publisher."
+    },
+    {
+      "id": "sim-west",
+      "label": "sim-west",
+      "attribution": "Fictitious region with generated MW samples; no actual balancing authority or publisher."
+    }
+  ],
+  "lead_seconds": [
+    300,
+    600
+  ],
+  "window": {
+    "start": "2026-01-01T00:10:00+00:00",
+    "end": "2026-01-01T01:05:00+00:00"
+  },
+  "measurement": {
+    "quantity": "electric_power",
+    "unit": "MW",
+    "interval_seconds": 300,
+    "interval_semantics": "instantaneous_sample",
+    "timestamp_semantics": "sample_time"
+  },
+  "baseline_max_age_seconds": 300
+}

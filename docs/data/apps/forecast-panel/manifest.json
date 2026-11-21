@@ -1,0 +1,56 @@
+{
+  "application": "forecast-panel",
+  "mode": "simulation",
+  "files": [
+    {
+      "file": "actuals.csv",
+      "bytes": 3495,
+      "sha256": "7a30b70e5cf232d2834fc3a4535cafceac5fdfedf47a89356a499ee77c0dd99e"
+    },
+    {
+      "file": "cohorts.json",
+      "bytes": 3545,
+      "sha256": "0636f60c0814731802833890b540f4fc13a7d9afc3c93dfa1b3f27e5b05235dd"
+    },
+    {
+      "file": "forecasts.csv",
+      "bytes": 12613,
+      "sha256": "796dc785edbc8175ebdef0dd712b23fdac437d73513cd0fdc66ba86ed4bb3f89"
+    },
+    {
+      "file": "included-targets.csv",
+      "bytes": 1714,
+      "sha256": "b879ba5a640284cde1e0291af1a222ec0e63d1bec7029922029cc42d13d22dc4"
+    },
+    {
+      "file": "input-exclusions.csv",
+      "bytes": 24,
+      "sha256": "08246660b69f58c5f5b067c18ea9932c50c3e174e4148150d6bcb182a505f640"
+    },
+    {
+      "file": "metrics.csv",
+      "bytes": 1126,
+      "sha256": "7944521320f7c9417c6e2450540bc97f199e8ac3263e49ccb553269a48e117b7"
+    },
+    {
+      "file": "plan.json",
+      "bytes": 1168,
+      "sha256": "f7fe6acfe9fec374fe3626348a1508e0857d58893420c0d6bcdb14c78a196a71"
+    },
+    {
+      "file": "report.json",
+      "bytes": 74971,
+      "sha256": "68901d32164b3b25f70d75c5b1bc4252dc8d4b2ab5383eae34d37b6744a840ca"
+    },
+    {
+      "file": "row-exclusions.csv",
+      "bytes": 1482,
+      "sha256": "775c27c09530380c0f8d4a74851bb2c41dc6517ede23217df40ef7bdd822969a"
+    },
+    {
+      "file": "scored-rows.csv",
+      "bytes": 17606,
+      "sha256": "9444f5427c2384cf215bc5b3fb5c0636440b0e1cdce91397f6efe559febe142f"
+    }
+  ]
+}
