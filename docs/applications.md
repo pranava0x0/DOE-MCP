@@ -1,10 +1,10 @@
 # Applications built on DOE-MCP
 
-These are local command-line applications built on existing read-only tools. The examples below are recorded demonstrations, not live services. Download a complete sample bundle or run a command to create your own.
+These local command-line applications use read-only tools or declared input files. Examples use recorded publisher responses or clearly labelled synthetic simulations. They are not live services. Download a complete sample bundle or run a command to create your own.
 
-A server hosts tools. A tool returns data and provenance. A skill describes a tested workflow. An application combines tools and writes a result bundle. [Installation and application options](apps.html) · [Servers](index.html#servers-list) · [Tool reference](reference.html) · [Scientific skills](guide.html#connect-a-client-and-provide-a-skill)
+A server hosts tools. A tool returns data and provenance. A skill describes a tested workflow. An application combines tools or declared inputs and writes a result bundle. [Installation and application options](apps.html) · [Servers](index.html#servers-list) · [Tool reference](reference.html) · [Scientific skills](guide.html#connect-a-client-and-provide-a-skill)
 
-Site examples normalize replay retrieval clocks and request IDs for repeatable builds. The normalized clock is not a capture date. Source data and fixture hashes are preserved. CLI runs preserve their original tool envelopes.
+Recorded site examples normalize replay retrieval clocks and request IDs for repeatable builds. The normalized clock is not a capture date. Source data and fixture hashes are preserved. CLI runs preserve their original tool envelopes.
 
 ## Grid forecast benchmark lab
 
@@ -167,3 +167,56 @@ Use `--live --query YOUR_TOPIC` for one topic across all collections, or set sep
 - Search scope retains every page&#x27;s coverage and publisher totals. Unmatched means unmatched within these bounded returned records, not proof that a relationship does not exist.
 - The literature tool deduplicates its two collections by DOI; this inventory preserves its returned rows and original envelope evidence, rather than reconstructing discarded rows.
 - Source text is third-party data. CSV cells that could be spreadsheet expressions are prefixed with an apostrophe; JSON retains original titles.
+
+## Forecast panel with common cohorts
+
+**Synthetic simulation. Fictitious regions. Runs locally.**
+
+```bash
+doe-mcp app forecast-panel --output ./forecast-panel-run
+```
+
+[Download complete bundle](data/apps/forecast-panel/bundle.zip) · [View report and source evidence](data/apps/forecast-panel/report.json) · [File checksums](data/apps/forecast-panel/manifest.json)
+
+This example generates two fictitious regions, two illustrative forecast series and two lead times. It is a deterministic synthetic simulation, not publisher data or a real-world performance result. The measurement basis is five-minute instantaneous electric-power samples in MW.
+
+Each model and persistence uses exactly the same eligible targets. In this preset's cross-region intersection mode, both regions also use the same target timestamps per lead. Missing peer forecasts and missing actuals remain explicit exclusions; persistence only sees observations available by issuance.
+
+Status: **partial**. Included **42** of **48** declared region/lead/target slots. No ranking is produced.
+
+- [Input plan JSON](data/apps/forecast-panel/plan.json)
+- [Simulated actuals CSV](data/apps/forecast-panel/actuals.csv)
+- [Simulated forecasts CSV](data/apps/forecast-panel/forecasts.csv)
+- [Included targets CSV](data/apps/forecast-panel/included-targets.csv)
+- [Row exclusions CSV](data/apps/forecast-panel/row-exclusions.csv)
+- [Metrics CSV](data/apps/forecast-panel/metrics.csv)
+- [Cohorts JSON](data/apps/forecast-panel/cohorts.json)
+
+| Region | Lead seconds | Series | Common targets | MAE MW | RMSE MW | Bias MW |
+|---|---:|---|---:|---:|---:|---:|
+| sim-east | 300 | sim-trend | 11 | 4.091 | 4.167 | -4.091 |
+| sim-east | 300 | sim-offset | 11 | 0.636 | 0.798 | -0.091 |
+| sim-east | 300 | persistence | 11 | 3.182 | 3.451 | -3.182 |
+| sim-east | 600 | sim-trend | 10 | 4.200 | 4.266 | -4.200 |
+| sim-east | 600 | sim-offset | 10 | 0.600 | 0.775 | -0.200 |
+| sim-east | 600 | persistence | 10 | 6.200 | 6.372 | -6.200 |
+| sim-west | 300 | sim-trend | 11 | 4.091 | 4.167 | -4.091 |
+| sim-west | 300 | sim-offset | 11 | 0.636 | 0.798 | -0.091 |
+| sim-west | 300 | persistence | 11 | 3.636 | 4.134 | -3.636 |
+| sim-west | 600 | sim-trend | 10 | 4.200 | 4.266 | -4.200 |
+| sim-west | 600 | sim-offset | 10 | 0.600 | 0.775 | -0.200 |
+| sim-west | 600 | persistence | 10 | 6.300 | 6.504 | -6.300 |
+
+Display metrics are rounded to three decimals. The report retains full precision and every scored or excluded slot.
+
+Import your own declared CSVs with `--plan`, `--actuals` and `--forecasts`. The import preserves raw input hashes and attribution but cannot establish that supplied observations, issuance times or availability times are historically true. A simulation declaration remains simulation on reimport. [Input format and measurement rules](apps.html#forecast-panel-with-common-cohorts).
+
+### Scope and limits
+
+- This panel compares declared inputs, not publisher-verified observations. A simulation run does not measure real-world model performance.
+- Every compared model and persistence use the identical eligible target set within each region and lead. Cross-region intersection mode additionally uses the same targets in every declared region.
+- Within-region mode permits different region cohorts. No cross-region aggregate score or ranking is produced in either mode.
+- Availability and issuance timestamps are assertions in the supplied files; their historical truth cannot be established from a CSV.
+- Persistence uses only observations effective and available at or before issuance, within the declared maximum age. Later observations never set its prediction.
+- Quantity, unit, cadence, interval meaning and timestamp meaning must match the declaration. Power samples, interval means and energy totals cannot be mixed; no unit conversion or temporal aggregation is performed.
+- Missing declarations are refused. Missing values, forecasts and observations remain explicit cohort exclusions; a region with no common targets stays in the report with null metrics.

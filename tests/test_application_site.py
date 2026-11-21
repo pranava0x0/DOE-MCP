@@ -11,13 +11,19 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 @pytest.mark.parametrize('application', APPLICATIONS)
-def test_published_application_bundle_has_verified_files_and_recorded_provenance(application):
+def test_published_application_bundle_has_verified_files_and_mode_provenance(application):
     directory = ROOT / 'docs' / 'data' / 'apps' / application
     manifest = json.loads((directory / 'manifest.json').read_bytes())
     report = json.loads((directory / 'report.json').read_bytes())
-    assert manifest['mode'] == report['mode'] == 'recorded'
-    assert report['steps'] and report['fixtures']
-    assert 'normalized' in report['retrieval_note']
+    expected_mode = 'simulation' if application == 'forecast-panel' else 'recorded'
+    assert manifest['mode'] == report['mode'] == expected_mode
+    if expected_mode == 'recorded':
+        assert report['steps'] and report['fixtures']
+        assert 'normalized' in report['retrieval_note']
+    else:
+        assert not report['steps'] and not report['fixtures']
+        assert report['provenance']['verification'] == 'not_publisher_verified'
+        assert 'site_reference_clock' not in report
     with zipfile.ZipFile(directory / 'bundle.zip') as bundle:
         assert set(bundle.namelist()) == {r['file'] for r in manifest['files']} | {'manifest.json'}
         for row in manifest['files']:

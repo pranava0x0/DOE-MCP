@@ -1,4 +1,4 @@
-"""Recorded application examples, regenerated offline beside the local guide."""
+"""Application examples, regenerated offline with their declared data modes."""
 from __future__ import annotations
 
 import hashlib
@@ -15,7 +15,8 @@ from doe_mcp.workflows import freeze
 TITLES = {"forecast-benchmark": "Grid forecast benchmark lab",
           "weather-package": "Weather package builder", "docket-tracker": "DOE docket notice tracker",
           "gcam-comparison": "GCAM comparison receipts",
-          "research-linkage": "Research artifact linkage explorer"}
+          "research-linkage": "Research artifact linkage explorer",
+          "forecast-panel": "Forecast panel with common cohorts"}
 
 
 def cell(value) -> str:
@@ -30,25 +31,26 @@ def cell(value) -> str:
 async def write_applications(root: Path) -> None:
     docs, fixtures = root / "docs", root / "tests" / "fixtures"
     lines = ["# Applications built on DOE-MCP", "",
-        "These are local command-line applications built on existing read-only tools. "
-        "The examples below are recorded demonstrations, not live services. "
+        "These local command-line applications use read-only tools or declared input files. "
+        "Examples use recorded publisher responses or clearly labelled synthetic simulations. They are not live services. "
         "Download a complete sample bundle or run a command to create your own.", "",
         "A server hosts tools. A tool returns data and provenance. A skill describes "
-        "a tested workflow. An application combines tools and writes a result bundle. "
+        "a tested workflow. An application combines tools or declared inputs and writes a result bundle. "
         "[Installation and application options](apps.html) · [Servers](index.html#servers-list) "
         "· [Tool reference](reference.html) · [Scientific skills](guide.html#connect-a-client-and-provide-a-skill)", "",
-        "Site examples normalize replay retrieval clocks and request IDs for repeatable builds. "
+        "Recorded site examples normalize replay retrieval clocks and request IDs for repeatable builds. "
         "The normalized clock is not a capture date. Source data and fixture hashes are preserved. "
         "CLI runs preserve their original tool envelopes.", ""]
     for name in APPLICATIONS:
         ctx = load_replay_context(fixtures, root / "sources")
         report, files = await recorded_sample(ctx, name, fixture_manifest(fixtures))
-        clock = f"{ctx.sources.revision}T00:00:00Z"
-        report = freeze(report, clock)
-        report["retrieval_note"] = "Site-only recorded example: retrieval clocks and request IDs are normalized; source data and fixture capture metadata remain separate. CLI exports retain original invocation envelopes."
-        report["site_reference_clock"] = clock
+        if report["mode"] == "recorded":
+            clock = f"{ctx.sources.revision}T00:00:00Z"
+            report = freeze(report, clock)
+            report["retrieval_note"] = "Site-only recorded example: retrieval clocks and request IDs are normalized; source data and fixture capture metadata remain separate. CLI exports retain original invocation envelopes."
+            report["site_reference_clock"] = clock
         payloads = {**files, "report.json": json_bytes(report)}
-        payloads["manifest.json"] = json_bytes({"application": name, "mode": "recorded",
+        payloads["manifest.json"] = json_bytes({"application": name, "mode": report["mode"],
             "files": [{"file": n, "bytes": len(b), "sha256": hashlib.sha256(b).hexdigest()}
                       for n, b in sorted(payloads.items())]})
         archive = io.BytesIO()
@@ -63,7 +65,8 @@ async def write_applications(root: Path) -> None:
         for filename, body in payloads.items():
             (destination / filename).write_bytes(body)
         (destination / "bundle.zip").write_bytes(archive.getvalue())
-        lines += [f"## {TITLES[name]}", "", "**Recorded example. Runs locally.**", "",
+        label = "Synthetic simulation. Fictitious regions. Runs locally." if report["mode"] == "simulation" else "Recorded example. Runs locally."
+        lines += [f"## {TITLES[name]}", "", f"**{label}**", "",
                   f"```bash\ndoe-mcp app {name} --output ./{name}-run\n```", "",
                   f"[Download complete bundle](data/apps/{name}/bundle.zip) · "
                   f"[View report and source evidence](data/apps/{name}/report.json) · "
@@ -126,6 +129,32 @@ async def write_applications(root: Path) -> None:
                 "Use `--live --query YOUR_TOPIC` for one topic across all collections, or set separate "
                 "`--literature-query`, `--dataset-query` and `--software-query` values. "
                 "`--rows` and `--page-budget` bound each collection search.", ""]
+
+        elif name == "forecast-panel":
+            lines += ["This example generates two fictitious regions, two illustrative forecast series and two lead times. "
+                "It is a deterministic synthetic simulation, not publisher data or a real-world performance result. "
+                "The measurement basis is five-minute instantaneous electric-power samples in MW.", "",
+                "Each model and persistence uses exactly the same eligible targets. In this preset's cross-region intersection mode, "
+                "both regions also use the same target timestamps per lead. Missing peer forecasts and missing actuals remain "
+                "explicit exclusions; persistence only sees observations available by issuance.", "",
+                f"Status: **{report['status']}**. Included **{report['coverage']['included_region_lead_targets']}** of "
+                f"**{report['coverage']['expected_region_lead_targets']}** declared region/lead/target slots. No ranking is produced.", "",
+                f"- [Input plan JSON](data/apps/{name}/plan.json)",
+                f"- [Simulated actuals CSV](data/apps/{name}/actuals.csv)",
+                f"- [Simulated forecasts CSV](data/apps/{name}/forecasts.csv)",
+                f"- [Included targets CSV](data/apps/{name}/included-targets.csv)",
+                f"- [Row exclusions CSV](data/apps/{name}/row-exclusions.csv)",
+                f"- [Metrics CSV](data/apps/{name}/metrics.csv)",
+                f"- [Cohorts JSON](data/apps/{name}/cohorts.json)", "",
+                "| Region | Lead seconds | Series | Common targets | MAE MW | RMSE MW | Bias MW |",
+                "|---|---:|---|---:|---:|---:|---:|"]
+            for metric in report["metrics"]:
+                lines.append("| " + " | ".join(cell(v) for v in [metric["region_id"], metric["lead_seconds"],
+                    metric["model_id"] or "persistence", metric["count"], metric["mae"], metric["rmse"], metric["bias"]]) + " |")
+            lines += ["", "Display metrics are rounded to three decimals. The report retains full precision and every scored or excluded slot.", "",
+                "Import your own declared CSVs with `--plan`, `--actuals` and `--forecasts`. The import preserves raw input hashes "
+                "and attribution but cannot establish that supplied observations, issuance times or availability times are historically true. "
+                "A simulation declaration remains simulation on reimport. [Input format and measurement rules](apps.html#forecast-panel-with-common-cohorts).", ""]
         else:
             lines += ["Track Federal Register DOE notices, retain separate publication/effective/comment dates, "
                 "group publisher-supplied docket IDs, and compare saved snapshots. "

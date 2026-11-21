@@ -1,8 +1,9 @@
 # Local applications
 
-These applications compose the existing source tools. They replay recorded
-publisher responses by default. `--live` makes a publisher request with the
-same source activation gates as the MCP servers.
+These applications compose source tools or declared input files. Publisher
+applications replay recorded responses by default; the forecast panel runs
+a labelled simulation or imports CSVs. Where supported, `--live` queries
+publishers through the same source activation gates as the MCP servers.
 
 Each `--output` writes a new directory containing `report.json`, CSV files
 and `manifest.json` with the SHA256 and byte count of each exported file.
@@ -124,6 +125,99 @@ For live scoring, supply `--forecasts`, add `--live` and choose
 `--actual-timezone` is required when BPA omits per-reading offsets.
 The recorded sample uses `America/Los_Angeles` as a disclosed assumption.
 Ambiguous or nonexistent local timestamps are refused.
+
+## Forecast panel with common cohorts
+
+```bash
+doe-mcp app forecast-panel --output ./panel-simulation
+doe-mcp app forecast-panel --plan ./panel-simulation/plan.json \
+  --actuals ./panel-simulation/actuals.csv \
+  --forecasts ./panel-simulation/forecasts.csv --output ./panel-reimport
+```
+
+The default is a deterministic synthetic simulation with two fictitious
+regions, two forecast series and two leads. Its missing forecast and blank
+actual exercise exclusions. It contains no publisher fixtures or real
+region observations and does not measure real-world model performance.
+[Download its plan, inputs, cohorts and metrics](applications.html#forecast-panel-with-common-cohorts).
+Reimporting a plan declared as simulation keeps that label.
+
+To compare your own inputs, provide all three files. The plan declares:
+
+- `data_kind`: `user_supplied` or `simulation`.
+- `cohort_mode`: `within_region` or `cross_region_intersection`.
+- `models`: 2–12 entries, each with a unique `id`, display `label` and source `attribution`.
+- `regions`: 1–8 entries with the same fields. A region stays in the output even when it has no eligible targets.
+- `lead_seconds`: 1–8 positive integer leads, each a measurement-cadence multiple, at most seven days.
+- `window`: inclusive `start` and `end` with UTC offsets, separated by whole measurement intervals.
+- `measurement`: `quantity`, `unit`, `interval_seconds`, `interval_semantics` and `timestamp_semantics`.
+- `baseline_max_age_seconds`: the oldest effective observation that persistence may use at issuance, at most seven days.
+
+The supported measurement declarations are:
+
+| Quantity | Unit | Interval semantics | Timestamp semantics |
+|---|---|---|---|
+| `electric_power` | `MW` | `instantaneous_sample` | `sample_time` |
+| `electric_power` | `MW` | `interval_mean` | `interval_end` |
+| `electric_energy` | `MWh` | `interval_total` | `interval_end` |
+
+One panel has one measurement basis. Every input row repeats those labels
+and its `interval_seconds` must match the plan. The application performs no
+unit conversion or temporal aggregation. BPA's five-minute MW samples
+cannot be combined with EIA's hourly MWh totals in a panel. Sample power,
+mean power and interval energy also remain distinct.
+
+Actual CSV columns are:
+
+```csv
+region_id,target_at,available_at,value,quantity,unit,interval_seconds,interval_semantics,timestamp_semantics
+```
+
+Forecast CSV columns are:
+
+```csv
+model_id,region_id,issued_at,target_at,prediction,quantity,unit,interval_seconds,interval_semantics,timestamp_semantics
+```
+
+Use UTF-8, aware ISO timestamps and finite numeric values. A blank `value`
+or `prediction` means missing. Effective and availability times must be
+separate: `available_at` states when that observation was available to the
+forecast system and must be at or after its sample time or interval end.
+Issuance, availability and source attribution remain caller assertions;
+the application cannot prove their historical truth. Imported bytes are
+preserved with hashes and marked `not_publisher_verified`.
+
+Persistence selects the latest effective finite observation available at
+or before issuance, within the declared maximum age. Later values and
+delayed publications never set the prediction. Include historical actual
+rows before the scoring window when they are needed to supply a baseline.
+
+Within each region and lead, a target is eligible only if its actual,
+every declared model prediction and persistence are usable. All series
+are scored on that same set. `cross_region_intersection` further takes
+the intersection across every declared region for each lead. A missing
+region can therefore make the entire common cohort empty.
+`within_region` permits different cohorts between regions. Neither mode
+produces an aggregate cross-region score or ranking.
+
+The report retains all expected model/region/lead/target slots. Each
+excluded slot names the missing input or blocking region. Forecast rows
+outside the window or off its grid are listed separately; undeclared
+models, regions and leads are refused. Duplicate identities are refused
+after converting timestamps to UTC. Availability rows are indexed by
+their original CSV record number.
+
+The bundle preserves all three raw input files and adds `cohorts.json`,
+`included-targets.csv`, `scored-rows.csv`, `row-exclusions.csv`,
+`input-exclusions.csv` and `metrics.csv`. Empty cohorts retain null metrics
+and an `unscored` status, with a CLI warning. A partially populated panel
+is `partial`; all expected targets eligible is `scored`. No region is
+silently dropped. A run is bounded to 2,000 target times and 100,000 model
+slots; each input file is at most 20 MB and each CSV at most 100,000 rows.
+
+This application reads local files only. Its `--live` and `--fixtures`
+options are refused. Existing publisher tools keep their own source and
+credential gates; this application does not configure or acquire a key.
 
 ## Weather package
 

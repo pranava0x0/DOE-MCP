@@ -329,9 +329,9 @@ async function applicationJourney(browser, viewport, task) {
     await click(page, page.locator('nav[aria-label="On this page"] a[href="#' + task.anchor + '"]'), counters, task.id);
     const heading = page.locator('#' + task.anchor);
     await heading.waitFor({state: 'visible'});
-    assert.match(await page.locator('main').innerText(), /recorded demonstrations, not live services/);
+    assert.match(await page.locator('main').innerText(), /recorded publisher responses or clearly labelled synthetic simulations/);
     const link = page.locator('a[href="data/apps/' + task.id + '/bundle.zip"]');
-    const file = await download(page, link, counters, 'complete recorded application bundle');
+    const file = await download(page, link, counters, 'complete application bundle');
     assert(file.bytes.equals(fs.readFileSync(path.join(docs, 'data/apps', task.id, 'bundle.zip'))), 'application bundle download differs');
     if (task.id === 'gcam-comparison') {
       assert.match(await page.locator('main').innerText(), /Southeast Asia/);
@@ -344,6 +344,21 @@ async function applicationJourney(browser, viewport, task) {
       const receipts = JSON.parse(fs.readFileSync(path.join(docs, 'data/apps', task.id, 'receipts.json'), 'utf8'));
       assert(receipts.every(receipt => receipt.file_url && receipt.evidence_ref && receipt.row_number && receipt.publisher_columns.length), 'GCAM receipts lack source identity');
       assert.equal(receipts.find(receipt => receipt.id === 'indonesia-geothermal').region_mapping.join_value, 'Southeast Asia');
+    }
+    if (task.id === 'forecast-panel') {
+      assert.match(await page.locator('main').innerText(), /Synthetic simulation. Fictitious regions/);
+      for (const filename of ['plan.json', 'actuals.csv', 'forecasts.csv', 'included-targets.csv', 'row-exclusions.csv', 'metrics.csv', 'cohorts.json']) {
+        const imported = await download(page, page.locator('a[href="data/apps/forecast-panel/' + filename + '"]'), counters, filename);
+        assert(imported.bytes.equals(fs.readFileSync(path.join(docs, 'data/apps/forecast-panel', filename))), 'forecast panel input/receipt differs: ' + filename);
+      }
+      const panel = JSON.parse(fs.readFileSync(path.join(docs, 'data/apps/forecast-panel/report.json'), 'utf8'));
+      assert.equal(panel.mode, 'simulation');
+      assert.equal(panel.fixtures.length, 0);
+      assert.equal(panel.steps.length, 0);
+      for (const lead of panel.plan.lead_seconds) {
+        const cohorts = panel.cohorts.filter(row => row.lead_seconds === lead);
+        assert.deepEqual(cohorts[0].included_targets, cohorts[1].included_targets);
+      }
     }
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'application page overflow');
     await page.screenshot({path: path.join(output, 'application-' + viewport.width + '-' + task.id + '.png')});
@@ -414,7 +429,8 @@ async function hrefTargets(browser) {
         {id: 'weather-package', anchor: 'weather-package-builder'},
         {id: 'docket-tracker', anchor: 'doe-docket-notice-tracker'},
         {id: 'gcam-comparison', anchor: 'gcam-comparison-receipts'},
-        {id: 'research-linkage', anchor: 'research-artifact-linkage-explorer'}])
+        {id: 'research-linkage', anchor: 'research-artifact-linkage-explorer'},
+        {id: 'forecast-panel', anchor: 'forecast-panel-with-common-cohorts'}])
         await applicationJourney(browser, viewport, task);
       await evaluationJourney(browser, viewport);
       await stability(browser, viewport);

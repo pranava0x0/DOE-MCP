@@ -30,10 +30,11 @@ main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0
 }
 </style></head><body class=""><a class="skip" href="#content">Skip to content</a>
 <header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Recorded demos</a></nav></header>
-<main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#gcam-comparison-receipts">GCAM comparison receipts</a></li><li><a href="#forecast-benchmark">Forecast benchmark</a></li><li><a href="#weather-package">Weather package</a></li><li><a href="#federal-register-notice-tracker">Federal Register notice tracker</a></li><li><a href="#regulationsgov-integration-gated">Regulations.gov integration: gated</a></li><li><a href="#research-artifact-linkage-explorer">Research artifact linkage explorer</a></li></ul></nav><h1 id="local-applications">Local applications</h1>
-<p>These applications compose the existing source tools. They replay recorded
-publisher responses by default. <code>--live</code> makes a publisher request with the
-same source activation gates as the MCP servers.</p>
+<main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#gcam-comparison-receipts">GCAM comparison receipts</a></li><li><a href="#forecast-benchmark">Forecast benchmark</a></li><li><a href="#forecast-panel-with-common-cohorts">Forecast panel with common cohorts</a></li><li><a href="#weather-package">Weather package</a></li><li><a href="#federal-register-notice-tracker">Federal Register notice tracker</a></li><li><a href="#regulationsgov-integration-gated">Regulations.gov integration: gated</a></li><li><a href="#research-artifact-linkage-explorer">Research artifact linkage explorer</a></li></ul></nav><h1 id="local-applications">Local applications</h1>
+<p>These applications compose source tools or declared input files. Publisher
+applications replay recorded responses by default; the forecast panel runs
+a labelled simulation or imports CSVs. Where supported, <code>--live</code> queries
+publishers through the same source activation gates as the MCP servers.</p>
 <p>Each <code>--output</code> writes a new directory containing <code>report.json</code>, CSV files
 and <code>manifest.json</code> with the SHA256 and byte count of each exported file.
 The report preserves original tool envelopes, including evidence and
@@ -131,6 +132,105 @@ guarantee future coverage.</p>
 <code>--actual-timezone</code> is required when BPA omits per-reading offsets.
 The recorded sample uses <code>America/Los_Angeles</code> as a disclosed assumption.
 Ambiguous or nonexistent local timestamps are refused.</p>
+<h2 id="forecast-panel-with-common-cohorts">Forecast panel with common cohorts</h2>
+<pre><code class="language-bash">doe-mcp app forecast-panel --output ./panel-simulation
+doe-mcp app forecast-panel --plan ./panel-simulation/plan.json \
+  --actuals ./panel-simulation/actuals.csv \
+  --forecasts ./panel-simulation/forecasts.csv --output ./panel-reimport
+</code></pre>
+<p>The default is a deterministic synthetic simulation with two fictitious
+regions, two forecast series and two leads. Its missing forecast and blank
+actual exercise exclusions. It contains no publisher fixtures or real
+region observations and does not measure real-world model performance.
+<a href="applications.html#forecast-panel-with-common-cohorts">Download its plan, inputs, cohorts and metrics</a>.
+Reimporting a plan declared as simulation keeps that label.</p>
+<p>To compare your own inputs, provide all three files. The plan declares:</p>
+<ul>
+<li><code>data_kind</code>: <code>user_supplied</code> or <code>simulation</code>.</li>
+<li><code>cohort_mode</code>: <code>within_region</code> or <code>cross_region_intersection</code>.</li>
+<li><code>models</code>: 2–12 entries, each with a unique <code>id</code>, display <code>label</code> and source <code>attribution</code>.</li>
+<li><code>regions</code>: 1–8 entries with the same fields. A region stays in the output even when it has no eligible targets.</li>
+<li><code>lead_seconds</code>: 1–8 positive integer leads, each a measurement-cadence multiple, at most seven days.</li>
+<li><code>window</code>: inclusive <code>start</code> and <code>end</code> with UTC offsets, separated by whole measurement intervals.</li>
+<li><code>measurement</code>: <code>quantity</code>, <code>unit</code>, <code>interval_seconds</code>, <code>interval_semantics</code> and <code>timestamp_semantics</code>.</li>
+<li><code>baseline_max_age_seconds</code>: the oldest effective observation that persistence may use at issuance, at most seven days.</li>
+</ul>
+<p>The supported measurement declarations are:</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Quantity</th>
+<th scope="col">Unit</th>
+<th scope="col">Interval semantics</th>
+<th scope="col">Timestamp semantics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Quantity"><code>electric_power</code></td>
+<td data-label="Unit"><code>MW</code></td>
+<td data-label="Interval semantics"><code>instantaneous_sample</code></td>
+<td data-label="Timestamp semantics"><code>sample_time</code></td>
+</tr>
+<tr>
+<td data-label="Quantity"><code>electric_power</code></td>
+<td data-label="Unit"><code>MW</code></td>
+<td data-label="Interval semantics"><code>interval_mean</code></td>
+<td data-label="Timestamp semantics"><code>interval_end</code></td>
+</tr>
+<tr>
+<td data-label="Quantity"><code>electric_energy</code></td>
+<td data-label="Unit"><code>MWh</code></td>
+<td data-label="Interval semantics"><code>interval_total</code></td>
+<td data-label="Timestamp semantics"><code>interval_end</code></td>
+</tr>
+</tbody>
+</table>
+<p>One panel has one measurement basis. Every input row repeats those labels
+and its <code>interval_seconds</code> must match the plan. The application performs no
+unit conversion or temporal aggregation. BPA's five-minute MW samples
+cannot be combined with EIA's hourly MWh totals in a panel. Sample power,
+mean power and interval energy also remain distinct.</p>
+<p>Actual CSV columns are:</p>
+<pre><code class="language-csv">region_id,target_at,available_at,value,quantity,unit,interval_seconds,interval_semantics,timestamp_semantics
+</code></pre>
+<p>Forecast CSV columns are:</p>
+<pre><code class="language-csv">model_id,region_id,issued_at,target_at,prediction,quantity,unit,interval_seconds,interval_semantics,timestamp_semantics
+</code></pre>
+<p>Use UTF-8, aware ISO timestamps and finite numeric values. A blank <code>value</code>
+or <code>prediction</code> means missing. Effective and availability times must be
+separate: <code>available_at</code> states when that observation was available to the
+forecast system and must be at or after its sample time or interval end.
+Issuance, availability and source attribution remain caller assertions;
+the application cannot prove their historical truth. Imported bytes are
+preserved with hashes and marked <code>not_publisher_verified</code>.</p>
+<p>Persistence selects the latest effective finite observation available at
+or before issuance, within the declared maximum age. Later values and
+delayed publications never set the prediction. Include historical actual
+rows before the scoring window when they are needed to supply a baseline.</p>
+<p>Within each region and lead, a target is eligible only if its actual,
+every declared model prediction and persistence are usable. All series
+are scored on that same set. <code>cross_region_intersection</code> further takes
+the intersection across every declared region for each lead. A missing
+region can therefore make the entire common cohort empty.
+<code>within_region</code> permits different cohorts between regions. Neither mode
+produces an aggregate cross-region score or ranking.</p>
+<p>The report retains all expected model/region/lead/target slots. Each
+excluded slot names the missing input or blocking region. Forecast rows
+outside the window or off its grid are listed separately; undeclared
+models, regions and leads are refused. Duplicate identities are refused
+after converting timestamps to UTC. Availability rows are indexed by
+their original CSV record number.</p>
+<p>The bundle preserves all three raw input files and adds <code>cohorts.json</code>,
+<code>included-targets.csv</code>, <code>scored-rows.csv</code>, <code>row-exclusions.csv</code>,
+<code>input-exclusions.csv</code> and <code>metrics.csv</code>. Empty cohorts retain null metrics
+and an <code>unscored</code> status, with a CLI warning. A partially populated panel
+is <code>partial</code>; all expected targets eligible is <code>scored</code>. No region is
+silently dropped. A run is bounded to 2,000 target times and 100,000 model
+slots; each input file is at most 20 MB and each CSV at most 100,000 rows.</p>
+<p>This application reads local files only. Its <code>--live</code> and <code>--fixtures</code>
+options are refused. Existing publisher tools keep their own source and
+credential gates; this application does not configure or acquire a key.</p>
 <h2 id="weather-package">Weather package</h2>
 <pre><code class="language-bash">doe-mcp app weather-package --output ./recorded-weather
 doe-mcp app weather-package --latitude 35.9313 --longitude -84.3104 \

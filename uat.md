@@ -231,3 +231,64 @@ document loads, plus three wheel actions on the phone and one at larger
 widths. A direct homepage Evaluation lab shortcut now avoids those guide
 steps. The separate functional audit still checks the guide and contract.
 The integrated regression suite passed 1,496 tests with one optional skip.
+
+## Forecast panel follow-up — 2026-11-21
+
+The forecast panel adds a labelled synthetic simulation and CSV import.
+Its example uses fictitious regions and preserves simulation mode in the
+report and ZIP manifest. Publisher recordings, retrieval clocks and
+envelopes are absent from this example. Other application examples retain
+their recorded-data labels.
+
+The journey audit passed 30 paths at 375×812, 768×1024 and 1280×800 with
+Playwright 1.58.2 and the installed Chrome 158.0.8127.36 override. It
+verified 367 local targets and fragments across nine documents, with no
+browser or first-party request errors. The forecast-panel path starts at
+home, follows Applications and its contents link, then downloads the ZIP
+and seven input/result files. All downloaded bytes match their generated
+files. It checks simulation provenance and equal region target timestamps
+for each lead.
+
+The phone path used ten clicks, one wheel action and two document loads;
+tablet and desktop paths used ten clicks and no wheel actions. The phone
+screenshot shows the common-cohort counts, input links and labelled metric
+cards within the viewport width. Inspect
+`uat-screenshots/panel-journeys/application-375-forecast-panel.png` and
+`uat-screenshots/panel-journeys/journeys.json`. This is a scripted local
+browser check, not a human or physical-device study. No publisher endpoint
+was queried and no real-world forecast performance was evaluated.
+
+The functional audit also passed all 38 demos at each viewport, including
+216 section jumps, thirteen worksheet downloads, the Daymet checksum pair
+and keyboard navigation. It reported no browser errors or page overflow.
+
+## Integrated forecast and evaluation verification — 2026-11-21
+
+The forecast panel now runs beside the GCAM receipts, research explorer
+and evaluation matrix. The integrated suite passed 1,522 tests with one
+optional skip. Registry validation, Ruff, writing checks, schema generation,
+site regeneration, the 38-demo CLI/download comparison and the independent
+Croissant reader passed. Generated files match their source definitions.
+
+All three browser scripts passed with Playwright 1.58.2 and installed
+Chrome 158.0.8127.36 at 375×812, 768×1024 and 1280×800. The site audit
+completed 39 journeys and verified 413 local targets across eleven HTML
+documents, with no browser or first-party request errors. The functional
+audit passed the existing 38 demos, 216 section jumps, worksheet downloads,
+Daymet pair and keyboard checks. The separate evaluation audit verified
+the guide, comparison contract, simulation example, ZIP/CSV downloads and
+skip link at all three sizes.
+
+The forecast path verified the complete bundle and seven individual input
+and result files. It used ten clicks and two document loads, with one
+wheel action on the phone and none at larger widths. The homepage
+Evaluation lab shortcut retained its two-click, zero-wheel, two-load path.
+Phone screenshots show readable simulation labels, links and metric cards.
+Source-specific receipts and publisher replay clocks remain separate from
+the forecast simulation's input hashes and caller-declared provenance.
+
+Results are in ignored `uat-screenshots/final-panel-functional/`,
+`uat-screenshots/final-panel-journeys/` and
+`uat-screenshots/final-panel-evaluation/`. These are local scripted checks,
+not a physical-device or human study. No publisher API, model or reviewer
+was invoked and no real-world forecast performance or model cost was measured.

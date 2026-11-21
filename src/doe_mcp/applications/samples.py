@@ -1,10 +1,10 @@
-"""Fixed recorded application presets for the CLI and site builder."""
+"""Fixed recorded or simulated application presets, each retaining its mode."""
 from __future__ import annotations
 
-from . import dockets, forecast, gcam, research_linkage, weather
+from . import dockets, forecast, forecast_panel, gcam, research_linkage, weather
 from .bundle import Run
 
-APPLICATIONS = ("forecast-benchmark", "weather-package", "docket-tracker", gcam.NAME, "research-linkage")
+APPLICATIONS = ("forecast-benchmark", "weather-package", "docket-tracker", gcam.NAME, "research-linkage", forecast_panel.NAME)
 
 
 async def recorded_sample(ctx, name: str, fixtures: list[dict] | None = None) -> tuple[dict, dict[str, bytes]]:
@@ -13,6 +13,8 @@ async def recorded_sample(ctx, name: str, fixtures: list[dict] | None = None) ->
     Data, scores and CSVs are deterministic. Replay retrieval clocks and
     execution request IDs describe this invocation and are not capture times.
     """
+    if name == forecast_panel.NAME:
+        return forecast_panel.simulation_sample()
     run = Run(ctx, name, "recorded", fixtures)
     if name == "forecast-benchmark":
         files = await forecast.build(run, payload=None, timezone_name=None, intervals=24)
