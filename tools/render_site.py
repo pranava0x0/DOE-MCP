@@ -76,9 +76,7 @@ def _style() -> str:
     # NEPA-MCP this project borrowed the shape from, and flip-cards were
     # tried here once (see the card comment below) and reverted.
     #
-    # The web fonts have full system fallbacks and load with `display=swap`,
-    # so the page is legible and correctly laid out before they arrive and
-    # if they never do.
+    # System fonts keep the page independent of remote font services.
     return """
 [hidden]{display:none!important}
 .skip-link{position:absolute;left:1rem;top:-8rem;z-index:100;background:var(--paper);color:var(--ink);padding:12px}
@@ -87,6 +85,13 @@ def _style() -> str:
 .demo-search input{width:100%;max-width:38rem;padding:12px;font:inherit;border:1px solid var(--muted);border-radius:4px;background:var(--card);color:var(--ink)}
 .demo-search input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .demo-search p{margin:6px 0;color:var(--muted)}
+@media(max-width:600px){
+.registry-table,.registry-table tbody,.registry-table tr,.registry-table td{display:block;width:100%}
+.registry-table{overflow:visible}.registry-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.registry-table tr{margin:12px 0;border:1px solid var(--line);border-radius:6px;padding:8px}
+.registry-table td{border:0!important;padding:6px 8px!important;text-align:left!important;overflow-wrap:anywhere}
+.registry-table td::before{content:attr(data-label);display:block;font:600 .75rem var(--sans);color:var(--muted);text-transform:uppercase;margin-bottom:3px}
+}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 .demo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:20px 0}.demo-link{display:flex;flex-direction:column;gap:12px;padding:20px;border:1px solid var(--line);border-radius:8px;background:var(--card);text-decoration:none;overflow-wrap:anywhere}.demo-link strong{font-size:1.12rem}.demo-link span{color:var(--ink)}.demo-link small{color:var(--muted);margin-top:auto}.demo-link:hover{border-color:var(--accent)}.demo-link:focus-visible{outline:3px solid var(--accent);outline-offset:3px}@media(max-width:900px){.demo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.demo-grid{grid-template-columns:1fr;gap:8px;margin:12px 0}.demo-link{padding:12px 14px;gap:4px}.demo-link span{display:none}}
 :root{
@@ -226,7 +231,7 @@ section{border-bottom:1px solid var(--line);scroll-margin-top:4.2rem}
   outline-offset:2px}
 .sect>summary h2{display:inline;margin:0}
 .sect-body{padding:0 0 1.9rem}
-h3[id]{scroll-margin-top:4.5rem}
+h3[id],.steps li[id]{scroll-margin-top:4.5rem}
 h2{font-family:var(--display);font-weight:700;font-size:1.28rem;
    margin:0 0 .5rem;letter-spacing:-.01em}
 h3{font-size:.98rem;margin:1.6rem 0 .5rem}
@@ -672,12 +677,12 @@ def _registry(data: dict) -> str:
         haystack = e(" ".join([s["id"], s["name"], s["domain"], s["steward"],
                                " ".join(s["labs"]), label]).lower())
         rows.append(
-            f"<tr data-s=\"{haystack}\"><td class='mono'>{e(s['id'])}<br>"
+            f"<tr data-s=\"{haystack}\"><td class='mono' data-label='Source'>{e(s['id'])}<br>"
             f"<span class='pill {pill}'>{e(label)}</span></td>"
-            f"<td>{publisher}</td><td>{detail}</td>"
-            f"<td class='mono' style='text-align:right'>{count}</td></tr>")
+            f"<td data-label='Publisher'>{publisher}</td><td data-label='Scope and limits'>{detail}</td>"
+            f"<td class='mono' data-label='Records' style='text-align:right'>{count}</td></tr>")
     return (
-        "<table><thead><tr><th>Source</th><th>Publisher</th>"
+        "<table class='registry-table'><thead><tr><th>Source</th><th>Publisher</th>"
         "<th>What it holds / what is blocking it</th>"
         "<th style='text-align:right'>Records</th></tr></thead>"
         f"<tbody id='reg'>{''.join(rows)}</tbody></table>")
@@ -833,11 +838,6 @@ def render(data: dict) -> str:
  Energy and national-laboratory data. Every answer names the systems it came
  from and what it did not cover. An independent project, not affiliated with
  the US Department of Energy.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?\
-family=Inter:wght@400;500;600;700&family=Crimson+Pro:wght@400;600&\
-family=Roboto+Mono:wght@400;500&display=swap">
 <style>{_style()}{ATLAS_CSS}</style>
 </head>
 <body>
@@ -860,7 +860,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
   <h1>A field guide to DOE data.</h1>
   <p class="tagline">Explore energy, land and research data from the US Department of Energy and its national laboratories.</p>
   <p class="free">Free and open source (Apache-2.0). Most tools need no account or API key. Every demo runs on recorded data.</p>
-  <div class="atlas-actions"><a class="primary" href="#genesis-mission">Explore Genesis skills ↓</a><a href="demos.html">All demos</a><a href="guide.html">Local guide</a></div>
+  <div class="atlas-actions"><a class="primary" href="#genesis-mission">Explore Genesis skills ↓</a><a href="demos.html">All demos</a><a href="#start-install">Install</a><a href="#registry-sources">Source coverage</a><a href="guide.html">Local guide</a></div>
   </div><div class="atlas-plate">{globe()}</div></div>
   <div class="atlas-inventory">{_inventory(c)}
   <p class="works">Works with: {works}</p></div>
@@ -873,6 +873,9 @@ family=Roboto+Mono:wght@400;500&display=swap">
   <summary><h2>Overview</h2></summary>
   <div class="sect-body">
   <p id="overview-about">DOE-MCP connects AI clients to public DOE and national-laboratory data through read-only tools. Results include sources, retrieval dates and coverage limits.</p>
+  <h3 id="project-parts">Servers, tools, skills and applications</h3>
+  <p>A <b>server</b> is a local MCP process for a data domain. A <b>tool</b> is one read-only operation on that server. A <b>skill</b> describes a reusable workflow and includes recorded bench tasks. An <b>application</b> combines tools into a runnable workflow with a local output bundle. A <b>demo</b> is a recorded example of a workflow.</p>
+  <p><a href="#servers-list">Choose a server</a> · <a href="reference.html">Find a tool</a> · <a href="#genesis-mission">Explore skills</a> · <a href="guide.html">Run locally</a></p>
   <h3 id="overview-demos">Demos</h3>
   <p>All {len(DEMO_CARDS)} walkthroughs use recorded data: no account, API key or paid model.</p>
   <div class="demo-search" id="demo-search" hidden>

@@ -33,12 +33,15 @@ jobs:
       - run: uv venv
       - run: echo "$GITHUB_WORKSPACE/.venv/bin" >> $GITHUB_PATH && echo "VIRTUAL_ENV=$GITHUB_WORKSPACE/.venv" >> $GITHUB_ENV
       - name: Install
-        run: uv pip install -e ".[all]" pytest==9.1.1 pytest-asyncio==1.4.0 ruff==0.13.0
+        run: uv pip install -e ".[all]" pytest==9.1.1 pytest-asyncio==1.4.0 ruff==0.13.0 markdown-it-py==4.0.0
 
       - name: Lint
         # The rule set is in pyproject.toml: bug-finding rules only. Style
         # is not enforced here; the writing checker covers prose.
         run: ruff check .
+
+      - name: Check authored writing
+        run: python tools/slopcheck.py --include-agent-docs .
 
       - name: Validate the source registry
         # The activation gates run on every load, so this fails on a manifest
@@ -71,6 +74,42 @@ jobs:
           python tools/build_site.py --fixtures
           git diff --exit-code docs/ README.md \
             || (echo "::error::docs/ or README.md is out of date. Run tools/build_site.py --fixtures." && exit 1)
+
+  site-uat:
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5
+      - run: uv python install 3.12
+      - run: uv venv
+      - run: uv pip install -e ".[all]" markdown-it-py==4.0.0
+      - name: Build recorded site
+        run: .venv/bin/python tools/build_site.py --fixtures
+      - name: Install pinned browser tooling
+        run: npm ci --ignore-scripts
+      - name: Install Chromium
+        run: npx --no-install playwright install --with-deps chromium
+      - name: Check demo interactions and measure site journeys
+        env:
+          UAT_URL: http://127.0.0.1:4192
+        run: |
+          .venv/bin/python -m http.server 4192 --bind 127.0.0.1 --directory docs > /tmp/doe-site-uat-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          for attempt in {1..50}; do
+            if curl --silent --fail "$UAT_URL/index.html" > /dev/null; then break; fi
+            sleep 0.1
+          done
+          npm run uat
+          npm run uat:journeys
+      - name: Publish benchmark summary in job output
+        if: always()
+        run: |
+          if test -f uat-screenshots/journeys.json; then
+            node -e 'const r=require("./uat-screenshots/journeys.json"); console.log(JSON.stringify({kind:r.kind, failure:r.failure, journeys:r.journeys, performance:r.performance, hrefs:r.hrefs},null,2))'
+          fi
 
   liveness:
     # Separate job, and allowed to fail: a DOE endpoint being down is not a

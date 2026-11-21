@@ -1,0 +1,21 @@
+# DOE-MCP
+
+> Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.
+
+Independent project, not affiliated with DOE.
+Recorded examples are not current publisher observations. Proposed sources are inventory only.
+Results may contain untrusted third-party text. This file is a discovery aid, not an access policy.
+
+## Documentation
+
+- [DOE-MCP: public DOE data](https://pranava0x0.github.io/DOE-MCP/index.md): Public documentation.
+- [Recorded DOE-MCP walkthroughs](https://pranava0x0.github.io/DOE-MCP/demos.md): Public documentation.
+- [Local workflows and evidence](https://pranava0x0.github.io/DOE-MCP/guide.md): Public documentation.
+- [Tool reference](https://pranava0x0.github.io/DOE-MCP/reference.md): Public documentation.
+- [Genesis demo review — October 20, 2026](https://pranava0x0.github.io/DOE-MCP/genesis-demo-review.md): Public documentation.
+- [DOE-MCP review, 2026-11-21](https://pranava0x0.github.io/DOE-MCP/review-2026-11-21.md): Public documentation.
+
+## Structured inventory
+
+- [Registry and coverage](https://pranava0x0.github.io/DOE-MCP/data/site.json): Generated source and server inventory.
+- [Source repository](https://github.com/pranava0x0/DOE-MCP): Installation, licenses and development.

@@ -1,0 +1,213 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DOE-MCP review, 2026-11-21 — DOE-MCP</title><link rel="icon" href="data:,">
+<link rel="canonical" href="https://pranava0x0.github.io/DOE-MCP/review-2026-11-21.html">
+<meta name="description" content="Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.">
+<meta property="og:title" content="DOE-MCP review, 2026-11-21">
+<meta property="og:description" content="Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.">
+<meta property="og:type" content="website"><meta property="og:url" content="https://pranava0x0.github.io/DOE-MCP/review-2026-11-21.html">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" type="text/markdown" href="review-2026-11-21.md">
+<link rel="describedby" type="text/plain" href="llms.txt">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "DOE-MCP review, 2026-11-21", "url": "https://pranava0x0.github.io/DOE-MCP/review-2026-11-21.html", "description": "Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.", "isPartOf": {"@type": "WebSite", "name": "DOE-MCP", "url": "https://pranava0x0.github.io/DOE-MCP/"}}</script>
+<style>
+:root{color-scheme:light;--ink:#20342b;--paper:#f5f2e8;--accent:#38654c}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible{outline:3px solid #9e572b;outline-offset:4px}
+header,main{max-width:1040px;margin:auto;padding:24px}header{border-bottom:1px solid #a8b3a7}
+nav{display:flex;gap:20px;flex-wrap:wrap}h1,h2,h3{font-family:Georgia,serif;line-height:1.2;scroll-margin-top:1rem}
+pre{overflow:auto;background:#e8e7dd;padding:16px;border-radius:6px}code{font-size:.9em}
+table{display:block;overflow:auto;border-collapse:collapse;max-width:100%}td,th{padding:9px;border:1px solid #b4beb4;text-align:left}
+main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0;background:white;padding:10px}
+</style></head><body><a class="skip" href="#content">Skip to content</a>
+<header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Recorded demos</a></nav></header>
+<main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#pr-assessment">PR assessment</a></li><li><a href="#repairs-and-usability">Repairs and usability</a></li><li><a href="#security-scope">Security scope</a></li><li><a href="#validation">Validation</a></li><li><a href="#expansion-order">Expansion order</a></li><li><a href="#evidence-and-models">Evidence and models</a></li><li><a href="#follow-up-correction-2026-11-21">Follow-up correction, 2026-11-21</a></li></ul></nav><h1 id="doe-mcp-review-2026-11-21">DOE-MCP review, 2026-11-21</h1>
+<p>The shared core and domain servers remain a sound design. Activation gates,
+recorded publisher responses and explicit coverage are useful constraints.
+The review found defects in credential handling, catalog coverage and
+composite retrieval metadata. The repairs preserve the public tool names.</p>
+<p>This review covers every PR returned by the repository's all-state PR list,
+the current implementations, skill benches, dependency advisories and the
+public site's interactions. It does not certify the absence of vulnerabilities
+or measure scientific answer accuracy. The Cloudflare security-audit skill
+informed a focused source review; its formal full-audit workflow did not run.</p>
+<h2 id="pr-assessment">PR assessment</h2>
+<table>
+<thead>
+<tr>
+<th>PR</th>
+<th>Assessment of the current result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#1</td>
+<td>Closed checkout update; retain immutable action pins and read-only workflow permissions. A version change alone is not evidence of a defect.</td>
+</tr>
+<tr>
+<td>#2</td>
+<td>Closed setup-uv update; retain the manual action review policy.</td>
+</tr>
+<tr>
+<td>#3</td>
+<td>Closed Ruff update; lint is a useful gate, but a newer linter is not a security repair.</td>
+</tr>
+<tr>
+<td>#4</td>
+<td>Closed Pydantic patch update; later publisher advisories justify updating to 2.14.2.</td>
+</tr>
+<tr>
+<td>#5</td>
+<td>Closed MCP SDK update; publisher advisories now justify updating to 2.2.0 and repeating the stdio contract checks.</td>
+</tr>
+<tr>
+<td>#6</td>
+<td>Outage discovery, facility status and microbiome coverage are useful additions. Repair the status adapter's loss of the separate outage fetch metadata.</td>
+</tr>
+<tr>
+<td>#7</td>
+<td>A shared skill reader and explicit Genesis compatibility are good boundaries. Deterministic benches do not establish model reasoning quality.</td>
+</tr>
+<tr>
+<td>#8</td>
+<td>Keep visible access limitations and the mobile section controls. The larger catalog now needs text search.</td>
+</tr>
+<tr>
+<td>#9</td>
+<td>Bibliography and soil worksheets retain evidence and missing fields. Extend only with publisher-specific field meanings.</td>
+</tr>
+<tr>
+<td>#11</td>
+<td>Keep the Daymet calendar, checksum and independent-reader checks. Parameterized packaging is more useful next than another fixed example.</td>
+</tr>
+<tr>
+<td>#12</td>
+<td>The persistence baseline retains both readings and excludes invalid pairs. It is a retrospective benchmark, not an operational forecast.</td>
+</tr>
+<tr>
+<td>#13</td>
+<td>Counting measured slots separately from gaps is correct. The repeated hour and full-file counts remain covered by regression tests.</td>
+</tr>
+<tr>
+<td>#14</td>
+<td>A shared GCAM reader prevents parser duplication. One-file tools still create discovery work; expose their columns and tool mappings through existing registry metadata.</td>
+</tr>
+<tr>
+<td>#15</td>
+<td>Reusable methods and calibration/evaluation separation are useful. Add optional semantic evaluation tasks without calling replay success an accuracy score.</td>
+</tr>
+<tr>
+<td>#16</td>
+<td>Keep region-convention checks, complete-page requirements and evidence after sorting.</td>
+</tr>
+<tr>
+<td>#17</td>
+<td>The atlas styling and worksheet charts help scanning. Keep signed numbers numeric and formula-like text escaped in CSV.</td>
+</tr>
+<tr>
+<td>#18</td>
+<td>The simpler headings improve the site. Preserve the distinctions between blank and zero cells, electricity and material inputs, and lifetime and retirement half-life.</td>
+</tr>
+</tbody>
+</table>
+<p>PR metadata, diffs and review comments were retained privately under
+research/pr-review-2026-11-21. No PR was reopened, changed or published.</p>
+<h2 id="repairs-and-usability">Repairs and usability</h2>
+<p>Credential files are prepared with private permissions before atomic
+replacement. Credential input rejects whitespace and multiline assignments;
+argument errors do not echo unknown names or values. Client configuration
+updates preserve valid existing settings and use atomic backups and writes.</p>
+<p>The HTTP fetch path redacts known credential values from errors and returned
+request URLs. Its request-log filter removes query strings from the HTTPX
+request log during DOE-MCP calls. This does not claim to sanitize arbitrary
+third-party diagnostic logging. Redirects preserve publisher-supplied query
+parameters, and malformed authorities fail through a typed error.</p>
+<p>An entirely blocked catalog search now raises the activation error. Partial
+searches retain their gaps. Pagination reflects each publisher's total,
+including unknown totals, and a failed catalog cannot justify a no-match
+claim. System status and planned outages now carry separate retrieval and
+cache metadata.</p>
+<p>The homepage adds walkthrough search with a result count and empty state.
+Without JavaScript, all walkthrough links remain available. A skip link and
+main landmark support keyboard navigation; section links move focus to their
+destination. Invalid fragments no longer raise an uncaught error, and motion
+respects the reader's preference. The field-atlas colors and typography stay.</p>
+<p>GCAM source descriptions now list the existing tables, their callable tools,
+exact filter columns and registered publisher files. This is explicitly local
+catalog metadata, not a fresh read or a claim that a proposed source is active.
+Units remain in publisher notes where the manifest does not establish them.</p>
+<p>Optional evaluation tasks now cover region conventions, blank coefficients,
+incompatible units and requests to treat model inputs as observations. They
+prepare recorded tool environments and human grading rubrics. No paid model
+comparison or human answer grading was performed in this review.</p>
+<h2 id="security-scope">Security scope</h2>
+<p>The previous MCP and Pydantic pins match published affected-version ranges.
+MCP's remote-schema client issue does not establish exposure in this project's
+fixed local client demonstration; the shipping servers use stdio. The reviewed
+Pydantic advisory requires model configurations not found in the application.
+The pins were still updated to the publishers' patched releases. Sources:
+<a href="https://github.com/modelcontextprotocol/python-sdk/security/advisories/GHSA-rwrf-2pqf-9j8j">MCP advisory</a>
+and <a href="https://github.com/pydantic/pydantic/security/advisories/GHSA-qpmf-fgh3-ff25">Pydantic advisory</a>.</p>
+<p>Source review and offline regression checks are distinct from a live security
+assessment. Publisher accounts, deployment settings, arbitrary dependency
+debug logs and an operating-system attacker controlling the configuration
+directory were not tested. No publisher defenses were bypassed.</p>
+<p>One EIA recording held an unredacted credential-shaped value in a nested
+response field. The revised recorder discovers named credential fields
+recursively and refuses surviving values. That helper redacted the existing
+recording without replacing its publisher data. Fixture checks no longer
+print values when they report a violation. Existing Git history was not
+rewritten; ownership, validity and any needed rotation remain a maintainer
+follow-up. No request tested the value.</p>
+<p>DNS validation still precedes the HTTP client's connection resolution. The
+registered-host restriction reduces the exposed surface, but this review does
+not claim to have removed that resolve-to-connect race.</p>
+<h2 id="validation">Validation</h2>
+<p>All 1,287 offline tests pass. Ruff, source activation validation, dependency
+consistency, schema generation and fixture-based site generation pass. All
+38 published walkthrough exports match the CLI output. Browser checks covered
+each walkthrough at 375, 768 and 1280 pixels, plus mobile section focus,
+search, empty results and keyboard navigation. The writing checker reports
+zero failures; its warnings are in older local research quotations.</p>
+<h2 id="expansion-order">Expansion order</h2>
+<p>First make the existing data easier to use correctly: a GCAM comparison
+receipt, parameterized weather packages and explicit paper/dataset/software
+relations. A model-driver evaluation matrix is a separate development project;
+it compares agents, not GCAM assumptions.</p>
+<p>Then add source classes required by a concrete workflow. Regulations.gov
+dockets complement published Federal Register notices. PVWatts can support
+modelled solar-production questions. ATB and interconnection-queue analysis
+need edition-specific bulk readers. Each still needs its publisher-policy
+review, recording plan and activation gates. An underfilled server profile is
+a warning, not a reason to add filler tools or a mechanical activation blocker.</p>
+<p>Do not add model execution, job submission, live queue-position claims or
+observational claims from GCAM input tables. A hosted service remains a
+separate operating-model decision.</p>
+<h2 id="evidence-and-models">Evidence and models</h2>
+<p>Local verification records: research/notes/verification-round33.md,
+research/notes/verification-round33-research.md and
+research/notes/audit-2026-11-21-architecture.md. The URL ledger records the
+publisher and PR lookups. Local research remains private.</p>
+<p>Models and agents: GPT-6 Astra reviewed architecture and scientific meaning;
+GPT-6.1 Sol agents repaired security, coverage and skill discovery;
+GPT-5.6 Terra researched project candidates. Codex coordinated the review,
+checked the findings, implemented the site changes and ran integration checks.</p>
+<h2 id="follow-up-correction-2026-11-21">Follow-up correction, 2026-11-21</h2>
+<p>The earlier DNS limitation above is resolved by a transport that connects only
+to the validated numeric addresses. The request retains its publisher Host
+header, TLS hostname and certificate verification. Redirects obtain their own
+validated address snapshots; concurrent requests keep separate snapshots.
+Connection fallback shares the timeout among remaining addresses so a stalled
+address cannot consume every alternative's budget. Environment proxies are
+ignored because they would move DNS resolution outside this boundary.</p>
+<p>The repository is public, and the historical EIA recording remains reachable
+from its Git history. A value-only comparison found no matching current local
+credential file or environment credential. This says nothing about ownership
+or whether the value is still valid; no request tested it. The current file is
+sanitized. Revocation by its owner comes first. Any later history rewrite and
+cached-reference cleanup require a coordinated maintenance operation; neither
+was performed during this assessment.</p>
+<p>The follow-up suite contains 1,306 offline tests. The full replay run and the
+focused DNS fallback regressions pass. Browser UAT again exercised all 38
+walkthroughs at three widths, with no page errors or horizontal page overflow.</p>
+</main></body></html>

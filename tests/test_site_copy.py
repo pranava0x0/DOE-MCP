@@ -23,7 +23,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 
 # What we write ourselves.
-AUTHORED = ["tools/render_site.py", "tools/render_workflows.py", "README.md"]
+AUTHORED = ["tools/render_site.py", "tools/render_workflows.py", "tools/site_metadata.py", "README.md"]
 # Plus the rendered page, which also carries publisher text — paper titles,
 # manifest prose, tool descriptions — that this project does not write and
 # must not launder. A rule about OUR register is checked against the files
@@ -106,13 +106,11 @@ def test_the_generated_page_is_rebuilt_from_the_current_renderer():
 
 
 def test_the_site_links_rendered_pages_not_raw_markdown():
-    """GitHub Pages renders `guide.md` to `guide.html` and serves the `.md`
-    URL itself as `text/markdown` (checked 2026-10-20), so a phone shows a
-    visitor raw markdown or a download. Relative links go to the `.html`."""
+    """Visible navigation reaches HTML; head alternates expose Markdown to readers."""
     import re
     for name in ("docs/index.html", "docs/demos.html"):
         page = (ROOT / name).read_text(encoding="utf-8")
-        raw = [h for h in re.findall(r'href="([^"]+)"', page)
+        raw = [h for h in re.findall(r'<a\b[^>]*href="([^"]+)"', page)
                if not re.match(r"[a-z]+:", h) and re.search(r"\.md(#|$)", h)]
         assert not raw, f"{name} links raw markdown: {raw}"
 
