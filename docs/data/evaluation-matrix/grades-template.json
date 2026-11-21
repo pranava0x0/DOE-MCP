@@ -1,0 +1,69 @@
+{
+  "format_version": "1",
+  "grades": [
+    {
+      "report_id": "simulation-focused-skills-off",
+      "report_sha256": "ec258c442f873cc211cf5f6f20d0f2c62ce429a1830491734dcfde39aed6ba49",
+      "run_id": "simulation-focused-skills-off-1",
+      "task_sha256": "d284d985c626d3d203aa28e281b9e4744a42f8c48f4c1f1734691047384b8890",
+      "answer_sha256": "5da87ebb4b09dbaabf4ec24d47ed17fde63a87e6dabb4235c9b222c6fc77ecef",
+      "rubric_version": "bench-rubric-1",
+      "rubric_sha256": "cbaf566d297a16df60a965fae5ba91301e1063b07f635a0bf0c07dd6092bba1c",
+      "score": null,
+      "reviewer": {
+        "kind": null,
+        "id": null
+      },
+      "reviewed_at": null,
+      "notes": ""
+    },
+    {
+      "report_id": "simulation-focused-skills-on",
+      "report_sha256": "eaf9c4618ad5965b5ae460cf2372d0525ab23d40242e49670d829ac85d0fe9bc",
+      "run_id": "simulation-focused-skills-on-1",
+      "task_sha256": "d284d985c626d3d203aa28e281b9e4744a42f8c48f4c1f1734691047384b8890",
+      "answer_sha256": "5da87ebb4b09dbaabf4ec24d47ed17fde63a87e6dabb4235c9b222c6fc77ecef",
+      "rubric_version": "bench-rubric-1",
+      "rubric_sha256": "cbaf566d297a16df60a965fae5ba91301e1063b07f635a0bf0c07dd6092bba1c",
+      "score": null,
+      "reviewer": {
+        "kind": null,
+        "id": null
+      },
+      "reviewed_at": null,
+      "notes": ""
+    },
+    {
+      "report_id": "simulation-all-skills-off",
+      "report_sha256": "53ffd5111aaf6aa4af442cd5518a937d0416a04a2411595505ef96e94d0e6649",
+      "run_id": "simulation-all-skills-off-1",
+      "task_sha256": "d284d985c626d3d203aa28e281b9e4744a42f8c48f4c1f1734691047384b8890",
+      "answer_sha256": "5da87ebb4b09dbaabf4ec24d47ed17fde63a87e6dabb4235c9b222c6fc77ecef",
+      "rubric_version": "bench-rubric-1",
+      "rubric_sha256": "cbaf566d297a16df60a965fae5ba91301e1063b07f635a0bf0c07dd6092bba1c",
+      "score": null,
+      "reviewer": {
+        "kind": null,
+        "id": null
+      },
+      "reviewed_at": null,
+      "notes": ""
+    },
+    {
+      "report_id": "simulation-all-skills-on",
+      "report_sha256": "998fdbcc52a9f59b35fc864282cbb55e514cc62bd88830f6fec6799fdacb7f10",
+      "run_id": "simulation-all-skills-on-1",
+      "task_sha256": "d284d985c626d3d203aa28e281b9e4744a42f8c48f4c1f1734691047384b8890",
+      "answer_sha256": "5da87ebb4b09dbaabf4ec24d47ed17fde63a87e6dabb4235c9b222c6fc77ecef",
+      "rubric_version": "bench-rubric-1",
+      "rubric_sha256": "cbaf566d297a16df60a965fae5ba91301e1063b07f635a0bf0c07dd6092bba1c",
+      "score": null,
+      "reviewer": {
+        "kind": null,
+        "id": null
+      },
+      "reviewed_at": null,
+      "notes": ""
+    }
+  ]
+}

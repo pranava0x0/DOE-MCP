@@ -190,7 +190,7 @@ Prepare the existing skill tasks without calling a model:
 doe-mcp evaluate --prepare --output ./evaluation-tasks.json
 ```
 
-The twelve cases cover useful answers and six traps. Evaluation annotations
+The cases cover useful answers and semantic traps. Evaluation annotations
 live beside the checked and reader tasks in each skill's `bench.yaml`.
 Contract tests run offline. They do not prove model-selection accuracy.
 
@@ -209,6 +209,9 @@ and returns either `tool_calls` (name and arguments) or `answer` (text and
 citations), plus actual `usage.input_tokens` and `usage.output_tokens`. Return
 `model_version` and `settings` to identify the model and sampling
 configuration; absent values are explicitly reported as unknown.
+Optional `cached_input_tokens` and `reasoning_output_tokens` are subsets of
+input and output totals. New reports preserve per-call usage and exact
+answer, task and rubric bindings for later review.
 Each citation names a one-based tool step and an evidence ID from that
 step. Keep provider credentials in the driver's own environment; never
 return them or log them. Driver stderr is not retained.
@@ -226,6 +229,11 @@ denominator. Reports preserve failures and require human review against
 each task's rubric. Automatic citation checks are not semantic grading;
 no accuracy score is advertised before that review. Source text is
 untrusted, including the injected-instruction trap.
+
+[Compare existing reports offline](evaluation-matrix.html) to export an
+execution, review, token and estimated-cost matrix. Missing reviews and
+prices stay unknown. The [deterministic driver example](evaluation-example.html)
+demonstrates the export without calling a model or claiming model quality.
 
 For a release, require no fabricated locators, leaked keys, forecast-as-
 demand claims or invented source coverage. Inspect all trap answers and

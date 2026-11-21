@@ -59,17 +59,17 @@ def markdown_page(source: str, name: str, title: str) -> str:
         for child in token.children or []:
             if child.type == "link_open":
                 href = child.attrGet("href") or ""
-                if href.startswith("data/apps/") and href.endswith("/bundle.zip"):
+                if href.startswith(("data/apps/", "data/evaluation-matrix/")) and href.endswith("/bundle.zip"):
                     child.attrSet("download", href.split("/")[-2] + ".zip")
                 elif href.startswith("data/apps/") and href.rsplit("/", 1)[-1] in {"plan.json", "receipts.json", "receipts.csv", "comparisons.json"}:
                     child.attrSet("download", "-".join(href.split("/")[-2:]))
                 if href.startswith("../"):
                     child.attrSet("href", "https://github.com/pranava0x0/DOE-MCP/blob/main/" + href[3:])
-                for stem in ("guide", "reference", "apps"):
+                for stem in ("guide", "reference", "apps", "evaluation-matrix", "evaluation-example"):
                     if href == stem + ".md" or href.startswith(stem + ".md#"):
                         child.attrSet("href", href.replace(stem + ".md", stem + ".html", 1))
     content = md.renderer.render(tokens, md.options, {})
-    body_class = "application-page" if name == "applications.html" else ""
+    body_class = "application-page" if name in {"applications.html", "evaluation-matrix.html", "evaluation-example.html"} else ""
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(title)} — DOE-MCP</title><link rel="icon" href="data:,">

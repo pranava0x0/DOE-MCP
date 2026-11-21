@@ -1,0 +1,187 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compare evaluation reports offline — DOE-MCP</title><link rel="icon" href="data:,">
+<link rel="canonical" href="https://pranava0x0.github.io/DOE-MCP/evaluation-matrix.html">
+<meta name="description" content="Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.">
+<meta property="og:title" content="Compare evaluation reports offline">
+<meta property="og:description" content="Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.">
+<meta property="og:type" content="website"><meta property="og:url" content="https://pranava0x0.github.io/DOE-MCP/evaluation-matrix.html">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" type="text/markdown" href="evaluation-matrix.md">
+<link rel="describedby" type="text/plain" href="llms.txt">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Compare evaluation reports offline", "url": "https://pranava0x0.github.io/DOE-MCP/evaluation-matrix.html", "description": "Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.", "isPartOf": {"@type": "WebSite", "name": "DOE-MCP", "url": "https://pranava0x0.github.io/DOE-MCP/"}}</script>
+<style>
+:root{color-scheme:light;--ink:#20342b;--paper:#f5f2e8;--accent:#38654c}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible{outline:3px solid #9e572b;outline-offset:4px}
+header,main{max-width:1040px;margin:auto;padding:24px}header{border-bottom:1px solid #a8b3a7}
+nav{display:flex;gap:20px;flex-wrap:wrap}h1,h2,h3{font-family:Georgia,serif;line-height:1.2;scroll-margin-top:1rem}
+pre{overflow:auto;background:#e8e7dd;padding:16px;border-radius:6px}code{font-size:.9em}
+table{display:block;overflow:auto;border-collapse:collapse;max-width:100%}td,th{padding:9px;border:1px solid #b4beb4;text-align:left}
+main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0;background:white;padding:10px}
+.application-page pre{white-space:pre-wrap;overflow-wrap:anywhere}
+@media(max-width:600px){
+.application-page table,.application-page tbody,.application-page tr,.application-page td{display:block;width:100%}
+.application-page table{overflow:visible}
+.application-page thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.application-page tr{border:1px solid #b4beb4;margin:12px 0;padding:8px}
+.application-page td{border:0;padding:6px 8px;text-align:left!important}
+.application-page td::before{content:attr(data-label);display:block;font-size:.8em;font-weight:600;color:#38654c}
+}
+</style></head><body class="application-page"><a class="skip" href="#content">Skip to content</a>
+<header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Recorded demos</a></nav></header>
+<main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#create-a-comparison-bundle">Create a comparison bundle</a></li><li><a href="#review-exact-answers">Review exact answers</a></li><li><a href="#supply-dated-prices">Supply dated prices</a></li><li><a href="#keep-comparison-conditions-visible">Keep comparison conditions visible</a></li><li><a href="#prepare-future-runs-explicitly">Prepare future runs explicitly</a></li></ul></nav><h1 id="compare-evaluation-reports-offline">Compare evaluation reports offline</h1>
+<p><code>evaluate-matrix</code> compares existing driver reports. It does not invoke a
+model or driver, load credentials, fetch prices, or run publisher queries.
+Its JSON and CSV exports keep execution, automatic checks, reviewed quality,
+token usage and estimated cost separate.</p>
+<p><a href="evaluation-example.html">Inspect the deterministic driver demonstration</a>.
+That example has no model-quality scores or supplied prices.</p>
+<h2 id="create-a-comparison-bundle">Create a comparison bundle</h2>
+<pre><code class="language-bash">doe-mcp evaluate-matrix \
+  --report focused-skills-on.json \
+  --report focused-skills-off.json \
+  --grades reviewed-answers.json --prices supplied-prices.json \
+  --output ./comparison
+</code></pre>
+<p>Repeat <code>--report</code> for every input. Grades and prices are optional. The output
+must be a new directory. It contains <code>report.json</code>, <code>matrix.csv</code>, <code>runs.csv</code>,
+<code>grades-template.json</code> and a checksum manifest. Unknown values are JSON null
+and the word <code>unknown</code> in CSV. Existing bundles are never overwritten.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Count</th>
+<th scope="col">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Count">Scheduled</td>
+<td data-label="Meaning">Every task and repetition listed in the input, including failures and runs never started.</td>
+</tr>
+<tr>
+<td data-label="Count">Attempted</td>
+<td data-label="Meaning">Runs with at least one driver invocation. A timeout or invalid driver response still counts.</td>
+</tr>
+<tr>
+<td data-label="Count">Completed</td>
+<td data-label="Meaning">The driver returned a final-answer field. An answer that fails automatic checks remains in this count.</td>
+</tr>
+<tr>
+<td data-label="Count">Automatic checked / passed</td>
+<td data-label="Meaning">Final answers checked for answer and citation-reference structure, and those that passed. This is not semantic grading.</td>
+</tr>
+<tr>
+<td data-label="Count">Reviewed</td>
+<td data-label="Meaning">Completed answers with a supplied review bound to that exact report, task, rubric and answer.</td>
+</tr>
+<tr>
+<td data-label="Count">Unreviewed or unrun</td>
+<td data-label="Meaning">Scheduled runs without a matching review. Their quality remains unknown.</td>
+</tr>
+</tbody>
+</table>
+<p><code>reviewed_quality_mean</code> describes only reviewed answers and has that explicit
+denominator. <code>overall_quality_mean</code> remains unknown unless every scheduled
+run is reviewed. Human and model reviews have separate counts and means.
+A cell containing both reviewer kinds has no pooled quality mean.</p>
+<h2 id="review-exact-answers">Review exact answers</h2>
+<p>New <code>evaluate</code> reports use format version 2 and record report/run identifiers,
+task and rubric hashes, an explicit rubric version, and the final answer's
+hash. The matrix recomputes those bindings and the automatic checks.
+Changed answers, tasks or rubrics invalidate an old review.</p>
+<p>First compare reports without <code>--grades</code>, then copy and fill
+<code>grades-template.json</code>. Each review has this shape:</p>
+<pre><code class="language-json">{
+  &quot;format_version&quot;: &quot;1&quot;,
+  &quot;grades&quot;: [{
+    &quot;report_id&quot;: &quot;COPY_FROM_TEMPLATE&quot;,
+    &quot;report_sha256&quot;: &quot;COPY_FROM_TEMPLATE&quot;,
+    &quot;run_id&quot;: &quot;COPY_FROM_TEMPLATE&quot;,
+    &quot;task_sha256&quot;: &quot;COPY_FROM_TEMPLATE&quot;,
+    &quot;answer_sha256&quot;: &quot;COPY_FROM_TEMPLATE&quot;,
+    &quot;rubric_version&quot;: &quot;COPY_FROM_TEMPLATE&quot;,
+    &quot;rubric_sha256&quot;: &quot;COPY_FROM_TEMPLATE&quot;,
+    &quot;score&quot;: 0.75,
+    &quot;reviewer&quot;: {&quot;kind&quot;: &quot;human&quot;, &quot;id&quot;: &quot;YOUR_REVIEWER_ID&quot;},
+    &quot;reviewed_at&quot;: &quot;2026-11-21T12:00:00+00:00&quot;,
+    &quot;notes&quot;: &quot;Explain the rubric judgments.&quot;
+  }]
+}
+</code></pre>
+<p>The number above illustrates the file format, not a measured model score.
+Score on the supplied rubric's normalized zero-to-one scale. Read the full
+answer, task, rubric and tool evidence in the source report. Keep only
+completed reviews in the grade file; null template fields are refused.
+Reviewer kind is <code>human</code> or <code>model</code>, and the reviewer identifier should name
+the person or exact grading model. Only one review per run is accepted.
+These are supplied reviews; the command cannot authenticate a reviewer.</p>
+<p>Legacy format-1 reports can contribute execution and token counts. They
+lack the explicit rubric-version binding required for reviewed quality.
+Their quality remains unknown; they do not get inferred grades.</p>
+<h2 id="supply-dated-prices">Supply dated prices</h2>
+<p>The command does not know current provider prices. Supply rates for the
+exact declared model and reported model version. This is an illustrative
+price file, not a quote for any real model:</p>
+<pre><code class="language-json">{
+  &quot;format_version&quot;: &quot;1&quot;,
+  &quot;rates&quot;: [{
+    &quot;model&quot;: &quot;example-model&quot;,
+    &quot;model_version&quot;: &quot;example-version&quot;,
+    &quot;effective_date&quot;: &quot;2026-01-01&quot;,
+    &quot;currency&quot;: &quot;USD&quot;,
+    &quot;input_per_million&quot;: &quot;3.00&quot;,
+    &quot;cached_input_per_million&quot;: &quot;0.30&quot;,
+    &quot;output_per_million&quot;: &quot;12.00&quot;,
+    &quot;source_note&quot;: &quot;Replace with the dated rates you chose for this comparison.&quot;
+  }]
+}
+</code></pre>
+<p>The latest matching rate dated on or before the report's UTC start date is
+used. Dates, model versions and prices stay in the export. Multiple rates
+with the same model, version and date are refused. Only USD is supported;
+there is no currency conversion.</p>
+<p>Input tokens include cached input. The estimate charges total input minus
+cached input at the standard input rate, then charges cached input once at
+its supplied rate. Output tokens include reasoning output, which is retained
+as a subset and never added a second time.</p>
+<p>Drivers may report <code>cached_input_tokens</code> and <code>reasoning_output_tokens</code>
+beside <code>input_tokens</code> and <code>output_tokens</code>. Each subset must fit within its
+parent total. A missing cached-input breakdown, incomplete usage, missing
+model version or missing applicable price makes cost unknown. A cached
+price is required when cached usage is positive. An unattempted run has no
+driver calls and zero estimated token cost.</p>
+<p>A cell with any unknown run cost has unknown total cost. Known run estimates
+remain visible individually. These calculations cover the supplied token
+rates only; they are estimates, never provider invoices or billed totals.
+Driver token counts and sampling settings are declarations, not independently
+verified usage.</p>
+<h2 id="keep-comparison-conditions-visible">Keep comparison conditions visible</h2>
+<p>The default comparison requires equal task definitions, rubrics, repeat
+schedules, skill-file hashes, registry revisions and fixture hashes. Model,
+tool exposure, skill enablement, sampling settings and budgets are retained
+as separate configuration fields. Per-task visible tools, profiles and tool
+schema hashes remain available in the JSON.</p>
+<p>Use <code>--allow-multiple-cohorts</code> to export unequal cohorts as separate groups.
+They are never pooled. Missing model/version/settings metadata is explicit;
+reports with unknown configuration fields are not pooled together. Duplicate
+reports, executions, run ids, grades and conflicting task repeats are
+refused. Usage totals must agree with the per-call data and report totals.</p>
+<p>The source files and their content hashes identify the supplied evidence.
+They are not signatures proving that an untrusted driver made a provider
+call or that a report was never edited.</p>
+<h2 id="prepare-future-runs-explicitly">Prepare future runs explicitly</h2>
+<p>Existing budgeted runs remain available through <code>evaluate</code>:</p>
+<pre><code class="language-bash">doe-mcp evaluate --prepare --output ./evaluation-tasks.json
+doe-mcp evaluate --driver ./YOUR_DRIVER --model YOUR_MODEL \
+  --task alias --max-calls 6 --max-tokens 10000 --repeats 3 \
+  --exposure focused --output ./focused-skills-on.json
+</code></pre>
+<p>The second command invokes the executable you supply and may incur provider
+charges through that executable. Choose its provider, key and budgets yourself.
+Use <code>--no-skills</code> and <code>--exposure all</code> for the other configurations. No paid
+driver is configured or run by the comparison command. <code>--simulation</code> labels
+an explicitly supplied test driver; it does not turn an arbitrary driver
+into an offline or safe executable.</p>
+</main></body></html>

@@ -1,0 +1,46 @@
+{
+  "application": "evaluation-matrix",
+  "mode": "simulation",
+  "files": [
+    {
+      "file": "all-skills-off.json",
+      "bytes": 29203,
+      "sha256": "a4c5678bceb397ec6ab84c6814783c42bc6f31292aa8158f4ec889a1793a5c85"
+    },
+    {
+      "file": "all-skills-on.json",
+      "bytes": 29198,
+      "sha256": "6029666a6f31c79d40df95545a6fabd71e4d82e265319bd42cafced26e610224"
+    },
+    {
+      "file": "focused-skills-off.json",
+      "bytes": 22071,
+      "sha256": "36338c7c1116cb0e26c58b6167c35029bb64376c33b434b0741b5d7bffa2794e"
+    },
+    {
+      "file": "focused-skills-on.json",
+      "bytes": 22066,
+      "sha256": "7f32e3eee27d97dc0f93deeab9806bec88996d060009aebfbc5050a4da9c6d9e"
+    },
+    {
+      "file": "grades-template.json",
+      "bytes": 2650,
+      "sha256": "c04928c405baf44b405876f5189bce7efef30f6e2e009028329a209e123521f1"
+    },
+    {
+      "file": "matrix.csv",
+      "bytes": 1267,
+      "sha256": "1b7faf9c4fd42901f64ebafd1316cfba759b912c8924c84a7e82f588b979da48"
+    },
+    {
+      "file": "report.json",
+      "bytes": 59574,
+      "sha256": "d81695e1644800c195b8eab122d3a88b1e3bffd32c97f10525c740446ef3e0cd"
+    },
+    {
+      "file": "runs.csv",
+      "bytes": 2336,
+      "sha256": "b341a5d95fc0fef7dde9cfffc806e7c48f1a793a6ff2ac47ef7509c36361476d"
+    }
+  ]
+}
