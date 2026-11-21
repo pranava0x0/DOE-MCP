@@ -220,8 +220,10 @@ HTML documents. The 38-demo functional checks also passed. Browser errors
 and blocked external requests were zero. These runs used Playwright 1.58.2
 with installed Chrome 158.0.8127.36 on loopback; they are scripted local
 checks. A homepage-to-bundle journey now measures clicks, wheel actions and
-navigation with the shared audit instrumentation. Its results follow after
-integration with the other applications.
+navigation with the shared audit instrumentation. After adding the direct
+shortcut, the matrix bundle takes two clicks, zero wheel actions and two
+document loads at all three widths. All 36 integrated journeys and 396
+local targets pass with no browser errors.
 
 The first integrated matrix journey passed all 36 site paths and 395 local
 targets. Reaching its bundle through the guide took five clicks and four
