@@ -396,7 +396,8 @@ async function hrefTargets(browser) {
         {id: 'forecast-benchmark', anchor: 'grid-forecast-benchmark-lab'},
         {id: 'weather-package', anchor: 'weather-package-builder'},
         {id: 'docket-tracker', anchor: 'doe-docket-notice-tracker'},
-        {id: 'gcam-comparison', anchor: 'gcam-comparison-receipts'}])
+        {id: 'gcam-comparison', anchor: 'gcam-comparison-receipts'},
+        {id: 'research-linkage', anchor: 'research-artifact-linkage-explorer'}])
         await applicationJourney(browser, viewport, task);
       await stability(browser, viewport);
     }

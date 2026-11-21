@@ -1,10 +1,10 @@
 """Fixed recorded application presets for the CLI and site builder."""
 from __future__ import annotations
 
-from . import dockets, forecast, gcam, weather
+from . import dockets, forecast, gcam, research_linkage, weather
 from .bundle import Run
 
-APPLICATIONS = ("forecast-benchmark", "weather-package", "docket-tracker", gcam.NAME)
+APPLICATIONS = ("forecast-benchmark", "weather-package", "docket-tracker", gcam.NAME, "research-linkage")
 
 
 async def recorded_sample(ctx, name: str, fixtures: list[dict] | None = None) -> tuple[dict, dict[str, bytes]]:
@@ -24,6 +24,8 @@ async def recorded_sample(ctx, name: str, fixtures: list[dict] | None = None) ->
                                     document_type="NOTICE", rows=5, page_budget=2)
     elif name == gcam.NAME:
         files = await gcam.build(run)
+    elif name == "research-linkage":
+        files = await research_linkage.build(run)
     else:
         raise ValueError("unknown application sample")
     return run.report, files

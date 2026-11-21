@@ -21,7 +21,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from ..adapters.osti_family import DEFAULT_ROWS, OstiPage, OstiRecord
+from ..adapters.osti_family import DEFAULT_ROWS, OstiPage, OstiRecord, related_artifacts
 from ..core.assemble import result_dim, selection_coverage
 from ..core.envelope import (Coverage, Envelope, ExecutionCoverage,
                              PaginationCoverage, RecipeKind, RegistryCoverage,
@@ -95,6 +95,7 @@ def _record_summary(record: OstiRecord, *, detailed: bool) -> dict[str, Any]:
     if record.site_ownership_code:
         out["site_code"] = record.site_ownership_code
     if detailed:
+        out["related_artifacts"] = related_artifacts(record.raw)
         if record.description:
             out["description"] = record.description
         if record.subjects:
@@ -118,7 +119,7 @@ def _add_records(b, ctx: RuntimeContext, manifest: SourceManifest,
                        retrieved_at=retrieved_at,
                        effective_at=record.entry_date,
                        locator=record.biblio_url, transformations=["normalize"])
-        rows.append(_record_summary(record, detailed=detailed))
+        rows.append({**_record_summary(record, detailed=detailed), "source_id": manifest.id})
         if record.doi_url:
             b.add_recipe(RecipeKind.doi, record.doi_url,
                          label=record.title or None)

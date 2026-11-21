@@ -5168,7 +5168,8 @@
                 "Univ. of Alabama, Tuscaloosa, AL (United States)",
                 "Arizona State Univ., Tempe, AZ (United States)",
                 "National Renewable Energy Laboratory (NREL), Golden, CO (United States)"
-              ]
+              ],
+              "source_id": "osti-gov-records"
             },
             {
               "id": "3625672",
@@ -5184,7 +5185,8 @@
               "report_number": "NLR/TP-5F00-99345",
               "research_orgs": [
                 "National Laboratory of the Rockies (NLR), Golden, CO (United States)"
-              ]
+              ],
+              "source_id": "osti-gov-records"
             },
             {
               "id": "3409109",
@@ -5204,7 +5206,8 @@
               "report_number": "NLR/JA-5900-101333",
               "research_orgs": [
                 "National Laboratory of the Rockies (NLR), Golden, CO (United States)"
-              ]
+              ],
+              "source_id": "osti-gov-records"
             },
             {
               "id": "3818255",
@@ -5223,7 +5226,8 @@
               "journal": "ACS Energy Letters",
               "research_orgs": [
                 "University of Washington, Seattle, WA (United States)"
-              ]
+              ],
+              "source_id": "osti-doe-pages"
             },
             {
               "id": "3818626",
@@ -5242,7 +5246,8 @@
               "journal": "Journal of the American Chemical Society",
               "research_orgs": [
                 "Lawrence Berkeley National Laboratory (LBNL), Berkeley, CA (United States)"
-              ]
+              ],
+              "source_id": "osti-doe-pages"
             }
           ],
           "record_count": 5,

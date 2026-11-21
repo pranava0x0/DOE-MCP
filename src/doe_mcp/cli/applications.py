@@ -7,7 +7,7 @@ from pathlib import Path
 import sys
 
 from ..adapters.base import close_shared_client
-from ..applications import dockets, forecast, gcam, weather
+from ..applications import dockets, forecast, gcam, research_linkage, weather
 from ..applications.samples import APPLICATIONS
 from ..applications.bundle import Run, export_bundle
 from ..core.credentials import Credentials
@@ -21,7 +21,7 @@ async def execute(args):
     if args.live:
         source = getattr(args, "source", "")
         server = {"forecast-benchmark": "doe-energy-data", "weather-package": "doe-earth",
-                  "docket-tracker": "doe-research", gcam.NAME: "doe-mcp"}[args.application]
+                  "docket-tracker": "doe-research", gcam.NAME: "doe-mcp", "research-linkage": "doe-research"}[args.application]
         creds = Credentials(values={}, path=Path("/nonexistent"), file_exists=False)
         if args.application == "docket-tracker" and source == "regulations":
             # The source gate precedes any read of the user's key store.
@@ -46,6 +46,9 @@ async def execute(args):
         elif args.application == gcam.NAME:
             plan = gcam.validate_plan(json.loads(args.plan.read_bytes())) if args.plan else None
             files = await gcam.build(run, plan=plan)
+        elif args.application == "research-linkage":
+            files = await research_linkage.build(run, query=args.query, literature_query=args.literature_query,
+                dataset_query=args.dataset_query, software_query=args.software_query, rows=args.rows, page_budget=args.page_budget)
         else:
             previous = json.loads(args.previous.read_bytes()) if args.previous else None
             if args.source == "regulations":
@@ -100,6 +103,13 @@ def register(sub):
             parser.add_argument("--variables", default="tmax")
         elif name == gcam.NAME:
             parser.add_argument("--plan", type=Path, help="JSON selections and side-by-side pairs; default is the recorded GCAM preset")
+        elif name == "research-linkage":
+            parser.add_argument("--query", default="", help="search all three collections with this topic")
+            parser.add_argument("--literature-query", default="", help="override literature topic")
+            parser.add_argument("--dataset-query", default="", help="override dataset topic")
+            parser.add_argument("--software-query", default="", help="override software topic")
+            parser.add_argument("--rows", type=int, help="per-source page size; preset uses recorded sizes")
+            parser.add_argument("--page-budget", type=int, default=1)
         else:
             parser.add_argument("--source", choices=["federal-register", "regulations"],
                                 default="federal-register",

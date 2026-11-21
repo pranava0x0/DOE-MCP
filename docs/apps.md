@@ -200,3 +200,55 @@ key is refused by the normal credential path.
 Activation still requires recorded publisher responses and the checks in
 [Regulations.gov activation](regulations-activation.md). No broader DOE
 agency scope is inferred from EERE or from a current office name.
+
+## Research artifact linkage explorer
+
+```bash
+doe-mcp app research-linkage --output ./recorded-research
+doe-mcp app research-linkage --live --query geothermal \
+  --rows 10 --page-budget 2 --output ./geothermal-research
+```
+
+The explorer searches literature, dataset and software catalogs through
+the existing research tools. It writes `inventory.csv` and `linkage.json`,
+alongside the original envelopes in `report.json` and file checksums in
+`manifest.json`. Every inventory record and relationship assertion points
+to its record and evidence within `report.json`. IDs include the source
+and publisher record ID, so numbers from different catalogs do not collide.
+
+The recorded preset uses the existing `perovskite solar` literature,
+`geothermal` dataset and `machine learning` software recordings. These are
+three separate searches, not a claim that their results are related.
+It returns ten records and no explicit relationship assertions. This is a
+valid result: every record remains visible as unmatched. Different live
+searches can use `--query` for all three catalogs, or separate
+`--literature-query`, `--dataset-query` and `--software-query` arguments.
+Unrecorded parameter combinations require `--live` or matching recordings.
+
+The receipt separates three outcomes:
+
+- An exact normalized DOI shared by records establishes shared identity.
+  It does not establish that a paper uses a dataset or software.
+- An explicit relationship requires a publisher-supplied relation type,
+  target identifier and DOI namespace in `related_identifiers`. The tool
+  recognizes the recorded OSTI `CURATED; relation; JSON` format and retains
+  the field, original value and source evidence. Unknown formats are counted
+  as unparsed and create no edges.
+- An unmatched record has no resolved explicit relationship or shared DOI
+  within the returned results. An explicit target missing from the returned
+  inventory remains an unresolved publisher assertion; the app invents no
+  target metadata, locator or additional request.
+
+Titles, authors, shared awards, generic OSTI identifiers and co-occurrence
+in a query never establish a relationship. The publisher's journal prose
+in `relation` is not an artifact link. Source text remains third-party data.
+CSV cells that could be spreadsheet expressions receive an apostrophe;
+JSON preserves the original titles.
+
+`--rows` accepts 1–50 records per source and page, and `--page-budget`
+accepts 1–5 pages per collection. The preset uses the recorded page sizes.
+The receipt retains every page's coverage, publisher totals and stopping
+reason. A budget stop or unknown total cannot establish exhaustive coverage.
+The literature tool deduplicates overlapping collections by DOI; the app
+does not reconstruct discarded rows. No repository, dataset payload or
+relationship target is downloaded.

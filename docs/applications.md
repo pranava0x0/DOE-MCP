@@ -137,3 +137,33 @@ doe-mcp app gcam-comparison --plan ./plan.json --output ./gcam-custom
 - Unit statements are retained verbatim from publisher table notes. NA or absent statements remain unspecified; source descriptions may give further context.
 - Pairs are side-by-side receipts only. No addition, subtraction, ranking, conversion or aggregation is performed, including for matching table fields.
 - Different tables can use the same year column for unrelated concepts. Read full row qualifiers, release, source notes and region mappings before interpreting a pair.
+
+## Research artifact linkage explorer
+
+**Recorded example. Runs locally.**
+
+```bash
+doe-mcp app research-linkage --output ./research-linkage-run
+```
+
+[Download complete bundle](data/apps/research-linkage/bundle.zip) · [View report and source evidence](data/apps/research-linkage/report.json) · [File checksums](data/apps/research-linkage/manifest.json)
+
+Search literature, dataset and software catalogs, then inspect source-linked inventory, shared DOI identity and typed publisher relationship assertions separately. The preset uses three different recorded queries; it does not claim that these records form a research chain.
+
+Returned **10 records**, **0 shared identities** and **0 explicit relationship assertions**. **10 records** have no resolved match within this bounded result.
+
+No explicit relationships in a recorded result is a valid outcome. Generic OSTI identifiers include grants and contracts and never create edges. Unresolved publisher targets remain visible in the receipt.
+
+[Inventory CSV](data/apps/research-linkage/inventory.csv) · [Linkage receipt](data/apps/research-linkage/linkage.json)
+
+Use `--live --query YOUR_TOPIC` for one topic across all collections, or set separate `--literature-query`, `--dataset-query` and `--software-query` values. `--rows` and `--page-budget` bound each collection search.
+
+### Scope and limits
+
+- Each collection is searched independently. The recorded preset uses different recorded topics; co-returned records are not relationship evidence.
+- Only exact normalized DOIs establish shared identity. Shared identity does not assert that a paper uses a dataset or software.
+- Explicit links require a typed DOI assertion in the publisher related\_identifiers field. Grants, awards, journal prose, titles and authors never create links. Unparsed relationship values are counted.
+- Unresolved targets remain publisher assertions, without invented metadata, URLs or follow-up requests. No target artifact or repository content is downloaded.
+- Search scope retains every page&#x27;s coverage and publisher totals. Unmatched means unmatched within these bounded returned records, not proof that a relationship does not exist.
+- The literature tool deduplicates its two collections by DOI; this inventory preserves its returned rows and original envelope evidence, rather than reconstructing discarded rows.
+- Source text is third-party data. CSV cells that could be spreadsheet expressions are prefixed with an apostrophe; JSON retains original titles.

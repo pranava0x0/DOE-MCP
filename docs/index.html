@@ -373,7 +373,7 @@ header a:focus-visible{outline:3px solid #ffcd94;outline-offset:3px}
   <p>DOE-MCP's skills use the same Agent Skills format as <a href="https://github.com/AI-ModCon/genesis-skills">Genesis Agent Skills</a>. The demos use DOE-MCP's own tools; no upstream skills or lab services run here. <a href="guide.html#genesis-and-no-cost-demos">Integration and cost details</a>.</p>
   </details>
   <h3 id="applications">Applications</h3>
-  <p>Compare released GCAM inputs with row receipts, run a grid forecast benchmark, build a weather package, or track DOE Federal Register notices locally. Each writes a bundle with evidence and checksums. Regulations.gov docket metadata remains a gated integration.</p>
+  <p>Compare released GCAM inputs with row receipts, run a grid forecast benchmark, build a weather package, track DOE Federal Register notices, or explore explicit research-artifact links locally. Each writes a bundle with evidence and checksums. Regulations.gov docket metadata remains a gated integration.</p>
   <p><a href="applications.html">Explore applications and download recorded bundles</a> · <a href="apps.html">CLI options and limits</a></p>
   <h3 id="overview-queries">Questions it answers</h3>
   <p class="lede">Each question below is answered by one tool on one server:</p>
@@ -776,7 +776,8 @@ reachable keyless.</p>
           &quot;Univ. of Alabama, Tuscaloosa, AL (United States)&quot;,
           &quot;Arizona State Univ., Tempe, AZ (United States)&quot;,
           &quot;National Renewable Energy Laboratory (NREL), Golden, CO (United States)&quot;
-        ]
+        ],
+        &quot;source_id&quot;: &quot;osti-gov-records&quot;
       },
       {
         &quot;id&quot;: &quot;3625672&quot;,
@@ -792,7 +793,8 @@ reachable keyless.</p>
         &quot;report_number&quot;: &quot;NLR/TP-5F00-99345&quot;,
         &quot;research_orgs&quot;: [
           &quot;National Laboratory of the Rockies (NLR), Golden, CO (United States)&quot;
-        ]
+        ],
+        &quot;source_id&quot;: &quot;osti-gov-records&quot;
       },
       {
         &quot;id&quot;: &quot;3409109&quot;,
@@ -812,7 +814,8 @@ reachable keyless.</p>
         &quot;report_number&quot;: &quot;NLR/JA-5900-101333&quot;,
         &quot;research_orgs&quot;: [
           &quot;National Laboratory of the Rockies (NLR), Golden, CO (United States)&quot;
-        ]
+        ],
+        &quot;source_id&quot;: &quot;osti-gov-records&quot;
       },
       {
         &quot;id&quot;: &quot;3818255&quot;,
@@ -831,7 +834,8 @@ reachable keyless.</p>
         &quot;journal&quot;: &quot;ACS Energy Letters&quot;,
         &quot;research_orgs&quot;: [
           &quot;University of Washington, Seattle, WA (United States)&quot;
-        ]
+        ],
+        &quot;source_id&quot;: &quot;osti-doe-pages&quot;
       },
       {
         &quot;id&quot;: &quot;3818626&quot;,
@@ -839,12 +843,7 @@ reachable keyless.</p>
         &quot;authors&quot;: [
           &quot;Shih, Meng-Chen&quot;,
           &quot;Tan, Shaun&quot;,
-          &quot;Lu, Yongli&quot;,
-          &quot;Kodalle, Tim&quot;,
-          &quot;Terlier, Tanguy&quot;
-        ],
-        &quot;publication_date&quot;: &quot;2026-08-11&quot;,
-        &quot;product_type&quot;: &quot;Journal Article&quot;,
+          &quot;Lu,
   … trimmed for the page …
 }</pre><dl class='annot' id='answer-fields'><dt>data</dt><dd>The answer. Held to a soft budget of about 2,000 tokens, so ten records arrive as ten readable answers rather than one truncated blob.</dd><dt>provenance</dt><dd>One entry per system that contributed, with the publisher triple — steward, funder, host — because at least five flagship “lab assets” are funded by another agency entirely.</dd><dt>dataset_version</dt><dd>Required, never blank. ATB 2024 and ATB 2026 are different data with the same name, and two versions in one answer raise <code>mixed_vintages</code>.</dd><dt>evidence</dt><dd>One entry per record, pointing back at a provenance entry and carrying the locator the publisher actually supplied. A guessed link is worse than none, so none is emitted.</dd><dt>coverage.registry</dt><dd>The dimension that matters most. <code>none</code> means DOE-MCP has no source and the data may well exist; <code>covered</code> with an empty result means the searched systems hold no record. Different answers, never reported the same way.</dd><dt>coverage.pagination</dt><dd><code>truncated</code> whenever more matched than you received. OSTI returns its match count in a header and one page in the body; reading the page as the answer turns 4.4 million matches into “20 results”.</dd><dt>warnings</dt><dd>Typed, not prose. <code>alias_match</code>, <code>domain_migrated</code>, <code>catalog_vintage</code>, <code>derived_layer</code>, <code>citation_required</code> — each named for a confusion this ecosystem measurably produces.</dd><dt>access_recipes</dt><dd>Typed pointers for data too big to inline: a DOI, an S3 prefix, an OPeNDAP URL, a Globus endpoint. A 4.8-petabyte lake gets a recipe, not an attempt.</dd><dt>_execution</dt><dd>Which server, which tool contract, which adapter versions, which registry revision. Enough to reproduce the call.</dd></dl><h3 id='answer-more'>More calls, one from each shipping server</h3><details><summary><code class='tool'>registry.resolve_org</code><span class='count'>doe-research</span></summary><div class='body'><p>A user says “NREL”. The laboratory was renamed on 2025-12-01 and every old domain went dark with no redirect.</p><pre>{
   &quot;data&quot;: {
