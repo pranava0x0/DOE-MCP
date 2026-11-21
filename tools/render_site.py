@@ -145,7 +145,8 @@ nav.toc{position:sticky;top:0;z-index:10;background:var(--card);
   display:flex;align-items:center;gap:.9rem;justify-content:space-between}
 .toc-brand{font-weight:700;font-size:.95rem;color:var(--ink);text-decoration:none;
   letter-spacing:-.01em;flex-shrink:0}
-.toc-links{display:flex;gap:.2rem;overflow-x:auto;scrollbar-width:none}
+.toc-links{display:flex;gap:.4rem;flex-wrap:wrap}
+.toc-links>a{display:flex;align-items:center;min-height:44px;padding:8px;color:var(--ink);font-size:.85rem;text-decoration:none}
 .toc-links::-webkit-scrollbar{display:none}
 .toc-item{position:relative}
 .toc-item>a{display:block;color:var(--muted);text-decoration:none;
@@ -215,7 +216,7 @@ details:not(.sect)>div{margin:.2rem .8rem .8rem}
   color:var(--faint);text-transform:uppercase}
 .works b{color:var(--muted);font-weight:600}
 
-section{border-bottom:1px solid var(--line);scroll-margin-top:4.2rem}
+section{border-bottom:1px solid var(--line);scroll-margin-top:var(--location-offset,4.2rem)}
 /* Every section collapses. Closed by default but for the first, because
    this page is a reference and a reader wants one part of it. <details>
    rather than script: keyboard-operable and announced without any ARIA,
@@ -231,7 +232,7 @@ section{border-bottom:1px solid var(--line);scroll-margin-top:4.2rem}
   outline-offset:2px}
 .sect>summary h2{display:inline;margin:0}
 .sect-body{padding:0 0 1.9rem}
-h3[id],.steps li[id]{scroll-margin-top:4.5rem}
+h3[id],.steps li[id]{scroll-margin-top:var(--location-offset,4.5rem)}
 h2{font-family:var(--display);font-weight:700;font-size:1.28rem;
    margin:0 0 .5rem;letter-spacing:-.01em}
 h3{font-size:.98rem;margin:1.6rem 0 .5rem}
@@ -321,6 +322,7 @@ tr[hidden]{display:none}
 footer{padding:2.5rem 0 4rem;font-size:.84rem;color:var(--faint)}
 footer p{margin:.4rem 0}
 a{color:var(--accent)}
+table:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 @media(max-width:44rem){
   .annot{grid-template-columns:1fr}
   .annot dt{margin-top:.5rem}
@@ -336,10 +338,7 @@ a{color:var(--accent)}
   /* Hover submenus cannot open from a sideways-scrolling strip on touch. */
   .toc-sub{display:none!important}
   .funnel{display:grid;grid-template-columns:1fr 1fr}
-  /* The section links scroll sideways with the scrollbar hidden; a fade
-     at the right edge says there is more than the three that fit. */
-  .toc-links{-webkit-mask-image:linear-gradient(to right,#000 82%,transparent);
-    mask-image:linear-gradient(to right,#000 82%,transparent)}
+
   /* Inline links in the header get a 24px-plus touch target. */
   header p a{display:inline-block;padding:.3rem 0}
 }
@@ -427,7 +426,7 @@ def _questions(data: dict) -> str:
         + (f"<br><span class='faint'>{e(q['profile'])} profile</span>"
            if q.get("profile") else "") + "</td></tr>"
         for q in questions)
-    return ("<table><thead><tr><th>Question</th><th>Tool</th><th>Server</th>"
+    return ("<table tabindex='0'><thead><tr><th>Question</th><th>Tool</th><th>Server</th>"
             f"</tr></thead><tbody>{rows}</tbody></table>")
 
 
@@ -475,8 +474,10 @@ reachable keyless.</p>
 
 if __package__:
     from .atlas_style import ATLAS_CSS, FIELD_CASES, globe
+    from .location_nav import CSS as LOCATION_CSS, SCRIPT as LOCATION_SCRIPT, navigation
 else:
     from atlas_style import ATLAS_CSS, FIELD_CASES, globe
+    from location_nav import CSS as LOCATION_CSS, SCRIPT as LOCATION_SCRIPT, navigation
 
 from doe_mcp.gcam_examples import EXAMPLES  # noqa: E402
 
@@ -523,7 +524,7 @@ def _demo_cards(*, genesis: bool) -> str:
         out.append(f'<a class="demo-link" href="demos.html#{e(case)}"{field}><strong>{e(title)}</strong>'
                    f'<span>{e(blurb)}</span><small>{e(label)} · {e(kind)}</small></a>')
     group = "genesis-mission" if genesis else "other-workflows"
-    return f'<div class="demo-grid" aria-labelledby="{group}">' + "".join(out) + "</div>"
+    return f'<section class="demo-grid" aria-labelledby="{group}">' + "".join(out) + "</section>"
 
 
 def _arch_diagram(data: dict) -> str:
@@ -682,7 +683,7 @@ def _registry(data: dict) -> str:
             f"<td data-label='Publisher'>{publisher}</td><td data-label='Scope and limits'>{detail}</td>"
             f"<td class='mono' data-label='Records' style='text-align:right'>{count}</td></tr>")
     return (
-        "<table class='registry-table'><thead><tr><th>Source</th><th>Publisher</th>"
+        "<table class='registry-table' tabindex='0'><thead><tr><th>Source</th><th>Publisher</th>"
         "<th>What it holds / what is blocking it</th>"
         "<th style='text-align:right'>Records</th></tr></thead>"
         f"<tbody id='reg'>{''.join(rows)}</tbody></table>")
@@ -767,7 +768,7 @@ def _neighbours(data: dict) -> str:
         f"<td>{e(n['why_not_absorbed'])}</td>"
         f"<td><code>{e(n['install'] or '—')}</code></td></tr>"
         for n in data["neighbors"])
-    return ("<table><thead><tr><th>Server or skill pack</th><th>Status</th>"
+    return ("<table tabindex='0'><thead><tr><th>Server or skill pack</th><th>Status</th>"
             "<th>Why DOE-MCP does not duplicate it</th><th>Install</th>"
             f"</tr></thead><tbody>{rows}</tbody></table>")
 
@@ -819,13 +820,11 @@ def _script() -> str:
 
 def render(data: dict) -> str:
     c = data["counts"]
-    nav = "".join(
-        f'<div class="toc-item"><a href="#{i}">{e(label)}</a>'
-        + (('<div class="toc-sub">'
-            + "".join(f'<a href="#{si}">{e(sl)}</a>' for si, sl in subs)
-            + '</div>') if subs else "")
-        + '</div>'
-        for i, label, subs in NAV)
+    entries = []
+    for target, label, children in NAV:
+        entries.append((target, label, 0))
+        entries.extend((child, text, 1) for child, text in children)
+    location_nav = navigation(entries, context="Page sections", topbar="nav.toc")
     works = " · ".join(f"<b>{e(x)}</b>" for x in CLIENTS)
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -838,9 +837,9 @@ def render(data: dict) -> str:
  Energy and national-laboratory data. Every answer names the systems it came
  from and what it did not cover. An independent project, not affiliated with
  the US Department of Energy.">
-<style>{_style()}{ATLAS_CSS}</style>
+<style>{_style()}{ATLAS_CSS}{LOCATION_CSS}</style>
 </head>
-<body>
+<body data-location-layout>
 <a class="skip-link" href="#main-content">Skip to content</a>
 
 <div class="util" id="top"><div class="util-inner">
@@ -850,17 +849,18 @@ def render(data: dict) -> str:
   <a href="https://github.com/pranava0x0/DOE-MCP">View source ↗</a>
 </div></div>
 
-<nav class="toc" aria-label="Page sections"><div class="toc-inner">
+<nav class="toc" aria-label="Site"><div class="toc-inner">
   <a class="toc-brand" href="#top">DOE-MCP</a>
-  <div class="toc-links">{nav}</div>
+  <div class="toc-links"><a href="demos.html">Demos</a><a href="applications.html">Applications</a></div>
 </div></nav>
+{location_nav}
 
 <header><div class="wrap">
   <div class="atlas-top"><div>
-  <h1>A field guide to DOE data.</h1>
-  <p class="tagline">Explore energy, land and research data from the US Department of Energy and its national laboratories.</p>
-  <p class="free">Free and open source (Apache-2.0). Most tools need no account or API key. Every demo runs on recorded data.</p>
-  <div class="atlas-actions"><a class="primary" href="#genesis-mission">Explore Genesis skills ↓</a><a href="applications.html">Applications</a><a href="demos.html">All demos</a><a href="#start-install">Install</a><a href="#registry-sources">Source coverage</a><a href="guide.html">Local guide</a><a href="evaluation-example.html">Evaluation lab</a></div>
+  <h1>Public DOE data for AI clients.</h1>
+  <p class="tagline">Connect your AI client to read-only tools for DOE and national-laboratory data. Each result names its sources, retrieval dates and coverage limits.</p>
+  <p class="free">Free and open source (Apache-2.0). Most tools need no account or API key. Demos replay captured responses; live tools follow each source’s access requirements.</p>
+  <div class="atlas-actions"><a class="primary" href="demos.html">Demos →</a><a href="applications.html">Applications</a><a href="#genesis-mission">Genesis skills</a><a href="#start-install">Install</a><a href="#registry-sources">Source coverage</a><a href="guide.html">Local guide</a><a href="evaluation-example.html">Evaluation lab</a></div>
   </div><div class="atlas-plate">{globe()}</div></div>
   <div class="atlas-inventory">{_inventory(c)}
   <p class="works">Works with: {works}</p></div>
@@ -992,69 +992,14 @@ def render(data: dict) -> str:
   {e(data['registry_revision'])} · {c['sources']} sources ·
   {c['organizations']} organizations · {c['adapters']} adapters ·
   {c['capabilities_served']}/{c['capabilities']} capabilities served.</p>
+  <p><a href="backlog.html">Project backlog</a> · <a href="guide.html">Local guide</a> · <a href="demos.html">Demos</a></p>
   <p>Cite DOE-MCP using <code>CITATION.cff</code>. Cite data using the publisher information in each response.</p>
   <p>Packaging shape borrowed with thanks from PNNL's NEPA-MCP. That project
   does not endorse this one.</p>
 </div></footer>
 
 <script>{_script()}</script>
-<script>
-// In-page navigation, done without touching location.hash.
-//
-// Two reasons. A section is closed by default, so a plain anchor lands on a
-// collapsed summary and the reader sees nothing move — the ancestors have
-// to be opened first. And the hash itself is not always available: served
-// from a data: URL, as a local preview pane does, assigning location.hash
-// is refused as a top-frame navigation and every nav link silently does
-// nothing. Handling the click directly works in both places, and the URL is
-// still updated where the browser allows it.
-//
-// Braces are doubled because this sits inside an f-string template.
-(function () {{
-  function fragment(value) {{
-    try {{ return decodeURIComponent(value); }} catch (err) {{ return ''; }}
-  }}
-  function reveal(id) {{
-    var el = document.getElementById(id);
-    if (!el) return false;
-    // Ancestors, for a sub-heading that sits inside a collapsed section.
-    for (var n = el; n; n = n.parentElement) {{
-      if (n.tagName === "DETAILS") n.open = true;
-    }}
-    // And the section's OWN group, because a top-level nav link targets the
-    // <section> while the <details> is inside it — walking up from there
-    // never reaches it, which left every top-level link doing nothing.
-    var own = el.querySelector ? el.querySelector("details.sect") : null;
-    if (own) own.open = true;
-    // A heading that introduces a collapsed group opens it, so a link to
-    // "By source" shows the table rather than its closed summary.
-    for (var sib = el.nextElementSibling; sib && !/^H[1-4]$/.test(sib.tagName); sib = sib.nextElementSibling) {{
-      if (sib.tagName === "DETAILS") {{ sib.open = true; break; }}
-    }}
-    if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '-1');
-    el.focus({{preventScroll: true}});
-    el.scrollIntoView({{block: "start", behavior:
-      matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'}});
-    return true;
-  }}
-  document.addEventListener("click", function (ev) {{
-    var target = ev.target instanceof Element ? ev.target : null;
-    if (!target) return;
-    var link = target.closest('a[href^="#"]');
-    if (!link) return;
-    var id = fragment(link.getAttribute("href").slice(1));
-    if (!id || !reveal(id)) return;
-    ev.preventDefault();
-    try {{ history.replaceState(null, "", "#" + id); }} catch (err) {{ /* data: URL */ }}
-  }});
-  // A link followed into the page from outside still has to open its
-  // section.
-  addEventListener("hashchange", function () {{
-    reveal(fragment((location.hash || "").slice(1)));
-  }});
-  if (location.hash) reveal(fragment(location.hash.slice(1)));
-}})();
-</script>
+<script>{LOCATION_SCRIPT}</script>
 </body>
 </html>
 """

@@ -127,3 +127,34 @@ table clipped its later columns at phone width. The table now becomes
 labelled cards on narrow screens. The browser audit verifies that the
 table and its cells fit without horizontal movement; the phone screenshot
 shows Source, Publisher, Scope and limits, and Records together.
+
+### UAT-007: Page location and browser history
+
+Severity: medium. Discovered and resolved 2026-11-21.
+The site lacked persistent page-position feedback outside demo step buttons.
+Shared navigation now provides a desktop sidebar and a compact mobile
+section menu with the current section. Regression checks cover deep links,
+Back/Forward, invalid fragments, focus after changing demos and resizing,
+and the final section when the page cannot scroll farther. Passive scrolling
+updates the marker without moving focus or adding history entries. Static
+layout and links remain usable with JavaScript disabled.
+
+### UAT-008: Contrast, control names and keyboard scrolling
+
+Severity: medium. Discovered and resolved 2026-11-21.
+Automated accessibility checks found low-contrast homepage text, an unnamed
+mobile demo selector and code/table regions that keyboard users could not
+scroll. Text colors now pass the scan, the selector has a visible label,
+and overflow regions accept keyboard focus with a visible indicator. Named
+demo groups use semantic sections. Empty recording tables have explicit
+no-captures text. The pinned axe audit runs with the browser checks in CI;
+incomplete results remain recorded for manual review.
+
+### UAT-009: Install shortcut under the mobile section bar
+
+Severity: low. Discovered and resolved 2026-11-21.
+The new mobile section bar exposed a higher-specificity legacy scroll margin.
+The Install target landed at 72 pixels while the controls extended to 108.
+Fragment rules now use the measured combined offset. At 375 pixels wide,
+the focused Install target starts at 124 pixels, below the controls.
+The measured journey checks both bars when asserting target visibility.

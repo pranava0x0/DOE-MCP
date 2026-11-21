@@ -28,15 +28,44 @@ main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0
 .application-page td{border:0;padding:6px 8px;text-align:left!important}
 .application-page td::before{content:attr(data-label);display:block;font-size:.8em;font-weight:600;color:#38654c}
 }
-</style></head><body class="application-page"><a class="skip" href="#content">Skip to content</a>
-<header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Recorded demos</a></nav></header>
-<main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#grid-forecast-benchmark-lab">Grid forecast benchmark lab</a></li><li><a href="#weather-package-builder">Weather package builder</a></li><li><a href="#doe-docket-notice-tracker">DOE docket notice tracker</a></li><li><a href="#gcam-comparison-receipts">GCAM comparison receipts</a></li><li><a href="#research-artifact-linkage-explorer">Research artifact linkage explorer</a></li><li><a href="#forecast-panel-with-common-cohorts">Forecast panel with common cohorts</a></li><li><a href="#atb-energy-assumptions-reader">ATB energy assumptions reader</a></li></ul></nav><h1 id="applications-built-on-doe-mcp">Applications built on DOE-MCP</h1>
+
+.page-location{color:#203c31;background:#faf8f0;border-bottom:1px solid #b8c6ba;z-index:8}
+.page-location *{box-sizing:border-box}
+.page-location .location-menu{margin:0;border:0;border-radius:0;background:inherit}
+.page-location .location-toggle{min-height:44px;padding:10px 16px;cursor:pointer;line-height:1.45;font:600 .9rem/1.45 system-ui,sans-serif}
+.page-location .location-toggle [data-current-location]{font-weight:400}
+.page-location .location-toggle:focus-visible,.page-location a:focus-visible{outline:3px solid #a65b14;outline-offset:-3px}
+.page-location nav{display:block;padding:8px 12px;background:inherit}
+.page-location .location-context{font:650 .9rem/1.45 system-ui,sans-serif;margin:4px 8px 10px;overflow-wrap:anywhere}
+.page-location ul{display:block;list-style:none;padding:0;margin:0}
+.page-location li{margin:0;padding:0;line-height:1.35}
+.page-location a{display:block;min-height:36px;padding:8px 10px;border-left:3px solid transparent;color:#305547;text-decoration:none;font:400 .87rem/1.45 system-ui,sans-serif;overflow-wrap:anywhere}
+.page-location .location-depth-1 a{padding-left:22px;font-size:.81rem}
+.page-location a:hover{background:#e8eee3}
+.page-location a[aria-current="location"]{border-left-color:#1e5d47;background:#dfeadd;color:#183b2e;font-weight:700}
+[data-location-target]{scroll-margin-top:var(--location-offset,70px)}
+@media(min-width:1200px){
+body[data-location-layout]{padding-left:15rem}
+.page-location{position:fixed;left:0;top:0;bottom:0;width:15rem;border:0;border-right:1px solid #b8c6ba;overflow:auto;padding:16px 8px}
+/* Preserve focus until layout() transfers it to a desktop section link. */
+.page-location .location-menu[open]>.location-toggle:not(:focus){display:none}
+}
+@media(max-width:1199px){
+.page-location{position:sticky;top:var(--location-site-top,0px)}
+.page-location .location-toggle{display:list-item;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.page-location nav{max-height:min(65vh,32rem);overflow:auto;overscroll-behavior:contain}
+.page-location a{min-height:44px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}
+</style></head><body class="application-page" data-location-layout><a class="skip" href="#content">Skip to content</a>
+<header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Demos</a><a href="backlog.html">Project backlog</a></nav></header>
+<aside class="page-location" data-location-nav data-location-context="Applications built on DOE-MCP" data-location-topbar=""><details class="location-menu" open><summary class="location-toggle"><span>Current: </span><span data-current-location>Overview</span></summary><nav aria-label="On this page"><p class="location-context">Applications built on DOE-MCP</p><ul data-location-links><li class="location-depth-0"><a href="#applications-built-on-doe-mcp" aria-current="location">Overview</a></li><li class="location-depth-0"><a href="#grid-forecast-benchmark-lab">Grid forecast benchmark lab</a></li><li class="location-depth-0"><a href="#weather-package-builder">Weather package builder</a></li><li class="location-depth-0"><a href="#doe-docket-notice-tracker">DOE docket notice tracker</a></li><li class="location-depth-0"><a href="#gcam-comparison-receipts">GCAM comparison receipts</a></li><li class="location-depth-0"><a href="#research-artifact-linkage-explorer">Research artifact linkage explorer</a></li><li class="location-depth-0"><a href="#forecast-panel-with-common-cohorts">Forecast panel with common cohorts</a></li><li class="location-depth-0"><a href="#atb-energy-assumptions-reader">ATB energy assumptions reader</a></li></ul></nav></details></aside><main id="content" tabindex="-1"><h1 id="applications-built-on-doe-mcp">Applications built on DOE-MCP</h1>
 <p>These local command-line applications use read-only tools or declared input files. Examples use recorded publisher responses or clearly labelled synthetic simulations. They are not live services. Download a complete sample bundle or run a command to create your own.</p>
 <p>A server hosts tools. A tool returns data and provenance. A skill describes a tested workflow. An application combines tools or declared inputs and writes a result bundle. <a href="apps.html">Installation and application options</a> · <a href="index.html#servers-list">Servers</a> · <a href="reference.html">Tool reference</a> · <a href="guide.html#connect-a-client-and-provide-a-skill">Scientific skills</a></p>
 <p>Recorded site examples normalize replay retrieval clocks and request IDs for repeatable builds. The normalized clock is not a capture date. Source data and fixture hashes are preserved. CLI runs preserve their original tool envelopes.</p>
 <h2 id="grid-forecast-benchmark-lab">Grid forecast benchmark lab</h2>
 <p><strong>Recorded example. Runs locally.</strong></p>
-<pre><code class="language-bash">doe-mcp app forecast-benchmark --output ./forecast-benchmark-run
+<pre tabindex="0"><code class="language-bash">doe-mcp app forecast-benchmark --output ./forecast-benchmark-run
 </code></pre>
 <p><a href="data/apps/forecast-benchmark/bundle.zip" download="forecast-benchmark.zip">Download complete bundle</a> · <a href="data/apps/forecast-benchmark/report.json">View report and source evidence</a> · <a href="data/apps/forecast-benchmark/manifest.json">File checksums</a></p>
 <p>Compare uploaded forecasts with BPA timestamped load samples. The preset creates retrospective forecasts for illustration; it does not measure prospective skill.</p>
@@ -85,7 +114,7 @@ main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0
 </ul>
 <h2 id="weather-package-builder">Weather package builder</h2>
 <p><strong>Recorded example. Runs locally.</strong></p>
-<pre><code class="language-bash">doe-mcp app weather-package --output ./weather-package-run
+<pre tabindex="0"><code class="language-bash">doe-mcp app weather-package --output ./weather-package-run
 </code></pre>
 <p><a href="data/apps/weather-package/bundle.zip" download="weather-package.zip">Download complete bundle</a> · <a href="data/apps/weather-package/report.json">View report and source evidence</a> · <a href="data/apps/weather-package/manifest.json">File checksums</a></p>
 <p>Build a point-weather CSV and Croissant metadata with a verified CSV checksum. Coordinates, date range and variables are CLI parameters.</p>
@@ -99,7 +128,7 @@ main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0
 </ul>
 <h2 id="doe-docket-notice-tracker">DOE docket notice tracker</h2>
 <p><strong>Recorded example. Runs locally.</strong></p>
-<pre><code class="language-bash">doe-mcp app docket-tracker --output ./docket-tracker-run
+<pre tabindex="0"><code class="language-bash">doe-mcp app docket-tracker --output ./docket-tracker-run
 </code></pre>
 <p><a href="data/apps/docket-tracker/bundle.zip" download="docket-tracker.zip">Download complete bundle</a> · <a href="data/apps/docket-tracker/report.json">View report and source evidence</a> · <a href="data/apps/docket-tracker/manifest.json">File checksums</a></p>
 <p>Track Federal Register DOE notices, retain separate publication/effective/comment dates, group publisher-supplied docket IDs, and compare saved snapshots. Regulations.gov document metadata is a <strong>gated integration</strong>, awaiting a real recording after the public exploration key returned HTTP 429. No comment bodies or attachments are collected.</p>
@@ -133,7 +162,7 @@ main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0
 </ul>
 <h2 id="gcam-comparison-receipts">GCAM comparison receipts</h2>
 <p><strong>Recorded example. Runs locally.</strong></p>
-<pre><code class="language-bash">doe-mcp app gcam-comparison --output ./gcam-comparison-run
+<pre tabindex="0"><code class="language-bash">doe-mcp app gcam-comparison --output ./gcam-comparison-run
 </code></pre>
 <p><a href="data/apps/gcam-comparison/bundle.zip" download="gcam-comparison.zip">Download complete bundle</a> · <a href="data/apps/gcam-comparison/report.json">View report and source evidence</a> · <a href="data/apps/gcam-comparison/manifest.json">File checksums</a></p>
 <p><a href="data/apps/gcam-comparison/plan.json" download="gcam-comparison-plan.json">Selection plan JSON</a> · <a href="data/apps/gcam-comparison/receipts.csv" download="gcam-comparison-receipts.csv">Receipt CSV</a> · <a href="data/apps/gcam-comparison/receipts.json" download="gcam-comparison-receipts.json">Receipts with source notes</a> · <a href="data/apps/gcam-comparison/comparisons.json" download="gcam-comparison-comparisons.json">Pair assessments</a></p>
@@ -226,7 +255,7 @@ main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0
 </table>
 <p>A relationship describes table and field identity, not scientific interchangeability. The report retains each full row and its original envelope. Blank publisher values stay null.</p>
 <p>Download the plan, edit its exact filters and selected columns, then run:</p>
-<pre><code class="language-bash">doe-mcp app gcam-comparison --plan ./plan.json --output ./gcam-custom
+<pre tabindex="0"><code class="language-bash">doe-mcp app gcam-comparison --plan ./plan.json --output ./gcam-custom
 </code></pre>
 <h3 id="scope-and-limits-3">Scope and limits</h3>
 <ul>
@@ -239,7 +268,7 @@ main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0
 </ul>
 <h2 id="research-artifact-linkage-explorer">Research artifact linkage explorer</h2>
 <p><strong>Recorded example. Runs locally.</strong></p>
-<pre><code class="language-bash">doe-mcp app research-linkage --output ./research-linkage-run
+<pre tabindex="0"><code class="language-bash">doe-mcp app research-linkage --output ./research-linkage-run
 </code></pre>
 <p><a href="data/apps/research-linkage/bundle.zip" download="research-linkage.zip">Download complete bundle</a> · <a href="data/apps/research-linkage/report.json">View report and source evidence</a> · <a href="data/apps/research-linkage/manifest.json">File checksums</a></p>
 <p>Search literature, dataset and software catalogs, then inspect source-linked inventory, shared DOI identity and typed publisher relationship assertions separately. The preset uses three different recorded queries; it does not claim that these records form a research chain.</p>
@@ -259,7 +288,7 @@ main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0
 </ul>
 <h2 id="forecast-panel-with-common-cohorts">Forecast panel with common cohorts</h2>
 <p><strong>Synthetic simulation. Fictitious regions. Runs locally.</strong></p>
-<pre><code class="language-bash">doe-mcp app forecast-panel --output ./forecast-panel-run
+<pre tabindex="0"><code class="language-bash">doe-mcp app forecast-panel --output ./forecast-panel-run
 </code></pre>
 <p><a href="data/apps/forecast-panel/bundle.zip" download="forecast-panel.zip">Download complete bundle</a> · <a href="data/apps/forecast-panel/report.json">View report and source evidence</a> · <a href="data/apps/forecast-panel/manifest.json">File checksums</a></p>
 <p>This example generates two fictitious regions, two illustrative forecast series and two lead times. It is a deterministic synthetic simulation, not publisher data or a real-world performance result. The measurement basis is five-minute instantaneous electric-power samples in MW.</p>
@@ -411,7 +440,7 @@ main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0
 </ul>
 <h2 id="atb-energy-assumptions-reader">ATB energy assumptions reader</h2>
 <p><strong>Recorded example. Runs locally.</strong></p>
-<pre><code class="language-bash">doe-mcp app energy-assumptions --output ./energy-assumptions-run
+<pre tabindex="0"><code class="language-bash">doe-mcp app energy-assumptions --output ./energy-assumptions-run
 </code></pre>
 <p><a href="data/apps/energy-assumptions/bundle.zip" download="energy-assumptions.zip">Download complete bundle</a> · <a href="data/apps/energy-assumptions/report.json">View report and source evidence</a> · <a href="data/apps/energy-assumptions/manifest.json">File checksums</a></p>
 <p>Read technology cost and performance assumptions from one pinned ATB edition. Every row retains its scenario, projection year, technology/resource detail, units and financial qualifiers.</p>
@@ -558,4 +587,135 @@ main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0
 <li>PVWatts remains proposed without a real credential-redacted recording. No model result, API request, DEMO_KEY use or key configuration is part of this application.</li>
 <li>Source text is third-party data. CSV expression-like text is prefixed with an apostrophe; JSON retains original content.</li>
 </ul>
-</main></body></html>
+</main><script>
+(()=>{
+  const shell=document.querySelector('[data-location-nav]');
+  if(!shell)return;
+  const disclosure=shell.querySelector('.location-menu');
+  const toggle=shell.querySelector('.location-toggle');
+  const links=shell.querySelector('[data-location-links]');
+  const currentText=shell.querySelector('[data-current-location]');
+  const contextText=shell.querySelector('.location-context');
+  const desktop=matchMedia('(min-width:1200px)');
+  let context=shell.dataset.locationContext||'', targets=[], pending=false, last='';
+  document.body.dataset.locationLayout='';
+  const decode=value=>{try{return decodeURIComponent(value);}catch{return '';}};
+  function visible(el){
+    if(!el||el.closest('[hidden]')||!el.getClientRects().length)return false;
+    for(let ancestor=el.parentElement;ancestor;ancestor=ancestor.parentElement){
+      if(ancestor.tagName==='DETAILS'&&!ancestor.open){
+        const summary=ancestor.querySelector(':scope > summary');
+        if(!summary||!summary.contains(el))return false;
+      }
+    }
+    return getComputedStyle(el).visibility!=='hidden';
+  }
+  function measure(){
+    const selector=shell.dataset.locationTopbar;
+    const bar=selector?document.querySelector(selector):null;
+    const height=bar&&visible(bar)?bar.getBoundingClientRect().height:0;
+    document.documentElement.style.setProperty('--location-site-top',height+'px');
+    const own=desktop.matches?0:shell.getBoundingClientRect().height;
+    document.documentElement.style.setProperty('--location-offset',(height+own+16)+'px');
+    shell.dataset.locationOffset=String(height+own+16);
+    return height+own+16;
+  }
+  function setCurrent(item){
+    if(!item)return;
+    for(const anchor of links.querySelectorAll('a')){
+      if(decode(anchor.hash.slice(1))===item.id)anchor.setAttribute('aria-current','location');
+      else anchor.removeAttribute('aria-current');
+    }
+    const label=item.label+(context&&context!==item.label?' · '+context:'');
+    if(currentText.textContent!==label)currentText.textContent=label;
+    shell.dataset.currentTarget=item.id;
+    if(last!==item.id){
+      last=item.id;
+      document.dispatchEvent(new CustomEvent('location:current',{detail:{id:item.id}}));
+    }
+  }
+  function update(){
+    pending=false;
+    const offset=measure();
+    const eligible=targets.filter(item=>visible(item.el));
+    let item=eligible[0];
+    for(const candidate of eligible){if(candidate.el.getBoundingClientRect().top<=offset+8)item=candidate;else break;}
+    const page=document.scrollingElement;
+    if(page.scrollHeight>innerHeight+2&&page.scrollTop+innerHeight>=page.scrollHeight-2)item=eligible.at(-1)||item;
+    setCurrent(item);
+  }
+  function schedule(){if(!pending){pending=true;requestAnimationFrame(update);}}
+  function configure(entries,newContext){
+    if(newContext!==undefined)context=newContext;
+    contextText.textContent=context||'On this page';
+    const restoreLinkFocus=links.contains(document.activeElement);
+    if(entries){
+      links.replaceChildren();
+      for(const entry of entries){
+        const li=document.createElement('li'),anchor=document.createElement('a');
+        li.className='location-depth-'+(entry.depth||0);
+        anchor.href='#'+encodeURIComponent(entry.id);anchor.textContent=entry.label;
+        li.append(anchor);links.append(li);
+      }
+    }
+    targets=[...links.querySelectorAll('a[href^="#"]')].map(anchor=>{
+      const id=decode(anchor.hash.slice(1));return{id,label:anchor.textContent,el:document.getElementById(id)};
+    }).filter(item=>item.el);
+    targets.sort((a,b)=>a.el===b.el?0:a.el.compareDocumentPosition(b.el)&Node.DOCUMENT_POSITION_FOLLOWING?-1:1);
+    for(const target of targets)target.el.dataset.locationTarget='';
+    if(entries&&restoreLinkFocus)links.querySelector('a')?.focus({preventScroll:true});
+    last='';schedule();
+  }
+  function reveal(target){
+    document.dispatchEvent(new CustomEvent('location:reveal',{detail:{target}}));
+    for(let node=target;node;node=node.parentElement){if(node.tagName==='DETAILS')node.open=true;}
+    const own=target.querySelector('details.sect');if(own)own.open=true;
+    for(let sibling=target.nextElementSibling;sibling&&!/^H[1-4]$/.test(sibling.tagName);sibling=sibling.nextElementSibling){
+      if(sibling.tagName==='DETAILS'){sibling.open=true;break;}
+    }
+  }
+  function navigate(id,{push=true,focus=true}={}){
+    const target=document.getElementById(id);if(!target)return false;
+    target.dataset.locationTarget='';
+    reveal(target);
+    const menuHadFocus=links.contains(document.activeElement);
+    if(!desktop.matches)disclosure.open=false;
+    measure();
+    if(!focus&&menuHadFocus&&!desktop.matches)toggle.focus({preventScroll:true});
+    if(push&&decode(location.hash.slice(1))!==id){try{history.pushState(null,'','#'+encodeURIComponent(id));}catch{}}
+    if(focus){if(!target.hasAttribute('tabindex'))target.tabIndex=-1;target.focus({preventScroll:true});}
+    target.scrollIntoView({block:'start',behavior:'auto'});schedule();return true;
+  }
+  document.addEventListener('click',event=>{
+    if(event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+    const anchor=event.target instanceof Element?event.target.closest('a[href^="#"]'):null;
+    if(!anchor||anchor.hasAttribute('download')||anchor.target&&anchor.target!=='_self')return;
+    const id=decode(anchor.getAttribute('href').slice(1));if(!id||!document.getElementById(id))return;
+    event.preventDefault();navigate(id);
+  });
+  const follow=()=>{const id=decode(location.hash.slice(1));
+    if(!id||!navigate(id,{push:false,focus:false})){document.dispatchEvent(new CustomEvent('location:reset'));schedule();}
+  };
+  addEventListener('hashchange',follow);addEventListener('popstate',follow);
+  addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule);
+  document.addEventListener('toggle',schedule,true);
+  disclosure.addEventListener('keydown',event=>{
+    if(event.key==='Escape'&&!desktop.matches&&disclosure.open){disclosure.open=false;toggle.focus({preventScroll:true});event.preventDefault();}
+  });
+  document.addEventListener('focusin',event=>{
+    if(!desktop.matches&&disclosure.open&&!shell.contains(event.target)){disclosure.open=false;schedule();}
+  });
+  function layout(){
+    const toggleFocused=document.activeElement===toggle;
+    disclosure.open=desktop.matches||links.contains(document.activeElement);
+    if(desktop.matches&&toggleFocused)(links.querySelector('[aria-current]')||links.querySelector('a'))?.focus({preventScroll:true});
+    schedule();
+  }
+  desktop.addEventListener('change',layout);
+  new ResizeObserver(schedule).observe(shell);
+  const bar=shell.dataset.locationTopbar?document.querySelector(shell.dataset.locationTopbar):null;
+  if(bar)new ResizeObserver(schedule).observe(bar);
+  window.DOELocation={configure,navigate,refresh:schedule};
+  configure();layout();requestAnimationFrame(follow);
+})();
+</script></body></html>

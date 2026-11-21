@@ -102,14 +102,19 @@ jobs:
             if curl --silent --fail "$UAT_URL/index.html" > /dev/null; then break; fi
             sleep 0.1
           done
-          npm run uat
-          npm run uat:journeys
-          npm run uat:evaluation
+          status=0
+          for check in uat uat:journeys uat:evaluation uat:accessibility; do
+            if ! npm run "$check"; then status=1; fi
+          done
+          exit "$status"
       - name: Publish benchmark summary in job output
         if: always()
         run: |
           if test -f uat-screenshots/journeys.json; then
             node -e 'const r=require("./uat-screenshots/journeys.json"); console.log(JSON.stringify({kind:r.kind, failure:r.failure, journeys:r.journeys, performance:r.performance, hrefs:r.hrefs},null,2))'
+          fi
+          if test -f uat-screenshots/accessibility/accessibility.json; then
+            node -e 'const r=require("./uat-screenshots/accessibility/accessibility.json"); console.log(JSON.stringify({kind:r.kind, summary:r.summary, failure:r.failure, failures:r.failures, manualReviewItems:r.manualReviewItems},null,2))'
           fi
 
   liveness:

@@ -1,0 +1,398 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Development backlog — DOE-MCP</title><link rel="icon" href="data:,">
+<link rel="canonical" href="https://pranava0x0.github.io/DOE-MCP/backlog.html">
+<meta name="description" content="Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.">
+<meta property="og:title" content="Development backlog">
+<meta property="og:description" content="Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.">
+<meta property="og:type" content="website"><meta property="og:url" content="https://pranava0x0.github.io/DOE-MCP/backlog.html">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" type="text/markdown" href="backlog.md">
+<link rel="describedby" type="text/plain" href="llms.txt">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Development backlog", "url": "https://pranava0x0.github.io/DOE-MCP/backlog.html", "description": "Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.", "isPartOf": {"@type": "WebSite", "name": "DOE-MCP", "url": "https://pranava0x0.github.io/DOE-MCP/"}}</script>
+<style>
+:root{color-scheme:light;--ink:#20342b;--paper:#f5f2e8;--accent:#38654c}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible{outline:3px solid #9e572b;outline-offset:4px}
+header,main{max-width:1040px;margin:auto;padding:24px}header{border-bottom:1px solid #a8b3a7}
+nav{display:flex;gap:20px;flex-wrap:wrap}h1,h2,h3{font-family:Georgia,serif;line-height:1.2;scroll-margin-top:1rem}
+pre{overflow:auto;background:#e8e7dd;padding:16px;border-radius:6px}code{font-size:.9em}
+table{display:block;overflow:auto;border-collapse:collapse;max-width:100%}td,th{padding:9px;border:1px solid #b4beb4;text-align:left}
+main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0;background:white;padding:10px}
+.application-page pre{white-space:pre-wrap;overflow-wrap:anywhere}
+@media(max-width:600px){
+.application-page table,.application-page tbody,.application-page tr,.application-page td{display:block;width:100%}
+.application-page table{overflow:visible}
+.application-page thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.application-page tr{border:1px solid #b4beb4;margin:12px 0;padding:8px}
+.application-page td{border:0;padding:6px 8px;text-align:left!important}
+.application-page td::before{content:attr(data-label);display:block;font-size:.8em;font-weight:600;color:#38654c}
+}
+
+.page-location{color:#203c31;background:#faf8f0;border-bottom:1px solid #b8c6ba;z-index:8}
+.page-location *{box-sizing:border-box}
+.page-location .location-menu{margin:0;border:0;border-radius:0;background:inherit}
+.page-location .location-toggle{min-height:44px;padding:10px 16px;cursor:pointer;line-height:1.45;font:600 .9rem/1.45 system-ui,sans-serif}
+.page-location .location-toggle [data-current-location]{font-weight:400}
+.page-location .location-toggle:focus-visible,.page-location a:focus-visible{outline:3px solid #a65b14;outline-offset:-3px}
+.page-location nav{display:block;padding:8px 12px;background:inherit}
+.page-location .location-context{font:650 .9rem/1.45 system-ui,sans-serif;margin:4px 8px 10px;overflow-wrap:anywhere}
+.page-location ul{display:block;list-style:none;padding:0;margin:0}
+.page-location li{margin:0;padding:0;line-height:1.35}
+.page-location a{display:block;min-height:36px;padding:8px 10px;border-left:3px solid transparent;color:#305547;text-decoration:none;font:400 .87rem/1.45 system-ui,sans-serif;overflow-wrap:anywhere}
+.page-location .location-depth-1 a{padding-left:22px;font-size:.81rem}
+.page-location a:hover{background:#e8eee3}
+.page-location a[aria-current="location"]{border-left-color:#1e5d47;background:#dfeadd;color:#183b2e;font-weight:700}
+[data-location-target]{scroll-margin-top:var(--location-offset,70px)}
+@media(min-width:1200px){
+body[data-location-layout]{padding-left:15rem}
+.page-location{position:fixed;left:0;top:0;bottom:0;width:15rem;border:0;border-right:1px solid #b8c6ba;overflow:auto;padding:16px 8px}
+/* Preserve focus until layout() transfers it to a desktop section link. */
+.page-location .location-menu[open]>.location-toggle:not(:focus){display:none}
+}
+@media(max-width:1199px){
+.page-location{position:sticky;top:var(--location-site-top,0px)}
+.page-location .location-toggle{display:list-item;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.page-location nav{max-height:min(65vh,32rem);overflow:auto;overscroll-behavior:contain}
+.page-location a{min-height:44px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}
+</style></head><body class="" data-location-layout><a class="skip" href="#content">Skip to content</a>
+<header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Demos</a><a href="backlog.html">Project backlog</a></nav></header>
+<aside class="page-location" data-location-nav data-location-context="Development backlog" data-location-topbar=""><details class="location-menu" open><summary class="location-toggle"><span>Current: </span><span data-current-location>Overview</span></summary><nav aria-label="On this page"><p class="location-context">Development backlog</p><ul data-location-links><li class="location-depth-0"><a href="#development-backlog" aria-current="location">Overview</a></li><li class="location-depth-0"><a href="#completed">Completed</a></li><li class="location-depth-0"><a href="#next-batch-no-keys-required">Next batch: no keys required</a></li><li class="location-depth-0"><a href="#later-work-without-keys">Later work without keys</a></li><li class="location-depth-0"><a href="#anonymous-candidates-that-still-need-evidence">Anonymous candidates that still need evidence</a></li><li class="location-depth-0"><a href="#gated-work">Gated work</a></li></ul></nav></details></aside><main id="content" tabindex="-1"><h1 id="development-backlog">Development backlog</h1>
+<p>Updated 2026-11-21 after PRs 19–26. This is the public development backlog.
+Items below are plans, not claims that a proposed integration works.</p>
+<p>A <strong>server</strong> hosts tools for a domain. A <strong>tool</strong> performs one bounded read.
+A <strong>skill</strong> explains how to combine tools and interpret their evidence.
+An <strong>application</strong> produces an output bundle; a <strong>demo</strong> shows an example.
+Extend an existing server when its data domain fits. Add a new server only
+when its dependency, credential or operating boundary requires one.</p>
+<h2 id="completed">Completed</h2>
+<table>
+<thead>
+<tr>
+<th scope="col">Status</th>
+<th scope="col">Change</th>
+<th scope="col">Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Status">Done</td>
+<td data-label="Change">DNS connection pinning and credential safeguards; current EIA recording sanitized. Historical key ownership and revocation remain open.</td>
+<td data-label="Evidence"><a href="https://github.com/pranava0x0/DOE-MCP/pull/19">PR 19</a></td>
+</tr>
+<tr>
+<td data-label="Status">Done</td>
+<td data-label="Change">Search metadata, llms.txt, site journeys and CI checks.</td>
+<td data-label="Evidence"><a href="https://github.com/pranava0x0/DOE-MCP/pull/20">PR 20</a></td>
+</tr>
+<tr>
+<td data-label="Status">Done</td>
+<td data-label="Change">Forecast benchmark, weather packages and Federal Register notice tracker. Regulations.gov remained gated.</td>
+<td data-label="Evidence"><a href="https://github.com/pranava0x0/DOE-MCP/pull/21">PR 21</a></td>
+</tr>
+<tr>
+<td data-label="Status">Done</td>
+<td data-label="Change">GCAM comparison receipts across fields and region conventions.</td>
+<td data-label="Evidence"><a href="https://github.com/pranava0x0/DOE-MCP/pull/22">PR 22</a></td>
+</tr>
+<tr>
+<td data-label="Status">Done</td>
+<td data-label="Change">Paper, dataset and software inventory with explicit publisher relationships.</td>
+<td data-label="Evidence"><a href="https://github.com/pranava0x0/DOE-MCP/pull/23">PR 23</a></td>
+</tr>
+<tr>
+<td data-label="Status">Done</td>
+<td data-label="Change">Offline quality, token and cost comparison of supplied evaluation reports. No real model ranking was measured.</td>
+<td data-label="Evidence"><a href="https://github.com/pranava0x0/DOE-MCP/pull/24">PR 24</a></td>
+</tr>
+<tr>
+<td data-label="Status">Done</td>
+<td data-label="Change">Multi-region forecast comparisons on common periods, with a labelled simulation and file imports.</td>
+<td data-label="Evidence"><a href="https://github.com/pranava0x0/DOE-MCP/pull/25">PR 25</a></td>
+</tr>
+<tr>
+<td data-label="Status">Done</td>
+<td data-label="Change">Pinned ATB 2024/2025 tools, server and application. PVWatts remains proposed.</td>
+<td data-label="Evidence"><a href="https://github.com/pranava0x0/DOE-MCP/pull/26">PR 26</a></td>
+</tr>
+</tbody>
+</table>
+<p>The <a href="applications.html">applications</a>, <a href="demos.html">demos</a> and
+<a href="evaluation-example.html">evaluation example</a> retain their evidence and
+limitations. Recorded examples and simulations are labelled separately.</p>
+<h2 id="next-batch-no-keys-required">Next batch: no keys required</h2>
+<p>Ship these as separate, reviewable PRs in this order. Each must retain the
+source gates, pass replay tests and run the browser/accessibility checks
+on PRs and main. Suggested effort is relative to the existing implementation.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Order</th>
+<th scope="col">Priority</th>
+<th scope="col">Layer</th>
+<th scope="col">Improvement</th>
+<th scope="col">Acceptance criteria</th>
+<th scope="col">Effort</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Order">1</td>
+<td data-label="Priority">High</td>
+<td data-label="Layer">Skill</td>
+<td data-label="Improvement">Add an ATB assumptions skill using the existing energy-tech server.</td>
+<td data-label="Acceptance criteria">Checked 2024/2025 benches cover exact qualifiers, multiple matches, nulls, source evidence and different currency bases. No arbitrary first-row choice or implicit currency conversion.</td>
+<td data-label="Effort">Small</td>
+</tr>
+<tr>
+<td data-label="Order">2</td>
+<td data-label="Priority">High</td>
+<td data-label="Layer">Server setup</td>
+<td data-label="Improvement">Extend doctor with a machine-readable, credential-free profile preflight.</td>
+<td data-label="Acceptance criteria">Report entry points, required extras, active tools and source gates without loading credential or client files. Distinguish optional missing keys from broken keyless installs; test installed wheels with and without energy-tech extras.</td>
+<td data-label="Effort">Medium</td>
+</tr>
+<tr>
+<td data-label="Order">3</td>
+<td data-label="Priority">High</td>
+<td data-label="Layer">Tool and research application</td>
+<td data-label="Improvement">Resolve one hop of an explicit publisher relationship.</td>
+<td data-label="Acceptance criteria">Use existing research adapters and returned identifiers; bound requests and output. Preserve the originating assertion and resolved source evidence. Report unresolved, ambiguous and budget-limited targets. Never infer an edge from a title or topic. Add real anonymous recordings before claiming live coverage.</td>
+<td data-label="Effort">Medium</td>
+</tr>
+<tr>
+<td data-label="Order">4</td>
+<td data-label="Priority">High</td>
+<td data-label="Layer">Forecast application</td>
+<td data-label="Improvement">Prepare forecast-panel observation imports from existing BPA envelopes.</td>
+<td data-label="Acceptance criteria">Keep original envelopes, hashes, units, interval meaning and timezone assumptions. Missing availability stays unknown; require caller evidence before an observation can enter an issuance-time baseline. No retrospective data presented as a prospective forecast.</td>
+<td data-label="Effort">Medium</td>
+</tr>
+</tbody>
+</table>
+<p>Start with the ATB skill: its reader, fixtures and export application already
+ship, so the next useful addition is guidance that prevents incorrect
+selection and interpretation. Use Sol for implementation and focused tests;
+use Astra for scientific contracts and final review. Reserve larger-model
+reviews for substantive risks rather than routine copy or formatting.</p>
+<h2 id="later-work-without-keys">Later work without keys</h2>
+<ul>
+<li><strong>Medium — Tool and application:</strong> bounded complete ATB exports. Keep all
+qualifiers and per-page evidence; stop with explicit incomplete status
+when a declared row or request budget is exhausted. Never relabel a
+ten-row page as the complete result.</li>
+<li><strong>Medium — Weather application:</strong> multiple-point package plans with a
+per-point manifest, units, calendar checks and total request budget.
+Keep the existing single-point package format usable.</li>
+<li><strong>Medium — Skill evaluation:</strong> import human reviews of existing answers
+into the matrix. Bind reviews to exact task, rubric and answer hashes.
+Missing grades stay unknown; no provider account is needed to review
+supplied answers or compare existing reports.</li>
+<li><strong>Medium — Accessibility:</strong> repeat manual VoiceOver and NVDA checks for
+material navigation changes. Automated scans and browser accessibility
+trees are useful regression checks, but do not replace assistive-technology
+testing or establish full WCAG conformance.</li>
+</ul>
+<h2 id="anonymous-candidates-that-still-need-evidence">Anonymous candidates that still need evidence</h2>
+<p>These do not have a key blocker, but they are not ready to activate.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Candidate</th>
+<th scope="col">Existing boundary</th>
+<th scope="col">Work required before shipping</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Candidate">GDR-scoped discovery</td>
+<td data-label="Existing boundary">Extend the research server and DOE Data Explorer adapter.</td>
+<td data-label="Work required before shipping">Verify the publisher's repository filter and capture real responses. Preserve incomplete repository coverage; do not repeat the old dated coverage percentage as a current fact. No separate scraper or server.</td>
+</tr>
+<tr>
+<td data-label="Candidate">Cambium edition reader</td>
+<td data-label="Existing boundary">The energy-tech server now exists.</td>
+<td data-label="Work required before shipping">Verify a supported public download, edition/schema, terms and response budget. Define scenario/year/region/hour semantics and capture real data. Undocumented website routes alone do not justify activation.</td>
+</tr>
+<tr>
+<td data-label="Candidate">Battery cycling packages</td>
+<td data-label="Existing boundary">Registry entry remains proposed.</td>
+<td data-label="Work required before shipping">Confirm per-dataset download and redistribution terms, schema and bounded access before choosing an adapter. Public web visibility does not establish a supported API.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="gated-work">Gated work</h2>
+<table>
+<thead>
+<tr>
+<th scope="col">Priority</th>
+<th scope="col">Work</th>
+<th scope="col">Gate</th>
+<th scope="col">What can proceed without the gate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Priority">High</td>
+<td data-label="Work">PVWatts monthly production tool</td>
+<td data-label="Gate">User-owned key, authorized bounded recording, verified publisher response and credential-redaction checks.</td>
+<td data-label="What can proceed without the gate">Maintain the prepared contract, negative tests and <a href="pvwatts-activation.html">activation checklist</a>. Keep model output null and the source proposed.</td>
+</tr>
+<tr>
+<td data-label="Priority">High</td>
+<td data-label="Work">Regulations.gov docket metadata</td>
+<td data-label="Gate">User-owned key plus a complete real recording within the publisher's quota. The earlier exploration hit HTTP 429.</td>
+<td data-label="What can proceed without the gate">Improve the working Federal Register tracker and retain the <a href="regulations-activation.html">activation checklist</a>. A key alone is not activation evidence.</td>
+</tr>
+<tr>
+<td data-label="Priority">Medium</td>
+<td data-label="Work">Live model/skill quality and cost study</td>
+<td data-label="Gate">Separately authorized provider access, budget and grading plan.</td>
+<td data-label="What can proceed without the gate">Prepare tasks, import existing reports and human reviews, and test the offline matrix. Simulation token counts are not provider usage or model-quality measurements.</td>
+</tr>
+<tr>
+<td data-label="Priority">High maintenance</td>
+<td data-label="Work">Historical EIA credential exposure</td>
+<td data-label="Gate">Owner assessment and revocation; any history rewrite needs a coordinated maintenance decision.</td>
+<td data-label="What can proceed without the gate">Keep current redaction and value-free regression checks. Do not test, print, reuse or republish the historical value.</td>
+</tr>
+</tbody>
+</table>
+<p>No new key is requested by this backlog. Do not use public demonstration
+keys to work around a gate or retry a quota refusal through another identity.
+Hosted MCP, job submission and paid execution remain separate operating
+and authorization decisions.</p>
+</main><script>
+(()=>{
+  const shell=document.querySelector('[data-location-nav]');
+  if(!shell)return;
+  const disclosure=shell.querySelector('.location-menu');
+  const toggle=shell.querySelector('.location-toggle');
+  const links=shell.querySelector('[data-location-links]');
+  const currentText=shell.querySelector('[data-current-location]');
+  const contextText=shell.querySelector('.location-context');
+  const desktop=matchMedia('(min-width:1200px)');
+  let context=shell.dataset.locationContext||'', targets=[], pending=false, last='';
+  document.body.dataset.locationLayout='';
+  const decode=value=>{try{return decodeURIComponent(value);}catch{return '';}};
+  function visible(el){
+    if(!el||el.closest('[hidden]')||!el.getClientRects().length)return false;
+    for(let ancestor=el.parentElement;ancestor;ancestor=ancestor.parentElement){
+      if(ancestor.tagName==='DETAILS'&&!ancestor.open){
+        const summary=ancestor.querySelector(':scope > summary');
+        if(!summary||!summary.contains(el))return false;
+      }
+    }
+    return getComputedStyle(el).visibility!=='hidden';
+  }
+  function measure(){
+    const selector=shell.dataset.locationTopbar;
+    const bar=selector?document.querySelector(selector):null;
+    const height=bar&&visible(bar)?bar.getBoundingClientRect().height:0;
+    document.documentElement.style.setProperty('--location-site-top',height+'px');
+    const own=desktop.matches?0:shell.getBoundingClientRect().height;
+    document.documentElement.style.setProperty('--location-offset',(height+own+16)+'px');
+    shell.dataset.locationOffset=String(height+own+16);
+    return height+own+16;
+  }
+  function setCurrent(item){
+    if(!item)return;
+    for(const anchor of links.querySelectorAll('a')){
+      if(decode(anchor.hash.slice(1))===item.id)anchor.setAttribute('aria-current','location');
+      else anchor.removeAttribute('aria-current');
+    }
+    const label=item.label+(context&&context!==item.label?' · '+context:'');
+    if(currentText.textContent!==label)currentText.textContent=label;
+    shell.dataset.currentTarget=item.id;
+    if(last!==item.id){
+      last=item.id;
+      document.dispatchEvent(new CustomEvent('location:current',{detail:{id:item.id}}));
+    }
+  }
+  function update(){
+    pending=false;
+    const offset=measure();
+    const eligible=targets.filter(item=>visible(item.el));
+    let item=eligible[0];
+    for(const candidate of eligible){if(candidate.el.getBoundingClientRect().top<=offset+8)item=candidate;else break;}
+    const page=document.scrollingElement;
+    if(page.scrollHeight>innerHeight+2&&page.scrollTop+innerHeight>=page.scrollHeight-2)item=eligible.at(-1)||item;
+    setCurrent(item);
+  }
+  function schedule(){if(!pending){pending=true;requestAnimationFrame(update);}}
+  function configure(entries,newContext){
+    if(newContext!==undefined)context=newContext;
+    contextText.textContent=context||'On this page';
+    const restoreLinkFocus=links.contains(document.activeElement);
+    if(entries){
+      links.replaceChildren();
+      for(const entry of entries){
+        const li=document.createElement('li'),anchor=document.createElement('a');
+        li.className='location-depth-'+(entry.depth||0);
+        anchor.href='#'+encodeURIComponent(entry.id);anchor.textContent=entry.label;
+        li.append(anchor);links.append(li);
+      }
+    }
+    targets=[...links.querySelectorAll('a[href^="#"]')].map(anchor=>{
+      const id=decode(anchor.hash.slice(1));return{id,label:anchor.textContent,el:document.getElementById(id)};
+    }).filter(item=>item.el);
+    targets.sort((a,b)=>a.el===b.el?0:a.el.compareDocumentPosition(b.el)&Node.DOCUMENT_POSITION_FOLLOWING?-1:1);
+    for(const target of targets)target.el.dataset.locationTarget='';
+    if(entries&&restoreLinkFocus)links.querySelector('a')?.focus({preventScroll:true});
+    last='';schedule();
+  }
+  function reveal(target){
+    document.dispatchEvent(new CustomEvent('location:reveal',{detail:{target}}));
+    for(let node=target;node;node=node.parentElement){if(node.tagName==='DETAILS')node.open=true;}
+    const own=target.querySelector('details.sect');if(own)own.open=true;
+    for(let sibling=target.nextElementSibling;sibling&&!/^H[1-4]$/.test(sibling.tagName);sibling=sibling.nextElementSibling){
+      if(sibling.tagName==='DETAILS'){sibling.open=true;break;}
+    }
+  }
+  function navigate(id,{push=true,focus=true}={}){
+    const target=document.getElementById(id);if(!target)return false;
+    target.dataset.locationTarget='';
+    reveal(target);
+    const menuHadFocus=links.contains(document.activeElement);
+    if(!desktop.matches)disclosure.open=false;
+    measure();
+    if(!focus&&menuHadFocus&&!desktop.matches)toggle.focus({preventScroll:true});
+    if(push&&decode(location.hash.slice(1))!==id){try{history.pushState(null,'','#'+encodeURIComponent(id));}catch{}}
+    if(focus){if(!target.hasAttribute('tabindex'))target.tabIndex=-1;target.focus({preventScroll:true});}
+    target.scrollIntoView({block:'start',behavior:'auto'});schedule();return true;
+  }
+  document.addEventListener('click',event=>{
+    if(event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+    const anchor=event.target instanceof Element?event.target.closest('a[href^="#"]'):null;
+    if(!anchor||anchor.hasAttribute('download')||anchor.target&&anchor.target!=='_self')return;
+    const id=decode(anchor.getAttribute('href').slice(1));if(!id||!document.getElementById(id))return;
+    event.preventDefault();navigate(id);
+  });
+  const follow=()=>{const id=decode(location.hash.slice(1));
+    if(!id||!navigate(id,{push:false,focus:false})){document.dispatchEvent(new CustomEvent('location:reset'));schedule();}
+  };
+  addEventListener('hashchange',follow);addEventListener('popstate',follow);
+  addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule);
+  document.addEventListener('toggle',schedule,true);
+  disclosure.addEventListener('keydown',event=>{
+    if(event.key==='Escape'&&!desktop.matches&&disclosure.open){disclosure.open=false;toggle.focus({preventScroll:true});event.preventDefault();}
+  });
+  document.addEventListener('focusin',event=>{
+    if(!desktop.matches&&disclosure.open&&!shell.contains(event.target)){disclosure.open=false;schedule();}
+  });
+  function layout(){
+    const toggleFocused=document.activeElement===toggle;
+    disclosure.open=desktop.matches||links.contains(document.activeElement);
+    if(desktop.matches&&toggleFocused)(links.querySelector('[aria-current]')||links.querySelector('a'))?.focus({preventScroll:true});
+    schedule();
+  }
+  desktop.addEventListener('change',layout);
+  new ResizeObserver(schedule).observe(shell);
+  const bar=shell.dataset.locationTopbar?document.querySelector(shell.dataset.locationTopbar):null;
+  if(bar)new ResizeObserver(schedule).observe(bar);
+  window.DOELocation={configure,navigate,refresh:schedule};
+  configure();layout();requestAnimationFrame(follow);
+})();
+</script></body></html>

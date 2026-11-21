@@ -358,3 +358,67 @@ Phone screenshots for the ATB and evaluation endpoints were inspected;
 their release, scope and simulation labels remained visible. Artifacts are
 in ignored `uat-screenshots/integrated/`. No external model or public
 publisher was called by the browser checks.
+
+## Navigation and accessibility — 2026-11-21
+
+The homepage links directly to Demos and uses a direct product description.
+All fourteen pages have a desktop section sidebar and a compact mobile
+current-section menu. The development backlog records PRs 19–26 and
+separates the next keyless work from evidence and credential gates.
+
+The measured browser audit passed 42 journeys and 488 local targets across
+fourteen documents, with no browser or first-party request errors. At each
+of three widths, three rounds through all 38 demos returned to the same
+12,274-node document. Changed selections added one history entry; repeated
+selection and passive scrolling added none. Heap measurements remain
+diagnostics, not a proof that no leak exists.
+
+| Phone path from the homepage | Clicks | Wheel actions | Scroll pixels | Document loads |
+|---|---:|---:|---:|---:|
+| Install command | 1 | 0 | 10,662 | 1 |
+| ATB assumptions bundle | 4 | 0 | 21,345 | 2 |
+| Forecast panel bundle, inputs and receipts | 11 | 1 | 13,721 | 2 |
+| Evaluation example and comparison bundle | 2 | 0 | 0 | 2 |
+
+Application paths now count opening the mobile section menu. This adds one
+click compared with the previous always-visible contents list. Scroll pixels
+include anchor and focus movement; they do not represent wheel actions or
+inferred swipes. At fourfold CPU slowdown, local useful-ready measurements
+were 540 ms for the homepage and 1,038 ms for the selected microbiome demo.
+These are single local diagnostics without network shaping, not field metrics.
+
+Pinned axe-core 4.14.1 completed 104 scans: fourteen pages and all 38 active
+demos at 1280 and 320 CSS pixels. All 378 interaction and semantic assertions
+passed, with zero axe violations, browser errors or external requests.
+The checks cover keyboard navigation, named landmarks, visible focus, active
+demo exposure in the accessibility tree, deep links, Back/Forward, mobile
+disclosure behavior, responsive focus transfer and no-JavaScript navigation.
+All pages also passed the 640-pixel reflow check. The narrow widths represent
+reflow equivalents; native browser zoom was not exercised.
+
+Twenty-one color-contrast rule instances remain incomplete in axe, involving
+457 node instances: 366 clipped or obscured background samples, 46 image
+backgrounds, 42 text samples too short to assess and three decorative arrows.
+Their raw nodes and reasons remain in the report for manual review; none are
+suppressed or counted as passes. Actual VoiceOver/NVDA speech was not tested,
+and these results do not establish full WCAG conformance.
+
+The run used Playwright 1.58.2 and installed Chrome 158.0.8127.36 on loopback.
+Phone and desktop navigation screenshots were inspected, including the fixed
+Install destination. Artifacts are in ignored
+`uat-screenshots/navigation-journeys/`, `uat-screenshots/navigation-functional/`,
+`uat-screenshots/navigation-evaluation/` and `uat-screenshots/accessibility/`.
+CI now runs all four browser suites on PRs and main. The journey skill
+documents the new check and its limits. No key or paid provider was used.
+
+All four browser suites passed locally. The functional run covered 38 demos
+at each of three widths, 216 section jumps, worksheet and Daymet downloads,
+keyboard access and the CPU-slowed sample jump. The evaluation suite passed
+three paths. One earlier local Node run remained idle after its browser
+exited; the isolated final sequence and the unchanged full rerun completed.
+The exact cause of that stalled run was not established.
+
+The 1,571 replay tests passed with one architecture-file skip. Ruff, source
+validation, schema comparison, writing checks, all 38 export comparisons and
+the independent Croissant reader passed. A complete fixture rebuild changed
+no generated file. Astra reviewed the navigation design and final fixes.

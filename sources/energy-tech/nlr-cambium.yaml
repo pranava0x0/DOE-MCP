@@ -67,8 +67,8 @@ lifecycle:
   last_verified: "2026-09-08"
   verified_by: pranava0x0
   blocked_reason: >
-    Phase 3, with the energy-tech server. The post-rename URLs are no
-    longer the obstacle: scenarioviewer.nlr.gov answers, and its
-    /api/projects/ route returned the scenario list as JSON to a
-    scripted client on 2026-09-08. What is missing is a home server
-    and a tool contract over an hourly, scenario-indexed dataset.
+    The energy-tech server now ships ATB readers. Cambium still needs
+    an edition-specific contract for hourly scenario data, verified
+    publisher-supported downloads and terms, and real recordings.
+    The website route observed on 2026-09-08 was undocumented and is
+    not treated as a supported API or a current availability claim.
