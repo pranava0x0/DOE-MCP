@@ -45,7 +45,8 @@
                 "DOE Geothermal Data Repository",
                 "EMR Solutions and Technology"
               ],
-              "site_code": "DOE-GDR"
+              "site_code": "DOE-GDR",
+              "source_id": "osti-data-explorer"
             },
             {
               "id": "2531108",
@@ -62,7 +63,8 @@
                 "DOE Geothermal Data Repository",
                 "Neubrex Energy Services (US), LLC"
               ],
-              "site_code": "DOE-GDR"
+              "site_code": "DOE-GDR",
+              "source_id": "osti-data-explorer"
             }
           ],
           "record_count": 2,
@@ -243,7 +245,8 @@
           "DOE Geothermal Data Repository",
           "EMR Solutions and Technology"
         ],
-        "site_code": "DOE-GDR"
+        "site_code": "DOE-GDR",
+        "source_id": "osti-data-explorer"
       },
       "evidence": [
         {
@@ -277,7 +280,8 @@
           "DOE Geothermal Data Repository",
           "Neubrex Energy Services (US), LLC"
         ],
-        "site_code": "DOE-GDR"
+        "site_code": "DOE-GDR",
+        "source_id": "osti-data-explorer"
       },
       "evidence": [
         {

@@ -173,3 +173,28 @@ The receipt links now sit before the GCAM tables. This removes the need to
 scroll through those tables to download the selection plan and source
 receipts. The full audit path checks five downloads, so its action count is
 not the same task as downloading only the bundle.
+
+## Research linkage explorer addition — 2026-11-21
+
+The new application journey reaches the research explorer from the homepage,
+selects its section and downloads the complete recorded bundle. It takes
+three clicks, zero wheel actions, two document loads and one same-document
+anchor transition at 375×812, 768×1024 and 1280×800. Measured vertical scroll
+movement was 5,983, 3,347 and 2,870 pixels respectively, including anchor
+movement. Downloaded bytes matched the generated ZIP. The phone screenshot
+showed the heading, download and scope text without horizontal clipping.
+
+All thirty journeys passed, with 357 local targets and fragments checked
+across nine HTML documents. Browser errors and failed first-party requests
+were zero. This run used Playwright 1.58.2 and installed Chrome
+158.0.8127.36 on loopback, with the existing scripted benchmark limits.
+Machine-readable results and viewport screenshots are in ignored
+`uat-screenshots/`; this is not a human or physical-device study.
+
+The recorded receipt contains ten source-linked records, zero explicit
+relationship assertions and ten unmatched records. Its three separate
+recorded search topics do not establish a research chain. No publisher
+fixture was modified or invented. An isolated test carries a real recorded
+typed relationship through the tool and app, retaining its unresolved target
+and field-specific evidence. Identity, malformed metadata, source activation,
+unknown totals and page-budget boundaries have separate regression checks.

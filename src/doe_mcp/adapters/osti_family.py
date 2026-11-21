@@ -30,6 +30,8 @@ has already produced a wrong answer somewhere:
 from __future__ import annotations
 
 import enum
+import json
+import re
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -47,6 +49,55 @@ ADAPTER_VERSION = "1"
 # envelope's 2K-token data budget however generous the publisher is.
 DEFAULT_ROWS = 10
 MAX_ROWS = 50
+
+
+def normalized_doi(value: Any) -> str | None:
+    """A conservative comparison key; never turn arbitrary identifiers into DOIs."""
+    if not isinstance(value, str):
+        return None
+    value = value.strip()
+    value = re.sub(r"^(?:https?://(?:dx\.)?doi\.org/|doi:\s*)", "", value, flags=re.I)
+    if not re.fullmatch(r"10\.\d{4,9}/[^\s\x00-\x20\x7f]+", value):
+        return None
+    return value.casefold()
+
+
+def related_artifacts(raw: dict[str, Any]) -> dict[str, Any]:
+    """Normalize only typed DOI assertions in the publisher's related field.
+
+    OSTI's recorded CURATED; relation; JSON serialization supplies all three
+    required facts. Journal prose in `relation`, grants in `identifier`, and
+    award DOIs are deliberately outside this field-specific contract.
+    """
+    supported = {"IsPartOf", "HasPart", "IsSupplementTo", "IsSupplementedBy",
+                 "References", "IsReferencedBy", "IsDerivedFrom", "IsSourceOf",
+                 "IsDocumentedBy", "Documents", "IsVersionOf", "HasVersion",
+                 "IsNewVersionOf", "IsPreviousVersionOf", "IsIdenticalTo",
+                 "IsCompiledBy", "Compiles", "IsRequiredBy", "Requires"}
+    values = raw.get("related_identifiers", [])
+    if not isinstance(values, list):
+        return {"assertions": [], "unparsed_count": 1}
+    assertions, unparsed = [], 0
+    for index, value in enumerate(values):
+        parts = value.split(";", 2) if isinstance(value, str) else []
+        try:
+            item = json.loads(parts[2]) if len(parts) == 3 and parts[0].strip() == "CURATED" else None
+        except (ValueError, TypeError):
+            item = None
+        if not isinstance(item, dict):
+            unparsed += 1
+            continue
+        relation = item.get("relation_type")
+        target = normalized_doi(item.get("related_identifier"))
+        if (not isinstance(relation, str) or relation not in supported or parts[1].strip() != relation
+                or item.get("related_identifier_type") != "DOI" or target is None):
+            unparsed += 1
+            continue
+        assertions.append({"relationship": relation, "target_namespace": "doi",
+                           "target_identifier": target,
+                           "origin_field": f"related_identifiers/{index}",
+                           "publisher_value": value})
+    return {"assertions": assertions, "unparsed_count": unparsed}
 
 
 class OstiFlavor(str, enum.Enum):

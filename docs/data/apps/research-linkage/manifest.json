@@ -1,0 +1,21 @@
+{
+  "application": "research-linkage",
+  "mode": "recorded",
+  "files": [
+    {
+      "file": "inventory.csv",
+      "bytes": 1824,
+      "sha256": "a791fa6033cc1da02d62a8b1a8a17160c3a78ca7e2bc72294ad861a8059686d9"
+    },
+    {
+      "file": "linkage.json",
+      "bytes": 9368,
+      "sha256": "29a8fdc9045e1d97772074f72b9ee59943a4be256080d5b21910a840e2e23013"
+    },
+    {
+      "file": "report.json",
+      "bytes": 71861,
+      "sha256": "64f88ab161b4a64408096dc8e2ddccf5122572d31a6be35cbe6ea4a21ad03f05"
+    }
+  ]
+}

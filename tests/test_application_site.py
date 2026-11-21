@@ -35,3 +35,8 @@ def test_published_application_bundle_has_verified_files_and_recorded_provenance
         assert len(report['receipts']) == 6
         assert all(r['evidence_ref'] and r['file_url'] for r in report['receipts'])
         assert report['comparisons'][-1]['relationship'] == 'different_table_or_field'
+    elif application == 'research-linkage':
+        assert len(report['records']) == len(report['unmatched_records']) == 10
+        assert report['explicit_relationships'] == report['shared_identity'] == []
+        assert {step['tool'] for step in report['steps']} == {
+            'research.search_literature', 'research.search_datasets', 'research.search_software'}

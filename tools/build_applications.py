@@ -14,7 +14,8 @@ from doe_mcp.workflows import freeze
 
 TITLES = {"forecast-benchmark": "Grid forecast benchmark lab",
           "weather-package": "Weather package builder", "docket-tracker": "DOE docket notice tracker",
-          "gcam-comparison": "GCAM comparison receipts"}
+          "gcam-comparison": "GCAM comparison receipts",
+          "research-linkage": "Research artifact linkage explorer"}
 
 
 def cell(value) -> str:
@@ -112,6 +113,19 @@ async def write_applications(root: Path) -> None:
                 "The report retains each full row and its original envelope. Blank publisher values stay null.", "",
                 "Download the plan, edit its exact filters and selected columns, then run:", "",
                 "```bash\ndoe-mcp app gcam-comparison --plan ./plan.json --output ./gcam-custom\n```", ""]
+        elif name == "research-linkage":
+            lines += ["Search literature, dataset and software catalogs, then inspect source-linked inventory, "
+                "shared DOI identity and typed publisher relationship assertions separately. "
+                "The preset uses three different recorded queries; it does not claim that these records form a research chain.", "",
+                f"Returned **{len(report['records'])} records**, **{len(report['shared_identity'])} shared identities** "
+                f"and **{len(report['explicit_relationships'])} explicit relationship assertions**. "
+                f"**{len(report['unmatched_records'])} records** have no resolved match within this bounded result.", "",
+                "No explicit relationships in a recorded result is a valid outcome. Generic OSTI identifiers include grants "
+                "and contracts and never create edges. Unresolved publisher targets remain visible in the receipt.", "",
+                f"[Inventory CSV](data/apps/{name}/inventory.csv) · [Linkage receipt](data/apps/{name}/linkage.json)", "",
+                "Use `--live --query YOUR_TOPIC` for one topic across all collections, or set separate "
+                "`--literature-query`, `--dataset-query` and `--software-query` values. "
+                "`--rows` and `--page-budget` bound each collection search.", ""]
         else:
             lines += ["Track Federal Register DOE notices, retain separate publication/effective/comment dates, "
                 "group publisher-supplied docket IDs, and compare saved snapshots. "

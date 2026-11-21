@@ -1,0 +1,11 @@
+node_id,collection,source_id,record_id,title,doi,repository
+osti-data-explorer:1148737,dataset,osti-data-explorer,1148737,Structural Orientations Adjacent to Some Colorado Geothermal Systems,10.15121/1148737,
+osti-data-explorer:1542650,dataset,osti-data-explorer,1542650,Utah FORGE: Well 58-32 Stimulation Data,10.15121/1542650,
+osti-doe-code:187349,software,osti-doe-code,187349,Particle Filter Based Inference Testing,10.11578/dc.20260806.1,https://github.com/IdahoLabUnsupported/PAR-FIT
+osti-doe-code:189030,software,osti-doe-code,189030,LeWRON: Learning ElectroWeak phase tRansitiON with agentic architecture,10.11578/dc.20260821.5,https://github.com/quarkquartet/LeWRON
+osti-doe-code:191470,software,osti-doe-code,191470,lanl/bacterial-classification,10.11578/dc.20260901.5,https://github.com/lanl/bacterial-classification
+osti-doe-pages:3818255,literature,osti-doe-pages,3818255,Direct Microscale Observation of Additive-Triggered Reduction in Tin Halide Perovskites,10.1021/acsenergylett.6c01751,
+osti-doe-pages:3818626,literature,osti-doe-pages,3818626,Mixed-Ligand-Driven Phase-Pure 2D Perovskite for Interfacial Passivation of Perovskite Photovoltaics,10.1021/jacs.6c05503,
+osti-gov-records:3409109,literature,osti-gov-records,3409109,Reducing non-radiative recombination in perovskite solar cells with a SiO<sub>2</sub>-graphene oxide buried interface layer,10.1016/j.nanoen.2026.112209,
+osti-gov-records:3484888,literature,osti-gov-records,3484888,"Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells",10.2172/3484888,
+osti-gov-records:3625672,literature,osti-gov-records,3625672,"Semi-Transparent Perovskite Solar Cells in a Stacked Tandem Module: Cooperative Research and Development Final Report, CRADA Number CRD-19-00810",10.66816/tp5080615,

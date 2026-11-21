@@ -44,7 +44,8 @@
                 "Univ. of Alabama, Tuscaloosa, AL (United States)",
                 "Arizona State Univ., Tempe, AZ (United States)",
                 "National Renewable Energy Laboratory (NREL), Golden, CO (United States)"
-              ]
+              ],
+              "source_id": "osti-gov-records"
             },
             {
               "id": "3625672",
@@ -60,7 +61,8 @@
               "report_number": "NLR/TP-5F00-99345",
               "research_orgs": [
                 "National Laboratory of the Rockies (NLR), Golden, CO (United States)"
-              ]
+              ],
+              "source_id": "osti-gov-records"
             },
             {
               "id": "3409109",
@@ -80,7 +82,8 @@
               "report_number": "NLR/JA-5900-101333",
               "research_orgs": [
                 "National Laboratory of the Rockies (NLR), Golden, CO (United States)"
-              ]
+              ],
+              "source_id": "osti-gov-records"
             }
           ],
           "record_count": 3,
@@ -294,6 +297,10 @@
               "Arizona State Univ., Tempe, AZ (United States)",
               "National Renewable Energy Laboratory (NREL), Golden, CO (United States)"
             ],
+            "related_artifacts": {
+              "assertions": [],
+              "unparsed_count": 0
+            },
             "description": "This Final Technical Report summarizes work completed under Award Number DEEE0009833, titled \"Low-cost, Highly Efficient and Fast Thermally Pressed Scalable Carbon-based Planar Perovskite Solar Cells.\" The project addressed the central technical problem that carbon-electrode perovskite solar cells (C-PSCs) can reduce electrode costs and improve environmental durability, but they have historically lagged noble-metalcontact devices due to poor carbon/perovskite contact, high carbon-electrode resistance, imperfect hole extraction, and insufficient operational stability. The Statement of Project Objectives (SOPO), therefore, required systematic engineering of thermally pressed carbon-based planar perovskite solar cells by improving the carbon/perovskite interface quality, improving carbon-electrode conductivity, and further increasing device stability. The work advanced understanding of carbon-based perovskite photovoltaics by connecting device performance to three coupled mechanisms: interfacial recombination at the perovskite/hole-transport-layer/carbon stack; lateral and vertical transport losses in carbon contacts; and instability driven by moisture, heat, illumination, ion migration, and slow/variable manufacturing steps.",
             "subjects": [
               "14 SOLAR ENERGY",

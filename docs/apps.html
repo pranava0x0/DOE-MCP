@@ -30,7 +30,7 @@ main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0
 }
 </style></head><body class=""><a class="skip" href="#content">Skip to content</a>
 <header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Recorded demos</a></nav></header>
-<main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#gcam-comparison-receipts">GCAM comparison receipts</a></li><li><a href="#forecast-benchmark">Forecast benchmark</a></li><li><a href="#weather-package">Weather package</a></li><li><a href="#federal-register-notice-tracker">Federal Register notice tracker</a></li><li><a href="#regulationsgov-integration-gated">Regulations.gov integration: gated</a></li></ul></nav><h1 id="local-applications">Local applications</h1>
+<main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#gcam-comparison-receipts">GCAM comparison receipts</a></li><li><a href="#forecast-benchmark">Forecast benchmark</a></li><li><a href="#weather-package">Weather package</a></li><li><a href="#federal-register-notice-tracker">Federal Register notice tracker</a></li><li><a href="#regulationsgov-integration-gated">Regulations.gov integration: gated</a></li><li><a href="#research-artifact-linkage-explorer">Research artifact linkage explorer</a></li></ul></nav><h1 id="local-applications">Local applications</h1>
 <p>These applications compose the existing source tools. They replay recorded
 publisher responses by default. <code>--live</code> makes a publisher request with the
 same source activation gates as the MCP servers.</p>
@@ -189,4 +189,49 @@ key is refused by the normal credential path.</p>
 <p>Activation still requires recorded publisher responses and the checks in
 <a href="regulations-activation.md">Regulations.gov activation</a>. No broader DOE
 agency scope is inferred from EERE or from a current office name.</p>
+<h2 id="research-artifact-linkage-explorer">Research artifact linkage explorer</h2>
+<pre><code class="language-bash">doe-mcp app research-linkage --output ./recorded-research
+doe-mcp app research-linkage --live --query geothermal \
+  --rows 10 --page-budget 2 --output ./geothermal-research
+</code></pre>
+<p>The explorer searches literature, dataset and software catalogs through
+the existing research tools. It writes <code>inventory.csv</code> and <code>linkage.json</code>,
+alongside the original envelopes in <code>report.json</code> and file checksums in
+<code>manifest.json</code>. Every inventory record and relationship assertion points
+to its record and evidence within <code>report.json</code>. IDs include the source
+and publisher record ID, so numbers from different catalogs do not collide.</p>
+<p>The recorded preset uses the existing <code>perovskite solar</code> literature,
+<code>geothermal</code> dataset and <code>machine learning</code> software recordings. These are
+three separate searches, not a claim that their results are related.
+It returns ten records and no explicit relationship assertions. This is a
+valid result: every record remains visible as unmatched. Different live
+searches can use <code>--query</code> for all three catalogs, or separate
+<code>--literature-query</code>, <code>--dataset-query</code> and <code>--software-query</code> arguments.
+Unrecorded parameter combinations require <code>--live</code> or matching recordings.</p>
+<p>The receipt separates three outcomes:</p>
+<ul>
+<li>An exact normalized DOI shared by records establishes shared identity.
+It does not establish that a paper uses a dataset or software.</li>
+<li>An explicit relationship requires a publisher-supplied relation type,
+target identifier and DOI namespace in <code>related_identifiers</code>. The tool
+recognizes the recorded OSTI <code>CURATED; relation; JSON</code> format and retains
+the field, original value and source evidence. Unknown formats are counted
+as unparsed and create no edges.</li>
+<li>An unmatched record has no resolved explicit relationship or shared DOI
+within the returned results. An explicit target missing from the returned
+inventory remains an unresolved publisher assertion; the app invents no
+target metadata, locator or additional request.</li>
+</ul>
+<p>Titles, authors, shared awards, generic OSTI identifiers and co-occurrence
+in a query never establish a relationship. The publisher's journal prose
+in <code>relation</code> is not an artifact link. Source text remains third-party data.
+CSV cells that could be spreadsheet expressions receive an apostrophe;
+JSON preserves the original titles.</p>
+<p><code>--rows</code> accepts 1–50 records per source and page, and <code>--page-budget</code>
+accepts 1–5 pages per collection. The preset uses the recorded page sizes.
+The receipt retains every page's coverage, publisher totals and stopping
+reason. A budget stop or unknown total cannot establish exhaustive coverage.
+The literature tool deduplicates overlapping collections by DOI; the app
+does not reconstruct discarded rows. No repository, dataset payload or
+relationship target is downloaded.</p>
 </main></body></html>
