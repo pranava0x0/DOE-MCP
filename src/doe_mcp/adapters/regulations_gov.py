@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, datetime
 from typing import Any
 
 from pydantic import BaseModel, ConfigDict
@@ -66,7 +66,23 @@ def _record(item: Any, kind: str, allowed: list[str], *,
         raise SourceSchemaChanged("Regulations.gov returned an agency outside this source's scope.")
     if agency_id and attrs.get("agencyId") != agency_id:
         raise SourceSchemaChanged("Regulations.gov returned a different agency than requested.")
+    if not isinstance(attrs.get("title"), str) or not attrs["title"].strip():
+        raise SourceSchemaChanged("Regulations.gov returned no document or docket title.")
+    for name in ("openForComment", "withdrawn"):
+        if attrs.get(name) is not None and not isinstance(attrs[name], bool):
+            raise SourceSchemaChanged(f"Regulations.gov changed the {name} boolean field.")
+    for name in ("postedDate", "commentStartDate", "commentEndDate", "lastModifiedDate"):
+        value = attrs.get(name)
+        if value is not None:
+            try:
+                if not isinstance(value, str):
+                    raise ValueError("date is not text")
+                datetime.fromisoformat(value)
+            except ValueError as exc:
+                raise SourceSchemaChanged(f"Regulations.gov changed the {name} date field.") from exc
     actual_docket = item["id"] if kind == "dockets" else attrs.get("docketId")
+    if not isinstance(actual_docket, str) or not actual_docket:
+        raise SourceSchemaChanged("Regulations.gov returned no docket identifier.")
     if docket_id and actual_docket != docket_id:
         raise SourceSchemaChanged("Regulations.gov returned a different docket than requested.")
     if record_id and item["id"] != record_id:
@@ -132,9 +148,9 @@ class RegulationsGovAdapter:
         params = self.params_for(manifest)
         kind = "documents"
         agency_id = self._agency(params, agency_id)
-        if isinstance(rows, bool) or not 5 <= rows <= 20:
+        if type(rows) is not int or not 5 <= rows <= 20:
             raise InvalidQuery("rows must be between 5 and 20.")
-        if isinstance(page, bool) or not 1 <= page <= 20:
+        if type(page) is not int or not 1 <= page <= 20:
             raise InvalidQuery("page must be between 1 and 20; narrow the search beyond that.")
         if not docket_id:
             raise InvalidQuery("document searches require an exact docket_id.")

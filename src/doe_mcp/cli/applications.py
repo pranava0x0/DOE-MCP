@@ -4,6 +4,7 @@ from __future__ import annotations
 import asyncio
 import json
 from pathlib import Path
+import sys
 
 from ..adapters.base import close_shared_client
 from ..applications import dockets, forecast, weather
@@ -17,13 +18,23 @@ from .workflows import asset_dir
 
 async def execute(args):
     if args.live:
-        server = {"forecast-benchmark": "doe-energy-data", "weather-package": "doe-earth", "docket-tracker": "doe-docs"}[args.application]
-        creds = Credentials.load().scoped_to(["API_DATA_GOV_KEY"]) if args.application == "docket-tracker" and args.source == "regulations" else Credentials(values={}, path=Path("/nonexistent"), file_exists=False)
+        source = getattr(args, "source", "")
+        server = {"forecast-benchmark": "doe-energy-data", "weather-package": "doe-earth",
+                  "docket-tracker": "doe-research"}[args.application]
+        creds = Credentials(values={}, path=Path("/nonexistent"), file_exists=False)
+        if args.application == "docket-tracker" and source == "regulations":
+            # The source gate precedes any read of the user's key store.
+            ctx = load_context(credentials=creds)
+            ctx.sources.require_active("regulations-gov-doe")
+            creds = Credentials.load().scoped_to(["API_DATA_GOV_KEY"])
+            server = "doe-docs"
         ctx = load_context(credentials=creds, server_name=server)
         fixtures = []
     else:
         directory = args.fixtures or asset_dir("fixtures")
-        ctx, fixtures = load_replay_context(directory), fixture_manifest(directory)
+        names = (("API_DATA_GOV_KEY",) if args.application == "docket-tracker"
+                 and args.source == "regulations" else ())
+        ctx, fixtures = load_replay_context(directory, credential_names=names), fixture_manifest(directory)
     run = Run(ctx, args.application, "live" if args.live else "recorded", fixtures)
     try:
         if args.application == "forecast-benchmark":
@@ -52,6 +63,13 @@ def cmd_app(args):
             print(export_bundle(args.output, report, files))
         else:
             print(json.dumps(report, indent=2, allow_nan=False))
+        if report["application"] == "forecast-benchmark":
+            counts = report["scoring"]
+            print(f"Forecast benchmark status: {report['status']} "
+                  f"({counts['matched']} of {counts['submitted']} forecasts matched).", file=sys.stderr)
+            if report["status"] == "unscored":
+                print("Warning: no forecasts matched usable actuals; no forecast metrics were calculated. "
+                      "Evidence and exclusion reasons are available in the report.", file=sys.stderr)
     except (DoeMcpError, ValueError, OSError) as err:
         raise SystemExit(f"application failed: {err}") from None
     return 0
@@ -77,7 +95,9 @@ def register(sub):
             parser.add_argument("--end", default="2024-12-31")
             parser.add_argument("--variables", default="tmax")
         else:
-            parser.add_argument("--source", choices=["regulations", "federal-register"], default="regulations")
+            parser.add_argument("--source", choices=["federal-register", "regulations"],
+                                default="federal-register",
+                                help="default tracks Federal Register notices; Regulations.gov is gated")
             parser.add_argument("--agency-id", default="EERE")
             parser.add_argument("--query", default="")
             parser.add_argument("--docket", default="")

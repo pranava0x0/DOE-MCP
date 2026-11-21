@@ -41,6 +41,13 @@ bias and matched and excluded counts separately for each model and lead.
 Actuals are BPA timestamped sample readings in MW, not interval means.
 Different models may have different matched rows.
 
+The report and CLI show a scoring status: `scored` means every submitted
+forecast has a usable actual, `partial` means some do, and `unscored`
+means none do. Each model and lead group has the same status field.
+Persistence has its own status because it also needs a usable prior
+observation. An unscored run still exports evidence and exclusion reasons,
+with null metrics and a CLI warning that no forecasts were scored.
+
 Persistence uses the latest observation at or before issuance. A missing
 prior, stale prior or gap along the five-minute observation path prevents
 a persistence score. It never uses an observation after issuance to set
@@ -83,42 +90,21 @@ calendar and never imputes missing values. An incomplete extract is
 refused. The CSV checksum identifies the exported bytes, not the full
 publisher archive.
 
-## Docket tracker
+## Federal Register notice tracker
 
 ```bash
-doe-mcp app docket-tracker --output ./recorded-docket
-doe-mcp app docket-tracker --previous ./recorded-docket/report.json \
-  --output ./compared-docket
-doe-mcp app docket-tracker --live --docket EERE-2025-OT-0031 \
-  --rows 5 --page-budget 2 --output ./live-docket
-```
-
-The default selects Regulations.gov docket `EERE-2025-OT-0031` and one
-page of document metadata. Live calls require a user-owned api.data.gov
-key configured as `API_DATA_GOV_KEY`. The public demo key is not accepted
-for live application runs. The verified agency scope is EERE.
-
-`--query` searches publisher text, and `--since` and `--until` bound posted
-dates. These are publisher search filters. `--rows` accepts 5 through 20;
-`--page-budget` accepts 1 through 20. Unread pages and unknown totals are
-reported. The bundle preserves the publisher's document links and Federal
-Register cross references without constructing URLs from identifiers.
-
-The application reads docket and document metadata. It does not download
-public comment bodies, attachments or supporting file contents. Posted,
-comment-start, comment-end and last-modified dates remain separate. A
-previous snapshot must use the same mode and search parameters. Changes
-are reported as added, changed or not returned; an absent record is never
-labelled deleted or withdrawn.
-
-## Federal Register notice snapshots
-
-```bash
-doe-mcp app docket-tracker --source federal-register --output ./recorded-notices
-doe-mcp app docket-tracker --source federal-register \
-  --previous ./recorded-notices/report.json \
+doe-mcp app docket-tracker --output ./recorded-notices
+doe-mcp app docket-tracker --previous ./recorded-notices/report.json \
   --output ./compared-notices
+doe-mcp app docket-tracker --source federal-register --live \
+  --docket EERE-2025-OT-0031 --rows 5 --page-budget 2 --output ./live-notices
 ```
+
+The default source is `federal-register`. The report labels the result
+“Federal Register notice tracker.” The command name is retained for the
+planned docket integration. Published notices do not establish a complete
+Regulations.gov docket, and this source does not retrieve public comments
+or supporting docket documents.
 
 The recorded preset reads two pages of DOE notice metadata, including a
 page containing only FERC records excluded by the existing source scope.
@@ -127,8 +113,29 @@ and `--page-budget` bound a live search. The report names unread pages and
 unknown totals, groups records under every returned docket identifier,
 and retains records with no docket identifier.
 
-Publication, effective and comment-close dates remain separate. These
-snapshots do not contain Regulations.gov comments or supporting materials.
-A previous snapshot must use the same mode and search parameters. Changes
-are reported as added, changed or not returned; an absent record is never
-labelled deleted or withdrawn.
+Publication, effective and comment-close dates remain separate. A previous
+snapshot must use the same mode and search parameters. Changes are reported
+as added, changed or not returned; an absent record is never labelled
+deleted or withdrawn.
+
+## Regulations.gov integration: gated
+
+```bash
+doe-mcp app docket-tracker --source regulations --docket EERE-2025-OT-0031
+```
+
+This explicit source selection currently refuses with the source's
+activation reason in both recorded and live mode. There is no
+Regulations.gov recording, and the application does not substitute Federal
+Register notices for a docket. The source remains proposed and `doe-docs`
+remains planned. The exploration capture stopped at HTTP 429 without retry.
+
+The prepared integration reads one docket and bounded pages of document
+metadata under agency code EERE. It has no comment submission route and
+retrieves no public comment text, attachments or document bodies. A live
+run will require a user-owned `API_DATA_GOV_KEY`; the public demonstration
+key is refused by the normal credential path.
+
+Activation still requires recorded publisher responses and the checks in
+[Regulations.gov activation](regulations-activation.md). No broader DOE
+agency scope is inferred from EERE or from a current office name.

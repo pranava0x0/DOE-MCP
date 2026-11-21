@@ -1,0 +1,16 @@
+{
+  "application": "docket-tracker",
+  "mode": "recorded",
+  "files": [
+    {
+      "file": "notices.csv",
+      "bytes": 490,
+      "sha256": "5e69d9c39370c9216fad45bb73e3f8b1a17fcabd307dd65f191e75c2118e9acd"
+    },
+    {
+      "file": "report.json",
+      "bytes": 18155,
+      "sha256": "51b063eef62581849d14171fc7bc495ba230c34ad53a4a8ff0abe85cfd421bbd"
+    }
+  ]
+}

@@ -20,8 +20,8 @@ async def recorded_sample(ctx, name: str, fixtures: list[dict] | None = None) ->
         files = await weather.build(run, latitude=35.9313, longitude=-84.3104,
                                     start="2024-12-26", end="2024-12-31", variables="tmax")
     elif name == "docket-tracker":
-        files = await dockets.build_regulations(run, docket=dockets.DEFAULT_DOCKET, agency_id="EERE",
-                                                rows=5, page_budget=1)
+        files = await dockets.build(run, query="", docket="", since="", until="",
+                                    document_type="NOTICE", rows=5, page_budget=2)
     else:
         raise ValueError("unknown application sample")
     return run.report, files

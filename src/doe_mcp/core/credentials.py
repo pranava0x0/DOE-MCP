@@ -37,12 +37,11 @@ CREDENTIAL_SPECS: dict[str, dict[str, str]] = {
                 "is not an api.data.gov key.",
     },
     "API_DATA_GOV_KEY": {
-        "label": "api.data.gov key (NLR developer network, URDB, AFDC)",
+        "label": "api.data.gov key (Regulations.gov and NLR developer network)",
         "register_url": "https://api.data.gov/signup/",
-        "note": "One key covers every NLR API. The 1,000 requests/hour "
-                "budget is shared across all of them, so a busy PVWatts "
-                "session and an AFDC session spend the same allowance. "
-                "DEMO_KEY works for trial at a much lower limit.",
+        "note": "Used by Regulations.gov and NLR APIs. Each service publishes "
+                "its own request limits; inspect response headers. The public "
+                "demo key is for exploration and is refused for live access.",
     },
     "EDX_API_KEY": {
         "label": "NETL Energy Data eXchange key",

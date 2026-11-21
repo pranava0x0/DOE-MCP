@@ -16,6 +16,11 @@ FIELDS = ["model_id", "issued_at", "target_at", "prediction_mw"]
 OPTIONAL = ["lower_mw", "upper_mw", "nominal_coverage"]
 
 
+def scoring_status(matched: int, submitted: int) -> str:
+    """Status describes forecast-to-actual matches; persistence is separate."""
+    return "unscored" if matched == 0 else "scored" if matched == submitted else "partial"
+
+
 def aware(stamp: str) -> datetime:
     try:
         value = datetime.fromisoformat(stamp)
@@ -175,12 +180,19 @@ def score(forecasts: list[dict], observations: list[dict]) -> dict:
     summaries = []
     for group in grouped.values():
         group.update(metrics(group.pop("errors")))
+        group["status"] = scoring_status(group["matched"], group["submitted"])
         group["persistence"] = metrics(group.pop("baseline_errors"))
         group["persistence"]["excluded"] = group["submitted"] - group["persistence"]["matched"]
+        group["persistence"]["status"] = scoring_status(group["persistence"]["matched"], group["submitted"])
         for band in group["bands"].values():
             band["empirical_coverage"] = band["hits"] / band["evaluated"]
         summaries.append(group)
-    return {"metrics": summaries, "rows": rows}
+    matched = sum(group["matched"] for group in summaries)
+    submitted = len(forecasts)
+    return {"status": scoring_status(matched, submitted),
+            "scoring": {"submitted": submitted, "matched": matched, "excluded": submitted - matched,
+                        "status_basis": "Forecast targets matched to finite BPA actual readings; persistence coverage is reported separately."},
+            "metrics": summaries, "rows": rows}
 
 
 async def build(run, *, payload: bytes | None, timezone_name: str | None, intervals: int):

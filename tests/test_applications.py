@@ -29,6 +29,8 @@ async def test_forecast_sample_metrics_and_original_envelope(ctx):
     run = Run(ctx, "forecast-benchmark", "recorded")
     files = await forecast.build(run, payload=None, timezone_name=None, intervals=24)
     assert run.report["retrospective_demo"]
+    assert run.report["status"] == "scored"
+    assert run.report["scoring"]["matched"] == run.report["scoring"]["submitted"] == 46
     assert len(run.report["metrics"]) == 2
     assert all(m["matched"] == 23 and m["persistence"]["matched"] == 23 for m in run.report["metrics"])
     assert run.report["input_sha256"] == hashlib.sha256(files["forecasts.csv"]).hexdigest()
@@ -88,6 +90,59 @@ async def test_intervals_and_unmatched_actual_counts(ctx):
     result = forecast.score(forecasts, obs)
     assert result["metrics"][0]["bands"]["0.9"]["empirical_coverage"] == 1
     assert result["metrics"][1]["excluded"] == {"target_not_returned": 1}
+    assert result["status"] == "partial"
+    assert result["scoring"]["matched"] == result["scoring"]["excluded"] == 1
+    assert [group["status"] for group in result["metrics"]] == ["scored", "unscored"]
+
+
+@pytest.mark.parametrize("case", ["outside_window", "missing_actual"])
+async def test_forecast_without_usable_actuals_is_explicitly_unscored(ctx, case):
+    obs = forecast.actuals(await get_bpa_operations(ctx, intervals=24), "America/Los_Angeles")
+    forecasts = forecast.parse_forecasts(forecast.sample_forecasts(obs))
+    if case == "outside_window":
+        for row in forecasts:
+            row["target"] += timedelta(days=30)
+        reason = "target_not_returned"
+    else:
+        for observation in obs:
+            observation["load"] = None
+        reason = "missing_actual"
+    result = forecast.score(forecasts, obs)
+    assert result["status"] == "unscored"
+    assert result["scoring"]["matched"] == 0
+    assert result["scoring"]["excluded"] == len(forecasts)
+    for group in result["metrics"]:
+        assert group["status"] == group["persistence"]["status"] == "unscored"
+        assert group["mae_mw"] is group["rmse_mw"] is group["bias_mw"] is None
+        assert group["excluded"] == {reason: group["submitted"]}
+
+
+async def test_missing_actual_can_leave_a_partial_forecast_score(ctx):
+    obs = forecast.actuals(await get_bpa_operations(ctx, intervals=24), "America/Los_Angeles")
+    forecasts = forecast.parse_forecasts(forecast.sample_forecasts(obs))[::2][:2]
+    obs[1]["load"] = None
+    result = forecast.score(forecasts, obs)
+    assert result["status"] == result["metrics"][0]["status"] == "partial"
+    assert result["scoring"]["matched"] == result["scoring"]["excluded"] == 1
+    assert result["metrics"][0]["excluded"] == {"missing_actual": 1}
+
+
+def test_unscored_cli_warns_and_still_exports_evidence(tmp_path):
+    inputs = tmp_path / "forecasts.csv"
+    inputs.write_text("model_id,issued_at,target_at,prediction_mw\n"
+                      "outside-window,1900-01-01T00:00:00Z,1900-01-01T00:05:00Z,5000\n")
+    output = tmp_path / "unscored"
+    result = subprocess.run([sys.executable, "-m", "doe_mcp.cli", "app", "forecast-benchmark",
+                             "--forecasts", str(inputs), "--actual-timezone", "America/Los_Angeles",
+                             "--output", str(output)], cwd=ROOT,
+                            env={**os.environ, "PYTHONPATH": str(ROOT / "src")}, capture_output=True, text=True)
+    assert result.returncode == 0, result.stderr
+    assert "status: unscored (0 of 1 forecasts matched)" in result.stderr
+    assert "Warning: no forecasts matched usable actuals" in result.stderr
+    report = json.loads((output / "report.json").read_bytes())
+    assert report["status"] == "unscored" and report["steps"][0]["envelope"]["evidence"]
+    assert report["rows"][0]["excluded_reason"] == "target_not_returned"
+    assert (output / "manifest.json").is_file() and (output / "scores.csv").is_file()
 
 
 async def test_weather_response_units_calendar_and_bundle_integrity(ctx, tmp_path):
@@ -160,8 +215,81 @@ async def test_docket_grouping_and_incomplete_snapshot_diff(ctx):
 
 @pytest.mark.parametrize("name", ["forecast-benchmark", "weather-package", "docket-tracker"])
 def test_actual_cli_samples_export_offline(name, tmp_path):
-    source_args = ["--source", "federal-register"] if name == "docket-tracker" else []
-    result = subprocess.run([sys.executable, "-m", "doe_mcp.cli", "app", name, *source_args, "--output", str(tmp_path / name)],
+    result = subprocess.run([sys.executable, "-m", "doe_mcp.cli", "app", name, "--output", str(tmp_path / name)],
                             cwd=ROOT, env={**os.environ, "PYTHONPATH": str(ROOT / "src")}, capture_output=True, text=True)
     assert result.returncode == 0, result.stderr
-    assert json.loads((tmp_path / name / "report.json").read_bytes())["mode"] == "recorded"
+    report = json.loads((tmp_path / name / "report.json").read_bytes())
+    assert report["mode"] == "recorded"
+    if name == "docket-tracker":
+        assert report["source"] == "federal-register"
+        assert report["label"] == "Federal Register notice tracker"
+        assert [step["tool"] for step in report["steps"]] == ["docs.search_rulemakings"] * 2
+
+
+def _application_args(*args):
+    import argparse
+    from doe_mcp.cli.applications import register
+    parser = argparse.ArgumentParser()
+    register(parser.add_subparsers(dest="command", required=True))
+    return parser.parse_args(["app", "docket-tracker", *args])
+
+
+async def test_default_notice_app_never_reads_credentials(monkeypatch):
+    from doe_mcp.cli.applications import execute
+    from doe_mcp.core.credentials import Credentials
+
+    def refuse_load(*args, **kwargs):
+        raise AssertionError("recorded applications must not read user credentials")
+
+    monkeypatch.setattr(Credentials, "load", refuse_load)
+    report, files = await execute(_application_args())
+    assert report["label"] == "Federal Register notice tracker"
+    assert report["source"] == "federal-register"
+    assert "notices.csv" in files
+    assert all(step["tool"] == "docs.search_rulemakings" for step in report["steps"])
+
+
+@pytest.mark.parametrize("live", [False, True])
+async def test_explicit_regulations_selection_is_gated_without_loading_keys(monkeypatch, live):
+    from doe_mcp.cli.applications import execute
+    from doe_mcp.core.credentials import Credentials
+    from doe_mcp.core.errors import SourceNotActivated
+
+    def refuse_load(*args, **kwargs):
+        raise AssertionError("the proposed source gate must precede reading user credentials")
+
+    monkeypatch.setattr(Credentials, "load", refuse_load)
+    args = _application_args("--source", "regulations", *(["--live"] if live else []))
+    with pytest.raises(SourceNotActivated, match="no fixture was written"):
+        await execute(args)
+
+
+@pytest.mark.parametrize("live", [False, True])
+def test_regulations_cli_refusal_writes_no_bundle(tmp_path, live):
+    output = tmp_path / "gated-docket"
+    result = subprocess.run(
+        [sys.executable, "-m", "doe_mcp.cli", "app", "docket-tracker", "--source",
+         "regulations", "--output", str(output), *(["--live"] if live else [])],
+        cwd=ROOT, env={**os.environ, "PYTHONPATH": str(ROOT / "src")},
+        capture_output=True, text=True)
+    assert result.returncode != 0
+    assert "regulations-gov-doe" in result.stderr
+    assert "no fixture was written" in result.stderr
+    assert not output.exists()
+
+
+async def test_site_docket_sample_is_a_recorded_notice_tracker_without_credentials(monkeypatch):
+    from doe_mcp.applications.samples import recorded_sample
+    from doe_mcp.core.credentials import Credentials
+    from doe_mcp.replay import load_replay_context
+
+    def refuse_load(*args, **kwargs):
+        raise AssertionError("site examples must not read user credentials")
+
+    monkeypatch.setattr(Credentials, "load", refuse_load)
+    ctx = load_replay_context(ROOT / "tests" / "fixtures")
+    report, files = await recorded_sample(ctx, "docket-tracker")
+    assert report["label"] == "Federal Register notice tracker"
+    assert report["source"] == "federal-register"
+    assert "notices.csv" in files
+    assert all(step["tool"] == "docs.search_rulemakings" for step in report["steps"])

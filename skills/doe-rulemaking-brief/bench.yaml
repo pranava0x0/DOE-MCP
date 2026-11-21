@@ -45,7 +45,7 @@ checked:
   steps:
   - tool: registry.search_sources
     args:
-      capability: docs.search_rulemakings
+      capability: docs.docket_metadata
     expect:
       data.sources:
         any:

@@ -79,5 +79,6 @@ lifecycle:
   last_verified: "2026-11-21"
   verified_by: pranava0x0
   blocked_reason: >
-    Awaiting the guarded three-request exploration recording and replay
-    checks. Live operation requires the user's api.data.gov key.
+    Not activated. Needs a user-owned api.data.gov key and recorded
+    publisher responses. The 2026-11-21 exploration capture stopped on
+    HTTP 429 without retry; no fixture was written.

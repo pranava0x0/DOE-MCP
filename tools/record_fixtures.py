@@ -38,6 +38,9 @@ from doe_mcp.adapters.base import HttpFetcher, egress_policy_for  # noqa: E402
 from doe_mcp.adapters.postgrest import parse_filters  # noqa: E402
 from doe_mcp.adapters.replay import RecordingFetcher, record_through  # noqa: E402
 from doe_mcp.runtime import load_context  # noqa: E402
+from doe_mcp.core.credentials import Credentials, DEMO_KEY  # noqa: E402
+from doe_mcp.core.errors import SourceUnavailable  # noqa: E402
+from doe_mcp.core.registry import DeclaredState  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURES = ROOT / "tests" / "fixtures"
@@ -48,6 +51,9 @@ THIRD_PARTY = ROOT / "THIRD_PARTY_DATA.yml"
 from doe_mcp.gcam_catalog import TABLES  # noqa: E402
 
 PLANS: dict[str, list[tuple[str, str]]] = {
+    "regulations-gov-doe": [("one published docket", "regulations:docket"),
+                            ("exact docket documents", "regulations:documents"),
+                            ("one discovered document", "regulations:document")],
     **{"gcam-" + domain: [(name, "gcam:" + name) for name in tables]
        for domain, tables in TABLES.items()},
     "osti-gov-records": [
@@ -338,9 +344,62 @@ def _declared_third_party() -> set[str]:
     return {e["source_id"] for e in doc.get("redistributed", [])}
 
 
-async def run(source_id: str, plan: list[tuple[str, str]]) -> None:
-    ctx = load_context()
+RECORDED_DOCKET = "EERE-2025-OT-0031"
+
+
+class _ExplorationCredentials(Credentials):
+    """The public demonstration key is permitted only in this recording tool."""
+
+    def require(self, name: str) -> str:
+        if name != "API_DATA_GOV_KEY" or self.values != {name: DEMO_KEY}:
+            raise ValueError("exploration credentials are restricted to Regulations.gov")
+        return DEMO_KEY
+
+
+class _ExplorationFetcher(HttpFetcher):
+    """One attempt per request; no redirects, retries, or quota expansion."""
+
+    attempts = 0
+    stopped = False
+
+    async def _request_with_retry(self, url, params, accept):
+        if self.stopped or self.attempts >= 3:
+            raise SourceUnavailable("the three-request exploration budget is closed")
+        self.attempts += 1
+        try:
+            body = await self._read_capped(url, params, accept)
+            raw = body.headers.get("x-ratelimit-remaining", "")
+            remaining = int(raw) if raw.isdigit() else None
+            quota = {name: (int(value) if value.isdigit() else None)
+                     for name in ("x-ratelimit-limit", "x-ratelimit-remaining", "x-ratelimit-reset",
+                                  "retry-after")
+                     for value in (body.headers.get(name, ""),)}
+            print(f"  exploration request {self.attempts}/3; quota {quota}")
+            if body.status_code != 200:
+                raise SourceUnavailable(
+                    f"exploration stopped on HTTP {body.status_code}; no retry", body.status_code)
+            if remaining is not None and remaining < 3 - self.attempts:
+                raise SourceUnavailable("insufficient stated quota for the remaining exploration plan")
+            return body
+        except BaseException:
+            self.stopped = True
+            raise
+
+
+async def run(source_id: str, plan: list[tuple[str, str]], *,
+              explore_regulations: bool = False) -> None:
+    if explore_regulations:
+        if source_id != "regulations-gov-doe" or plan != PLANS[source_id]:
+            raise ValueError("exploration runs only the canonical three-request Regulations.gov plan")
+        ctx = load_context(credentials=_ExplorationCredentials(
+            {"API_DATA_GOV_KEY": DEMO_KEY}, Path("/nonexistent"), False))
+    else:
+        ctx = load_context()
     manifest = ctx.sources.get(source_id)
+    if explore_regulations and manifest is not None:
+        # Development-only activation in memory; a failed capture cannot
+        # activate the manifest on disk or give live tools a demo key.
+        manifest.lifecycle.declared_state = DeclaredState.active
     if manifest is None or not ctx.sources.selectable(manifest):
         print(f"skip {source_id}: not an active source")
         return
@@ -352,14 +411,34 @@ async def run(source_id: str, plan: list[tuple[str, str]]) -> None:
     base = next((getattr(manifest.adapter, field)
                  for field in ("base_url", "document_url", "manifest_url")
                  if getattr(manifest.adapter, field, None)), "")
-    recorder = record_through(
-        ctx, HttpFetcher(policy=egress_policy_for(manifest, base)))
+    if source_id == "regulations-gov-doe":
+        key = ctx.credentials.require("API_DATA_GOV_KEY")
+        fetcher_type = _ExplorationFetcher if explore_regulations else HttpFetcher
+        inner = fetcher_type(policy=egress_policy_for(manifest, base),
+                             extra_headers={"X-Api-Key": key})
+    else:
+        inner = HttpFetcher(policy=egress_policy_for(manifest, base))
+    recorder = record_through(ctx, inner)
 
+    discovered_document = None
     failures: list[str] = []
     for label, spec in plan:
         kind, _, rest = spec.partition(":")
         try:
-            if kind == "record":
+            if kind == "regulations":
+                if rest == "docket":
+                    await ctx.regulations_gov.get(manifest, RECORDED_DOCKET, kind="dockets")
+                elif rest == "documents":
+                    result = await ctx.regulations_gov.search_documents(
+                        manifest, docket_id=RECORDED_DOCKET, rows=5, page=1)
+                    if not result.value.records:
+                        raise ValueError("dependent document read requires a returned document id")
+                    discovered_document = result.value.records[0]["id"]
+                else:
+                    if discovered_document is None:
+                        raise ValueError("document id must come from the preceding publisher search")
+                    await ctx.regulations_gov.get(manifest, discovered_document, kind="documents")
+            elif kind == "record":
                 await ctx.osti.get_record(manifest, rest)
             elif kind == "first_record":
                 filters, rows = _parse_search(rest)
@@ -500,6 +579,8 @@ async def run(source_id: str, plan: list[tuple[str, str]]) -> None:
         except Exception as err:                   # noqa: BLE001
             print(f"  ! {source_id} [{label}]: {err}")
             failures.append(label)
+            if explore_regulations:
+                break
             continue
         print(f"  + {source_id} [{label}]")
 
@@ -702,12 +783,16 @@ def _trim_keyed_object(source_id: str,
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--source", choices=sorted(PLANS), action="append")
+    parser.add_argument("--explore-regulations", action="store_true",
+                        help="one guarded three-request public-key exploration capture; no configuration")
     args = parser.parse_args()
+    if args.explore_regulations and args.source != ["regulations-gov-doe"]:
+        parser.error("--explore-regulations requires exactly --source regulations-gov-doe")
     FIXTURES.mkdir(parents=True, exist_ok=True)
     for source_id in args.source or PLANS:
         plan = PLANS[source_id]
         print(source_id)
-        asyncio.run(run(source_id, plan))
+        asyncio.run(run(source_id, plan, explore_regulations=args.explore_regulations))
     return 0
 
 

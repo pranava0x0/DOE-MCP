@@ -83,7 +83,9 @@ async def build(run, *, query: str, docket: str, since: str, until: str, documen
             raise SourceSchemaChanged("Federal Register returned malformed docket identifiers")
         for identity in dict.fromkeys(ids or [None]):
             groups.setdefault(identity, []).append(record["document_number"])
-    run.report.update(parameters=params, page_budget=page_budget, documents=documents,
+    run.report.update(label="Federal Register notice tracker", source="federal-register",
+                      parameters={"source": "federal-register", **params},
+                      page_budget=page_budget, documents=documents,
                       docket_groups=[{"docket_id": key, "documents": value} for key, value in groups.items()],
                       pagination={"pages_read": pages, "complete": complete and not gaps,
                                   "gaps": list(dict.fromkeys(gaps)), "publisher_totals": totals,

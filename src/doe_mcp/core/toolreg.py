@@ -97,9 +97,6 @@ PROFILES: dict[str, list[tuple[str, str]]] = {
     "materials:default": [("materials", "default"),
                           ("registry", "discovery-min")],
     "materials:all": [("materials", "*"), ("registry", "*")],
-    "docs:default": [("docs", "default"), ("docs", "dockets"),
-                      ("registry", "discovery-min")],
-    "docs:all": [("docs", "*"), ("registry", "*")],
     "bio:default": [("bio", "default"), ("registry", "discovery-min")],
     "bio:all": [("bio", "*"), ("registry", "*")],
 }

@@ -1,0 +1,21 @@
+{
+  "application": "forecast-benchmark",
+  "mode": "recorded",
+  "files": [
+    {
+      "file": "forecasts.csv",
+      "bytes": 3816,
+      "sha256": "11e5e56fbb5a433bd4cfb03aa30783c50b746a8dd7b54c1a74e79bd36d51d066"
+    },
+    {
+      "file": "report.json",
+      "bytes": 50001,
+      "sha256": "64a4019ba4b36e8a1f95e38d22c99fd7e6ce3539cbee9b5150190dfb778ad3bc"
+    },
+    {
+      "file": "scores.csv",
+      "bytes": 6211,
+      "sha256": "77ed98eec8385604563bf8b2921c5003cce926b443404286aa436f864c5527a5"
+    }
+  ]
+}

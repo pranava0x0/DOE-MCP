@@ -47,10 +47,11 @@ search reports a floor rather than a total.
    `comments_close_on` are null when the document sets none. Do not compute
    a deadline from the publication date.
 
-4. **Name what is not here.** For comments, the full docket or the
-   regulatory analysis, `registry.search_sources` with
-   `capability="docs.search_rulemakings"` shows regulations.gov as a
-   registered source DOE-MCP cannot read yet and why. Give the docket id
+4. **Name what is not here.** Comments and the full docket are outside
+   this notice reader. `registry.search_sources` with
+   `capability="docs.docket_metadata"` shows the proposed Regulations.gov
+   metadata integration and its activation obstacle. That planned scope
+   does not include public comment text. Give the publisher's docket id
    so the reader can look it up there.
 
 5. **Compose.** One entry per document: type and action, title, published
