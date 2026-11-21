@@ -333,8 +333,22 @@ def field_chart(report):
     if case not in FIELD_CASES:
         return ""
     rows = report["worksheet"]["rows"]
-    number, sector = FIELD_CASES[case]
-    if case == "world-capture-residual":
+    if case == "world-desalination-electricity":
+        title = "Electricity input per cubic metre"
+        entries = [(r[0], float(r[2])) for r in rows]
+        scale = max(v for _, v in entries) or 1
+        suffix, note = "", f"kWh per cubic metre. Bars start at zero; maximum shown: {scale:g}. Model inputs, not plant measurements."
+    elif case == "world-coefficient-gaps":
+        title = "Carbon monoxide coefficient cells"
+        counts = report["worksheet"]["summary"]
+        entries = [(name.title(), counts[name]) for name in ("blank", "zero", "nonzero")]
+        scale, suffix, note = len(rows), "", f"Counts out of {len(rows)} rows. Blank cells remain unresolved."
+    elif case == "world-retirement-parameters":
+        title = "Availability of retirement parameters"
+        counts = report["worksheet"]["summary"]
+        entries = [("Both filled", counts["both_parameters"]), ("Half-life blank", counts["blank_half_life"])]
+        scale, suffix, note = len(rows), "", f"Counts out of {len(rows)} technology-period rows. These bars count rows, not plants."
+    elif case == "world-capture-residual":
         row = rows[0]
         title = "CO₂ left uncaptured: " + row[1]
         entries = [(label, float(row[i]) * 100) for label, i in (("Initial future year", 4), ("2100", 5))]
@@ -350,7 +364,7 @@ def field_chart(report):
     bars = "".join(f'<div class="atlas-bar"><span>{esc(label)}</span>'
                    f'<span aria-hidden="true" class="atlas-track"><i style="width:{100*v/scale:.4f}%"></i></span>'
                    f'<b>{v:g}{suffix}</b></div>' for label, v in entries)
-    return (f'<figure class="atlas-chart"><figcaption>Plate {number} / {sector} · {esc(title)}</figcaption>'
+    return (f'<figure class="atlas-chart"><figcaption>{esc(title)}</figcaption>'
             f'{bars}<small>{esc(note)}</small></figure>')
 
 

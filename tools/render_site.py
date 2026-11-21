@@ -221,8 +221,6 @@ section{border-bottom:1px solid var(--line);scroll-margin-top:4.2rem}
 h3[id]{scroll-margin-top:4.5rem}
 h2{font-family:var(--display);font-weight:700;font-size:1.28rem;
    margin:0 0 .5rem;letter-spacing:-.01em}
-h2 .num{color:var(--faint);font-weight:400;margin-right:.5rem;
-  font-variant-numeric:tabular-nums;font-size:.9em}
 h3{font-size:.98rem;margin:1.6rem 0 .5rem}
 .lede{color:var(--muted);margin:0 0 1.1rem;max-width:45rem}
 
@@ -508,12 +506,9 @@ def _demo_cards(*, genesis: bool) -> str:
         if bool(skill and skill.startswith("genesis-")) != genesis:
             continue
         label = f"Skill: {skill}" if skill else "Tool: compute.facility_status"
-        badge = ""
-        if case in FIELD_CASES:
-            number, sector = FIELD_CASES[case]
-            badge = f'<b class="atlas-label {sector.lower()}">Plate {number} / {sector}</b>'
-        out.append(f'<a class="demo-link" href="demos.html#{e(case)}">{badge}<strong>{e(title)}</strong>'
-                   f'<span>{e(blurb)}</span><small>{e(label)} \u00b7 {e(kind)}</small></a>')
+        field = f' data-field="{e(FIELD_CASES[case])}"' if case in FIELD_CASES else ""
+        out.append(f'<a class="demo-link" href="demos.html#{e(case)}"{field}><strong>{e(title)}</strong>'
+                   f'<span>{e(blurb)}</span><small>{e(label)} · {e(kind)}</small></a>')
     return '<div class="demo-grid">' + "".join(out) + "</div>"
 
 
@@ -828,12 +823,11 @@ family=Roboto+Mono:wght@400;500&display=swap">
 
 <header><div class="wrap">
   <div class="atlas-top"><div>
-  <p class="atlas-kicker">DOE-MCP &nbsp; / &nbsp; Global field atlas</p>
   <h1>A field guide to DOE data.</h1>
   <p class="tagline">Explore energy, land and research data from the US Department of Energy and its national laboratories.</p>
   <p class="free">Free and open source (Apache-2.0). Most tools need no account or API key. Every demo runs on recorded data.</p>
   <div class="atlas-actions"><a class="primary" href="#genesis-mission">Explore Genesis skills ↓</a><a href="demos.html">All demos</a><a href="guide.html">Local guide</a></div>
-  </div><figure class="atlas-plate">{globe()}<figcaption class="plate-cap"><span>Field atlas</span><span>Global edition</span></figcaption></figure></div>
+  </div><div class="atlas-plate">{globe()}</div></div>
   <div class="atlas-inventory">{_inventory(c)}
   <p class="works">Works with: {works}</p></div>
 </div></header>
@@ -842,7 +836,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
 
 <section id="overview">
 <details class="sect" open>
-  <summary><h2><span class="num">01</span>Overview</h2></summary>
+  <summary><h2>Overview</h2></summary>
   <div class="sect-body">
   <p id="overview-about">DOE-MCP connects AI clients to public DOE and national-laboratory data through read-only tools. Results include sources, retrieval dates and coverage limits.</p>
   <h3 id="overview-demos">Demos</h3>
@@ -864,7 +858,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
 
 <section id="start">
 <details class="sect">
-  <summary><h2><span class="num">02</span>Quick start</h2></summary>
+  <summary><h2>Quick start</h2></summary>
   <div class="sect-body">
   <p class="lede">Install, verify, and connect to an MCP client in four steps. The research workflow needs no API key; EIA queries require your own key.</p>
   {_quickstart(data, data.get("examples") or [])}
@@ -874,7 +868,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
 
 <section id="servers">
 <details class="sect">
-  <summary><h2><span class="num">03</span>Servers</h2></summary>
+  <summary><h2>Servers</h2></summary>
   <div class="sect-body">
   <p class="lede">Each server covers one data domain with a small set of tools. {c['servers_shipping']} ship today; {c['servers_planned']} more are planned, and each planned one lists the sources it would serve and what blocks them.</p>
   <h3 id="servers-arch">Architecture</h3>
@@ -887,7 +881,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
 
 <section id="answer">
 <details class="sect">
-  <summary><h2><span class="num">04</span>Response format</h2></summary>
+  <summary><h2>Response format</h2></summary>
   <div class="sect-body">
   <p class="lede">Every tool returns a consistent JSON response containing query results, data citations, vintage timestamps, and coverage indicators. Below is an annotated real response:</p>
   {_provenance(data)}
@@ -897,7 +891,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
 
 <section id="registry">
 <details class="sect">
-  <summary><h2><span class="num">05</span>Data registry</h2></summary>
+  <summary><h2>Data registry</h2></summary>
   <div class="sect-body">
   <p class="lede">The CC0 registry indexes {c['sources']} data systems across {c['organizations']} national laboratories and offices. You can browse by publishing organization to see which facilities steward each system, or search the complete catalog of {c['active']} active sources and planned integrations with notes on automation status and access protocols.</p>
   <h3 id="registry-orgs">By organization</h3>
@@ -913,7 +907,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
 
 <section id="neighbours">
 <details class="sect">
-  <summary><h2><span class="num">06</span>Other MCP servers</h2></summary>
+  <summary><h2>Other MCP servers</h2></summary>
   <div class="sect-body">
   <p class="lede">DOE-MCP is not the only MCP server over DOE-adjacent data
   and does not try to be. MCP offers no mechanism for one server to advertise
@@ -927,7 +921,7 @@ family=Roboto+Mono:wght@400;500&display=swap">
 
 <section id="governance">
 <details class="sect">
-  <summary><h2><span class="num">07</span>Licensing and governance</h2></summary>
+  <summary><h2>Licensing and governance</h2></summary>
   <div class="sect-body">
   <p class="lede">Code Apache-2.0. <b>The source registry is CC0</b> — the
   inventory of what exists, who stewards it, what its terms say, and what it

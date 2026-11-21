@@ -1,0 +1,20 @@
+checked:
+- task: 1
+  case: world-desalination-electricity
+  expect_report:
+    worksheet.rows.0.0: '1971'
+    worksheet.rows.0.1: '0.0432'
+    worksheet.rows.0.2: '12'
+- task: 2
+  case: world-desalination-electricity
+  expect_report:
+    worksheet.rows.3.0: '2100'
+    worksheet.rows.3.2: '1.75'
+- task: 3
+  case: world-desalination-electricity
+  expect_report:
+    worksheet.summary.periods: 4
+    worksheet.rows.1.2: '2.75'
+    worksheet.rows.0.3: evidence_01
+    worksheet.rows.3.3: evidence_01
+reader: []

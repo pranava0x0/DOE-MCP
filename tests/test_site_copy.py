@@ -34,6 +34,11 @@ RENDERED = AUTHORED + ["docs/index.html", "docs/demos.html"]
 # (phrase, surfaces, why it is out). Matched case-insensitively as a
 # substring, so keep each one specific enough not to catch a legitimate use.
 BANNED = [
+    ('class="atlas-kicker"', RENDERED, "User requested no eyebrow labels."),
+    ('class="atlas-label', RENDERED, "User requested no eyebrow labels."),
+    ('class="plate-cap"', RENDERED, "Remove decorative captions around the globe."),
+    ('class="num"', RENDERED, "User requested no decorative section numbering."),
+    ('<figcaption>Plate ', RENDERED, "Use the chart subject without a numbered prefix."),
     ("public data. visible evidence.", RENDERED,
      "User rejected paired slogan fragments; use a descriptive title."),
     ('class="kicker"', RENDERED, "User requested no eyebrow labels."),

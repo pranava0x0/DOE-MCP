@@ -87,3 +87,6 @@ least one is checked; the suite holds both rules.
 | [genesis-compare-fallback-rates](genesis-compare-fallback-rates/SKILL.md) | Compare crop yield assumptions | `doe-land` |
 | [genesis-compute-residual-shares](genesis-compute-residual-shares/SKILL.md) | Account for uncaptured carbon | `doe-power` |
 | [genesis-read-signed-response](genesis-read-signed-response/SKILL.md) | Read industrial demand elasticity | `doe-economy` |
+| [genesis-convert-energy-units](genesis-convert-energy-units/SKILL.md) | Convert desalination electricity inputs | `doe-water` |
+| [genesis-audit-coefficient-gaps](genesis-audit-coefficient-gaps/SKILL.md) | Inspect blanks in emissions coefficients | `doe-emissions` |
+| [genesis-separate-retirement-parameters](genesis-separate-retirement-parameters/SKILL.md) | Separate two retirement parameters | `doe-power` |

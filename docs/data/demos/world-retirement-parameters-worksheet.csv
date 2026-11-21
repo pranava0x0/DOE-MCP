@@ -1,0 +1,36 @@
+Run mode,Registry revision,Fuel,Technology,Period label,Maximum lifetime (years),Retirement half-life (years),Step 1 evidence ID
+recorded,2026-11-09,coal,coal (conv pul),final-calibration-year,60,30,evidence_01
+recorded,2026-11-09,gas,gas (steam/CT),final-calibration-year,45,22.5,evidence_02
+recorded,2026-11-09,gas,gas (CC),final-calibration-year,45,22.5,evidence_03
+recorded,2026-11-09,refined liquids,refined liquids (steam/CT),final-calibration-year,45,22.5,evidence_04
+recorded,2026-11-09,biomass,biomass (conv),final-calibration-year,60,30,evidence_05
+recorded,2026-11-09,nuclear,Gen_II_LWR,final-historical-year,60,30,evidence_06
+recorded,2026-11-09,wind,wind,final-calibration-year,30,,evidence_07
+recorded,2026-11-09,solar,PV,final-calibration-year,30,,evidence_08
+recorded,2026-11-09,solar,CSP,final-calibration-year,30,,evidence_09
+recorded,2026-11-09,geothermal,geothermal,final-calibration-year,30,,evidence_10
+recorded,2026-11-09,coal,coal (conv pul),initial-future-year,60,,evidence_11
+recorded,2026-11-09,coal,coal (conv pul CCS),initial-future-year,60,,evidence_12
+recorded,2026-11-09,coal,coal (IGCC),initial-future-year,60,,evidence_13
+recorded,2026-11-09,coal,coal (IGCC CCS),initial-future-year,60,,evidence_14
+recorded,2026-11-09,gas,gas (steam/CT),initial-future-year,45,,evidence_15
+recorded,2026-11-09,gas,gas (CC),initial-future-year,45,,evidence_16
+recorded,2026-11-09,gas,gas (CC CCS),initial-future-year,45,,evidence_17
+recorded,2026-11-09,refined liquids,refined liquids (steam/CT),initial-future-year,45,,evidence_18
+recorded,2026-11-09,refined liquids,refined liquids (CC),initial-future-year,45,,evidence_19
+recorded,2026-11-09,refined liquids,refined liquids (CC CCS),initial-future-year,45,,evidence_20
+recorded,2026-11-09,biomass,biomass (conv),initial-future-year,60,,evidence_21
+recorded,2026-11-09,biomass,biomass (conv CCS),initial-future-year,60,,evidence_22
+recorded,2026-11-09,biomass,biomass (IGCC),initial-future-year,60,,evidence_23
+recorded,2026-11-09,biomass,biomass (IGCC CCS),initial-future-year,60,,evidence_24
+recorded,2026-11-09,nuclear,large reactor,initial-nonhistorical-year,60,,evidence_25
+recorded,2026-11-09,nuclear,SMR,initial-nonhistorical-year,60,,evidence_26
+recorded,2026-11-09,wind,wind,initial-future-year,30,,evidence_27
+recorded,2026-11-09,wind,wind_storage,initial-future-year,30,,evidence_28
+recorded,2026-11-09,solar,PV,initial-future-year,30,,evidence_29
+recorded,2026-11-09,solar,PV_storage,initial-future-year,30,,evidence_30
+recorded,2026-11-09,solar,CSP,initial-future-year,30,,evidence_31
+recorded,2026-11-09,solar,CSP_storage,initial-future-year,30,,evidence_32
+recorded,2026-11-09,geothermal,geothermal,initial-future-year,30,,evidence_33
+recorded,2026-11-09,wind,wind_offshore,final-calibration-year,25,,evidence_34
+recorded,2026-11-09,wind,wind_offshore,initial-future-year,25,,evidence_35
