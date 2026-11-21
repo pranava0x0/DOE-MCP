@@ -1,0 +1,344 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Local workflows and evidence — DOE-MCP</title><link rel="icon" href="data:,">
+<link rel="canonical" href="https://pranava0x0.github.io/DOE-MCP/guide.html">
+<meta name="description" content="Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.">
+<meta property="og:title" content="Local workflows and evidence">
+<meta property="og:description" content="Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.">
+<meta property="og:type" content="website"><meta property="og:url" content="https://pranava0x0.github.io/DOE-MCP/guide.html">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" type="text/markdown" href="guide.md">
+<link rel="describedby" type="text/plain" href="llms.txt">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Local workflows and evidence", "url": "https://pranava0x0.github.io/DOE-MCP/guide.html", "description": "Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.", "isPartOf": {"@type": "WebSite", "name": "DOE-MCP", "url": "https://pranava0x0.github.io/DOE-MCP/"}}</script>
+<style>
+:root{color-scheme:light;--ink:#20342b;--paper:#f5f2e8;--accent:#38654c}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible{outline:3px solid #9e572b;outline-offset:4px}
+header,main{max-width:1040px;margin:auto;padding:24px}header{border-bottom:1px solid #a8b3a7}
+nav{display:flex;gap:20px;flex-wrap:wrap}h1,h2,h3{font-family:Georgia,serif;line-height:1.2;scroll-margin-top:1rem}
+pre{overflow:auto;background:#e8e7dd;padding:16px;border-radius:6px}code{font-size:.9em}
+table{display:block;overflow:auto;border-collapse:collapse;max-width:100%}td,th{padding:9px;border:1px solid #b4beb4;text-align:left}
+main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0;background:white;padding:10px}
+</style></head><body><a class="skip" href="#content">Skip to content</a>
+<header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Recorded demos</a></nav></header>
+<main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#start-with-a-recorded-workflow">Start with a recorded workflow</a></li><li><a href="#use-live-publishers-locally">Use live publishers locally</a></li><li><a href="#genesis-and-no-cost-demos">Genesis and no-cost demos</a></li><li><a href="#connect-a-client-and-provide-a-skill">Connect a client and provide a skill</a></li><li><a href="#interpret-the-result">Interpret the result</a></li><li><a href="#evaluate-agent-behavior">Evaluate agent behavior</a></li><li><a href="#development-checks">Development checks</a></li><li><a href="#rulemaking-brief">Rulemaking brief</a></li><li><a href="#historical-outage-data-finder">Historical outage-data finder</a></li><li><a href="#load-a-daymet-temperature-extract">Load a Daymet temperature extract</a></li><li><a href="#score-a-five-minute-bpa-load-prediction">Score a five-minute BPA load prediction</a></li></ul></nav><h1 id="local-workflows-and-evidence">Local workflows and evidence</h1>
+<p>DOE-MCP reads public publisher APIs through focused domain servers. Each
+answer separates the data from its sources, record evidence, access
+recipes, warnings and coverage. It does not operate facilities or run
+simulations. The source registry names unbuilt capabilities and why they
+cannot yet be queried.</p>
+<h2 id="start-with-a-recorded-workflow">Start with a recorded workflow</h2>
+<p>Install from the checkout with <code>pipx install .</code>. The package is not yet
+published on PyPI. Recorded workflows and skills ship in the wheel.</p>
+<pre><code class="language-bash">doe-mcp demo evidence --output ./evidence-run
+doe-mcp demo client
+doe-mcp skills
+doe-mcp skills find-doe-data --show
+</code></pre>
+<p>The first command writes JSON evidence and a CSV evidence index. The
+second launches a real stdio server, initializes an SDK client, calls a
+local registry tool, validates its structured response, checks a typed
+error, and closes the process. Neither command needs an API key or a
+publisher connection.</p>
+<p>Run <code>doe-mcp demo --help</code> for the list of walkthroughs. The partial case explicitly simulates one
+unavailable source in an isolated replay. The blocked case reads registry
+inventory; it does not query the proposed publisher.</p>
+<p><a href="demos.html">Browse the recorded walkthroughs</a>. Every export names its
+mode, registry revision, fixture hashes and available capture times.
+Older fixtures have no recorded capture time; those remain unknown.
+Envelope retrieval timestamps in a replay are a labelled fixed reference
+clock, never evidence of a current publisher fetch. Record dates remain
+separate. A captured result cannot establish current endpoint health.</p>
+<h2 id="use-live-publishers-locally">Use live publishers locally</h2>
+<pre><code class="language-bash">doe-mcp demo evidence --live --output ./live-evidence
+doe-mcp demo grid --live --output ./live-grid
+</code></pre>
+<p>Live EIA demand also requires the user's configured EIA key:</p>
+<pre><code class="language-bash">doe-mcp configure credentials
+doe-mcp demo eia --live --output ./live-demand
+</code></pre>
+<p>The grid walkthrough reports BPA load in MW and the publisher's Pacific
+Time labels. EIA reports hourly energy in MWh. Neither series establishes
+local connection capacity. Keep forecasts distinct from observations.</p>
+<p>The site walkthrough plots a bounded sample of Rhode Island facility
+coordinates. The plot extent is the returned sample's extent, not a
+parcel search. Ownership, queue position, tariffs and available capacity
+remain unknown. Its NEPA-MCP link is a manual handoff to another project.</p>
+<p>Earth search results and Oak Ridge modelled weather are separate examples,
+not a claimed study-site match. The materials walkthrough likewise keeps
+the computed GaN structure separate from the H/C/O basis-set example.</p>
+<p>The facility-status tool has checked
+skill tasks but no walkthrough page yet; <a href="https://github.com/pranava0x0/DOE-MCP/blob/main/examples/README.md">the examples</a>
+show one call for each. Outage history returns the EAGLE-I release that
+covers a year and its DOI, not outage figures. The microbiome tools return
+study and sample metadata; sequence data stays behind each study's DOIs.</p>
+<h2 id="genesis-and-no-cost-demos">Genesis and no-cost demos</h2>
+<p>DOE's <a href="https://www.energy.gov/science/articles/genesis-agent-skills-release-support-innovation-across-genesis-mission">Genesis Agent Skills release</a>
+provides scientific workflow instructions. DOE-MCP's own skills now use the
+same Agent Skills format. This is format compatibility, not an installed
+connection to the upstream catalog or a claim of DOE endorsement.</p>
+<p>Use <code>doe-mcp skills NAME --show</code> to read an installed walk. The names
+below are local DOE-MCP skills. Each points to the specific upstream guide
+it draws on and has a bench that checks results from recorded data.</p>
+<table>
+<thead>
+<tr>
+<th>Installed DOE-MCP skill</th>
+<th>Genesis method</th>
+<th>Recorded result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>genesis-build-bibliography</code></td>
+<td>literature-search</td>
+<td><a href="demos.html#bibliography">Citation worksheet</a> with omitted author counts.</td>
+</tr>
+<tr>
+<td><code>genesis-draft-dataset-card</code></td>
+<td>datacard-generator</td>
+<td><a href="demos.html#dataset-card">Geothermal metadata draft</a> with file integrity, rights and sensitivity left for the owner.</td>
+</tr>
+<tr>
+<td><code>genesis-package-weather-data</code></td>
+<td>croissant-validator</td>
+<td><a href="demos.html#daymet-calendar">Daymet CSV and Croissant metadata</a> with a checksum for the exported bytes.</td>
+</tr>
+<tr>
+<td><code>genesis-audit-sample-fields</code></td>
+<td>data-exploration</td>
+<td><a href="demos.html#soil-metadata">Soil metadata audit</a> with missing-field counts on the returned page.</td>
+</tr>
+<tr>
+<td><code>genesis-score-load-errors</code></td>
+<td>uq-metrics-evaluator</td>
+<td><a href="demos.html#load-baseline">BPA baseline errors</a> with mean absolute and root mean squared error in MW.</td>
+</tr>
+<tr>
+<td><code>genesis-check-prediction-bands</code></td>
+<td>uncertainty-quantification</td>
+<td><a href="demos.html#load-interval-check">Prediction band worksheet</a> with separate calibration and evaluation rows.</td>
+</tr>
+<tr>
+<td><code>genesis-audit-region-keys</code></td>
+<td>data-exploration</td>
+<td><a href="demos.html#latin-america-regions">Map Latin American country codes</a>.</td>
+</tr>
+<tr>
+<td><code>genesis-check-share-balance</code></td>
+<td>data-exploration</td>
+<td><a href="demos.html#china-cooling-balance">Check China's coal cooling shares</a>.</td>
+</tr>
+<tr>
+<td><code>genesis-document-model-columns</code></td>
+<td>datacard-generator</td>
+<td><a href="demos.html#world-bioenergy-columns">Compare regional bioenergy settings</a>.</td>
+</tr>
+<tr>
+<td><code>genesis-compare-resource-grades</code></td>
+<td>data-exploration</td>
+<td><a href="demos.html#world-geothermal-grades">Compare geothermal heat across regions</a>.</td>
+</tr>
+<tr>
+<td><code>genesis-compare-fallback-rates</code></td>
+<td>data-exploration</td>
+<td><a href="demos.html#world-crop-rates">Compare crop yield assumptions</a>.</td>
+</tr>
+<tr>
+<td><code>genesis-compute-residual-shares</code></td>
+<td>data-exploration</td>
+<td><a href="demos.html#world-capture-residual">Account for uncaptured carbon</a>.</td>
+</tr>
+<tr>
+<td><code>genesis-read-signed-response</code></td>
+<td>data-exploration</td>
+<td><a href="demos.html#world-industry-response">Read industrial demand elasticity</a>.</td>
+</tr>
+<tr>
+<td><code>genesis-convert-energy-units</code></td>
+<td>data-exploration</td>
+<td><a href="demos.html#world-desalination-electricity">Convert desalination electricity inputs</a>.</td>
+</tr>
+<tr>
+<td><code>genesis-audit-coefficient-gaps</code></td>
+<td>data-exploration</td>
+<td><a href="demos.html#world-coefficient-gaps">Inspect blanks in emissions coefficients</a>.</td>
+</tr>
+<tr>
+<td><code>genesis-separate-retirement-parameters</code></td>
+<td>datacard-generator</td>
+<td><a href="demos.html#world-retirement-parameters">Separate two retirement parameters</a>.</td>
+</tr>
+</tbody>
+</table>
+<p>For example:</p>
+<pre><code class="language-bash">doe-mcp skills genesis-check-prediction-bands --show
+doe-mcp demo load-interval-check --output ./bpa-band
+</code></pre>
+<p>Use the worksheet to trace each prediction to its prior and target readings.
+The earlier errors set the width once. The later rows show whether the actual
+load landed inside the band. For the dataset card, the draft contains only
+catalog evidence; no file is downloaded or inspected and the card has not
+been validated against the Genesis schema.</p>
+<p>The microbiome example follows <code>microbiome-data-finder</code>: search NMDC for
+shale studies, then use a returned study ID to request five biosamples.
+The page shows the sample's place, collection date and environment.
+Publisher access recipes retain the distinction between dataset and award
+DOIs. The workflow does not retrieve sequence data or infer biological
+function.</p>
+<p>For a citation list, run <code>doe-mcp demo bibliography --output ./citations</code>.
+Open <code>bibliography-worksheet.csv</code> to check dates, DOIs and omitted authors.
+For a count of missing soil sample measurements, run
+<code>doe-mcp demo soil-metadata --output ./soil</code>. In
+<code>soil-metadata-worksheet.csv</code>, the depth check counts a value or either end of a range in metres. The last column of each worksheet identifies the
+evidence entry in step 1 of its JSON report. See the
+<a href="genesis-demo-review.html#november-3-what-to-take-from-other-government-data-mcps">comparison with other government-data MCPs</a>
+for the reasons behind these checks.</p>
+<p>These examples default to recorded responses with no network or model calls. Except for the recorded Daymet package, add
+<code>--live</code> for public API reads without a key; availability and results can
+change. Downloading the underlying datasets may have separate conditions.
+An AI client chosen by the user may charge for inference, but these CLI
+examples and the static previews do not require one.</p>
+<p>To use the skills conversationally, give a compatible client the installed
+skill file and a bounded request: &quot;Find two geothermal dataset records and
+list missing documentation fields&quot; or &quot;Find a shale study and five linked
+biosamples; state what was not retrieved.&quot; Model output still needs review;
+the deterministic demonstrations do not measure agent accuracy.</p>
+<p>The <a href="https://github.com/AI-ModCon/genesis-skills">upstream Genesis catalog</a>
+also covers facility operations, data movement and model services. Public
+skill files do not grant an allocation, an account, free inference or
+permission to transfer data. These demos execute none of that upstream code.</p>
+<h2 id="connect-a-client-and-provide-a-skill">Connect a client and provide a skill</h2>
+<pre><code class="language-bash">doe-mcp configure claude-code research --dry-run
+doe-mcp configure claude-code research
+</code></pre>
+<p>The other supported configuration targets are <code>claude-desktop</code>, <code>vscode</code>
+and <code>cursor</code>. Start with the domain you need. Registering all servers also
+loads a larger combined tool set into clients without deferred discovery.
+Credentials stay in the user's credentials file, outside client configs.</p>
+<p><code>doe-mcp skills NAME</code> prints the installed file path. Ask a client that can
+read local files to read that file before starting the task, or provide
+its content from <code>--show</code>. Skills are packaged documents; they are not
+loaded automatically as MCP resources or installed as client plugins.</p>
+<h2 id="interpret-the-result">Interpret the result</h2>
+<p>The fetcher supports GET only. Source gates check registry eligibility
+before a publisher is queried. Adapters interpret each publisher's response;
+domain tools assemble the evidence envelope; MCP serves its typed shape.</p>
+<p>Coverage has separate dimensions: registry, execution, pagination,
+publisher scope and result. A hit does not imply a complete search. An
+empty result does not establish that DOE has no data. A proposed source
+in the registry does not contribute live evidence. Follow publisher-supplied
+locators; never construct a plausible record URL from an identifier.</p>
+<p>The JSON export keeps each call, its arguments and its envelope. CSV is
+an evidence index, not a substitute for JSON's coverage and warnings. Each
+CSV row names its workflow step, source and record. Potential spreadsheet
+formula cells are escaped.</p>
+<p>See the generated <a href="reference.html">tool reference</a> for exact names and
+arguments. The static site is generated by <code>tools/build_site.py</code>; change
+its renderer or registry inputs, not generated pages.</p>
+<h2 id="evaluate-agent-behavior">Evaluate agent behavior</h2>
+<p>Prepare the existing skill tasks without calling a model:</p>
+<pre><code class="language-bash">doe-mcp evaluate --prepare --output ./evaluation-tasks.json
+</code></pre>
+<p>The twelve cases cover useful answers and six traps. Evaluation annotations
+live beside the checked and reader tasks in each skill's <code>bench.yaml</code>.
+Contract tests run offline. They do not prove model-selection accuracy.</p>
+<p>Optional model runs use an explicitly supplied executable driver:</p>
+<pre><code class="language-bash">doe-mcp evaluate --driver ./model-driver --model YOUR_MODEL \
+  --max-calls 12 --max-tokens 20000 --repeats 3 \
+  --exposure focused --output ./evaluation-run.json
+</code></pre>
+<p>The driver reads one JSON request on stdin and writes one JSON response on
+stdout. The request carries messages, visible tool schemas, a remaining
+token budget and an output-token limit. The driver calls the chosen model
+and returns either <code>tool_calls</code> (name and arguments) or <code>answer</code> (text and
+citations), plus actual <code>usage.input_tokens</code> and <code>usage.output_tokens</code>. Return
+<code>model_version</code> and <code>settings</code> to identify the model and sampling
+configuration; absent values are explicitly reported as unknown.
+Each citation names a one-based tool step and an evidence ID from that
+step. Keep provider credentials in the driver's own environment; never
+return them or log them. Driver stderr is not retained.</p>
+<p>The harness executes requested tools against recorded responses. It
+refuses unavailable tools and stops after a driver failure or unknown
+usage. The call cap is enforced before each request; token accounting
+relies on the driver, which must enforce the remaining total budget at the
+provider. A provider call cannot be unspent when a driver over-reports its
+budget. No paid model driver is bundled or run by default.</p>
+<p>Run focused/all tool exposure with skills enabled/<code>--no-skills</code>, three
+repetitions each. Cases not run because of a budget remain in the report's
+denominator. Reports preserve failures and require human review against
+each task's rubric. Automatic citation checks are not semantic grading;
+no accuracy score is advertised before that review. Source text is
+untrusted, including the injected-instruction trap.</p>
+<p>For a release, require no fabricated locators, leaked keys, forecast-as-
+demand claims or invented source coverage. Inspect all trap answers and
+report numerator and denominator for useful-task success. The architecture's
+90% target is a proposed small-sample release gate, not a measured result.</p>
+<h2 id="development-checks">Development checks</h2>
+<pre><code class="language-bash">python -m pytest
+ruff check .
+mypy
+doe-mcp sources validate
+python tools/build_schema.py
+python tools/build_site.py --fixtures
+python3 tools/slopcheck.py --include-agent-docs .
+</code></pre>
+<p>Measure local replay overhead separately from model or publisher latency:</p>
+<pre><code class="language-bash">python tools/benchmark_workflows.py --output ./replay-baseline.json
+</code></pre>
+<p>This records three cold/warm pairs per workflow, startup time and output
+bytes. It makes no claim about live performance. CI also builds a wheel
+from a source distribution and runs <code>tools/check_installed.py</code> in a clean
+environment outside the checkout.</p>
+<p>The initial type-check scope is the envelope and OSTI page adapter. It is
+not a claim that the whole project is typed. Source liveness remains a
+separate scheduled check. Fixture recording rewrites a whole source file;
+use the existing recorder guards and run the full suite immediately after
+recording. A targeted recording uses <code>--source SOURCE_ID</code>.</p>
+<h2 id="rulemaking-brief">Rulemaking brief</h2>
+<p><code>doe-mcp demo rulemaking --output ./rulemaking-brief</code> searches a recorded
+Federal Register page and follows one returned DOE document number.
+The table keeps the publisher action and publication, effective and
+comment-close dates separate. Unknown dates stay unknown. FERC documents
+are excluded, and the publisher total still includes those exclusions.
+This is document metadata, not a legal-status assessment or a full docket.
+Add <code>--live</code> for a current search; no key or model is required.</p>
+<h2 id="historical-outage-data-finder">Historical outage-data finder</h2>
+<p><code>doe-mcp demo outage-history --output ./outage-history</code> finds the EAGLE-I
+release covering 2021 and presents its DOI, documentation and the separate
+customer-count dataset. This locates files; it does not download county
+measurements or compute an outage rate. The denominator's vintage is shown
+in its publisher title, because mixing years can mislead. Customers are
+not people, and publisher coverage is incomplete. Add <code>--live</code> to check
+the public catalog without a key or model.</p>
+<h2 id="load-a-daymet-temperature-extract">Load a Daymet temperature extract</h2>
+<p><a href="demos.html#daymet-calendar">The missing Daymet date</a> follows one grid
+cell near Oak Ridge from December 26 through December 31, 2024. The
+temperature CSV ends on December 30. Daymet's calendar has 365 days,
+including in leap years. The download contains no row for December 31.</p>
+<p>Run <code>doe-mcp demo daymet-calendar --output ./daymet</code> or download the
+temperatures CSV and Croissant metadata into the same directory.
+The metadata describes this recorded extract, gives the source citation
+and maps each field to a CSV column. Its SHA-256 digest covers the
+downloaded CSV. The underlying Daymet archive has its own
+<a href="https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance">data use guidance</a>.</p>
+<p>With the optional MLCommons reader installed, read the five rows:</p>
+<pre><code class="language-python">from mlcroissant import Dataset
+
+days = Dataset(&quot;daymet/daymet-calendar-croissant.json&quot;).records(&quot;days&quot;)
+for day in days:
+    print(day[&quot;days/date&quot;], day[&quot;days/tmax_deg_c&quot;])
+</code></pre>
+<h2 id="score-a-five-minute-bpa-load-prediction">Score a five-minute BPA load prediction</h2>
+<p><a href="demos.html#load-baseline">The BPA load worksheet</a> uses the last reported
+load as a prediction for the next five minutes. For example, the recording
+starts at 5,894 MW. Five minutes later BPA reported 5,832 MW, so the first
+prediction was 62 MW high.</p>
+<p>Run <code>doe-mcp demo load-baseline --output ./bpa</code>. The worksheet CSV shows
+each prediction beside the later reading and identifies both pieces of
+evidence in the JSON. The mean absolute error gives each miss its size in
+megawatts. The root mean squared error gives larger misses more weight.
+Both scores use only pairs five minutes apart with load at both ends.
+These are retrospective scores for this sample. BPA did not issue the
+predictions. Add <code>--live</code> to score a new window from the public feed.</p>
+</main></body></html>

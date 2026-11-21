@@ -1,0 +1,12 @@
+{
+  "name": "doe-mcp-site-checks",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "uat": "node tools/demo_uat.cjs",
+    "uat:journeys": "node tools/site_journey_audit.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.58.2"
+  }
+}

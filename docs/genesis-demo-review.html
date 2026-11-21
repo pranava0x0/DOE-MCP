@@ -1,0 +1,143 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Genesis demo review — October 20, 2026 — DOE-MCP</title><link rel="icon" href="data:,">
+<link rel="canonical" href="https://pranava0x0.github.io/DOE-MCP/genesis-demo-review.html">
+<meta name="description" content="Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.">
+<meta property="og:title" content="Genesis demo review — October 20, 2026">
+<meta property="og:description" content="Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.">
+<meta property="og:type" content="website"><meta property="og:url" content="https://pranava0x0.github.io/DOE-MCP/genesis-demo-review.html">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" type="text/markdown" href="genesis-demo-review.md">
+<link rel="describedby" type="text/plain" href="llms.txt">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Genesis demo review \u2014 October 20, 2026", "url": "https://pranava0x0.github.io/DOE-MCP/genesis-demo-review.html", "description": "Read-only MCP servers for public DOE and national-laboratory data, with source evidence, coverage limits and recorded walkthroughs.", "isPartOf": {"@type": "WebSite", "name": "DOE-MCP", "url": "https://pranava0x0.github.io/DOE-MCP/"}}</script>
+<style>
+:root{color-scheme:light;--ink:#20342b;--paper:#f5f2e8;--accent:#38654c}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible{outline:3px solid #9e572b;outline-offset:4px}
+header,main{max-width:1040px;margin:auto;padding:24px}header{border-bottom:1px solid #a8b3a7}
+nav{display:flex;gap:20px;flex-wrap:wrap}h1,h2,h3{font-family:Georgia,serif;line-height:1.2;scroll-margin-top:1rem}
+pre{overflow:auto;background:#e8e7dd;padding:16px;border-radius:6px}code{font-size:.9em}
+table{display:block;overflow:auto;border-collapse:collapse;max-width:100%}td,th{padding:9px;border:1px solid #b4beb4;text-align:left}
+main{overflow-wrap:anywhere}.skip{position:absolute;top:-100px}.skip:focus{top:0;background:white;padding:10px}
+</style></head><body><a class="skip" href="#content">Skip to content</a>
+<header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Recorded demos</a></nav></header>
+<main id="content" tabindex="-1"><nav aria-label="On this page"><ul><li><a href="#what-can-be-tried">What can be tried</a></li><li><a href="#research-boundaries">Research boundaries</a></li><li><a href="#review-and-validation">Review and validation</a></li><li><a href="#additional-demos--october-20-follow-up">Additional demos — October 20 follow-up</a></li><li><a href="#follow-up-review-2026-10-20">Follow-up review, 2026-10-20</a></li><li><a href="#november-3-what-to-take-from-other-government-data-mcps">November 3: what to take from other government-data MCPs</a></li></ul></nav><h1 id="genesis-demo-review--october-20-2026">Genesis demo review — October 20, 2026</h1>
+<p>PR #7 now combines Agent Skills format compatibility with two no-cost
+workflow demonstrations and a revised landing page. It does not install
+or execute the upstream Genesis catalog.</p>
+<h2 id="what-can-be-tried">What can be tried</h2>
+<ul>
+<li><code>doe-mcp demo dataset-card</code>: two geothermal catalog records, draft
+metadata and an explicit owner-review list. No assertion of Genesis or
+Croissant schema validity, file integrity, reuse rights or AI suitability.</li>
+<li><code>doe-mcp demo microbiome</code>: a shale-study search followed by five samples
+from a returned study ID. Sequence files are not retrieved.</li>
+<li>The existing literature walkthrough remains a third starting point.</li>
+</ul>
+<p>The default is recorded replay. Both new commands also completed with
+<code>--live</code> on October 20 without credentials or a model. A public metadata
+record does not grant access to the underlying dataset. Separate AI
+clients may charge for inference.</p>
+<h2 id="research-boundaries">Research boundaries</h2>
+<p>The <a href="https://www.energy.gov/science/articles/genesis-agent-skills-release-support-innovation-across-genesis-mission">DOE release</a>
+and <a href="https://www.pnnl.gov/news-media/pnnl-and-berkeley-lab-lead-genesis-mission-skills-release">PNNL announcement</a>
+establish the October 15 public release. The existing research archive and
+upstream source review informed the integration choice. Indexed LinkedIn
+announcements from PNNL and PPPL were found; no individual post permalink
+was verified. Targeted X searches yielded no relevant verifiable posts.
+Social content was not used to establish technical capability.</p>
+<p>Facility operations, data movement and metered model services are excluded.
+The facility-status demo is deferred: its existing adapter combines status
+and planned-outage fetches under the status fetch metadata. That needs a
+separate provenance review before presenting a combined status demo.</p>
+<h2 id="review-and-validation">Review and validation</h2>
+<p>Initial code review read PR #7 at <code>69d332f</code>, including the shared skill
+reader, its consumers, conformance tests and record truncation changes.
+No new blocking finding in that implementation. The final follow-up review
+checked data dependencies, empty-result refusal, publisher-text escaping,
+source references, cost claims and generated output. It corrected the
+microbiome summary so a missing total is shown as unknown.</p>
+<ul>
+<li>Full replay suite: 709 tests passed. New tests cover draft evidence,
+sample-to-study linkage, empty results and HTML escaping.</li>
+<li>Ruff clean; 83 manifests validated; envelope schema generated.</li>
+<li>Site build repeated with identical bytes; writing check has zero FAIL.</li>
+<li>Both new recorded CLI commands and both live commands completed.</li>
+<li>JSON and CSV downloads returned HTTP 200 with bytes equal to generated
+artifacts. The in-app browser's download event timed out; native download
+completion was not confirmed by that instrument.</li>
+<li>Browser checks: 768×1024 tablet, 375×812 phone, 1280×800 desktop.
+Three landing links and two dataset drafts render; the picker changes
+the visible walkthrough. No page-level horizontal overflow in checked
+views. Desktop cards use three columns; tablet and phone use one.
+Keyboard focus has a visible 3px outline. Mobile and desktop screenshots
+were inspected.</li>
+</ul>
+<p>The inherited CI liveness failure is an OSTI timeout also reported on
+main. Replay tests do not establish future publisher uptime or model
+answer accuracy. No paid service was used and the PR is left unmerged.</p>
+<h2 id="additional-demos--october-20-follow-up">Additional demos — October 20 follow-up</h2>
+<p>Added <code>rulemaking</code> and <code>outage-history</code>, bringing the walkthrough count to
+twelve. The rulemaking demo follows a returned document number and keeps
+actions, dates, docket IDs and FERC exclusions visible. The outage finder
+separates releases, documentation and denominator metadata; it calculates
+no outage rate. Both support recorded replay and completed live keyless
+reads during verification. The landing page now highlights six workflows.</p>
+<p>All 717 tests pass, including empty-result refusal, rulemaking dependency,
+unknown-date preservation, denominator-vintage visibility and safe links.
+Ruff and registry validation pass. Schema and site regenerated. Tablet,
+phone and desktop browser checks cover the new picker entries and links.
+No new dependency, paid service or upstream code was introduced.</p>
+<h2 id="follow-up-review-2026-10-20">Follow-up review, 2026-10-20</h2>
+<p>The latest Claude parent-session notes and PR review threads were checked.
+The catalog-kind count and microbiome follow-up findings were already fixed.
+The deployed guide and reference HTML pages both returned HTTP 200; the
+static local preview does not run the GitHub Pages Markdown renderer.</p>
+<p>VIPS search returned HTTP 401, &quot;Valid API key required&quot;. Its manifest now
+records API-key access and proposed status with a named blocker; live tool
+calls refuse before fetching. The site no longer advertises VIPS as an
+active source. September adapter recordings remain covered by explicit
+historical replay tests, with no change to the default runtime gate.
+No credentials, paid services or new dependencies were added.</p>
+<h2 id="november-3-what-to-take-from-other-government-data-mcps">November 3: what to take from other government-data MCPs</h2>
+<p>PR #6 added outage releases, NERSC status and microbiome records. PR #7
+added recorded walks across those sources and the research catalogs.
+PR #8 put the walks on the landing page and marked the VIPS key requirement
+in the reference. A reader could already trace a record. Preparing a
+citation list or counting missing measurements still meant working through
+the JSON.</p>
+<table>
+<thead>
+<tr>
+<th>Server</th>
+<th>What its maintainers document</th>
+<th>Choice for DOE-MCP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/uscensusbureau/us-census-bureau-data-api-mcp/blob/5dcaa637871b9ded5dab415118f9008c06d13f2a/README.md">US Census Bureau</a></td>
+<td>Its geography tool resolves names to candidate FIPS codes. Aggregate queries specify a dataset and vintage.</td>
+<td>Say exactly what a place filter selected. The NMDC query matches text containing “Washington”; it cannot establish a state boundary.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/nasa/earthdata-mcp/blob/1c3809a70ee67b93f9ccb7fe326ee7f36f8cc95a/README.md">NASA Earthdata</a></td>
+<td>Separate tools find collections, check for granules and look up citations.</td>
+<td>Give readers citation fields they can take away. A catalog hit by itself says nothing about whether anyone read the paper.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/cyanheads/eia-energy-mcp-server/blob/36e5ac081e6f44c525eda7a578806ad454f0f3b9/README.md">cyanheads EIA server</a> (community project)</td>
+<td>Its query results carry units and match totals. Its guide distinguishes null from zero.</td>
+<td>Keep numeric zero in the soil worksheet. Leave unreported values blank, name the unit and count missing fields only on the returned page.</td>
+</tr>
+</tbody>
+</table>
+<p>This comparison covers documented workflows. It does not measure server
+uptime, response times or the accuracy of a model using them.</p>
+<p>The <a href="demos.html#bibliography">bibliography worksheet</a> applies the Genesis
+literature-search skill's bibliography step to DOE PAGES. The
+<a href="demos.html#soil-metadata">soil sample field check</a> applies the
+data-exploration skill's missing-value check to NMDC. Neither runs the
+upstream scripts. Each worksheet row points to an evidence ID in the
+downloadable JSON. Both examples run from recordings without a model or key.</p>
+</main></body></html>

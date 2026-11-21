@@ -63,7 +63,7 @@ not a claimed study-site match. The materials walkthrough likewise keeps
 the computed GaN structure separate from the H/C/O basis-set example.
 
 The facility-status tool has checked
-skill tasks but no walkthrough page yet; [the examples](../examples/README.md)
+skill tasks but no walkthrough page yet; [the examples](https://github.com/pranava0x0/DOE-MCP/blob/main/examples/README.md)
 show one call for each. Outage history returns the EAGLE-I release that
 covers a year and its DOI, not outage figures. The microbiome tools return
 study and sample metadata; sequence data stays behind each study's DOIs.

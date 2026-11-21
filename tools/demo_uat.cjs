@@ -2,9 +2,13 @@ const {chromium}=require('playwright');
 const fs=require('fs');
 const path=require('path');
 const base=process.env.UAT_URL||'http://localhost:4192';
-fs.mkdirSync('uat-screenshots',{recursive:true});
+const output=path.resolve(process.env.UAT_OUTPUT_DIR||'uat-screenshots');
+const date=new Date().toISOString().slice(0,10);
+fs.mkdirSync(output,{recursive:true});
 (async()=>{
-const browser=await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true});
+const launch={headless:true};
+if(process.env.UAT_BROWSER_EXECUTABLE_PATH)launch.executablePath=process.env.UAT_BROWSER_EXECUTABLE_PATH;
+const browser=await chromium.launch(launch);
 const page=await browser.newPage(); const errors=[];page.on('pageerror',e=>errors.push(e.message));
 const report={viewports:[],errors};
 for(const [width,height] of [[768,1024],[375,812],[1280,800]]){
@@ -29,11 +33,11 @@ for(const [width,height] of [[768,1024],[375,812],[1280,800]]){
 await page.setViewportSize({width:375,height:812});await page.locator('#workflow').selectOption('microbiome');
 await page.getByRole('button',{name:'2. Samples',exact:true}).click();
 report.mobile=await page.evaluate(()=>({sampleTop:document.activeElement.getBoundingClientRect().top,toolbarBottom:document.querySelector('#picker').getBoundingClientRect().bottom,sidewaysTables:[...document.querySelectorAll('#microbiome .scroll')].filter(e=>e.scrollWidth>e.clientWidth+1).length}));
-await page.screenshot({path:'uat-screenshots/2026-10-22-mobile-samples.png'});
+await page.screenshot({path:path.join(output,date+'-mobile-samples.png')});
 await page.locator('#microbiome').getByText('Record sources',{exact:true}).click();
 if(!await page.locator('#microbiome .step').last().locator('.evidence').isVisible())throw Error('source disclosure');
 await page.locator('#step-nav button').first().click();
-const dl=page.waitForEvent('download');await page.locator('#microbiome a[download]').first().click();const download=await dl;await download.saveAs('/tmp/doe-uat-download.json');JSON.parse(fs.readFileSync('/tmp/doe-uat-download.json'));
+const dl=page.waitForEvent('download');await page.locator('#microbiome a[download]').first().click();const download=await dl;JSON.parse(fs.readFileSync(await download.path()));
 report.download=true;
 report.worksheets=[];
 for(const id of ['bibliography','soil-metadata','load-baseline','latin-america-regions','china-cooling-balance','world-bioenergy-columns','world-geothermal-grades','world-crop-rates','world-capture-residual','world-industry-response','world-desalination-electricity','world-coefficient-gaps','world-retirement-parameters']){
@@ -65,11 +69,11 @@ await page.locator('#workflow').focus();await page.keyboard.press('Tab');await p
 report.keyboard=await page.evaluate(()=>document.activeElement.id==='microbiome-step-1');
 if(!report.keyboard)throw Error('keyboard jump');
 await page.goto(base+'/demos.html#not-a-demo');if(await page.locator('#workflow').inputValue()!=='evidence')throw Error('hash fallback');
-await page.goto(base+'/demos.html#facility-status');await page.screenshot({path:'uat-screenshots/2026-10-22-mobile-status.png'});
+await page.goto(base+'/demos.html#facility-status');await page.screenshot({path:path.join(output,date+'-mobile-status.png')});
 const cdp=await page.context().newCDPSession(page);await cdp.send('Network.enable');await cdp.send('Network.setCacheDisabled',{cacheDisabled:true});await cdp.send('Emulation.setCPUThrottlingRate',{rate:4});
 await page.goto(base+'/demos.html#microbiome');
 report.cpu4xLocal=await page.evaluate(()=>{const n=performance.getEntriesByType('navigation')[0];return{loadMs:n.loadEventEnd,domMs:n.domContentLoadedEventEnd,bytes:n.decodedBodySize,resources:performance.getEntriesByType('resource').map(r=>r.name)}});
 await page.getByRole('button',{name:'2. Samples',exact:true}).click();
 report.cpu4xLocal.jumpWorked=await page.evaluate(()=>document.activeElement.classList.contains('step'));
-await browser.close();fs.writeFileSync('uat-screenshots/results.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));if(errors.length)process.exitCode=1;
+await browser.close();fs.writeFileSync(path.join(output,'results.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report));if(errors.length)process.exitCode=1;
 })().catch(e=>{console.error(e);process.exit(1)});

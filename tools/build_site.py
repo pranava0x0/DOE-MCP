@@ -598,6 +598,8 @@ def main() -> int:
     REFERENCE.write_text(render_reference(
         asyncio.run(_tool_rows(replay_context()))))
     print(f"wrote {REFERENCE}")
+    from site_metadata import write_discovery
+    write_discovery(DOCS, data)
     return 0
 
 

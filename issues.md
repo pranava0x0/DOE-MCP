@@ -100,3 +100,30 @@ overflow. Record-source cards duplicating a displayed result are expandable.
 Severity: low. Resolved 2026-10-22.
 An inline empty favicon removes the request for a nonexistent favicon file.
 Chrome recorded no secondary resource requests on the demos page.
+
+### UAT-004: Published guide linked outside the site
+
+Severity: low. Discovered and resolved 2026-11-21.
+The generated guide linked to `../examples/README.md`, which was outside
+the published site. The metadata renderer now resolves repository files to
+their repository URLs. The authored guide also uses the repository link.
+The browser audit verifies every local target instead of skipping missing
+Markdown-backed routes. All 281 checked local links now resolve.
+
+### UAT-005: Install shortcut landed under sticky navigation
+
+Severity: low. Discovered and resolved 2026-11-21.
+The Install anchor opened its section but left the heading and the start
+of the command behind the sticky navigation bar on phones. Install-step
+anchors now have a scroll margin. The browser assertion checks the target's
+position below the bar, and the phone screenshot exposes the heading and
+command after one click without a wheel action.
+
+### UAT-006: Registry columns were clipped on phones
+
+Severity: low. Discovered and resolved 2026-11-21.
+The Source coverage shortcut reached the filter, but the wide registry
+table clipped its later columns at phone width. The table now becomes
+labelled cards on narrow screens. The browser audit verifies that the
+table and its cells fit without horizontal movement; the phone screenshot
+shows Source, Publisher, Scope and limits, and Records together.
