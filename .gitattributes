@@ -1,0 +1,4 @@
+# Checksummed application exports must retain their exact bytes on checkout.
+docs/data/apps/**/*.csv -text whitespace=cr-at-eol
+docs/data/apps/**/*.json -text
+docs/data/apps/**/*.zip binary
