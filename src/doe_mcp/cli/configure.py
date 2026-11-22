@@ -46,6 +46,9 @@ def _home() -> Path:
     return Path.home()
 
 
+CLIENT_KEYS = ("claude-desktop", "claude-code", "vscode", "cursor")
+
+
 def client_targets() -> dict[str, ClientTarget]:
     home = _home()
     if sys.platform == "darwin":

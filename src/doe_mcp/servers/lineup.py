@@ -63,6 +63,7 @@ class ServerSpec:
     """One sentence, shown by `configure`, on the site, and in the README."""
     default_profile: str | None = None
     needs_credentials: tuple[str, ...] = ()
+    required_extras: tuple[str, ...] = ()
     instructions: str | None = None
     """Server instructions sent to the model. Shipping servers only."""
 
@@ -151,6 +152,7 @@ SERVER_LINEUP: tuple[ServerSpec, ...] = (
     ServerSpec(
         name="doe-energy-tech", key="energy-tech", status="shipping",
         default_profile="energy-tech:default",
+        required_extras=("energy-tech",),
         description=("Pinned ATB electricity cost and performance assumptions for named "
                      "2024 and 2025 releases. PVWatts is prepared and source-gated; "
                      "no model output or keyed integration is claimed."),
