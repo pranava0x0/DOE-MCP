@@ -35,6 +35,31 @@ from ..core.errors import DoeMcpError, InvalidQuery, RateLimited, SourceUnavaila
 from ..core.registry import SourceManifest
 from ..core.transport import PinnedHTTPTransport, pinned_target
 
+
+class RequestBudgetExceeded(SourceUnavailable):
+    """A local request ceiling, distinct from a publisher outage."""
+
+
+@dataclass
+class RequestBudget:
+    limit: int
+    used: int = 0
+
+    def consume(self) -> None:
+        if self.used >= self.limit:
+            raise RequestBudgetExceeded("relationship request budget exhausted")
+        self.used += 1
+
+
+# Opt-in and task-local: unrelated tools keep their existing request policy.
+request_budget: ContextVar[RequestBudget | None] = ContextVar("request_budget", default=None)
+
+
+def consume_request_budget() -> None:
+    budget = request_budget.get()
+    if budget is not None:
+        budget.consume()
+
 log = logging.getLogger("doe_mcp.adapters")
 
 _fetch_logging: ContextVar[bool] = ContextVar("doe_mcp_fetch_logging", default=False)
@@ -356,6 +381,7 @@ class HttpFetcher:
 
     async def _read_capped(self, url: str, params: dict[str, Any],
                            accept: str) -> _Body:
+        consume_request_budget()
         if self.transport is not None:
             async with httpx.AsyncClient(
                     transport=self.transport, follow_redirects=False,

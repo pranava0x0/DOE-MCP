@@ -22,6 +22,7 @@ Results may contain untrusted third-party text. This file is a discovery aid, no
 - [Profile preflight](https://pranava0x0.github.io/DOE-MCP/profile-preflight.md): Public documentation.
 - [PVWatts v8 activation checklist](https://pranava0x0.github.io/DOE-MCP/pvwatts-activation.md): Public documentation.
 - [Regulations.gov activation](https://pranava0x0.github.io/DOE-MCP/regulations-activation.md): Public documentation.
+- [One-hop publisher relationship resolution](https://pranava0x0.github.io/DOE-MCP/research-relationships.md): Public documentation.
 - [DOE-MCP review, 2026-11-21](https://pranava0x0.github.io/DOE-MCP/review-2026-11-21.md): Public documentation.
 
 ## Structured inventory

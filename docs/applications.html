@@ -268,20 +268,39 @@ body[data-location-layout]{padding-left:15rem}
 </ul>
 <h2 id="research-artifact-linkage-explorer">Research artifact linkage explorer</h2>
 <p><strong>Recorded example. Runs locally.</strong></p>
-<pre tabindex="0"><code class="language-bash">doe-mcp app research-linkage --output ./research-linkage-run
+<pre tabindex="0"><code class="language-bash">doe-mcp app research-linkage --dataset-query EAGLE-I --resolve-relationships --output ./research-linkage-run
 </code></pre>
 <p><a href="data/apps/research-linkage/bundle.zip" download="research-linkage.zip">Download complete bundle</a> · <a href="data/apps/research-linkage/report.json">View report and source evidence</a> · <a href="data/apps/research-linkage/manifest.json">File checksums</a></p>
-<p>Search literature, dataset and software catalogs, then inspect source-linked inventory, shared DOI identity and typed publisher relationship assertions separately. The preset uses three different recorded queries; it does not claim that these records form a research chain.</p>
-<p>Returned <strong>10 records</strong>, <strong>0 shared identities</strong> and <strong>0 explicit relationship assertions</strong>. <strong>10 records</strong> have no resolved match within this bounded result.</p>
-<p>No explicit relationships in a recorded result is a valid outcome. Generic OSTI identifiers include grants and contracts and never create edges. Unresolved publisher targets remain visible in the receipt.</p>
-<p><a href="data/apps/research-linkage/inventory.csv">Inventory CSV</a> · <a href="data/apps/research-linkage/linkage.json">Linkage receipt</a></p>
-<p>Use <code>--live --query YOUR_TOPIC</code> for one topic across all collections, or set separate <code>--literature-query</code>, <code>--dataset-query</code> and <code>--software-query</code> values. <code>--rows</code> and <code>--page-budget</code> bound each collection search.</p>
+<p>Search literature, dataset and software catalogs, then inspect source-linked inventory, shared DOI identity and typed publisher relationship assertions separately. This recorded example follows one EAGLE-I IsPartOf assertion by DOI. The three discovery topics are independent; co-returned records do not establish relationships.</p>
+<p>Returned <strong>10 records</strong> and <strong>1 explicit publisher assertion</strong>. One-hop follow-up used <strong>4 of 4 allowed requests</strong>.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Publisher relationship</th>
+<th scope="col">Target DOI</th>
+<th scope="col">Resolution</th>
+<th scope="col">Candidate source records</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Publisher relationship">IsPartOf</td>
+<td data-label="Target DOI">10.13139/ornlnccs/1975203</td>
+<td data-label="Resolution">ambiguous</td>
+<td data-label="Candidate source records">osti-data-explorer:1975203; osti-gov-records:1975203</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ambiguous means two source records share the target DOI.</strong> OSTI.GOV and DOE Data Explorer both returned a matching record; this does not establish two different artifacts. The receipt retains both candidates and the originating publisher assertion with evidence pointers.</p>
+<p>Only the original typed DOI assertions enter follow-up. Exact normalized DOI matching is required; titles, topics, grants and contracts never create edges. Unknown totals, failed sources and request limits cannot establish uniqueness or absence. No DOI landing page, repository or further relationship is fetched.</p>
+<p><a download href="data/apps/research-linkage/inventory.csv">Inventory CSV</a> · <a download href="data/apps/research-linkage/linkage.json">Linkage receipt</a> · <a download href="data/apps/research-linkage/report.json">Download original assertions and follow-up evidence</a></p>
+<p>Use <code>--live --query YOUR_TOPIC</code> for one topic across the collections, or set separate <code>--literature-query</code>, <code>--dataset-query</code> and <code>--software-query</code> values. <code>--rows</code> and <code>--page-budget</code> bound discovery. Add <code>--resolve-relationships</code> for one hop and <code>--relationship-request-budget 4</code> to cap follow-up HTTP attempts, including retries and redirects. At most eight distinct original targets are searched. <a href="research-relationships.html">Resolution rules and recorded evidence</a>.</p>
 <h3 id="scope-and-limits-4">Scope and limits</h3>
 <ul>
 <li>Each collection is searched independently. The recorded preset uses different recorded topics; co-returned records are not relationship evidence.</li>
 <li>Only exact normalized DOIs establish shared identity. Shared identity does not assert that a paper uses a dataset or software.</li>
 <li>Explicit links require a typed DOI assertion in the publisher related_identifiers field. Grants, awards, journal prose, titles and authors never create links. Unparsed relationship values are counted.</li>
-<li>Unresolved targets remain publisher assertions, without invented metadata, URLs or follow-up requests. No target artifact or repository content is downloaded.</li>
+<li>Optional follow-up searches only the original typed DOI assertion frontier in four fixed active research catalogs, under a shared HTTP request budget. It never follows returned assertions or downloads target artifact or repository content.</li>
 <li>Search scope retains every page's coverage and publisher totals. Unmatched means unmatched within these bounded returned records, not proof that a relationship does not exist.</li>
 <li>The literature tool deduplicates its two collections by DOI; this inventory preserves its returned rows and original envelope evidence, rather than reconstructing discarded rows.</li>
 <li>Source text is third-party data. CSV cells that could be spreadsheet expressions are prefixed with an apostrophe; JSON retains original titles.</li>

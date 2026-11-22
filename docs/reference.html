@@ -64,7 +64,7 @@ body[data-location-layout]{padding-left:15rem}
 <h2 id="doe-research">doe-research</h2>
 <p>Literature, datasets, software, and discovery over OSTI's four public APIs, DOE's rulemakings from the Federal Register, plus the source registry and a cross-catalog fan-out.</p>
 <p>Profiles: <code>research:all</code>, <code>research:default</code> (default), <code>research:discovery</code></p>
-<h3 id="profile-researchall--15-tools">Profile <code>research:all</code> — 15 tools</h3>
+<h3 id="profile-researchall--16-tools">Profile <code>research:all</code> — 16 tools</h3>
 <table>
 <thead>
 <tr>
@@ -88,6 +88,10 @@ body[data-location-layout]{padding-left:15rem}
 <tr>
 <td data-label="Tool"><code>research.get_record</code></td>
 <td data-label="Arguments"><code>record_id</code>, <code>collection</code>?</td>
+</tr>
+<tr>
+<td data-label="Tool"><code>research.resolve_doi</code></td>
+<td data-label="Arguments"><code>doi</code>, <code>request_limit</code>?, <code>rows</code>?, <code>page_budget</code>?</td>
 </tr>
 <tr>
 <td data-label="Tool"><code>registry.resolve_org</code></td>
@@ -136,7 +140,7 @@ body[data-location-layout]{padding-left:15rem}
 </tbody>
 </table>
 <p><strong>Unavailable now:</strong> <code>tech.find_licensable_ip</code> — VIPS requires an API key; access support is pending. It stays listed and answers every call with that reason.</p>
-<h3 id="profile-researchdefault--11-tools">Profile <code>research:default</code> — 11 tools</h3>
+<h3 id="profile-researchdefault--12-tools">Profile <code>research:default</code> — 12 tools</h3>
 <table>
 <thead>
 <tr>
@@ -160,6 +164,10 @@ body[data-location-layout]{padding-left:15rem}
 <tr>
 <td data-label="Tool"><code>research.get_record</code></td>
 <td data-label="Arguments"><code>record_id</code>, <code>collection</code>?</td>
+</tr>
+<tr>
+<td data-label="Tool"><code>research.resolve_doi</code></td>
+<td data-label="Arguments"><code>doi</code>, <code>request_limit</code>?, <code>rows</code>?, <code>page_budget</code>?</td>
 </tr>
 <tr>
 <td data-label="Tool"><code>registry.resolve_org</code></td>
@@ -192,7 +200,7 @@ body[data-location-layout]{padding-left:15rem}
 </tbody>
 </table>
 <p><strong>Unavailable now:</strong> <code>tech.find_licensable_ip</code> — VIPS requires an API key; access support is pending. It stays listed and answers every call with that reason.</p>
-<h3 id="profile-researchdiscovery--15-tools">Profile <code>research:discovery</code> — 15 tools</h3>
+<h3 id="profile-researchdiscovery--16-tools">Profile <code>research:discovery</code> — 16 tools</h3>
 <table>
 <thead>
 <tr>
@@ -216,6 +224,10 @@ body[data-location-layout]{padding-left:15rem}
 <tr>
 <td data-label="Tool"><code>research.get_record</code></td>
 <td data-label="Arguments"><code>record_id</code>, <code>collection</code>?</td>
+</tr>
+<tr>
+<td data-label="Tool"><code>research.resolve_doi</code></td>
+<td data-label="Arguments"><code>doi</code>, <code>request_limit</code>?, <code>rows</code>?, <code>page_budget</code>?</td>
 </tr>
 <tr>
 <td data-label="Tool"><code>registry.resolve_org</code></td>
@@ -515,6 +527,44 @@ body[data-location-layout]{padding-left:15rem}
 <td data-label="Type">string</td>
 <td data-label="Required">no</td>
 <td data-label="Default"><code>&quot;literature&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="researchresolve_doi"><code>research.resolve_doi</code></h4>
+<p>Resolve a DOI target from an explicit publisher assertion across the four fixed active OSTI research collections. Bounds actual HTTP attempts including retries and redirects; preserves every searched page and exact normalized DOI candidate. Multiple source-scoped candidates are ambiguous; unknown totals, failures and exhausted budgets never establish uniqueness or absence. Does not fetch DOI URLs, repositories or further relationships.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Argument</th>
+<th scope="col">Type</th>
+<th scope="col">Required</th>
+<th scope="col">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Argument"><code>doi</code></td>
+<td data-label="Type">string</td>
+<td data-label="Required">yes</td>
+<td data-label="Default"></td>
+</tr>
+<tr>
+<td data-label="Argument"><code>request_limit</code></td>
+<td data-label="Type">integer</td>
+<td data-label="Required">no</td>
+<td data-label="Default"><code>4</code></td>
+</tr>
+<tr>
+<td data-label="Argument"><code>rows</code></td>
+<td data-label="Type">integer</td>
+<td data-label="Required">no</td>
+<td data-label="Default"><code>5</code></td>
+</tr>
+<tr>
+<td data-label="Argument"><code>page_budget</code></td>
+<td data-label="Type">integer</td>
+<td data-label="Required">no</td>
+<td data-label="Default"><code>1</code></td>
 </tr>
 </tbody>
 </table>

@@ -143,27 +143,33 @@ doe-mcp app gcam-comparison --plan ./plan.json --output ./gcam-custom
 **Recorded example. Runs locally.**
 
 ```bash
-doe-mcp app research-linkage --output ./research-linkage-run
+doe-mcp app research-linkage --dataset-query EAGLE-I --resolve-relationships --output ./research-linkage-run
 ```
 
 [Download complete bundle](data/apps/research-linkage/bundle.zip) · [View report and source evidence](data/apps/research-linkage/report.json) · [File checksums](data/apps/research-linkage/manifest.json)
 
-Search literature, dataset and software catalogs, then inspect source-linked inventory, shared DOI identity and typed publisher relationship assertions separately. The preset uses three different recorded queries; it does not claim that these records form a research chain.
+Search literature, dataset and software catalogs, then inspect source-linked inventory, shared DOI identity and typed publisher relationship assertions separately. This recorded example follows one EAGLE-I IsPartOf assertion by DOI. The three discovery topics are independent; co-returned records do not establish relationships.
 
-Returned **10 records**, **0 shared identities** and **0 explicit relationship assertions**. **10 records** have no resolved match within this bounded result.
+Returned **10 records** and **1 explicit publisher assertion**. One-hop follow-up used **4 of 4 allowed requests**.
 
-No explicit relationships in a recorded result is a valid outcome. Generic OSTI identifiers include grants and contracts and never create edges. Unresolved publisher targets remain visible in the receipt.
+| Publisher relationship | Target DOI | Resolution | Candidate source records |
+|---|---|---|---|
+| IsPartOf | 10.13139/ornlnccs/1975203 | ambiguous | osti-data-explorer:1975203; osti-gov-records:1975203 |
 
-[Inventory CSV](data/apps/research-linkage/inventory.csv) · [Linkage receipt](data/apps/research-linkage/linkage.json)
+**Ambiguous means two source records share the target DOI.** OSTI.GOV and DOE Data Explorer both returned a matching record; this does not establish two different artifacts. The receipt retains both candidates and the originating publisher assertion with evidence pointers.
 
-Use `--live --query YOUR_TOPIC` for one topic across all collections, or set separate `--literature-query`, `--dataset-query` and `--software-query` values. `--rows` and `--page-budget` bound each collection search.
+Only the original typed DOI assertions enter follow-up. Exact normalized DOI matching is required; titles, topics, grants and contracts never create edges. Unknown totals, failed sources and request limits cannot establish uniqueness or absence. No DOI landing page, repository or further relationship is fetched.
+
+<a download href="data/apps/research-linkage/inventory.csv">Inventory CSV</a> · <a download href="data/apps/research-linkage/linkage.json">Linkage receipt</a> · <a download href="data/apps/research-linkage/report.json">Download original assertions and follow-up evidence</a>
+
+Use `--live --query YOUR_TOPIC` for one topic across the collections, or set separate `--literature-query`, `--dataset-query` and `--software-query` values. `--rows` and `--page-budget` bound discovery. Add `--resolve-relationships` for one hop and `--relationship-request-budget 4` to cap follow-up HTTP attempts, including retries and redirects. At most eight distinct original targets are searched. [Resolution rules and recorded evidence](research-relationships.html).
 
 ### Scope and limits
 
 - Each collection is searched independently. The recorded preset uses different recorded topics; co-returned records are not relationship evidence.
 - Only exact normalized DOIs establish shared identity. Shared identity does not assert that a paper uses a dataset or software.
 - Explicit links require a typed DOI assertion in the publisher related\_identifiers field. Grants, awards, journal prose, titles and authors never create links. Unparsed relationship values are counted.
-- Unresolved targets remain publisher assertions, without invented metadata, URLs or follow-up requests. No target artifact or repository content is downloaded.
+- Optional follow-up searches only the original typed DOI assertion frontier in four fixed active research catalogs, under a shared HTTP request budget. It never follows returned assertions or downloads target artifact or repository content.
 - Search scope retains every page&#x27;s coverage and publisher totals. Unmatched means unmatched within these bounded returned records, not proof that a relationship does not exist.
 - The literature tool deduplicates its two collections by DOI; this inventory preserves its returned rows and original envelope evidence, rather than reconstructing discarded rows.
 - Source text is third-party data. CSV cells that could be spreadsheet expressions are prefixed with an apostrophe; JSON retains original titles.

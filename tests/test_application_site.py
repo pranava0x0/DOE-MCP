@@ -42,10 +42,15 @@ def test_published_application_bundle_has_verified_files_and_mode_provenance(app
         assert all(r['evidence_ref'] and r['file_url'] for r in report['receipts'])
         assert report['comparisons'][-1]['relationship'] == 'different_table_or_field'
     elif application == 'research-linkage':
-        assert len(report['records']) == len(report['unmatched_records']) == 10
-        assert report['explicit_relationships'] == report['shared_identity'] == []
+        assert len(report['records']) == 10
+        assert report['relationship_resolution']['requests_used'] == 4
+        edge, = report['explicit_relationships']
+        assert edge['relationship'] == 'IsPartOf'
+        assert edge['followup']['status'] == 'ambiguous'
+        assert {row['node_id'] for row in edge['followup']['candidates']} == {
+            'osti-gov-records:1975203', 'osti-data-explorer:1975203'}
         assert {step['tool'] for step in report['steps']} == {
-            'research.search_literature', 'research.search_datasets', 'research.search_software'}
+            'research.search_literature', 'research.search_datasets', 'research.search_software', 'research.resolve_doi'}
 
     elif application == 'energy-assumptions':
         assert report['edition'] == 2024 and report['asset']['sha256']

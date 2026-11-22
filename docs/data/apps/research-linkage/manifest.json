@@ -4,18 +4,18 @@
   "files": [
     {
       "file": "inventory.csv",
-      "bytes": 1824,
-      "sha256": "a791fa6033cc1da02d62a8b1a8a17160c3a78ca7e2bc72294ad861a8059686d9"
+      "bytes": 1798,
+      "sha256": "b29dbceadbdbadfdb27aafab04b240d3ce5c1dc7b73659586d8a0bc21bbeca9c"
     },
     {
       "file": "linkage.json",
-      "bytes": 9368,
-      "sha256": "29a8fdc9045e1d97772074f72b9ee59943a4be256080d5b21910a840e2e23013"
+      "bytes": 14585,
+      "sha256": "9bcafe455d46a9667dff283aef6aba63861a9b1a2432b103bb0d6d6abab8b198"
     },
     {
       "file": "report.json",
-      "bytes": 72750,
-      "sha256": "3a26f5d2512fe629b49c93335a0abe9822e051e59138b97dc5b082aaf961d582"
+      "bytes": 95051,
+      "sha256": "f21a6c1723c8c6bc1e4a6edc4d7ef81889747b66a9f00724e0c8bdf0a21d77d6"
     }
   ]
 }

@@ -8,7 +8,7 @@ Literature, datasets, software, and discovery over OSTI's four public APIs, DOE'
 
 Profiles: `research:all`, `research:default` (default), `research:discovery`
 
-### Profile `research:all` — 15 tools
+### Profile `research:all` — 16 tools
 
 | Tool | Arguments |
 |---|---|
@@ -16,6 +16,7 @@ Profiles: `research:all`, `research:default` (default), `research:discovery`
 | `research.search_datasets` | `query`?, `title`?, `author`?, `research_org`?, `sponsor_org`?, `site_code`?, `year_from`?, `year_to`?, `rows`?, `page`?, `detailed`? |
 | `research.search_software` | `query`?, `title`?, `developer`?, `language`?, `open_source_only`?, `rows`?, `page`?, `detailed`? |
 | `research.get_record` | `record_id`, `collection`? |
+| `research.resolve_doi` | `doi`, `request_limit`?, `rows`?, `page_budget`? |
 | `registry.resolve_org` | `query` |
 | `registry.lab_crosswalk` | `lab`? |
 | `registry.search_sources` | `text`?, `domain`?, `capability`?, `state`?, `limit`? |
@@ -30,7 +31,7 @@ Profiles: `research:all`, `research:default` (default), `research:discovery`
 
 **Unavailable now:** `tech.find_licensable_ip` — VIPS requires an API key; access support is pending. It stays listed and answers every call with that reason.
 
-### Profile `research:default` — 11 tools
+### Profile `research:default` — 12 tools
 
 | Tool | Arguments |
 |---|---|
@@ -38,6 +39,7 @@ Profiles: `research:all`, `research:default` (default), `research:discovery`
 | `research.search_datasets` | `query`?, `title`?, `author`?, `research_org`?, `sponsor_org`?, `site_code`?, `year_from`?, `year_to`?, `rows`?, `page`?, `detailed`? |
 | `research.search_software` | `query`?, `title`?, `developer`?, `language`?, `open_source_only`?, `rows`?, `page`?, `detailed`? |
 | `research.get_record` | `record_id`, `collection`? |
+| `research.resolve_doi` | `doi`, `request_limit`?, `rows`?, `page_budget`? |
 | `registry.resolve_org` | `query` |
 | `registry.lab_crosswalk` | `lab`? |
 | `discovery.search_all_catalogs` | `query`, `per_catalog`?, `catalogs`? |
@@ -48,7 +50,7 @@ Profiles: `research:all`, `research:default` (default), `research:discovery`
 
 **Unavailable now:** `tech.find_licensable_ip` — VIPS requires an API key; access support is pending. It stays listed and answers every call with that reason.
 
-### Profile `research:discovery` — 15 tools
+### Profile `research:discovery` — 16 tools
 
 | Tool | Arguments |
 |---|---|
@@ -56,6 +58,7 @@ Profiles: `research:all`, `research:default` (default), `research:discovery`
 | `research.search_datasets` | `query`?, `title`?, `author`?, `research_org`?, `sponsor_org`?, `site_code`?, `year_from`?, `year_to`?, `rows`?, `page`?, `detailed`? |
 | `research.search_software` | `query`?, `title`?, `developer`?, `language`?, `open_source_only`?, `rows`?, `page`?, `detailed`? |
 | `research.get_record` | `record_id`, `collection`? |
+| `research.resolve_doi` | `doi`, `request_limit`?, `rows`?, `page_budget`? |
 | `registry.resolve_org` | `query` |
 | `registry.lab_crosswalk` | `lab`? |
 | `discovery.search_all_catalogs` | `query`, `per_catalog`?, `catalogs`? |
@@ -130,6 +133,17 @@ Fetch one full record by id from a named OSTI collection: 'literature' (OSTI.GOV
 |---|---|---|---|
 | `record_id` | string | yes |  |
 | `collection` | string | no | `"literature"` |
+
+#### `research.resolve_doi`
+
+Resolve a DOI target from an explicit publisher assertion across the four fixed active OSTI research collections. Bounds actual HTTP attempts including retries and redirects; preserves every searched page and exact normalized DOI candidate. Multiple source-scoped candidates are ambiguous; unknown totals, failures and exhausted budgets never establish uniqueness or absence. Does not fetch DOI URLs, repositories or further relationships.
+
+| Argument | Type | Required | Default |
+|---|---|---|---|
+| `doi` | string | yes |  |
+| `request_limit` | integer | no | `4` |
+| `rows` | integer | no | `5` |
+| `page_budget` | integer | no | `1` |
 
 #### `registry.resolve_org`
 

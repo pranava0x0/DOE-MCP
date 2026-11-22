@@ -150,6 +150,11 @@
       "captured_at": null
     },
     {
+      "file": "research-relationships.json",
+      "sha256": "9996e9d9f8a64cfc0e393f93bf45e059175ff66bc009febba7194bb647dee503",
+      "captured_at": "2026-11-22T06:42:31.231247+00:00"
+    },
+    {
       "file": "usgs-uspvdb.json",
       "sha256": "4d93ec19e3b23d1de9ad1a1d618cca40070ae455764062a91d8a19a4c975c24c",
       "captured_at": null

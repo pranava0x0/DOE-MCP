@@ -150,6 +150,11 @@
       "captured_at": null
     },
     {
+      "file": "research-relationships.json",
+      "sha256": "9996e9d9f8a64cfc0e393f93bf45e059175ff66bc009febba7194bb647dee503",
+      "captured_at": "2026-11-22T06:42:31.231247+00:00"
+    },
+    {
       "file": "usgs-uspvdb.json",
       "sha256": "4d93ec19e3b23d1de9ad1a1d618cca40070ae455764062a91d8a19a4c975c24c",
       "captured_at": null
@@ -617,7 +622,7 @@
     {
       "tool": "research.search_datasets",
       "args": {
-        "query": "geothermal",
+        "query": "EAGLE-I",
         "rows": 2,
         "page": 1,
         "detailed": true
@@ -626,83 +631,86 @@
         "data": {
           "datasets": [
             {
-              "id": "1148737",
-              "title": "Structural Orientations Adjacent to Some Colorado Geothermal Systems",
+              "id": "1975203",
+              "title": "EAGLE-I Power Outage Data Information",
               "authors": [
-                "Richard [Flint Geothermal, LLC]"
+                "Tansakul, Varisara [ORNL-OLCF]",
+                "Myers, Aaron",
+                "Tennille, Sarah",
+                "Denman, Matthew",
+                "Hamaker, Alec"
               ],
-              "publication_date": "2012-01-31",
+              "publication_date": "2023-05-25",
               "product_type": "Dataset",
-              "doi": "10.15121/1148737",
+              "authors_truncated": 13,
+              "doi": "10.13139/ORNLNCCS/1975203",
               "research_orgs": [
-                "DOE Geothermal Data Repository",
-                "Flint Geothermal, LLC"
+                "Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States). Oak Ridge Leadership Computing Facility (OLCF)",
+                "Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)"
               ],
-              "site_code": "DOE-GDR",
+              "site_code": "ORNL-OLCF",
               "related_artifacts": {
                 "assertions": [],
                 "unparsed_count": 0
               },
-              "description": "Structural orientations (fractures, joints, faults, lineaments, bedding orientations, etc.) were collected with a standard Brunton compass during routine field examinations of geothermal phenomena in Colorado. Often multiple orientations were taken from one outcrop. Care was taken to ensure outcrops were \"in place\". Point data was collected with a hand-held GPS unit. The structural data is presented both as standard quadrant measurements and in format suitable for ESRI symbology",
+              "description": "This DOI contains information on the EAGLE-I power outage dataset and serves as a blanket DOI for all EAGLE-I historic data. Historic power outage data from specific years have been linked to this DOI.",
               "subjects": [
-                "15 GEOTHERMAL ENERGY",
-                "ArcGIS",
-                "Colorado",
-                "Faults",
-                "geospatial",
-                "geothermal",
-                "GIS",
-                "shape file",
-                "shapefile",
-                "Structure"
+                "24 POWER TRANSMISSION AND DISTRIBUTION",
+                "Metadata, Electric Customer Outages, EAGLE-I"
               ],
               "sponsor_orgs": [
-                "USDOE Office of Energy Efficiency and Renewable Energy (EERE), Geothermal Technologies Program (EE-2C)"
+                "Office of Electricity Delivery and Energy Reliability (OE), Infrastructure Security and Energy Restoration (ISER) (OE-30)",
+                "Department of Energyâs Office of Cybersecurity Energy Security and Emergency Response (CESER)"
               ],
-              "site_url": "https://gdr.openei.org/submissions/317",
+              "site_url": "https://doi.ccs.ornl.gov/ui/doi/436",
               "source_id": "osti-data-explorer"
             },
             {
-              "id": "1542650",
-              "title": "Utah FORGE: Well 58-32 Stimulation Data",
+              "id": "2297398",
+              "title": "EAGLE-I Power Outage Data 2023",
               "authors": [
-                "Best, Sharon [Geothermal Resource Group]"
+                "Tansakul, Varisara [Oak Ridge National Laboratory]",
+                "Myers, Aaron [Oak Ridge National Laboratory]",
+                "Tennille, Sarah [Oak Ridge National Laboratory]",
+                "Broughton, Mitchell [Oak Ridge National Laboratory]",
+                "Denman, Matthew [Oak Ridge National Laboratory]"
               ],
-              "publication_date": "2019-04-19",
+              "publication_date": "2024-02-11",
               "product_type": "Dataset",
-              "doi": "10.15121/1542650",
+              "authors_truncated": 8,
+              "doi": "10.13139/OLCF/2297398",
               "research_orgs": [
-                "DOE Geothermal Data Repository",
-                "Geothermal Resource Group"
+                "Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)"
               ],
-              "site_code": "DOE-GDR",
+              "site_code": "ORNL-OLCF",
               "related_artifacts": {
-                "assertions": [],
+                "assertions": [
+                  {
+                    "relationship": "IsPartOf",
+                    "target_namespace": "doi",
+                    "target_identifier": "10.13139/ornlnccs/1975203",
+                    "origin_field": "related_identifiers/0",
+                    "publisher_value": "CURATED; IsPartOf; {\"related_identifier\" : \"10.13139/ORNLNCCS/1975203\", \"related_identifier_type\" : \"DOI\", \"relation_type\" : \"IsPartOf\", \"title\" : \"EAGLE-I Power Outage Data Information\", \"source_name\" : [\"Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States). Oak Ridge Leadership Computing Facility (OLCF); Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)\"], \"publication_date\" : \"2023-01-01T05:00:00Z\", \"optional_data_json_string\" : \"{\\\"author1LastName\\\": \\\"Tansakul\\\", \\\"author2LastName\\\": \\\"Myers\\\", \\\"author3LastName\\\": \\\"Tennille\\\", \\\"author1FirstName\\\": \\\"Varisara\\\", \\\"author2FirstName\\\": \\\"Aaron\\\", \\\"author3FirstName\\\": \\\"Sarah\\\", \\\"crossrefProductType\\\": \\\"dataset\\\"}\"}"
+                  }
+                ],
                 "unparsed_count": 0
               },
-              "description": "Pressure, temperature, and flow data from open-hole, upper perforation, and lower perforation well stimulations gathered from various tools collected at well 58-32 during phase 2C.",
+              "description": "The provided EAGLE-I historic dataset includes 1 year of power outage information at the county level for 2023 at 15-minute intervals collected by the EAGLE-I program at ORNL. The data has been collected from utility's public outage maps using an ETL process. The dataset details FIPS code, county name, state name, total number of customers without power, and a date/timestamp. Also included is the EAGLE-I coverage of each state for each year. For detailed metadata, refer to the metadata DOI.",
               "subjects": [
-                "15 GEOTHERMAL ENERGY",
-                "Badger",
-                "Bridge Plug",
-                "DiDrill",
-                "DiDrill Survey Services",
-                "EGS",
-                "energy",
-                "flow",
-                "flowback",
-                "FORGE"
+                "24 POWER TRANSMISSION AND DISTRIBUTION",
+                "EAGLE-I",
+                "Electric Customer Outages"
               ],
-              "subjects_truncated": 29,
               "sponsor_orgs": [
-                "USDOE Office of Energy Efficiency and Renewable Energy (EERE), Geothermal Technologies Program (EE-2C)"
+                "Office of Electricity Delivery and Energy Reliability (OE), Infrastructure Security and Energy Restoration (ISER) (OE-30)",
+                "Department of Energy Office of Cybersecurity Energy Security and Emergency Response"
               ],
-              "site_url": "https://gdr.openei.org/submissions/1149",
+              "site_url": "https://doi.ccs.ornl.gov/dataset/2e1dac8d-800d-5e09-812e-8abf52f11e27",
               "source_id": "osti-data-explorer"
             }
           ],
           "record_count": 2,
-          "total_matches": 1062,
+          "total_matches": 9,
           "note": "These are metadata records pointing at data held elsewhere. DOE Data Explorer hosts nothing itself: use the DOI or landing page in access_recipes to reach the actual data, and expect some repositories to require an account this record does not mention."
         },
         "provenance": [
@@ -724,10 +732,10 @@
           {
             "id": "evidence_01",
             "source_ref": "source_01",
-            "record_id": "1148737",
-            "locator": "https://www.osti.gov/dataexplorer/biblio/1148737",
+            "record_id": "1975203",
+            "locator": "https://www.osti.gov/dataexplorer/biblio/1975203",
             "retrieved_at": "2026-11-21T00:00:00Z",
-            "effective_at": "2017-11-28T17:08:48Z",
+            "effective_at": "2023-05-26T18:14:12Z",
             "transformations": [
               "normalize"
             ],
@@ -737,10 +745,10 @@
           {
             "id": "evidence_02",
             "source_ref": "source_01",
-            "record_id": "1542650",
-            "locator": "https://www.osti.gov/dataexplorer/biblio/1542650",
+            "record_id": "2297398",
+            "locator": "https://www.osti.gov/dataexplorer/biblio/2297398",
             "retrieved_at": "2026-11-21T00:00:00Z",
-            "effective_at": "2020-03-12T18:55:39Z",
+            "effective_at": "2026-11-04T06:57:43Z",
             "transformations": [
               "normalize"
             ],
@@ -779,15 +787,15 @@
         "access_recipes": [
           {
             "kind": "doi",
-            "uri": "https://doi.org/10.15121/1148737",
-            "label": "Structural Orientations Adjacent to Some Colorado Geothermal Systems",
+            "uri": "https://doi.org/10.13139/ORNLNCCS/1975203",
+            "label": "EAGLE-I Power Outage Data Information",
             "instructions": null,
             "requires_account": false,
             "approximate_size": null
           },
           {
             "kind": "fulltext_pdf",
-            "uri": "https://www.osti.gov/dataexplorer/servlets/purl/1148737",
+            "uri": "https://www.osti.gov/dataexplorer/servlets/purl/1975203",
             "label": "Full text (OSTI)",
             "instructions": null,
             "requires_account": false,
@@ -795,7 +803,7 @@
           },
           {
             "kind": "landing_page",
-            "uri": "https://gdr.openei.org/submissions/317",
+            "uri": "https://doi.ccs.ornl.gov/ui/doi/436",
             "label": "Dataset landing page",
             "instructions": "The repository that actually holds this data. It may require an account the catalog record does not mention.",
             "requires_account": false,
@@ -803,15 +811,15 @@
           },
           {
             "kind": "doi",
-            "uri": "https://doi.org/10.15121/1542650",
-            "label": "Utah FORGE: Well 58-32 Stimulation Data",
+            "uri": "https://doi.org/10.13139/OLCF/2297398",
+            "label": "EAGLE-I Power Outage Data 2023",
             "instructions": null,
             "requires_account": false,
             "approximate_size": null
           },
           {
             "kind": "fulltext_pdf",
-            "uri": "https://www.osti.gov/dataexplorer/servlets/purl/1542650",
+            "uri": "https://www.osti.gov/dataexplorer/servlets/purl/2297398",
             "label": "Full text (OSTI)",
             "instructions": null,
             "requires_account": false,
@@ -819,7 +827,7 @@
           },
           {
             "kind": "landing_page",
-            "uri": "https://gdr.openei.org/submissions/1149",
+            "uri": "https://doi.ccs.ornl.gov/dataset/2e1dac8d-800d-5e09-812e-8abf52f11e27",
             "label": "Dataset landing page",
             "instructions": "The repository that actually holds this data. It may require an account the catalog record does not mention.",
             "requires_account": false,
@@ -1126,6 +1134,363 @@
           "request_id": "recorded-workflow"
         }
       }
+    },
+    {
+      "tool": "research.resolve_doi",
+      "args": {
+        "doi": "10.13139/ornlnccs/1975203",
+        "request_limit": 4,
+        "rows": 5,
+        "page_budget": 1
+      },
+      "envelope": {
+        "data": {
+          "target_namespace": "doi",
+          "target_identifier": "10.13139/ornlnccs/1975203",
+          "status": "ambiguous",
+          "candidates": [
+            {
+              "node_id": "osti-data-explorer:1975203",
+              "source_id": "osti-data-explorer",
+              "record_id": "1975203",
+              "record_indices": [
+                1
+              ]
+            },
+            {
+              "node_id": "osti-gov-records:1975203",
+              "source_id": "osti-gov-records",
+              "record_id": "1975203",
+              "record_indices": [
+                0
+              ]
+            }
+          ],
+          "records": [
+            {
+              "id": "1975203",
+              "title": "EAGLE-I Power Outage Data Information",
+              "authors": [
+                "Tansakul, Varisara [ORNL-OLCF]",
+                "Myers, Aaron",
+                "Tennille, Sarah",
+                "Denman, Matthew",
+                "Hamaker, Alec"
+              ],
+              "publication_date": "2023-05-26",
+              "product_type": "Dataset",
+              "authors_truncated": 13,
+              "doi": "10.13139/ORNLNCCS/1975203",
+              "report_number": "None",
+              "research_orgs": [
+                "Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States). Oak Ridge Leadership Computing Facility (OLCF)",
+                "Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)"
+              ],
+              "related_artifacts": {
+                "assertions": [],
+                "unparsed_count": 0
+              },
+              "description": "This DOI contains information on the EAGLE-I power outage dataset and serves as a blanket DOI for all EAGLE-I historic data. Historic power outage data from specific years have been linked to this DOI.",
+              "subjects": [
+                "24 POWER TRANSMISSION AND DISTRIBUTION",
+                "Metadata, Electric Customer Outages, EAGLE-I"
+              ],
+              "sponsor_orgs": [
+                "Office of Electricity Delivery and Energy Reliability (OE), Infrastructure Security and Energy Restoration (ISER) (OE-30)",
+                "Department of Energyâs Office of Cybersecurity Energy Security and Emergency Response (CESER)"
+              ],
+              "source_id": "osti-gov-records"
+            },
+            {
+              "id": "1975203",
+              "title": "EAGLE-I Power Outage Data Information",
+              "authors": [
+                "Tansakul, Varisara [ORNL-OLCF]",
+                "Myers, Aaron",
+                "Tennille, Sarah",
+                "Denman, Matthew",
+                "Hamaker, Alec"
+              ],
+              "publication_date": "2023-05-25",
+              "product_type": "Dataset",
+              "authors_truncated": 13,
+              "doi": "10.13139/ORNLNCCS/1975203",
+              "research_orgs": [
+                "Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States). Oak Ridge Leadership Computing Facility (OLCF)",
+                "Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)"
+              ],
+              "site_code": "ORNL-OLCF",
+              "related_artifacts": {
+                "assertions": [],
+                "unparsed_count": 0
+              },
+              "description": "This DOI contains information on the EAGLE-I power outage dataset and serves as a blanket DOI for all EAGLE-I historic data. Historic power outage data from specific years have been linked to this DOI.",
+              "subjects": [
+                "24 POWER TRANSMISSION AND DISTRIBUTION",
+                "Metadata, Electric Customer Outages, EAGLE-I"
+              ],
+              "sponsor_orgs": [
+                "Office of Electricity Delivery and Energy Reliability (OE), Infrastructure Security and Energy Restoration (ISER) (OE-30)",
+                "Department of Energyâs Office of Cybersecurity Energy Security and Emergency Response (CESER)"
+              ],
+              "site_url": "https://doi.ccs.ornl.gov/ui/doi/436",
+              "source_id": "osti-data-explorer"
+            }
+          ],
+          "search_scope": [
+            {
+              "source_id": "osti-gov-records",
+              "pages": [
+                {
+                  "page": 1,
+                  "rows": 5,
+                  "total_matches": 1,
+                  "returned": 1,
+                  "pagination": "complete",
+                  "requests_used": 1,
+                  "repeated_records": false
+                }
+              ],
+              "status": "complete",
+              "requests_used": 1
+            },
+            {
+              "source_id": "osti-doe-pages",
+              "pages": [
+                {
+                  "page": 1,
+                  "rows": 5,
+                  "total_matches": 0,
+                  "returned": 0,
+                  "pagination": "complete",
+                  "requests_used": 1,
+                  "repeated_records": false
+                }
+              ],
+              "status": "complete",
+              "requests_used": 1
+            },
+            {
+              "source_id": "osti-data-explorer",
+              "pages": [
+                {
+                  "page": 1,
+                  "rows": 5,
+                  "total_matches": 1,
+                  "returned": 1,
+                  "pagination": "complete",
+                  "requests_used": 1,
+                  "repeated_records": false
+                }
+              ],
+              "status": "complete",
+              "requests_used": 1
+            },
+            {
+              "source_id": "osti-doe-code",
+              "pages": [
+                {
+                  "page": 1,
+                  "rows": 5,
+                  "total_matches": 0,
+                  "returned": 0,
+                  "pagination": "complete",
+                  "requests_used": 1,
+                  "repeated_records": false
+                }
+              ],
+              "status": "complete",
+              "requests_used": 1
+            }
+          ],
+          "search_complete": true,
+          "request_limit": 4,
+          "requests_used": 4,
+          "request_accounting": "HTTP attempts including retries and redirects; replay counts recorded fetches; cache hits use zero requests",
+          "note": "Only exact normalized returned DOIs are candidates. Multiple source-scoped records are ambiguous. Empty or unresolved is limited to these catalogs; no target URLs or relationships are fetched."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "osti-gov-records",
+            "steward": "Office of Scientific and Technical Information",
+            "system": "OSTI.GOV Search API",
+            "dataset": "OSTI.GOV Search API",
+            "dataset_version": "current",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "cache_age_seconds": 0
+          },
+          {
+            "id": "source_02",
+            "source_id": "osti-doe-pages",
+            "steward": "Office of Scientific and Technical Information",
+            "system": "DOE PAGES (Public Access Gateway for Energy and Science)",
+            "dataset": "DOE PAGES (Public Access Gateway for Energy and Science)",
+            "dataset_version": "current",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "cache_age_seconds": 0
+          },
+          {
+            "id": "source_03",
+            "source_id": "osti-data-explorer",
+            "steward": "Office of Scientific and Technical Information",
+            "system": "DOE Data Explorer",
+            "dataset": "DOE Data Explorer",
+            "dataset_version": "current",
+            "authority_level": "official_secondary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "cache_age_seconds": 0
+          },
+          {
+            "id": "source_04",
+            "source_id": "osti-doe-code",
+            "steward": "Office of Scientific and Technical Information",
+            "system": "DOE CODE",
+            "dataset": "DOE CODE",
+            "dataset_version": "current",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "cache_age_seconds": 0
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "1975203",
+            "locator": "https://www.osti.gov/biblio/1975203",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": "2023-05-26T22:14:12Z",
+            "transformations": [
+              "normalize"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          },
+          {
+            "id": "evidence_02",
+            "source_ref": "source_03",
+            "record_id": "1975203",
+            "locator": "https://www.osti.gov/dataexplorer/biblio/1975203",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": "2023-05-26T18:14:12Z",
+            "transformations": [
+              "normalize"
+            ],
+            "payload_hash": null,
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "partial",
+          "result": "hit",
+          "sources_searched": [
+            "osti-gov-records",
+            "osti-doe-pages",
+            "osti-data-explorer",
+            "osti-doe-code"
+          ]
+        },
+        "warnings": [
+          {
+            "code": "terms_note",
+            "message": "No published rate limit means none of us knows what the real one is. If OSTI ever publishes one, or answers an email about it, this field becomes a number and the politeness budget follows it.",
+            "source_id": "osti-gov-records"
+          },
+          {
+            "code": "terms_note",
+            "message": "No published rate limit, same as the rest of the OSTI family.",
+            "source_id": "osti-doe-pages"
+          },
+          {
+            "code": "terms_note",
+            "message": "No published rate limit, same as the rest of the OSTI family.",
+            "source_id": "osti-data-explorer"
+          }
+        ],
+        "access_recipes": [
+          {
+            "kind": "doi",
+            "uri": "https://doi.org/10.13139/ORNLNCCS/1975203",
+            "label": "EAGLE-I Power Outage Data Information",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "fulltext_pdf",
+            "uri": "https://www.osti.gov/servlets/purl/1975203",
+            "label": "Full text (OSTI)",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "fulltext_pdf",
+            "uri": "https://www.osti.gov/dataexplorer/servlets/purl/1975203",
+            "label": "Full text (OSTI)",
+            "instructions": null,
+            "requires_account": false,
+            "approximate_size": null
+          },
+          {
+            "kind": "landing_page",
+            "uri": "https://doi.ccs.ornl.gov/ui/doi/436",
+            "label": "Dataset landing page",
+            "instructions": "The repository that actually holds this data. It may require an account the catalog record does not mention.",
+            "requires_account": false,
+            "approximate_size": null
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "research.resolve_doi",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "atb_parquet": "1",
+            "pvwatts_v8": "1",
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "regulations_gov": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-21",
+          "request_id": "recorded-workflow"
+        }
+      }
     }
   ],
   "retrieval_note": "Site-only recorded example: retrieval clocks and request IDs are normalized; source data and fixture capture metadata remain separate. CLI exports retain original invocation envelopes.",
@@ -1133,31 +1498,90 @@
     "Each collection is searched independently. The recorded preset uses different recorded topics; co-returned records are not relationship evidence.",
     "Only exact normalized DOIs establish shared identity. Shared identity does not assert that a paper uses a dataset or software.",
     "Explicit links require a typed DOI assertion in the publisher related_identifiers field. Grants, awards, journal prose, titles and authors never create links. Unparsed relationship values are counted.",
-    "Unresolved targets remain publisher assertions, without invented metadata, URLs or follow-up requests. No target artifact or repository content is downloaded.",
+    "Optional follow-up searches only the original typed DOI assertion frontier in four fixed active research catalogs, under a shared HTTP request budget. It never follows returned assertions or downloads target artifact or repository content.",
     "Search scope retains every page's coverage and publisher totals. Unmatched means unmatched within these bounded returned records, not proof that a relationship does not exist.",
     "The literature tool deduplicates its two collections by DOI; this inventory preserves its returned rows and original envelope evidence, rather than reconstructing discarded rows.",
     "Source text is third-party data. CSV cells that could be spreadsheet expressions are prefixed with an apostrophe; JSON retains original titles."
   ],
+  "relationship_resolution": {
+    "one_hop": true,
+    "frontier_edge_ids": [
+      "relation:fbd89f7b03d8c46d10ad1a53"
+    ],
+    "target_count": 1,
+    "target_limit": 8,
+    "request_limit": 4,
+    "requests_used": 4,
+    "targets": [
+      {
+        "target_identifier": "10.13139/ornlnccs/1975203",
+        "status": "ambiguous",
+        "candidates": [
+          {
+            "node_id": "osti-data-explorer:1975203",
+            "source_id": "osti-data-explorer",
+            "record_id": "1975203",
+            "record_indices": [
+              1
+            ],
+            "evidence": [
+              {
+                "step": 3,
+                "source_id": "osti-data-explorer",
+                "record_pointer": "/steps/3/envelope/data/records/1",
+                "evidence_pointer": "/steps/3/envelope/evidence/1",
+                "evidence_id": "evidence_02",
+                "locator": "https://www.osti.gov/dataexplorer/biblio/1975203"
+              }
+            ]
+          },
+          {
+            "node_id": "osti-gov-records:1975203",
+            "source_id": "osti-gov-records",
+            "record_id": "1975203",
+            "record_indices": [
+              0
+            ],
+            "evidence": [
+              {
+                "step": 3,
+                "source_id": "osti-gov-records",
+                "record_pointer": "/steps/3/envelope/data/records/0",
+                "evidence_pointer": "/steps/3/envelope/evidence/0",
+                "evidence_id": "evidence_01",
+                "locator": "https://www.osti.gov/biblio/1975203"
+              }
+            ]
+          }
+        ],
+        "step": 3,
+        "envelope_pointer": "/steps/3/envelope",
+        "search_complete": true
+      }
+    ]
+  },
   "label": "Research artifact linkage explorer",
   "evidence_document": "report.json",
   "parameters": {
     "queries": {
       "literature": "perovskite solar",
-      "dataset": "geothermal",
+      "dataset": "EAGLE-I",
       "software": "machine learning"
     },
     "rows": null,
-    "page_budget": 1
+    "page_budget": 1,
+    "resolve_relationships": true,
+    "relationship_request_budget": 4
   },
   "records": [
     {
-      "node_id": "osti-data-explorer:1148737",
+      "node_id": "osti-data-explorer:1975203",
       "collection": "dataset",
       "source_id": "osti-data-explorer",
-      "record_id": "1148737",
-      "title": "Structural Orientations Adjacent to Some Colorado Geothermal Systems",
-      "doi": "10.15121/1148737",
-      "doi_key": "10.15121/1148737",
+      "record_id": "1975203",
+      "title": "EAGLE-I Power Outage Data Information",
+      "doi": "10.13139/ORNLNCCS/1975203",
+      "doi_key": "10.13139/ornlnccs/1975203",
       "repository": null,
       "evidence": [
         {
@@ -1166,20 +1590,20 @@
           "evidence_pointer": "/steps/1/envelope/evidence/0",
           "evidence_id": "evidence_01",
           "source_id": "osti-data-explorer",
-          "locator": "https://www.osti.gov/dataexplorer/biblio/1148737"
+          "locator": "https://www.osti.gov/dataexplorer/biblio/1975203"
         }
       ],
       "assertions": [],
       "unparsed_relationship_count": 0
     },
     {
-      "node_id": "osti-data-explorer:1542650",
+      "node_id": "osti-data-explorer:2297398",
       "collection": "dataset",
       "source_id": "osti-data-explorer",
-      "record_id": "1542650",
-      "title": "Utah FORGE: Well 58-32 Stimulation Data",
-      "doi": "10.15121/1542650",
-      "doi_key": "10.15121/1542650",
+      "record_id": "2297398",
+      "title": "EAGLE-I Power Outage Data 2023",
+      "doi": "10.13139/OLCF/2297398",
+      "doi_key": "10.13139/olcf/2297398",
       "repository": null,
       "evidence": [
         {
@@ -1188,10 +1612,29 @@
           "evidence_pointer": "/steps/1/envelope/evidence/1",
           "evidence_id": "evidence_02",
           "source_id": "osti-data-explorer",
-          "locator": "https://www.osti.gov/dataexplorer/biblio/1542650"
+          "locator": "https://www.osti.gov/dataexplorer/biblio/2297398"
         }
       ],
-      "assertions": [],
+      "assertions": [
+        {
+          "relationship": "IsPartOf",
+          "target_namespace": "doi",
+          "target_identifier": "10.13139/ornlnccs/1975203",
+          "origin_field": "related_identifiers/0",
+          "publisher_value": "CURATED; IsPartOf; {\"related_identifier\" : \"10.13139/ORNLNCCS/1975203\", \"related_identifier_type\" : \"DOI\", \"relation_type\" : \"IsPartOf\", \"title\" : \"EAGLE-I Power Outage Data Information\", \"source_name\" : [\"Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States). Oak Ridge Leadership Computing Facility (OLCF); Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)\"], \"publication_date\" : \"2023-01-01T05:00:00Z\", \"optional_data_json_string\" : \"{\\\"author1LastName\\\": \\\"Tansakul\\\", \\\"author2LastName\\\": \\\"Myers\\\", \\\"author3LastName\\\": \\\"Tennille\\\", \\\"author1FirstName\\\": \\\"Varisara\\\", \\\"author2FirstName\\\": \\\"Aaron\\\", \\\"author3FirstName\\\": \\\"Sarah\\\", \\\"crossrefProductType\\\": \\\"dataset\\\"}\"}",
+          "evidence": {
+            "step": 1,
+            "record_pointer": "/steps/1/envelope/data/datasets/1",
+            "evidence_pointer": "/steps/1/envelope/evidence/1",
+            "evidence_id": "evidence_02",
+            "source_id": "osti-data-explorer",
+            "locator": "https://www.osti.gov/dataexplorer/biblio/2297398",
+            "assertion_pointer": "/steps/1/envelope/data/datasets/1/related_artifacts/assertions/0",
+            "origin_field": "related_identifiers/0",
+            "publisher_value": "CURATED; IsPartOf; {\"related_identifier\" : \"10.13139/ORNLNCCS/1975203\", \"related_identifier_type\" : \"DOI\", \"relation_type\" : \"IsPartOf\", \"title\" : \"EAGLE-I Power Outage Data Information\", \"source_name\" : [\"Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States). Oak Ridge Leadership Computing Facility (OLCF); Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)\"], \"publication_date\" : \"2023-01-01T05:00:00Z\", \"optional_data_json_string\" : \"{\\\"author1LastName\\\": \\\"Tansakul\\\", \\\"author2LastName\\\": \\\"Myers\\\", \\\"author3LastName\\\": \\\"Tennille\\\", \\\"author1FirstName\\\": \\\"Varisara\\\", \\\"author2FirstName\\\": \\\"Aaron\\\", \\\"author3FirstName\\\": \\\"Sarah\\\", \\\"crossrefProductType\\\": \\\"dataset\\\"}\"}"
+          }
+        }
+      ],
       "unparsed_relationship_count": 0
     },
     {
@@ -1418,7 +1861,7 @@
     },
     {
       "collection": "dataset",
-      "query": "geothermal",
+      "query": "EAGLE-I",
       "rows_per_source_per_page": 2,
       "pages": [
         {
@@ -1441,7 +1884,7 @@
             ]
           },
           "publisher_totals": {
-            "osti-data-explorer": 1062
+            "osti-data-explorer": 9
           },
           "returned_counts": {
             "osti-data-explorer": 2
@@ -1492,16 +1935,77 @@
     }
   ],
   "shared_identity": [],
-  "explicit_relationships": [],
+  "explicit_relationships": [
+    {
+      "edge_id": "relation:fbd89f7b03d8c46d10ad1a53",
+      "from": "osti-data-explorer:2297398",
+      "relationship": "IsPartOf",
+      "target_namespace": "doi",
+      "target_identifier": "10.13139/ornlnccs/1975203",
+      "matched_nodes": [
+        "osti-data-explorer:1975203"
+      ],
+      "evidence": [
+        {
+          "step": 1,
+          "record_pointer": "/steps/1/envelope/data/datasets/1",
+          "evidence_pointer": "/steps/1/envelope/evidence/1",
+          "evidence_id": "evidence_02",
+          "source_id": "osti-data-explorer",
+          "locator": "https://www.osti.gov/dataexplorer/biblio/2297398",
+          "assertion_pointer": "/steps/1/envelope/data/datasets/1/related_artifacts/assertions/0",
+          "origin_field": "related_identifiers/0",
+          "publisher_value": "CURATED; IsPartOf; {\"related_identifier\" : \"10.13139/ORNLNCCS/1975203\", \"related_identifier_type\" : \"DOI\", \"relation_type\" : \"IsPartOf\", \"title\" : \"EAGLE-I Power Outage Data Information\", \"source_name\" : [\"Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States). Oak Ridge Leadership Computing Facility (OLCF); Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)\"], \"publication_date\" : \"2023-01-01T05:00:00Z\", \"optional_data_json_string\" : \"{\\\"author1LastName\\\": \\\"Tansakul\\\", \\\"author2LastName\\\": \\\"Myers\\\", \\\"author3LastName\\\": \\\"Tennille\\\", \\\"author1FirstName\\\": \\\"Varisara\\\", \\\"author2FirstName\\\": \\\"Aaron\\\", \\\"author3FirstName\\\": \\\"Sarah\\\", \\\"crossrefProductType\\\": \\\"dataset\\\"}\"}"
+        }
+      ],
+      "resolution": "matched_returned_record",
+      "followup": {
+        "status": "ambiguous",
+        "candidates": [
+          {
+            "node_id": "osti-data-explorer:1975203",
+            "source_id": "osti-data-explorer",
+            "record_id": "1975203",
+            "record_indices": [
+              1
+            ],
+            "evidence": [
+              {
+                "step": 3,
+                "source_id": "osti-data-explorer",
+                "record_pointer": "/steps/3/envelope/data/records/1",
+                "evidence_pointer": "/steps/3/envelope/evidence/1",
+                "evidence_id": "evidence_02",
+                "locator": "https://www.osti.gov/dataexplorer/biblio/1975203"
+              }
+            ]
+          },
+          {
+            "node_id": "osti-gov-records:1975203",
+            "source_id": "osti-gov-records",
+            "record_id": "1975203",
+            "record_indices": [
+              0
+            ],
+            "evidence": [
+              {
+                "step": 3,
+                "source_id": "osti-gov-records",
+                "record_pointer": "/steps/3/envelope/data/records/0",
+                "evidence_pointer": "/steps/3/envelope/evidence/0",
+                "evidence_id": "evidence_01",
+                "locator": "https://www.osti.gov/biblio/1975203"
+              }
+            ]
+          }
+        ],
+        "step": 3,
+        "envelope_pointer": "/steps/3/envelope",
+        "search_complete": true
+      }
+    }
+  ],
   "unmatched_records": [
-    {
-      "node_id": "osti-data-explorer:1148737",
-      "reason": "no_resolved_explicit_relationship_or_shared_doi_in_bounded_results"
-    },
-    {
-      "node_id": "osti-data-explorer:1542650",
-      "reason": "no_resolved_explicit_relationship_or_shared_doi_in_bounded_results"
-    },
     {
       "node_id": "osti-doe-code:187349",
       "reason": "no_resolved_explicit_relationship_or_shared_doi_in_bounded_results"

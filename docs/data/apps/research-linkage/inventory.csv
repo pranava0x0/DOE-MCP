@@ -1,6 +1,6 @@
 node_id,collection,source_id,record_id,title,doi,repository
-osti-data-explorer:1148737,dataset,osti-data-explorer,1148737,Structural Orientations Adjacent to Some Colorado Geothermal Systems,10.15121/1148737,
-osti-data-explorer:1542650,dataset,osti-data-explorer,1542650,Utah FORGE: Well 58-32 Stimulation Data,10.15121/1542650,
+osti-data-explorer:1975203,dataset,osti-data-explorer,1975203,EAGLE-I Power Outage Data Information,10.13139/ORNLNCCS/1975203,
+osti-data-explorer:2297398,dataset,osti-data-explorer,2297398,EAGLE-I Power Outage Data 2023,10.13139/OLCF/2297398,
 osti-doe-code:187349,software,osti-doe-code,187349,Particle Filter Based Inference Testing,10.11578/dc.20260806.1,https://github.com/IdahoLabUnsupported/PAR-FIT
 osti-doe-code:189030,software,osti-doe-code,189030,LeWRON: Learning ElectroWeak phase tRansitiON with agentic architecture,10.11578/dc.20260821.5,https://github.com/quarkquartet/LeWRON
 osti-doe-code:191470,software,osti-doe-code,191470,lanl/bacterial-classification,10.11578/dc.20260901.5,https://github.com/lanl/bacterial-classification

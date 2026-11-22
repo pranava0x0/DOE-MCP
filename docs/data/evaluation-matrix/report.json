@@ -5,7 +5,7 @@
   "simulation": true,
   "cohorts": [
     {
-      "id": "5ff433c35213d98ffaec2531603a7064ba32299bf628ce345d7488a371b28d93",
+      "id": "2a8e5e722dc42cafe19865b7cd863399b653a77638d33f208e95158cd90be443",
       "tasks": {
         "alias": {
           "task": {
@@ -144,6 +144,10 @@
           "f83c54a2e33f84cca881a0d7581f92b782501733b2746c9b17f0201e1da6d89d"
         ],
         [
+          "research-relationships.json",
+          "9996e9d9f8a64cfc0e393f93bf45e059175ff66bc009febba7194bb647dee503"
+        ],
+        [
           "usgs-uspvdb.json",
           "4d93ec19e3b23d1de9ad1a1d618cca40070ae455764062a91d8a19a4c975c24c"
         ],
@@ -163,7 +167,7 @@
   "reports": [
     {
       "id": "simulation-focused-skills-off",
-      "sha256": "7321acefb15e3954ce2375cb9759c8f9e204ce1cd87ceb1d184a35fbc3fae948",
+      "sha256": "3a87047fe130092594ff4b49fdb10647c0ae8751f88aca34848cd3b0290fc034",
       "started_at": "2026-11-21T00:00:00+00:00",
       "fixtures": [
         {
@@ -312,6 +316,11 @@
           "file": "pnnl-vips.json",
           "sha256": "f83c54a2e33f84cca881a0d7581f92b782501733b2746c9b17f0201e1da6d89d",
           "captured_at": null
+        },
+        {
+          "file": "research-relationships.json",
+          "sha256": "9996e9d9f8a64cfc0e393f93bf45e059175ff66bc009febba7194bb647dee503",
+          "captured_at": "2026-11-22T06:42:31.231247+00:00"
         },
         {
           "file": "usgs-uspvdb.json",
@@ -328,7 +337,7 @@
     },
     {
       "id": "simulation-focused-skills-on",
-      "sha256": "182671effe11b3b535405336017bb7d1f5cf6b76842fe44b40ae3ac854de01d0",
+      "sha256": "33ef0215a9a05252e52bf47aa717ac3010c4213a603f9cc4f25fe75b92ed41ac",
       "started_at": "2026-11-21T00:00:00+00:00",
       "fixtures": [
         {
@@ -477,6 +486,11 @@
           "file": "pnnl-vips.json",
           "sha256": "f83c54a2e33f84cca881a0d7581f92b782501733b2746c9b17f0201e1da6d89d",
           "captured_at": null
+        },
+        {
+          "file": "research-relationships.json",
+          "sha256": "9996e9d9f8a64cfc0e393f93bf45e059175ff66bc009febba7194bb647dee503",
+          "captured_at": "2026-11-22T06:42:31.231247+00:00"
         },
         {
           "file": "usgs-uspvdb.json",
@@ -493,7 +507,7 @@
     },
     {
       "id": "simulation-all-skills-off",
-      "sha256": "c09df8a991eeadef786556c99d3552ec8f847a19dd172159c2b049055a320580",
+      "sha256": "7ec85a3a8a77bef319e3d4ffae1de3033b5b2d91357bbd99f2d7b79265dbf2f4",
       "started_at": "2026-11-21T00:00:00+00:00",
       "fixtures": [
         {
@@ -642,6 +656,11 @@
           "file": "pnnl-vips.json",
           "sha256": "f83c54a2e33f84cca881a0d7581f92b782501733b2746c9b17f0201e1da6d89d",
           "captured_at": null
+        },
+        {
+          "file": "research-relationships.json",
+          "sha256": "9996e9d9f8a64cfc0e393f93bf45e059175ff66bc009febba7194bb647dee503",
+          "captured_at": "2026-11-22T06:42:31.231247+00:00"
         },
         {
           "file": "usgs-uspvdb.json",
@@ -658,7 +677,7 @@
     },
     {
       "id": "simulation-all-skills-on",
-      "sha256": "254b4620adcb70cf2bcdcfaa8d97850c6b6dec95b06aa96dc2c1b0dcc2430acf",
+      "sha256": "37ed102f9aba68824aea8bde8082e1ff2bc65ff9b8c32c4132696f1ceb68a889",
       "started_at": "2026-11-21T00:00:00+00:00",
       "fixtures": [
         {
@@ -807,6 +826,11 @@
           "file": "pnnl-vips.json",
           "sha256": "f83c54a2e33f84cca881a0d7581f92b782501733b2746c9b17f0201e1da6d89d",
           "captured_at": null
+        },
+        {
+          "file": "research-relationships.json",
+          "sha256": "9996e9d9f8a64cfc0e393f93bf45e059175ff66bc009febba7194bb647dee503",
+          "captured_at": "2026-11-22T06:42:31.231247+00:00"
         },
         {
           "file": "usgs-uspvdb.json",
@@ -824,8 +848,78 @@
   ],
   "cells": [
     {
-      "cohort_id": "5ff433c35213d98ffaec2531603a7064ba32299bf628ce345d7488a371b28d93",
-      "configuration_id": "2c77f0cca572508da6866970b5d3b5b2d3b953a93a1b7d39bbd6744ffc8be1d3",
+      "cohort_id": "2a8e5e722dc42cafe19865b7cd863399b653a77638d33f208e95158cd90be443",
+      "configuration_id": "0adce2442ac7475ee9cea2490ef9c9949cebcac6eb562c5535b0dba58e098b1e",
+      "model": "deterministic-simulation",
+      "model_version": "simulation-v1",
+      "sample_settings": {
+        "deterministic": true,
+        "provider_calls": 0
+      },
+      "driver": "evaluation-simulation-driver.py",
+      "driver_sha256": "d0319e1efd52092e9196105f5dd2ef8d69c841a2c74c8969e330b38733da7fa7",
+      "exposure": "focused",
+      "skills_enabled": true,
+      "simulation": true,
+      "budgets": {
+        "max_calls": 3,
+        "max_tokens": 1000,
+        "max_turns": 3,
+        "timeout_seconds": 10
+      },
+      "contexts": {
+        "alias": {
+          "skill_sha256": "5d86224925242eb92958fcdb43cdbd939380fce41c180daaa19718b61dc1c279",
+          "tool_schema_sha256": "542c88169d50becc502da03d185b2272eea1e887fb8e86c85c8dd18c22f8f55e",
+          "profiles": [
+            "research:default"
+          ],
+          "visible_tools": [
+            "discovery.list_pure_resources",
+            "discovery.search_all_catalogs",
+            "docs.get_rulemaking",
+            "docs.search_rulemakings",
+            "registry.lab_crosswalk",
+            "registry.resolve_org",
+            "research.get_record",
+            "research.resolve_doi",
+            "research.search_datasets",
+            "research.search_literature",
+            "research.search_software",
+            "tech.find_licensable_ip"
+          ],
+          "registry_revision": "2026-11-21"
+        }
+      },
+      "unknown_configuration_fields": [],
+      "reports": 1,
+      "scheduled": 3,
+      "attempted": 2,
+      "completed": 1,
+      "automatic_checked": 1,
+      "automatic_pass": 1,
+      "reviewed": 0,
+      "unreviewed_or_unrun": 3,
+      "reviewed_quality_mean": null,
+      "overall_quality_mean": null,
+      "quality_by_reviewer_kind": {},
+      "reviewers": [],
+      "status_counts": {
+        "budget_exhausted": 2,
+        "needs_review": 1
+      },
+      "usage": {
+        "input_tokens": 30,
+        "cached_input_tokens": 0,
+        "output_tokens": 15,
+        "reasoning_output_tokens": 0
+      },
+      "estimated_cost_usd": null,
+      "cost_unknown_runs": 2
+    },
+    {
+      "cohort_id": "2a8e5e722dc42cafe19865b7cd863399b653a77638d33f208e95158cd90be443",
+      "configuration_id": "5c3f6c995ebee9c7d12dd0a0a335eca5044dbea2cdcc3b300d490be122dee180",
       "model": "deterministic-simulation",
       "model_version": "simulation-v1",
       "sample_settings": {
@@ -846,7 +940,7 @@
       "contexts": {
         "alias": {
           "skill_sha256": "5d86224925242eb92958fcdb43cdbd939380fce41c180daaa19718b61dc1c279",
-          "tool_schema_sha256": "73e31c65b8759787ec7dbcbd770cbd505182078f0ec43a168e978464b0e5cc21",
+          "tool_schema_sha256": "542c88169d50becc502da03d185b2272eea1e887fb8e86c85c8dd18c22f8f55e",
           "profiles": [
             "research:default"
           ],
@@ -858,6 +952,7 @@
             "registry.lab_crosswalk",
             "registry.resolve_org",
             "research.get_record",
+            "research.resolve_doi",
             "research.search_datasets",
             "research.search_literature",
             "research.search_software",
@@ -893,77 +988,8 @@
       "cost_unknown_runs": 2
     },
     {
-      "cohort_id": "5ff433c35213d98ffaec2531603a7064ba32299bf628ce345d7488a371b28d93",
-      "configuration_id": "44d081c1b186cd5295b6137e420bab9ea2528287f13a231694fa8ae6dfbca357",
-      "model": "deterministic-simulation",
-      "model_version": "simulation-v1",
-      "sample_settings": {
-        "deterministic": true,
-        "provider_calls": 0
-      },
-      "driver": "evaluation-simulation-driver.py",
-      "driver_sha256": "d0319e1efd52092e9196105f5dd2ef8d69c841a2c74c8969e330b38733da7fa7",
-      "exposure": "focused",
-      "skills_enabled": true,
-      "simulation": true,
-      "budgets": {
-        "max_calls": 3,
-        "max_tokens": 1000,
-        "max_turns": 3,
-        "timeout_seconds": 10
-      },
-      "contexts": {
-        "alias": {
-          "skill_sha256": "5d86224925242eb92958fcdb43cdbd939380fce41c180daaa19718b61dc1c279",
-          "tool_schema_sha256": "73e31c65b8759787ec7dbcbd770cbd505182078f0ec43a168e978464b0e5cc21",
-          "profiles": [
-            "research:default"
-          ],
-          "visible_tools": [
-            "discovery.list_pure_resources",
-            "discovery.search_all_catalogs",
-            "docs.get_rulemaking",
-            "docs.search_rulemakings",
-            "registry.lab_crosswalk",
-            "registry.resolve_org",
-            "research.get_record",
-            "research.search_datasets",
-            "research.search_literature",
-            "research.search_software",
-            "tech.find_licensable_ip"
-          ],
-          "registry_revision": "2026-11-21"
-        }
-      },
-      "unknown_configuration_fields": [],
-      "reports": 1,
-      "scheduled": 3,
-      "attempted": 2,
-      "completed": 1,
-      "automatic_checked": 1,
-      "automatic_pass": 1,
-      "reviewed": 0,
-      "unreviewed_or_unrun": 3,
-      "reviewed_quality_mean": null,
-      "overall_quality_mean": null,
-      "quality_by_reviewer_kind": {},
-      "reviewers": [],
-      "status_counts": {
-        "budget_exhausted": 2,
-        "needs_review": 1
-      },
-      "usage": {
-        "input_tokens": 30,
-        "cached_input_tokens": 0,
-        "output_tokens": 15,
-        "reasoning_output_tokens": 0
-      },
-      "estimated_cost_usd": null,
-      "cost_unknown_runs": 2
-    },
-    {
-      "cohort_id": "5ff433c35213d98ffaec2531603a7064ba32299bf628ce345d7488a371b28d93",
-      "configuration_id": "4bef8c5c4cad275307c184787b1b6e2d7385e28b985fb4a84676bcff6a67578a",
+      "cohort_id": "2a8e5e722dc42cafe19865b7cd863399b653a77638d33f208e95158cd90be443",
+      "configuration_id": "811f6ca6a8b275c28cb1fed9c560f234a54cba615c9a65668e7976f29d2e49b9",
       "model": "deterministic-simulation",
       "model_version": "simulation-v1",
       "sample_settings": {
@@ -984,7 +1010,7 @@
       "contexts": {
         "alias": {
           "skill_sha256": "5d86224925242eb92958fcdb43cdbd939380fce41c180daaa19718b61dc1c279",
-          "tool_schema_sha256": "e1fe029e023f514e891acf5c4de30ca054a87d82df55c356d1e640cca6d505cc",
+          "tool_schema_sha256": "d1308e853effe07778e00d75ab7000fd96354ce8ba554d6fd538f90890cbd7cd",
           "profiles": [
             "research:default",
             "energy:default",
@@ -1058,6 +1084,7 @@
             "registry.lab_crosswalk",
             "registry.resolve_org",
             "research.get_record",
+            "research.resolve_doi",
             "research.search_datasets",
             "research.search_literature",
             "research.search_software",
@@ -1105,8 +1132,8 @@
       "cost_unknown_runs": 2
     },
     {
-      "cohort_id": "5ff433c35213d98ffaec2531603a7064ba32299bf628ce345d7488a371b28d93",
-      "configuration_id": "ef0130ad733874930d9648137f29e154d07732f2d40bade40680ed044f9d4938",
+      "cohort_id": "2a8e5e722dc42cafe19865b7cd863399b653a77638d33f208e95158cd90be443",
+      "configuration_id": "f996e9063949bea1d5fb5f0418be2767e105922c02479ca895806962ab7a327d",
       "model": "deterministic-simulation",
       "model_version": "simulation-v1",
       "sample_settings": {
@@ -1127,7 +1154,7 @@
       "contexts": {
         "alias": {
           "skill_sha256": "5d86224925242eb92958fcdb43cdbd939380fce41c180daaa19718b61dc1c279",
-          "tool_schema_sha256": "e1fe029e023f514e891acf5c4de30ca054a87d82df55c356d1e640cca6d505cc",
+          "tool_schema_sha256": "d1308e853effe07778e00d75ab7000fd96354ce8ba554d6fd538f90890cbd7cd",
           "profiles": [
             "research:default",
             "energy:default",
@@ -1201,6 +1228,7 @@
             "registry.lab_crosswalk",
             "registry.resolve_org",
             "research.get_record",
+            "research.resolve_doi",
             "research.search_datasets",
             "research.search_literature",
             "research.search_software",
@@ -1251,7 +1279,7 @@
   "runs": [
     {
       "report_id": "simulation-focused-skills-off",
-      "report_sha256": "7321acefb15e3954ce2375cb9759c8f9e204ce1cd87ceb1d184a35fbc3fae948",
+      "report_sha256": "3a87047fe130092594ff4b49fdb10647c0ae8751f88aca34848cd3b0290fc034",
       "run_id": "simulation-focused-skills-off-1",
       "task_id": "alias",
       "repeat": 1,
@@ -1296,7 +1324,7 @@
     },
     {
       "report_id": "simulation-focused-skills-off",
-      "report_sha256": "7321acefb15e3954ce2375cb9759c8f9e204ce1cd87ceb1d184a35fbc3fae948",
+      "report_sha256": "3a87047fe130092594ff4b49fdb10647c0ae8751f88aca34848cd3b0290fc034",
       "run_id": "simulation-focused-skills-off-2",
       "task_id": "alias",
       "repeat": 2,
@@ -1333,7 +1361,7 @@
     },
     {
       "report_id": "simulation-focused-skills-off",
-      "report_sha256": "7321acefb15e3954ce2375cb9759c8f9e204ce1cd87ceb1d184a35fbc3fae948",
+      "report_sha256": "3a87047fe130092594ff4b49fdb10647c0ae8751f88aca34848cd3b0290fc034",
       "run_id": "simulation-focused-skills-off-3",
       "task_id": "alias",
       "repeat": 3,
@@ -1367,7 +1395,7 @@
     },
     {
       "report_id": "simulation-focused-skills-on",
-      "report_sha256": "182671effe11b3b535405336017bb7d1f5cf6b76842fe44b40ae3ac854de01d0",
+      "report_sha256": "33ef0215a9a05252e52bf47aa717ac3010c4213a603f9cc4f25fe75b92ed41ac",
       "run_id": "simulation-focused-skills-on-1",
       "task_id": "alias",
       "repeat": 1,
@@ -1412,7 +1440,7 @@
     },
     {
       "report_id": "simulation-focused-skills-on",
-      "report_sha256": "182671effe11b3b535405336017bb7d1f5cf6b76842fe44b40ae3ac854de01d0",
+      "report_sha256": "33ef0215a9a05252e52bf47aa717ac3010c4213a603f9cc4f25fe75b92ed41ac",
       "run_id": "simulation-focused-skills-on-2",
       "task_id": "alias",
       "repeat": 2,
@@ -1449,7 +1477,7 @@
     },
     {
       "report_id": "simulation-focused-skills-on",
-      "report_sha256": "182671effe11b3b535405336017bb7d1f5cf6b76842fe44b40ae3ac854de01d0",
+      "report_sha256": "33ef0215a9a05252e52bf47aa717ac3010c4213a603f9cc4f25fe75b92ed41ac",
       "run_id": "simulation-focused-skills-on-3",
       "task_id": "alias",
       "repeat": 3,
@@ -1483,7 +1511,7 @@
     },
     {
       "report_id": "simulation-all-skills-off",
-      "report_sha256": "c09df8a991eeadef786556c99d3552ec8f847a19dd172159c2b049055a320580",
+      "report_sha256": "7ec85a3a8a77bef319e3d4ffae1de3033b5b2d91357bbd99f2d7b79265dbf2f4",
       "run_id": "simulation-all-skills-off-1",
       "task_id": "alias",
       "repeat": 1,
@@ -1528,7 +1556,7 @@
     },
     {
       "report_id": "simulation-all-skills-off",
-      "report_sha256": "c09df8a991eeadef786556c99d3552ec8f847a19dd172159c2b049055a320580",
+      "report_sha256": "7ec85a3a8a77bef319e3d4ffae1de3033b5b2d91357bbd99f2d7b79265dbf2f4",
       "run_id": "simulation-all-skills-off-2",
       "task_id": "alias",
       "repeat": 2,
@@ -1565,7 +1593,7 @@
     },
     {
       "report_id": "simulation-all-skills-off",
-      "report_sha256": "c09df8a991eeadef786556c99d3552ec8f847a19dd172159c2b049055a320580",
+      "report_sha256": "7ec85a3a8a77bef319e3d4ffae1de3033b5b2d91357bbd99f2d7b79265dbf2f4",
       "run_id": "simulation-all-skills-off-3",
       "task_id": "alias",
       "repeat": 3,
@@ -1599,7 +1627,7 @@
     },
     {
       "report_id": "simulation-all-skills-on",
-      "report_sha256": "254b4620adcb70cf2bcdcfaa8d97850c6b6dec95b06aa96dc2c1b0dcc2430acf",
+      "report_sha256": "37ed102f9aba68824aea8bde8082e1ff2bc65ff9b8c32c4132696f1ceb68a889",
       "run_id": "simulation-all-skills-on-1",
       "task_id": "alias",
       "repeat": 1,
@@ -1644,7 +1672,7 @@
     },
     {
       "report_id": "simulation-all-skills-on",
-      "report_sha256": "254b4620adcb70cf2bcdcfaa8d97850c6b6dec95b06aa96dc2c1b0dcc2430acf",
+      "report_sha256": "37ed102f9aba68824aea8bde8082e1ff2bc65ff9b8c32c4132696f1ceb68a889",
       "run_id": "simulation-all-skills-on-2",
       "task_id": "alias",
       "repeat": 2,
@@ -1681,7 +1709,7 @@
     },
     {
       "report_id": "simulation-all-skills-on",
-      "report_sha256": "254b4620adcb70cf2bcdcfaa8d97850c6b6dec95b06aa96dc2c1b0dcc2430acf",
+      "report_sha256": "37ed102f9aba68824aea8bde8082e1ff2bc65ff9b8c32c4132696f1ceb68a889",
       "run_id": "simulation-all-skills-on-3",
       "task_id": "alias",
       "repeat": 3,

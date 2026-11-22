@@ -60,7 +60,8 @@ async def execute(args):
             files = await gcam.build(run, plan=plan)
         elif args.application == "research-linkage":
             files = await research_linkage.build(run, query=args.query, literature_query=args.literature_query,
-                dataset_query=args.dataset_query, software_query=args.software_query, rows=args.rows, page_budget=args.page_budget)
+                dataset_query=args.dataset_query, software_query=args.software_query, rows=args.rows, page_budget=args.page_budget,
+                resolve_relationships=args.resolve_relationships, relationship_request_budget=args.relationship_request_budget)
         else:
             previous = json.loads(args.previous.read_bytes()) if args.previous else None
             if args.source == "regulations":
@@ -132,6 +133,8 @@ def register(sub):
             parser.add_argument("--literature-query", default="", help="override literature topic")
             parser.add_argument("--dataset-query", default="", help="override dataset topic")
             parser.add_argument("--software-query", default="", help="override software topic")
+            parser.add_argument("--resolve-relationships", action="store_true", help="resolve one hop of original typed DOI assertions")
+            parser.add_argument("--relationship-request-budget", type=int, default=4, help="shared HTTP attempt limit for relationship follow-ups (1–24)")
             parser.add_argument("--rows", type=int, help="per-source page size; preset uses recorded sizes")
             parser.add_argument("--page-budget", type=int, default=1)
 

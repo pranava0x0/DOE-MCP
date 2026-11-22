@@ -483,3 +483,28 @@ scripted-test limitations above still apply. Results are in ignored
 
 The final preflight report headings also passed focused keyboard navigation
 and axe checks at 375 and 1280 pixels, with no violations or incomplete rules.
+
+
+## Publisher relationship resolution — 2026-11-22
+
+The research application now follows a bounded snapshot of explicit publisher
+DOI relationships across four OSTI catalogs. Real anonymous recordings retain
+the originating assertion and two source-scoped candidates for one EAGLE-I DOI.
+The application reports ambiguity; it does not infer two distinct artifacts
+or recursively fetch their contents. Astra reviewed exact DOI matching,
+pagination, shared HTTP budgets, retries and evidence retention.
+
+All 1,661 replay tests passed with one architecture-file skip. Registry and
+schema checks, Ruff, writing checks, 39 export comparisons and the independent
+Croissant reader passed. All four browser scripts passed: 39 demos at three
+widths, 228 section jumps, 42 measured journeys and three evaluation paths.
+Download checks compare the inventory, linkage graph and full report with
+the files served by the site. The final local link count is recorded in the
+journey report.
+
+Accessibility checks completed 110 axe scans and 404 assertions with zero
+violations or browser errors. Twenty-two contrast rule instances remain
+incomplete for manual review. No actual screen-reader test was performed;
+the scripted browser and local-performance limitations above still apply.
+Artifacts are in ignored `uat-screenshots/keyless-relationships/`.
+No key, paid model or arbitrary artifact download was used.

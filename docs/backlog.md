@@ -1,6 +1,6 @@
 # Development backlog
 
-Updated 2026-11-22 after PRs 19–28 and the profile preflight addition. This is the public development backlog.
+Updated 2026-11-22 after PRs 19–29 and the relationship resolution addition. This is the public development backlog.
 Items below are plans, not claims that a proposed integration works.
 
 A **server** hosts tools for a domain. A **tool** performs one bounded read.
@@ -23,7 +23,8 @@ when its dependency, credential or operating boundary requires one.
 | Done | Pinned ATB 2024/2025 tools, server and application. PVWatts remains proposed. | [PR 26](https://github.com/pranava0x0/DOE-MCP/pull/26) |
 | Done | Direct homepage copy, desktop/mobile section navigation and automated accessibility checks. Manual screen-reader testing remains future work. | [PR 27](https://github.com/pranava0x0/DOE-MCP/pull/27) |
 | Done | ATB assumptions skill, five recorded checks and a two-edition demo covering exact qualifiers, ambiguity, nulls, empty selections and currency bases. Evaluation tasks are prepared; no model-quality result is claimed. | [PR 28](https://github.com/pranava0x0/DOE-MCP/pull/28) · [Demo](demos.html#atb-assumptions) |
-| Done | Offline profile preflight with versioned JSON, installation and source-gate diagnostics, and guarded base/extra wheel checks. Credentials and network remain explicitly unchecked. | [Profile preflight](profile-preflight.html) |
+| Done | Offline profile preflight with versioned JSON, installation and source-gate diagnostics, and guarded base/extra wheel checks. Credentials and network remain explicitly unchecked. | [PR 29](https://github.com/pranava0x0/DOE-MCP/pull/29) · [Profile preflight](profile-preflight.html) |
+| Done | Bounded, one-hop DOI resolution across four OSTI catalogs, retaining publisher assertions, source evidence, ambiguity and request limits. The recorded EAGLE-I example has two source-scoped candidates for one DOI. | [Resolution rules](research-relationships.html) · [Application](applications.html#research-artifact-linkage-explorer) |
 
 The [applications](applications.html), [demos](demos.html) and
 [evaluation example](evaluation-example.html) retain their evidence and
@@ -31,13 +32,12 @@ limitations. Recorded examples and simulations are labelled separately.
 
 ## Next batch: no keys required
 
-The ATB skill and profile preflight are complete. Ship the remaining items as separate, reviewable PRs in this order. Each must retain the
+The ATB skill, profile preflight and relationship resolution are complete. The remaining BPA import must retain the
 source gates, pass replay tests and run the browser/accessibility checks
 on PRs and main. Suggested effort is relative to the existing implementation.
 
 | Order | Priority | Layer | Improvement | Acceptance criteria | Effort |
 |---|---|---|---|---|---|
-| 3 | High | Tool and research application | Resolve one hop of an explicit publisher relationship. | Use existing research adapters and returned identifiers; bound requests and output. Preserve the originating assertion and resolved source evidence. Report unresolved, ambiguous and budget-limited targets. Never infer an edge from a title or topic. Add real anonymous recordings before claiming live coverage. | Medium |
 | 4 | High | Forecast application | Prepare forecast-panel observation imports from existing BPA envelopes. | Keep original envelopes, hashes, units, interval meaning and timezone assumptions. Missing availability stays unknown; require caller evidence before an observation can enter an issuance-time baseline. No retrospective data presented as a prospective forecast. | Medium |
 
 Use Sol for implementation and focused tests;

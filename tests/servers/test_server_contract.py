@@ -74,7 +74,7 @@ async def test_every_tool_binds_with_an_output_schema(ctx):
     is asserted."""
     server = build_server(ctx, "research:discovery")
     tools = await server.list_tools()
-    assert len(tools) == 15
+    assert len(tools) == 16
     for tool in tools:
         assert tool.output_schema, (
             f"{tool.name} bound without an output schema")

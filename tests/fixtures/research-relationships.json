@@ -1,0 +1,310 @@
+{
+  "note": "Recorded live from anonymous OSTI research APIs by tools/record_research_relationships.py; original query provenance retained, no response trimming. Partial files demonstrate only their captured interactions.",
+  "recorded_at": "2026-11-22T06:42:31.231247+00:00",
+  "redaction": "Email addresses replaced with redacted@example.invalid and credential values with 'redacted' at record time. Field shapes and lengths are otherwise the publisher's.",
+  "interactions": [
+    {
+      "url": "https://www.osti.gov/dataexplorer/api/v1/records",
+      "params": {
+        "q": "EAGLE-I",
+        "rows": "2",
+        "page": "1"
+      },
+      "headers": {
+        "x-total-count": "9",
+        "link": "<https://www.osti.gov/dataexplorer/api/v1/records?q=EAGLE-I&page=2&rows=2>; rel=\"next\", <https://www.osti.gov/dataexplorer/api/v1/records?q=EAGLE-I&page=5&rows=2>; rel=\"last\"",
+        "content-type": "application/json"
+      },
+      "body": [
+        {
+          "language": "English",
+          "entry_date": "2023-05-26T18:14:12Z",
+          "country_publication": "United States",
+          "doi": "https://doi.org/10.13139/ORNLNCCS/1975203",
+          "description": "This DOI contains information on the EAGLE-I power outage dataset and serves as a blanket DOI for all EAGLE-I historic data. Historic power outage data from specific years have been linked to this DOI.",
+          "title": "EAGLE-I Power Outage Data Information",
+          "publication_date": "2023-05-25T20:00:00Z",
+          "site_ownership_code": "ORNL-OLCF",
+          "osti_id": "1975203",
+          "product_type": "Dataset",
+          "authors": [
+            "Tansakul, Varisara [ORNL-OLCF]",
+            "Myers, Aaron",
+            "Tennille, Sarah",
+            "Denman, Matthew",
+            "Hamaker, Alec",
+            "Huihui, Jonathan",
+            "Medlen, Kyle",
+            "Allen, Karl",
+            "Redmon, Daniel",
+            "Chinthavali, Supriya",
+            "Coletti, Mark",
+            "Grant, Joshua",
+            "Lee, Matt",
+            "Maguire, Dakotah",
+            "Newby, Scott",
+            "Stahl, Chelsey",
+            "Bhaduri, Budhu",
+            "Sanyal, Jibo"
+          ],
+          "subjects": [
+            "24 POWER TRANSMISSION AND DISTRIBUTION",
+            "Metadata, Electric Customer Outages, EAGLE-I"
+          ],
+          "product_number": "None",
+          "site_url": "https://doi.ccs.ornl.gov/ui/doi/436",
+          "doe_contract_number": "; ",
+          "sponsor_orgs": [
+            "Office of Electricity Delivery and Energy Reliability (OE), Infrastructure Security and Energy Restoration (ISER) (OE-30)",
+            "Department of Energy\u00e2\u0080\u0099s Office of Cybersecurity Energy Security and Emergency Response (CESER)"
+          ],
+          "research_orgs": [
+            "Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States). Oak Ridge Leadership Computing Facility (OLCF)",
+            "Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/dataexplorer/biblio/1975203"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/dataexplorer/servlets/purl/1975203"
+            }
+          ]
+        },
+        {
+          "language": "English",
+          "entry_date": "2026-11-04T06:57:43Z",
+          "related_identifiers": [
+            "CURATED; IsPartOf; {\"related_identifier\" : \"10.13139/ORNLNCCS/1975203\", \"related_identifier_type\" : \"DOI\", \"relation_type\" : \"IsPartOf\", \"title\" : \"EAGLE-I Power Outage Data Information\", \"source_name\" : [\"Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States). Oak Ridge Leadership Computing Facility (OLCF); Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)\"], \"publication_date\" : \"2023-01-01T05:00:00Z\", \"optional_data_json_string\" : \"{\\\"author1LastName\\\": \\\"Tansakul\\\", \\\"author2LastName\\\": \\\"Myers\\\", \\\"author3LastName\\\": \\\"Tennille\\\", \\\"author1FirstName\\\": \\\"Varisara\\\", \\\"author2FirstName\\\": \\\"Aaron\\\", \\\"author3FirstName\\\": \\\"Sarah\\\", \\\"crossrefProductType\\\": \\\"dataset\\\"}\"}"
+          ],
+          "country_publication": "United States",
+          "doi": "https://doi.org/10.13139/OLCF/2297398",
+          "description": "The provided EAGLE-I historic dataset includes 1 year of power outage information at the county level for 2023 at 15-minute intervals collected by the EAGLE-I program at ORNL. The data has been collected from utility's public outage maps using an ETL process. The dataset details FIPS code, county name, state name, total number of customers without power, and a date/timestamp. Also included is the EAGLE-I coverage of each state for each year. For detailed metadata, refer to the metadata DOI.",
+          "title": "EAGLE-I Power Outage Data 2023",
+          "publication_date": "2024-02-11T19:00:00Z",
+          "site_ownership_code": "ORNL-OLCF",
+          "osti_id": "2297398",
+          "product_type": "Dataset",
+          "authors": [
+            "Tansakul, Varisara [Oak Ridge National Laboratory]",
+            "Myers, Aaron [Oak Ridge National Laboratory]",
+            "Tennille, Sarah [Oak Ridge National Laboratory]",
+            "Broughton, Mitchell [Oak Ridge National Laboratory]",
+            "Denman, Matthew [Oak Ridge National Laboratory]",
+            "Hamaker, Alec [Oak Ridge National Laboratory]",
+            "Huihui, Jonathan [Oak Ridge National Laboratory]",
+            "Johnson, Evelyn [Oak Ridge National Laboratory]",
+            "Medlen, Kyle [Oak Ridge National Laboratory]",
+            "Moncrief, Robert [Oak Ridge National Laboratory]",
+            "Quinn, Faith [Oak Ridge National Laboratory]",
+            "Ibanez, Julio [Oak Ridge National Laboratory]",
+            "Redmon, Daniel [Oak Ridge National Laboratory]"
+          ],
+          "subjects": [
+            "24 POWER TRANSMISSION AND DISTRIBUTION",
+            "EAGLE-I",
+            "Electric Customer Outages"
+          ],
+          "site_url": "https://doi.ccs.ornl.gov/dataset/2e1dac8d-800d-5e09-812e-8abf52f11e27",
+          "doe_contract_number": "AC05-00OR22725; ",
+          "sponsor_orgs": [
+            "Office of Electricity Delivery and Energy Reliability (OE), Infrastructure Security and Energy Restoration (ISER) (OE-30)",
+            "Department of Energy Office of Cybersecurity Energy Security and Emergency Response"
+          ],
+          "research_orgs": [
+            "Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/dataexplorer/biblio/2297398"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/dataexplorer/servlets/purl/2297398"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.osti.gov/api/v1/records",
+      "params": {
+        "doi": "10.13139/ornlnccs/1975203",
+        "rows": "5",
+        "page": "1"
+      },
+      "headers": {
+        "x-total-count": "1",
+        "link": "",
+        "content-type": "application/json"
+      },
+      "body": [
+        {
+          "language": "English",
+          "entry_date": "2023-05-26T22:14:12Z",
+          "report_number": "None",
+          "nondoe_contract_number": "31256",
+          "country_publication": "United States",
+          "doi": "10.13139/ORNLNCCS/1975203",
+          "description": "This DOI contains information on the EAGLE-I power outage dataset and serves as a blanket DOI for all EAGLE-I historic data. Historic power outage data from specific years have been linked to this DOI.",
+          "title": "EAGLE-I Power Outage Data Information",
+          "contract_number": "; ",
+          "publication_date": "2023-05-26T00:00:00Z",
+          "osti_id": "1975203",
+          "product_type": "Dataset",
+          "authors": [
+            "Tansakul, Varisara [ORNL-OLCF]",
+            "Myers, Aaron",
+            "Tennille, Sarah",
+            "Denman, Matthew",
+            "Hamaker, Alec",
+            "Huihui, Jonathan",
+            "Medlen, Kyle",
+            "Allen, Karl",
+            "Redmon, Daniel",
+            "Chinthavali, Supriya",
+            "Coletti, Mark",
+            "Grant, Joshua",
+            "Lee, Matt",
+            "Maguire, Dakotah",
+            "Newby, Scott",
+            "Stahl, Chelsey",
+            "Bhaduri, Budhu",
+            "Sanyal, Jibo"
+          ],
+          "subjects": [
+            "24 POWER TRANSMISSION AND DISTRIBUTION",
+            "Metadata, Electric Customer Outages, EAGLE-I"
+          ],
+          "doe_contract_number": "; ",
+          "sponsor_orgs": [
+            "Office of Electricity Delivery and Energy Reliability (OE), Infrastructure Security and Energy Restoration (ISER) (OE-30)",
+            "Department of Energy\u00e2\u0080\u0099s Office of Cybersecurity Energy Security and Emergency Response (CESER)"
+          ],
+          "research_orgs": [
+            "Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States). Oak Ridge Leadership Computing Facility (OLCF)",
+            "Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/biblio/1975203"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/servlets/purl/1975203"
+            },
+            {
+              "rel": "citation_doe_dataexplorer",
+              "href": "https://www.osti.gov/dataexplorer/biblio/dataset/1975203"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.osti.gov/pages/api/v1/records",
+      "params": {
+        "doi": "10.13139/ornlnccs/1975203",
+        "rows": "5",
+        "page": "1"
+      },
+      "headers": {
+        "x-total-count": "0",
+        "content-type": "application/json"
+      },
+      "body": []
+    },
+    {
+      "url": "https://www.osti.gov/dataexplorer/api/v1/records",
+      "params": {
+        "doi": "10.13139/ornlnccs/1975203",
+        "rows": "5",
+        "page": "1"
+      },
+      "headers": {
+        "x-total-count": "1",
+        "link": "",
+        "content-type": "application/json"
+      },
+      "body": [
+        {
+          "language": "English",
+          "entry_date": "2023-05-26T18:14:12Z",
+          "country_publication": "United States",
+          "doi": "https://doi.org/10.13139/ORNLNCCS/1975203",
+          "description": "This DOI contains information on the EAGLE-I power outage dataset and serves as a blanket DOI for all EAGLE-I historic data. Historic power outage data from specific years have been linked to this DOI.",
+          "title": "EAGLE-I Power Outage Data Information",
+          "publication_date": "2023-05-25T20:00:00Z",
+          "site_ownership_code": "ORNL-OLCF",
+          "osti_id": "1975203",
+          "product_type": "Dataset",
+          "authors": [
+            "Tansakul, Varisara [ORNL-OLCF]",
+            "Myers, Aaron",
+            "Tennille, Sarah",
+            "Denman, Matthew",
+            "Hamaker, Alec",
+            "Huihui, Jonathan",
+            "Medlen, Kyle",
+            "Allen, Karl",
+            "Redmon, Daniel",
+            "Chinthavali, Supriya",
+            "Coletti, Mark",
+            "Grant, Joshua",
+            "Lee, Matt",
+            "Maguire, Dakotah",
+            "Newby, Scott",
+            "Stahl, Chelsey",
+            "Bhaduri, Budhu",
+            "Sanyal, Jibo"
+          ],
+          "subjects": [
+            "24 POWER TRANSMISSION AND DISTRIBUTION",
+            "Metadata, Electric Customer Outages, EAGLE-I"
+          ],
+          "product_number": "None",
+          "site_url": "https://doi.ccs.ornl.gov/ui/doi/436",
+          "doe_contract_number": "; ",
+          "sponsor_orgs": [
+            "Office of Electricity Delivery and Energy Reliability (OE), Infrastructure Security and Energy Restoration (ISER) (OE-30)",
+            "Department of Energy\u00e2\u0080\u0099s Office of Cybersecurity Energy Security and Emergency Response (CESER)"
+          ],
+          "research_orgs": [
+            "Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States). Oak Ridge Leadership Computing Facility (OLCF)",
+            "Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)"
+          ],
+          "links": [
+            {
+              "rel": "citation",
+              "href": "https://www.osti.gov/dataexplorer/biblio/1975203"
+            },
+            {
+              "rel": "fulltext",
+              "href": "https://www.osti.gov/dataexplorer/servlets/purl/1975203"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://www.osti.gov/doecodeapi/services/search",
+      "params": {
+        "all_fields": "10.13139/ornlnccs/1975203",
+        "rows": "5",
+        "page": "1"
+      },
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "num_found": 0,
+        "start": 0,
+        "docs": []
+      }
+    }
+  ]
+}

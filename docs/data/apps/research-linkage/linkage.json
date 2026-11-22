@@ -2,13 +2,13 @@
   "evidence_document": "report.json",
   "records": [
     {
-      "node_id": "osti-data-explorer:1148737",
+      "node_id": "osti-data-explorer:1975203",
       "collection": "dataset",
       "source_id": "osti-data-explorer",
-      "record_id": "1148737",
-      "title": "Structural Orientations Adjacent to Some Colorado Geothermal Systems",
-      "doi": "10.15121/1148737",
-      "doi_key": "10.15121/1148737",
+      "record_id": "1975203",
+      "title": "EAGLE-I Power Outage Data Information",
+      "doi": "10.13139/ORNLNCCS/1975203",
+      "doi_key": "10.13139/ornlnccs/1975203",
       "repository": null,
       "evidence": [
         {
@@ -17,20 +17,20 @@
           "evidence_pointer": "/steps/1/envelope/evidence/0",
           "evidence_id": "evidence_01",
           "source_id": "osti-data-explorer",
-          "locator": "https://www.osti.gov/dataexplorer/biblio/1148737"
+          "locator": "https://www.osti.gov/dataexplorer/biblio/1975203"
         }
       ],
       "assertions": [],
       "unparsed_relationship_count": 0
     },
     {
-      "node_id": "osti-data-explorer:1542650",
+      "node_id": "osti-data-explorer:2297398",
       "collection": "dataset",
       "source_id": "osti-data-explorer",
-      "record_id": "1542650",
-      "title": "Utah FORGE: Well 58-32 Stimulation Data",
-      "doi": "10.15121/1542650",
-      "doi_key": "10.15121/1542650",
+      "record_id": "2297398",
+      "title": "EAGLE-I Power Outage Data 2023",
+      "doi": "10.13139/OLCF/2297398",
+      "doi_key": "10.13139/olcf/2297398",
       "repository": null,
       "evidence": [
         {
@@ -39,10 +39,29 @@
           "evidence_pointer": "/steps/1/envelope/evidence/1",
           "evidence_id": "evidence_02",
           "source_id": "osti-data-explorer",
-          "locator": "https://www.osti.gov/dataexplorer/biblio/1542650"
+          "locator": "https://www.osti.gov/dataexplorer/biblio/2297398"
         }
       ],
-      "assertions": [],
+      "assertions": [
+        {
+          "relationship": "IsPartOf",
+          "target_namespace": "doi",
+          "target_identifier": "10.13139/ornlnccs/1975203",
+          "origin_field": "related_identifiers/0",
+          "publisher_value": "CURATED; IsPartOf; {\"related_identifier\" : \"10.13139/ORNLNCCS/1975203\", \"related_identifier_type\" : \"DOI\", \"relation_type\" : \"IsPartOf\", \"title\" : \"EAGLE-I Power Outage Data Information\", \"source_name\" : [\"Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States). Oak Ridge Leadership Computing Facility (OLCF); Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)\"], \"publication_date\" : \"2023-01-01T05:00:00Z\", \"optional_data_json_string\" : \"{\\\"author1LastName\\\": \\\"Tansakul\\\", \\\"author2LastName\\\": \\\"Myers\\\", \\\"author3LastName\\\": \\\"Tennille\\\", \\\"author1FirstName\\\": \\\"Varisara\\\", \\\"author2FirstName\\\": \\\"Aaron\\\", \\\"author3FirstName\\\": \\\"Sarah\\\", \\\"crossrefProductType\\\": \\\"dataset\\\"}\"}",
+          "evidence": {
+            "step": 1,
+            "record_pointer": "/steps/1/envelope/data/datasets/1",
+            "evidence_pointer": "/steps/1/envelope/evidence/1",
+            "evidence_id": "evidence_02",
+            "source_id": "osti-data-explorer",
+            "locator": "https://www.osti.gov/dataexplorer/biblio/2297398",
+            "assertion_pointer": "/steps/1/envelope/data/datasets/1/related_artifacts/assertions/0",
+            "origin_field": "related_identifiers/0",
+            "publisher_value": "CURATED; IsPartOf; {\"related_identifier\" : \"10.13139/ORNLNCCS/1975203\", \"related_identifier_type\" : \"DOI\", \"relation_type\" : \"IsPartOf\", \"title\" : \"EAGLE-I Power Outage Data Information\", \"source_name\" : [\"Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States). Oak Ridge Leadership Computing Facility (OLCF); Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)\"], \"publication_date\" : \"2023-01-01T05:00:00Z\", \"optional_data_json_string\" : \"{\\\"author1LastName\\\": \\\"Tansakul\\\", \\\"author2LastName\\\": \\\"Myers\\\", \\\"author3LastName\\\": \\\"Tennille\\\", \\\"author1FirstName\\\": \\\"Varisara\\\", \\\"author2FirstName\\\": \\\"Aaron\\\", \\\"author3FirstName\\\": \\\"Sarah\\\", \\\"crossrefProductType\\\": \\\"dataset\\\"}\"}"
+          }
+        }
+      ],
       "unparsed_relationship_count": 0
     },
     {
@@ -223,16 +242,77 @@
     }
   ],
   "shared_identity": [],
-  "explicit_relationships": [],
+  "explicit_relationships": [
+    {
+      "edge_id": "relation:fbd89f7b03d8c46d10ad1a53",
+      "from": "osti-data-explorer:2297398",
+      "relationship": "IsPartOf",
+      "target_namespace": "doi",
+      "target_identifier": "10.13139/ornlnccs/1975203",
+      "matched_nodes": [
+        "osti-data-explorer:1975203"
+      ],
+      "evidence": [
+        {
+          "step": 1,
+          "record_pointer": "/steps/1/envelope/data/datasets/1",
+          "evidence_pointer": "/steps/1/envelope/evidence/1",
+          "evidence_id": "evidence_02",
+          "source_id": "osti-data-explorer",
+          "locator": "https://www.osti.gov/dataexplorer/biblio/2297398",
+          "assertion_pointer": "/steps/1/envelope/data/datasets/1/related_artifacts/assertions/0",
+          "origin_field": "related_identifiers/0",
+          "publisher_value": "CURATED; IsPartOf; {\"related_identifier\" : \"10.13139/ORNLNCCS/1975203\", \"related_identifier_type\" : \"DOI\", \"relation_type\" : \"IsPartOf\", \"title\" : \"EAGLE-I Power Outage Data Information\", \"source_name\" : [\"Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States). Oak Ridge Leadership Computing Facility (OLCF); Oak Ridge National Laboratory (ORNL), Oak Ridge, TN (United States)\"], \"publication_date\" : \"2023-01-01T05:00:00Z\", \"optional_data_json_string\" : \"{\\\"author1LastName\\\": \\\"Tansakul\\\", \\\"author2LastName\\\": \\\"Myers\\\", \\\"author3LastName\\\": \\\"Tennille\\\", \\\"author1FirstName\\\": \\\"Varisara\\\", \\\"author2FirstName\\\": \\\"Aaron\\\", \\\"author3FirstName\\\": \\\"Sarah\\\", \\\"crossrefProductType\\\": \\\"dataset\\\"}\"}"
+        }
+      ],
+      "resolution": "matched_returned_record",
+      "followup": {
+        "status": "ambiguous",
+        "candidates": [
+          {
+            "node_id": "osti-data-explorer:1975203",
+            "source_id": "osti-data-explorer",
+            "record_id": "1975203",
+            "record_indices": [
+              1
+            ],
+            "evidence": [
+              {
+                "step": 3,
+                "source_id": "osti-data-explorer",
+                "record_pointer": "/steps/3/envelope/data/records/1",
+                "evidence_pointer": "/steps/3/envelope/evidence/1",
+                "evidence_id": "evidence_02",
+                "locator": "https://www.osti.gov/dataexplorer/biblio/1975203"
+              }
+            ]
+          },
+          {
+            "node_id": "osti-gov-records:1975203",
+            "source_id": "osti-gov-records",
+            "record_id": "1975203",
+            "record_indices": [
+              0
+            ],
+            "evidence": [
+              {
+                "step": 3,
+                "source_id": "osti-gov-records",
+                "record_pointer": "/steps/3/envelope/data/records/0",
+                "evidence_pointer": "/steps/3/envelope/evidence/0",
+                "evidence_id": "evidence_01",
+                "locator": "https://www.osti.gov/biblio/1975203"
+              }
+            ]
+          }
+        ],
+        "step": 3,
+        "envelope_pointer": "/steps/3/envelope",
+        "search_complete": true
+      }
+    }
+  ],
   "unmatched_records": [
-    {
-      "node_id": "osti-data-explorer:1148737",
-      "reason": "no_resolved_explicit_relationship_or_shared_doi_in_bounded_results"
-    },
-    {
-      "node_id": "osti-data-explorer:1542650",
-      "reason": "no_resolved_explicit_relationship_or_shared_doi_in_bounded_results"
-    },
     {
       "node_id": "osti-doe-code:187349",
       "reason": "no_resolved_explicit_relationship_or_shared_doi_in_bounded_results"
