@@ -430,3 +430,29 @@ and unchanged original page. A delayed-navigation regression reproduced the
 old race; the corrected helper passed it and five native modified-click runs
 with delayed responses and fourfold CPU slowdown. No product rule or
 accessibility assertion was removed.
+
+## ATB assumptions skill and demo — 2026-11-22
+
+The new skill has five recorded checks for qualifiers, ambiguity, nulls,
+empty exact matches and currency bases. Benchmark expectations stay in the
+bench definition rather than the skill's task descriptions. Astra independently
+used the skill for a utility-PV comparison, then reviewed the implementation.
+The two-edition demo is linked from the homepage and preserves each row's
+qualifiers, currency basis, evidence and release hash. It does not present a
+cross-edition monetary difference as an inflation-adjusted comparison.
+
+All 1,598 replay tests passed with one architecture-file skip. Source validation,
+Ruff, schema comparison, writing checks, all 39 CLI/site export comparisons
+and the independent Croissant reader passed. The functional browser check
+covered 39 demos at three widths and 228 section jumps. The measured audit
+passed 42 journeys and 492 local targets across fourteen pages; the evaluation
+check passed three paths. No browser or first-party request errors occurred.
+
+Accessibility checking completed 106 axe scans and 384 assertions with zero
+violations or failures. Twenty-two contrast rule instances remain incomplete
+for manual review; raw results are retained, not counted as passes. The same
+screen-reader, viewport-equivalence and local-performance limits recorded above
+apply. Playwright 1.58.2 used installed Chrome 158.0.8127.36 on loopback.
+Artifacts are in ignored `uat-screenshots/keyless-atb-final/`. Prepared evaluation
+tasks and deterministic simulation reports do not establish model quality.
+No credentials, live publisher calls or paid models were used by these checks.

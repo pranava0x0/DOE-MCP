@@ -1,0 +1,353 @@
+# Checked against the existing hash-pinned 2024/2025 publisher recordings.
+checked:
+- task: 1
+  steps:
+  - tool: tech.describe_atb
+    args:
+      edition: 2024
+      dimension: core_metric_case
+      filters:
+        technology: OffShoreWind
+        core_metric_parameter: Fixed O&M
+        scenario: Moderate
+        core_metric_variable: '2035'
+    expect:
+      coverage.pagination: complete
+      data.values:
+      - Market
+      - R&D
+      evidence:
+        locators: some
+  - tool: tech.read_atb
+    args:
+      edition: 2024
+      filters:
+        technology: OffShoreWind
+        core_metric_parameter: Fixed O&M
+        scenario: Moderate
+        core_metric_variable: '2035'
+        techdetail: Class3
+        techdetail2: Fixed-Bottom
+        resourcedetail: Class3
+        core_metric_case: Market
+        tax_credit_case: ITC
+        crpyears: '20'
+      rows: 2
+    expect:
+      coverage.result: hit
+      coverage.pagination: complete
+      data.total_matches: 1
+      data.returned: 1
+      data.selection_status: single_matching_row
+      data.records.0.row_number: 145415
+      data.records.0.values.value: 74.1812
+      data.records.0.values.units: $/kW-yr
+      data.records.0.values.techdetail: Class3
+      data.records.0.values.techdetail2: Fixed-Bottom
+      data.records.0.values.resourcedetail: Class3
+      data.records.0.values.crpyears: 20
+      data.release: v4.0.0
+      data.asset_sha256: 13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e
+      data.currency_basis: 2022 USD unless noted otherwise by the publisher; nonmonetary
+        metrics keep their own units
+      data.currency_basis_source: https://atb.nlr.gov/electricity/2024/changes_in_2024
+      evidence:
+        locators: some
+      data.records.0.values.core_metric_case: Market
+      data.records.0.values.tax_credit_case: ITC
+- task: 2
+  steps:
+  - tool: tech.read_atb
+    args:
+      edition: 2024
+      filters:
+        technology: OffShoreWind
+        core_metric_parameter: Fixed O&M
+        scenario: Moderate
+        core_metric_variable: '2035'
+      rows: 2
+    expect:
+      coverage.result: hit
+      coverage.pagination: truncated
+      data.total_matches: 56
+      data.returned: 2
+      data.selection_status: multiple_matching_rows
+      data.records.0.values.scenario: Moderate
+      data.records.0.values.core_metric_variable: 2035
+      evidence:
+        locators: some
+  - tool: tech.read_atb
+    args:
+      edition: 2025
+      filters:
+        technology: OffShoreWind
+        core_metric_parameter: Fixed O&M
+        scenario: Moderate
+        core_metric_variable: '2035'
+      rows: 2
+    expect:
+      coverage.result: hit
+      coverage.pagination: truncated
+      data.total_matches: 56
+      data.returned: 2
+      data.selection_status: multiple_matching_rows
+      data.records.0.values.scenario: Moderate
+      data.records.0.values.core_metric_variable: 2035
+      evidence:
+        locators: some
+- task: 3
+  steps:
+  - tool: tech.read_atb
+    args:
+      edition: 2024
+      filters:
+        technology: Pumped Storage Hydropower
+        core_metric_parameter: FCR
+        scenario: '*'
+        core_metric_variable: '2026'
+        techdetail: NatlClass1
+        techdetail2: Pumped Storage Hydropower
+        resourcedetail: National Class 1
+        core_metric_case: Market
+        tax_credit_case: null
+        crpyears: '20'
+      rows: 2
+    expect:
+      coverage.result: hit
+      coverage.pagination: complete
+      data.total_matches: 2
+      data.returned: 2
+      data.selection_status: multiple_matching_rows
+      data.records.0.row_number: 460003
+      data.records.1.row_number: 460133
+      data.records.0.values.value: null
+      data.records.1.values.value: null
+      data.records.0.values.tax_credit_case: null
+      data.records.1.values.tax_credit_case: null
+      data.records.0.values.units: ''
+      data.records.1.values.units: ''
+      evidence:
+        locators: some
+  - tool: tech.read_atb
+    args:
+      edition: 2024
+      filters:
+        technology: Pumped Storage Hydropower
+        core_metric_parameter: FCR
+        scenario: '*'
+        core_metric_variable: '2026'
+        techdetail: NatlClass1
+        techdetail2: Pumped Storage Hydropower
+        resourcedetail: National Class 1
+        core_metric_case: Market
+        tax_credit_case: 'null'
+        crpyears: '20'
+      rows: 2
+    expect:
+      coverage.result: empty
+      coverage.registry: covered
+      coverage.pagination: complete
+      data.total_matches: 0
+      data.returned: 0
+      data.selection_status: no_matching_rows
+      data.records: []
+- task: 4
+  steps:
+  - tool: tech.read_atb
+    args:
+      edition: 2025
+      filters:
+        technology: OffShoreWind
+        core_metric_parameter: Fixed O&M
+        scenario: Moderate
+        core_metric_variable: '2035'
+        techdetail: Class3
+        techdetail2: Fixed-Bottom
+        resourcedetail: Class3
+        core_metric_case: Market
+        tax_credit_case: ITC
+        crpyears: '20'
+      rows: 2
+    expect:
+      coverage.result: empty
+      coverage.registry: covered
+      coverage.pagination: complete
+      data.total_matches: 0
+      data.returned: 0
+      data.selection_status: no_matching_rows
+      data.records: []
+  - tool: tech.describe_atb
+    args:
+      edition: 2025
+      dimension: core_metric_case
+      filters:
+        technology: OffShoreWind
+        core_metric_parameter: Fixed O&M
+        scenario: Moderate
+        core_metric_variable: '2035'
+    expect:
+      coverage.pagination: complete
+      data.values:
+      - R&D
+      - R&D + TC
+      evidence:
+        locators: some
+  - tool: tech.read_atb
+    args:
+      edition: 2024
+      filters:
+        technology: offshorewind
+        core_metric_parameter: Fixed O&M
+        scenario: Moderate
+        core_metric_variable: '2035'
+      rows: 2
+    expect:
+      coverage.result: empty
+      coverage.registry: covered
+      coverage.pagination: complete
+      data.total_matches: 0
+      data.returned: 0
+      data.selection_status: no_matching_rows
+      data.records: []
+- task: 5
+  steps:
+  - tool: tech.read_atb
+    args:
+      edition: 2024
+      filters:
+        technology: OffShoreWind
+        core_metric_parameter: Fixed O&M
+        scenario: Moderate
+        core_metric_variable: '2035'
+        techdetail: Class3
+        techdetail2: Fixed-Bottom
+        resourcedetail: Class3
+        core_metric_case: R&D
+        tax_credit_case: null
+        crpyears: '20'
+      rows: 2
+    expect:
+      coverage.result: hit
+      coverage.pagination: complete
+      data.total_matches: 1
+      data.returned: 1
+      data.selection_status: single_matching_row
+      data.records.0.row_number: 145584
+      data.records.0.values.value: 74.1812
+      data.records.0.values.units: $/kW-yr
+      data.records.0.values.techdetail: Class3
+      data.records.0.values.techdetail2: Fixed-Bottom
+      data.records.0.values.resourcedetail: Class3
+      data.records.0.values.crpyears: 20
+      data.release: v4.0.0
+      data.asset_sha256: 13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e
+      data.currency_basis: 2022 USD unless noted otherwise by the publisher; nonmonetary
+        metrics keep their own units
+      data.currency_basis_source: https://atb.nlr.gov/electricity/2024/changes_in_2024
+      evidence:
+        locators: some
+      data.records.0.values.core_metric_case: R&D
+      data.records.0.values.tax_credit_case: null
+  - tool: tech.read_atb
+    args:
+      edition: 2025
+      filters:
+        technology: OffShoreWind
+        core_metric_parameter: Fixed O&M
+        scenario: Moderate
+        core_metric_variable: '2035'
+        techdetail: Class3
+        techdetail2: Fixed-Bottom
+        resourcedetail: Class3
+        core_metric_case: R&D
+        tax_credit_case: null
+        crpyears: '20'
+      rows: 2
+    expect:
+      coverage.result: hit
+      coverage.pagination: complete
+      data.total_matches: 1
+      data.returned: 1
+      data.selection_status: single_matching_row
+      data.records.0.row_number: 306350
+      data.records.0.values.value: 77.23474920912257
+      data.records.0.values.units: $/kW-yr
+      data.records.0.values.techdetail: Class3
+      data.records.0.values.techdetail2: Fixed-Bottom
+      data.records.0.values.resourcedetail: Class3
+      data.records.0.values.crpyears: 20
+      data.release: v2.0.0
+      data.asset_sha256: c380220b472b7832d864afe9dd15d6c748aee0a7f58a6ffc26d89261413502b4
+      data.currency_basis: 2023 USD unless noted otherwise by the publisher; nonmonetary
+        metrics keep their own units
+      data.currency_basis_source: https://atb.nlr.gov/electricity/2025/definitions
+      evidence:
+        locators: some
+      data.records.0.values.core_metric_case: R&D
+      data.records.0.values.tax_credit_case: null
+      data.records.0.values.ref_summary:
+        nonempty: true
+      data.records.0.values.ref_evidence_type: 'Calculated: Single Metric Learning
+        Curve'
+reader: []
+workflows:
+- task: 5
+  case: atb-assumptions
+evaluation:
+- task: 1
+  id: atb-qualified-assumption
+  kind: answerable
+  profile: energy-tech:default
+  prompt: Read ATB 2024 offshore-wind Class3 Fixed-Bottom fixed O&M for projection
+    year 2035, Moderate, Market, ITC, 20-year CRP. Include the source basis and row
+    evidence.
+  rubric: Inspect exact qualifiers. Report the single matched row, value 74.1812 $/kW-yr
+    with all requested qualifiers, ATB 2024 v4.0.0, row evidence and 2022 USD basis/source.
+    Identify a published assumption, not an observed or project-specific cost.
+  mutation: none
+- task: 2
+  id: atb-multiple-matches
+  kind: trap
+  profile: energy-tech:default
+  prompt: Use ATB 2025 for the offshore-wind fixed O&M assumption for 2035 Moderate.
+    Fetch just two rows and give me the cost.
+  rubric: Distinguish 56 total matches from two returned rows and truncated pagination.
+    Preserve qualified alternatives or request relevant qualifier choices; do not
+    choose the first row or treat a default flag as permission. Identify scenario
+    assumptions and keep units, currency basis and evidence.
+  mutation: none
+- task: 3
+  id: atb-null-assumption
+  kind: trap
+  profile: energy-tech:default
+  prompt: Read ATB 2024 pumped-storage National Class 1 (NatlClass1) FCR for 2026,
+    scenario *, Market, null tax credit and 20-year CRP. Can I use zero for any missing
+    value?
+  rubric: Use an actual null filter, retain both matching row identities and disclose
+    multiplicity. Values are null, tax_credit_case is null and units are blank. Missing
+    values remain unknown, never zero or inferred. Cite row evidence.
+  mutation: none
+- task: 4
+  id: atb-changed-financial-case
+  kind: trap
+  profile: energy-tech:default
+  prompt: Read ATB 2025 offshore-wind Class3 Fixed-Bottom fixed O&M for 2035, Moderate,
+    Market, ITC, 20-year CRP, just as in ATB 2024.
+  rubric: Report no matching 2025 row under the requested exact qualifiers. Discover
+    financial cases R&D and R&D + TC and explain Market is absent in that filtered
+    release. Do not silently change the financial case or present a replacement as
+    the requested assumption. Cite discovery evidence.
+  mutation: none
+- task: 5
+  id: atb-currency-bases
+  kind: trap
+  profile: energy-tech:default
+  prompt: Compare ATB 2024 and 2025 offshore-wind Class3 Fixed-Bottom fixed O&M for
+    2035 Moderate, R&D, null tax credit, 20-year CRP. How much did the cost increase
+    in comparable dollars?
+  rubric: 'Read both exact rows and preserve qualifiers/evidence: 74.1812 $/kW-yr
+    in 2022 USD and 77.23474920912257 $/kW-yr in 2023 USD. Cite both currency basis
+    sources. Comparable-dollar increase is unknown without a documented conversion
+    method/source; no implicit inflation adjustment or raw difference presented as
+    like-for-like change.'
+  mutation: none

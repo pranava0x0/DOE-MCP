@@ -1,6 +1,6 @@
 # Development backlog
 
-Updated 2026-11-21 after PRs 19–26. This is the public development backlog.
+Updated 2026-11-22 after PRs 19–27 and the ATB skill addition. This is the public development backlog.
 Items below are plans, not claims that a proposed integration works.
 
 A **server** hosts tools for a domain. A **tool** performs one bounded read.
@@ -21,6 +21,8 @@ when its dependency, credential or operating boundary requires one.
 | Done | Offline quality, token and cost comparison of supplied evaluation reports. No real model ranking was measured. | [PR 24](https://github.com/pranava0x0/DOE-MCP/pull/24) |
 | Done | Multi-region forecast comparisons on common periods, with a labelled simulation and file imports. | [PR 25](https://github.com/pranava0x0/DOE-MCP/pull/25) |
 | Done | Pinned ATB 2024/2025 tools, server and application. PVWatts remains proposed. | [PR 26](https://github.com/pranava0x0/DOE-MCP/pull/26) |
+| Done | Direct homepage copy, desktop/mobile section navigation and automated accessibility checks. Manual screen-reader testing remains future work. | [PR 27](https://github.com/pranava0x0/DOE-MCP/pull/27) |
+| Done | ATB assumptions skill, five recorded checks and a two-edition demo covering exact qualifiers, ambiguity, nulls, empty selections and currency bases. Evaluation tasks are prepared; no model-quality result is claimed. | [Skill and checks](https://github.com/pranava0x0/DOE-MCP/tree/main/skills/atb-assumptions) · [Demo](demos.html#atb-assumptions) |
 
 The [applications](applications.html), [demos](demos.html) and
 [evaluation example](evaluation-example.html) retain their evidence and
@@ -28,20 +30,17 @@ limitations. Recorded examples and simulations are labelled separately.
 
 ## Next batch: no keys required
 
-Ship these as separate, reviewable PRs in this order. Each must retain the
+The ATB skill is complete. Ship the remaining items as separate, reviewable PRs in this order. Each must retain the
 source gates, pass replay tests and run the browser/accessibility checks
 on PRs and main. Suggested effort is relative to the existing implementation.
 
 | Order | Priority | Layer | Improvement | Acceptance criteria | Effort |
 |---|---|---|---|---|---|
-| 1 | High | Skill | Add an ATB assumptions skill using the existing energy-tech server. | Checked 2024/2025 benches cover exact qualifiers, multiple matches, nulls, source evidence and different currency bases. No arbitrary first-row choice or implicit currency conversion. | Small |
 | 2 | High | Server setup | Extend doctor with a machine-readable, credential-free profile preflight. | Report entry points, required extras, active tools and source gates without loading credential or client files. Distinguish optional missing keys from broken keyless installs; test installed wheels with and without energy-tech extras. | Medium |
 | 3 | High | Tool and research application | Resolve one hop of an explicit publisher relationship. | Use existing research adapters and returned identifiers; bound requests and output. Preserve the originating assertion and resolved source evidence. Report unresolved, ambiguous and budget-limited targets. Never infer an edge from a title or topic. Add real anonymous recordings before claiming live coverage. | Medium |
 | 4 | High | Forecast application | Prepare forecast-panel observation imports from existing BPA envelopes. | Keep original envelopes, hashes, units, interval meaning and timezone assumptions. Missing availability stays unknown; require caller evidence before an observation can enter an issuance-time baseline. No retrospective data presented as a prospective forecast. | Medium |
 
-Start with the ATB skill: its reader, fixtures and export application already
-ship, so the next useful addition is guidance that prevents incorrect
-selection and interpretation. Use Sol for implementation and focused tests;
+Use Sol for implementation and focused tests;
 use Astra for scientific contracts and final review. Reserve larger-model
 reviews for substantive risks rather than routine copy or formatting.
 

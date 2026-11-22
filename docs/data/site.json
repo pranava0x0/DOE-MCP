@@ -8,7 +8,7 @@
     "labs": 17,
     "capabilities": 60,
     "capabilities_served": 43,
-    "skills": 32,
+    "skills": 33,
     "program_offices": 19,
     "pmas": 4,
     "servers_shipping": 11,
@@ -760,6 +760,13 @@
     }
   ],
   "skills": [
+    {
+      "name": "atb-assumptions",
+      "summary": "Read qualified ATB electricity cost and performance assumptions from pinned 2024 or 2025 releases.",
+      "servers": [
+        "doe-energy-tech"
+      ]
+    },
     {
       "name": "compare-model-warming-potentials",
       "summary": "Use when working with GCAM inputs on this question: Which 100-year warming potentials did this release use for HFC134a and CF4?.",

@@ -1,0 +1,846 @@
+{
+  "format_version": "1",
+  "case": "atb-assumptions",
+  "title": "ATB assumptions across editions",
+  "question": "What fixed O&M does each ATB edition assign to the same qualified offshore-wind case?",
+  "mode": "recorded",
+  "simulation": false,
+  "registry_revision": "2026-11-21",
+  "generated_at": null,
+  "replay_clock": "2026-11-21T00:00:00Z",
+  "timestamp_note": "Envelope retrieval timestamps use a fixed replay clock, not publisher retrieval times. Actual fixture capture times appear in the manifest; null means unrecorded.",
+  "fixtures": [
+    {
+      "file": "nlr-atb.json",
+      "sha256": "4c664d08b044c901695c0018a4a1a70e2576394b4bd78c782d772fadfe8f2ed1",
+      "captured_at": "2026-11-21T20:34:37.552205+00:00",
+      "binary_assets": [
+        {
+          "file": "blobs/13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e.bin",
+          "bytes": 5131651,
+          "sha256": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e"
+        },
+        {
+          "file": "blobs/c380220b472b7832d864afe9dd15d6c748aee0a7f58a6ffc26d89261413502b4.bin",
+          "bytes": 9193709,
+          "sha256": "c380220b472b7832d864afe9dd15d6c748aee0a7f58a6ffc26d89261413502b4"
+        }
+      ]
+    }
+  ],
+  "answer": "ATB 2024: 74.1812 $/kW-yr (2022 USD); ATB 2025: 77.23474920912257 $/kW-yr (2023 USD). These published assumptions retain separate currency bases; no conversion or comparable-dollar difference is calculated.",
+  "limitations": [
+    "The selection is Class3 Fixed-Bottom offshore wind, 2035 Moderate, R&D, null tax-credit qualifier and 20-year CRP in each edition.",
+    "ATB supplies scenario assumptions and projections, not observations, bids or project-specific cost estimates.",
+    "Currency bases differ across editions. A comparable-dollar change requires a documented conversion method and source.",
+    "PVWatts remains proposed and source-gated. No production model was called."
+  ],
+  "steps": [
+    {
+      "tool": "tech.describe_atb",
+      "args": {
+        "edition": 2024,
+        "dimension": "core_metric_case",
+        "filters": {
+          "technology": "OffShoreWind",
+          "techdetail": "Class3",
+          "techdetail2": "Fixed-Bottom",
+          "resourcedetail": "Class3",
+          "core_metric_parameter": "Fixed O&M",
+          "core_metric_variable": "2035",
+          "scenario": "Moderate",
+          "crpyears": "20"
+        }
+      },
+      "envelope": {
+        "data": {
+          "edition": 2024,
+          "release": "v4.0.0",
+          "file_url": "https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2024/v4.0.0/ATBe.parquet",
+          "asset_sha256": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e",
+          "asset_bytes": 5131651,
+          "table_rows": 585630,
+          "currency_basis": "2022 USD unless noted otherwise by the publisher; nonmonetary metrics keep their own units",
+          "currency_basis_source": "https://atb.nlr.gov/electricity/2024/changes_in_2024",
+          "filters": {
+            "technology": "OffShoreWind",
+            "techdetail": "Class3",
+            "techdetail2": "Fixed-Bottom",
+            "resourcedetail": "Class3",
+            "core_metric_parameter": "Fixed O&M",
+            "core_metric_variable": "2035",
+            "scenario": "Moderate",
+            "crpyears": "20"
+          },
+          "offset": 0,
+          "total_matches": 2,
+          "columns": [
+            "atb_year",
+            "core_metric_key",
+            "core_metric_parameter",
+            "core_metric_case",
+            "tax_credit_case",
+            "crpyears",
+            "technology",
+            "technology_alias",
+            "techdetail",
+            "techdetail2",
+            "resourcedetail",
+            "display_name",
+            "default",
+            "scale",
+            "maturity",
+            "scenario",
+            "core_metric_variable",
+            "units",
+            "value"
+          ],
+          "filter_columns": [
+            "atb_year",
+            "core_metric_case",
+            "core_metric_parameter",
+            "core_metric_variable",
+            "crpyears",
+            "default",
+            "display_name",
+            "maturity",
+            "resourcedetail",
+            "scale",
+            "scenario",
+            "tax_credit_case",
+            "techdetail",
+            "techdetail2",
+            "technology",
+            "technology_alias",
+            "units"
+          ],
+          "interpretation": "Published scenario assumptions and projections, not observations, bids or a project-specific cost estimate.",
+          "dimension": "core_metric_case",
+          "values": [
+            "Market",
+            "R&D"
+          ],
+          "evidence_ref": "evidence_01",
+          "returned": 2
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "nlr-atb",
+            "steward": "National Laboratory of the Rockies",
+            "system": "Annual Technology Baseline (ATB)",
+            "dataset": "ATB electricity",
+            "dataset_version": "ATB 2024 v4.0.0",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "National Laboratory of the Rockies, Annual Technology Baseline electricity, edition and release as reported with the asset URL and SHA256.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "distinct core_metric_case",
+            "locator": "https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2024/v4.0.0/ATBe.parquet",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "verify_sha256",
+              "parse_parquet",
+              "exact_filter",
+              "distinct_dimension"
+            ],
+            "payload_hash": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e",
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "nlr-atb"
+          ],
+          "known_limitations": [
+            "Edition and release are explicit. No latest alias or verified ATB 2026 asset is supported.",
+            "Each Parquet asset is checked against its recorded byte size and SHA256 before parsing.",
+            "Values are scenario assumptions and projections, not observations or project bids.",
+            "Technology detail, resource class, scenario, projection year, metric, financial case, tax credit, CRP and units remain separate publisher columns.",
+            "ATB 2024 generally uses 2022 USD and ATB 2025 generally uses 2023 USD unless noted by the publisher. No currency conversion or cross-edition blending is performed.",
+            "Missing metric values remain null; multiple matching rows remain explicit."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: National Laboratory of the Rockies, Annual Technology Baseline electricity, edition and release as reported with the asset URL and SHA256.",
+            "source_id": "nlr-atb"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "tech.describe_atb",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "atb_parquet": "1",
+            "pvwatts_v8": "1",
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "regulations_gov": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-21",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "tech.read_atb",
+      "args": {
+        "edition": 2024,
+        "filters": {
+          "technology": "OffShoreWind",
+          "techdetail": "Class3",
+          "techdetail2": "Fixed-Bottom",
+          "resourcedetail": "Class3",
+          "core_metric_parameter": "Fixed O&M",
+          "core_metric_variable": "2035",
+          "scenario": "Moderate",
+          "crpyears": "20",
+          "core_metric_case": "R&D",
+          "tax_credit_case": null
+        },
+        "rows": 2
+      },
+      "envelope": {
+        "data": {
+          "edition": 2024,
+          "release": "v4.0.0",
+          "file_url": "https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2024/v4.0.0/ATBe.parquet",
+          "asset_sha256": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e",
+          "asset_bytes": 5131651,
+          "table_rows": 585630,
+          "currency_basis": "2022 USD unless noted otherwise by the publisher; nonmonetary metrics keep their own units",
+          "currency_basis_source": "https://atb.nlr.gov/electricity/2024/changes_in_2024",
+          "filters": {
+            "technology": "OffShoreWind",
+            "techdetail": "Class3",
+            "techdetail2": "Fixed-Bottom",
+            "resourcedetail": "Class3",
+            "core_metric_parameter": "Fixed O&M",
+            "core_metric_variable": "2035",
+            "scenario": "Moderate",
+            "crpyears": "20",
+            "core_metric_case": "R&D",
+            "tax_credit_case": null
+          },
+          "offset": 0,
+          "total_matches": 1,
+          "columns": [
+            "atb_year",
+            "core_metric_key",
+            "core_metric_parameter",
+            "core_metric_case",
+            "tax_credit_case",
+            "crpyears",
+            "technology",
+            "technology_alias",
+            "techdetail",
+            "techdetail2",
+            "resourcedetail",
+            "display_name",
+            "default",
+            "scale",
+            "maturity",
+            "scenario",
+            "core_metric_variable",
+            "units",
+            "value"
+          ],
+          "filter_columns": [
+            "atb_year",
+            "core_metric_case",
+            "core_metric_parameter",
+            "core_metric_variable",
+            "crpyears",
+            "default",
+            "display_name",
+            "maturity",
+            "resourcedetail",
+            "scale",
+            "scenario",
+            "tax_credit_case",
+            "techdetail",
+            "techdetail2",
+            "technology",
+            "technology_alias",
+            "units"
+          ],
+          "interpretation": "Published scenario assumptions and projections, not observations, bids or a project-specific cost estimate.",
+          "records": [
+            {
+              "row_number": 145584,
+              "values": {
+                "atb_year": 2024,
+                "core_metric_key": "282736",
+                "core_metric_parameter": "Fixed O&M",
+                "core_metric_case": "R&D",
+                "tax_credit_case": null,
+                "crpyears": 20,
+                "technology": "OffShoreWind",
+                "technology_alias": "Offshore Wind",
+                "techdetail": "Class3",
+                "techdetail2": "Fixed-Bottom",
+                "resourcedetail": "Class3",
+                "display_name": "Offshore Wind - Class 3",
+                "default": 1,
+                "scale": "Utility",
+                "maturity": "Y",
+                "scenario": "Moderate",
+                "core_metric_variable": 2035,
+                "units": "$/kW-yr",
+                "value": 74.1812
+              },
+              "evidence_ref": "evidence_01"
+            }
+          ],
+          "returned": 1,
+          "selection_status": "single_matching_row",
+          "selection_note": "All qualifying rows remain distinct; no ambiguous first row is chosen. Refine technology detail, scenario, year, financial case, tax credit and CRP qualifiers as needed."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "nlr-atb",
+            "steward": "National Laboratory of the Rockies",
+            "system": "Annual Technology Baseline (ATB)",
+            "dataset": "ATB electricity",
+            "dataset_version": "ATB 2024 v4.0.0",
+            "authority_level": "primary",
+            "access_path": "cache",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "National Laboratory of the Rockies, Annual Technology Baseline electricity, edition and release as reported with the asset URL and SHA256.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "ATB 2024 v4.0.0:data row 145584",
+            "locator": "https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2024/v4.0.0/ATBe.parquet",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "verify_sha256",
+              "parse_parquet",
+              "exact_filter"
+            ],
+            "payload_hash": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e",
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "nlr-atb"
+          ],
+          "known_limitations": [
+            "Edition and release are explicit. No latest alias or verified ATB 2026 asset is supported.",
+            "Each Parquet asset is checked against its recorded byte size and SHA256 before parsing.",
+            "Values are scenario assumptions and projections, not observations or project bids.",
+            "Technology detail, resource class, scenario, projection year, metric, financial case, tax credit, CRP and units remain separate publisher columns.",
+            "ATB 2024 generally uses 2022 USD and ATB 2025 generally uses 2023 USD unless noted by the publisher. No currency conversion or cross-edition blending is performed.",
+            "Missing metric values remain null; multiple matching rows remain explicit."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: National Laboratory of the Rockies, Annual Technology Baseline electricity, edition and release as reported with the asset URL and SHA256.",
+            "source_id": "nlr-atb"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "tech.read_atb",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "atb_parquet": "1",
+            "pvwatts_v8": "1",
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "regulations_gov": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-21",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "tech.describe_atb",
+      "args": {
+        "edition": 2025,
+        "dimension": "core_metric_case",
+        "filters": {
+          "technology": "OffShoreWind",
+          "techdetail": "Class3",
+          "techdetail2": "Fixed-Bottom",
+          "resourcedetail": "Class3",
+          "core_metric_parameter": "Fixed O&M",
+          "core_metric_variable": "2035",
+          "scenario": "Moderate",
+          "crpyears": "20"
+        }
+      },
+      "envelope": {
+        "data": {
+          "edition": 2025,
+          "release": "v2.0.0",
+          "file_url": "https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2025/v2.0.0/ATBe.parquet",
+          "asset_sha256": "c380220b472b7832d864afe9dd15d6c748aee0a7f58a6ffc26d89261413502b4",
+          "asset_bytes": 9193709,
+          "table_rows": 1161588,
+          "currency_basis": "2023 USD unless noted otherwise by the publisher; nonmonetary metrics keep their own units",
+          "currency_basis_source": "https://atb.nlr.gov/electricity/2025/definitions",
+          "filters": {
+            "technology": "OffShoreWind",
+            "techdetail": "Class3",
+            "techdetail2": "Fixed-Bottom",
+            "resourcedetail": "Class3",
+            "core_metric_parameter": "Fixed O&M",
+            "core_metric_variable": "2035",
+            "scenario": "Moderate",
+            "crpyears": "20"
+          },
+          "offset": 0,
+          "total_matches": 2,
+          "columns": [
+            "atb_year",
+            "core_metric_key",
+            "core_metric_parameter",
+            "core_metric_case",
+            "tax_credit_case",
+            "crpyears",
+            "technology",
+            "technology_alias",
+            "techdetail",
+            "techdetail2",
+            "resourcedetail",
+            "display_name",
+            "default",
+            "scale",
+            "maturity",
+            "scenario",
+            "core_metric_variable",
+            "units",
+            "value",
+            "ref_summary",
+            "ref_evidence_type"
+          ],
+          "filter_columns": [
+            "atb_year",
+            "core_metric_case",
+            "core_metric_parameter",
+            "core_metric_variable",
+            "crpyears",
+            "default",
+            "display_name",
+            "maturity",
+            "resourcedetail",
+            "scale",
+            "scenario",
+            "tax_credit_case",
+            "techdetail",
+            "techdetail2",
+            "technology",
+            "technology_alias",
+            "units"
+          ],
+          "interpretation": "Published scenario assumptions and projections, not observations, bids or a project-specific cost estimate.",
+          "dimension": "core_metric_case",
+          "values": [
+            "R&D",
+            "R&D + TC"
+          ],
+          "evidence_ref": "evidence_01",
+          "returned": 2
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "nlr-atb",
+            "steward": "National Laboratory of the Rockies",
+            "system": "Annual Technology Baseline (ATB)",
+            "dataset": "ATB electricity",
+            "dataset_version": "ATB 2025 v2.0.0",
+            "authority_level": "primary",
+            "access_path": "live",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "National Laboratory of the Rockies, Annual Technology Baseline electricity, edition and release as reported with the asset URL and SHA256.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "distinct core_metric_case",
+            "locator": "https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2025/v2.0.0/ATBe.parquet",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "verify_sha256",
+              "parse_parquet",
+              "exact_filter",
+              "distinct_dimension"
+            ],
+            "payload_hash": "c380220b472b7832d864afe9dd15d6c748aee0a7f58a6ffc26d89261413502b4",
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "nlr-atb"
+          ],
+          "known_limitations": [
+            "Edition and release are explicit. No latest alias or verified ATB 2026 asset is supported.",
+            "Each Parquet asset is checked against its recorded byte size and SHA256 before parsing.",
+            "Values are scenario assumptions and projections, not observations or project bids.",
+            "Technology detail, resource class, scenario, projection year, metric, financial case, tax credit, CRP and units remain separate publisher columns.",
+            "ATB 2024 generally uses 2022 USD and ATB 2025 generally uses 2023 USD unless noted by the publisher. No currency conversion or cross-edition blending is performed.",
+            "Missing metric values remain null; multiple matching rows remain explicit."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: National Laboratory of the Rockies, Annual Technology Baseline electricity, edition and release as reported with the asset URL and SHA256.",
+            "source_id": "nlr-atb"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "tech.describe_atb",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "atb_parquet": "1",
+            "pvwatts_v8": "1",
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "regulations_gov": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-21",
+          "request_id": "recorded-workflow"
+        }
+      }
+    },
+    {
+      "tool": "tech.read_atb",
+      "args": {
+        "edition": 2025,
+        "filters": {
+          "technology": "OffShoreWind",
+          "techdetail": "Class3",
+          "techdetail2": "Fixed-Bottom",
+          "resourcedetail": "Class3",
+          "core_metric_parameter": "Fixed O&M",
+          "core_metric_variable": "2035",
+          "scenario": "Moderate",
+          "crpyears": "20",
+          "core_metric_case": "R&D",
+          "tax_credit_case": null
+        },
+        "rows": 2
+      },
+      "envelope": {
+        "data": {
+          "edition": 2025,
+          "release": "v2.0.0",
+          "file_url": "https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2025/v2.0.0/ATBe.parquet",
+          "asset_sha256": "c380220b472b7832d864afe9dd15d6c748aee0a7f58a6ffc26d89261413502b4",
+          "asset_bytes": 9193709,
+          "table_rows": 1161588,
+          "currency_basis": "2023 USD unless noted otherwise by the publisher; nonmonetary metrics keep their own units",
+          "currency_basis_source": "https://atb.nlr.gov/electricity/2025/definitions",
+          "filters": {
+            "technology": "OffShoreWind",
+            "techdetail": "Class3",
+            "techdetail2": "Fixed-Bottom",
+            "resourcedetail": "Class3",
+            "core_metric_parameter": "Fixed O&M",
+            "core_metric_variable": "2035",
+            "scenario": "Moderate",
+            "crpyears": "20",
+            "core_metric_case": "R&D",
+            "tax_credit_case": null
+          },
+          "offset": 0,
+          "total_matches": 1,
+          "columns": [
+            "atb_year",
+            "core_metric_key",
+            "core_metric_parameter",
+            "core_metric_case",
+            "tax_credit_case",
+            "crpyears",
+            "technology",
+            "technology_alias",
+            "techdetail",
+            "techdetail2",
+            "resourcedetail",
+            "display_name",
+            "default",
+            "scale",
+            "maturity",
+            "scenario",
+            "core_metric_variable",
+            "units",
+            "value",
+            "ref_summary",
+            "ref_evidence_type"
+          ],
+          "filter_columns": [
+            "atb_year",
+            "core_metric_case",
+            "core_metric_parameter",
+            "core_metric_variable",
+            "crpyears",
+            "default",
+            "display_name",
+            "maturity",
+            "resourcedetail",
+            "scale",
+            "scenario",
+            "tax_credit_case",
+            "techdetail",
+            "techdetail2",
+            "technology",
+            "technology_alias",
+            "units"
+          ],
+          "interpretation": "Published scenario assumptions and projections, not observations, bids or a project-specific cost estimate.",
+          "records": [
+            {
+              "row_number": 306350,
+              "values": {
+                "atb_year": 2025,
+                "core_metric_key": "2476",
+                "core_metric_parameter": "Fixed O&M",
+                "core_metric_case": "R&D",
+                "tax_credit_case": null,
+                "crpyears": 20,
+                "technology": "OffShoreWind",
+                "technology_alias": "Offshore Wind",
+                "techdetail": "Class3",
+                "techdetail2": "Fixed-Bottom",
+                "resourcedetail": "Class3",
+                "display_name": "Offshore Wind - Class 3",
+                "default": 1,
+                "scale": "Utility",
+                "maturity": "Y",
+                "scenario": "Moderate",
+                "core_metric_variable": 2035,
+                "units": "$/kW-yr",
+                "value": 77.23474920912257,
+                "ref_summary": "Shields, Matthew, Philipp Beiter, and Jacob Nunemaker. \u201cA Systematic Framework for Projecting the Future Cost of Offshore Wind Energy.\u201d Technical Report. Golden, CO: National Renewable Energy Laboratory (NREL), December 1, 2022. https://doi.org/10.2172/1902302.",
+                "ref_evidence_type": "Calculated: Single Metric Learning Curve"
+              },
+              "evidence_ref": "evidence_01"
+            }
+          ],
+          "returned": 1,
+          "selection_status": "single_matching_row",
+          "selection_note": "All qualifying rows remain distinct; no ambiguous first row is chosen. Refine technology detail, scenario, year, financial case, tax credit and CRP qualifiers as needed."
+        },
+        "provenance": [
+          {
+            "id": "source_01",
+            "source_id": "nlr-atb",
+            "steward": "National Laboratory of the Rockies",
+            "system": "Annual Technology Baseline (ATB)",
+            "dataset": "ATB electricity",
+            "dataset_version": "ATB 2025 v2.0.0",
+            "authority_level": "primary",
+            "access_path": "cache",
+            "source_updated_at": null,
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "cache_age_seconds": 0,
+            "citation": {
+              "doi": null,
+              "recommended": "National Laboratory of the Rockies, Annual Technology Baseline electricity, edition and release as reported with the asset URL and SHA256.",
+              "required": true
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "id": "evidence_01",
+            "source_ref": "source_01",
+            "record_id": "ATB 2025 v2.0.0:data row 306350",
+            "locator": "https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2025/v2.0.0/ATBe.parquet",
+            "retrieved_at": "2026-11-21T00:00:00Z",
+            "effective_at": null,
+            "transformations": [
+              "verify_sha256",
+              "parse_parquet",
+              "exact_filter"
+            ],
+            "payload_hash": "c380220b472b7832d864afe9dd15d6c748aee0a7f58a6ffc26d89261413502b4",
+            "raw_recovery": "available"
+          }
+        ],
+        "coverage": {
+          "registry": "covered",
+          "execution": "complete",
+          "pagination": "complete",
+          "source_claim": "complete",
+          "result": "hit",
+          "sources_searched": [
+            "nlr-atb"
+          ],
+          "known_limitations": [
+            "Edition and release are explicit. No latest alias or verified ATB 2026 asset is supported.",
+            "Each Parquet asset is checked against its recorded byte size and SHA256 before parsing.",
+            "Values are scenario assumptions and projections, not observations or project bids.",
+            "Technology detail, resource class, scenario, projection year, metric, financial case, tax credit, CRP and units remain separate publisher columns.",
+            "ATB 2024 generally uses 2022 USD and ATB 2025 generally uses 2023 USD unless noted by the publisher. No currency conversion or cross-edition blending is performed.",
+            "Missing metric values remain null; multiple matching rows remain explicit."
+          ]
+        },
+        "warnings": [
+          {
+            "code": "citation_required",
+            "message": "This publisher requires citation as a condition of use. Cite: National Laboratory of the Rockies, Annual Technology Baseline electricity, edition and release as reported with the asset URL and SHA256.",
+            "source_id": "nlr-atb"
+          }
+        ],
+        "_execution": {
+          "server": "doe-mcp",
+          "server_version": "0.1.0.dev0",
+          "tool": "tech.read_atb",
+          "tool_contract_version": "1",
+          "envelope_version": "1",
+          "adapters": {
+            "atb_parquet": "1",
+            "pvwatts_v8": "1",
+            "osti_family": "1",
+            "opendatasoft": "1",
+            "json_document": "1",
+            "curated": "1",
+            "eia_v2": "1",
+            "fueleconomy": "1",
+            "text_feed": "1",
+            "postgrest": "1",
+            "federal_register": "1",
+            "regulations_gov": "1",
+            "vips": "1",
+            "daymet": "1",
+            "essdive": "1",
+            "esgf": "1",
+            "sage": "1",
+            "optimade": "1",
+            "basis_sets": "1",
+            "facility_status": "1",
+            "gcam_csv": "1",
+            "nmdc": "1",
+            "none": "1",
+            "self_registry": "1"
+          },
+          "registry_revision": "2026-11-21",
+          "request_id": "recorded-workflow"
+        }
+      }
+    }
+  ]
+}

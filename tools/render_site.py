@@ -503,6 +503,7 @@ DEMO_CARDS = [
     ("site", "Map facilities near a site", "Sample wind turbines and utility solar in Rhode Island, and the inputs a full screen still needs.", "Recorded inventory"),
     ("earth", "Pair datasets with modelled weather", "Find permafrost datasets and five days of Daymet weather at Oak Ridge, without claiming they match.", "Recorded data"),
     ("materials", "Inspect a computed material", "A gallium nitride structure and a separate chemistry basis-set example, with their sources.", "Recorded structures"),
+    ("atb-assumptions", "Compare qualified ATB assumptions", "Read the same offshore-wind case in ATB 2024 and 2025, retaining row evidence and separate currency bases.", "Scenario assumptions"),
     ("facility-status", "Check NERSC system status", "Which NERSC systems are active, the next planned outage, and which facilities are not covered.", "Recorded board"),
     ("partial", "See an answer with a source down", "The literature search replayed with DOE PAGES unavailable, and how the answer reports the gap.", "Simulated outage"),
     ("blocked", "Ask for data DOE-MCP cannot serve", "Ask for a site's solar resource and get the registry's named reason instead of an empty answer.", "Registry inventory"),
