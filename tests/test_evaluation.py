@@ -16,16 +16,24 @@ GCAM_TRAPS = {
     'gcam-inputs-versus-observations': ('water:default', 'water.cooling_shares'),
 }
 
+ATB_TASKS = {
+    'atb-qualified-assumption': 'answerable',
+    'atb-multiple-matches': 'trap',
+    'atb-null-assumption': 'trap',
+    'atb-changed-financial-case': 'trap',
+    'atb-currency-bases': 'trap',
+}
+
 
 def test_evaluation_reuses_existing_skill_tasks_and_semantic_traps():
     rows = tasks()
     assert {r['id'] for r in rows} == {
         'facility', 'literature', 'registry-gap', 'alias', 'missing-total', 'vintages',
         'raw-data-injection', 'weather', 'structures', 'demand', 'bpa', 'forecast',
-        *GCAM_TRAPS,
+        *GCAM_TRAPS, *ATB_TASKS,
     }
-    assert sum(r['kind'] == 'trap' for r in rows) == 10
-    assert sum(r['kind'] == 'answerable' for r in rows) == 6
+    assert sum(r['kind'] == 'trap' for r in rows) == 14
+    assert sum(r['kind'] == 'answerable' for r in rows) == 7
 
 
 @pytest.mark.parametrize('task_id', GCAM_TRAPS)
@@ -39,11 +47,23 @@ async def test_gcam_evaluation_profile_exposes_the_required_read(ctx, task_id):
     assert tool in {entry.name for entry in visible}
 
 
+@pytest.mark.parametrize('task_id', ATB_TASKS)
+async def test_atb_evaluation_profile_exposes_discovery_and_qualified_read(ctx, task_id):
+    task = next(row for row in tasks() if row['id'] == task_id)
+    assert task['skill'] == 'atb-assumptions'
+    assert task['profile'] == 'energy-tech:default'
+    assert task['kind'] == ATB_TASKS[task_id] and task['mutation'] == 'none'
+    assert task['prompt'] and task['rubric']
+    visible = await build_server(ctx, task['profile']).list_tools()
+    assert {'tech.describe_atb', 'tech.read_atb'} <= {entry.name for entry in visible}
+
+
 def test_prepare_exports_semantic_tasks_without_a_model_or_network(tmp_path):
     output = tmp_path / 'evaluation.json'
     assert command(Namespace(prepare=True, output=output)) == 0
     report = json.loads(output.read_text())
     assert set(GCAM_TRAPS) <= {row['id'] for row in report['tasks']}
+    assert set(ATB_TASKS) <= {row['id'] for row in report['tasks']}
     assert 'Grade each answer against its rubric' in report['required_review']
 
 
@@ -126,3 +146,50 @@ print(json.dumps({{'answer':{{'text':'x','citations':[]}},'usage':{{'input_token
     system = json.loads(seen.read_text())['messages'][0]['content']
     assert 'replay of publisher responses' in system
     assert 'Do not describe any value as current or live' in system
+
+
+async def test_atb_evaluation_replays_both_currency_bases_without_keys_or_http(tmp_path, monkeypatch):
+    from doe_mcp.adapters.base import HttpFetcher
+    from doe_mcp.core.credentials import Credentials
+
+    def refuse(*args, **kwargs):
+        raise AssertionError('ATB evaluation must use the existing recordings without keys or HTTP')
+
+    monkeypatch.setattr(Credentials, 'load', refuse)
+    for method in ('fetch_json', 'fetch_text', 'fetch_bytes'):
+        monkeypatch.setattr(HttpFetcher, method, refuse)
+    driver = tmp_path / 'atb-protocol-driver'
+    driver.write_text(f'''#!{sys.executable}
+import json,sys
+request=json.load(sys.stdin)
+steps=[message for message in request['messages'] if message['role']=='tool']
+if not steps:
+ assert 'ATB assumptions' in request['messages'][0]['content']
+ filters={{'technology':'OffShoreWind','core_metric_parameter':'Fixed O&M',
+          'scenario':'Moderate','core_metric_variable':'2035','techdetail':'Class3',
+          'techdetail2':'Fixed-Bottom','resourcedetail':'Class3',
+          'core_metric_case':'R&D','tax_credit_case':None,'crpyears':'20'}}
+ reply={{'tool_calls':[{{'name':'tech.read_atb',
+          'arguments':{{'edition':year,'filters':filters,'rows':2}}}} for year in [2024,2025]]}}
+else:
+ reply={{'answer':{{'text':'Simulation protocol check only; no model quality claim.',
+    'citations':[{{'step':i,'evidence_id':step['content']['envelope']['evidence'][0]['id']}}
+                 for i,step in enumerate(steps,1)]}}}}
+reply.update(usage={{'input_tokens':1,'output_tokens':1}},
+             model_version='deterministic-protocol-test',settings={{'deterministic':True}})
+print(json.dumps(reply))
+''')
+    driver.chmod(0o700)
+    report = await run(options(driver, tmp_path / 'report.json',
+        max_calls=2, repeats=1, skills=True, task=['atb-currency-bases'], simulation=True))
+    row = report['runs'][0]
+    assert report['simulation'] and row['status'] == 'needs_review'
+    assert row['profiles'] == ['energy-tech:default']
+    assert not row['automatic_failures'] and row['review'] == 'pending'
+    before, after = [step['envelope']['data'] for step in row['steps']]
+    assert before['total_matches'] == after['total_matches'] == 1
+    assert before['records'][0]['values']['value'] == 74.1812
+    assert after['records'][0]['values']['value'] == 77.23474920912257
+    assert '2022 USD' in before['currency_basis']
+    assert '2023 USD' in after['currency_basis']
+    assert before['currency_basis_source'] != after['currency_basis_source']

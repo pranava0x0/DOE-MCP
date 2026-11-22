@@ -1,0 +1,5 @@
+step,tool,source,record_id,locator,effective_at,mode
+1,tech.describe_atb,nlr-atb,distinct core_metric_case,https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2024/v4.0.0/ATBe.parquet,,recorded
+2,tech.read_atb,nlr-atb,ATB 2024 v4.0.0:data row 145584,https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2024/v4.0.0/ATBe.parquet,,recorded
+3,tech.describe_atb,nlr-atb,distinct core_metric_case,https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2025/v2.0.0/ATBe.parquet,,recorded
+4,tech.read_atb,nlr-atb,ATB 2025 v2.0.0:data row 306350,https://oedi-data-lake.s3.amazonaws.com/ATB/electricity/parquet/2025/v2.0.0/ATBe.parquet,,recorded

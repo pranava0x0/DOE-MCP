@@ -190,7 +190,9 @@ def scope_line(report) -> str:
             parts.append(f"{data['record_count']} of {total:,} match{'es' if total != 1 else ''}")
         elif 'total_matches' in data and 'record_count' in data:
             parts.append(f"{data['record_count']} returned, total unknown")
-        if parts:
+        elif step['tool'] == 'tech.read_atb':
+            parts.append(f"{data['returned']} of {data['total_matches']:,} qualifying rows from ATB {data['edition']}")
+        if parts and report['case'] != 'atb-assumptions':
             break
     read = ("Read " + "; ".join(parts) + ". ") if parts else ""
     if report['mode'] == 'recorded':
@@ -220,7 +222,9 @@ def step_view(step, number, case="demo") -> str:
     cards=[]
     for ev in env['evidence']:
         record=next((r for r in records if str(r.get('id',r.get('case_id',r.get('study_id',r.get('sample_id',r.get('document_number','')))))) == ev['record_id']),{})
-        title=record.get('title',record.get('name',record.get('chemical_formula_reduced',ev['record_id'])))
+        if step['tool'] == 'tech.read_atb':
+            record = next((r['values'] for r in records if r['evidence_ref'] == ev['id']), {})
+        title=record.get('title',record.get('name',record.get('display_name',record.get('chemical_formula_reduced',ev['record_id']))))
         source=sources[ev['source_ref']]
         locator=link(ev['locator'],'Publisher record') if ev.get('locator') else 'No publisher locator supplied'
         cards.append(f'<li><strong>{esc(strip_inline_markup(str(title)))}</strong><br>{esc(source["system"])} · record {esc(ev["record_id"])}<br>{locator}<br>Record date: {esc(ev.get("effective_at") or record.get("publication_date") or "Unknown")}</li>')
@@ -230,7 +234,7 @@ def step_view(step, number, case="demo") -> str:
     if 'per_source' in data:
         totals = table(['Collection','Matches','Returned'], [(r['system'],r.get('total_matches'),r['returned']) for r in data['per_source']], 'Counts reported by each collection; totals can overlap')
     elif 'total_matches' in data:
-        totals = table(['Returned','Total matches'], [(data.get('record_count'),data.get('total_matches'))])
+        totals = table(['Returned','Total matches'], [(data.get('record_count',data.get('returned')),data.get('total_matches'))])
     proposed=''
     if step['tool']=='registry.search_sources':
         proposed=table(['Source','State','Blocked reason'],[(r.get('name',r.get('id')),r.get('declared_state'),r.get('blocked_reason')) for r in data.get('sources',[])],'Registry inventory; not a publisher query')
@@ -239,6 +243,24 @@ def step_view(step, number, case="demo") -> str:
         handoff='<ul>'+''.join(f'<li>{link(r.get("repository"),r.get("name",r["id"]))}</li>' for r in data.get('neighbors',[]) if r['id']=='nepa-mcp')+'</ul>'
     recipes = ''.join(f'<li>{link(r.get("uri"),r.get("label") or "Publisher access recipe")}{" — "+esc(r["instructions"]) if r.get("instructions") else ""}</li>' for r in env.get('access_recipes',[]))
     extra=''
+    if step['tool'] in {'tech.describe_atb', 'tech.read_atb'}:
+        if step['tool'] == 'tech.describe_atb':
+            extra = table([data['dimension']], [(v,) for v in data['values']], 'Exact publisher qualifier values')
+        else:
+            columns = ['technology', 'techdetail', 'techdetail2', 'resourcedetail',
+                       'core_metric_parameter', 'core_metric_variable', 'scenario',
+                       'core_metric_case', 'tax_credit_case', 'crpyears', 'value', 'units']
+            extra = table(['Row', *columns, 'Evidence ID'],
+                          [[r['row_number'], *("null" if r['values'][c] is None and c != 'value'
+                                             else r['values'][c] for c in columns), r['evidence_ref']]
+                           for r in records], f"ATB {data['edition']} qualified assumptions; missing metrics remain Unknown")
+            selection_labels = {'single_matching_row': 'One matching assumption',
+                                'multiple_matching_rows': 'Multiple matching assumptions',
+                                'no_matching_rows': 'No matching assumptions'}
+            extra += '<p>'+esc(selection_labels.get(data['selection_status'], data['selection_status'].replace('_', ' ')))+'. '+esc(data['interpretation'])+'</p>'
+        extra += ('<p>ATB '+esc(data['edition'])+' '+esc(data['release'])+'. SHA-256: <code>'
+                  +esc(data['asset_sha256'])+'</code></p><p>'+esc(data['currency_basis'])
+                  +'. '+link(data['currency_basis_source'], 'Publisher currency basis')+'</p>')
     if step['tool'] in {'docs.search_rulemakings','docs.get_rulemaking'}:
         extra=table(['Document','Action','Published','Effective','Comments close','Dockets'],[(r['document_number'],r.get('action'),r.get('publication_date'),r.get('effective_on'),r.get('comments_close_on'),', '.join(r.get('docket_ids',[]))) for r in records], 'Publisher metadata; dates do not establish current legal effect')
         extra += '<p>'+esc(data.get('total_matches_is_unfiltered',''))+'</p>'
@@ -281,6 +303,8 @@ def step_view(step, number, case="demo") -> str:
     if extra and cards:
         evidence='<details><summary>Record sources</summary>'+evidence+'</details>'
     label={'bio.search_studies':'Study','bio.search_biosamples':'Samples','registry.search_sources':'Coverage','registry.list_neighbors':'Other tools','compute.facility_status':'Systems'}.get(step['tool'],step['tool'].split('.')[-1].replace('_',' ').capitalize())
+    if step['tool'] in {'tech.describe_atb', 'tech.read_atb'}:
+        label = str(step['args']['edition']) + (' qualifiers' if step['tool'] == 'tech.describe_atb' else ' assumptions')
     return (f'<section class="step" id="{esc(case)}-step-{number}" tabindex="-1" data-label="{esc(label)}"><h3>{number}. {esc(label)}</h3>'
             f'<details><summary>Coverage and source notes</summary><p class="mono">{esc(step["tool"])} {esc(json.dumps(step["args"],sort_keys=True))}</p>'
             +table(['Coverage dimension','Value'],[(k,coverage[k]) for k in ['registry','execution','pagination','source_claim','result']])

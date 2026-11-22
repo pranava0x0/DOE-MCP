@@ -42,6 +42,7 @@ CASES = {
     "earth": ("Environmental study brief", "Find permafrost datasets and inspect modelled weather at Oak Ridge."),
     "global-climate-archive": ("Find Canadian climate simulations", "What historical near-surface air temperature output does ORNL index for CanESM5?"),
     "materials": ("Materials evidence sheet", "Inspect a computed GaN structure and a separate basis-set example."),
+    "atb-assumptions": ("ATB assumptions across editions", "What fixed O&M does each ATB edition assign to the same qualified offshore-wind case?"),
 }
 
 RECORDED_ONLY = {
@@ -64,6 +65,7 @@ CASE_SKILLS = {
     "eia": "grid-status-brief", "site": "energy-project-site-screen",
     "blocked": "energy-project-site-screen", "earth": "environmental-study-brief",
     "materials": "materials-structure-and-code", "facility-status": None,
+    "atb-assumptions": "atb-assumptions",
 }
 """The skill each walkthrough exercises; None for a tool-only demo. The
 landing page and the demos page both read it, and a test holds it to
@@ -275,6 +277,31 @@ async def run_workflow(ctx: RuntimeContext, case: str, *, mode: str = "recorded"
                    start="2023-06-01", end="2023-06-05", variables="prcp,tmax,tmin")
         limits += ["The dataset search and Oak Ridge weather example are independent; no geographic or temporal relationship is asserted.",
                    "Daymet values are modelled grid-cell estimates, not station observations."]
+    elif case == "atb-assumptions":
+        filters = {"technology": "OffShoreWind", "techdetail": "Class3",
+                   "techdetail2": "Fixed-Bottom", "resourcedetail": "Class3",
+                   "core_metric_parameter": "Fixed O&M", "core_metric_variable": "2035",
+                   "scenario": "Moderate", "crpyears": "20"}
+        summaries = []
+        for edition in (2024, 2025):
+            cases = await call("tech.describe_atb", edition=edition,
+                               dimension="core_metric_case", filters=filters)
+            if "R&D" not in cases.data["values"]:
+                raise SourceUnavailable("the requested ATB financial case was not returned")
+            found = await call("tech.read_atb", edition=edition,
+                               filters={**filters, "core_metric_case": "R&D",
+                                        "tax_credit_case": None}, rows=2)
+            if found.data["total_matches"] != 1 or found.data["returned"] != 1:
+                raise SourceUnavailable("the qualified ATB selection did not return exactly one row")
+            row = found.data["records"][0]["values"]
+            value = "Unknown" if row["value"] is None else str(row["value"])
+            basis = found.data["currency_basis"].split(" unless", 1)[0]
+            summaries.append(f"ATB {edition}: {value} {row['units']} ({basis})")
+        answer = "; ".join(summaries) + ". These published assumptions retain separate currency bases; no conversion or comparable-dollar difference is calculated."
+        limits += ["The selection is Class3 Fixed-Bottom offshore wind, 2035 Moderate, R&D, null tax-credit qualifier and 20-year CRP in each edition.",
+                   "ATB supplies scenario assumptions and projections, not observations, bids or project-specific cost estimates.",
+                   "Currency bases differ across editions. A comparable-dollar change requires a documented conversion method and source.",
+                   "PVWatts remains proposed and source-gated. No production model was called."]
     elif case == "materials":
         found = await call("materials.search_structures", elements="Ga,N", rows=5)
         rows = found.data["structures"]

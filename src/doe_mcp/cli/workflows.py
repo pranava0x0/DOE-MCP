@@ -39,7 +39,7 @@ async def build_report(args):
     if args.live:
         server = {"outage-history": "doe-energy-data", "eia": "doe-energy-data", "grid": "doe-energy-data",
                   "load-baseline": "doe-energy-data", "load-interval-check": "doe-energy-data",
-                  "site": "doe-energy-data", "earth": "doe-earth",
+                  "site": "doe-energy-data", "earth": "doe-earth", "atb-assumptions": "doe-energy-tech",
                   "materials": "doe-materials", "microbiome": "doe-bio", "soil-metadata": "doe-bio"}.get(args.case, "doe-research")
         if args.case in WALKS:
             server = "doe-" + WALKS[args.case].tool.split(".")[0]

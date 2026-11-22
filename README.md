@@ -53,7 +53,7 @@ also cover Japan’s geothermal resources and Canadian climate simulations.
 |---|---|
 | Servers shipping | `doe-research` (11 tools, `research:default`), `doe-energy-data` (11 tools, `energy:default`), `doe-energy-tech` (5 tools, `energy-tech:default`), `doe-earth` (8 tools, `earth:default`), `doe-materials` (7 tools, `materials:default`), `doe-bio` (5 tools, `bio:default`), `doe-water` (10 tools, `water:default`), `doe-land` (10 tools, `land:default`), `doe-emissions` (10 tools, `emissions:default`), `doe-power` (9 tools, `power:default`), `doe-economy` (9 tools, `economy:default`) |
 | Distinct tools across shipping profiles | 79 |
-| Skills with bench tasks | 32 |
+| Skills with bench tasks | 33 |
 | Registry | 89 source manifests, 30 active, 54 organizations (17 national laboratories), 5 server entries and 1 skill pack in the plug-in catalog |
 | Capabilities | 43 of 60 in the vocabulary served by an active source |
 | Adapters | `atb_parquet`, `basis_sets`, `curated`, `daymet`, `eia_v2`, `esgf`, `essdive`, `facility_status`, `federal_register`, `fueleconomy`, `gcam_csv`, `json_document`, `nmdc`, `opendatasoft`, `optimade`, `osti_family`, `postgrest`, `pvwatts_v8`, `regulations_gov`, `sage`, `self_registry`, `text_feed`, `vips` |

@@ -278,3 +278,64 @@ async def test_outage_evidence_cards_name_each_release_and_its_role(ctx):
     page = render([await run_workflow(ctx, 'outage-history')])
     assert '(release covering 2021)' in page
     assert "(another year's release)" in page or '(another year&#x27;s release)' in page
+
+
+async def test_atb_demo_preserves_qualified_rows_and_separate_currency_evidence(ctx, monkeypatch):
+    from doe_mcp.adapters.base import HttpFetcher
+    from doe_mcp.atb_releases import RELEASES
+    from doe_mcp.core.credentials import Credentials
+
+    def refuse(*args, **kwargs):
+        raise AssertionError('recorded ATB demo must not access keys or HTTP')
+
+    monkeypatch.setattr(Credentials, 'load', refuse)
+    for method in ('fetch_json', 'fetch_text', 'fetch_bytes'):
+        monkeypatch.setattr(HttpFetcher, method, refuse)
+    report = await run_workflow(ctx, 'atb-assumptions', fixtures=fixture_manifest(FIXTURES))
+    assert [s['tool'] for s in report['steps']] == ['tech.describe_atb', 'tech.read_atb'] * 2
+    assert [s['args']['edition'] for s in report['steps']] == [2024, 2024, 2025, 2025]
+    assert report['fixtures'] and {f['file'] for f in report['fixtures']} == {'nlr-atb.json'}
+    before, after = [s['envelope'] for s in report['steps'] if s['tool'] == 'tech.read_atb']
+    for env, year in [(before, 2024), (after, 2025)]:
+        data = env['data']
+        assert data['total_matches'] == data['returned'] == 1
+        row = data['records'][0]
+        assert row['values']['core_metric_case'] == 'R&D'
+        assert row['values']['tax_credit_case'] is None
+        assert row['values']['units'] == '$/kW-yr'
+        assert data['currency_basis'] == RELEASES[year].currency_basis
+        assert data['currency_basis_source'] == RELEASES[year].currency_source
+        evidence = next(e for e in env['evidence'] if e['id'] == row['evidence_ref'])
+        assert evidence['payload_hash'] == data['asset_sha256'] == RELEASES[year].sha256
+        assert evidence['locator'] == RELEASES[year].url
+        assert f"data row {row['row_number']}" in evidence['record_id']
+    page = render([report])
+    assert 'Skill: <code>atb-assumptions</code>' in page
+    assert '1 of 1 qualifying rows from ATB 2024' in page
+    assert '1 of 1 qualifying rows from ATB 2025' in page
+    assert '2022 USD' in outcome(report) and '2023 USD' in outcome(report)
+    assert 'no conversion or comparable-dollar difference' in outcome(report)
+    assert 'data-label="tax_credit_case">null</td>' in page
+    for number, label in enumerate(('2024 qualifiers', '2024 assumptions',
+                                    '2025 qualifiers', '2025 assumptions'), 1):
+        assert f'data-label="{label}"><h3>{number}. {label}</h3>' in page
+    assert 'One matching assumption.' in page
+    assert before['data']['selection_status'] == after['data']['selection_status'] == 'single_matching_row'
+    for spec in RELEASES.values():
+        assert f'href="{spec.currency_source}"' in page and spec.sha256 in page
+
+
+async def test_atb_demo_refuses_an_ambiguous_selection(ctx, monkeypatch):
+    from types import SimpleNamespace
+    from doe_mcp import workflows
+    original = workflows.tool_spec
+
+    async def ambiguous(context, **args):
+        env = await original('tech.read_atb').fn(context, **args)
+        env.data['total_matches'] = 2
+        return env
+
+    monkeypatch.setattr(workflows, 'tool_spec', lambda name: SimpleNamespace(fn=ambiguous)
+                        if name == 'tech.read_atb' else original(name))
+    with pytest.raises(SourceUnavailable, match='exactly one row'):
+        await run_workflow(ctx, 'atb-assumptions')
