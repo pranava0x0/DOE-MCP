@@ -59,7 +59,7 @@ body[data-location-layout]{padding-left:15rem}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}
 </style></head><body class="" data-location-layout><a class="skip" href="#content">Skip to content</a>
 <header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Demos</a><a href="backlog.html">Project backlog</a></nav></header>
-<aside class="page-location" data-location-nav data-location-context="Local applications" data-location-topbar=""><details class="location-menu" open><summary class="location-toggle"><span>Current: </span><span data-current-location>Overview</span></summary><nav aria-label="On this page"><p class="location-context">Local applications</p><ul data-location-links><li class="location-depth-0"><a href="#local-applications" aria-current="location">Overview</a></li><li class="location-depth-0"><a href="#gcam-comparison-receipts">GCAM comparison receipts</a></li><li class="location-depth-0"><a href="#forecast-benchmark">Forecast benchmark</a></li><li class="location-depth-0"><a href="#forecast-panel-with-common-cohorts">Forecast panel with common cohorts</a></li><li class="location-depth-0"><a href="#weather-package">Weather package</a></li><li class="location-depth-0"><a href="#federal-register-notice-tracker">Federal Register notice tracker</a></li><li class="location-depth-0"><a href="#regulationsgov-integration-gated">Regulations.gov integration: gated</a></li><li class="location-depth-0"><a href="#research-artifact-linkage-explorer">Research artifact linkage explorer</a></li></ul></nav></details></aside><main id="content" tabindex="-1"><h1 id="local-applications">Local applications</h1>
+<aside class="page-location" data-location-nav data-location-context="Local applications" data-location-topbar=""><details class="location-menu" open><summary class="location-toggle"><span>Current: </span><span data-current-location>Overview</span></summary><nav aria-label="On this page"><p class="location-context">Local applications</p><ul data-location-links><li class="location-depth-0"><a href="#local-applications" aria-current="location">Overview</a></li><li class="location-depth-0"><a href="#gcam-comparison-receipts">GCAM comparison receipts</a></li><li class="location-depth-0"><a href="#forecast-benchmark">Forecast benchmark</a></li><li class="location-depth-0"><a href="#forecast-panel-with-common-cohorts">Forecast panel with common cohorts</a></li><li class="location-depth-0"><a href="#bpa-observation-preparation">BPA observation preparation</a></li><li class="location-depth-0"><a href="#weather-package">Weather package</a></li><li class="location-depth-0"><a href="#federal-register-notice-tracker">Federal Register notice tracker</a></li><li class="location-depth-0"><a href="#regulationsgov-integration-gated">Regulations.gov integration: gated</a></li><li class="location-depth-0"><a href="#research-artifact-linkage-explorer">Research artifact linkage explorer</a></li></ul></nav></details></aside><main id="content" tabindex="-1"><h1 id="local-applications">Local applications</h1>
 <p>The <a href="energy-readers.html">ATB energy assumptions reader</a> exports qualified
 rows from pinned public 2024 and 2025 releases. Install the optional
 <code>energy-tech</code> extra, then run <code>doe-mcp app energy-assumptions --output ./recorded-atb</code>. Its PVWatts path remains proposed and supplies no model
@@ -234,6 +234,8 @@ mean power and interval energy also remain distinct.</p>
 or <code>prediction</code> means missing. Effective and availability times must be
 separate: <code>available_at</code> states when that observation was available to the
 forecast system and must be at or after its sample time or interval end.
+A blank <code>available_at</code> means unknown; it can match an ex-post actual but
+never supplies an issuance-time baseline.
 Issuance, availability and source attribution remain caller assertions;
 the application cannot prove their historical truth. Imported bytes are
 preserved with hashes and marked <code>not_publisher_verified</code>.</p>
@@ -254,6 +256,11 @@ outside the window or off its grid are listed separately; undeclared
 models, regions and leads are refused. Duplicate identities are refused
 after converting timestamps to UTC. Availability rows are indexed by
 their original CSV record number.</p>
+<p>The separate <code>ex-post-model-only.json</code> output uses common finite actual
+and all-model forecast targets without requiring persistence eligibility.
+It labels its own cohorts and denominators; do not compare those metrics
+directly against persistence on the narrower model-plus-persistence cohort.
+Unknown availability does not establish that an outcome was known at issuance.</p>
 <p>The bundle preserves all three raw input files and adds <code>cohorts.json</code>,
 <code>included-targets.csv</code>, <code>scored-rows.csv</code>, <code>row-exclusions.csv</code>,
 <code>input-exclusions.csv</code> and <code>metrics.csv</code>. Empty cohorts retain null metrics
@@ -264,6 +271,62 @@ slots; each input file is at most 20 MB and each CSV at most 100,000 rows.</p>
 <p>This application reads local files only. Its <code>--live</code> and <code>--fixtures</code>
 options are refused. Existing publisher tools keep their own source and
 credential gates; this application does not configure or acquire a key.</p>
+<h2 id="bpa-observation-preparation">BPA observation preparation</h2>
+<pre tabindex="0"><code class="language-bash">doe-mcp app forecast-panel --prepare-bpa --output ./bpa-recorded
+doe-mcp app forecast-panel \
+  --bpa-envelope ./bpa-recorded/bpa-envelope-01.json \
+  --actual-timezone America/Los_Angeles --output ./bpa-import
+</code></pre>
+<p>This is a preparation path in the existing forecast-panel application.
+The first command uses real recorded BPA readings and declares its timezone
+assumption. It creates no forecasts, comparison plan or prospective performance
+claim. <a href="applications.html#bpa-observations-for-forecast-panels">Download the recorded observations, input envelope and receipts</a>.
+The default <code>forecast-panel</code> command still runs its labelled simulation.</p>
+<p>For your own input, <code>--bpa-envelope</code> takes an original JSON tool envelope
+from <code>grid.get_bpa_operations</code>, not a report or HTTP recording fixture.
+Repeat it for up to eight nonoverlapping envelopes, with at most 20 MB combined
+and 100,000 returned observations. Duplicate UTC sample identities, inconsistent
+rows, unknown source references and mismatched evidence record identities
+are refused. These are structural consistency checks, not authentication
+of a caller's files as publisher originals. The original envelope bytes and
+SHA256 hashes are retained, with each receipt bound to its envelope, original
+row, timestamp, evidence ID and <code>bpa-operations</code> provenance entry.</p>
+<p><code>--actual-timezone</code> is an explicit caller IANA timezone assumption and is
+required for custom imports. Raw publisher timestamps and UTC timestamps
+are both retained. Ambiguous or nonexistent local DST times are refused.
+BPA Load remains <code>electric_power</code>, <code>MW</code>, <code>instantaneous_sample</code>, <code>sample_time</code>
+at a 300-second cadence. Missing values remain blank. There is no aggregation,
+conversion, interpolation or invented forecast.</p>
+<p>The output <code>actuals.csv</code> can be supplied with your own panel plan and forecasts.
+Set its region ID using <code>--region-id</code> if needed. <code>available_at</code> stays blank
+unless a retained sidecar supplies a row-bound caller assertion. Neither sample
+time, retrieval time nor publisher Last-Modified establishes row availability.
+Unknown rows may support the separate ex-post model-only scoring output but
+are always excluded from issuance-time persistence baselines.</p>
+<p>Optional <code>--availability-evidence ./availability.json</code> uses this structure
+(copy the real envelope hash, evidence ID and UTC target from a receipt):</p>
+<pre tabindex="0"><code class="language-json">{
+  &quot;rows&quot;: [{
+    &quot;envelope_sha256&quot;: &quot;COPY_FROM_RECEIPT&quot;,
+    &quot;evidence_id&quot;: &quot;evidence_01&quot;,
+    &quot;target_at&quot;: &quot;2026-09-03T07:00:00+00:00&quot;,
+    &quot;available_at&quot;: &quot;2026-09-03T07:01:00+00:00&quot;,
+    &quot;evidence&quot;: &quot;Caller ingestion log identifier and row-level availability basis&quot;
+  }]
+}
+</code></pre>
+<p>The sidecar is preserved byte-for-byte. Each declaration must bind uniquely
+to a retained envelope/evidence/target and be at or after the sample time.
+Unspecified rows remain unknown. Declared availability is labelled
+<code>caller_declared_unverified</code>, never publisher-authenticated. A candidate still
+needs to be available by a supplied forecast's issuance and within the plan's
+maximum age before it can enter a baseline. Imported observations never prove
+forecast issuance provenance.</p>
+<p>Every new output directory is published as a complete atomic bundle with
+<code>report.json</code>, <code>manifest.json</code>, <code>actuals.csv</code>, <code>observation-receipts.json</code>,
+original <code>bpa-envelope-*.json</code> files and the optional availability sidecar.
+Existing destinations are refused. Retained source coverage and receipts show
+only returned samples; a partial recording does not become a complete archive.</p>
 <h2 id="weather-package">Weather package</h2>
 <pre tabindex="0"><code class="language-bash">doe-mcp app weather-package --output ./recorded-weather
 doe-mcp app weather-package --latitude 35.9313 --longitude -84.3104 \

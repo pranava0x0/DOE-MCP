@@ -1,0 +1,26 @@
+{
+  "application": "bpa-observations",
+  "mode": "recorded_observation_preparation",
+  "files": [
+    {
+      "file": "actuals.csv",
+      "bytes": 2342,
+      "sha256": "5b0c31918fc80e82387430d29259fc253fb0b46d98dd857db643dce1ef559fe3"
+    },
+    {
+      "file": "bpa-envelope-01.json",
+      "bytes": 17841,
+      "sha256": "d9d3a716800d837808bd72b7f014c752791a03d4ade7f986d74a7d9d92fc1240"
+    },
+    {
+      "file": "observation-receipts.json",
+      "bytes": 24849,
+      "sha256": "c220b2ec5399946f3b0888d82bfdac43251f4c06b81c1450ea343f92fcce2af5"
+    },
+    {
+      "file": "report.json",
+      "bytes": 8214,
+      "sha256": "c31073b7b62a3b6771f98077431488de89eae6c4bf2afbc78173bd37dab9f717"
+    }
+  ]
+}

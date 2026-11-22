@@ -59,7 +59,7 @@ body[data-location-layout]{padding-left:15rem}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}
 </style></head><body class="application-page" data-location-layout><a class="skip" href="#content">Skip to content</a>
 <header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Demos</a><a href="backlog.html">Project backlog</a></nav></header>
-<aside class="page-location" data-location-nav data-location-context="Applications built on DOE-MCP" data-location-topbar=""><details class="location-menu" open><summary class="location-toggle"><span>Current: </span><span data-current-location>Overview</span></summary><nav aria-label="On this page"><p class="location-context">Applications built on DOE-MCP</p><ul data-location-links><li class="location-depth-0"><a href="#applications-built-on-doe-mcp" aria-current="location">Overview</a></li><li class="location-depth-0"><a href="#grid-forecast-benchmark-lab">Grid forecast benchmark lab</a></li><li class="location-depth-0"><a href="#weather-package-builder">Weather package builder</a></li><li class="location-depth-0"><a href="#doe-docket-notice-tracker">DOE docket notice tracker</a></li><li class="location-depth-0"><a href="#gcam-comparison-receipts">GCAM comparison receipts</a></li><li class="location-depth-0"><a href="#research-artifact-linkage-explorer">Research artifact linkage explorer</a></li><li class="location-depth-0"><a href="#forecast-panel-with-common-cohorts">Forecast panel with common cohorts</a></li><li class="location-depth-0"><a href="#atb-energy-assumptions-reader">ATB energy assumptions reader</a></li></ul></nav></details></aside><main id="content" tabindex="-1"><h1 id="applications-built-on-doe-mcp">Applications built on DOE-MCP</h1>
+<aside class="page-location" data-location-nav data-location-context="Applications built on DOE-MCP" data-location-topbar=""><details class="location-menu" open><summary class="location-toggle"><span>Current: </span><span data-current-location>Overview</span></summary><nav aria-label="On this page"><p class="location-context">Applications built on DOE-MCP</p><ul data-location-links><li class="location-depth-0"><a href="#applications-built-on-doe-mcp" aria-current="location">Overview</a></li><li class="location-depth-0"><a href="#grid-forecast-benchmark-lab">Grid forecast benchmark lab</a></li><li class="location-depth-0"><a href="#weather-package-builder">Weather package builder</a></li><li class="location-depth-0"><a href="#doe-docket-notice-tracker">DOE docket notice tracker</a></li><li class="location-depth-0"><a href="#gcam-comparison-receipts">GCAM comparison receipts</a></li><li class="location-depth-0"><a href="#research-artifact-linkage-explorer">Research artifact linkage explorer</a></li><li class="location-depth-0"><a href="#forecast-panel-with-common-cohorts">Forecast panel with common cohorts</a></li><li class="location-depth-0"><a href="#atb-energy-assumptions-reader">ATB energy assumptions reader</a></li><li class="location-depth-0"><a href="#bpa-observations-for-forecast-panels">BPA observations for forecast panels</a></li></ul></nav></details></aside><main id="content" tabindex="-1"><h1 id="applications-built-on-doe-mcp">Applications built on DOE-MCP</h1>
 <p>These local command-line applications use read-only tools or declared input files. Examples use recorded publisher responses or clearly labelled synthetic simulations. They are not live services. Download a complete sample bundle or run a command to create your own.</p>
 <p>A server hosts tools. A tool returns data and provenance. A skill describes a tested workflow. An application combines tools or declared inputs and writes a result bundle. <a href="apps.html">Installation and application options</a> · <a href="index.html#servers-list">Servers</a> · <a href="reference.html">Tool reference</a> · <a href="guide.html#connect-a-client-and-provide-a-skill">Scientific skills</a></p>
 <p>Recorded site examples normalize replay retrieval clocks and request IDs for repeatable builds. The normalized clock is not a capture date. Source data and fixture hashes are preserved. CLI runs preserve their original tool envelopes.</p>
@@ -452,6 +452,7 @@ body[data-location-layout]{padding-left:15rem}
 <li>This panel compares declared inputs, not publisher-verified observations. A simulation run does not measure real-world model performance.</li>
 <li>Every compared model and persistence use the identical eligible target set within each region and lead. Cross-region intersection mode additionally uses the same targets in every declared region.</li>
 <li>Within-region mode permits different region cohorts. No cross-region aggregate score or ranking is produced in either mode.</li>
+<li>Blank availability is unknown and excluded from issuance-time baselines. Separate ex-post model-only metrics use common actual/forecast targets and must not be compared directly to persistence metrics on a different cohort.</li>
 <li>Availability and issuance timestamps are assertions in the supplied files; their historical truth cannot be established from a CSV.</li>
 <li>Persistence uses only observations effective and available at or before issuance, within the declared maximum age. Later observations never set its prediction.</li>
 <li>Quantity, unit, cadence, interval meaning and timestamp meaning must match the declaration. Power samples, interval means and energy totals cannot be mixed; no unit conversion or temporal aggregation is performed.</li>
@@ -605,6 +606,46 @@ body[data-location-layout]{padding-left:15rem}
 <li>The full pinned release is verified locally; only selected rows are exported. Publisher row numbers are one-based data rows within those exact bytes.</li>
 <li>PVWatts remains proposed without a real credential-redacted recording. No model result, API request, DEMO_KEY use or key configuration is part of this application.</li>
 <li>Source text is third-party data. CSV expression-like text is prefixed with an apostrophe; JSON retains original content.</li>
+</ul>
+<h2 id="bpa-observations-for-forecast-panels">BPA observations for forecast panels</h2>
+<p><strong>Recorded example. Runs locally.</strong></p>
+<pre tabindex="0"><code class="language-bash">doe-mcp app forecast-panel --prepare-bpa --output ./bpa-observations-run
+</code></pre>
+<p><a href="data/apps/bpa-observations/bundle.zip" download="bpa-observations.zip">Download complete bundle</a> · <a href="data/apps/bpa-observations/report.json">View report and source evidence</a> · <a href="data/apps/bpa-observations/manifest.json">File checksums</a></p>
+<p>Prepare real recorded BPA Load observations for the existing forecast panel. This example imports <strong>24 five-minute instantaneous MW samples</strong>; it generates <strong>zero forecasts</strong>. All <strong>24 availability timestamps are unknown</strong>, so there are <strong>zero issuance-time baseline candidates</strong>. Retrieval time and Last-Modified do not establish when a sample was available to a forecasting system.</p>
+<p>The raw local timestamps use the explicitly declared <code>America/Los_Angeles</code> timezone assumption. The original normalized replay envelope, SHA256 checksum and row-bound evidence receipts remain downloadable. This structural consistency check does not authenticate caller-supplied files as publisher originals.</p>
+<ul>
+<li><a href="data/apps/bpa-observations/actuals.csv" download="bpa-observations-actuals.csv">Prepared actuals CSV</a></li>
+<li><a href="data/apps/bpa-observations/observation-receipts.json" download="bpa-observations-observation-receipts.json">Observation and evidence receipts</a></li>
+<li><a href="data/apps/bpa-observations/bpa-envelope-01.json" download="bpa-observations-bpa-envelope-01.json">Recorded BPA input envelope</a></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:right" scope="col">Returned observations</th>
+<th style="text-align:right" scope="col">Unknown availability</th>
+<th style="text-align:right" scope="col">Baseline candidates</th>
+<th style="text-align:right" scope="col">Generated forecasts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right" data-label="Returned observations">24</td>
+<td style="text-align:right" data-label="Unknown availability">24</td>
+<td style="text-align:right" data-label="Baseline candidates">0</td>
+<td style="text-align:right" data-label="Generated forecasts">0</td>
+</tr>
+</tbody>
+</table>
+<p>Unknown availability stays blank in the CSV. These outcomes can support separately labelled ex-post model-only scores when you supply actual forecast inputs; they cannot supply persistence by issuance. No prospective model skill is claimed. <a href="apps.html#bpa-observation-preparation">Preparation options and evidence format</a>.</p>
+<h3 id="scope-and-limits-7">Scope and limits</h3>
+<ul>
+<li>BPA Load is a five-minute instantaneous electric-power sample in MW, not an interval mean or energy total. No aggregation or conversion is performed.</li>
+<li>Raw timestamps and an explicit caller IANA timezone assumption are retained. Ambiguous and nonexistent local times are refused.</li>
+<li>Missing availability remains unknown. Unknown rows can score ex-post actual matches, but never supply an issuance-time persistence baseline.</li>
+<li>Caller-declared availability requires retained row-bound evidence and remains unverified, not publisher-authenticated.</li>
+<li>No forecasts are generated. This observation preparation makes no claim of prospective forecast performance.</li>
+<li>Only returned rows are imported. Source coverage, missing samples and any gaps remain in retained envelopes and receipts.</li>
 </ul>
 </main><script>
 (()=>{

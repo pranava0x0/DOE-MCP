@@ -13,6 +13,11 @@
       "sha256": "0636f60c0814731802833890b540f4fc13a7d9afc3c93dfa1b3f27e5b05235dd"
     },
     {
+      "file": "ex-post-model-only.json",
+      "bytes": 33536,
+      "sha256": "65e2696eda01597106e06a7cb7b24d04ff3ea40739cbf04c4d365fc625caaa2b"
+    },
+    {
       "file": "forecasts.csv",
       "bytes": 12613,
       "sha256": "796dc785edbc8175ebdef0dd712b23fdac437d73513cd0fdc66ba86ed4bb3f89"
@@ -39,8 +44,8 @@
     },
     {
       "file": "report.json",
-      "bytes": 74971,
-      "sha256": "68901d32164b3b25f70d75c5b1bc4252dc8d4b2ab5383eae34d37b6744a840ca"
+      "bytes": 113822,
+      "sha256": "898b7cb16fdcfb7e23d726082078cf64ac64e837db4b5fd0b5d7103136b60f3b"
     },
     {
       "file": "row-exclusions.csv",
