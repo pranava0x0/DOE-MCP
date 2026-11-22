@@ -30,7 +30,7 @@ from ..core.registry import (SourceRegistry)
 from ..core.toolreg import PROFILES, expand_profile
 from ..runtime import SOURCES_DIR, RuntimeContext, load_context
 from ..servers.build import registries
-from .configure import SERVERS, client_targets, configure
+from .configure import CLIENT_KEYS, SERVERS, client_targets, configure
 
 OK, WARN, BAD = "  ok  ", " warn ", " FAIL "
 
@@ -68,6 +68,29 @@ def _run(coro):
 # --- doctor ---------------------------------------------------------------
 
 def cmd_doctor(args: argparse.Namespace) -> int:
+    if args.profile is not None or args.json:
+        from .preflight import profile_preflight
+        report = profile_preflight(args.profile or "research:default")
+        if args.json:
+            print(json.dumps(report, indent=2))
+        else:
+            print(f"{report['profile']}: {report['readiness']['installation']}")
+            print(f"server: {report['server']}")
+            extras = ', '.join(report['required_extras']) or 'none'
+            print(f"required extras: {extras}")
+            for entry in report["entry_points"]:
+                print(f"entry point: {entry['command']} ({entry['status']})")
+            print("registered tools: " + ", ".join(report["registered_tools"]))
+            print("credentials, network and server startup: not checked")
+            for source in report["sources"]:
+                if source["server_domain"]:
+                    state = source["selection_block"] or "active"
+                    print(f"source: {source['id']} ({state})")
+                    if source["blocked_reason"]:
+                        print(f"  {source['blocked_reason']}")
+            for problem in report["problems"]:
+                print(f"FAIL: {problem['message']}")
+        return 1 if report["problems"] else 0
     problems = 0
     print(f"doe-mcp {__version__}")
     print(f"python  {sys.version.split()[0]}")
@@ -615,11 +638,15 @@ def main() -> int:
                                       "credentials, and client configs")
     d.add_argument("--online", action="store_true",
                    help="also probe the keyless active sources live")
+    d.add_argument("--profile", choices=sorted(PROFILES),
+                   help="offline, credential-free preflight for this profile")
+    d.add_argument("--json", action="store_true",
+                   help="machine-readable offline preflight (default profile: research:default)")
     d.set_defaults(func=cmd_doctor)
 
     c = sub.add_parser("configure", help="register servers with an MCP "
                                          "client, or set a credential")
-    c.add_argument("client", choices=sorted(client_targets()) + ["credentials"])
+    c.add_argument("client", choices=sorted(CLIENT_KEYS) + ["credentials"])
     # `choices` is not used here even though the values are constrained,
     # because argparse rejects an unknown positional by printing it back in
     # the error. On `configure credentials --set EIA_API_KEY <key>` that
@@ -679,6 +706,8 @@ def main() -> int:
     sv2.set_defaults(func=cmd_serve)
 
     args = ap.parse_args()
+    if args.command == "doctor" and args.online and (args.profile is not None or args.json):
+        ap.error("doctor --online cannot be combined with --profile or --json")
     return args.func(args)
 
 

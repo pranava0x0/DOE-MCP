@@ -68,6 +68,13 @@ cannot yet be queried.</p>
 <h2 id="start-with-a-recorded-workflow">Start with a recorded workflow</h2>
 <p>Install from the checkout with <code>pipx install .</code>. The package is not yet
 published on PyPI. Recorded workflows and skills ship in the wheel.</p>
+<p>Check a profile locally before connecting a client:</p>
+<pre tabindex="0"><code class="language-bash">doe-mcp doctor --profile research:default --json
+</code></pre>
+<p>This returns a machine-readable report without reading credentials or client
+configuration. <a href="profile-preflight.html">Profile preflight</a> explains required
+extras, source gates and exit codes. To check credentials and client settings
+and probe public sources live, use <code>doe-mcp doctor --online</code>.</p>
 <pre tabindex="0"><code class="language-bash">doe-mcp demo evidence --output ./evidence-run
 doe-mcp demo client
 doe-mcp skills

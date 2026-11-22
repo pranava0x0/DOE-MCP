@@ -11,6 +11,17 @@ cannot yet be queried.
 Install from the checkout with `pipx install .`. The package is not yet
 published on PyPI. Recorded workflows and skills ship in the wheel.
 
+Check a profile locally before connecting a client:
+
+```bash
+doe-mcp doctor --profile research:default --json
+```
+
+This returns a machine-readable report without reading credentials or client
+configuration. [Profile preflight](profile-preflight.html) explains required
+extras, source gates and exit codes. To check credentials and client settings
+and probe public sources live, use `doe-mcp doctor --online`.
+
 ```bash
 doe-mcp demo evidence --output ./evidence-run
 doe-mcp demo client

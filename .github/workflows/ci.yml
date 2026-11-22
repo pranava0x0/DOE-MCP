@@ -54,6 +54,11 @@ jobs:
         # publisher responses, so a failure is this project's fault.
         run: python -m pytest
 
+      - name: Preflight installed wheels with and without energy technology extras
+        run: |
+          uv build --wheel --out-dir /tmp/doe-preflight-wheel
+          python tools/check_preflight_wheel.py /tmp/doe-preflight-wheel/*.whl
+
       - name: Compare published demo downloads with recorded CLI exports
         run: python tools/check_demo_exports.py
 
