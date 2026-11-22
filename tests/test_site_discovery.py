@@ -6,6 +6,7 @@ import re
 import xml.etree.ElementTree as ET
 
 from tools.site_metadata import BASE, markdown_page
+from tools.render_site import _quickstart
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
@@ -52,6 +53,18 @@ def test_markdown_headings_and_local_links_survive_rendering():
     assert 'href="reference.html#energy"' in markup
     assert 'href="#a-heading-1"' in markup
     assert 'href="https://github.com/pranava0x0/DOE-MCP/blob/main/examples/README.md"' in markup
+
+
+def test_preflight_is_linked_from_guide_and_homepage_check_step():
+    guide = markdown_page((DOCS / "guide.md").read_text(), "guide.html", "Local guide")
+    quickstart = _quickstart({"counts": {"records_reachable": 0}, "sources": []}, [])
+    check_step = quickstart.split('id="start-check"', 1)[1].split('</li>', 1)[0]
+    for markup in (guide, check_step):
+        assert 'href="profile-preflight.html"' in markup
+        assert "doe-mcp doctor --profile research:default --json" in markup
+        assert "without reading credentials or client" in markup
+        assert "doe-mcp doctor --online" in markup
+    assert (DOCS / "profile-preflight.md").is_file()
 
 
 def test_llms_file_links_only_existing_public_docs_and_inventory():

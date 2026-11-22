@@ -450,6 +450,9 @@ def _quickstart(data: dict, examples: list) -> str:
 <pre>pipx install .        # from a checkout of the repository; not on PyPI yet</pre></li>
 
 <li id="start-check"><h3>Check it</h3>
+<pre>doe-mcp doctor --profile research:default --json</pre>
+<p><a href="profile-preflight.html">Check a profile locally</a> for required extras and source gates, without reading credentials or client configuration.</p>
+<p>For credential and client checks plus live public-source probes:</p>
 <pre>doe-mcp doctor --online</pre>
 <pre class="out">{e(probe_out)}</pre></li>
 
