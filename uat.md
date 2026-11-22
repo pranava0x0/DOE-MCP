@@ -508,3 +508,33 @@ incomplete for manual review. No actual screen-reader test was performed;
 the scripted browser and local-performance limitations above still apply.
 Artifacts are in ignored `uat-screenshots/keyless-relationships/`.
 No key, paid model or arbitrary artifact download was used.
+
+
+## BPA observation imports — 2026-11-22
+
+The forecast application now accepts existing BPA envelopes or the recorded
+BPA preparation preset. It retains input bytes, SHA256 hashes, row-bound
+evidence, MW units, sample meaning and an explicit timezone assumption.
+The recorded import contains 24 observations with unknown availability,
+zero baseline candidates and zero generated forecasts. Separate ex-post
+model-only scores leave the existing common-cohort baseline comparisons intact.
+Astra reviewed availability evidence, DST and cadence checks, cohort meaning
+and bounded hashing.
+
+UAT found three BPA artifact links without download attributes. Sol fixed
+the renderer, added a regression test and reran the affected checks; Astra
+reviewed the fix. All 1,686 replay tests passed with one architecture-file skip.
+The four browser suites passed: 39 demos, 228 section jumps, 45 measured
+journeys and three evaluation paths. BPA bundle, CSV, receipt and input
+downloads matched the served bytes at 375, 768 and 1280 pixels. Reaching
+and downloading all four files took seven, seven and six clicks respectively;
+only the phone path needed a wheel action. Final local link counts remain
+in the journey report.
+
+Accessibility checking completed 110 axe scans and 404 assertions with zero
+violations, failures or browser errors. Twenty-two contrast rule instances
+covering 469 nodes remain incomplete for manual review. Actual screen-reader
+testing remains unperformed; the browser and local-performance limitations
+above still apply. Reports are in ignored `uat-screenshots/keyless-bpa/`.
+Registry/schema validation, Ruff, writing checks, 39 export comparisons and
+the independent Croissant reader passed. Key-dependent work remains gated.

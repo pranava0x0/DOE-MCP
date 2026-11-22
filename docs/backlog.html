@@ -59,8 +59,8 @@ body[data-location-layout]{padding-left:15rem}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}
 </style></head><body class="" data-location-layout><a class="skip" href="#content">Skip to content</a>
 <header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Demos</a><a href="backlog.html">Project backlog</a></nav></header>
-<aside class="page-location" data-location-nav data-location-context="Development backlog" data-location-topbar=""><details class="location-menu" open><summary class="location-toggle"><span>Current: </span><span data-current-location>Overview</span></summary><nav aria-label="On this page"><p class="location-context">Development backlog</p><ul data-location-links><li class="location-depth-0"><a href="#development-backlog" aria-current="location">Overview</a></li><li class="location-depth-0"><a href="#completed">Completed</a></li><li class="location-depth-0"><a href="#next-batch-no-keys-required">Next batch: no keys required</a></li><li class="location-depth-0"><a href="#later-work-without-keys">Later work without keys</a></li><li class="location-depth-0"><a href="#anonymous-candidates-that-still-need-evidence">Anonymous candidates that still need evidence</a></li><li class="location-depth-0"><a href="#gated-work">Gated work</a></li></ul></nav></details></aside><main id="content" tabindex="-1"><h1 id="development-backlog">Development backlog</h1>
-<p>Updated 2026-11-22 after PRs 19–29 and the relationship resolution addition. This is the public development backlog.
+<aside class="page-location" data-location-nav data-location-context="Development backlog" data-location-topbar=""><details class="location-menu" open><summary class="location-toggle"><span>Current: </span><span data-current-location>Overview</span></summary><nav aria-label="On this page"><p class="location-context">Development backlog</p><ul data-location-links><li class="location-depth-0"><a href="#development-backlog" aria-current="location">Overview</a></li><li class="location-depth-0"><a href="#completed">Completed</a></li><li class="location-depth-0"><a href="#keyless-batch-completed">Keyless batch completed</a></li><li class="location-depth-0"><a href="#next-work-without-keys">Next work without keys</a></li><li class="location-depth-0"><a href="#anonymous-candidates-that-still-need-evidence">Anonymous candidates that still need evidence</a></li><li class="location-depth-0"><a href="#gated-work">Gated work</a></li></ul></nav></details></aside><main id="content" tabindex="-1"><h1 id="development-backlog">Development backlog</h1>
+<p>Updated 2026-11-22 after PRs 19–30 and the BPA observation import addition. This is the public development backlog.
 Items below are plans, not claims that a proposed integration works.</p>
 <p>A <strong>server</strong> hosts tools for a domain. A <strong>tool</strong> performs one bounded read.
 A <strong>skill</strong> explains how to combine tools and interpret their evidence.
@@ -135,43 +135,27 @@ when its dependency, credential or operating boundary requires one.</p>
 <tr>
 <td data-label="Status">Done</td>
 <td data-label="Change">Bounded, one-hop DOI resolution across four OSTI catalogs, retaining publisher assertions, source evidence, ambiguity and request limits. The recorded EAGLE-I example has two source-scoped candidates for one DOI.</td>
-<td data-label="Evidence"><a href="research-relationships.html">Resolution rules</a> · <a href="applications.html#research-artifact-linkage-explorer">Application</a></td>
+<td data-label="Evidence"><a href="https://github.com/pranava0x0/DOE-MCP/pull/30">PR 30</a> · <a href="research-relationships.html">Resolution rules</a> · <a href="applications.html#research-artifact-linkage-explorer">Application</a></td>
+</tr>
+<tr>
+<td data-label="Status">Done</td>
+<td data-label="Change">BPA observation imports with original bytes, hashes, row receipts and explicit timezone assumptions. Unknown availability stays unknown; the recorded example creates no forecasts or baseline candidates.</td>
+<td data-label="Evidence"><a href="applications.html#bpa-observations-for-forecast-panels">Recorded import</a> · <a href="apps.html">Import contract</a></td>
 </tr>
 </tbody>
 </table>
 <p>The <a href="applications.html">applications</a>, <a href="demos.html">demos</a> and
 <a href="evaluation-example.html">evaluation example</a> retain their evidence and
 limitations. Recorded examples and simulations are labelled separately.</p>
-<h2 id="next-batch-no-keys-required">Next batch: no keys required</h2>
-<p>The ATB skill, profile preflight and relationship resolution are complete. The remaining BPA import must retain the
-source gates, pass replay tests and run the browser/accessibility checks
-on PRs and main. Suggested effort is relative to the existing implementation.</p>
-<table>
-<thead>
-<tr>
-<th scope="col">Order</th>
-<th scope="col">Priority</th>
-<th scope="col">Layer</th>
-<th scope="col">Improvement</th>
-<th scope="col">Acceptance criteria</th>
-<th scope="col">Effort</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td data-label="Order">4</td>
-<td data-label="Priority">High</td>
-<td data-label="Layer">Forecast application</td>
-<td data-label="Improvement">Prepare forecast-panel observation imports from existing BPA envelopes.</td>
-<td data-label="Acceptance criteria">Keep original envelopes, hashes, units, interval meaning and timezone assumptions. Missing availability stays unknown; require caller evidence before an observation can enter an issuance-time baseline. No retrospective data presented as a prospective forecast.</td>
-<td data-label="Effort">Medium</td>
-</tr>
-</tbody>
-</table>
+<h2 id="keyless-batch-completed">Keyless batch completed</h2>
+<p>All four items shipped: the ATB assumptions skill, offline profile preflight,
+one-hop publisher relationship resolution and BPA observation imports.
+Each retains the source gates and runs replay, browser and accessibility
+checks on PRs and main.</p>
 <p>Use Sol for implementation and focused tests;
 use Astra for scientific contracts and final review. Reserve larger-model
 reviews for substantive risks rather than routine copy or formatting.</p>
-<h2 id="later-work-without-keys">Later work without keys</h2>
+<h2 id="next-work-without-keys">Next work without keys</h2>
 <ul>
 <li><strong>Medium — Tool and application:</strong> bounded complete ATB exports. Keep all
 qualifiers and per-page evidence; stop with explicit incomplete status

@@ -74,3 +74,21 @@ def test_llms_file_links_only_existing_public_docs_and_inventory():
             assert (DOCS / url.removeprefix(BASE)).is_file(), url
     assert "not an access policy" in text
     assert "Proposed sources are inventory only" in text
+
+
+def test_bpa_inputs_and_receipts_render_as_browser_downloads():
+    filenames = ["actuals.csv", "observation-receipts.json", "bpa-envelope-01.json"]
+    source = "\n\n".join(f"[Download {name}](data/apps/bpa-observations/{name})" for name in filenames)
+    markup = markdown_page(source, "applications.html", "Applications")
+    class Anchors(HTMLParser):
+        def __init__(self):
+            super().__init__()
+            self.links = {}
+        def handle_starttag(self, tag, attrs):
+            attrs = dict(attrs)
+            if tag == "a":
+                self.links[attrs.get("href")] = attrs
+    anchors = Anchors()
+    anchors.feed(markup)
+    for name in filenames:
+        assert anchors.links[f"data/apps/bpa-observations/{name}"]["download"] == f"bpa-observations-{name}"

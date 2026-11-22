@@ -71,6 +71,8 @@ def markdown_page(source: str, name: str, title: str) -> str:
 
                 elif href.startswith("data/apps/forecast-panel/") and href.rsplit("/", 1)[-1] in {"plan.json", "actuals.csv", "forecasts.csv", "included-targets.csv", "row-exclusions.csv", "metrics.csv", "cohorts.json"}:
                     child.attrSet("download", "forecast-panel-" + href.rsplit("/", 1)[-1])
+                elif href.startswith("data/apps/bpa-observations/") and href.rsplit("/", 1)[-1] in {"actuals.csv", "observation-receipts.json", "bpa-envelope-01.json"}:
+                    child.attrSet("download", "bpa-observations-" + href.rsplit("/", 1)[-1])
                 if href.startswith("../"):
                     child.attrSet("href", "https://github.com/pranava0x0/DOE-MCP/blob/main/" + href[3:])
                 for stem in ("guide", "reference", "apps", "evaluation-matrix", "evaluation-example"):

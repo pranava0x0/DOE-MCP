@@ -222,6 +222,7 @@ Import your own declared CSVs with `--plan`, `--actuals` and `--forecasts`. The 
 - This panel compares declared inputs, not publisher-verified observations. A simulation run does not measure real-world model performance.
 - Every compared model and persistence use the identical eligible target set within each region and lead. Cross-region intersection mode additionally uses the same targets in every declared region.
 - Within-region mode permits different region cohorts. No cross-region aggregate score or ranking is produced in either mode.
+- Blank availability is unknown and excluded from issuance-time baselines. Separate ex-post model-only metrics use common actual/forecast targets and must not be compared directly to persistence metrics on a different cohort.
 - Availability and issuance timestamps are assertions in the supplied files; their historical truth cannot be established from a CSV.
 - Persistence uses only observations effective and available at or before issuance, within the declared maximum age. Later observations never set its prediction.
 - Quantity, unit, cadence, interval meaning and timestamp meaning must match the declaration. Power samples, interval means and energy totals cannot be mixed; no unit conversion or temporal aggregation is performed.
@@ -273,3 +274,36 @@ PVWatts remains **proposed**: no user key, model call or real model recording is
 - The full pinned release is verified locally; only selected rows are exported. Publisher row numbers are one-based data rows within those exact bytes.
 - PVWatts remains proposed without a real credential-redacted recording. No model result, API request, DEMO\_KEY use or key configuration is part of this application.
 - Source text is third-party data. CSV expression-like text is prefixed with an apostrophe; JSON retains original content.
+
+## BPA observations for forecast panels
+
+**Recorded example. Runs locally.**
+
+```bash
+doe-mcp app forecast-panel --prepare-bpa --output ./bpa-observations-run
+```
+
+[Download complete bundle](data/apps/bpa-observations/bundle.zip) · [View report and source evidence](data/apps/bpa-observations/report.json) · [File checksums](data/apps/bpa-observations/manifest.json)
+
+Prepare real recorded BPA Load observations for the existing forecast panel. This example imports **24 five-minute instantaneous MW samples**; it generates **zero forecasts**. All **24 availability timestamps are unknown**, so there are **zero issuance-time baseline candidates**. Retrieval time and Last-Modified do not establish when a sample was available to a forecasting system.
+
+The raw local timestamps use the explicitly declared `America/Los_Angeles` timezone assumption. The original normalized replay envelope, SHA256 checksum and row-bound evidence receipts remain downloadable. This structural consistency check does not authenticate caller-supplied files as publisher originals.
+
+- [Prepared actuals CSV](data/apps/bpa-observations/actuals.csv)
+- [Observation and evidence receipts](data/apps/bpa-observations/observation-receipts.json)
+- [Recorded BPA input envelope](data/apps/bpa-observations/bpa-envelope-01.json)
+
+| Returned observations | Unknown availability | Baseline candidates | Generated forecasts |
+|---:|---:|---:|---:|
+|24|24|0|0|
+
+Unknown availability stays blank in the CSV. These outcomes can support separately labelled ex-post model-only scores when you supply actual forecast inputs; they cannot supply persistence by issuance. No prospective model skill is claimed. [Preparation options and evidence format](apps.html#bpa-observation-preparation).
+
+### Scope and limits
+
+- BPA Load is a five-minute instantaneous electric-power sample in MW, not an interval mean or energy total. No aggregation or conversion is performed.
+- Raw timestamps and an explicit caller IANA timezone assumption are retained. Ambiguous and nonexistent local times are refused.
+- Missing availability remains unknown. Unknown rows can score ex-post actual matches, but never supply an issuance-time persistence baseline.
+- Caller-declared availability requires retained row-bound evidence and remains unverified, not publisher-authenticated.
+- No forecasts are generated. This observation preparation makes no claim of prospective forecast performance.
+- Only returned rows are imported. Source coverage, missing samples and any gaps remain in retained envelopes and receipts.

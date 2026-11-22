@@ -1,6 +1,6 @@
 # Development backlog
 
-Updated 2026-11-22 after PRs 19–29 and the relationship resolution addition. This is the public development backlog.
+Updated 2026-11-22 after PRs 19–30 and the BPA observation import addition. This is the public development backlog.
 Items below are plans, not claims that a proposed integration works.
 
 A **server** hosts tools for a domain. A **tool** performs one bounded read.
@@ -24,27 +24,25 @@ when its dependency, credential or operating boundary requires one.
 | Done | Direct homepage copy, desktop/mobile section navigation and automated accessibility checks. Manual screen-reader testing remains future work. | [PR 27](https://github.com/pranava0x0/DOE-MCP/pull/27) |
 | Done | ATB assumptions skill, five recorded checks and a two-edition demo covering exact qualifiers, ambiguity, nulls, empty selections and currency bases. Evaluation tasks are prepared; no model-quality result is claimed. | [PR 28](https://github.com/pranava0x0/DOE-MCP/pull/28) · [Demo](demos.html#atb-assumptions) |
 | Done | Offline profile preflight with versioned JSON, installation and source-gate diagnostics, and guarded base/extra wheel checks. Credentials and network remain explicitly unchecked. | [PR 29](https://github.com/pranava0x0/DOE-MCP/pull/29) · [Profile preflight](profile-preflight.html) |
-| Done | Bounded, one-hop DOI resolution across four OSTI catalogs, retaining publisher assertions, source evidence, ambiguity and request limits. The recorded EAGLE-I example has two source-scoped candidates for one DOI. | [Resolution rules](research-relationships.html) · [Application](applications.html#research-artifact-linkage-explorer) |
+| Done | Bounded, one-hop DOI resolution across four OSTI catalogs, retaining publisher assertions, source evidence, ambiguity and request limits. The recorded EAGLE-I example has two source-scoped candidates for one DOI. | [PR 30](https://github.com/pranava0x0/DOE-MCP/pull/30) · [Resolution rules](research-relationships.html) · [Application](applications.html#research-artifact-linkage-explorer) |
+| Done | BPA observation imports with original bytes, hashes, row receipts and explicit timezone assumptions. Unknown availability stays unknown; the recorded example creates no forecasts or baseline candidates. | [Recorded import](applications.html#bpa-observations-for-forecast-panels) · [Import contract](apps.html) |
 
 The [applications](applications.html), [demos](demos.html) and
 [evaluation example](evaluation-example.html) retain their evidence and
 limitations. Recorded examples and simulations are labelled separately.
 
-## Next batch: no keys required
+## Keyless batch completed
 
-The ATB skill, profile preflight and relationship resolution are complete. The remaining BPA import must retain the
-source gates, pass replay tests and run the browser/accessibility checks
-on PRs and main. Suggested effort is relative to the existing implementation.
-
-| Order | Priority | Layer | Improvement | Acceptance criteria | Effort |
-|---|---|---|---|---|---|
-| 4 | High | Forecast application | Prepare forecast-panel observation imports from existing BPA envelopes. | Keep original envelopes, hashes, units, interval meaning and timezone assumptions. Missing availability stays unknown; require caller evidence before an observation can enter an issuance-time baseline. No retrospective data presented as a prospective forecast. | Medium |
+All four items shipped: the ATB assumptions skill, offline profile preflight,
+one-hop publisher relationship resolution and BPA observation imports.
+Each retains the source gates and runs replay, browser and accessibility
+checks on PRs and main.
 
 Use Sol for implementation and focused tests;
 use Astra for scientific contracts and final review. Reserve larger-model
 reviews for substantive risks rather than routine copy or formatting.
 
-## Later work without keys
+## Next work without keys
 
 - **Medium — Tool and application:** bounded complete ATB exports. Keep all
   qualifiers and per-page evidence; stop with explicit incomplete status

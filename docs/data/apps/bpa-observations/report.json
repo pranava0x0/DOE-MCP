@@ -1,0 +1,228 @@
+{
+  "application": "forecast-panel",
+  "mode": "recorded_observation_preparation",
+  "status": "prepared",
+  "steps": [],
+  "fixtures": [
+    {
+      "file": "anl-sage-waggle.json",
+      "sha256": "f8fa9daef59952bd10fc45ebddaadf9670628e6598ad87088160ce8eef40734f",
+      "captured_at": null
+    },
+    {
+      "file": "basis-set-exchange.json",
+      "sha256": "0dfd2e7d23d4802bc7325a7334ccd4e306ad519c222ca0436964c901e17e8043",
+      "captured_at": null
+    },
+    {
+      "file": "bpa-operations.json",
+      "sha256": "4d69703d9b889d9a1c13fb09ec2476a79e4c0977f5f2a2b79a1fc4fd0139e394",
+      "captured_at": null
+    },
+    {
+      "file": "ceser-eagle-i-outages.json",
+      "sha256": "d3928d3e55187b8b5a951a6bbfffeb78d9faa00f645759c1845a98194e7a7685",
+      "captured_at": "2026-10-08T23:09:56.476179+00:00"
+    },
+    {
+      "file": "doe-code-json.json",
+      "sha256": "09a02ccb524f4c2f7757929d119742484fa7e44a720395a4d95eba9caa418047",
+      "captured_at": null
+    },
+    {
+      "file": "doe-open-data-catalog.json",
+      "sha256": "e4153a473c6afd89401ea09a16617ba16736056f6b9bf524c4276d94c40728a6",
+      "captured_at": null
+    },
+    {
+      "file": "eia-api-v2.json",
+      "sha256": "bb5e6ce41e8eef8057741409499a787b93c965ee44a12688806cd8cfe3aa6c9c",
+      "captured_at": null
+    },
+    {
+      "file": "esgf-search.json",
+      "sha256": "b48a40f84f831197b5621eeb120b6e8dac79c724b53ac5c3d6cebdfc6b2b8ce4",
+      "captured_at": null
+    },
+    {
+      "file": "ess-dive.json",
+      "sha256": "28399526c4bbec1055c0740219c1bee5468f0ebf5b5662182f77fb88f28d827a",
+      "captured_at": null
+    },
+    {
+      "file": "federal-register-doe.json",
+      "sha256": "f1b81fd332bdb47df868b0d419aef22e387c2d3fb8ffb2649375d459a1a56a3b",
+      "captured_at": null
+    },
+    {
+      "file": "fueleconomy-ws.json",
+      "sha256": "9a193408aeb51db8b4e5d2413b6e01b8569e964babd0a3276609fc4b178d0323",
+      "captured_at": null
+    },
+    {
+      "file": "gcam-economy.json",
+      "sha256": "e51120caad276d93a52d9dbf50ea2faa5c298c9ac88f17c3e5f1869be685bb78",
+      "captured_at": "2026-11-10T04:46:58.414403+00:00"
+    },
+    {
+      "file": "gcam-emissions.json",
+      "sha256": "7f582259a874c533a6fe55f65d0c2e0936e84ea1c500e9f9b7b186868315bacd",
+      "captured_at": "2026-11-10T04:46:57.828491+00:00"
+    },
+    {
+      "file": "gcam-land.json",
+      "sha256": "d77c9781b292feb3265cabc2ffa484c7ef27dd7fe27f93f95a29115e2c693e65",
+      "captured_at": "2026-11-10T04:46:57.498065+00:00"
+    },
+    {
+      "file": "gcam-power.json",
+      "sha256": "7485cdd26030b7c15f0812c534223aca205cba855c96bd61c767668207b9cbc8",
+      "captured_at": "2026-11-10T04:46:58.079479+00:00"
+    },
+    {
+      "file": "gcam-water.json",
+      "sha256": "ecd273d3b6eeea1cd569b2b70ef51ca0ef203bb2233d4c32f4eebab9c2947869",
+      "captured_at": "2026-11-10T04:46:57.016956+00:00"
+    },
+    {
+      "file": "lbnl-mp-optimade.json",
+      "sha256": "8a5d15ebe6a47c4103d3611661903b8f41de8b5d101ba203df541e2a7b35e280",
+      "captured_at": null
+    },
+    {
+      "file": "nersc-status.json",
+      "sha256": "1d6915f666940b312c349bfb9e9dcb32e123e89850582f3f7b2e282aeda911a7",
+      "captured_at": "2026-10-08T23:12:37.080875+00:00"
+    },
+    {
+      "file": "nlr-atb.json",
+      "sha256": "4c664d08b044c901695c0018a4a1a70e2576394b4bd78c782d772fadfe8f2ed1",
+      "captured_at": "2026-11-21T20:34:37.552205+00:00",
+      "binary_assets": [
+        {
+          "file": "blobs/13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e.bin",
+          "bytes": 5131651,
+          "sha256": "13047eac66774851e861c3e9fa45c52d8b7f819cd3f21b1a41762125f466690e"
+        },
+        {
+          "file": "blobs/c380220b472b7832d864afe9dd15d6c748aee0a7f58a6ffc26d89261413502b4.bin",
+          "bytes": 9193709,
+          "sha256": "c380220b472b7832d864afe9dd15d6c748aee0a7f58a6ffc26d89261413502b4"
+        }
+      ]
+    },
+    {
+      "file": "nmdc-runtime.json",
+      "sha256": "a47cb8d2a0a93dcec1b30c3de2eca0769c8e5fb4fe9eca8edda61eb580432b78",
+      "captured_at": "2026-10-08T23:37:56.653277+00:00"
+    },
+    {
+      "file": "ornl-daac.json",
+      "sha256": "9fea63aa5e38eaa7fdf8d095bec8d6a70b291f4cc6a9751facf53548d565574a",
+      "captured_at": null
+    },
+    {
+      "file": "ornl-openenergyhub.json",
+      "sha256": "b475b04ed1b8c1a58a08b110c277e087c0b3f9dcf0dbbe8a9ec41bed289cd6aa",
+      "captured_at": null
+    },
+    {
+      "file": "osti-data-explorer.json",
+      "sha256": "71a7e71e7056856c76fcebc8d0234e049c0109bd35e2b1777768e408072ad398",
+      "captured_at": null
+    },
+    {
+      "file": "osti-doe-code.json",
+      "sha256": "b3a6506adab49139d00e4aa99c31a432fd7d6529e80204f923b5476b85411d5f",
+      "captured_at": null
+    },
+    {
+      "file": "osti-doe-pages.json",
+      "sha256": "d985dce1d781b9a7484437ab297f66f39c5d89febdf5acc3527d09b3316e19d8",
+      "captured_at": "2026-09-22T12:33:16.478603+00:00"
+    },
+    {
+      "file": "osti-gov-records.json",
+      "sha256": "c6fd5ded484f83064397a670a15639a4c3903b1add64a6ddcb849cf6da404d17",
+      "captured_at": "2026-09-22T12:33:14.364511+00:00"
+    },
+    {
+      "file": "pnnl-vips.json",
+      "sha256": "f83c54a2e33f84cca881a0d7581f92b782501733b2746c9b17f0201e1da6d89d",
+      "captured_at": null
+    },
+    {
+      "file": "research-relationships.json",
+      "sha256": "9996e9d9f8a64cfc0e393f93bf45e059175ff66bc009febba7194bb647dee503",
+      "captured_at": "2026-11-22T06:42:31.231247+00:00"
+    },
+    {
+      "file": "usgs-uspvdb.json",
+      "sha256": "4d93ec19e3b23d1de9ad1a1d618cca40070ae455764062a91d8a19a4c975c24c",
+      "captured_at": null
+    },
+    {
+      "file": "usgs-uswtdb.json",
+      "sha256": "717c92092351ab13cd9ad61bd10f8988c06748fe63201b872ef22d12fd23b70a",
+      "captured_at": null
+    }
+  ],
+  "provenance": {
+    "kind": "retained_bpa_envelopes",
+    "verification": "not_publisher_authenticated",
+    "attribution": "Caller-provided tool envelopes; structural source/evidence binding is checked, not authenticity."
+  },
+  "measurement": {
+    "quantity": "electric_power",
+    "unit": "MW",
+    "interval_seconds": 300,
+    "interval_semantics": "instantaneous_sample",
+    "timestamp_semantics": "sample_time"
+  },
+  "region_id": "bpat",
+  "timezone_assumption": "America/Los_Angeles",
+  "source_envelopes": [
+    {
+      "file": "bpa-envelope-01.json",
+      "sha256": "d9d3a716800d837808bd72b7f014c752791a03d4ade7f986d74a7d9d92fc1240",
+      "bytes": 17841,
+      "coverage": {
+        "registry": "covered",
+        "execution": "complete",
+        "pagination": "complete",
+        "source_claim": "complete",
+        "result": "hit",
+        "sources_searched": [
+          "bpa-operations"
+        ],
+        "time_range": {
+          "from": "09/03/2026 00:00",
+          "to": "09/03/2026 01:55"
+        }
+      }
+    }
+  ],
+  "observation_rows": 24,
+  "availability": {
+    "known_caller_declared": 0,
+    "unknown": 24,
+    "issuance_time_baseline_candidates": 0
+  },
+  "forecast_rows": 0,
+  "retrieval_note": "Retrieval and Last-Modified timestamps never establish per-observation availability. Site-only replay retrieval clocks/request IDs are normalized for repeatability, not capture dates.",
+  "inputs": [
+    {
+      "file": "bpa-envelope-01.json",
+      "sha256": "d9d3a716800d837808bd72b7f014c752791a03d4ade7f986d74a7d9d92fc1240",
+      "bytes": 17841
+    }
+  ],
+  "limitations": [
+    "BPA Load is a five-minute instantaneous electric-power sample in MW, not an interval mean or energy total. No aggregation or conversion is performed.",
+    "Raw timestamps and an explicit caller IANA timezone assumption are retained. Ambiguous and nonexistent local times are refused.",
+    "Missing availability remains unknown. Unknown rows can score ex-post actual matches, but never supply an issuance-time persistence baseline.",
+    "Caller-declared availability requires retained row-bound evidence and remains unverified, not publisher-authenticated.",
+    "No forecasts are generated. This observation preparation makes no claim of prospective forecast performance.",
+    "Only returned rows are imported. Source coverage, missing samples and any gaps remain in retained envelopes and receipts."
+  ]
+}
