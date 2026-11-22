@@ -451,6 +451,22 @@ redistributed:
       Disclaimer: https://atb.nlr.gov/electricity/2025/disclaimer
     attribution_required: true
 
+  - source_id: research-relationships
+    publisher: US DOE Office of Scientific and Technical Information
+    system: OSTI.GOV, DOE PAGES, DOE Data Explorer, DOE CODE
+    url: https://www.osti.gov/api/v1/records
+    retrieved: "2026-11-22"
+    content: >
+      Five anonymous, untrimmed API responses: one two-row EAGLE-I query
+      retaining a typed publisher IsPartOf assertion, and the target DOI
+      query in each of the four research catalogs. Actual request URLs,
+      parameters, total headers and capture time are retained in the fixture.
+    rights: >
+      Public OSTI catalog metadata under the same terms as the four source
+      entries above. Described articles, software and datasets retain their
+      own rights; no artifact content is captured.
+    attribution_required: false
+
 citation_required_when_integrated:
   - source_id: arm-data-center
     publisher: ARM Data Center (ORNL)

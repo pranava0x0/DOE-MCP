@@ -379,6 +379,47 @@ async function applicationJourney(browser, viewport, task) {
       assert(receipts.every(receipt => receipt.file_url && receipt.evidence_ref && receipt.row_number && receipt.publisher_columns.length), 'GCAM receipts lack source identity');
       assert.equal(receipts.find(receipt => receipt.id === 'indonesia-geothermal').region_mapping.join_value, 'Southeast Asia');
     }
+    if (task.id === 'research-linkage') {
+      const content = await page.locator('main').innerText();
+      assert.match(content, /Ambiguous means two source records share the target DOI/);
+      assert.match(content, /does not establish two different artifacts/);
+      const table = page.getByRole('table').filter({has: page.getByRole('columnheader', {name: 'Candidate source records', exact: true})});
+      await table.waitFor({state: 'visible'});
+      assert.match(await table.innerText(), /IsPartOf/);
+      assert.match(await table.innerText(), /ambiguous/);
+      assert.match(await table.innerText(), /osti-gov-records:1975203/);
+      assert.match(await table.innerText(), /osti-data-explorer:1975203/);
+      const downloads = {};
+      for (const filename of ['inventory.csv', 'linkage.json', 'report.json']) {
+        const locator = filename === 'report.json'
+          ? page.getByRole('link', {name: 'Download original assertions and follow-up evidence', exact: true})
+          : page.locator('a[href="data/apps/research-linkage/' + filename + '"]');
+        const result = await download(page, locator, counters, filename);
+        assert(result.bytes.equals(fs.readFileSync(path.join(docs, 'data/apps/research-linkage', filename))), 'research download differs: ' + filename);
+        downloads[filename] = result.bytes;
+      }
+      const receipt = JSON.parse(downloads['linkage.json']);
+      const evidence = JSON.parse(downloads['report.json']);
+      assert.equal(evidence.mode, 'recorded');
+      assert.equal(evidence.relationship_resolution.requests_used, 4);
+      assert.equal(evidence.relationship_resolution.one_hop, true);
+      assert.equal(receipt.explicit_relationships.length, 1);
+      const edge = receipt.explicit_relationships[0];
+      assert.equal(edge.relationship, 'IsPartOf');
+      assert.equal(edge.followup.status, 'ambiguous');
+      assert.equal(edge.followup.candidates.length, 2);
+      assert.deepEqual(edge.followup.candidates.map(row => row.node_id).sort(), ['osti-data-explorer:1975203', 'osti-gov-records:1975203']);
+      const at = pointer => pointer.split('/').slice(1).reduce((value, key) => value[key], evidence);
+      assert(edge.evidence.every(ref => at(ref.assertion_pointer).publisher_value === ref.publisher_value), 'original publisher assertion pointer failed');
+      for (const candidate of edge.followup.candidates) {
+        assert(candidate.evidence.length > 0, 'candidate source evidence missing');
+        for (const ref of candidate.evidence) {
+          assert.equal(at(ref.record_pointer).source_id, candidate.source_id);
+          assert.equal(at(ref.record_pointer).id, candidate.record_id);
+          assert.equal(at(ref.evidence_pointer).id, ref.evidence_id);
+        }
+      }
+    }
     if (task.id === 'forecast-panel') {
       assert.match(await page.locator('main').innerText(), /Synthetic simulation. Fictitious regions/);
       for (const filename of ['plan.json', 'actuals.csv', 'forecasts.csv', 'included-targets.csv', 'row-exclusions.csv', 'metrics.csv', 'cohorts.json']) {

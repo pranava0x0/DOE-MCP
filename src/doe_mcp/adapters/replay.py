@@ -163,6 +163,8 @@ class ReplayFetcher:
 
     async def fetch_json(self, url: str,
                          params: dict[str, Any]) -> JsonResponse:
+        from .base import consume_request_budget
+        consume_request_budget()
         self.calls.append((url, dict(params)))
         hit = self.interactions.get(_key(url, params))
         if hit is None:

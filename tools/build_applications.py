@@ -7,7 +7,8 @@ import io
 from pathlib import Path
 import zipfile
 
-from doe_mcp.applications.bundle import json_bytes
+from doe_mcp.applications.bundle import Run, json_bytes
+from doe_mcp.applications import research_linkage
 from doe_mcp.applications.samples import APPLICATIONS, recorded_sample
 from doe_mcp.replay import fixture_manifest, load_replay_context
 from doe_mcp.workflows import freeze
@@ -44,7 +45,12 @@ async def write_applications(root: Path) -> None:
         "CLI runs preserve their original tool envelopes.", ""]
     for name in APPLICATIONS:
         ctx = load_replay_context(fixtures, root / "sources")
-        report, files = await recorded_sample(ctx, name, fixture_manifest(fixtures))
+        if name == "research-linkage":
+            run = Run(ctx, name, "recorded", fixture_manifest(fixtures))
+            files = await research_linkage.build(run, dataset_query="EAGLE-I", resolve_relationships=True)
+            report = run.report
+        else:
+            report, files = await recorded_sample(ctx, name, fixture_manifest(fixtures))
         if report["mode"] == "recorded":
             clock = f"{ctx.sources.revision}T00:00:00Z"
             report = freeze(report, clock)
@@ -67,8 +73,9 @@ async def write_applications(root: Path) -> None:
             (destination / filename).write_bytes(body)
         (destination / "bundle.zip").write_bytes(archive.getvalue())
         label = "Synthetic simulation. Fictitious regions. Runs locally." if report["mode"] == "simulation" else "Recorded example. Runs locally."
+        command_options = " --dataset-query EAGLE-I --resolve-relationships" if name == "research-linkage" else ""
         lines += [f"## {TITLES[name]}", "", f"**{label}**", "",
-                  f"```bash\ndoe-mcp app {name} --output ./{name}-run\n```", "",
+                  f"```bash\ndoe-mcp app {name}{command_options} --output ./{name}-run\n```", "",
                   f"[Download complete bundle](data/apps/{name}/bundle.zip) · "
                   f"[View report and source evidence](data/apps/{name}/report.json) · "
                   f"[File checksums](data/apps/{name}/manifest.json)", ""]
@@ -120,16 +127,32 @@ async def write_applications(root: Path) -> None:
         elif name == "research-linkage":
             lines += ["Search literature, dataset and software catalogs, then inspect source-linked inventory, "
                 "shared DOI identity and typed publisher relationship assertions separately. "
-                "The preset uses three different recorded queries; it does not claim that these records form a research chain.", "",
-                f"Returned **{len(report['records'])} records**, **{len(report['shared_identity'])} shared identities** "
-                f"and **{len(report['explicit_relationships'])} explicit relationship assertions**. "
-                f"**{len(report['unmatched_records'])} records** have no resolved match within this bounded result.", "",
-                "No explicit relationships in a recorded result is a valid outcome. Generic OSTI identifiers include grants "
-                "and contracts and never create edges. Unresolved publisher targets remain visible in the receipt.", "",
-                f"[Inventory CSV](data/apps/{name}/inventory.csv) · [Linkage receipt](data/apps/{name}/linkage.json)", "",
-                "Use `--live --query YOUR_TOPIC` for one topic across all collections, or set separate "
+                "This recorded example follows one EAGLE-I IsPartOf assertion by DOI. The three discovery topics "
+                "are independent; co-returned records do not establish relationships.", "",
+                f"Returned **{len(report['records'])} records** and **{len(report['explicit_relationships'])} explicit publisher assertion**. "
+                f"One-hop follow-up used **{report['relationship_resolution']['requests_used']} of "
+                f"{report['relationship_resolution']['request_limit']} allowed requests**.", "",
+                "| Publisher relationship | Target DOI | Resolution | Candidate source records |",
+                "|---|---|---|---|"]
+            for edge in report['explicit_relationships']:
+                followup = edge['followup']
+                candidates = "; ".join(candidate['node_id'] for candidate in followup['candidates']) or "None returned"
+                lines.append("| " + " | ".join(cell(value) for value in
+                    [edge['relationship'], edge['target_identifier'], followup['status'], candidates]) + " |")
+            lines += ["", "**Ambiguous means two source records share the target DOI.** OSTI.GOV and DOE Data Explorer "
+                "both returned a matching record; this does not establish two different artifacts. "
+                "The receipt retains both candidates and the originating publisher assertion with evidence pointers.", "",
+                "Only the original typed DOI assertions enter follow-up. Exact normalized DOI matching is required; "
+                "titles, topics, grants and contracts never create edges. Unknown totals, failed sources and request limits "
+                "cannot establish uniqueness or absence. No DOI landing page, repository or further relationship is fetched.", "",
+                f'<a download href="data/apps/{name}/inventory.csv">Inventory CSV</a> · '
+                f'<a download href="data/apps/{name}/linkage.json">Linkage receipt</a> · '
+                f'<a download href="data/apps/{name}/report.json">Download original assertions and follow-up evidence</a>', "",
+                "Use `--live --query YOUR_TOPIC` for one topic across the collections, or set separate "
                 "`--literature-query`, `--dataset-query` and `--software-query` values. "
-                "`--rows` and `--page-budget` bound each collection search.", ""]
+                "`--rows` and `--page-budget` bound discovery. Add `--resolve-relationships` for one hop and "
+                "`--relationship-request-budget 4` to cap follow-up HTTP attempts, including retries and redirects. "
+                "At most eight distinct original targets are searched. [Resolution rules and recorded evidence](research-relationships.html).", ""]
 
         elif name == "forecast-panel":
             lines += ["This example generates two fictitious regions, two illustrative forecast series and two lead times. "

@@ -577,3 +577,15 @@ RESEARCH_TOOLS.register(ToolSpec(
         "a fallback to the publisher otherwise. No full-text link is NOT a "
         "paywall finding; it means OSTI exposes none."),
     toolset="default", contract_version="1", fn=get_record))
+
+# Kept in its own module to isolate the optional bounded follow-up policy.
+from .research_resolution import resolve_doi  # noqa: E402
+
+RESEARCH_TOOLS.register(ToolSpec(
+    name="research.resolve_doi",
+    description=("Resolve a DOI target from an explicit publisher assertion across the four fixed "
+        "active OSTI research collections. Bounds actual HTTP attempts including retries and redirects; "
+        "preserves every searched page and exact normalized DOI candidate. Multiple source-scoped "
+        "candidates are ambiguous; unknown totals, failures and exhausted budgets never establish "
+        "uniqueness or absence. Does not fetch DOI URLs, repositories or further relationships."),
+    toolset="default", contract_version="1", fn=resolve_doi))
