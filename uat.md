@@ -456,3 +456,30 @@ apply. Playwright 1.58.2 used installed Chrome 158.0.8127.36 on loopback.
 Artifacts are in ignored `uat-screenshots/keyless-atb-final/`. Prepared evaluation
 tasks and deterministic simulation reports do not establish model quality.
 No credentials, live publisher calls or paid models were used by these checks.
+
+## Offline profile preflight — 2026-11-22
+
+The homepage's Check it step and guide now link to the offline profile check.
+The new report page distinguishes installation readiness from credentials,
+network, server startup and source activation. Its section headings provide
+sidebar and mobile-menu destinations for report fields, exit codes and wheel
+verification. Existing online doctor behavior remains separately documented.
+
+All 1,637 replay tests passed with one architecture-file skip. A fresh wheel
+passed eight base/extra/profile combinations outside the checkout, including
+interception guards for credential and client reads, key environment access,
+runtime construction, prompts and network calls. The wheel check now runs in
+CI. It installs test dependencies before running the guarded offline commands.
+Astra reviewed the report boundaries and the final installation checks.
+
+All four browser scripts passed: 39 demos, 228 jumps, 42 measured journeys,
+507 local targets across fifteen pages and three evaluation paths. The axe
+run completed 108 scans and 394 assertions with no violations or browser
+errors. Twenty-two contrast rule instances remain incomplete for manual
+review; actual screen-reader testing remains unperformed. The browser and
+scripted-test limitations above still apply. Results are in ignored
+`uat-screenshots/keyless-preflight/`. Registry/schema validation, Ruff, writing,
+39 export comparisons and the Croissant reader also passed.
+
+The final preflight report headings also passed focused keyboard navigation
+and axe checks at 375 and 1280 pixels, with no violations or incomplete rules.

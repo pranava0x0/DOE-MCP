@@ -1,5 +1,7 @@
 # Profile preflight
 
+## Run a check
+
 Inspect an installed profile without opening a credential store or MCP client
 configuration:
 
@@ -20,6 +22,8 @@ It never constructs adapters or a server, reads key environment values, prompts,
 or sends a network request. Dependency versions come from the installed wheel's
 exact pins. Unsupported dependency metadata fails the check instead of being
 skipped.
+
+## Read the report
 
 The JSON contract has `schema_version: 1` and these fields:
 
@@ -44,6 +48,8 @@ Each source includes its `access_mode`, a boolean `credential_required`, and its
 nullable `credential_ref`. A proposed keyed source can require credentials before
 it has a configured credential name; its status is still `not_checked`.
 
+## Exit codes and source gates
+
 Exit codes are `0` for a ready local installation, `1` for a broken installation
 or missing required extra, and `2` for invalid arguments. A required key whose
 presence was not checked does not fail preflight. A proposed or restricted source
@@ -56,6 +62,8 @@ profile. Install the required extra with `pip install 'doe-mcp[energy-tech]'`.
 The same base installation can pass the research and energy profiles. Passing
 preflight verifies local prerequisites; it makes no claim that a live keyed
 request will succeed.
+
+## Test installed wheels
 
 To verify a built wheel in fresh base and energy technology environments:
 

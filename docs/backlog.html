@@ -60,7 +60,7 @@ body[data-location-layout]{padding-left:15rem}
 </style></head><body class="" data-location-layout><a class="skip" href="#content">Skip to content</a>
 <header><nav aria-label="Site"><a href="index.html">DOE-MCP</a><a href="guide.html">Local guide</a><a href="reference.html">Tool reference</a><a href="demos.html">Demos</a><a href="backlog.html">Project backlog</a></nav></header>
 <aside class="page-location" data-location-nav data-location-context="Development backlog" data-location-topbar=""><details class="location-menu" open><summary class="location-toggle"><span>Current: </span><span data-current-location>Overview</span></summary><nav aria-label="On this page"><p class="location-context">Development backlog</p><ul data-location-links><li class="location-depth-0"><a href="#development-backlog" aria-current="location">Overview</a></li><li class="location-depth-0"><a href="#completed">Completed</a></li><li class="location-depth-0"><a href="#next-batch-no-keys-required">Next batch: no keys required</a></li><li class="location-depth-0"><a href="#later-work-without-keys">Later work without keys</a></li><li class="location-depth-0"><a href="#anonymous-candidates-that-still-need-evidence">Anonymous candidates that still need evidence</a></li><li class="location-depth-0"><a href="#gated-work">Gated work</a></li></ul></nav></details></aside><main id="content" tabindex="-1"><h1 id="development-backlog">Development backlog</h1>
-<p>Updated 2026-11-22 after PRs 19–27 and the ATB skill addition. This is the public development backlog.
+<p>Updated 2026-11-22 after PRs 19–28 and the profile preflight addition. This is the public development backlog.
 Items below are plans, not claims that a proposed integration works.</p>
 <p>A <strong>server</strong> hosts tools for a domain. A <strong>tool</strong> performs one bounded read.
 A <strong>skill</strong> explains how to combine tools and interpret their evidence.
@@ -125,7 +125,12 @@ when its dependency, credential or operating boundary requires one.</p>
 <tr>
 <td data-label="Status">Done</td>
 <td data-label="Change">ATB assumptions skill, five recorded checks and a two-edition demo covering exact qualifiers, ambiguity, nulls, empty selections and currency bases. Evaluation tasks are prepared; no model-quality result is claimed.</td>
-<td data-label="Evidence"><a href="https://github.com/pranava0x0/DOE-MCP/tree/main/skills/atb-assumptions">Skill and checks</a> · <a href="demos.html#atb-assumptions">Demo</a></td>
+<td data-label="Evidence"><a href="https://github.com/pranava0x0/DOE-MCP/pull/28">PR 28</a> · <a href="demos.html#atb-assumptions">Demo</a></td>
+</tr>
+<tr>
+<td data-label="Status">Done</td>
+<td data-label="Change">Offline profile preflight with versioned JSON, installation and source-gate diagnostics, and guarded base/extra wheel checks. Credentials and network remain explicitly unchecked.</td>
+<td data-label="Evidence"><a href="profile-preflight.html">Profile preflight</a></td>
 </tr>
 </tbody>
 </table>
@@ -133,7 +138,7 @@ when its dependency, credential or operating boundary requires one.</p>
 <a href="evaluation-example.html">evaluation example</a> retain their evidence and
 limitations. Recorded examples and simulations are labelled separately.</p>
 <h2 id="next-batch-no-keys-required">Next batch: no keys required</h2>
-<p>The ATB skill is complete. Ship the remaining items as separate, reviewable PRs in this order. Each must retain the
+<p>The ATB skill and profile preflight are complete. Ship the remaining items as separate, reviewable PRs in this order. Each must retain the
 source gates, pass replay tests and run the browser/accessibility checks
 on PRs and main. Suggested effort is relative to the existing implementation.</p>
 <table>
@@ -148,14 +153,6 @@ on PRs and main. Suggested effort is relative to the existing implementation.</p
 </tr>
 </thead>
 <tbody>
-<tr>
-<td data-label="Order">2</td>
-<td data-label="Priority">High</td>
-<td data-label="Layer">Server setup</td>
-<td data-label="Improvement">Extend doctor with a machine-readable, credential-free profile preflight.</td>
-<td data-label="Acceptance criteria">Report entry points, required extras, active tools and source gates without loading credential or client files. Distinguish optional missing keys from broken keyless installs; test installed wheels with and without energy-tech extras.</td>
-<td data-label="Effort">Medium</td>
-</tr>
 <tr>
 <td data-label="Order">3</td>
 <td data-label="Priority">High</td>
