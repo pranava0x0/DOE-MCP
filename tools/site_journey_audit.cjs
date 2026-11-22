@@ -435,6 +435,20 @@ async function applicationJourney(browser, viewport, task) {
         assert.deepEqual(cohorts[0].included_targets, cohorts[1].included_targets);
       }
     }
+    if (task.id === 'bpa-observations') {
+      assert.match(await page.locator('main').innerText(), /zero issuance-time baseline candidates/);
+      assert.match(await page.locator('main').innerText(), /24 availability timestamps are unknown/);
+      for (const filename of ['actuals.csv', 'observation-receipts.json', 'bpa-envelope-01.json']) {
+        const receipt = await download(page, page.locator('a[href="data/apps/bpa-observations/' + filename + '"]'), counters, filename);
+        assert(receipt.bytes.equals(fs.readFileSync(path.join(docs, 'data/apps/bpa-observations', filename))), 'BPA input/receipt differs: ' + filename);
+      }
+      const prepared = JSON.parse(fs.readFileSync(path.join(docs, 'data/apps/bpa-observations/report.json'), 'utf8'));
+      assert.equal(prepared.availability.unknown, 24);
+      assert.equal(prepared.availability.issuance_time_baseline_candidates, 0);
+      assert.equal(prepared.forecast_rows, 0);
+      const rows = JSON.parse(fs.readFileSync(path.join(docs, 'data/apps/bpa-observations/observation-receipts.json'), 'utf8'));
+      assert(rows.every(row => row.available_at === null && row.envelope_sha256 && row.evidence_id && row.source_ref), 'BPA evidence or availability contract failed');
+    }
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'application page overflow');
     await page.screenshot({path: path.join(output, 'application-' + viewport.width + '-' + task.id + '.png')});
     report.journeys.push({viewport, task: task.id, endpoint: page.url(), ...counters});
@@ -506,6 +520,7 @@ async function hrefTargets(browser) {
         {id: 'gcam-comparison', anchor: 'gcam-comparison-receipts'},
         {id: 'research-linkage', anchor: 'research-artifact-linkage-explorer'},
         {id: 'forecast-panel', anchor: 'forecast-panel-with-common-cohorts'},
+        {id: 'bpa-observations', anchor: 'bpa-observations-for-forecast-panels'},
         {id: 'energy-assumptions', anchor: 'atb-energy-assumptions-reader'}])
         await applicationJourney(browser, viewport, task);
       await evaluationJourney(browser, viewport);

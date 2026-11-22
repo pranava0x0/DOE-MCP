@@ -7,8 +7,8 @@ import io
 from pathlib import Path
 import zipfile
 
+from doe_mcp.applications import bpa_observations, research_linkage
 from doe_mcp.applications.bundle import Run, json_bytes
-from doe_mcp.applications import research_linkage
 from doe_mcp.applications.samples import APPLICATIONS, recorded_sample
 from doe_mcp.replay import fixture_manifest, load_replay_context
 from doe_mcp.workflows import freeze
@@ -18,7 +18,8 @@ TITLES = {"forecast-benchmark": "Grid forecast benchmark lab",
           "gcam-comparison": "GCAM comparison receipts",
           "research-linkage": "Research artifact linkage explorer",
           "forecast-panel": "Forecast panel with common cohorts",
-          "energy-assumptions": "ATB energy assumptions reader"}
+          "energy-assumptions": "ATB energy assumptions reader",
+          "bpa-observations": "BPA observations for forecast panels"}
 
 
 def cell(value) -> str:
@@ -43,12 +44,14 @@ async def write_applications(root: Path) -> None:
         "Recorded site examples normalize replay retrieval clocks and request IDs for repeatable builds. "
         "The normalized clock is not a capture date. Source data and fixture hashes are preserved. "
         "CLI runs preserve their original tool envelopes.", ""]
-    for name in APPLICATIONS:
+    for name in (*APPLICATIONS, "bpa-observations"):
         ctx = load_replay_context(fixtures, root / "sources")
         if name == "research-linkage":
             run = Run(ctx, name, "recorded", fixture_manifest(fixtures))
             files = await research_linkage.build(run, dataset_query="EAGLE-I", resolve_relationships=True)
             report = run.report
+        elif name == "bpa-observations":
+            report, files = await bpa_observations.recorded_sample(ctx, fixture_manifest(fixtures), normalize=True)
         else:
             report, files = await recorded_sample(ctx, name, fixture_manifest(fixtures))
         if report["mode"] == "recorded":
@@ -73,9 +76,10 @@ async def write_applications(root: Path) -> None:
             (destination / filename).write_bytes(body)
         (destination / "bundle.zip").write_bytes(archive.getvalue())
         label = "Synthetic simulation. Fictitious regions. Runs locally." if report["mode"] == "simulation" else "Recorded example. Runs locally."
+        command = "forecast-panel --prepare-bpa" if name == "bpa-observations" else name
         command_options = " --dataset-query EAGLE-I --resolve-relationships" if name == "research-linkage" else ""
         lines += [f"## {TITLES[name]}", "", f"**{label}**", "",
-                  f"```bash\ndoe-mcp app {name}{command_options} --output ./{name}-run\n```", "",
+                  f"```bash\ndoe-mcp app {command}{command_options} --output ./{name}-run\n```", "",
                   f"[Download complete bundle](data/apps/{name}/bundle.zip) · "
                   f"[View report and source evidence](data/apps/{name}/report.json) · "
                   f"[File checksums](data/apps/{name}/manifest.json)", ""]
@@ -179,6 +183,22 @@ async def write_applications(root: Path) -> None:
                 "Import your own declared CSVs with `--plan`, `--actuals` and `--forecasts`. The import preserves raw input hashes "
                 "and attribution but cannot establish that supplied observations, issuance times or availability times are historically true. "
                 "A simulation declaration remains simulation on reimport. [Input format and measurement rules](apps.html#forecast-panel-with-common-cohorts).", ""]
+        elif name == "bpa-observations":
+            lines += ["Prepare real recorded BPA Load observations for the existing forecast panel. "
+                "This example imports **24 five-minute instantaneous MW samples**; it generates **zero forecasts**. "
+                "All **24 availability timestamps are unknown**, so there are **zero issuance-time baseline candidates**. "
+                "Retrieval time and Last-Modified do not establish when a sample was available to a forecasting system.", "",
+                "The raw local timestamps use the explicitly declared `America/Los_Angeles` timezone assumption. "
+                "The original normalized replay envelope, SHA256 checksum and row-bound evidence receipts remain downloadable. "
+                "This structural consistency check does not authenticate caller-supplied files as publisher originals.", "",
+                f"- [Prepared actuals CSV](data/apps/{name}/actuals.csv)",
+                f"- [Observation and evidence receipts](data/apps/{name}/observation-receipts.json)",
+                f"- [Recorded BPA input envelope](data/apps/{name}/bpa-envelope-01.json)", "",
+                "| Returned observations | Unknown availability | Baseline candidates | Generated forecasts |",
+                "|---:|---:|---:|---:|", "|24|24|0|0|", "",
+                "Unknown availability stays blank in the CSV. These outcomes can support separately labelled ex-post model-only "
+                "scores when you supply actual forecast inputs; they cannot supply persistence by issuance. "
+                "No prospective model skill is claimed. [Preparation options and evidence format](apps.html#bpa-observation-preparation).", ""]
         elif name == "energy-assumptions":
             lines += ["Read technology cost and performance assumptions from one pinned ATB edition. "
                 "Every row retains its scenario, projection year, technology/resource detail, units and financial qualifiers.", "",

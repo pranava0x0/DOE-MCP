@@ -130,8 +130,8 @@ def parse_inputs(plan: dict, actual_payload: bytes, forecast_payload: bytes) -> 
             value = number(row["value" if kind == "actuals" else "prediction"], "panel values") if row["value" if kind == "actuals" else "prediction"] else None
             record = {"row_number": row_number, "target": target, "value": value, "region_id": row["region_id"]}
             if kind == "actuals":
-                available = timestamp(row["available_at"])
-                if available < target:
+                available = timestamp(row["available_at"]) if row["available_at"] else None
+                if available is not None and available < target:
                     raise InvalidQuery("actual available_at must be at or after its sample time or interval end")
                 key = (row["region_id"], target)
                 record["available"] = available
@@ -176,7 +176,7 @@ def evaluate(plan: dict, targets: list[datetime], actuals: dict, forecasts: dict
     issuances = sorted({target - timedelta(seconds=lead) for target in targets for lead in plan["lead_seconds"]})
     priors = {}
     for region in regions:
-        history = sorted((r for (rid, _), r in actuals.items() if rid == region and r["value"] is not None), key=lambda r: r["available"])
+        history = sorted((r for (rid, _), r in actuals.items() if rid == region and r["value"] is not None and r["available"] is not None), key=lambda r: r["available"])
         cursor, latest = 0, None
         for issued in issuances:
             while cursor < len(history) and history[cursor]["available"] <= issued:
@@ -256,13 +256,48 @@ def evaluate(plan: dict, targets: list[datetime], actuals: dict, forecasts: dict
                 metrics.append({"region_id": region, "lead_seconds": lead, "kind": "model" if model is not None else "persistence",
                                 "model_id": model, "status": status, "unit": plan["measurement"]["unit"],
                                 **_metrics(errors[model] if model is not None else baseline_errors)})
+    # Outcome matching does not require historical availability. Keep this
+    # separately labelled cohort apart from the model+persistence comparison.
+    ex_post_local = {(region, lead): {target for target in targets
+        if not [reason for reason in candidates[region, lead, target]["reasons"]
+                if reason not in {"no_actual_available_by_issuance", "stale_baseline_observation"}]}
+        for region in regions for lead in plan["lead_seconds"]}
+    ex_post_rows, ex_post_metrics, ex_post_cohorts, used_ex_post = [], [], [], set()
+    for lead in plan["lead_seconds"]:
+        intersection = set.intersection(*(ex_post_local[region, lead] for region in regions))
+        for region in regions:
+            selected_targets = intersection if plan["cohort_mode"] == "cross_region_intersection" else ex_post_local[region, lead]
+            ex_post_cohorts.append({"region_id": region, "lead_seconds": lead,
+                                   "expected_targets": len(targets), "included_targets": [stamp(t) for t in targets if t in selected_targets]})
+            for model in models:
+                model_errors = []
+                for target in targets:
+                    actual = actuals.get((region, target))
+                    forecast = forecasts.get((model, region, lead, target))
+                    selected = target in selected_targets
+                    error = _error(forecast["value"], actual["value"]) if selected else None
+                    if selected:
+                        model_errors.append(error)
+                        used_ex_post.add(actual["row_number"])
+                    ex_post_rows.append({"region_id": region, "model_id": model, "lead_seconds": lead,
+                        "target_at": stamp(target), "included": selected, "error": error,
+                        "actual_row": actual["row_number"] if actual else None,
+                        "forecast_row": forecast["row_number"] if forecast else None,
+                        "actual_available_at": stamp(actual["available"]) if actual and actual["available"] is not None else None})
+                ex_post_metrics.append({"region_id": region, "model_id": model, "lead_seconds": lead,
+                    "status": scoring_status(len(selected_targets), len(targets)), "unit": plan["measurement"]["unit"], **_metrics(model_errors)})
     included_slots = sum(len(c["included_targets"]) for c in cohorts)
     total_slots = len(cohorts) * len(targets)
     return {"status": scoring_status(included_slots, total_slots), "cohorts": cohorts, "metrics": metrics, "rows": rows,
+            "ex_post_model_only": {"cohort_basis": "Common finite outcome and all-model forecast targets; availability and persistence are not eligibility requirements.",
+                "comparison_note": "Different cohort from model+persistence metrics; do not compare these metrics directly with persistence or infer prospective performance.",
+                "cohorts": ex_post_cohorts, "metrics": ex_post_metrics, "rows": ex_post_rows, "ranking": "not_performed"},
             "coverage": {"included_region_lead_targets": included_slots, "expected_region_lead_targets": total_slots},
             "actual_row_usage": [{"row_number": r["row_number"], "region_id": r["region_id"], "target_at": stamp(r["target"]),
-                                  "used_for_scoring_or_baseline": r["row_number"] in used_actuals,
-                                  "reason_if_unused": None if r["row_number"] in used_actuals else "not_used_by_selected_cohorts"}
+                                  "used_for_scoring_or_baseline": r["row_number"] in used_actuals or r["row_number"] in used_ex_post,
+                                  "used_for_common_cohort_or_baseline": r["row_number"] in used_actuals,
+                                  "used_for_ex_post_model_only": r["row_number"] in used_ex_post,
+                                  "reason_if_unused": None if r["row_number"] in used_actuals or r["row_number"] in used_ex_post else "not_used_by_selected_cohorts"}
                                  for r in actuals.values()], "ranking": "not_performed"}
 
 
@@ -285,13 +320,14 @@ def build(plan_payload: bytes, actual_payload: bytes, forecast_payload: bytes) -
               "limitations": ["This panel compares declared inputs, not publisher-verified observations. A simulation run does not measure real-world model performance.",
                   "Every compared model and persistence use the identical eligible target set within each region and lead. Cross-region intersection mode additionally uses the same targets in every declared region.",
                   "Within-region mode permits different region cohorts. No cross-region aggregate score or ranking is produced in either mode.",
+                  "Blank availability is unknown and excluded from issuance-time baselines. Separate ex-post model-only metrics use common actual/forecast targets and must not be compared directly to persistence metrics on a different cohort.",
                   "Availability and issuance timestamps are assertions in the supplied files; their historical truth cannot be established from a CSV.",
                   "Persistence uses only observations effective and available at or before issuance, within the declared maximum age. Later observations never set its prediction.",
                   "Quantity, unit, cadence, interval meaning and timestamp meaning must match the declaration. Power samples, interval means and energy totals cannot be mixed; no unit conversion or temporal aggregation is performed.",
                   "Missing declarations are refused. Missing values, forecasts and observations remain explicit cohort exclusions; a region with no common targets stays in the report with null metrics."]}
     included_rows = [{"region_id": c["region_id"], "lead_seconds": c["lead_seconds"], "target_at": t} for c in result["cohorts"] for t in c["included_targets"]]
     excluded_rows = [row for row in result["rows"] if not row["included"]]
-    files.update({"cohorts.json": json_bytes(result["cohorts"]),
+    files.update({"ex-post-model-only.json": json_bytes(result["ex_post_model_only"]), "cohorts.json": json_bytes(result["cohorts"]),
                   "included-targets.csv": _table(included_rows, ["region_id", "lead_seconds", "target_at"]),
                   "metrics.csv": _table(result["metrics"], ["region_id", "lead_seconds", "kind", "model_id", "status", "unit", "count", "mae", "rmse", "bias"]),
                   "scored-rows.csv": _table(result["rows"], list(result["rows"][0])),

@@ -7,7 +7,7 @@ from pathlib import Path
 import sys
 
 from ..adapters.base import close_shared_client
-from ..applications import dockets, energy_assumptions, forecast, forecast_panel, gcam, research_linkage, weather
+from ..applications import bpa_observations, dockets, energy_assumptions, forecast, forecast_panel, gcam, research_linkage, weather
 from ..applications.samples import APPLICATIONS
 from ..applications.bundle import Run, export_bundle
 from ..core.credentials import Credentials
@@ -19,6 +19,27 @@ from .workflows import asset_dir
 
 async def execute(args):
     if args.application == forecast_panel.NAME:
+        preparing = args.prepare_bpa or args.bpa_envelope or args.availability_evidence or args.actual_timezone
+        if preparing:
+            if args.live or args.fixtures or any([args.plan, args.actuals, args.forecasts]):
+                raise InvalidQuery("BPA preparation uses local envelopes or the recorded preset, separate from panel CSV scoring")
+            if args.prepare_bpa and args.bpa_envelope:
+                raise InvalidQuery("choose --prepare-bpa or --bpa-envelope")
+            if args.bpa_envelope:
+                if len(args.bpa_envelope) > bpa_observations.MAX_ENVELOPES:
+                    raise InvalidQuery("BPA preparation allows at most 8 envelopes")
+                return bpa_observations.prepare([bpa_observations.read_input(path) for path in args.bpa_envelope],
+                    timezone_name=args.actual_timezone, region_id=args.region_id,
+                    availability_payload=bpa_observations.read_input(args.availability_evidence) if args.availability_evidence else None)
+            if not args.prepare_bpa or args.availability_evidence or args.actual_timezone or args.region_id != "bpat":
+                raise InvalidQuery("custom BPA preparation requires --bpa-envelope and --actual-timezone; --prepare-bpa is the fixed recorded preset")
+            directory = asset_dir("fixtures")
+            try:
+                return await bpa_observations.recorded_sample(load_replay_context(directory), fixture_manifest(directory))
+            finally:
+                await close_shared_client()
+        if args.region_id != "bpat":
+            raise InvalidQuery("--region-id is only used with --bpa-envelope")
         if args.live or args.fixtures:
             raise InvalidQuery("forecast-panel imports CSVs or runs a simulation; it does not fetch live publishers or replay publisher fixtures")
         supplied = [args.plan, args.actuals, args.forecasts]
@@ -91,12 +112,17 @@ def cmd_app(args):
                 print("Warning: no forecasts matched usable actuals; no forecast metrics were calculated. "
                       "Evidence and exclusion reasons are available in the report.", file=sys.stderr)
         elif report["application"] == forecast_panel.NAME:
+            if report["status"] == "prepared":
+                availability = report["availability"]
+                print(f"BPA observations prepared: {report['observation_rows']}; unknown availability: {availability['unknown']}; "
+                      f"caller-declared baseline candidates: {availability['issuance_time_baseline_candidates']}. No forecasts generated.", file=sys.stderr)
+                return 0
             coverage = report["coverage"]
             print(f"Forecast panel mode: {report['mode']}; status: {report['status']}; "
                   f"included {coverage['included_region_lead_targets']} of {coverage['expected_region_lead_targets']} "
                   "declared region/lead/target slots. Inputs are not publisher verified.", file=sys.stderr)
             if report["status"] == "unscored":
-                print("Warning: no common eligible targets; metrics are null and no ranking is produced.", file=sys.stderr)
+                print("Warning: no common eligible targets; model+persistence metrics are null and no ranking is produced. Separate ex-post model-only scores may still be available.", file=sys.stderr)
     except (DoeMcpError, ValueError, OSError) as err:
         raise SystemExit(f"application failed: {err}") from None
     return 0
@@ -139,6 +165,11 @@ def register(sub):
             parser.add_argument("--page-budget", type=int, default=1)
 
         elif name == forecast_panel.NAME:
+            parser.add_argument("--prepare-bpa", action="store_true", help="prepare a fixed recorded BPA observation example; no forecasts generated")
+            parser.add_argument("--bpa-envelope", type=Path, action="append", help="original BPA tool envelope JSON; repeat up to 8 times")
+            parser.add_argument("--actual-timezone", help="required caller IANA timezone assumption for local envelope preparation")
+            parser.add_argument("--region-id", default="bpat", help="region identifier for prepared BPA actuals")
+            parser.add_argument("--availability-evidence", type=Path, help="optional row-bound caller availability assertions; retained unchanged")
             parser.add_argument("--plan", type=Path, help="JSON model/region/lead/window/measurement declaration")
             parser.add_argument("--actuals", type=Path, help="actual CSV with availability timestamps and measurement labels")
             parser.add_argument("--forecasts", type=Path, help="forecast CSV; provide all three inputs or run the labelled simulation")

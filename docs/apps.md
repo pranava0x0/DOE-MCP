@@ -190,6 +190,8 @@ Use UTF-8, aware ISO timestamps and finite numeric values. A blank `value`
 or `prediction` means missing. Effective and availability times must be
 separate: `available_at` states when that observation was available to the
 forecast system and must be at or after its sample time or interval end.
+A blank `available_at` means unknown; it can match an ex-post actual but
+never supplies an issuance-time baseline.
 Issuance, availability and source attribution remain caller assertions;
 the application cannot prove their historical truth. Imported bytes are
 preserved with hashes and marked `not_publisher_verified`.
@@ -214,6 +216,12 @@ models, regions and leads are refused. Duplicate identities are refused
 after converting timestamps to UTC. Availability rows are indexed by
 their original CSV record number.
 
+The separate `ex-post-model-only.json` output uses common finite actual
+and all-model forecast targets without requiring persistence eligibility.
+It labels its own cohorts and denominators; do not compare those metrics
+directly against persistence on the narrower model-plus-persistence cohort.
+Unknown availability does not establish that an outcome was known at issuance.
+
 The bundle preserves all three raw input files and adds `cohorts.json`,
 `included-targets.csv`, `scored-rows.csv`, `row-exclusions.csv`,
 `input-exclusions.csv` and `metrics.csv`. Empty cohorts retain null metrics
@@ -225,6 +233,74 @@ slots; each input file is at most 20 MB and each CSV at most 100,000 rows.
 This application reads local files only. Its `--live` and `--fixtures`
 options are refused. Existing publisher tools keep their own source and
 credential gates; this application does not configure or acquire a key.
+
+## BPA observation preparation
+
+```bash
+doe-mcp app forecast-panel --prepare-bpa --output ./bpa-recorded
+doe-mcp app forecast-panel \
+  --bpa-envelope ./bpa-recorded/bpa-envelope-01.json \
+  --actual-timezone America/Los_Angeles --output ./bpa-import
+```
+
+This is a preparation path in the existing forecast-panel application.
+The first command uses real recorded BPA readings and declares its timezone
+assumption. It creates no forecasts, comparison plan or prospective performance
+claim. [Download the recorded observations, input envelope and receipts](applications.html#bpa-observations-for-forecast-panels).
+The default `forecast-panel` command still runs its labelled simulation.
+
+For your own input, `--bpa-envelope` takes an original JSON tool envelope
+from `grid.get_bpa_operations`, not a report or HTTP recording fixture.
+Repeat it for up to eight nonoverlapping envelopes, with at most 20 MB combined
+and 100,000 returned observations. Duplicate UTC sample identities, inconsistent
+rows, unknown source references and mismatched evidence record identities
+are refused. These are structural consistency checks, not authentication
+of a caller's files as publisher originals. The original envelope bytes and
+SHA256 hashes are retained, with each receipt bound to its envelope, original
+row, timestamp, evidence ID and `bpa-operations` provenance entry.
+
+`--actual-timezone` is an explicit caller IANA timezone assumption and is
+required for custom imports. Raw publisher timestamps and UTC timestamps
+are both retained. Ambiguous or nonexistent local DST times are refused.
+BPA Load remains `electric_power`, `MW`, `instantaneous_sample`, `sample_time`
+at a 300-second cadence. Missing values remain blank. There is no aggregation,
+conversion, interpolation or invented forecast.
+
+The output `actuals.csv` can be supplied with your own panel plan and forecasts.
+Set its region ID using `--region-id` if needed. `available_at` stays blank
+unless a retained sidecar supplies a row-bound caller assertion. Neither sample
+time, retrieval time nor publisher Last-Modified establishes row availability.
+Unknown rows may support the separate ex-post model-only scoring output but
+are always excluded from issuance-time persistence baselines.
+
+Optional `--availability-evidence ./availability.json` uses this structure
+(copy the real envelope hash, evidence ID and UTC target from a receipt):
+
+```json
+{
+  "rows": [{
+    "envelope_sha256": "COPY_FROM_RECEIPT",
+    "evidence_id": "evidence_01",
+    "target_at": "2026-09-03T07:00:00+00:00",
+    "available_at": "2026-09-03T07:01:00+00:00",
+    "evidence": "Caller ingestion log identifier and row-level availability basis"
+  }]
+}
+```
+
+The sidecar is preserved byte-for-byte. Each declaration must bind uniquely
+to a retained envelope/evidence/target and be at or after the sample time.
+Unspecified rows remain unknown. Declared availability is labelled
+`caller_declared_unverified`, never publisher-authenticated. A candidate still
+needs to be available by a supplied forecast's issuance and within the plan's
+maximum age before it can enter a baseline. Imported observations never prove
+forecast issuance provenance.
+
+Every new output directory is published as a complete atomic bundle with
+`report.json`, `manifest.json`, `actuals.csv`, `observation-receipts.json`,
+original `bpa-envelope-*.json` files and the optional availability sidecar.
+Existing destinations are refused. Retained source coverage and receipts show
+only returned samples; a partial recording does not become a complete archive.
 
 ## Weather package
 
