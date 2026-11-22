@@ -13,7 +13,7 @@
     "pmas": 4,
     "servers_shipping": 11,
     "servers_planned": 3,
-    "tools": 79,
+    "tools": 80,
     "adapters": 23,
     "neighbors": 6,
     "neighbors_phrase": "5 server entries and 1 skill pack in the plug-in catalog",
@@ -187,6 +187,11 @@
           "description": "Fetch one full record by id from a named OSTI collection: 'literature' (OSTI.GOV), 'pages' (DOE PAGES), 'dataset' (DOE Data Explorer), or 'software' (DOE CODE). The collections have SEPARATE id spaces \u2014 the same number is a different record in each \u2014 so pass the collection the id came from rather than guessing. The answer includes a `fulltext` block saying whether the work can actually be read and where \u2014 the OSTI full-text URL when one exists, the DOI as a fallback to the publisher otherwise. No full-text link is NOT a paywall finding; it means OSTI exposes none."
         },
         {
+          "name": "research.resolve_doi",
+          "toolset": "default",
+          "description": "Resolve a DOI target from an explicit publisher assertion across the four fixed active OSTI research collections. Bounds actual HTTP attempts including retries and redirects; preserves every searched page and exact normalized DOI candidate. Multiple source-scoped candidates are ambiguous; unknown totals, failures and exhausted budgets never establish uniqueness or absence. Does not fetch DOI URLs, repositories or further relationships."
+        },
+        {
           "name": "registry.resolve_org",
           "toolset": "discovery-min",
           "description": "Resolve a DOE organization from a name, abbreviation, FORMER name, or domain \u2014 including dead ones. Use FIRST whenever a user names a lab or office, because this ecosystem renames things and the old URLs do not redirect. 'NREL' resolves to the National Laboratory of the Rockies and warns that the name is historical; a *.nrel.gov domain resolves the same way and warns that the URL is dead with no forwarding. Same for EERE (now CMEI), FECM (now HGEO), LPO (now EDF), HFTO and BETO (merged into AFFO), IEDO (now ITO), and the dismantled Grid Deployment Office."
@@ -222,7 +227,7 @@
           "description": "Currently unavailable: VIPS requires an API key; access support is pending. Patents held and software released by the US national laboratories, from PNNL's technology-transfer index \u2014 the one place a single laboratory's own output is searchable. Use for 'what has Idaho patented on X', 'what software has PNNL released', 'who invented this'. `lab` takes an acronym or a laboratory name and is resolved against the alias table first, because this service answers an unknown acronym with zero results and no error. `record_type` is Patent or Software; `query`, `inventor`, `taxonomy`, `since` and `until` narrow further. Pass `record_id` for one record whole, including the filed patent text a search page omits. Page with `cursor` ALONE \u2014 filters sent with a cursor are ignored by the service. Being listed is not an offer to license."
         }
       ],
-      "tools_all": 15
+      "tools_all": 16
     },
     {
       "name": "doe-energy-data",
